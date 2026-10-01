@@ -152,7 +152,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "specialist_with_workflow_surface",
@@ -189,7 +201,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-audit-code-health",
-  "shared_summary": "Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.",
+  "shared_summary": "Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.",
   "shared_constraints": [
     "**Read-only.** Never modify, create, or delete files in the target.",
     "**Evidence-based.** Every finding cites specific file + metric. No subjective claims.",
@@ -218,7 +230,166 @@
     }
   ],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-audit-code-health",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-audit-code-health/baseline.md",
+        "selected_commit": null,
+        "richness_score": 7,
+        "line_count": 436,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": null,
+          "current_head_richness_score": 4,
+          "current_head_line_count": 436,
+          "materialized_from_commit": null,
+          "materialized_from_source_kind": "current_ssot",
+          "materialized_from_path": "ssot/engos-audit-code-health.md",
+          "materialized_from_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
+          "last_materialized_at": "2026-06-21T01:56:31.403032+00:00"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": null,
+          "baseline_slug": "engos-audit-code-health"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 7,
+        "candidate_richness": 7,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {},
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-audit-code-health",
     "strategy": "head_snapshot",
@@ -273,7 +444,7 @@
     "portfolio_action": "keep_and_clarify_boundary",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": []
@@ -292,7 +463,7 @@
               "path": "ssot/engos-audit-code-health.md",
               "start_line": 60,
               "end_line": 67,
-              "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+              "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
             }
           },
           {
@@ -300,9 +471,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-audit-code-health.md",
-              "start_line": 457,
-              "end_line": 463,
-              "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+              "start_line": 461,
+              "end_line": 467,
+              "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
             }
           },
           {
@@ -310,9 +481,9 @@
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-audit-code-health.md",
-              "start_line": 467,
-              "end_line": 469,
-              "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+              "start_line": 471,
+              "end_line": 473,
+              "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
             }
           }
         ]
@@ -327,7 +498,7 @@
               "path": "ssot/engos-audit-code-health.md",
               "start_line": 60,
               "end_line": 67,
-              "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+              "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
             }
           },
           {
@@ -335,9 +506,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-audit-code-health.md",
-              "start_line": 457,
-              "end_line": 463,
-              "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+              "start_line": 461,
+              "end_line": 467,
+              "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
             }
           }
         ]
@@ -350,8 +521,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-audit-code-health.md",
-        "ssot_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
-        "effective_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+        "ssot_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+        "effective_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -370,7 +541,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "85d32ebea9936c1197904a7cd23d11a37886a4660c4d3bd0ce8535222153084d"
+        "mapping_sha256": "44713aa59c4870855ca736cc8aa60f89357c617570bc02246468de400a8b81c9"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

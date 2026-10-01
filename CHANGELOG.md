@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Extend persistent coordinator/writer/separate-reviewer acceptance to the twelve
+  scoped authored-artifact routes identified by the prior inventory. Preserve
+  domain checks, narrow modes, execution budgets and external approval boundaries;
+  docs applies to requested execution, testing to authored plans/artifacts, and
+  Loopy to Craft only. Keep the immutable Loopy source snapshot and native identity.
+- Document source-grounded before/after acceptance contracts and pattern examples;
+  independent contract review and structural checks do not claim measured benefit.
 - Replace Architecture Studio's writer-filled scorecard with a coordinator,
   persistent writer and separate source-checking reviewer. Revisions continue
   until the reviewer reports zero open findings; a reopened technical refusal

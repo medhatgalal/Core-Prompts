@@ -1,0 +1,29 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-audit-code-health",
+  "original_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+  "candidate_sha256": "267e132e90b3af24938d9baea71a3746970d789d3d2197949121da50db2c59ae",
+  "effective_sha256": "267e132e90b3af24938d9baea71a3746970d789d3d2197949121da50db2c59ae",
+  "source_line_count": 469,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-1-audit-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-469",
+      "source_start_line": 1,
+      "source_end_line": 469,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; all domain rules, templates, examples, boundaries and layout in the span preserved. New review obligations are additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, product implementation or runtime acceptance."
+  ]
+}

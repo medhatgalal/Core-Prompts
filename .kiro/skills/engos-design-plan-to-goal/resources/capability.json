@@ -138,7 +138,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "analyst",
@@ -223,7 +235,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "preserved",
+          "classification": "reviewed_modernization",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -235,7 +247,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "not_supplied_or_invalid",
+            "status": "bound_attestation",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -297,8 +309,16 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+      "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
       "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
       "repair_requests": [],
       "dimension_inventory": [
         {
@@ -371,7 +391,7 @@
     "primary_job": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
     "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
     "works_on": "- an implementation plan, intent, issue, or approved planning artifact\n- the target repository or working context\n- the active host/runtime when detectable\n- any user-supplied iteration, token, time, or cost bound\n- explicit protected surfaces, approvals, or operator checks when already known",
-    "main_output": "Return these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
+    "main_output": "The packet delivery written by the writer uses these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
     "not_for": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
     "authority": "- Do not mutate source code while compiling a packet in read-only Plan mode.\n- Do not use chat history as the only durable source for a long-running goal.\n- Do not exceed 3,500 characters or bytes even when a host permits more.\n- Do not hide unknowns, unsupported behavior, manual checks, or external-state dependencies.\n- Do not rely on an execute bit for bundled scripts or task verifiers; invoke Bash and Python resources through their interpreters.\n- Do not create, replace, pause, resume, or clear a goal unless the user separately requests that runtime action.\n- Do not deploy, commit, merge, or alter global skill installations merely because the packet is ready.",
     "routing_question": "Does this request directly require Plan to Goal Design?",
@@ -380,7 +400,7 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -391,7 +411,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 12,
               "end_line": 12,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           },
           {
@@ -401,7 +421,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 14,
               "end_line": 14,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           },
           {
@@ -411,7 +431,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 34,
               "end_line": 39,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           },
           {
@@ -421,7 +441,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 155,
               "end_line": 167,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           }
         ]
@@ -440,7 +460,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 27,
               "end_line": 31,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           },
           {
@@ -450,7 +470,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 209,
               "end_line": 215,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           }
         ]
@@ -465,7 +485,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 27,
               "end_line": 31,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           },
           {
@@ -475,7 +495,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 12,
               "end_line": 12,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           },
           {
@@ -485,7 +505,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 209,
               "end_line": 215,
-              "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
             }
           }
         ]
@@ -498,8 +518,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-plan-to-goal.md",
-        "ssot_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
-        "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+        "ssot_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+        "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -512,7 +532,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 17,
                 "end_line": 17,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             }
           ],
@@ -524,7 +544,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 34,
                 "end_line": 39,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             },
             {
@@ -534,7 +554,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 41,
                 "end_line": 41,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             }
           ],
@@ -546,19 +566,19 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 187,
                 "end_line": 191,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             }
           ],
           "main_output": [
             {
-              "text": "Return these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`",
+              "text": "The packet delivery written by the writer uses these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`",
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 194,
                 "end_line": 202,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             },
             {
@@ -568,7 +588,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 204,
                 "end_line": 204,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             },
             {
@@ -578,7 +598,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 206,
                 "end_line": 206,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             }
           ],
@@ -590,7 +610,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 27,
                 "end_line": 31,
-                "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
               }
             }
           ]
@@ -604,7 +624,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "9c125b9f9bd05743314ba0cdf2bc470f78b45b971a6d24c4e9edc31d4a0539aa"
+        "mapping_sha256": "3d98c711bae3dfd98833fe620347e983c3ea5436f9660885fda6391bd8a2a6f8"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

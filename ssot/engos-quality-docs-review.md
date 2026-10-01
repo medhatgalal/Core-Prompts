@@ -30,7 +30,7 @@ Responsibilities:
 
 ## Tool Boundaries
 - allowed: read repo docs and code, inspect workflows and scripts, write docs review artifacts when explicitly requested, and apply documentation edits when the caller asks for execution
-- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent
+- forbidden: wider runtime orchestration or delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent
 - escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation
 
 ## Output Directory
@@ -62,7 +62,7 @@ When the user wants repo-ready artifacts instead of reports, default to exact ta
 - Flag architecture drift when documentation no longer matches build, validation, deploy, install, packaging, or release behavior.
 - Distinguish operator docs, maintainer docs, technical docs, and planning artifacts explicitly.
 - Keep the capability documentation-focused and advisory by default.
-- Do not claim orchestration, routing, or delegation authority.
+- Limit coordination to the execution-only artifact review below; do not claim wider routing or delegation authority.
 
 ## Required Inputs
 - current README and docs structure
@@ -71,7 +71,7 @@ When the user wants repo-ready artifacts instead of reports, default to exact ta
 - the change scope when reviewing a commit, pull request, merge, or release
 
 ## Required Output
-Every substantial response must include:
+Every substantial writer-authored artifact must include:
 - `Current State`
 - `What Belongs Where`
 - `Drift Findings`
@@ -141,3 +141,24 @@ Use these default review triggers unless the user asks for a different cadence:
 
 ### Failure Mode To Avoid
 - vague advice such as “improve the documentation” without naming files, audience, drift evidence, or review timing
+
+## Recommendation Artifact Review
+
+Apply this review only when the user explicitly requests execution of a substantial documentation rewrite. Findings-only inspection, ordinary recommendations and narrow formatting retain their advisory routes. The writer owns the authorized documentation artifact; the separate reviewer checks it against source behavior, audience, placement and links. Do not review a document written by this reviewer as though it were independently authored. Existing exact-target scope, source-of-truth placement and no unrelated application refactor boundaries remain unchanged.
+
+Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.
+
+### Three Roles
+- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.
+- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.
+- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.
+
+Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.
+
+### Finding and Repair Cycle
+1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.
+2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.
+3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.
+4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.
+5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.
+6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.

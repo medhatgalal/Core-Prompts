@@ -1,0 +1,93 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-browser-demo-recorder",
+  "original_sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508",
+  "candidate_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+  "effective_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+  "source_line_count": 132,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-2-design-delivery-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-1",
+      "source_start_line": 1,
+      "source_end_line": 1,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-2-2",
+      "source_start_line": 2,
+      "source_end_line": 2,
+      "disposition": "reformulated",
+      "candidate_excerpt": "name: \"engos-browser-demo-recorder\"\ndescription: \"Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.\"",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-3-3",
+      "source_start_line": 3,
+      "source_end_line": 3,
+      "disposition": "preserved",
+      "candidate_excerpt": "display_name: \"Demo Recorder \u2014 Automated Playwright Demo Generation\"",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-4-4",
+      "source_start_line": 4,
+      "source_end_line": 4,
+      "disposition": "relocated",
+      "candidate_excerpt": "description: \"Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.\"",
+      "rationale": "Historical description moved to current canonical frontmatter before this task; retain current existing canonical identity and equivalent domain purpose."
+    },
+    {
+      "id": "span-5-63",
+      "source_start_line": 5,
+      "source_end_line": 63,
+      "disposition": "preserved",
+      "candidate_excerpt": "capability_type: \"skill\"",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-64-66",
+      "source_start_line": 64,
+      "source_end_line": 66,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- \"Use `engos-browser-demo-recorder` to create a Playwright demo of the agent feedback feature on our Swagger UI.\"\n- \"Use `engos-browser-demo-recorder` to generate a recorded walkthrough of the new dashboard.\"\n- \"Use `engos-browser-demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output.\"",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-67-123",
+      "source_start_line": 67,
+      "source_end_line": 123,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-124-124",
+      "source_start_line": 124,
+      "source_end_line": 124,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Limit coordination to the artifact review below; do not claim wider runtime-control authority.",
+      "rationale": "User-authorized artifact review narrowly replaces blanket delegation ban, preserving no script execution, service startup, credential access or wider runtime-control authority."
+    },
+    {
+      "id": "span-125-132",
+      "source_start_line": 125,
+      "source_end_line": 132,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation or runtime acceptance."
+  ]
+}

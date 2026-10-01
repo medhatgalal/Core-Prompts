@@ -1,0 +1,197 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-reconciliation-converge",
+  "original_sha256": "2d836405d6df11ec0267f53a5ab4d74f020675b46296fe04ca72835464060cf1",
+  "candidate_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+  "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+  "source_line_count": 135,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-4-scoped-routes-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-1",
+      "source_start_line": 1,
+      "source_end_line": 1,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-2-2",
+      "source_start_line": 2,
+      "source_end_line": 2,
+      "disposition": "reformulated",
+      "candidate_excerpt": "name: \"engos-reconciliation-converge\"\ndescription: \"Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.\"\ndisplay_name: \"Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation\"\nkind: \"agent\"\ncapability_type: \"skill\"\nagent_tools: \"Read, Write, Edit, Bash, Grep, Glob\"",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-3-3",
+      "source_start_line": 3,
+      "source_end_line": 3,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-4-10",
+      "source_start_line": 4,
+      "source_end_line": 10,
+      "disposition": "reformulated",
+      "candidate_excerpt": "# Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-11-12",
+      "source_start_line": 11,
+      "source_end_line": 12,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-13-15",
+      "source_start_line": 13,
+      "source_end_line": 15,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use this capability when multiple sources, drafts, plans, or AI outputs overlap, disagree, or compete and the caller needs one coherent recommendation rather than a shallow summary or a Frankenstein merge.",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-16-17",
+      "source_start_line": 16,
+      "source_end_line": 17,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-18-18",
+      "source_start_line": 18,
+      "source_end_line": 18,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Turn overlapping or conflicting material into one defensible recommendation with explicit trade-offs, surfaced conflicts, muted ideas, and a clear rationale for what survived.\n\n## Agent Operating Contract\nWhen emitted as an agent, this capability remains advisory and synthesis-focused.\n\nMission:\n- ingest the provided sources and map overlap, conflict, and gaps\n- compare alternatives rigorously instead of collapsing them into vague consensus\n- produce one coherent recommendation with explicit decision logic\n\nResponsibilities:\n- extract assumptions, strengths, risks, and dependencies per source\n- surface material conflicts as decision points\n- apply comparison methods such as SWOT, MCDA, and scenarios when useful\n- recommend one converged proposal with muted or rejected ideas called out explicitly\n\n## Tool Boundaries\n- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required\n- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority\n- escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-19-20",
+      "source_start_line": 19,
+      "source_end_line": 20,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Output Directory",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-21-21",
+      "source_start_line": 21,
+      "source_end_line": 21,
+      "disposition": "reformulated",
+      "candidate_excerpt": "When file output is requested, default to:\n- `reports/converge/<timestamp>-overlap-map.md`\n- `reports/converge/<timestamp>-decision-analysis.md`\n- `reports/converge/<timestamp>-final-proposal.md`\n\nWhen inline output is sufficient, keep the same logical structure in the response.\n\n## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- compare these ideas and pick one\n- synthesize these documents into one proposal\n- converge on the best plan\n- tell me what to keep, what to reject, and why\n- surface the real conflicts before we decide\n\n## Required Inputs\n- a short intent statement\n- the source set to compare\n- decision criteria and weights when known\n- explicit constraints, audience, or success metrics when available\n\n## Required Output\nEvery substantial writer-authored proposal must include:\n- `Executive Summary`\n- `Overlap Map`\n- `Decision Analysis`\n- `Final Converged Proposal`\n- `Decision Rationale`\n- `Muted / Rejected Ideas`\n- `Risks + Next Experiments`\n- `Open Questions` when user steering is still required\n\n## Constraints\n- Do not create a Frankenstein merge.\n- Do not invent missing preferences.\n- Do not hide major conflicts behind bland synthesis language.\n- Do not skip the rationale for rejected ideas.\n- Do not claim execution authority beyond synthesis and recommendation.",
+      "rationale": "Historical storage default was already replaced in pre-task canonical source by reports/converge file defaults and optional inline output. This patch retains that accepted current storage behavior and introduces no new storage or host authority; mapped excerpt states current default exactly."
+    },
+    {
+      "id": "span-22-25",
+      "source_start_line": 22,
+      "source_end_line": 25,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-26-30",
+      "source_start_line": 26,
+      "source_end_line": 30,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Additive, not aggregative: strengthen the proposal instead of gluing everything together.\n- Simple made easy: preserve clarity without diluting power or outcomes.\n- Human-in-the-loop: the user provides intent, judgment, review, and taste.\n- Explicit trade-offs: conflicts are surfaced, not hidden.\n- Convergence, not consensus: the best idea wins based on evidence, criteria, and future robustness.",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-31-31",
+      "source_start_line": 31,
+      "source_end_line": 31,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-32-32",
+      "source_start_line": 32,
+      "source_end_line": 32,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Optional Controls\nUse or expose these controls when they help the comparison:\n- `/swot` for SWOT analysis per alternative\n- `/mcda` for weighted comparison\n- `/scenarios` for uncertainty analysis\n- `/montecarlo` for probabilistic robustness framing when appropriate\n- `/conflicts` to pause explicitly on material divergences\n- `/lean` to bias toward simpler, more coherent recommendations\n- `/explore` to allow more radical recombinations\n- `/help` to print usage help",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-33-33",
+      "source_start_line": 33,
+      "source_end_line": 33,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-34-61",
+      "source_start_line": 34,
+      "source_end_line": 61,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Defaults if none are specified: `/swot /mcda /conflicts /lean`",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-62-90",
+      "source_start_line": 62,
+      "source_end_line": 90,
+      "disposition": "preserved",
+      "candidate_excerpt": "## The Prompt (paste into the target AI)",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-91-91",
+      "source_start_line": 91,
+      "source_end_line": 91,
+      "disposition": "reformulated",
+      "candidate_excerpt": "   - Use the user's criteria + weights.",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-92-110",
+      "source_start_line": 92,
+      "source_end_line": 110,
+      "disposition": "preserved",
+      "candidate_excerpt": "   - If missing, propose a default set and explain why.",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-111-111",
+      "source_start_line": 111,
+      "source_end_line": 111,
+      "disposition": "reformulated",
+      "candidate_excerpt": "    - If the user won't choose, recommend a default with clear rationale.",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-112-134",
+      "source_start_line": 112,
+      "source_end_line": 134,
+      "disposition": "preserved",
+      "candidate_excerpt": "PAUSE when user input is required.",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-135-135",
+      "source_start_line": 135,
+      "source_end_line": 135,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## What Good Looks Like\nA strong convergence result should:\n- make agreement and disagreement visible\n- tell the user what the real decision points are\n- choose one coherent path instead of preserving every idea equally\n- explain why the final answer is stronger than the discarded pieces\n- leave no confusion about what still needs user steering\n\n## Examples\n### Example Request\n> I have three different plans for capability uplift. Compare them, surface the real conflicts, and give me one final recommendation.\n\n### Example Output Shape\n- overlap map\n- ranked alternatives or strategy clusters\n- material decision points\n- final converged proposal\n- muted ideas and why they were dropped\n\n### Failure Mode To Avoid\n- returning a blended summary that hides the real conflicts and makes the final proposal harder to execute\n\n## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Conflict visibility | Material disagreements are surfaced explicitly |\n| Decision quality | The recommendation explains why one path wins |\n| Trade-off clarity | Gains, losses, and second-order effects are visible |\n| Output completeness | Final proposal, rationale, muted ideas, and risks are all present |\n| Boundary clarity | The capability stays synthesis-focused and does not claim orchestration authority |\n| Surface usability | The body is strong enough to support both reusable skill and advisory agent surfaces |\n\n## Recommendation Artifact Review\n\nApply this review to a substantial authored converged proposal and decision analysis. Keep source-option scoring, sensitivity analysis, rejected ideas, material conflicts and human preference decisions as domain evidence. Scores comparing alternatives are not acceptance of the authored final proposal. The reviewer verifies retained claims and trade-offs against the actual input sources, while the writer alone revises the proposal. Help and narrow option lookups keep their existing scope.\n\nExisting domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.\n\n### Three Roles\n- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.\n- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.\n- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.\n\nUse actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.\n\n### Finding and Repair Cycle\n1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.\n2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.\n3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.\n4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.\n5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.\n6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation, installation or runtime acceptance. Historical-to-current changes already present in 99c380b are retained, not newly authorized here."
+  ]
+}

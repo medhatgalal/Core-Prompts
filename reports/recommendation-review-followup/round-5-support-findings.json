@@ -1,0 +1,29 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 5,
+  "scope": "Supporting descriptors/docs and source-grounded before/after ledger. All12 skill candidates remain individually zero-open pending code-health workflow heading rebind.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "findings": [
+    {
+      "id": "R5-01",
+      "severity": "P3",
+      "location": "reports/recommendation-review-followup/before-after.md:76",
+      "what_is_wrong": "The preservation paragraph says complete original skill text is byte-contained within the candidate body. That literal full-file claim is false: the immutable package includes frontmatter that is wrapped/extended in the canonical candidate. Only the complete original operating body after frontmatter is contained byte-for-byte. The actual immutable package itself remains unchanged.",
+      "concrete_repair": "Describe byte-for-byte containment as the complete original operating body with package frontmatter excluded; separately state immutable full source file and pinned resources remain unchanged, and native identity/wrapper metadata is preserved. Do not alter the preserved source or candidate to force full-file containment.",
+      "source_evidence": [
+        "sources/intake/loopy/package/SKILL.md contains name/description YAML frontmatter.",
+        "tests/test_skill_package_resources.py:49-52 explicitly strips package frontmatter before asserting original-body containment.",
+        "Observed full raw package file containment in candidate is false; stripped complete operating-body containment is true."
+      ],
+      "status": "open"
+    }
+  ],
+  "open_findings": 1,
+  "other_checks": [
+    "All12 descriptor gates scope independent artifact acceptance rather than execution or hosted approval; narrow scopes match reviewed skill routes.",
+    "Public docs/examples align with persistent identities and zero-open review; examples labeled pattern examples and disclaim empirical improvement.",
+    "No source snapshot/resource or native identity change required by this correction."
+  ]
+}

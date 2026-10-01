@@ -126,7 +126,19 @@
         "If the capability lands, compare it against existing entries before apply.",
         "Relationship suggestions are advisory only and do not imply runtime routing."
       ],
-      "adjustment_recommendations": []
+      "adjustment_recommendations": [],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "workflow_provider",
@@ -158,7 +170,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-browser-demo-recorder",
-  "shared_summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+  "shared_summary": "Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.",
   "shared_constraints": [
     "Do not invent service behavior or assume API shapes without user confirmation.",
     "Do not replace operational procedure with vague summaries.",
@@ -173,16 +185,16 @@
   "judge_reports": [
     {
       "pass_number": 1,
-      "status": "ship",
+      "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-browser-demo-recorder",
-        "strategy": "derived_history",
-        "group": "derived",
-        "baseline_path": null,
+        "strategy": "source_library",
+        "group": "applied_baseline",
+        "baseline_path": "sources/ssot-baselines/engos-browser-demo-recorder/baseline.md",
         "selected_commit": "306bc39c",
         "richness_score": 5,
         "line_count": 132,
-        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
@@ -196,9 +208,15 @@
             ]
           }
         ],
-        "historical_proof": {},
-        "source": "git_history",
-        "verified_by_git_history": true,
+        "historical_proof": {
+          "materialized_from_commit": "306bc39c",
+          "materialized_from_source_kind": "canonical_source",
+          "materialized_from_path": "ssot/engos-browser-demo-recorder.md",
+          "materialized_from_sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508",
+          "last_materialized_at": "2026-07-09T03:29:22.675807+00:00"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -207,7 +225,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "preserved",
+          "classification": "reviewed_modernization",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -217,6 +235,12 @@
               "missing_markers": []
             }
           ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
@@ -274,7 +298,40 @@
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "skill"
+      "template_name": "skill",
+      "effective_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {
@@ -346,7 +403,7 @@
     "portfolio_action": "keep",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -357,7 +414,7 @@
               "path": "ssot/engos-browser-demo-recorder.md",
               "start_line": 25,
               "end_line": 30,
-              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+              "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
             }
           }
         ]
@@ -376,7 +433,7 @@
               "path": "ssot/engos-browser-demo-recorder.md",
               "start_line": 47,
               "end_line": 53,
-              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+              "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
             }
           },
           {
@@ -386,7 +443,7 @@
               "path": "ssot/engos-browser-demo-recorder.md",
               "start_line": 57,
               "end_line": 60,
-              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+              "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
             }
           },
           {
@@ -396,7 +453,7 @@
               "path": "ssot/engos-browser-demo-recorder.md",
               "start_line": 128,
               "end_line": 132,
-              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+              "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
             }
           }
         ]
@@ -411,7 +468,7 @@
               "path": "ssot/engos-browser-demo-recorder.md",
               "start_line": 47,
               "end_line": 53,
-              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+              "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
             }
           },
           {
@@ -421,7 +478,7 @@
               "path": "ssot/engos-browser-demo-recorder.md",
               "start_line": 128,
               "end_line": 132,
-              "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+              "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
             }
           }
         ]
@@ -434,8 +491,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-browser-demo-recorder.md",
-        "ssot_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
-        "effective_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+        "ssot_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+        "effective_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -454,7 +511,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "3e0da781ce29fb0c08ca64eb82ec94aca77ff0aea6b0d0aebe60f50c6ab87e52"
+        "mapping_sha256": "8214201c035748b155829b8cc1df28f202c66d361ef36c50f60d6447b066193b"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

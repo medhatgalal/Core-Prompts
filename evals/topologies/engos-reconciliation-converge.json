@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-reconciliation-converge",
-  "ssot_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
+  "ssot_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -35,14 +35,19 @@
     "- `Open Questions` when user steering is still required"
   ],
   "authority_boundaries": [
-    "engos-reconciliation-converge:L25:a2debc3e5f2e",
+    "engos-reconciliation-converge:L25:62f01eb43cca",
     "engos-reconciliation-converge:L62:baded02bbe49",
     "engos-reconciliation-converge:L63:59e7c12bd462",
     "engos-reconciliation-converge:L64:409db19b8d64",
     "engos-reconciliation-converge:L65:00d8595edbcf",
     "engos-reconciliation-converge:L66:57e6b1d178f1",
     "engos-reconciliation-converge:L97:8196306b3005",
-    "engos-reconciliation-converge:L137:b08323849156"
+    "engos-reconciliation-converge:L137:b08323849156",
+    "engos-reconciliation-converge:L198:fac7308fc753",
+    "engos-reconciliation-converge:L202:283e7be539f4",
+    "engos-reconciliation-converge:L205:32659bf6e33c",
+    "engos-reconciliation-converge:L209:420f35be46a1",
+    "engos-reconciliation-converge:L213:ee18a182fff0"
   ],
   "resources": [],
   "handoffs": [],
@@ -58,12 +63,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L25:a2debc3e5f2e",
+      "id": "engos-reconciliation-converge:L25:62f01eb43cca",
       "heading": "Tool Boundaries",
       "source": "ssot/engos-reconciliation-converge.md",
       "source_line": 33,
-      "sha256": "a2debc3e5f2e8a13319c3fe2b9b727a3ca0c87186258da1918f74342184b13c0",
-      "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority",
+      "sha256": "62f01eb43cca94f1e72732bf7ece66d4ab2f266909bc60437d925b43f1f372a6",
+      "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -88,12 +93,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L51:c34906b1f1c3",
+      "id": "engos-reconciliation-converge:L51:a9de7942a85e",
       "heading": "Required Output",
       "source": "ssot/engos-reconciliation-converge.md",
       "source_line": 59,
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-      "text": "Every substantial response must include:",
+      "sha256": "a9de7942a85ee986371c35aaf2d5b38051cc9e94d43c66eb841c2cb00a8d3047",
+      "text": "Every substantial writer-authored proposal must include:",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -206,6 +211,76 @@
       "text": "- Keeps only the strongest elements",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L198:fac7308fc753",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 206,
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L202:283e7be539f4",
+      "heading": "Three Roles",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 210,
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L203:dea1be25a70c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 211,
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L205:32659bf6e33c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 213,
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L209:420f35be46a1",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 217,
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L211:ddb7354cd7f7",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 219,
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L213:ee18a182fff0",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 221,
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -216,7 +291,7 @@
   "source_references": [
     {
       "path": "ssot/engos-reconciliation-converge.md",
-      "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+      "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
     }
   ],
   "known_ambiguities": [],
@@ -229,7 +304,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 16,
+    "total": 23,
     "mapped": 0,
     "waived": 0
   },

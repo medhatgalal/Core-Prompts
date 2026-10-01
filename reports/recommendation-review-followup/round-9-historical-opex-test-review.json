@@ -1,0 +1,28 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 9,
+  "scope": "Additional historical OpEx source-binding test/fixture repair; previously reviewed12 source/generated skills unchanged.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "reviewed_file_sha256": {
+    "tests/test_opex_incident_review.py": "8a4ab015a806966e604a4e9395e90e9ce60dbb62fade85f0620b7a94e81a8327",
+    "tests/fixtures/opex_digest/historical-briefing-source.md": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+    "tests/fixtures/opex_digest/historical-briefing-source.provenance.json": "e98d9f05b5fe7cbec8920a8b7d4f95588849d8a035c96351e51780da2816e704"
+  },
+  "historical_receipt_sha256": "20b3293c9af669c45bb58b510fb3698f9540bf256067e15a9437c9e3714b7beb",
+  "findings": [],
+  "open_findings": 0,
+  "checks": [
+    "Recovered fixture bytes exactly equal source at recorded receipt-introducing Git commit and original receipt source SHA256.",
+    "Historical receipt itself byte-identical to99c380b; past45-pass result, old renderer identity, formalbehavioral_pending and liveDoc/PDF limitations unchanged.",
+    "Test verifies immutable historical source identity rather than incorrectly binding old replay to evolving canonical source; current source acceptance remains separately reviewed.",
+    "Unchanged exporter/briefing reference/schema still verified against original receipt hashes; renderer remains explicitly historical.",
+    "Test uses existing ROOT/FIXTURES and Pythonstdlib; no runtimeGit/newCLI dependency or absolute runner path assumption.",
+    "Fixture is scoped nonruntime test data; no product/runtime/goal/installation/release change.",
+    "All12 canonical hashes still equal prior reviewed candidates."
+  ],
+  "limits": [
+    "Root must rerun focused test and CI. Preserving historical identity is not a rerun, new model trial, promotion or current behavioral proof."
+  ]
+}

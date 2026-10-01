@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-opex-incident-review",
-  "ssot_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+  "ssot_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -57,8 +57,13 @@
     "engos-audit-opex-incident-review:L340:e647b1f21701",
     "engos-audit-opex-incident-review:L341:d4507c01323b",
     "engos-audit-opex-incident-review:L342:1870d4f52f9c",
-    "engos-audit-opex-incident-review:L348:d8eacb4f2de2",
-    "engos-audit-opex-incident-review:L352:fe66c334c121"
+    "engos-audit-opex-incident-review:L348:ea2be70ea7b1",
+    "engos-audit-opex-incident-review:L352:fe66c334c121",
+    "engos-audit-opex-incident-review:L362:fac7308fc753",
+    "engos-audit-opex-incident-review:L366:283e7be539f4",
+    "engos-audit-opex-incident-review:L369:32659bf6e33c",
+    "engos-audit-opex-incident-review:L373:420f35be46a1",
+    "engos-audit-opex-incident-review:L377:ee18a182fff0"
   ],
   "resources": [
     "- `engos-audit-opex-incident-review briefing <ticket...>` prepares complete meeting drill-downs for every confirmed selected incident, preserving the daily board; see `resources/references/briefing.md`.",
@@ -498,12 +503,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-audit-opex-incident-review:L348:d8eacb4f2de2",
+      "id": "engos-audit-opex-incident-review:L348:ea2be70ea7b1",
       "heading": "Rules",
       "source": "ssot/engos-audit-opex-incident-review.md",
       "source_line": 357,
-      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
-      "text": "- Do not claim orchestration, delegation, or runtime-control authority.",
+      "sha256": "ea2be70ea7b1d5dbd37c0323e4342ed138807f03a4bb244861f281b13b63387c",
+      "text": "- Limit coordination to the artifact review below; do not claim wider runtime-control authority.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -526,6 +531,76 @@
       "text": "Briefing preserves complete linked remediation beyond DPAs, verified recurrence research, customer-impact visibility, source-aware coaching and explicit missing evidence. Use the optional briefing fields described in that resource; existing snapshot required fields and version remain unchanged. Complete daily-board membership does not replace complete briefing depth for the confirmed selected population.",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L362:fac7308fc753",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 371,
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L366:283e7be539f4",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 375,
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L367:dea1be25a70c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 376,
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L369:32659bf6e33c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 378,
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L373:420f35be46a1",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 382,
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L375:ddb7354cd7f7",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 384,
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-opex-incident-review:L377:ee18a182fff0",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-opex-incident-review.md",
+      "source_line": 386,
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -536,7 +611,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-opex-incident-review.md",
-      "sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530"
+      "sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec"
     }
   ],
   "known_ambiguities": [],
@@ -549,7 +624,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 46,
+    "total": 53,
     "mapped": 0,
     "waived": 0
   },

@@ -159,7 +159,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "specialist_with_workflow_surface",
@@ -176,7 +188,7 @@
       "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-audit-code-health",
-      "shared_summary": "Read-only brownfield codebase structural audit for LOC hotspots, god objects, import fan-out, dead code, prior-claim verification, drift detection, and slice-ready remediation.",
+      "shared_summary": "Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.",
       "shared_constraints": [
         "**Read-only.** Never modify, create, or delete files in the target.",
         "**Evidence-based.** Every finding cites specific file + metric. No subjective claims.",
@@ -205,6 +217,163 @@
         }
       ],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-audit-code-health",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
+            "baseline_path": "sources/ssot-baselines/engos-audit-code-health/baseline.md",
+            "selected_commit": null,
+            "richness_score": 7,
+            "line_count": 436,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because the stored baseline was missing, stale, or structurally degraded.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": null,
+              "current_head_richness_score": 4,
+              "current_head_line_count": 436,
+              "materialized_from_commit": null,
+              "materialized_from_source_kind": "current_ssot",
+              "materialized_from_path": "ssot/engos-audit-code-health.md",
+              "materialized_from_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
+              "last_materialized_at": "2026-06-21T01:56:31.403032+00:00"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 7,
+                "candidate_richness": 7,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "engos-audit-code-health"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 7,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {},
       "job_contract": {
         "primary_job": "Audit an existing codebase for structural risks, hotspots, coupling, and maintainability problems.",
@@ -223,7 +392,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": []
@@ -242,7 +411,7 @@
                   "path": "ssot/engos-audit-code-health.md",
                   "start_line": 60,
                   "end_line": 67,
-                  "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+                  "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
                 }
               },
               {
@@ -250,9 +419,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-audit-code-health.md",
-                  "start_line": 457,
-                  "end_line": 463,
-                  "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+                  "start_line": 461,
+                  "end_line": 467,
+                  "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
                 }
               },
               {
@@ -260,9 +429,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-audit-code-health.md",
-                  "start_line": 467,
-                  "end_line": 469,
-                  "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+                  "start_line": 471,
+                  "end_line": 473,
+                  "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
                 }
               }
             ]
@@ -277,7 +446,7 @@
                   "path": "ssot/engos-audit-code-health.md",
                   "start_line": 60,
                   "end_line": 67,
-                  "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+                  "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
                 }
               },
               {
@@ -285,9 +454,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-audit-code-health.md",
-                  "start_line": 457,
-                  "end_line": 463,
-                  "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+                  "start_line": 461,
+                  "end_line": 467,
+                  "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
                 }
               }
             ]
@@ -300,8 +469,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-audit-code-health.md",
-            "ssot_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
-            "effective_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+            "ssot_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+            "effective_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -320,7 +489,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "85d32ebea9936c1197904a7cd23d11a37886a4660c4d3bd0ce8535222153084d"
+            "mapping_sha256": "44713aa59c4870855ca736cc8aa60f89357c617570bc02246468de400a8b81c9"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -330,6 +499,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -960,7 +1131,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "workflow_provider",
@@ -977,10 +1160,158 @@
       "display_name": "Feature Status \u2014 Deep Completeness Analysis",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-audit-feature-status",
-      "shared_summary": "[BenK] Deep feature completeness analysis \u2014 scope vs. proof with prioritized recommendations",
+      "shared_summary": "Audit a feature\u2019s stated scope against code, tests, configuration, specifications, tickets, and Git history, then report completion states, drift, gaps, and shipping priorities. Use for feature readiness; do not use for repository-wide health or Git-only activity reports.",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-audit-feature-status",
+            "strategy": "derived_history",
+            "group": "derived",
+            "baseline_path": null,
+            "selected_commit": "6fbcff2d",
+            "richness_score": 5,
+            "line_count": 244,
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "git_history",
+            "verified_by_git_history": true,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "6fbcff2d",
+              "baseline_slug": "engos-audit-feature-status"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {},
       "job_contract": {
         "primary_job": "Determine how complete a product feature is against intended scope and proof.",
@@ -999,7 +1330,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -1010,7 +1341,7 @@
                   "path": "ssot/engos-audit-feature-status.md",
                   "start_line": 36,
                   "end_line": 36,
-                  "sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac"
+                  "sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0"
                 }
               }
             ]
@@ -1029,7 +1360,7 @@
                   "path": "ssot/engos-audit-feature-status.md",
                   "start_line": 77,
                   "end_line": 79,
-                  "sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac"
+                  "sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0"
                 }
               }
             ]
@@ -1046,8 +1377,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-audit-feature-status.md",
-            "ssot_sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
-            "effective_sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
+            "ssot_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+            "effective_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -1066,7 +1397,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "04ee4f41e360228fdb35a80dc87a51fc1b194e69204360e49f63e35e87ba0dbb"
+            "mapping_sha256": "d1e4c7576d966f74394cb5f760f897c13bdcd79ba5f58fa8c0352255b168410e"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -1076,6 +1407,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -1242,7 +1575,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "analyst",
@@ -1319,7 +1664,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "preserved",
+              "classification": "reviewed_modernization",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -1338,7 +1683,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "not_supplied_or_invalid",
+                "status": "bound_attestation",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -1400,8 +1745,16 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+          "effective_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
           "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "repair_requests": [],
           "dimension_inventory": [
             {
@@ -1457,7 +1810,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": []
@@ -1476,7 +1829,7 @@
                   "path": "ssot/engos-audit-opex-incident-review.md",
                   "start_line": 349,
                   "end_line": 352,
-                  "sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530"
+                  "sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec"
                 }
               }
             ]
@@ -1491,7 +1844,7 @@
                   "path": "ssot/engos-audit-opex-incident-review.md",
                   "start_line": 349,
                   "end_line": 352,
-                  "sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530"
+                  "sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec"
                 }
               }
             ]
@@ -1504,8 +1857,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-audit-opex-incident-review.md",
-            "ssot_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
-            "effective_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+            "ssot_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+            "effective_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -1524,7 +1877,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "db1bbde50436a71c15cb6bedc0bc616ce0e30a82c81cab80037ffc7c6ce00a39"
+            "mapping_sha256": "f995a9cf8bcbd86df38e3f0ac386345513474e0b4c6695332d8521ebac8ecd19"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -2273,7 +2626,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "specialist_with_workflow_surface",
@@ -2290,7 +2655,7 @@
       "display_name": "Weekly Intelligence \u2014 Multi-Source Progress Report with Fact-Check Audit",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-audit-weekly-intel",
-      "shared_summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and dual-report generation (technical + exec narrative) for any team, project, or time window.",
+      "shared_summary": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
       "shared_constraints": [
         "Do not modify any source system (tickets, repos, chat). Read only.",
         "Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.",
@@ -2301,6 +2666,156 @@
       ],
       "modes": [],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-audit-weekly-intel",
+            "strategy": "derived_history",
+            "group": "derived",
+            "baseline_path": null,
+            "selected_commit": "628786ff",
+            "richness_score": 5,
+            "line_count": 287,
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+            "equivalent_commits": [
+              "6fbcff2d"
+            ],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "git_history",
+            "verified_by_git_history": true,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "628786ff",
+              "baseline_slug": "engos-audit-weekly-intel"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {},
       "job_contract": {
         "primary_job": "Produce a fact-checked periodic narrative from several source systems with traceable appendices.",
@@ -2320,7 +2835,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -2331,7 +2846,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 152,
                   "end_line": 156,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2341,7 +2856,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 170,
                   "end_line": 175,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2351,7 +2866,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 177,
                   "end_line": 183,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2361,7 +2876,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 202,
                   "end_line": 202,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2371,7 +2886,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 204,
                   "end_line": 208,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               }
             ]
@@ -2390,7 +2905,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 25,
                   "end_line": 29,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2400,7 +2915,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 54,
                   "end_line": 56,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2410,7 +2925,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 231,
                   "end_line": 236,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               }
             ]
@@ -2425,7 +2940,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 25,
                   "end_line": 29,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               },
               {
@@ -2435,7 +2950,7 @@
                   "path": "ssot/engos-audit-weekly-intel.md",
                   "start_line": 231,
                   "end_line": 236,
-                  "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                  "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
                 }
               }
             ]
@@ -2448,7 +2963,7 @@
                 "path": "ssot/engos-audit-weekly-intel.md",
                 "start_line": 251,
                 "end_line": 251,
-                "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -2459,7 +2974,7 @@
                 "path": "ssot/engos-audit-weekly-intel.md",
                 "start_line": 252,
                 "end_line": 252,
-                "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -2470,7 +2985,7 @@
                 "path": "ssot/engos-audit-weekly-intel.md",
                 "start_line": 253,
                 "end_line": 253,
-                "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -2481,7 +2996,7 @@
                 "path": "ssot/engos-audit-weekly-intel.md",
                 "start_line": 254,
                 "end_line": 254,
-                "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+                "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -2493,8 +3008,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-audit-weekly-intel.md",
-            "ssot_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
-            "effective_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+            "ssot_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+            "effective_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -2513,7 +3028,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "7100e72eaf50afbb8b388a08de8b80bae6225ea0f88bd8c8887070a2f1a0295a"
+            "mapping_sha256": "c014d7e86ac1f0a22978ae4008c3414c5d379aef886ddeb732e9039e94fa12a4"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -2522,6 +3037,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -2668,7 +3185,19 @@
             "If the capability lands, compare it against existing entries before apply.",
             "Relationship suggestions are advisory only and do not imply runtime routing."
           ],
-          "adjustment_recommendations": []
+          "adjustment_recommendations": [],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "workflow_provider",
@@ -2685,7 +3214,7 @@
       "display_name": "Demo Recorder \u2014 Automated Playwright Demo Generation",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-browser-demo-recorder",
-      "shared_summary": "Generates Playwright scripts and demo plans for automated feature recordings with realistic pacing and video capture.",
+      "shared_summary": "Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.",
       "shared_constraints": [
         "Do not invent service behavior or assume API shapes without user confirmation.",
         "Do not replace operational procedure with vague summaries.",
@@ -2700,16 +3229,16 @@
       "judge_reports": [
         {
           "pass_number": 1,
-          "status": "ship",
+          "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-browser-demo-recorder",
-            "strategy": "derived_history",
-            "group": "derived",
-            "baseline_path": null,
+            "strategy": "source_library",
+            "group": "applied_baseline",
+            "baseline_path": "sources/ssot-baselines/engos-browser-demo-recorder/baseline.md",
             "selected_commit": "306bc39c",
             "richness_score": 5,
             "line_count": 132,
-            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+            "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
@@ -2723,9 +3252,15 @@
                 ]
               }
             ],
-            "historical_proof": {},
-            "source": "git_history",
-            "verified_by_git_history": true,
+            "historical_proof": {
+              "materialized_from_commit": "306bc39c",
+              "materialized_from_source_kind": "canonical_source",
+              "materialized_from_path": "ssot/engos-browser-demo-recorder.md",
+              "materialized_from_sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508",
+              "last_materialized_at": "2026-07-09T03:29:22.675807+00:00"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -2734,7 +3269,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "preserved",
+              "classification": "reviewed_modernization",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -2744,6 +3279,12 @@
                   "missing_markers": []
                 }
               ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 5,
                 "candidate_richness": 5,
@@ -2801,7 +3342,40 @@
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "skill"
+          "template_name": "skill",
+          "effective_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -2833,7 +3407,7 @@
         "portfolio_action": "keep",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -2844,7 +3418,7 @@
                   "path": "ssot/engos-browser-demo-recorder.md",
                   "start_line": 25,
                   "end_line": 30,
-                  "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+                  "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
                 }
               }
             ]
@@ -2863,7 +3437,7 @@
                   "path": "ssot/engos-browser-demo-recorder.md",
                   "start_line": 47,
                   "end_line": 53,
-                  "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+                  "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
                 }
               },
               {
@@ -2873,7 +3447,7 @@
                   "path": "ssot/engos-browser-demo-recorder.md",
                   "start_line": 57,
                   "end_line": 60,
-                  "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+                  "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
                 }
               },
               {
@@ -2883,7 +3457,7 @@
                   "path": "ssot/engos-browser-demo-recorder.md",
                   "start_line": 128,
                   "end_line": 132,
-                  "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+                  "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
                 }
               }
             ]
@@ -2898,7 +3472,7 @@
                   "path": "ssot/engos-browser-demo-recorder.md",
                   "start_line": 47,
                   "end_line": 53,
-                  "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+                  "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
                 }
               },
               {
@@ -2908,7 +3482,7 @@
                   "path": "ssot/engos-browser-demo-recorder.md",
                   "start_line": 128,
                   "end_line": 132,
-                  "sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b"
+                  "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
                 }
               }
             ]
@@ -2921,8 +3495,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-browser-demo-recorder.md",
-            "ssot_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
-            "effective_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+            "ssot_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+            "effective_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -2941,7 +3515,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "3e0da781ce29fb0c08ca64eb82ec94aca77ff0aea6b0d0aebe60f50c6ab87e52"
+            "mapping_sha256": "8214201c035748b155829b8cc1df28f202c66d361ef36c50f60d6447b066193b"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -3104,7 +3678,19 @@
             "If the capability lands, compare it against existing entries before apply.",
             "Relationship suggestions are advisory only and do not imply runtime routing."
           ],
-          "adjustment_recommendations": []
+          "adjustment_recommendations": [],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "workflow_provider",
@@ -3254,11 +3840,11 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "preserved",
+              "classification": "reviewed_modernization",
               "scenario_results": [],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "not_supplied_or_invalid",
+                "status": "bound_attestation",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -3320,8 +3906,16 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+          "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
           "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "repair_requests": [],
           "dimension_inventory": [
             {
@@ -3380,7 +3974,7 @@
         "portfolio_action": "keep",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -3391,7 +3985,7 @@
                   "path": "ssot/engos-content-dynamic-html-presentations.md",
                   "start_line": 64,
                   "end_line": 72,
-                  "sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1"
+                  "sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73"
                 }
               }
             ]
@@ -3410,7 +4004,7 @@
                   "path": "ssot/engos-content-dynamic-html-presentations.md",
                   "start_line": 347,
                   "end_line": 350,
-                  "sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1"
+                  "sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73"
                 }
               }
             ]
@@ -3427,8 +4021,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-content-dynamic-html-presentations.md",
-            "ssot_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
-            "effective_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+            "ssot_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+            "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -3447,7 +4041,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "53e803ab876beda896432685d7b2c0fdfaa21659a1683883696a2b191f69d450"
+            "mapping_sha256": "9bbc128f395ffbd4fbb76ffa0dc234f9301b05abc6bb7408473e322a6a0a2668"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -5310,7 +5904,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "advisor",
@@ -5327,10 +5933,219 @@
       "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-delivery-resolve-conflict",
-      "shared_summary": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
+      "shared_summary": "Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.",
       "shared_constraints": [],
       "modes": [],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-delivery-resolve-conflict",
+            "strategy": "head_snapshot",
+            "group": "additive_preserved",
+            "baseline_path": "sources/ssot-baselines/engos-delivery-resolve-conflict/baseline.md",
+            "selected_commit": "db5c3789",
+            "richness_score": 2,
+            "line_count": 379,
+            "reason": "Latest additive version preserves the full inversion-led workflow and strengthens boundary and companion guidance without deleting procedure.",
+            "equivalent_commits": [
+              "a78c1c21"
+            ],
+            "expected_companions": [
+              "engos-design-architecture",
+              "engos-quality-gitops-review",
+              "engos-quality-testing-review",
+              "engos-quality-docs-review"
+            ],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "inversion_resolution_workflow",
+                "kind": "individual_module",
+                "label": "inversion-led conflict workflow",
+                "must_contain": [
+                  "### Phase 1: Inversion Analysis (Charlie Munger Style)",
+                  "### Phase 2: Conflict Analysis",
+                  "### Phase 3: Resolution Strategy",
+                  "### Phase 4: Resolution Plan",
+                  "### Phase 5: Expected Outcome"
+                ]
+              },
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              },
+              {
+                "id": "stepwise_workflow_contract",
+                "kind": "operational_contract",
+                "label": "stepwise workflow contract",
+                "must_contain": [
+                  "## Workflow Contract"
+                ]
+              },
+              {
+                "id": "configuration_contract",
+                "kind": "operational_contract",
+                "label": "configuration contract",
+                "must_contain": [
+                  "## Configuration"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "db5c3789",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 380,
+              "materialized_from_commit": "db5c3789"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "inversion_resolution_workflow",
+                  "kind": "individual_module",
+                  "label": "inversion-led conflict workflow",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "stepwise_workflow_contract",
+                  "kind": "operational_contract",
+                  "label": "stepwise workflow contract",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "configuration_contract",
+                  "kind": "operational_contract",
+                  "label": "configuration contract",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 10,
+                "baseline_operational_score": 5,
+                "candidate_operational_score": 5,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "db5c3789",
+              "baseline_slug": "engos-delivery-resolve-conflict"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 10,
+            "baseline_operational_score": 5,
+            "candidate_operational_score": 5,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {
         "preferred_use_cases": [
           "merge conflict analysis",
@@ -5360,7 +6175,7 @@
         "portfolio_action": "keep",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": []
@@ -5379,7 +6194,7 @@
                   "path": "ssot/engos-delivery-resolve-conflict.md",
                   "start_line": 31,
                   "end_line": 33,
-                  "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+                  "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
                 }
               }
             ]
@@ -5396,7 +6211,7 @@
                 "path": "ssot/engos-delivery-resolve-conflict.md",
                 "start_line": 40,
                 "end_line": 40,
-                "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+                "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -5407,7 +6222,7 @@
                 "path": "ssot/engos-delivery-resolve-conflict.md",
                 "start_line": 41,
                 "end_line": 41,
-                "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+                "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -5418,7 +6233,7 @@
                 "path": "ssot/engos-delivery-resolve-conflict.md",
                 "start_line": 42,
                 "end_line": 42,
-                "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+                "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -5429,7 +6244,7 @@
                 "path": "ssot/engos-delivery-resolve-conflict.md",
                 "start_line": 43,
                 "end_line": 43,
-                "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+                "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -5441,8 +6256,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-delivery-resolve-conflict.md",
-            "ssot_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
-            "effective_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
+            "ssot_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+            "effective_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -5461,7 +6276,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "2dc3b138ef3b53ae57bea70dda8ca3955ec3c923389a38e4c428afe5855eef84"
+            "mapping_sha256": "7e63b7503993b2d1673a407d360db6224444a94ff0d666437ac3fadb79804bf2"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -5472,6 +6287,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -6752,7 +7569,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "analyst",
@@ -6820,7 +7649,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "preserved",
+              "classification": "reviewed_modernization",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -6832,7 +7661,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "not_supplied_or_invalid",
+                "status": "bound_attestation",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -6894,8 +7723,16 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+          "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
           "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "repair_requests": [],
           "dimension_inventory": [
             {
@@ -6938,7 +7775,7 @@
         "primary_job": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
         "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
         "works_on": "- an implementation plan, intent, issue, or approved planning artifact\n- the target repository or working context\n- the active host/runtime when detectable\n- any user-supplied iteration, token, time, or cost bound\n- explicit protected surfaces, approvals, or operator checks when already known",
-        "main_output": "Return these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
+        "main_output": "The packet delivery written by the writer uses these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
         "not_for": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
         "authority": "- Do not mutate source code while compiling a packet in read-only Plan mode.\n- Do not use chat history as the only durable source for a long-running goal.\n- Do not exceed 3,500 characters or bytes even when a host permits more.\n- Do not hide unknowns, unsupported behavior, manual checks, or external-state dependencies.\n- Do not rely on an execute bit for bundled scripts or task verifiers; invoke Bash and Python resources through their interpreters.\n- Do not create, replace, pause, resume, or clear a goal unless the user separately requests that runtime action.\n- Do not deploy, commit, merge, or alter global skill installations merely because the packet is ready.",
         "routing_question": "Does this request directly require Plan to Goal Design?",
@@ -6947,7 +7784,7 @@
         "portfolio_action": "draft_new_skill_pending_review",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -6958,7 +7795,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 12,
                   "end_line": 12,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               },
               {
@@ -6968,7 +7805,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 14,
                   "end_line": 14,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               },
               {
@@ -6978,7 +7815,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 34,
                   "end_line": 39,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               },
               {
@@ -6988,7 +7825,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 155,
                   "end_line": 167,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               }
             ]
@@ -7007,7 +7844,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 27,
                   "end_line": 31,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               },
               {
@@ -7017,7 +7854,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 209,
                   "end_line": 215,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               }
             ]
@@ -7032,7 +7869,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 27,
                   "end_line": 31,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               },
               {
@@ -7042,7 +7879,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 12,
                   "end_line": 12,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               },
               {
@@ -7052,7 +7889,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 209,
                   "end_line": 215,
-                  "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                 }
               }
             ]
@@ -7065,8 +7902,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-plan-to-goal.md",
-            "ssot_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
-            "effective_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+            "ssot_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+            "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -7079,7 +7916,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 17,
                     "end_line": 17,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 }
               ],
@@ -7091,7 +7928,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 34,
                     "end_line": 39,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 },
                 {
@@ -7101,7 +7938,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 41,
                     "end_line": 41,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 }
               ],
@@ -7113,19 +7950,19 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 187,
                     "end_line": 191,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 }
               ],
               "main_output": [
                 {
-                  "text": "Return these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`",
+                  "text": "The packet delivery written by the writer uses these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`",
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 194,
                     "end_line": 202,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 },
                 {
@@ -7135,7 +7972,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 204,
                     "end_line": 204,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 },
                 {
@@ -7145,7 +7982,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 206,
                     "end_line": 206,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 }
               ],
@@ -7157,7 +7994,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 27,
                     "end_line": 31,
-                    "sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f"
+                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
                   }
                 }
               ]
@@ -7171,7 +8008,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "9c125b9f9bd05743314ba0cdf2bc470f78b45b971a6d24c4e9edc31d4a0539aa"
+            "mapping_sha256": "3d98c711bae3dfd98833fe620347e983c3ea5436f9660885fda6391bd8a2a6f8"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -12919,7 +13756,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "explicit_documentation_execution",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "advisor",
@@ -12936,7 +13785,7 @@
       "display_name": "Docs Review Expert \u2014 Documentation IA, Drift, and Release Hygiene",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-quality-docs-review",
-      "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+      "shared_summary": "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.",
       "shared_constraints": [
         "Do not rewrite large doc sets when targeted cleanup is enough.",
         "Do not create duplicate docs for the same concept.",
@@ -12974,6 +13823,159 @@
           "note": "Benchmark for deterministic review timing and concrete findings."
         }
       ],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-quality-docs-review",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
+            "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+            "selected_commit": "0a2c1e46",
+            "richness_score": 2,
+            "line_count": 143,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "0a2c1e46",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 143,
+              "materialized_from_commit": "0a2c1e46"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "0a2c1e46",
+              "baseline_slug": "engos-quality-docs-review"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {
         "preferred_use_cases": [
           "docs information architecture review",
@@ -13005,7 +14007,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": []
@@ -13018,13 +14020,13 @@
             "grants_authority": false,
             "clauses": [
               {
-                "text": "- allowed: read repo docs and code, inspect workflows and scripts, write docs review artifacts when explicitly requested, and apply documentation edits when the caller asks for execution\n- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent\n- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
+                "text": "- allowed: read repo docs and code, inspect workflows and scripts, write docs review artifacts when explicitly requested, and apply documentation edits when the caller asks for execution\n- forbidden: wider runtime orchestration or delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent\n- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-quality-docs-review.md",
                   "start_line": 32,
                   "end_line": 34,
-                  "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+                  "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
                 }
               },
               {
@@ -13034,7 +14036,7 @@
                   "path": "ssot/engos-quality-docs-review.md",
                   "start_line": 89,
                   "end_line": 93,
-                  "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+                  "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
                 }
               }
             ]
@@ -13049,7 +14051,7 @@
                   "path": "ssot/engos-quality-docs-review.md",
                   "start_line": 89,
                   "end_line": 93,
-                  "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+                  "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
                 }
               }
             ]
@@ -13062,8 +14064,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-quality-docs-review.md",
-            "ssot_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
-            "effective_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
+            "ssot_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+            "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -13082,7 +14084,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "dc58dc31cab9380f56f7e81d3c41a1d49e91e37ce13a7aa2a5613cf1fc3b0760"
+            "mapping_sha256": "3b877b24a321236406c769c3ce8ae994f0fa2e7faed57814d0b876249f93202d"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -13092,6 +14094,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -14143,7 +15147,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "authored_test_plans_or_artifacts",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "advisor",
@@ -14160,7 +15176,7 @@
       "display_name": "Testing Studio \u2014 Test Design and Coverage Analysis",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-quality-testing-review",
-      "shared_summary": "Testing family for unit tests, end-to-end tests, edge-case discovery, and coverage gap analysis.",
+      "shared_summary": "Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.",
       "shared_constraints": [
         "Do not execute tests automatically.",
         "Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
@@ -14294,6 +15310,159 @@
           "note": "Good benchmark for evaluation rigor and regression thinking, though not a direct prompt-family replacement."
         }
       ],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-quality-testing-review",
+            "strategy": "head_snapshot",
+            "group": "current_oracle",
+            "baseline_path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+            "selected_commit": "0a2c1e46",
+            "richness_score": 2,
+            "line_count": 127,
+            "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "0a2c1e46",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 127,
+              "materialized_from_commit": "0a2c1e46"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "0a2c1e46",
+              "baseline_slug": "engos-quality-testing-review"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 8,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 8,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {
         "preferred_use_cases": [
           "unit test design",
@@ -14326,7 +15495,7 @@
         "portfolio_action": "keep",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -14337,7 +15506,7 @@
                   "path": "ssot/engos-quality-testing-review.md",
                   "start_line": 26,
                   "end_line": 30,
-                  "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+                  "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
                 }
               }
             ]
@@ -14356,7 +15525,7 @@
                   "path": "ssot/engos-quality-testing-review.md",
                   "start_line": 33,
                   "end_line": 35,
-                  "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+                  "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
                 }
               },
               {
@@ -14366,7 +15535,7 @@
                   "path": "ssot/engos-quality-testing-review.md",
                   "start_line": 125,
                   "end_line": 127,
-                  "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+                  "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
                 }
               }
             ]
@@ -14381,7 +15550,7 @@
                   "path": "ssot/engos-quality-testing-review.md",
                   "start_line": 125,
                   "end_line": 127,
-                  "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+                  "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
                 }
               }
             ]
@@ -14394,8 +15563,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-quality-testing-review.md",
-            "ssot_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
-            "effective_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+            "ssot_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+            "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -14414,7 +15583,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "4790f3faabc04b46f968ee9126ac9240ee5d178b33b553f8cf4235fe5cb22451"
+            "mapping_sha256": "9df91ce12d94bd1c87aa65f403f5f83d0bceb29d626ab92112459e6bc75bc6a0"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -14423,6 +15592,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -14584,7 +15755,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "substantial_authored_artifact",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "specialist_with_workflow_surface",
@@ -14601,7 +15784,7 @@
       "display_name": "Converge \u2014 Multi-Source Synthesis, Conflict Surfacing, and Final Recommendation",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-reconciliation-converge",
-      "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
+      "shared_summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
       "shared_constraints": [
         "Do not create a Frankenstein merge.",
         "Do not invent missing preferences.",
@@ -14628,6 +15811,187 @@
         }
       ],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-reconciliation-converge",
+            "strategy": "historical_gold",
+            "group": "flattened_regression",
+            "baseline_path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md",
+            "selected_commit": "3bc88b43",
+            "richness_score": 5,
+            "line_count": 135,
+            "reason": "Latest portable prompt body that still includes the direct execution prompt, controls, defaults, and explicit phased synthesis behavior.",
+            "equivalent_commits": [
+              "e4b12fc3",
+              "f6025ddb",
+              "0f686cfe"
+            ],
+            "expected_companions": [
+              "engos-meta-supercharge"
+            ],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "portable_prompt_body",
+                "kind": "individual_module",
+                "label": "portable prompt block",
+                "must_contain": [
+                  "## The Prompt (paste into the target AI)",
+                  "~~~~text",
+                  "=== PHASE 1: INGEST & MAP ===",
+                  "=== PHASE 7: OUTPUT ==="
+                ]
+              },
+              {
+                "id": "controls_and_tradeoffs",
+                "kind": "stacked_or_full",
+                "label": "controls and conflict handling",
+                "must_contain": [
+                  "/swot",
+                  "/mcda",
+                  "/conflicts",
+                  "Do NOT create a \u201cFrankenstein\u201d merge",
+                  "Final Converged Proposal"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "0a2c1e46",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 133,
+              "materialized_from_commit": "3bc88b43"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "portable_prompt_body",
+                  "kind": "individual_module",
+                  "label": "portable prompt block",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "controls_and_tradeoffs",
+                  "kind": "stacked_or_full",
+                  "label": "controls and conflict handling",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 10,
+                "baseline_operational_score": 0,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "3bc88b43",
+              "baseline_slug": "engos-reconciliation-converge"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 10,
+            "baseline_operational_score": 0,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {},
       "job_contract": {
         "primary_job": "Reconcile competing proposals or evidence into one decision and explain what was rejected.",
@@ -14645,7 +16009,7 @@
         "portfolio_action": "keep_and_clarify_boundary",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -14656,7 +16020,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 45,
                   "end_line": 50,
-                  "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
                 }
               }
             ]
@@ -14669,13 +16033,13 @@
             "grants_authority": false,
             "clauses": [
               {
-                "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required\n- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority\n- escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing",
+                "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required\n- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority\n- escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing",
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 32,
                   "end_line": 34,
-                  "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
                 }
               },
               {
@@ -14685,7 +16049,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 70,
                   "end_line": 74,
-                  "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
                 }
               },
               {
@@ -14695,7 +16059,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 76,
                   "end_line": 76,
-                  "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
                 }
               }
             ]
@@ -14710,7 +16074,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 70,
                   "end_line": 74,
-                  "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
                 }
               }
             ]
@@ -14723,8 +16087,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-reconciliation-converge.md",
-            "ssot_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
-            "effective_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
+            "ssot_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+            "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -14743,7 +16107,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "5c10b82e97ec7520f865f15f41d5d8f8fa2b268b1ffe34fff39ff95a3ec3a345"
+            "mapping_sha256": "72a4f06b8362e0a18b0b9dabaab30d805c58d4182d915f73a709ff28741f7dc3"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -14752,6 +16116,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -15767,7 +17133,19 @@
             "add an explicit primary objective before packaging",
             "add deterministic in-scope sections to improve routing fitness",
             "capture quality constraints or non-negotiables"
-          ]
+          ],
+          "quality_criteria": [
+            "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+          ],
+          "quality_gate": {
+            "scope": "artifact_acceptance_contract_only",
+            "artifact_scope": "craft_only",
+            "reviewer_must_differ_from_writer": true,
+            "required_open_findings": 0,
+            "round_cap": null,
+            "same_writer_and_reviewer_on_revision": true,
+            "preserves_external_authority_and_existing_protocols": true
+          }
         },
         "org_graph": {
           "org_role": "analyst",
@@ -15796,20 +17174,29 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "loopy",
-            "strategy": "candidate_seed",
-            "group": "new_or_untracked",
+            "strategy": "derived_history",
+            "group": "derived",
             "baseline_path": null,
-            "selected_commit": null,
+            "selected_commit": "938595a9",
             "richness_score": 5,
             "line_count": 326,
-            "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
-            "scenario_matrix": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
             "historical_proof": {},
-            "source": "candidate_seed",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -15818,8 +17205,22 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "preserved",
-              "scenario_results": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 5,
                 "candidate_richness": 5,
@@ -15827,7 +17228,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "938595a9",
               "baseline_slug": "loopy"
             },
             {
@@ -15845,13 +17246,13 @@
             {
               "judge": "benchmark_readiness",
               "title": "Benchmark Readiness and Template Fit",
-              "score": 10,
+              "score": 9,
               "blockers": [],
               "scorecard": {
                 "title_clarity": 10,
                 "description_richness": 10,
                 "intent_coverage": 10,
-                "boundary_clarity": 10,
+                "boundary_clarity": 8,
                 "output_specificity": 10,
                 "metadata_completeness": 8,
                 "surface_usability": 10
@@ -15868,16 +17269,49 @@
             "baseline_preserved_in_resource": false,
             "operational_richness": 10,
             "metadata_integrity": 10,
-            "benchmark_readiness": 10,
+            "benchmark_readiness": 9,
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "skill"
+          "template_name": "skill",
+          "effective_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -15894,7 +17328,7 @@
         "requires_human_confirmation": true
       },
       "job_contract": {
-        "primary_job": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+        "primary_job": "Fulfill the retained source contract and its exact domain deliverables. Substantial authored Craft artifacts also require the scoped independent acceptance extension below; it adds no different user task or public output format.",
         "use_when": "Use the original triggers and mode-selection rules retained below.",
         "works_on": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
         "main_output": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
@@ -15906,7 +17340,7 @@
         "portfolio_action": "draft_new_skill_pending_review",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -15917,7 +17351,7 @@
                   "path": "ssot/loopy.md",
                   "start_line": 18,
                   "end_line": 18,
-                  "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                  "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
                 }
               }
             ]
@@ -15936,7 +17370,7 @@
                   "path": "ssot/loopy.md",
                   "start_line": 35,
                   "end_line": 35,
-                  "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                  "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
                 }
               }
             ]
@@ -15953,21 +17387,21 @@
           },
           "provenance": {
             "ssot_path": "ssot/loopy.md",
-            "ssot_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
-            "effective_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
+            "ssot_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+            "effective_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {
               "primary_job": [
                 {
-                  "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+                  "text": "Fulfill the retained source contract and its exact domain deliverables. Substantial authored Craft artifacts also require the scoped independent acceptance extension below; it adds no different user task or public output format.",
                   "heading": "Primary Objective",
                   "source": {
                     "path": "ssot/loopy.md",
                     "start_line": 15,
                     "end_line": 15,
-                    "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                    "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
                   }
                 }
               ],
@@ -15979,7 +17413,7 @@
                     "path": "ssot/loopy.md",
                     "start_line": 38,
                     "end_line": 38,
-                    "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                    "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
                   }
                 }
               ],
@@ -15991,7 +17425,7 @@
                     "path": "ssot/loopy.md",
                     "start_line": 26,
                     "end_line": 26,
-                    "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                    "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
                   }
                 }
               ],
@@ -16003,7 +17437,7 @@
                     "path": "ssot/loopy.md",
                     "start_line": 29,
                     "end_line": 29,
-                    "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                    "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
                   }
                 }
               ]
@@ -16018,7 +17452,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "d14e7ac2e48d8b905671c78ffb0781529323276dda920342e84c37ff24f934b4"
+            "mapping_sha256": "fbe632bfabb61ed18f8e34db326a6df18404037db36d65784950a76f669cb78f"
           },
           "unresolved_fields": [
             "task_phase_interpretation",

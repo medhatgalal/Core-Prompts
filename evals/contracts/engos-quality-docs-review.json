@@ -7,21 +7,29 @@
   "non_goals": [],
   "protected_behaviors": [
     "04153dcb8e47af5834495062c91852908060eb1de20f808a3a12c0199d5f51cd",
-    "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
+    "c382002f0bdc516b52dc93111fadbe099310229626e7b7a26a48cf43f1c4853b",
     "dbf9fb0bad2d1829f33a35bf68a0cc1c7685e4f7df0cf6d61c6b7992f53ea540",
     "65a1e99533c8527af07f84e9da2de087e7b6fda64799f90170678afcf7b6d176",
     "691b4e6739f7bfff49088d528f92e68c45d7b325e4bb3efe0b558bcf2c7a5125",
-    "5f8f4e249421413f028b09dccd3a345c208dd2040495bdfe0fc561988e18d7cf",
+    "2fc6f4154fa1eaf97d5e3860895103a826247888798d9c29ba94ff4581760da2",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
     "cee203c4dc74f4cd29b1ed953c43241b5b68954bc3543563cde4c8cc6f6337a6",
     "25ab61c113191e98052ee5149f1bea9372e79aeb8fab7ef2a37ab78de74524d8",
     "53221802b953ac8eff269f6f9d1b4babfacda6721a047e44a326995ef050dd3e",
     "c7872241e87d6a78bf6ed598aa106085076b24d22ffa8913766a2af8d1aeb1cf",
     "022ff49a95b851c369f47825a65cab328eff37bfee12b4dabb8a01d3c561a605",
     "5f619f06cf007b997a479379a87b3eb8cab4d046adb8964530ca04f0d7b70b16",
-    "76a0b3c80ac0a7f1310b94c3d9e18aecfb8f5cd732b26ca40a810422993c56e3"
+    "76a0b3c80ac0a7f1310b94c3d9e18aecfb8f5cd732b26ca40a810422993c56e3",
+    "344d52d0a079ac8807d9d15774ecece8540738027545f4e9b5600d5fb46193c3",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -59,9 +67,9 @@
       "text": "- define when docs review must happen at commit, pull request, merge, and release time"
     },
     {
-      "sha256": "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
+      "sha256": "c382002f0bdc516b52dc93111fadbe099310229626e7b7a26a48cf43f1c4853b",
       "source": "ssot/engos-quality-docs-review.md",
-      "text": "- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent"
+      "text": "- forbidden: wider runtime orchestration or delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent"
     },
     {
       "sha256": "dbf9fb0bad2d1829f33a35bf68a0cc1c7685e4f7df0cf6d61c6b7992f53ea540",
@@ -79,9 +87,9 @@
       "text": "- Include diagrams, tables, and richer markdown only when they materially reduce ambiguity."
     },
     {
-      "sha256": "5f8f4e249421413f028b09dccd3a345c208dd2040495bdfe0fc561988e18d7cf",
+      "sha256": "2fc6f4154fa1eaf97d5e3860895103a826247888798d9c29ba94ff4581760da2",
       "source": "ssot/engos-quality-docs-review.md",
-      "text": "- Do not claim orchestration, routing, or delegation authority."
+      "text": "- Limit coordination to the execution-only artifact review below; do not claim wider routing or delegation authority."
     },
     {
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -94,9 +102,9 @@
       "text": "## Required Output"
     },
     {
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "sha256": "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
       "source": "ssot/engos-quality-docs-review.md",
-      "text": "Every substantial response must include:"
+      "text": "Every substantial writer-authored artifact must include:"
     },
     {
       "sha256": "cee203c4dc74f4cd29b1ed953c43241b5b68954bc3543563cde4c8cc6f6337a6",
@@ -132,6 +140,46 @@
       "sha256": "76a0b3c80ac0a7f1310b94c3d9e18aecfb8f5cd732b26ca40a810422993c56e3",
       "source": "ssot/engos-quality-docs-review.md",
       "text": "- tell the caller when documentation review must happen again"
+    },
+    {
+      "sha256": "344d52d0a079ac8807d9d15774ecece8540738027545f4e9b5600d5fb46193c3",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "Apply this review only when the user explicitly requests execution of a substantial documentation rewrite. Findings-only inspection, ordinary recommendations and narrow formatting retain their advisory routes. The writer owns the authorized documentation artifact; the separate reviewer checks it against source behavior, audience, placement and links. Do not review a document written by this reviewer as though it were independently authored. Existing exact-target scope, source-of-truth placement and no unrelated application refactor boundaries remain unchanged."
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/engos-quality-docs-review.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

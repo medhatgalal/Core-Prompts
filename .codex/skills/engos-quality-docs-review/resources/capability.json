@@ -142,7 +142,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "explicit_documentation_execution",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "advisor",
@@ -176,7 +188,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-quality-docs-review",
-  "shared_summary": "Documentation Review Expert for information architecture, readable technical writing, repo doc layout, drift detection, and documentation quality gates across commits, pull requests, merges, and releases.",
+  "shared_summary": "Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.",
   "shared_constraints": [
     "Do not rewrite large doc sets when targeted cleanup is enough.",
     "Do not create duplicate docs for the same concept.",
@@ -214,6 +226,159 @@
       "note": "Benchmark for deterministic review timing and concrete findings."
     }
   ],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-quality-docs-review",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+        "selected_commit": "0a2c1e46",
+        "richness_score": 2,
+        "line_count": 143,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 143,
+          "materialized_from_commit": "0a2c1e46"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "0a2c1e46",
+          "baseline_slug": "engos-quality-docs-review"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 2,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {
     "preferred_use_cases": [
       "docs information architecture review",
@@ -229,6 +394,8 @@
     "invocation_style": "review_or_artifact_oriented",
     "requires_human_confirmation": false
   },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-quality-docs-review",
     "strategy": "head_snapshot",
@@ -278,7 +445,7 @@
     "portfolio_action": "keep_and_clarify_boundary",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": []
@@ -291,13 +458,13 @@
         "grants_authority": false,
         "clauses": [
           {
-            "text": "- allowed: read repo docs and code, inspect workflows and scripts, write docs review artifacts when explicitly requested, and apply documentation edits when the caller asks for execution\n- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent\n- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
+            "text": "- allowed: read repo docs and code, inspect workflows and scripts, write docs review artifacts when explicitly requested, and apply documentation edits when the caller asks for execution\n- forbidden: wider runtime orchestration or delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent\n- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-quality-docs-review.md",
               "start_line": 32,
               "end_line": 34,
-              "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+              "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
             }
           },
           {
@@ -307,7 +474,7 @@
               "path": "ssot/engos-quality-docs-review.md",
               "start_line": 89,
               "end_line": 93,
-              "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+              "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
             }
           }
         ]
@@ -322,7 +489,7 @@
               "path": "ssot/engos-quality-docs-review.md",
               "start_line": 89,
               "end_line": 93,
-              "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+              "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
             }
           }
         ]
@@ -335,8 +502,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-docs-review.md",
-        "ssot_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
-        "effective_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
+        "ssot_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+        "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -355,7 +522,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "dc58dc31cab9380f56f7e81d3c41a1d49e91e37ce13a7aa2a5613cf1fc3b0760"
+        "mapping_sha256": "3b877b24a321236406c769c3ce8ae994f0fa2e7faed57814d0b876249f93202d"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

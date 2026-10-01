@@ -9,12 +9,20 @@
     "a13a67440b6c5a06a087f285cc990291a8adde279824082aa071ed0422bc009c",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
     "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
     "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
     "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
     "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
-    "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3"
+    "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
+    "f898261f1eba0277fb4d3c851f99e215b048093a9495ea399bc761ae7469f2a3",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -62,9 +70,9 @@
       "text": "## Required Output"
     },
     {
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "sha256": "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
       "source": "ssot/engos-quality-testing-review.md",
-      "text": "Every substantial response must include:"
+      "text": "Every substantial writer-authored artifact must include:"
     },
     {
       "sha256": "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
@@ -90,6 +98,46 @@
       "sha256": "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
       "source": "ssot/engos-quality-testing-review.md",
       "text": "- Do not claim coverage metrics without a coverage artifact or direct evidence."
+    },
+    {
+      "sha256": "f898261f1eba0277fb4d3c851f99e215b048093a9495ea399bc761ae7469f2a3",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "Apply this review only to substantial authored test plans, designed test sets, coverage-gap plans or requested test artifacts. A narrow lookup or externally authored test review keeps its existing route. The writer owns the authored plan or tests; the separate reviewer checks specified behavior, existing framework, risks, assertions and gaps against the sources. Source inspection and design acceptance do not establish test execution, observed coverage or release readiness. No participant silently runs tests through this review."
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

@@ -129,7 +129,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "craft_only",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "analyst",
@@ -168,20 +180,29 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "loopy",
-        "strategy": "candidate_seed",
-        "group": "new_or_untracked",
+        "strategy": "derived_history",
+        "group": "derived",
         "baseline_path": null,
-        "selected_commit": null,
+        "selected_commit": "938595a9",
         "richness_score": 5,
         "line_count": 326,
-        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
-        "scenario_matrix": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
         "historical_proof": {},
-        "source": "candidate_seed",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -190,8 +211,22 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "preserved",
-          "scenario_results": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
@@ -199,7 +234,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "938595a9",
           "baseline_slug": "loopy"
         },
         {
@@ -217,13 +252,13 @@
         {
           "judge": "benchmark_readiness",
           "title": "Benchmark Readiness and Template Fit",
-          "score": 10,
+          "score": 9,
           "blockers": [],
           "scorecard": {
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
@@ -240,16 +275,49 @@
         "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,
-        "benchmark_readiness": 10,
+        "benchmark_readiness": 9,
         "title_clarity": 10,
         "description_richness": 10,
         "intent_coverage": 10,
-        "boundary_clarity": 10,
+        "boundary_clarity": 8,
         "output_specificity": 10,
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "skill"
+      "template_name": "skill",
+      "effective_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {
@@ -296,7 +364,7 @@
     }
   ],
   "job_contract": {
-    "primary_job": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+    "primary_job": "Fulfill the retained source contract and its exact domain deliverables. Substantial authored Craft artifacts also require the scoped independent acceptance extension below; it adds no different user task or public output format.",
     "use_when": "Use the original triggers and mode-selection rules retained below.",
     "works_on": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
     "main_output": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
@@ -308,7 +376,7 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -319,7 +387,7 @@
               "path": "ssot/loopy.md",
               "start_line": 18,
               "end_line": 18,
-              "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+              "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
             }
           }
         ]
@@ -338,7 +406,7 @@
               "path": "ssot/loopy.md",
               "start_line": 35,
               "end_line": 35,
-              "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+              "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
             }
           }
         ]
@@ -355,21 +423,21 @@
       },
       "provenance": {
         "ssot_path": "ssot/loopy.md",
-        "ssot_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
-        "effective_sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c",
+        "ssot_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+        "effective_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {
           "primary_job": [
             {
-              "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+              "text": "Fulfill the retained source contract and its exact domain deliverables. Substantial authored Craft artifacts also require the scoped independent acceptance extension below; it adds no different user task or public output format.",
               "heading": "Primary Objective",
               "source": {
                 "path": "ssot/loopy.md",
                 "start_line": 15,
                 "end_line": 15,
-                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
               }
             }
           ],
@@ -381,7 +449,7 @@
                 "path": "ssot/loopy.md",
                 "start_line": 38,
                 "end_line": 38,
-                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
               }
             }
           ],
@@ -393,7 +461,7 @@
                 "path": "ssot/loopy.md",
                 "start_line": 26,
                 "end_line": 26,
-                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
               }
             }
           ],
@@ -405,7 +473,7 @@
                 "path": "ssot/loopy.md",
                 "start_line": 29,
                 "end_line": 29,
-                "sha256": "7874aa30ad4fe322876f2c04b7cee447217311213ce6a835846aff298760f73c"
+                "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
               }
             }
           ]
@@ -420,7 +488,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "d14e7ac2e48d8b905671c78ffb0781529323276dda920342e84c37ff24f934b4"
+        "mapping_sha256": "fbe632bfabb61ed18f8e34db326a6df18404037db36d65784950a76f669cb78f"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

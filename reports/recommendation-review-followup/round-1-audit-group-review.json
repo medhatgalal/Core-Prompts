@@ -1,0 +1,37 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 1,
+  "scope": "First four audit/report candidate skills and their before-after ledger entries. Supporting package/docs/tests and remaining eight skills remain pending.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "candidate_sha256": {
+    "engos-audit-code-health": "267e132e90b3af24938d9baea71a3746970d789d3d2197949121da50db2c59ae",
+    "engos-audit-feature-status": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+    "engos-audit-opex-incident-review": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+    "engos-audit-weekly-intel": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
+  },
+  "findings": [],
+  "open_findings": 0,
+  "checks": [
+    "Each new role/review contract implements user structure with real separate participants, same writer/reviewer resumption, sourced findings/dispositions, rewritten reviewer-owned list, uncapped zero-open exit and user-final stalemate.",
+    "Code-health remains inline and target read-only; domain report finding count remains separate from review finding count; cruft inventory/help/preview excluded.",
+    "Feature status retains human scope-confirmation before proof, evidence/completion states and no test/code execution.",
+    "Incident-review preserves verification as writer submission prerequisite, snapshot/report/drill-down/briefing rules and explicit external-write authority; narrow helper routes excluded.",
+    "Weekly preserves audience-specific author fact-check branches, appendices-only route, source-system read-only, body/appendix/source confidence checks.",
+    "Ledger before/after source and candidate hashes and changed clauses match actual read candidate diffs; it claims contract change, not measured outcome."
+  ],
+  "attestations": [
+    "reports/recommendation-review-followup/engos-audit-code-health.requirement-review-current-original.json",
+    "reports/recommendation-review-followup/engos-audit-code-health.requirement-review-historical-baseline.json",
+    "reports/recommendation-review-followup/engos-audit-feature-status.requirement-review-current-original.json",
+    "reports/recommendation-review-followup/engos-audit-feature-status.requirement-review-historical-baseline.json",
+    "reports/recommendation-review-followup/engos-audit-opex-incident-review.requirement-review-current-original.json",
+    "reports/recommendation-review-followup/engos-audit-opex-incident-review.requirement-review-historical-baseline.json",
+    "reports/recommendation-review-followup/engos-audit-weekly-intel.requirement-review-current-original.json",
+    "reports/recommendation-review-followup/engos-audit-weekly-intel.requirement-review-historical-baseline.json"
+  ],
+  "limits": [
+    "Zero open for this candidate group only; full 12-skill and supporting changes not yet reviewed."
+  ]
+}

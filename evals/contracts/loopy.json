@@ -6,7 +6,7 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
-    "a0ecfefe99160a2418c99d21155f2fa2d0e81f922505dc7a36888c2e9dc015a7",
+    "aa9538a3da070a742039f2569326a1399431543dee653379a0a90f36f9e6e8b8",
     "3fc439a5e28c40b7997faacb82d1e23b0199760ba7db054c38209d700f1b590e",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
@@ -54,7 +54,15 @@
     "a0ca59fa8e58e75b1dc98f22174162afbb1ca9caa6918cd56425a5565c3df7a7",
     "88774f701aa8fdc3751207916706a54e211dd05a244ee09f328d5afb4c380032",
     "4faf94f2fbdbbc1f7721b1a293adeb13c982706d509e8cdeae2e13a2b40f3c95",
-    "50a1cedac5e971f55c397e00f92009be5c5ab9d5d56ede3657ad7b61dc21a9e6"
+    "50a1cedac5e971f55c397e00f92009be5c5ab9d5d56ede3657ad7b61dc21a9e6",
+    "bdd0025cb2b15fe76d5648517116b59bc8f1a91a0ab2c56c93fff1b6af15bbf1",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -87,9 +95,9 @@
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
     {
-      "sha256": "a0ecfefe99160a2418c99d21155f2fa2d0e81f922505dc7a36888c2e9dc015a7",
+      "sha256": "aa9538a3da070a742039f2569326a1399431543dee653379a0a90f36f9e6e8b8",
       "source": "ssot/loopy.md",
-      "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables."
+      "text": "- The original source contract defines domain behavior during an authorized invocation. The local Craft-only extension below adds independent artifact acceptance without changing other routes."
     },
     {
       "sha256": "3fc439a5e28c40b7997faacb82d1e23b0199760ba7db054c38209d700f1b590e",
@@ -330,6 +338,46 @@
       "sha256": "50a1cedac5e971f55c397e00f92009be5c5ab9d5d56ede3657ad7b61dc21a9e6",
       "source": "ssot/loopy.md",
       "text": "> only improvements. Stop when [goal, limit, or no progress]. Ask before"
+    },
+    {
+      "sha256": "bdd0025cb2b15fe76d5648517116b59bc8f1a91a0ab2c56c93fff1b6af15bbf1",
+      "source": "ssot/loopy.md",
+      "text": "This local extension applies only to substantial artifacts authored through the Craft route, including the Craft portion of a combined request. It takes precedence only over acceptance by the artifact author; the retained source instructions continue to define the domain workflow, required compact output and internal preflight. Find-only lookup, Discover, Audit, Adapt, Run, Debrief and Publish retain their existing contracts. Review is internal and does not add public output sections. The source snapshot, relative resources, native identity and ownership remain unchanged. This uncapped artifact review does not change the designed loop execution budget, no-progress stops, user-defined limits, publication approval or other existing authority boundaries."
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/loopy.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/loopy.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/loopy.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/loopy.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/loopy.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/loopy.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/loopy.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

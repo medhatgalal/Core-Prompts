@@ -1,0 +1,45 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-browser-demo-recorder",
+  "original_sha256": "eb8307c6b2ae6612b6654c4818a7acaf0651980cd011f39f7209b73177e1523b",
+  "candidate_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+  "effective_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+  "source_line_count": 132,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-2-design-delivery-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-123",
+      "source_start_line": 1,
+      "source_end_line": 123,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-124-124",
+      "source_start_line": 124,
+      "source_end_line": 124,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Limit coordination to the artifact review below; do not claim wider runtime-control authority.",
+      "rationale": "User-authorized artifact review narrowly replaces blanket delegation ban, preserving no script execution, service startup, credential access or wider runtime-control authority."
+    },
+    {
+      "id": "span-125-132",
+      "source_start_line": 125,
+      "source_end_line": 132,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation or runtime acceptance."
+  ]
+}

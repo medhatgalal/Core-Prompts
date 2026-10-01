@@ -82,6 +82,14 @@ For complete OpEx meeting preparation, request `briefing` with incident keys; it
 
 For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
 
+For substantial authored artifacts in the [scoped review skills](EXAMPLES.md#review-an-authored-artifact),
+expect the same writer and separate reviewer to return to each revision until the reviewer
+reports zero open findings. Existing source, scope, rendering, sealing and permission checks
+remain required. Docs inspection stays advisory unless execution is requested; test design
+acceptance does not mean tests ran; Craft review does not run or publish the designed loop.
+Unavailable independent participants leave artifact review incomplete.
+
+
 No named-agent configurations ship. Use the skill examples above directly; independent workers receive the same skill and required resources. Future named adapters require explicit user approval. See the [agent FAQ](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt).
 
 ### How Batman starts and resolves companions

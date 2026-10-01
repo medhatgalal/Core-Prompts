@@ -1,0 +1,197 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-audit-code-health",
+  "original_sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234",
+  "candidate_sha256": "3e6d8e0f8e724a645b0839bf34ed7e2abb881ace4254e2ec74355a706e4cbdfd",
+  "effective_sha256": "3e6d8e0f8e724a645b0839bf34ed7e2abb881ace4254e2ec74355a706e4cbdfd",
+  "source_line_count": 436,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-3-code-health-heading-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-1",
+      "source_start_line": 1,
+      "source_end_line": 1,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-2-2",
+      "source_start_line": 2,
+      "source_end_line": 2,
+      "disposition": "reformulated",
+      "candidate_excerpt": "name: \"engos-audit-code-health\"\ndescription: \"Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.\"",
+      "rationale": "Historical identity, optional inventory shape and companion invocation modernization already exist in 99c380b canonical source; exact replacement retains current domain and authority boundaries."
+    },
+    {
+      "id": "span-3-5",
+      "source_start_line": 3,
+      "source_end_line": 5,
+      "disposition": "preserved",
+      "candidate_excerpt": "display_name: \"Codebase Health Audit \u2014 Brownfield Structural Risk Report\"",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-6-6",
+      "source_start_line": 6,
+      "source_end_line": 6,
+      "disposition": "relocated",
+      "candidate_excerpt": "description: \"Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.\"",
+      "rationale": "Historical description relocated to existing current canonical frontmatter; domain purpose retained."
+    },
+    {
+      "id": "span-7-24",
+      "source_start_line": 7,
+      "source_end_line": 24,
+      "disposition": "preserved",
+      "candidate_excerpt": "install_target: \"repo_local\"",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-25-34",
+      "source_start_line": 25,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "## In Scope",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-35-44",
+      "source_start_line": 35,
+      "source_end_line": 44,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Out Of Scope",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-45-56",
+      "source_start_line": 45,
+      "source_end_line": 56,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-57-63",
+      "source_start_line": 57,
+      "source_end_line": 63,
+      "disposition": "preserved",
+      "candidate_excerpt": "## READ-ONLY MODE (Non-Negotiable)",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-64-67",
+      "source_start_line": 64,
+      "source_end_line": 67,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Choose exactly one invocation shape:\n\n- repository audit: a target path for the repository or subtree, plus optional prior state, threshold overrides, and scope boundaries;\n- cruft inventory: `mode: cruft_inventory` plus an explicit request to scan the fixed home-level agent-tool categories; no repository target is required.",
+      "rationale": "Historical identity, optional inventory shape and companion invocation modernization already exist in 99c380b canonical source; exact replacement retains current domain and authority boundaries."
+    },
+    {
+      "id": "span-68-70",
+      "source_start_line": 68,
+      "source_end_line": 70,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Inputs",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-71-71",
+      "source_start_line": 71,
+      "source_end_line": 71,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The repository-audit shape accepts up to three inputs:",
+      "rationale": "Historical identity, optional inventory shape and companion invocation modernization already exist in 99c380b canonical source; exact replacement retains current domain and authority boundaries."
+    },
+    {
+      "id": "span-72-122",
+      "source_start_line": 72,
+      "source_end_line": 122,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. **Target path** (required) \u2014 Root directory of the codebase to analyze.",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-123-216",
+      "source_start_line": 123,
+      "source_end_line": 216,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-217-217",
+      "source_start_line": 217,
+      "source_end_line": 217,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Required Output\n\n### Output Format",
+      "rationale": "Introduce recognized Required Output heading and retain Output Format as its subsection; all following output content unchanged. This avoids generic import wrapper without changing artifact schema or reporting semantics."
+    },
+    {
+      "id": "span-218-357",
+      "source_start_line": 218,
+      "source_end_line": 357,
+      "disposition": "preserved",
+      "candidate_excerpt": "The output is a markdown document with YAML frontmatter for machine consumption.",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-358-358",
+      "source_start_line": 358,
+      "source_end_line": 358,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use `engos-audit-code-health` to audit this repo:",
+      "rationale": "Historical identity, optional inventory shape and companion invocation modernization already exist in 99c380b canonical source; exact replacement retains current domain and authority boundaries."
+    },
+    {
+      "id": "span-359-376",
+      "source_start_line": 359,
+      "source_end_line": 376,
+      "disposition": "preserved",
+      "candidate_excerpt": "target: /path/to/repo",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-377-377",
+      "source_start_line": 377,
+      "source_end_line": 377,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Use `engos-audit-code-health` to verify these prior findings and tell me whether the codebase is improving, stable, or degrading:",
+      "rationale": "Historical identity, optional inventory shape and companion invocation modernization already exist in 99c380b canonical source; exact replacement retains current domain and authority boundaries."
+    },
+    {
+      "id": "span-378-430",
+      "source_start_line": 378,
+      "source_end_line": 430,
+      "disposition": "preserved",
+      "candidate_excerpt": "target: /path/to/repo",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-431-433",
+      "source_start_line": 431,
+      "source_end_line": 433,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Tool Boundaries",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, output template and boundaries."
+    },
+    {
+      "id": "span-434-436",
+      "source_start_line": 434,
+      "source_end_line": 436,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- **Allowed:** Read files, grep/search, count lines, inspect AST/symbols, list directories; in explicit `cruft_inventory` mode, invoke the bundled reporter only in report or dry-run mode.\n- **Forbidden:** Write files, run target/application code, install dependencies, execute tests, modify git state. The only executable exception is the bundled reporter in explicit `cruft_inventory` report or dry-run mode.\n- **Escalation:** If structural problems suggest architectural redesign, recommend invoking the `engos-design-architecture` skill. If dead code is extensive, recommend `engos-quality-testing-review` skill for coverage analysis.\n\n## Recommendation Artifact Review\n\nApply this review to a substantial structural audit report and its remediation recommendations. The artifact is authored inline: no participant may create or modify files in the audited target or acquire file-write authority from this review. Raw inventory output, help and an explicitly requested cleanup preview keep their narrow existing behavior. The reviewer checks the report against source measurements without changing the code or treating the report's domain finding count as the review finding count.\n\nExisting domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.\n\n### Three Roles\n- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.\n- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.\n- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.\n\nUse actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.\n\n### Finding and Repair Cycle\n1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.\n2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.\n3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.\n4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.\n5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.\n6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "rationale": "Historical identity, optional inventory shape and companion invocation modernization already exist in 99c380b canonical source; exact replacement retains current domain and authority boundaries."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, product implementation or runtime acceptance."
+  ]
+}

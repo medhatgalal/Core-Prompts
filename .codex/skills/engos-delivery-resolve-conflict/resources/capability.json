@@ -137,7 +137,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "advisor",
@@ -170,10 +182,219 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-delivery-resolve-conflict",
-  "shared_summary": "[ScottP] Structured merge conflict resolution with Charlie Munger inversion analysis",
+  "shared_summary": "Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.",
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-delivery-resolve-conflict",
+        "strategy": "head_snapshot",
+        "group": "additive_preserved",
+        "baseline_path": "sources/ssot-baselines/engos-delivery-resolve-conflict/baseline.md",
+        "selected_commit": "db5c3789",
+        "richness_score": 2,
+        "line_count": 379,
+        "reason": "Latest additive version preserves the full inversion-led workflow and strengthens boundary and companion guidance without deleting procedure.",
+        "equivalent_commits": [
+          "a78c1c21"
+        ],
+        "expected_companions": [
+          "engos-design-architecture",
+          "engos-quality-gitops-review",
+          "engos-quality-testing-review",
+          "engos-quality-docs-review"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "inversion_resolution_workflow",
+            "kind": "individual_module",
+            "label": "inversion-led conflict workflow",
+            "must_contain": [
+              "### Phase 1: Inversion Analysis (Charlie Munger Style)",
+              "### Phase 2: Conflict Analysis",
+              "### Phase 3: Resolution Strategy",
+              "### Phase 4: Resolution Plan",
+              "### Phase 5: Expected Outcome"
+            ]
+          },
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          },
+          {
+            "id": "stepwise_workflow_contract",
+            "kind": "operational_contract",
+            "label": "stepwise workflow contract",
+            "must_contain": [
+              "## Workflow Contract"
+            ]
+          },
+          {
+            "id": "configuration_contract",
+            "kind": "operational_contract",
+            "label": "configuration contract",
+            "must_contain": [
+              "## Configuration"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "db5c3789",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 380,
+          "materialized_from_commit": "db5c3789"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "inversion_resolution_workflow",
+              "kind": "individual_module",
+              "label": "inversion-led conflict workflow",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "stepwise_workflow_contract",
+              "kind": "operational_contract",
+              "label": "stepwise workflow contract",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "configuration_contract",
+              "kind": "operational_contract",
+              "label": "configuration contract",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 2,
+            "candidate_richness": 10,
+            "baseline_operational_score": 5,
+            "candidate_operational_score": 5,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "db5c3789",
+          "baseline_slug": "engos-delivery-resolve-conflict"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 2,
+        "candidate_richness": 10,
+        "baseline_operational_score": 5,
+        "candidate_operational_score": 5,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {
     "preferred_use_cases": [
       "merge conflict analysis",
@@ -186,6 +407,8 @@
     "invocation_style": "conflict_analysis",
     "requires_human_confirmation": true
   },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-delivery-resolve-conflict",
     "strategy": "head_snapshot",
@@ -260,7 +483,7 @@
     "portfolio_action": "keep",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": []
@@ -279,7 +502,7 @@
               "path": "ssot/engos-delivery-resolve-conflict.md",
               "start_line": 31,
               "end_line": 33,
-              "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+              "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
             }
           }
         ]
@@ -296,7 +519,7 @@
             "path": "ssot/engos-delivery-resolve-conflict.md",
             "start_line": 40,
             "end_line": 40,
-            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+            "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -307,7 +530,7 @@
             "path": "ssot/engos-delivery-resolve-conflict.md",
             "start_line": 41,
             "end_line": 41,
-            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+            "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -318,7 +541,7 @@
             "path": "ssot/engos-delivery-resolve-conflict.md",
             "start_line": 42,
             "end_line": 42,
-            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+            "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -329,7 +552,7 @@
             "path": "ssot/engos-delivery-resolve-conflict.md",
             "start_line": 43,
             "end_line": 43,
-            "sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d"
+            "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
           },
           "interpretation": "source_clause_requires_stage_review"
         }
@@ -341,8 +564,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-delivery-resolve-conflict.md",
-        "ssot_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
-        "effective_sha256": "0ccc8d01936c017ade5e033d0370a46d4cb60d9ec68f5232754b7455c3896c8d",
+        "ssot_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+        "effective_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -361,7 +584,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "2dc3b138ef3b53ae57bea70dda8ca3955ec3c923389a38e4c428afe5855eef84"
+        "mapping_sha256": "7e63b7503993b2d1673a407d360db6224444a94ff0d666437ac3fadb79804bf2"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

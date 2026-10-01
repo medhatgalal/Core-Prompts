@@ -14,12 +14,20 @@
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "cc19be8bcf9ea81e4b9efdba976d81c13a063e8ed54a8087cf3859ad3f5eed39",
     "f20a2cefe53c10e643434b6f6399f16e06a86718d40b011c762b2d1b6c348419",
-    "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+    "ea2be70ea7b1d5dbd37c0323e4342ed138807f03a4bb244861f281b13b63387c",
     "daffaa159311fb831fe3c83109ab70566c7356590bd514c42a2922ad8149e9c3",
     "af51ed8554e8727c6c3688c05b6f218208c366eb2ba8b2375913a0b66d1e4c7c",
     "97b9d1da72c4cd3ca81ace3bd28296aa5cbbf0533877c69b1c222b258b420fc4",
     "2110b5a2ba533875f9abfa6d441dc9bc2a2c5445a58fcc549654d5284fb98999",
-    "44b3825e92225225e023fba0e20c1cc314119185422297940ef612dae59c6569"
+    "44b3825e92225225e023fba0e20c1cc314119185422297940ef612dae59c6569",
+    "847bcf239f375db7ac38ba61c2947220725d06d13a1c4dfbf53e057ce7214846",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -92,9 +100,9 @@
       "text": "- Always state prerequisites the user must verify before running."
     },
     {
-      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
+      "sha256": "ea2be70ea7b1d5dbd37c0323e4342ed138807f03a4bb244861f281b13b63387c",
       "source": "ssot/engos-browser-demo-recorder.md",
-      "text": "- Do not claim orchestration, delegation, or runtime-control authority."
+      "text": "- Limit coordination to the artifact review below; do not claim wider runtime-control authority."
     },
     {
       "sha256": "daffaa159311fb831fe3c83109ab70566c7356590bd514c42a2922ad8149e9c3",
@@ -120,6 +128,46 @@
       "sha256": "44b3825e92225225e023fba0e20c1cc314119185422297940ef612dae59c6569",
       "source": "ssot/engos-browser-demo-recorder.md",
       "text": "- Do not mix demo recording concerns with testing, CI, or deployment concerns."
+    },
+    {
+      "sha256": "847bcf239f375db7ac38ba61c2947220725d06d13a1c4dfbf53e057ce7214846",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "Apply this review to a substantial authored demo plan and complete walkthrough script. All participants preserve the no-execution and no-credential-access boundaries: reviewing source, configuration and declared prerequisites does not run the script or start a service. Keep user-specified pacing, authentication references and recording configuration. A revised flow or timing resumes the same participants; do not claim observed recording success from source inspection."
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/engos-browser-demo-recorder.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

@@ -132,7 +132,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "specialist_with_workflow_surface",
@@ -166,7 +178,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-audit-weekly-intel",
-  "shared_summary": "Multi-source weekly intelligence gathering, convergence, fact-check audit, and dual-report generation (technical + exec narrative) for any team, project, or time window.",
+  "shared_summary": "Collect and fact-check project information from issue trackers, Git, code review, Chat, and documents, then produce one executive report with technical appendices and source confidence. Use for multi-source periodic intelligence; do not use for Git-only reports, inbox triage, or feature audits.",
   "shared_constraints": [
     "Do not modify any source system (tickets, repos, chat). Read only.",
     "Do not assert a bug is \"fixed\" based on a single chat message without corroboration from the tracker or code.",
@@ -177,7 +189,159 @@
   ],
   "modes": [],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-audit-weekly-intel",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "628786ff",
+        "richness_score": 5,
+        "line_count": 287,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [
+          "6fbcff2d"
+        ],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "628786ff",
+          "baseline_slug": "engos-audit-weekly-intel"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 5,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {},
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-audit-weekly-intel",
     "strategy": "head_snapshot",
@@ -224,7 +388,7 @@
     "portfolio_action": "keep_and_clarify_boundary",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -235,7 +399,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 152,
               "end_line": 156,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -245,7 +409,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 170,
               "end_line": 175,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -255,7 +419,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 177,
               "end_line": 183,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -265,7 +429,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 202,
               "end_line": 202,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -275,7 +439,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 204,
               "end_line": 208,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           }
         ]
@@ -294,7 +458,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 25,
               "end_line": 29,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -304,7 +468,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 54,
               "end_line": 56,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -314,7 +478,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 231,
               "end_line": 236,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           }
         ]
@@ -329,7 +493,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 25,
               "end_line": 29,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           },
           {
@@ -339,7 +503,7 @@
               "path": "ssot/engos-audit-weekly-intel.md",
               "start_line": 231,
               "end_line": 236,
-              "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+              "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
             }
           }
         ]
@@ -352,7 +516,7 @@
             "path": "ssot/engos-audit-weekly-intel.md",
             "start_line": 251,
             "end_line": 251,
-            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -363,7 +527,7 @@
             "path": "ssot/engos-audit-weekly-intel.md",
             "start_line": 252,
             "end_line": 252,
-            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -374,7 +538,7 @@
             "path": "ssot/engos-audit-weekly-intel.md",
             "start_line": 253,
             "end_line": 253,
-            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -385,7 +549,7 @@
             "path": "ssot/engos-audit-weekly-intel.md",
             "start_line": 254,
             "end_line": 254,
-            "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+            "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
           },
           "interpretation": "source_clause_requires_stage_review"
         }
@@ -397,8 +561,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-audit-weekly-intel.md",
-        "ssot_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
-        "effective_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+        "ssot_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+        "effective_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -417,7 +581,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "7100e72eaf50afbb8b388a08de8b80bae6225ea0f88bd8c8887070a2f1a0295a"
+        "mapping_sha256": "c014d7e86ac1f0a22978ae4008c3414c5d379aef886ddeb732e9039e94fa12a4"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

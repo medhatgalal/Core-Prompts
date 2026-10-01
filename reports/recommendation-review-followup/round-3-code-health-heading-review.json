@@ -1,0 +1,21 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 3,
+  "scope": "Code-health output heading normalization after earlier zero-open review.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "candidate_sha256": {
+    "engos-audit-code-health": "3e6d8e0f8e724a645b0839bf34ed7e2abb881ace4254e2ec74355a706e4cbdfd"
+  },
+  "findings": [],
+  "open_findings": 0,
+  "checks": [
+    "Verified removal of the recognized Required Output heading + retained Output Format subsection recreates the exact previously reviewed candidate hash.",
+    "Output template and all domain/role/review content unchanged; no generic wrapper approved.",
+    "Both original/historical full-source mappings renewed and validated."
+  ],
+  "limits": [
+    "Other first8 reviews remain applicable; remaining4/supports pending."
+  ]
+}

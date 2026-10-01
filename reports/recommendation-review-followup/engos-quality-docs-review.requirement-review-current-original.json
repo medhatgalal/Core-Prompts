@@ -1,0 +1,77 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-quality-docs-review",
+  "original_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
+  "candidate_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+  "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+  "source_line_count": 143,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-4-scoped-routes-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-32",
+      "source_start_line": 1,
+      "source_end_line": 32,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-33-33",
+      "source_start_line": 33,
+      "source_end_line": 33,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- forbidden: wider runtime orchestration or delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent",
+      "rationale": "Narrow delegation/orchestration prohibition only for expressly authorized, execution-only documentation artifact review or convergence artifact review. Keep unrelated application edits, unsupported routing and wider runtime-control forbidden."
+    },
+    {
+      "id": "span-34-64",
+      "source_start_line": 34,
+      "source_end_line": 64,
+      "disposition": "preserved",
+      "candidate_excerpt": "- escalation: if a requested fix requires architecture or code changes beyond documentation scope, hand it off explicitly instead of smuggling it into a docs-only recommendation",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-65-65",
+      "source_start_line": 65,
+      "source_end_line": 65,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Limit coordination to the execution-only artifact review below; do not claim wider routing or delegation authority.",
+      "rationale": "Narrow delegation/orchestration prohibition only for expressly authorized, execution-only documentation artifact review or convergence artifact review. Keep unrelated application edits, unsupported routing and wider runtime-control forbidden."
+    },
+    {
+      "id": "span-66-73",
+      "source_start_line": 66,
+      "source_end_line": 73,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-74-74",
+      "source_start_line": 74,
+      "source_end_line": 74,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every substantial writer-authored artifact must include:",
+      "rationale": "Preserve every artifact output field and format; restrict blanket response formatting to writer artifact so reviewer/coordinator exclusive outputs stay separate."
+    },
+    {
+      "id": "span-75-143",
+      "source_start_line": 75,
+      "source_end_line": 143,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Current State`",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation, installation or runtime acceptance. Historical-to-current changes already present in 99c380b are retained, not newly authorized here."
+  ]
+}

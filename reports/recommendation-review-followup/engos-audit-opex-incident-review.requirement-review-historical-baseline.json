@@ -1,0 +1,61 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-audit-opex-incident-review",
+  "original_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+  "candidate_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+  "effective_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+  "source_line_count": 365,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-1-audit-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-260",
+      "source_start_line": 1,
+      "source_end_line": 260,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; all domain rules, templates, examples, boundaries and layout in the span preserved. New review obligations are additive."
+    },
+    {
+      "id": "span-261-261",
+      "source_start_line": 261,
+      "source_end_line": 261,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The writer performs these source and rendering checks before submitting the artifact for independent review:",
+      "rationale": "Preserve every source/rendering check following this line; author checks become submission prerequisites, while separate reviewer zero-open list owns artifact acceptance."
+    },
+    {
+      "id": "span-262-356",
+      "source_start_line": 262,
+      "source_end_line": 356,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Validate both snapshots and all ticket/DPA references.",
+      "rationale": "All source bytes in this span retained exactly; all domain rules, templates, examples, boundaries and layout in the span preserved. New review obligations are additive."
+    },
+    {
+      "id": "span-357-357",
+      "source_start_line": 357,
+      "source_end_line": 357,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Limit coordination to the artifact review below; do not claim wider runtime-control authority.",
+      "rationale": "User-authorized three-role artifact review replaces blanket delegation prohibition only within scoped recommendation review; all source-system and wider runtime-control boundaries retained."
+    },
+    {
+      "id": "span-358-365",
+      "source_start_line": 358,
+      "source_end_line": 365,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Meeting briefing compatibility",
+      "rationale": "All source bytes in this span retained exactly; all domain rules, templates, examples, boundaries and layout in the span preserved. New review obligations are additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, product implementation or runtime acceptance."
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-audit-code-health",
+  "original_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+  "candidate_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+  "effective_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+  "source_line_count": 469,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-6-code-health-workflow-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-156",
+      "source_start_line": 1,
+      "source_end_line": 156,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, templates and boundaries."
+    },
+    {
+      "id": "span-157-157",
+      "source_start_line": 157,
+      "source_end_line": 157,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Workflow\n\n### Analysis Phases",
+      "rationale": "Introduce recognized Required Output/Workflow heading while retaining original Output Format/Analysis Phases as subsection; all following template/phase content unchanged. Existing workflow/output becomes visible without generic wrapper or new artifact obligations."
+    },
+    {
+      "id": "span-158-248",
+      "source_start_line": 158,
+      "source_end_line": 248,
+      "disposition": "preserved",
+      "candidate_excerpt": "Execute these phases sequentially. Each phase uses the agent's built-in tools (file reading, grep, code intelligence, AST search).",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, templates and boundaries."
+    },
+    {
+      "id": "span-249-249",
+      "source_start_line": 249,
+      "source_end_line": 249,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Required Output\n\n### Output Format",
+      "rationale": "Introduce recognized Required Output/Workflow heading while retaining original Output Format/Analysis Phases as subsection; all following template/phase content unchanged. Existing workflow/output becomes visible without generic wrapper or new artifact obligations."
+    },
+    {
+      "id": "span-250-469",
+      "source_start_line": 250,
+      "source_end_line": 469,
+      "disposition": "preserved",
+      "candidate_excerpt": "The output is a markdown document with YAML frontmatter for machine consumption.",
+      "rationale": "All source bytes in span retained exactly, including domain rules, examples, templates and boundaries."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, product implementation or runtime acceptance."
+  ]
+}
