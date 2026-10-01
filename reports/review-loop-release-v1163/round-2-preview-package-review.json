@@ -1,0 +1,28 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 2,
+  "scope": "Generated status readback and premerge preview TAR/ZIP boundaries; final merged archives/publication remain pending.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "preview_archive_sha256": {
+    "core-prompts-v1.16.3-surfaces.tar.gz": "68addb3a5417d86a6fb64d36f027640a7846d09de22623267833219d22c38f7e",
+    "core-prompts-v1.16.3-surfaces.zip": "34dad9226b7590e2aecd78febb0899fdc6d48806d39cd83b7bbc8649a7e9d51b"
+  },
+  "generated_status_sha256": "e9f4ef23899745033c6f9270e73cba10403593bbd8120430c83e567528bf9614",
+  "findings": [],
+  "open_findings": 0,
+  "checks": [
+    "Both preview archives contain same981unique regular files; all bytes/modes equal current source and each other, no links/unsafe paths.",
+    "LocalCodex registration config, reports and planning excluded;160nativeSKILL entries present.",
+    "All13x5 provider skill bodies equal current canonical body plus standard footer and contain independent zero-open review.",
+    "All six reviewed publicdocs, VERSIONv1.16.3 and finalized changelog appear exactly in both archives.",
+    "Generated STATUS retains warning status and zero validation errors without falsely claiming native discovery acceptance.",
+    "No SSOT/resources/scripts/VERSION source mutation after revieweddocs."
+  ],
+  "merge_readiness": "Source/docs/package boundary zero-open; fulltests/hosted checks required separately.",
+  "release_install_readiness": "These are preview archives only. Final merged build, package digests, provider downloads and bound install preview/apply/readback remain pending.",
+  "limits": [
+    "Root owns test/hosted verification. Archive/source parity does not establish native provider activation or measured model benefit."
+  ]
+}

@@ -1,4 +1,4 @@
-## Unreleased
+## v1.16.3 - 2026-10-01
 
 - Extend persistent coordinator/writer/separate-reviewer acceptance to the twelve
   scoped authored-artifact routes identified by the prior inventory. Preserve
@@ -14,11 +14,12 @@
   separate this artifact gate from structural packaging checks.
 - Inventory other skills for the same review structure without applying blanket
   changes or replacing existing host-owned review protocols.
-
-## v1.16.3 - 2026-09-30
-
-Source version prepared for shaping evidence/recovery corrections. Mainline
-delivery and selected installation are separate from release publication.
+- Add practical examples for all thirteen reviewed skill routes and clarify
+  released-version installation, protected-package preservation and activation.
+  Keep source-contract comparisons separate from measured behavioral proof.
+- Bind release comparisons to the verified preceding published tag; the
+  v1.16.3 comparison uses v1.16.2. Publication and installed-state verification
+  retain separate evidence.
 
 - Scope floor-only review classification to current policy bindings while
   preserving valid older history without retroactive coverage requirements.

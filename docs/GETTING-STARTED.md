@@ -82,13 +82,37 @@ For complete OpEx meeting preparation, request `briefing` with incident keys; it
 
 For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
 
-For substantial authored artifacts in the [scoped review skills](EXAMPLES.md#review-an-authored-artifact),
-expect the same writer and separate reviewer to return to each revision until the reviewer
-reports zero open findings. Existing source, scope, rendering, sealing and permission checks
-remain required. Docs inspection stays advisory unless execution is requested; test design
-acceptance does not mean tests ran; Craft review does not run or publish the designed loop.
-Unavailable independent participants leave artifact review incomplete.
+### Try a reviewed artifact
 
+These examples describe the v1.16.3 release packages. First apply the released
+version to the selected provider and verify that the requested skill updated;
+[activation and preservation](INSTALL-PROFILES.md#activate-a-released-skill-update)
+explains how customized packages can retain older behavior.
+
+One example of the pattern:
+
+> Use `engos-audit-feature-status` to compare this specification with the code and
+> tests, then give me the status, drift, gaps and shipping priorities. Keep the
+> target unchanged.
+
+Expect the existing scope-confirmation step before proof collection. One writer
+produces the report; a separate reviewer checks it against the opened sources.
+If a claimed completion omits a required error path, the reviewer records the
+source, location and concrete repair. The same writer revises the report and the
+same reviewer checks again. A coordinator dispatches and counts findings without
+writing the report or review. Delivery requires zero open reviewer findings.
+
+That artifact review has no round cap. The writer can respond `addressed` with what
+changed, `wontfix` with a technical reason, or `needs-user-input`. If the reviewer
+reopens a technical refusal, your answer finally settles that finding. Existing
+source, rendering, sealing and permission checks remain required. Unavailable
+independent participants leave artifact review incomplete.
+
+See [all thirteen skill examples](EXAMPLES.md#review-an-authored-artifact) for the
+right scope. Docs inspection remains advisory unless execution is requested;
+test-design acceptance does not mean tests ran; Craft review does not run or
+publish the designed loop. These examples explain source contracts, not measured
+model improvement or formal promotion.
 
 No named-agent configurations ship. Use the skill examples above directly; independent workers receive the same skill and required resources. Future named adapters require explicit user approval. See the [agent FAQ](FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt).
 
