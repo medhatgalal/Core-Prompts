@@ -19,22 +19,26 @@ python3 scripts/smoke-clis.py
 
 ## Release comparison baseline
 
-Before the release build, select and record the previous published release:
+Before each release build, verify and record the preceding published release on
+both providers. Its tag object and commit must agree. Set that exact tag as the
+comparison baseline and keep it set for every rebuild, including after merge.
+
+One example of the pattern: the v1.16.3 release compares against the verified
+published v1.16.2 tag:
 
 ```bash
-export CORE_PROMPTS_RELEASE_BASE_REF=v1.15.0
+export CORE_PROMPTS_RELEASE_BASE_REF=v1.16.2
 bin/capability-fabric build
 ```
 
-For the v1.15.1 candidate the comparison baseline is v1.15.0. Choose the preceding
-published tag for future releases. The generator supports an explicit baseline
-and otherwise selects the latest distinct ancestor tag available locally. Fetch
-and verify the intended baseline; do not let missing local tags silently turn a
-patch-release review into an older cumulative comparison. Check the recorded
-comparison basis in `docs/RELEASE-DELTA.md` before packaging. Regenerate this view;
-do not hand-edit its capability counts or alter historical published release notes.
-Keep the selected variable set for every rebuild, including after merge; repeat
-the export when starting a new shell so a later build retains the reviewed baseline.
+For another release, replace that value with its verified preceding published
+tag. The generator supports this explicit baseline and otherwise selects the
+latest distinct ancestor tag available locally. Fetch and verify the intended
+baseline without replacing unrelated local tags. Missing tags can produce an
+older cumulative comparison; resolve that gap before accepting the release view.
+Check the recorded basis in `docs/RELEASE-DELTA.md` before packaging. Regenerate
+this view instead of hand-editing capability counts or historical release notes.
+Repeat the export in a new shell so later builds retain the reviewed baseline.
 
 ## Installation Preview (When In Scope)
 
@@ -48,7 +52,7 @@ release alone does not require a home installation.
 scripts/package-surfaces.sh --version "$(tr -d '[:space:]' < VERSION)"
 ```
 
-`VERSION` is the canonical shipped release version. Packaging fails if `--version` does not match `VERSION` or if the top `CHANGELOG.md` entry does not match `VERSION`.
+`VERSION` is the canonical shipped release version. Packaging fails if `--version` does not match `VERSION`, if the top `CHANGELOG.md` entry does not match `VERSION`, or if a nonempty `Unreleased` section remains.
 
 ## Packaged Boundary
 The package should include:

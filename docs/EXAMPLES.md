@@ -1464,22 +1464,29 @@ Expect UAC’s source-backed job mapping, hashes, conditional companion clauses 
 
 ## Review an authored artifact
 
-Substantial artifacts from the following skills receive independent source-based acceptance:
+The v1.16.3 release packages cover these thirteen substantial authoring routes.
+Verify the released package was applied to your selected provider before expecting
+the new review cycle. A preserved customized or unowned skill retains its prior
+behavior; installed runtime version alone cannot establish that every package
+updated. See [activation and preservation](INSTALL-PROFILES.md#activate-a-released-skill-update).
 
-| Skill | Scope of the added artifact review |
-|---|---|
-| `engos-audit-code-health` | Structural audit report and remediation recommendation; stays inline and target-read-only |
-| `engos-audit-feature-status` | Completed status/gap/priorities report, after existing human scope confirmation |
-| `engos-audit-opex-incident-review` | Authored daily digest, incident drill-down or briefing; help, validate and render remain narrow |
-| `engos-audit-weekly-intel` | Authored executive or appendices-only report; existing audience-specific author checks remain |
-| `engos-browser-demo-recorder` | Demo plan and script; no script execution or credential access |
-| `engos-content-dynamic-html-presentations` | Authored deck and requested artifacts; keep viewport/image/export checks |
-| `engos-delivery-resolve-conflict` | Authored conflict analysis and recommendation; review does not execute the resolution |
-| `engos-design-plan-to-goal` | Authored goal/spec/verifier packet; lint, seal, trust and drift checks remain required |
-| `engos-quality-docs-review` | Explicitly requested substantial rewrite execution only; findings-only inspection stays advisory |
-| `engos-quality-testing-review` | Substantial authored plans/test artifacts only; review proves no execution or measured coverage |
-| `engos-reconciliation-converge` | Authored final proposal; scores comparing alternatives remain decision evidence |
-| `loopy` | Substantial Craft output only; compact public format and designed execution limits remain |
+Each ask below is one example of the pattern, not a required project layout.
+
+| Skill | One example ask | Expected work and preserved boundary |
+|---|---|---|
+| `engos-design-architecture` | “Design replacement of this legacy adapter; include interfaces, a decoupling falsifier, alternatives, migration and rollback.” | A concrete design and decision log; reviewer checks source claims and unknown ownership. Proposed checks remain distinct from observed proof; no application implementation. |
+| `engos-audit-code-health` | “Audit this subtree for hotspots, coupling and likely dead code using these thresholds and prior findings.” | Inline metric-backed audit, drift and remediation; reviewer checks measurements and conservative classifications. Target stays read-only; the report's domain findings are separate from review defects. |
+| `engos-audit-feature-status` | “Compare this specification, code and tests; tell me what is complete, drifting or blocking shipment.” | Scope confirmation first, then status/gap/priorities report; reviewer compares each claim with its source. No code edits or test execution. |
+| `engos-audit-opex-incident-review` | “Build today's digest from these incidents and the prior snapshot; distinguish progress from corrected evidence.” | Complete board, owner obligations, counts, caveats and selected drill-downs; reviewer checks source coverage and comparison rules. Source systems and distribution remain unchanged without their existing authorization. |
+| `engos-audit-weekly-intel` | “Write this week's status from these tickets, reviews and notes; audience is leadership.” | One executive report with source-linked appendices and confidence; reviewer checks claims, attribution and body/appendix agreement. Keep time/scope and audience-specific author checks; no messages or source edits. |
+| `engos-browser-demo-recorder` | “Write a paced walkthrough script for this supplied interface with recording and environment-variable authentication.” | Complete plan/script and run guidance; reviewer checks selectors and declared prerequisites against supplied evidence. Neither participant runs the script, starts services or reads credentials. |
+| `engos-content-dynamic-html-presentations` | “Turn this source report into six HTML slides with notes; export PNGs and a flattened PPTX.” | Deck and requested validated outputs; reviewer checks source labels and presentation evidence, writer repairs deck/affected exports. Keep viewport/image checks; external uploads need their existing request. |
+| `engos-delivery-resolve-conflict` | “Compare both sides of this conflict and recommend a resolution that preserves the safety exceptions.” | Both-side analysis, explicit choices and verification plan; reviewer checks what was kept or rejected. Human choices remain human; accepting the plan does not execute the merge. |
+| `engos-design-plan-to-goal` | “Compile this approved plan into a goal, specification and verifier packet without starting it.” | Source/host research, bounded anchor and exact packet checks; reviewer checks semantic completeness. Lint, sealing, verifier trust, drift and execution budget still govern; no implicit launch. |
+| `engos-quality-docs-review` | “Apply the smallest rewrite to these two docs and their broken links; preserve one canonical home.” | Explicitly authorized rewrite owned by the writer; reviewer checks saved docs against behavior, audience and links. Findings-only inspection stays advisory and does not enter this authoring loop. |
+| `engos-quality-testing-review` | “Author a retry test plan and test cases using our existing framework; do not run them.” | Substantial designed plan/test artifacts; reviewer checks assertions, error/boundary cases and source behavior. No inferred execution or measured coverage; a narrow lookup stays narrow. |
+| `engos-reconciliation-converge` | “Compare these rollout proposals using our criteria and recommend one, naming the rejected ideas.” | One converged proposal with trade-offs and rationale; reviewer verifies source fidelity. Alternative scores remain decision evidence; human preference choices and synthesis-only authority stay intact. |
+| `loopy` | “Craft a repeatable loop for this task; use my allowed actions, success check and stop conditions.” | Focused interview and compact prompt; separate internal review checks unsupported assumptions before delivery. Craft only; no run, schedule, publication or change to the designed loop's execution limits. |
 
 The coordinator dispatches and counts findings without authoring artifacts or findings.
 The writer owns the artifact and repair dispositions. A reviewer who did not write it

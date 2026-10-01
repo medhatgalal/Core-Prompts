@@ -145,15 +145,22 @@ Use the same skill in the main session or supply it and its required resources t
 
 Batman remains explicitly invoked. It checks the request and live host, preserves controller/implementer/reviewer separation, and reports local, hosted, release, and installation evidence separately. See [the delivery contract](docs/GETTING-STARTED.md#how-batman-starts-and-resolves-companions).
 
-Substantial authored audits, reports, demo scripts, presentations, conflict recommendations,
-goal packets and converged proposals use a coordinator, the same writer across revisions,
-and a separate source-checking reviewer. Final delivery requires zero open reviewer findings;
-there is no review round cap, and a reopened technical refusal goes to the user for a final
-ruling. Documentation uses this only for requested execution, testing for authored plans or
-artifacts, and Loopy for Craft only. Narrow lookup/conversion routes and existing host review
-protocols retain their controls. See [review an authored artifact](docs/EXAMPLES.md#review-an-authored-artifact)
-for the exact skill scope and before/after examples.
+The v1.16.3 release packages add independent acceptance to thirteen substantial
+artifact-writing routes. Install the released version in your selected provider to
+use them; a merged source change does not refresh an existing home installation.
+A preserved customized package keeps its existing behavior even when the shared
+updater reports the new version. See [activation and preservation](docs/INSTALL-PROFILES.md#activate-a-released-skill-update).
 
+One example of the pattern: “Use `engos-design-architecture` to design removal of
+this legacy adapter; include its contract, falsifying check, migration and rollback.”
+Expect a design written by one writer, source-checked by a different reviewer, and
+revised by those same participants until the reviewer reports zero open findings.
+The coordinator dispatches and counts; it writes neither the design nor findings.
+A reopened technical `wontfix` asks for your final choice. Existing domain checks
+and permissions stay in force. [Practical examples for all thirteen routes](docs/EXAMPLES.md#review-an-authored-artifact)
+show the work, output and preserved boundaries. Docs applies this to requested
+execution, testing to authored plans/artifacts, and Loopy to Craft only; narrow
+lookups/conversions and existing host review protocols retain their controls.
 
 ### If You Only Try Three Things
 

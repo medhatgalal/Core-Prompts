@@ -65,6 +65,39 @@ activation. The resulting concrete selection is saved in
 `.core-prompts-state/installation.json`; later new catalog entries are not
 automatically added. Do not edit ownership receipts to grant ownership.
 
+## Activate a released skill update
+
+The v1.16.3 independent artifact-review examples apply after that released package
+is installed for the selected provider and the requested skill has updated.
+Publication, shared updater `VERSION`, saved selection and individual package
+readback are distinct checks. A runtime update can succeed while a customized or
+unowned skill is preserved and continues using its previous instructions.
+
+One example of the pattern: update an existing saved selection from a verified
+release directory without asking for another provider or a broader profile:
+
+```bash
+bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --dry-run > /tmp/core-prompts-release-install-plan.json
+```
+
+Inspect the exact `selection`, `actions`, preserved packages and blockers, then
+apply that reviewed plan with the existing `--apply-plan` workflow above. Avoid
+adding `--repair`, a new profile or extra slugs merely to activate these examples;
+those choices change the discovery or selection scope described earlier.
+
+After apply, read the installed runtime version and the requested skill's actual
+package through the selected provider path. Confirm its review section and compare
+its owned files with the released package's hashes and modes. Inspect the operation
+and persistent preservation reports before saying the behavior is active everywhere.
+For `applied-with-preserved` or `no-op-with-preserved`, report which selected packages
+updated and which retain prior content. Preserve custom and third-party packages;
+resolve any desired replacement explicitly through the existing ownership workflow.
+An unreceipted third-party Loopy copy is not adopted by this update.
+
+Keep the transaction ID and recovery metadata. Use [recovery](#recover-an-installation)
+if the reviewed update fails; a published archive alone proves no home acceptance.
+
 ## Historical recognition and preservation
 
 The checked-in `.meta/install-profiles/legacy-installations.json` catalog binds
@@ -82,7 +115,7 @@ when its package ownership is recognized and no unresolved dependency
 requires it. Replacement files are verified before predecessor files are removed.
 
 The current release retires all 11 first-party named-agent variants on Codex,
-Gemini, Claude, and Kiro (44 entrypoints), retaining all 29 skill capabilities.
+Gemini, Claude, and Kiro (44 entrypoints), retaining the current 32 skill capabilities.
 The existing historical catalog and ownership receipts identify the affected
 packages; no second registry is needed. A recognized owned retired agent maps
 to the exact same capability's skill on the same provider. Its skill is retained

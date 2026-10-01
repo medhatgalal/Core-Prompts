@@ -1,0 +1,49 @@
+{
+  "baseline": "64267f333fe457c1a3e07d23712725718a63a6e0",
+  "release": "v1.16.3",
+  "release_date": "2026-10-01",
+  "previous_published_comparator": "v1.16.2",
+  "scope": "Documentation/release-note changes only; source contracts and runtime remain unchanged.",
+  "files": {
+    "CHANGELOG.md": {
+      "original_sha256": "c5492ce282b445e71a710f8a185dd9b2e3fd36acc1ee9741007120e13760c96c",
+      "candidate_sha256": "d685a3dc965791be81161848c4403323565ed9c0bacb2a10b2184e915ad054b6"
+    },
+    "README.md": {
+      "original_sha256": "065915e02d869f612197d3eec836b4c3d00533028ee0a35f74e7ec30e0250ec1",
+      "candidate_sha256": "9b8fffa077bab035478e350ff5dc94b534d0e305c948b240b47e4afa8ff3ce11"
+    },
+    "docs/GETTING-STARTED.md": {
+      "original_sha256": "bc9f3be758fc937a3c2d74e04f34035708a08ccce69a6b4ba45337f666cf2711",
+      "candidate_sha256": "e97b46a36160ddcabfe157461ea72b5ace6148b4fcb5e696caeec231d519afa9"
+    },
+    "docs/EXAMPLES.md": {
+      "original_sha256": "4956ae26d0b20cacc1acb5052620699baf459050c3b23c6ede157e7d7f31eac0",
+      "candidate_sha256": "ba98d74f844ecc9f25a0a0acc4b7c5973e443ba17c57b23c63f97f8f717698ba"
+    },
+    "docs/RELEASE-PACKAGING.md": {
+      "original_sha256": "51175bb7829924024b5a7d27dad2c1deb5b8b69aff2756ad9901a5593ea53e8f",
+      "candidate_sha256": "80992af32546e2eeeabbbc886a8b67ce0a10dda5023edfe3d15da89bae973ac0"
+    },
+    "docs/INSTALL-PROFILES.md": {
+      "original_sha256": "eec72871bf96be33739d79cbfa4c02c67b44ec46106798f4a68acce9a0c1d437",
+      "candidate_sha256": "8a72375e9afbefe5c9adf7fd47163a26e9ed44508d21a0d5c531a1c5f8fb25b0"
+    }
+  },
+  "command_checks": [
+    "bash scripts/install-local.sh --help",
+    "python3 scripts/update-core-prompts.py --help",
+    "git show v1.16.2:VERSION"
+  ],
+  "gates_not_yet_claimed": [
+    "release-doc independent review",
+    "baseline-bound build/local/hosted CI and mainline delivery",
+    "tag/package/publication/downloaded byte identity",
+    "exact installed preview/apply/readback/recovery metadata",
+    "task cleanup"
+  ],
+  "review_artifacts": {
+    "reports/review-loop-release-v1163/release-notes.md": "ab7bb1bab4211eaab4b11444b8df15c357ea1683f3b9a21814d53d90c9f6dc3d",
+    "reports/review-loop-release-v1163/doc-review-inputs.md": "1e54d88f988b161fe467e66d4457cd9641a8b12c8ab6453ebc027d97caf38cd7"
+  }
+}
