@@ -1,0 +1,61 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-reconciliation-converge",
+  "original_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
+  "candidate_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+  "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+  "source_line_count": 200,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-4-scoped-routes-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-32",
+      "source_start_line": 1,
+      "source_end_line": 32,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-33-33",
+      "source_start_line": 33,
+      "source_end_line": 33,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority",
+      "rationale": "Narrow delegation/orchestration prohibition only for expressly authorized, execution-only documentation artifact review or convergence artifact review. Keep unrelated application edits, unsupported routing and wider runtime-control forbidden."
+    },
+    {
+      "id": "span-34-58",
+      "source_start_line": 34,
+      "source_end_line": 58,
+      "disposition": "preserved",
+      "candidate_excerpt": "- escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-59-59",
+      "source_start_line": 59,
+      "source_end_line": 59,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every substantial writer-authored proposal must include:",
+      "rationale": "Preserve every artifact output field and format; restrict blanket response formatting to writer artifact so reviewer/coordinator exclusive outputs stay separate."
+    },
+    {
+      "id": "span-60-200",
+      "source_start_line": 60,
+      "source_end_line": 200,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Executive Summary`",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation, installation or runtime acceptance. Historical-to-current changes already present in 99c380b are retained, not newly authorized here."
+  ]
+}

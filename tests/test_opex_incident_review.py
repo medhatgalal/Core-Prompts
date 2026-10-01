@@ -571,8 +571,17 @@ def test_plain_export_preserves_extended_briefing_evidence() -> None:
 
 def test_briefing_receipt_preserves_historical_resource_bindings() -> None:
     receipt = json.loads((ROOT / "evals/maintenance/engos-audit-opex-incident-review/briefing-preservation-replay.json").read_text())
+    # The receipt predates later instruction edits. Bind its original source
+    # fixture, not the evolving canonical skill. No Git tool is needed in CI.
+    provenance = load("historical-briefing-source.provenance.json")
+    assert provenance["schema"] == "HistoricalSkillSourceFixture.v1"
+    assert provenance["role"] == "historical_source_identity_only_not_current_acceptance"
+    assert provenance["source_commit"] == "a5458d6ce798eb8f881591c97ab82d9b43637e94"
+    assert provenance["source_path"] == "ssot/engos-audit-opex-incident-review.md"
+    historical_source = FIXTURES / provenance["snapshot_path"]
+    assert receipt["bindings"]["candidate_sha256"] == provenance["source_sha256"]
+    assert provenance["source_sha256"] == hashlib.sha256(historical_source.read_bytes()).hexdigest()
     for name, path in {
-        "candidate_sha256": ROOT / "ssot/engos-audit-opex-incident-review.md",
         "exporter_sha256": RESOURCE_DIR / "export_report.py",
         "briefing_reference_sha256": RESOURCE_DIR / "references/briefing.md",
         "schema_sha256": RESOURCE_DIR / "snapshot.schema.json",

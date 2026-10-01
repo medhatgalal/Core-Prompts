@@ -1,0 +1,93 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-quality-testing-review",
+  "original_sha256": "7acc2fa2ece3dfaca073942f37dd8d8ff31aad1996ad58e8dd2be484db1122f1",
+  "candidate_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+  "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+  "source_line_count": 127,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-4-scoped-routes-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-1",
+      "source_start_line": 1,
+      "source_end_line": 1,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-2-2",
+      "source_start_line": 2,
+      "source_end_line": 2,
+      "disposition": "reformulated",
+      "candidate_excerpt": "name: \"engos-quality-testing-review\"\ndescription: \"Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.\"",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-3-3",
+      "source_start_line": 3,
+      "source_end_line": 3,
+      "disposition": "preserved",
+      "candidate_excerpt": "display_name: \"Testing Studio \u2014 Test Design and Coverage Analysis\"",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-4-4",
+      "source_start_line": 4,
+      "source_end_line": 4,
+      "disposition": "relocated",
+      "candidate_excerpt": "description: \"Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.\"",
+      "rationale": "Historical description relocated to current canonical frontmatter before this task; existing identity and domain purpose retained."
+    },
+    {
+      "id": "span-5-34",
+      "source_start_line": 5,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "capability_type: \"skill\"",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-35-35",
+      "source_start_line": 35,
+      "source_end_line": 35,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- escalation: if the request is actually a release gate or CI readiness question, recommend `engos-quality-gitops-review`",
+      "rationale": "Exact excerpt retains current canonical domain requirement. Historical metadata, naming, output-location and reusable packaging modernization already exist in accepted pre-task source at 99c380b; this task retains that source and adds artifact review, without native-agent expansion."
+    },
+    {
+      "id": "span-36-51",
+      "source_start_line": 36,
+      "source_end_line": 51,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    },
+    {
+      "id": "span-52-52",
+      "source_start_line": 52,
+      "source_end_line": 52,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every substantial writer-authored artifact must include:",
+      "rationale": "Preserve every artifact output field and format; restrict blanket response formatting to writer artifact so reviewer/coordinator exclusive outputs stay separate."
+    },
+    {
+      "id": "span-53-127",
+      "source_start_line": 53,
+      "source_end_line": 127,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Scope`",
+      "rationale": "All source bytes in span retained exactly; includes any domain rules, original instructions, templates, output formats or permission boundaries present. New review obligations additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation, installation or runtime acceptance. Historical-to-current changes already present in 99c380b are retained, not newly authorized here."
+  ]
+}

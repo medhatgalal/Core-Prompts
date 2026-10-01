@@ -1,0 +1,45 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-audit-feature-status",
+  "original_sha256": "75b69d00d4df4277328d616d0c3daf3fbf4b5715d2db01c244097c3805cca9ac",
+  "candidate_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+  "effective_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+  "source_line_count": 244,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-1-audit-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-125",
+      "source_start_line": 1,
+      "source_end_line": 125,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; all domain rules, templates, examples, boundaries and layout in the span preserved. New review obligations are additive."
+    },
+    {
+      "id": "span-126-126",
+      "source_start_line": 126,
+      "source_end_line": 126,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every writer-authored report must include:",
+      "rationale": "Preserve all report sections but apply artifact format to writer-authored report only, so coordinator and reviewer obey exclusive roles."
+    },
+    {
+      "id": "span-127-244",
+      "source_start_line": 127,
+      "source_end_line": 244,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this span retained exactly; all domain rules, templates, examples, boundaries and layout in the span preserved. New review obligations are additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, product implementation or runtime acceptance."
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-code-health",
-  "ssot_sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756",
+  "ssot_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -31,11 +31,16 @@
   "authority_boundaries": [
     "engos-audit-code-health:L19:2d9f614a2daa",
     "engos-audit-code-health:L34:7eaea818bbf8",
-    "engos-audit-code-health:L427:6e7b14ee84ce",
-    "engos-audit-code-health:L441:3185b2c85796",
-    "engos-audit-code-health:L449:f7f2a39173d9",
-    "engos-audit-code-health:L455:6cd8b78d1121",
-    "engos-audit-code-health:L460:db8e49467720"
+    "engos-audit-code-health:L431:6e7b14ee84ce",
+    "engos-audit-code-health:L445:3185b2c85796",
+    "engos-audit-code-health:L453:f7f2a39173d9",
+    "engos-audit-code-health:L459:6cd8b78d1121",
+    "engos-audit-code-health:L464:db8e49467720",
+    "engos-audit-code-health:L471:fac7308fc753",
+    "engos-audit-code-health:L475:283e7be539f4",
+    "engos-audit-code-health:L478:32659bf6e33c",
+    "engos-audit-code-health:L482:420f35be46a1",
+    "engos-audit-code-health:L486:ee18a182fff0"
   ],
   "resources": [
     "- `high` confidence: no references anywhere, not in `__init__.py` exports, not in test files",
@@ -185,192 +190,272 @@
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L157:e77e9c49f191",
+      "id": "engos-audit-code-health:L159:e77e9c49f191",
       "heading": "Phase 1: Configuration Resolution",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 165,
+      "source_line": 167,
       "sha256": "e77e9c49f191e08f17554be0cfabdb5b529aa1840d87f8f9df5fb39634f22ca4",
       "text": "- Must have `timestamp` (ISO 8601)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L158:24cae4235ef6",
+      "id": "engos-audit-code-health:L160:24cae4235ef6",
       "heading": "Phase 1: Configuration Resolution",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 166,
+      "source_line": 168,
       "sha256": "24cae4235ef6ca00a7c3388eb226022f069b44d72e20f73c5215b9fa19f672bc",
       "text": "- Must have `findings` (list, may be empty)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L159:d0ebc5bf0cfe",
+      "id": "engos-audit-code-health:L161:d0ebc5bf0cfe",
       "heading": "Phase 1: Configuration Resolution",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 167,
+      "source_line": 169,
       "sha256": "d0ebc5bf0cfe27a3d195db775e018f44be95296af2beb89c115dc36076c9b88d",
       "text": "- Each finding must have: `id`, `category`, `severity`, `file_path`, `evidence`",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L166:49cfdb753255",
+      "id": "engos-audit-code-health:L168:49cfdb753255",
       "heading": "Phase 2: Structural Analysis",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 174,
+      "source_line": 176,
       "sha256": "49cfdb7532554776d0b528844c7a3628cfde52afbf5b05f494e9751dafcc95d6",
       "text": "Run these sub-phases. For each, scan only files matching `languages` config and not matching `exclude_patterns`.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L198:14d27afbed8a",
+      "id": "engos-audit-code-health:L200:14d27afbed8a",
       "heading": "Phase 2d: Dead Code Detection",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 206,
+      "source_line": 208,
       "sha256": "14d27afbed8a1c6ef5f6969969bfcac5ef78ae81a75312636992b9f509efb716",
       "text": "- `medium` confidence: only referenced in tests (possibly test-only utility)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L199:5dbf3373cc3e",
+      "id": "engos-audit-code-health:L201:5dbf3373cc3e",
       "heading": "Phase 2d: Dead Code Detection",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 207,
+      "source_line": 209,
       "sha256": "5dbf3373cc3eca7daf4925bc64525cc602b6458a96f5c56f76cf0b32d424ae31",
       "text": "- `low` confidence: referenced only in strings/comments (dynamic dispatch possible)",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L200:82a950be68b1",
+      "id": "engos-audit-code-health:L202:82a950be68b1",
       "heading": "Phase 2d: Dead Code Detection",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 208,
+      "source_line": 210,
       "sha256": "82a950be68b15972827c701c01a36572b742de8f132e5e16190db2f5487ff045",
       "text": "3. Filter by `dead_code_confidence_floor` config \u2014 only report findings at or above this level.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L268:77f58a436a96",
+      "id": "engos-audit-code-health:L243:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 251,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L272:77f58a436a96",
       "heading": "Output Format",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 276,
+      "source_line": 280,
       "sha256": "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
       "text": "trajectory:  # only present if prior_state provided",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L321:13bd277404e7",
+      "id": "engos-audit-code-health:L325:13bd277404e7",
       "heading": "Claim Verification",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 329,
+      "source_line": 333,
       "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
       "text": "*Only present when prior_state is provided.*",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L330:13bd277404e7",
+      "id": "engos-audit-code-health:L334:13bd277404e7",
       "heading": "Drift Analysis",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 338,
+      "source_line": 342,
       "sha256": "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
       "text": "*Only present when prior_state is provided.*",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L340:59c80a92975d",
+      "id": "engos-audit-code-health:L344:59c80a92975d",
       "heading": "Drift Analysis",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 348,
+      "source_line": 352,
       "sha256": "59c80a92975d26c6e763498120b0cd5f58e7491d0ffc11900dfa57e8b154df48",
       "text": "**Trajectory:** degrading \u2014 3 new findings and 1 worsened vs only 1 resolved.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L392:c64a24006f7b",
+      "id": "engos-audit-code-health:L396:c64a24006f7b",
       "heading": "First Audit",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 400,
+      "source_line": 404,
       "sha256": "c64a24006f7b2703ebc01885718e063d81ef98d835239a88c5a37622b3524301",
       "text": "- read-only scan of matching files only",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L427:6e7b14ee84ce",
+      "id": "engos-audit-code-health:L431:6e7b14ee84ce",
       "heading": "Evaluation Rubric",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 435,
+      "source_line": 439,
       "sha256": "6e7b14ee84cec870bc1ec5d30ea8a3ae14fa7992268674e923a076581858ecaf",
       "text": "| Read-only safety | The audit never modifies files, runs tests, installs dependencies, stages changes, commits, or deploys |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L441:3185b2c85796",
+      "id": "engos-audit-code-health:L445:3185b2c85796",
       "heading": "Edge Cases",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 449,
+      "source_line": 453,
       "sha256": "3185b2c8579672e73d79697e380c37aef30b3a8e426502ef97d4c3fa1435dc1b",
       "text": "4. **Monorepo:** Analyze only the subtree at `target`. Do not traverse parent directories.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L449:f7f2a39173d9",
+      "id": "engos-audit-code-health:L453:f7f2a39173d9",
       "heading": "Constraints",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 457,
+      "source_line": 461,
       "sha256": "f7f2a39173d968e1630542ba7544afc6dfc2d4df78d05b0be5a840c3b6cce327",
       "text": "- **Read-only.** Never modify, create, or delete files in the target.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L452:ec47980ffc2e",
+      "id": "engos-audit-code-health:L456:ec47980ffc2e",
       "heading": "Constraints",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 460,
+      "source_line": 464,
       "sha256": "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
       "text": "- **Scoped.** Only analyze files matching `languages` config. Skip everything else.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L455:6cd8b78d1121",
+      "id": "engos-audit-code-health:L459:6cd8b78d1121",
       "heading": "Constraints",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 463,
+      "source_line": 467,
       "sha256": "6cd8b78d112144317fb67db7d9d1cd064cc6683c232329f531bb60bb9e0649b0",
       "text": "- **Non-interactive.** Bundled tools take flags, provide `--help` and `--json`, and never wait for TTY input.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L459:495ab00fe4cc",
+      "id": "engos-audit-code-health:L463:495ab00fe4cc",
       "heading": "Tool Boundaries",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 467,
+      "source_line": 471,
       "sha256": "495ab00fe4ccdf0906a036810e9057ef39860cd82a69092212252a019cefa1c4",
       "text": "- **Allowed:** Read files, grep/search, count lines, inspect AST/symbols, list directories; in explicit `cruft_inventory` mode, invoke the bundled reporter only in report or dry-run mode.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-audit-code-health:L460:db8e49467720",
+      "id": "engos-audit-code-health:L464:db8e49467720",
       "heading": "Tool Boundaries",
       "source": "ssot/engos-audit-code-health.md",
-      "source_line": 468,
+      "source_line": 472,
       "sha256": "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd",
       "text": "- **Forbidden:** Write files, run target/application code, install dependencies, execute tests, modify git state. The only executable exception is the bundled reporter in explicit `cruft_inventory` report or dry-run mode.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L471:fac7308fc753",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 479,
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L475:283e7be539f4",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 483,
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L476:dea1be25a70c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 484,
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L478:32659bf6e33c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 486,
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L482:420f35be46a1",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 490,
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L484:ddb7354cd7f7",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 492,
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-code-health:L486:ee18a182fff0",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-code-health.md",
+      "source_line": 494,
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
       "kind": "invariant",
       "mapped_to": []
     }
@@ -383,7 +468,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-code-health.md",
-      "sha256": "d21a66e3ee546ae751e92635b5d4802ebc1418fc1cf1f439617bac6608a61756"
+      "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
     }
   ],
   "known_ambiguities": [],
@@ -396,7 +481,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 33,
+    "total": 41,
     "mapped": 0,
     "waived": 0
   },

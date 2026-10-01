@@ -30,7 +30,7 @@ Responsibilities:
 
 ## Tool Boundaries
 - allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required
-- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority
+- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority
 - escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing
 
 ## Output Directory
@@ -56,7 +56,7 @@ Use this capability when the user asks for any of the following, even without na
 - explicit constraints, audience, or success metrics when available
 
 ## Required Output
-Every substantial response must include:
+Every substantial writer-authored proposal must include:
 - `Executive Summary`
 - `Overlap Map`
 - `Decision Analysis`
@@ -198,3 +198,24 @@ A strong convergence result should:
 | Output completeness | Final proposal, rationale, muted ideas, and risks are all present |
 | Boundary clarity | The capability stays synthesis-focused and does not claim orchestration authority |
 | Surface usability | The body is strong enough to support both reusable skill and advisory agent surfaces |
+
+## Recommendation Artifact Review
+
+Apply this review to a substantial authored converged proposal and decision analysis. Keep source-option scoring, sensitivity analysis, rejected ideas, material conflicts and human preference decisions as domain evidence. Scores comparing alternatives are not acceptance of the authored final proposal. The reviewer verifies retained claims and trade-offs against the actual input sources, while the writer alone revises the proposal. Help and narrow option lookups keep their existing scope.
+
+Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.
+
+### Three Roles
+- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.
+- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.
+- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.
+
+Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.
+
+### Finding and Repair Cycle
+1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.
+2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.
+3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.
+4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.
+5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.
+6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.

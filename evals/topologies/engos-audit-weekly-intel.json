@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-weekly-intel",
-  "ssot_sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36",
+  "ssot_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -33,13 +33,18 @@
     "engos-audit-weekly-intel:L47:c1ebb0023ea1",
     "engos-audit-weekly-intel:L182:cd0f0db5e1a5",
     "engos-audit-weekly-intel:L183:2a397b46a4f3",
-    "engos-audit-weekly-intel:L217:d8eacb4f2de2",
+    "engos-audit-weekly-intel:L217:ea2be70ea7b1",
     "engos-audit-weekly-intel:L223:98ce20600e47",
     "engos-audit-weekly-intel:L224:a843a3087a15",
     "engos-audit-weekly-intel:L225:98520a766c21",
     "engos-audit-weekly-intel:L226:13d29df8ad07",
     "engos-audit-weekly-intel:L227:5d79ffa88b9c",
-    "engos-audit-weekly-intel:L228:b331a7940c85"
+    "engos-audit-weekly-intel:L228:b331a7940c85",
+    "engos-audit-weekly-intel:L285:fac7308fc753",
+    "engos-audit-weekly-intel:L289:283e7be539f4",
+    "engos-audit-weekly-intel:L292:32659bf6e33c",
+    "engos-audit-weekly-intel:L296:420f35be46a1",
+    "engos-audit-weekly-intel:L300:ee18a182fff0"
   ],
   "resources": [
     "- Commit log with ticket references (non-merge commits)",
@@ -241,12 +246,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-audit-weekly-intel:L217:d8eacb4f2de2",
+      "id": "engos-audit-weekly-intel:L217:ea2be70ea7b1",
       "heading": "Rules",
       "source": "ssot/engos-audit-weekly-intel.md",
       "source_line": 225,
-      "sha256": "d8eacb4f2de266e6eaf514ea6b360851284c3aa5e7f59762795a75572d7c9e29",
-      "text": "- Do not claim orchestration, delegation, or runtime-control authority.",
+      "sha256": "ea2be70ea7b1d5dbd37c0323e4342ed138807f03a4bb244861f281b13b63387c",
+      "text": "- Limit coordination to the artifact review below; do not claim wider runtime-control authority.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -341,12 +346,92 @@
       "mapped_to": []
     },
     {
-      "id": "engos-audit-weekly-intel:L250:c34906b1f1c3",
+      "id": "engos-audit-weekly-intel:L250:ec28ff751dd5",
       "heading": "Required Output",
       "source": "ssot/engos-audit-weekly-intel.md",
       "source_line": 258,
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-      "text": "Every substantial response must include:",
+      "sha256": "ec28ff751dd524a836dca46123d390f1b9a0b511a1193113648597d9c1b75096",
+      "text": "Every substantial writer-authored report must include:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L283:9ce16a154cd8",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 291,
+      "sha256": "9ce16a154cd80497ef15b075b287aae4990be8ff39de4e1467250092b3bc477b",
+      "text": "Apply this review to a substantial authored report, including an appendices-only report. Keep the existing audience-specific author fact-check branch and report format; independent review of the completed artifact does not replace that branch. The reviewer checks source claims, body/appendix consistency, attribution and caveats without modifying source systems or sending communications.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L285:fac7308fc753",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 293,
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L289:283e7be539f4",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 297,
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L290:dea1be25a70c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 298,
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L292:32659bf6e33c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 300,
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L296:420f35be46a1",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 304,
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L298:ddb7354cd7f7",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 306,
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-weekly-intel:L300:ee18a182fff0",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-audit-weekly-intel.md",
+      "source_line": 308,
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
       "kind": "invariant",
       "mapped_to": []
     }
@@ -359,7 +444,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-weekly-intel.md",
-      "sha256": "37053c36725f9afd612ed9ae492a749ffde1ff581be713b73176f9ccff00de36"
+      "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
     }
   ],
   "known_ambiguities": [],
@@ -372,7 +457,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 30,
+    "total": 38,
     "mapped": 0,
     "waived": 0
   },

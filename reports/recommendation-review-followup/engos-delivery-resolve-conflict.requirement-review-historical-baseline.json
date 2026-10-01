@@ -1,0 +1,205 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-delivery-resolve-conflict",
+  "original_sha256": "6141dcd4736ea4c174d64cc02a2c3e0bd902c4bff4f4d5acfc9e907742962b2d",
+  "candidate_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+  "effective_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+  "source_line_count": 379,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-2-design-delivery-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-1",
+      "source_start_line": 1,
+      "source_end_line": 1,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-2-2",
+      "source_start_line": 2,
+      "source_end_line": 2,
+      "disposition": "reformulated",
+      "candidate_excerpt": "name: \"engos-delivery-resolve-conflict\"\ndescription: \"Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.\"",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-3-5",
+      "source_start_line": 3,
+      "source_end_line": 5,
+      "disposition": "preserved",
+      "candidate_excerpt": "display_name: \"Merge Conflict Resolution \u2014 Structured Conflict Analysis\"",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-6-6",
+      "source_start_line": 6,
+      "source_end_line": 6,
+      "disposition": "relocated",
+      "candidate_excerpt": "description: \"Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.\"",
+      "rationale": "Historical description moved to current canonical frontmatter before this task; retain current existing canonical identity and equivalent domain purpose."
+    },
+    {
+      "id": "span-7-32",
+      "source_start_line": 7,
+      "source_end_line": 32,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-33-33",
+      "source_start_line": 33,
+      "source_end_line": 33,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- escalation: if the conflict is really an architecture, policy, or release decision, surface it and route to `engos-design-architecture` or `engos-quality-gitops-review` instead of burying it in the merge",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-34-39",
+      "source_start_line": 34,
+      "source_end_line": 39,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Companion Capability Matrix",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-40-43",
+      "source_start_line": 40,
+      "source_end_line": 43,
+      "disposition": "reformulated",
+      "candidate_excerpt": "| interface, migration, or boundary decisions are materially in conflict | `engos-design-architecture` | the merge needs design judgment, not just textual reconciliation |\n| release, CI, or branch-policy implications are part of the conflict | `engos-quality-gitops-review` | merge readiness and release sequencing should be checked explicitly |\n| behavior changed and the merged result needs stronger coverage | `engos-quality-testing-review` | verification should include test recommendations, not only conflict cleanup |\n| docs structure and placement are in conflict | `engos-quality-docs-review` | documentation IA drift should be resolved with its own rubric |",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-44-177",
+      "source_start_line": 44,
+      "source_end_line": 177,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Workflow Contract",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-178-178",
+      "source_start_line": 178,
+      "source_end_line": 178,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every substantial writer-authored recommendation artifact must include:",
+      "rationale": "Preserve mandatory artifact output fields and order; restrict template application to writer-authored artifact so separate reviewer and coordinator outputs obey exclusive roles."
+    },
+    {
+      "id": "span-179-188",
+      "source_start_line": 179,
+      "source_end_line": 188,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Conflict Summary`",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-189-189",
+      "source_start_line": 189,
+      "source_end_line": 189,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Structure the recommendation artifact written by the writer as:",
+      "rationale": "Preserve mandatory artifact output fields and order; restrict template application to writer-authored artifact so separate reviewer and coordinator outputs obey exclusive roles."
+    },
+    {
+      "id": "span-190-271",
+      "source_start_line": 190,
+      "source_end_line": 271,
+      "disposition": "preserved",
+      "candidate_excerpt": "```markdown",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-272-272",
+      "source_start_line": 272,
+      "source_end_line": 272,
+      "disposition": "reformulated",
+      "candidate_excerpt": "/engos-delivery-resolve-conflict",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-273-277",
+      "source_start_line": 273,
+      "source_end_line": 277,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-278-278",
+      "source_start_line": 278,
+      "source_end_line": 278,
+      "disposition": "reformulated",
+      "candidate_excerpt": "/engos-delivery-resolve-conflict path/to/file.md",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-279-283",
+      "source_start_line": 279,
+      "source_end_line": 283,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-284-284",
+      "source_start_line": 284,
+      "source_end_line": 284,
+      "disposition": "reformulated",
+      "candidate_excerpt": "/engos-delivery-resolve-conflict --preview <branch>",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-285-306",
+      "source_start_line": 285,
+      "source_end_line": 306,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-307-307",
+      "source_start_line": 307,
+      "source_end_line": 307,
+      "disposition": "reformulated",
+      "candidate_excerpt": "# If conflicts, run: /engos-delivery-resolve-conflict",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-308-313",
+      "source_start_line": 308,
+      "source_end_line": 313,
+      "disposition": "preserved",
+      "candidate_excerpt": "```",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-314-314",
+      "source_start_line": 314,
+      "source_end_line": 314,
+      "disposition": "reformulated",
+      "candidate_excerpt": "/engos-delivery-resolve-conflict",
+      "rationale": "Retain source domain obligations in exact replacement excerpt. Historical identity and companion invocation renames already exist in accepted pre-task canonical source at 99c380b; this patch preserves current identities without introducing agent surfaces."
+    },
+    {
+      "id": "span-315-379",
+      "source_start_line": 315,
+      "source_end_line": 379,
+      "disposition": "preserved",
+      "candidate_excerpt": "# Follow resolution plan",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation or runtime acceptance."
+  ]
+}

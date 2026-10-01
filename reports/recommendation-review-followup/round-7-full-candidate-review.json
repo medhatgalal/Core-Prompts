@@ -1,0 +1,60 @@
+{
+  "schema_version": "IndependentSkillReview.v1",
+  "round": 7,
+  "scope": "All12 exact candidate skills,24 UAC current/historical attestations, supporting descriptors/docs and before-after ledger/examples before canonical apply.",
+  "reviewer_agent_id": "/root/reviewer",
+  "author_agent_id": "/root/writer",
+  "independent": true,
+  "candidate_sha256": {
+    "engos-audit-code-health": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+    "engos-audit-feature-status": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+    "engos-audit-opex-incident-review": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+    "engos-audit-weekly-intel": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+    "engos-browser-demo-recorder": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+    "engos-content-dynamic-html-presentations": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+    "engos-delivery-resolve-conflict": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+    "engos-design-plan-to-goal": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+    "engos-quality-docs-review": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+    "engos-quality-testing-review": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+    "engos-reconciliation-converge": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+    "loopy": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
+  },
+  "reviewed_file_sha256": {
+    ".meta/capabilities/engos-audit-code-health.json": "a09c5da0fc9777685524f3846a78d19381382c776b8d6ded20279a5cf3900f27",
+    ".meta/capabilities/engos-audit-feature-status.json": "3d6741a78228e83e7cb454a73ea5e650d198e3bdaa062d32d5f80a252c75eafc",
+    ".meta/capabilities/engos-audit-opex-incident-review.json": "c387485411764e3c920aee244911cbef964ad0fdd199a29e8779da9c70821de2",
+    ".meta/capabilities/engos-audit-weekly-intel.json": "d262ffb9fcd62c610af2c90ae34ed873f0283a233adc108271e34a53536401d7",
+    ".meta/capabilities/engos-browser-demo-recorder.json": "eec1f8161824c04114651b496b736e39bb7c9d704ea2d382c028c2873c2c298f",
+    ".meta/capabilities/engos-content-dynamic-html-presentations.json": "9dc4afdaf198b4c5802fb4ee3e6e7419610d51a7cc8ecff0f094fd69664c9524",
+    ".meta/capabilities/engos-delivery-resolve-conflict.json": "0964ed93075cecaa8a0e78c2a25e14a50a7d27ad94059ae744cd8db1087a03c7",
+    ".meta/capabilities/engos-design-plan-to-goal.json": "04c49ff86ad723e8a25087a34c6b204175a7c3d47f544d74ab63f5a894b9278e",
+    ".meta/capabilities/engos-quality-docs-review.json": "7b59f1113c719f2374fcc124b5845a6dadf331d963e8765a1711190971db9075",
+    ".meta/capabilities/engos-quality-testing-review.json": "061436c7c032ec1342569807f1b47f621160599d561b032fe89494abf4676492",
+    ".meta/capabilities/engos-reconciliation-converge.json": "a5e58db779c90c01d7c6b86231a085f42c5658300886b36ff964de54986bc899",
+    ".meta/capabilities/loopy.json": "f19b3a4387ee649de27bf8ec5338ed68ccf3d69454775497093b5963c945d0cb",
+    "README.md": "065915e02d869f612197d3eec836b4c3d00533028ee0a35f74e7ec30e0250ec1",
+    "docs/GETTING-STARTED.md": "bc9f3be758fc937a3c2d74e04f34035708a08ccce69a6b4ba45337f666cf2711",
+    "docs/EXAMPLES.md": "4956ae26d0b20cacc1acb5052620699baf459050c3b23c6ede157e7d7f31eac0",
+    "CHANGELOG.md": "c5492ce282b445e71a710f8a185dd9b2e3fd36acc1ee9741007120e13760c96c",
+    "reports/recommendation-review-followup/before-after.md": "2d0c0f144a5b4a968d661fe0ccc385b2f8bfb8d1853439d5bbe20df975b6b6d9",
+    "reports/recommendation-review-followup/before-after.json": "9131062b79e1a3074fdd12e8242ca76812653ce6d4f69d6f5b0e400d3d350ece",
+    "reports/recommendation-review-followup/writer-responses.md": "19472116ff79a08ad99c6db3859b725a51591bee8514dd6a7c9eab6affba06e6"
+  },
+  "findings": [],
+  "open_findings": 0,
+  "closed_prior_findings": [
+    "R5-01: ledger now accurately states complete original operating-body containment excluding package frontmatter and separately unchanged immutable full source/resources."
+  ],
+  "checks": [
+    "All12 scoped candidates retain domain rules and exclusive persistent role/resolution contract; individual reviews remain hash-current.",
+    "All24 independent complete-source attestations validate current exact candidate/effective text; code-health latest heading normalizations are source-preserving and separately reviewed.",
+    "Descriptors add only scoped artifact review criteria/gate; no old author scorecard gate or native agent extension; docs/testing/Loopy route restrictions match text.",
+    "Generator resolve_descriptor preserves curated expanded fields and defaults have no contrary scorecard override for these12; generator/profile unchanged.",
+    "User docs align with source contracts; before/after examples are explicitly hypothetical pattern examples and disclaim measured efficacy.",
+    "Loopy body preservation/source-file/resource/provenance/native identity/installed owner claims verified and precisely described after R5-01 repair.",
+    "No product/runtime/release/VERSION/install changes or out-of-scope skill changes before apply."
+  ],
+  "limits": [
+    "Canonical apply, regenerated consistency, focused checks and hosted delivery still require separate observed evidence."
+  ]
+}

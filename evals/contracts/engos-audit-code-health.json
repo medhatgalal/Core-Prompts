@@ -27,6 +27,7 @@
     "14d27afbed8a1c6ef5f6969969bfcac5ef78ae81a75312636992b9f509efb716",
     "5dbf3373cc3eca7daf4925bc64525cc602b6458a96f5c56f76cf0b32d424ae31",
     "82a950be68b15972827c701c01a36572b742de8f132e5e16190db2f5487ff045",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
     "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
     "13bd277404e79960bb0a5157a4bd6c869022c4bebb35e73cfdb09c7927236cd6",
@@ -38,7 +39,14 @@
     "ec47980ffc2e3615f42aaab11e8aee6d30b6711b2dbd082f005eb2dfd7f87b49",
     "6cd8b78d112144317fb67db7d9d1cd064cc6683c232329f531bb60bb9e0649b0",
     "495ab00fe4ccdf0906a036810e9057ef39860cd82a69092212252a019cefa1c4",
-    "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd"
+    "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -178,6 +186,11 @@
       "text": "3. Filter by `dead_code_confidence_floor` config \u2014 only report findings at or above this level."
     },
     {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "## Required Output"
+    },
+    {
       "sha256": "77f58a436a960bf778f726b1cbc724dc2b61f3b01800df59ced7af039ee90293",
       "source": "ssot/engos-audit-code-health.md",
       "text": "trajectory:  # only present if prior_state provided"
@@ -236,6 +249,41 @@
       "sha256": "db8e49467720840db501582ff5cce010117bfb6a997dc2b9271ec2c7e43f47cd",
       "source": "ssot/engos-audit-code-health.md",
       "text": "- **Forbidden:** Write files, run target/application code, install dependencies, execute tests, modify git state. The only executable exception is the bundled reporter in explicit `cruft_inventory` report or dry-run mode."
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/engos-audit-code-health.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

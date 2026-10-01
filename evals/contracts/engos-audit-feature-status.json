@@ -18,11 +18,18 @@
     "cbffbf2379b4290496090269fb8cb5a3fecc0949dd4627627eedd6f872567c92",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-    "687a410a3960f347675331e3716b7abc1c7f3821e41f70fc5c79b06d49e564c7",
+    "3955d606a15e89741f8e7f4faac8830ff15771f00fcf4e32263a57b240ed1489",
     "f14995a7f07b76504c615911586021f39e4db1d51d1b77a9d7f6a3681747193d",
     "8bb681c9e40accf99353f5795a677029ab0ad062a288127d58d6f8062e62934a",
     "6816baa9c06d5b598ba9dafaaefbb8524ab7d485f44f4db2cfb375d4f3515e01",
-    "51f74f79a397ca4cfead4d4e82e17e704bacbd9e6f8d4f56e1c9c05cd99d90c2"
+    "51f74f79a397ca4cfead4d4e82e17e704bacbd9e6f8d4f56e1c9c05cd99d90c2",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -117,9 +124,9 @@
       "text": "## Required Output"
     },
     {
-      "sha256": "687a410a3960f347675331e3716b7abc1c7f3821e41f70fc5c79b06d49e564c7",
+      "sha256": "3955d606a15e89741f8e7f4faac8830ff15771f00fcf4e32263a57b240ed1489",
       "source": "ssot/engos-audit-feature-status.md",
-      "text": "Every response must include:"
+      "text": "Every writer-authored report must include:"
     },
     {
       "sha256": "f14995a7f07b76504c615911586021f39e4db1d51d1b77a9d7f6a3681747193d",
@@ -140,6 +147,41 @@
       "sha256": "51f74f79a397ca4cfead4d4e82e17e704bacbd9e6f8d4f56e1c9c05cd99d90c2",
       "source": "ssot/engos-audit-feature-status.md",
       "text": "| Output contract | The report follows the required output format with all sections populated |"
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/engos-audit-feature-status.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

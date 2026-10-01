@@ -7,10 +7,10 @@
   "non_goals": [],
   "protected_behaviors": [
     "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
-    "a2debc3e5f2e8a13319c3fe2b9b727a3ca0c87186258da1918f74342184b13c0",
+    "62f01eb43cca94f1e72732bf7ece66d4ab2f266909bc60437d925b43f1f372a6",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-    "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+    "a9de7942a85ee986371c35aaf2d5b38051cc9e94d43c66eb841c2cb00a8d3047",
     "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
     "baded02bbe493e82786498d86b54aac14d7520773c0bca46f91194022153d29a",
     "59e7c12bd4626c63fd05944ad8f25781248cd018b9f91b150d671ce43ef193c9",
@@ -21,7 +21,14 @@
     "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
     "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
     "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
-    "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42"
+    "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
+    "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+    "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+    "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+    "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+    "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+    "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -59,9 +66,9 @@
       "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required"
     },
     {
-      "sha256": "a2debc3e5f2e8a13319c3fe2b9b727a3ca0c87186258da1918f74342184b13c0",
+      "sha256": "62f01eb43cca94f1e72732bf7ece66d4ab2f266909bc60437d925b43f1f372a6",
       "source": "ssot/engos-reconciliation-converge.md",
-      "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority"
+      "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority"
     },
     {
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -74,9 +81,9 @@
       "text": "## Required Output"
     },
     {
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
+      "sha256": "a9de7942a85ee986371c35aaf2d5b38051cc9e94d43c66eb841c2cb00a8d3047",
       "source": "ssot/engos-reconciliation-converge.md",
-      "text": "Every substantial response must include:"
+      "text": "Every substantial writer-authored proposal must include:"
     },
     {
       "sha256": "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
@@ -132,6 +139,41 @@
       "sha256": "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
       "source": "ssot/engos-reconciliation-converge.md",
       "text": "- Keeps only the strongest elements"
+    },
+    {
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority."
+    },
+    {
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision."
+    },
+    {
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round."
+    },
+    {
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks."
+    },
+    {
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect."
+    },
+    {
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved."
+    },
+    {
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     }
   ],
   "review_status": "draft"

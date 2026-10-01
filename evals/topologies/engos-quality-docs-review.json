@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-docs-review",
-  "ssot_sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b",
+  "ssot_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -37,13 +37,19 @@
     "- link or navigation updates that must be changed"
   ],
   "authority_boundaries": [
-    "engos-quality-docs-review:L25:9cdecf0f9449",
-    "engos-quality-docs-review:L57:5f8f4e249421",
+    "engos-quality-docs-review:L25:c382002f0bdc",
+    "engos-quality-docs-review:L57:2fc6f4154fa1",
     "engos-quality-docs-review:L81:25ab61c11319",
     "engos-quality-docs-review:L82:53221802b953",
     "engos-quality-docs-review:L83:c7872241e87d",
     "engos-quality-docs-review:L84:022ff49a95b8",
-    "engos-quality-docs-review:L85:5f619f06cf00"
+    "engos-quality-docs-review:L85:5f619f06cf00",
+    "engos-quality-docs-review:L139:344d52d0a079",
+    "engos-quality-docs-review:L141:fac7308fc753",
+    "engos-quality-docs-review:L145:283e7be539f4",
+    "engos-quality-docs-review:L148:32659bf6e33c",
+    "engos-quality-docs-review:L152:420f35be46a1",
+    "engos-quality-docs-review:L156:ee18a182fff0"
   ],
   "resources": [
     "- `docs/` for durable operator, reference, and maintainer material",
@@ -62,12 +68,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-docs-review:L25:9cdecf0f9449",
+      "id": "engos-quality-docs-review:L25:c382002f0bdc",
       "heading": "Tool Boundaries",
       "source": "ssot/engos-quality-docs-review.md",
       "source_line": 33,
-      "sha256": "9cdecf0f9449ff2b22f8bca844b063b2676b15cb7c334a70d860a25ddfcbde64",
-      "text": "- forbidden: runtime orchestration, delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent",
+      "sha256": "c382002f0bdc516b52dc93111fadbe099310229626e7b7a26a48cf43f1c4853b",
+      "text": "- forbidden: wider runtime orchestration or delegation decisions, unrelated product-code refactors, or inventing process rules that are not grounded in repo behavior or maintainer intent",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -102,12 +108,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-docs-review:L57:5f8f4e249421",
+      "id": "engos-quality-docs-review:L57:2fc6f4154fa1",
       "heading": "Rules",
       "source": "ssot/engos-quality-docs-review.md",
       "source_line": 65,
-      "sha256": "5f8f4e249421413f028b09dccd3a345c208dd2040495bdfe0fc561988e18d7cf",
-      "text": "- Do not claim orchestration, routing, or delegation authority.",
+      "sha256": "2fc6f4154fa1eaf97d5e3860895103a826247888798d9c29ba94ff4581760da2",
+      "text": "- Limit coordination to the execution-only artifact review below; do not claim wider routing or delegation authority.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -132,12 +138,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-docs-review:L66:c34906b1f1c3",
+      "id": "engos-quality-docs-review:L66:a2fc641d93d0",
       "heading": "Required Output",
       "source": "ssot/engos-quality-docs-review.md",
       "source_line": 74,
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-      "text": "Every substantial response must include:",
+      "sha256": "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
+      "text": "Every substantial writer-authored artifact must include:",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -210,6 +216,86 @@
       "text": "- tell the caller when documentation review must happen again",
       "kind": "guarded_invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L139:344d52d0a079",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 147,
+      "sha256": "344d52d0a079ac8807d9d15774ecece8540738027545f4e9b5600d5fb46193c3",
+      "text": "Apply this review only when the user explicitly requests execution of a substantial documentation rewrite. Findings-only inspection, ordinary recommendations and narrow formatting retain their advisory routes. The writer owns the authorized documentation artifact; the separate reviewer checks it against source behavior, audience, placement and links. Do not review a document written by this reviewer as though it were independently authored. Existing exact-target scope, source-of-truth placement and no unrelated application refactor boundaries remain unchanged.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L141:fac7308fc753",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 149,
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L145:283e7be539f4",
+      "heading": "Three Roles",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 153,
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L146:dea1be25a70c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 154,
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L148:32659bf6e33c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 156,
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L152:420f35be46a1",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 160,
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L154:ddb7354cd7f7",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 162,
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-docs-review:L156:ee18a182fff0",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-quality-docs-review.md",
+      "source_line": 164,
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -220,7 +306,7 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-docs-review.md",
-      "sha256": "fe55a0b0f3e494ef8812f2e3bf390fb3083a3ae5080640a28fe5909031172e3b"
+      "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
     }
   ],
   "known_ambiguities": [],
@@ -233,7 +319,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 16,
+    "total": 24,
     "mapped": 0,
     "waived": 0
   },

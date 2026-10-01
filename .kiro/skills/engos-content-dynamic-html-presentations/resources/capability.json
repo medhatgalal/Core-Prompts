@@ -134,7 +134,19 @@
         "If the capability lands, compare it against existing entries before apply.",
         "Relationship suggestions are advisory only and do not imply runtime routing."
       ],
-      "adjustment_recommendations": []
+      "adjustment_recommendations": [],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "workflow_provider",
@@ -294,11 +306,11 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "preserved",
+          "classification": "reviewed_modernization",
           "scenario_results": [],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "not_supplied_or_invalid",
+            "status": "bound_attestation",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -360,8 +372,16 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+      "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
       "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
       "repair_requests": [],
       "dimension_inventory": [
         {
@@ -451,7 +471,7 @@
     "portfolio_action": "keep",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -462,7 +482,7 @@
               "path": "ssot/engos-content-dynamic-html-presentations.md",
               "start_line": 64,
               "end_line": 72,
-              "sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1"
+              "sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73"
             }
           }
         ]
@@ -481,7 +501,7 @@
               "path": "ssot/engos-content-dynamic-html-presentations.md",
               "start_line": 347,
               "end_line": 350,
-              "sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1"
+              "sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73"
             }
           }
         ]
@@ -498,8 +518,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-content-dynamic-html-presentations.md",
-        "ssot_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
-        "effective_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+        "ssot_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+        "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -518,7 +538,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "53e803ab876beda896432685d7b2c0fdfaa21659a1683883696a2b191f69d450"
+        "mapping_sha256": "9bbc128f395ffbd4fbb76ffa0dc234f9301b05abc6bb7408473e322a6a0a2668"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

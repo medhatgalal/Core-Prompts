@@ -1,0 +1,53 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-content-dynamic-html-presentations",
+  "original_sha256": "56639d171dce30f28e9d770e74a7a68ce589e256fa1258e2ab8a744c2ac339d1",
+  "candidate_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+  "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+  "source_line_count": 448,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-2-design-delivery-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-377",
+      "source_start_line": 1,
+      "source_end_line": 377,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-378-378",
+      "source_start_line": 378,
+      "source_end_line": 378,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Every substantial writer-authored delivery artifact must include:",
+      "rationale": "Preserve mandatory artifact output fields and order; restrict template application to writer-authored artifact so separate reviewer and coordinator outputs obey exclusive roles."
+    },
+    {
+      "id": "span-379-416",
+      "source_start_line": 379,
+      "source_end_line": 416,
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Narrative` \u2014 the story arc and slide-level claims",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-417-448",
+      "source_start_line": 417,
+      "source_end_line": 448,
+      "disposition": "preserved",
+      "candidate_excerpt": "- [ ] User-selected output format is recorded.",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation or runtime acceptance."
+  ]
+}

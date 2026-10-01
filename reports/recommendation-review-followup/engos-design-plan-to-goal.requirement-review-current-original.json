@@ -1,0 +1,45 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-plan-to-goal",
+  "original_sha256": "273723024279c11f584cc40d81286b391830ca38962435f31b72ae2687b5244f",
+  "candidate_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+  "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+  "source_line_count": 248,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/reviewer",
+    "author_agent_id": "/root/writer",
+    "independent": true
+  },
+  "review_receipt": "reports/recommendation-review-followup/round-2-design-delivery-group-review.json",
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "span-1-193",
+      "source_start_line": 1,
+      "source_end_line": 193,
+      "disposition": "preserved",
+      "candidate_excerpt": "---",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    },
+    {
+      "id": "span-194-194",
+      "source_start_line": 194,
+      "source_end_line": 194,
+      "disposition": "reformulated",
+      "candidate_excerpt": "The packet delivery written by the writer uses these fields in order:",
+      "rationale": "Preserve mandatory artifact output fields and order; restrict template application to writer-authored artifact so separate reviewer and coordinator outputs obey exclusive roles."
+    },
+    {
+      "id": "span-195-248",
+      "source_start_line": 195,
+      "source_end_line": 248,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. `Research Receipt`",
+      "rationale": "All source bytes in this span retained exactly; domain workflow, templates, examples, permission boundaries and prerequisites in this span unchanged. New review is additive."
+    }
+  ],
+  "limitations": [
+    "Independent source-preservation attestation only; no behavioral promotion, new baseline, implementation or runtime acceptance."
+  ]
+}

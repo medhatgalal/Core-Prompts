@@ -141,7 +141,19 @@
         "add an explicit primary objective before packaging",
         "add deterministic in-scope sections to improve routing fitness",
         "capture quality constraints or non-negotiables"
-      ]
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current scoped artifact; author checks remain prerequisites."
+      ],
+      "quality_gate": {
+        "scope": "artifact_acceptance_contract_only",
+        "artifact_scope": "substantial_authored_artifact",
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true,
+        "preserves_external_authority_and_existing_protocols": true
+      }
     },
     "org_graph": {
       "org_role": "specialist_with_workflow_surface",
@@ -175,7 +187,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-reconciliation-converge",
-  "shared_summary": "[Medhat] Universal Synthesis & Convergence Prompt (Portable)",
+  "shared_summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
   "shared_constraints": [
     "Do not create a Frankenstein merge.",
     "Do not invent missing preferences.",
@@ -202,7 +214,190 @@
     }
   ],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-reconciliation-converge",
+        "strategy": "historical_gold",
+        "group": "flattened_regression",
+        "baseline_path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md",
+        "selected_commit": "3bc88b43",
+        "richness_score": 5,
+        "line_count": 135,
+        "reason": "Latest portable prompt body that still includes the direct execution prompt, controls, defaults, and explicit phased synthesis behavior.",
+        "equivalent_commits": [
+          "e4b12fc3",
+          "f6025ddb",
+          "0f686cfe"
+        ],
+        "expected_companions": [
+          "engos-meta-supercharge"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "portable_prompt_body",
+            "kind": "individual_module",
+            "label": "portable prompt block",
+            "must_contain": [
+              "## The Prompt (paste into the target AI)",
+              "~~~~text",
+              "=== PHASE 1: INGEST & MAP ===",
+              "=== PHASE 7: OUTPUT ==="
+            ]
+          },
+          {
+            "id": "controls_and_tradeoffs",
+            "kind": "stacked_or_full",
+            "label": "controls and conflict handling",
+            "must_contain": [
+              "/swot",
+              "/mcda",
+              "/conflicts",
+              "Do NOT create a \u201cFrankenstein\u201d merge",
+              "Final Converged Proposal"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 133,
+          "materialized_from_commit": "3bc88b43"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "portable_prompt_body",
+              "kind": "individual_module",
+              "label": "portable prompt block",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "controls_and_tradeoffs",
+              "kind": "stacked_or_full",
+              "label": "controls and conflict handling",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 5,
+            "candidate_richness": 10,
+            "baseline_operational_score": 0,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "3bc88b43",
+          "baseline_slug": "engos-reconciliation-converge"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 5,
+        "candidate_richness": 10,
+        "baseline_operational_score": 0,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {},
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-reconciliation-converge",
     "strategy": "historical_gold",
@@ -297,7 +492,7 @@
     "portfolio_action": "keep_and_clarify_boundary",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -308,7 +503,7 @@
               "path": "ssot/engos-reconciliation-converge.md",
               "start_line": 45,
               "end_line": 50,
-              "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+              "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
             }
           }
         ]
@@ -321,13 +516,13 @@
         "grants_authority": false,
         "clauses": [
           {
-            "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required\n- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming orchestration or runtime-control authority\n- escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing",
+            "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required\n- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority\n- escalation: if the conflict is fundamentally about taste, ownership, or policy, stop and ask for the user's choice instead of guessing",
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-reconciliation-converge.md",
               "start_line": 32,
               "end_line": 34,
-              "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+              "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
             }
           },
           {
@@ -337,7 +532,7 @@
               "path": "ssot/engos-reconciliation-converge.md",
               "start_line": 70,
               "end_line": 74,
-              "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+              "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
             }
           },
           {
@@ -347,7 +542,7 @@
               "path": "ssot/engos-reconciliation-converge.md",
               "start_line": 76,
               "end_line": 76,
-              "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+              "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
             }
           }
         ]
@@ -362,7 +557,7 @@
               "path": "ssot/engos-reconciliation-converge.md",
               "start_line": 70,
               "end_line": 74,
-              "sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac"
+              "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
             }
           }
         ]
@@ -375,8 +570,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-reconciliation-converge.md",
-        "ssot_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
-        "effective_sha256": "b4f97657b8645cbac13688d881b251a00ff71c0b7f095c316a933eb9097b37ac",
+        "ssot_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+        "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -395,7 +590,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "5c10b82e97ec7520f865f15f41d5d8f8fa2b268b1ffe34fff39ff95a3ec3a345"
+        "mapping_sha256": "72a4f06b8362e0a18b0b9dabaab30d805c58d4182d915f73a709ff28741f7dc3"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

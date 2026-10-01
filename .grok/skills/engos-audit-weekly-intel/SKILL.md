@@ -218,7 +218,7 @@ End every report with a confidence assessment:
 ## Rules
 - This capability is advisory only. It reads and reports but does not modify source systems.
 - Keep all reports deterministic and evidence-based.
-- Do not claim orchestration, delegation, or runtime-control authority.
+- Limit coordination to the artifact review below; do not claim wider runtime-control authority.
 - Prefer concrete evidence over narrative interpretation.
 - Use the sidecar descriptor as the canonical machine-readable contract for this capability.
 - Relationship and org-graph metadata remain advisory for future orchestrators.
@@ -251,7 +251,7 @@ End every report with a confidence assessment:
 
 
 ## Required Output
-Every substantial response must include:
+Every substantial writer-authored report must include:
 - a single report document with exec-friendly body and technical appendices (A through F)
 - a confidence assessment in Appendix F rating each source (High/Medium/Low) with methodology notes
 - an internal consistency check confirming body numbers match appendix data
@@ -281,6 +281,27 @@ Every substantial response must include:
 | Audience calibration | Main body has zero jargon; appendices have full source links |
 | Confidence transparency | Appendix F is honest about what was queried directly vs secondhand |
 | Convergence quality | No conflicts between sources were hidden; discrepancies are surfaced |
+
+## Recommendation Artifact Review
+
+Apply this review to a substantial authored report, including an appendices-only report. Keep the existing audience-specific author fact-check branch and report format; independent review of the completed artifact does not replace that branch. The reviewer checks source claims, body/appendix consistency, attribution and caveats without modifying source systems or sending communications.
+
+Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.
+
+### Three Roles
+- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.
+- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.
+- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.
+
+Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.
+
+### Finding and Repair Cycle
+1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.
+2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.
+3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.
+4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.
+5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.
+6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.
 
 
 Capability resource: `resources/capability.json`

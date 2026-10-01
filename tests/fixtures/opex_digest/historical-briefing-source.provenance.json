@@ -1,0 +1,11 @@
+{
+  "schema": "HistoricalSkillSourceFixture.v1",
+  "role": "historical_source_identity_only_not_current_acceptance",
+  "source_commit": "a5458d6ce798eb8f881591c97ab82d9b43637e94",
+  "source_path": "ssot/engos-audit-opex-incident-review.md",
+  "snapshot_path": "historical-briefing-source.md",
+  "source_sha256": "2f256da3a7ca86fd6e6ea227c1d3e6a0abe37d19fe6a118b8f473b75e65d5530",
+  "receipt": "evals/maintenance/engos-audit-opex-incident-review/briefing-preservation-replay.json",
+  "scope": "Exact skill source at the commit that introduced the historical briefing replay. This fixture verifies original identity; it does not rerun its checks or establish current semantic/model behavior.",
+  "limitations": "The historical receipt, its old renderer binding, past 45-pass result and no-live-Doc/no-actual-PDF limitations remain unchanged."
+}

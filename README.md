@@ -145,6 +145,16 @@ Use the same skill in the main session or supply it and its required resources t
 
 Batman remains explicitly invoked. It checks the request and live host, preserves controller/implementer/reviewer separation, and reports local, hosted, release, and installation evidence separately. See [the delivery contract](docs/GETTING-STARTED.md#how-batman-starts-and-resolves-companions).
 
+Substantial authored audits, reports, demo scripts, presentations, conflict recommendations,
+goal packets and converged proposals use a coordinator, the same writer across revisions,
+and a separate source-checking reviewer. Final delivery requires zero open reviewer findings;
+there is no review round cap, and a reopened technical refusal goes to the user for a final
+ruling. Documentation uses this only for requested execution, testing for authored plans or
+artifacts, and Loopy for Craft only. Narrow lookup/conversion routes and existing host review
+protocols retain their controls. See [review an authored artifact](docs/EXAMPLES.md#review-an-authored-artifact)
+for the exact skill scope and before/after examples.
+
+
 ### If You Only Try Three Things
 
 1. Use `engos-quality-docs-review` on a docs surface that feels bloated or unclear.
@@ -436,7 +446,9 @@ write set and preserve unknown or customized copies before applying. See
 Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
 debrief a loop. For example: “Use Loopy to audit this loop and repair only material
 weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
-scheduling, and publication retain their separate authorization boundaries.
+scheduling, and publication retain their separate authorization boundaries. Substantial
+Craft output also receives internal review by a separate reviewer until zero findings
+remain open; the compact public prompt and designed loop execution limits are preserved.
 
 Routine updates automatically remove identified retired Core-Prompts agents,
 including locally modified copies, while retaining skills and third-party agents

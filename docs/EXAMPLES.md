@@ -1461,3 +1461,50 @@ findings. Deployment does not grant tool permissions or establish account access
 > Import this workflow and show when it fits, when it should stay out, and what evidence supports those boundaries. Keep the existing skill instructions and authority unchanged.
 
 Expect UAC’s source-backed job mapping, hashes, conditional companion clauses and unresolved interpretations. Do not expect automatic runtime activation from the metadata alone. See [routing fitness](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Review an authored artifact
+
+Substantial artifacts from the following skills receive independent source-based acceptance:
+
+| Skill | Scope of the added artifact review |
+|---|---|
+| `engos-audit-code-health` | Structural audit report and remediation recommendation; stays inline and target-read-only |
+| `engos-audit-feature-status` | Completed status/gap/priorities report, after existing human scope confirmation |
+| `engos-audit-opex-incident-review` | Authored daily digest, incident drill-down or briefing; help, validate and render remain narrow |
+| `engos-audit-weekly-intel` | Authored executive or appendices-only report; existing audience-specific author checks remain |
+| `engos-browser-demo-recorder` | Demo plan and script; no script execution or credential access |
+| `engos-content-dynamic-html-presentations` | Authored deck and requested artifacts; keep viewport/image/export checks |
+| `engos-delivery-resolve-conflict` | Authored conflict analysis and recommendation; review does not execute the resolution |
+| `engos-design-plan-to-goal` | Authored goal/spec/verifier packet; lint, seal, trust and drift checks remain required |
+| `engos-quality-docs-review` | Explicitly requested substantial rewrite execution only; findings-only inspection stays advisory |
+| `engos-quality-testing-review` | Substantial authored plans/test artifacts only; review proves no execution or measured coverage |
+| `engos-reconciliation-converge` | Authored final proposal; scores comparing alternatives remain decision evidence |
+| `loopy` | Substantial Craft output only; compact public format and designed execution limits remain |
+
+The coordinator dispatches and counts findings without authoring artifacts or findings.
+The writer owns the artifact and repair dispositions. A reviewer who did not write it
+checks the sources and writes findings without rewriting it. Revisions resume those same
+participants. Each review finding records severity, artifact location, problem, concrete
+repair, source evidence and `open` status. The writer responds `addressed` with its change,
+`wontfix` with a technical reason, or `needs-user-input`. The reviewer replaces the current
+finding list, dropping fixed defects and keeping bad repairs or new defects open.
+Final artifact delivery requires that reviewer to report zero open findings. There is no
+review round cap. A reopened `wontfix` is a stalemate for the user to settle finally.
+Existing execution budgets, host acceptance and separate approval protocols stay intact.
+
+One example of the pattern: ask for a status report against a supplied specification.
+Before this change, the same author checked its own status table and rubric. Afterward,
+a separate reviewer can cite an omitted required error path, and the same writer repairs
+the status report before that reviewer closes the defect. The original scope-confirmation
+step still happens before evidence collection; this review changes artifact acceptance,
+not implementation completion.
+
+One example of the pattern: ask for a new bounded loop. The writer still conducts the
+focused interview and returns the compact prompt. A separate internal reviewer checks
+whether its schedule and permissions came from the user's answers. Any unsupported
+assumption stays open until repaired or finally settled by the user. This review neither
+runs the loop nor changes its execution stop conditions.
+
+These are source-contract comparisons, not measured behavioral improvement claims.
+Per-skill source hashes, preserved requirements and illustrative repair cases remain
+in the task's review evidence; packaging or independent textual review proves no measured benefit.

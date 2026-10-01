@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-testing-review",
-  "ssot_sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b",
+  "ssot_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -105,7 +105,13 @@
     "engos-quality-testing-review:L27:a13a67440b6c",
     "engos-quality-testing-review:L118:efc7137353f0",
     "engos-quality-testing-review:L119:c541168a6a14",
-    "engos-quality-testing-review:L120:aa421c4141e9"
+    "engos-quality-testing-review:L120:aa421c4141e9",
+    "engos-quality-testing-review:L124:f898261f1eba",
+    "engos-quality-testing-review:L126:fac7308fc753",
+    "engos-quality-testing-review:L130:283e7be539f4",
+    "engos-quality-testing-review:L133:32659bf6e33c",
+    "engos-quality-testing-review:L137:420f35be46a1",
+    "engos-quality-testing-review:L141:ee18a182fff0"
   ],
   "resources": [],
   "handoffs": [],
@@ -141,12 +147,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L45:c34906b1f1c3",
+      "id": "engos-quality-testing-review:L45:a2fc641d93d0",
       "heading": "Required Output",
       "source": "ssot/engos-quality-testing-review.md",
       "source_line": 52,
-      "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-      "text": "Every substantial response must include:",
+      "sha256": "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
+      "text": "Every substantial writer-authored artifact must include:",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -199,6 +205,86 @@
       "text": "- Do not claim coverage metrics without a coverage artifact or direct evidence.",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L124:f898261f1eba",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 131,
+      "sha256": "f898261f1eba0277fb4d3c851f99e215b048093a9495ea399bc761ae7469f2a3",
+      "text": "Apply this review only to substantial authored test plans, designed test sets, coverage-gap plans or requested test artifacts. A narrow lookup or externally authored test review keeps its existing route. The writer owns the authored plan or tests; the separate reviewer checks specified behavior, existing framework, risks, assertions and gaps against the sources. Source inspection and design acceptance do not establish test execution, observed coverage or release readiness. No participant silently runs tests through this review.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L126:fac7308fc753",
+      "heading": "Recommendation Artifact Review",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 133,
+      "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+      "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L130:283e7be539f4",
+      "heading": "Three Roles",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 137,
+      "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+      "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L131:dea1be25a70c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 138,
+      "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+      "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L133:32659bf6e33c",
+      "heading": "Three Roles",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 140,
+      "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+      "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L137:420f35be46a1",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 144,
+      "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+      "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L139:ddb7354cd7f7",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 146,
+      "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+      "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L141:ee18a182fff0",
+      "heading": "Finding and Repair Cycle",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 148,
+      "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+      "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -209,7 +295,7 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-testing-review.md",
-      "sha256": "13fe64494de3a09d60ddaad9f6c8824e42b59ff90c456a6a4e0c46018223e71b"
+      "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
     }
   ],
   "known_ambiguities": [],
@@ -222,7 +308,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 9,
+    "total": 17,
     "mapped": 0,
     "waived": 0
   },
