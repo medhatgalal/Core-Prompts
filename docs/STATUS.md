@@ -4,14 +4,13 @@ Generated from the latest build, validation, and smoke reports. This is the user
 
 - Overall health: `ok`
 - Capability count: `32`
-- Latest build: `2026-10-04T03:05:19.183213+00:00`
-- Latest validation: `2026-10-04T03:02:35.662979+00:00`
-- Latest smoke: `2026-10-04T03:02:35.770045+00:00`
+- Latest build: `2026-10-04T18:56:15.289493+00:00`
+- Latest validation: `2026-10-04T18:55:55.893961+00:00`
+- Latest smoke: `unknown`
 
 ## Validation
 - Errors: `0`
 - Warnings: `0`
 
 ## Smoke
-- Failures: `0`
-- Warnings: `0`
+- No smoke report recorded yet.

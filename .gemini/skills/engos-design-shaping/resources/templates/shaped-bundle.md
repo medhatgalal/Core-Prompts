@@ -83,7 +83,14 @@ appetite, review checklist, three evidence-backed hard questions and handoff.
 It is a local sidecar unless requested on target. Any new substantive claim
 requires content reconciliation and affected review, not a publishing shortcut.
 
-The handoff names the exact package revision and source inventory, accepted G3
+Before the table, prepare the proposed build/deferred/forbidden lists, including
+one proof sentence per in-item and a reason plus separate-pitch requirement for
+every deferred item. This is shaping scope, not a spec, requirements document,
+design, architecture document, plan or tasks. After a table Accept, write exactly
+one handover using handover.md and ask for its selected outputs. A split creates
+smaller pitch candidates and no build handover until one is accepted.
+
+The agent record names the exact package revision and source inventory, accepted G3
 receipt (or pending review), requested delivery status, attributable human bet
 decision (or pending decision), appetite/scope, no-gos, unresolved gaps and next
 permitted action. Carry conditional layer sizing only where used by this team.

@@ -1,3 +1,17 @@
+## Unreleased
+
+- Separate engineering frame agreement, team package acceptance and the betting
+  table into three ordered questions with plain phase, needed-input and next-step
+  status. Keep API choices and separately authorized skeleton offers in shaping.
+- On accept, write one scope handover with every build item and proof, deferred
+  items and reasons, forbidden lines and a spec-first build boundary. Prevent
+  silent cuts or additions under “proceed and loop.” Shaping writes no downstream
+  spec, requirements, design, architecture, plan or tasks.
+- Ask for handover output choices after writing: HTML, Google Doc, Word, JSON or
+  all four. Preserve existing diagram/export paths and saved-target checks; use
+  the host Word skill for a handover-only Word copy. Instruction coverage is not
+  live behavior proof.
+
 ## v1.16.4 - 2026-10-03
 
 - Bring the reviewed installed shaping guidance into canonical SSOT and bundled

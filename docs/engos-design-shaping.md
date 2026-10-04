@@ -22,30 +22,43 @@ names and scale. Each named layer needs an owner and size, or an explicit decisi
 that it is not involved. A blank size stays unknown and prevents the bet offer.
 Teams without layer sizing omit that section.
 
-Once the package is eligible, the assistant asks what should happen next when
-independent review returns a pass, a fail or a pending result. It explains the
-review result in ordinary words. A failed document upload does not delay this
-question. You can bet, request an interface revision, authorize a separate walking
-skeleton, send the proposal back or stop. G4 remains delivery verification.
+The workshop pauses three times, in order:
 
-The skeleton choice is offered unless you have said there is no code to try.
-After choosing it, you supply repositories and code locations to that separately
-authorized effort. Shaping records the request and stops. A returned trial is
-checked against the diagrams and data contract; it returns to the bet decision,
-sets no size and supplies no substitute for the later integration run.
+1. “The frame is ready. Does engineering agree, and are their questions answered?”
+   Accept the frame and start shaping, revise the frame, or stop. Missing agreement
+   or unanswered engineering questions keeps shaping closed.
+2. “The shaping package is ready. Does the team accept it?” Accept it and go to
+   the betting table, keep shaping, or stop. The table needs actual team acceptance
+   and current independent review. Choosing, revising or omitting an API stays in
+   shaping. A walking skeleton is a separately authorized effort offered only there,
+   and omitted when you have said there is no code to try.
+3. “Accept this pitch, send it back, abandon it, or split it?” Send back returns
+   to shaping; abandon stops. Split makes smaller pitches and hands nothing to
+   build until one receives its own accept.
 
-Your yes is recorded against the proposal and stops shaping. It does not mark
-Bet-ready or start design. Later design needs an accepted independent G3 pass,
-your yes, any delivery you actually requested and its own scoped authority.
-A delivery failure preserves the recorded yes, and an unchanged answer is kept
-on resume.
+Accept produces one handover with three lists: **In this handoff, build these**,
+with one proof sentence per item; **Named, and not in this handoff**, with each
+reason and the need for a separate pitch; and **Do not build**, with the forbidden
+lines. It includes the agreed frame, existing diagrams and contracts, API decision
+and any actual skeleton result. It states what shaping did not do and everything
+still outside this handoff. Shaping writes no spec, requirements, design,
+architecture document, plan or tasks.
 
-Status uses four plain lines: **Working on**, **Where we are**, **What is missing**
-and **Next step**. For example, it says “independent review has not come back” or
-“the document upload failed.” Candidate events, accepted snapshots and exact gate
-labels stay in agent records, with a plain explanation when their meaning matters
-to your next choice. Silence leaves a question pending; the assistant uses the
-host's ask-the-user tool when available.
+The assistant then asks which copies you want: HTML, Google Doc, Word, JSON or all
+four. It produces only your selection, reuses the package diagrams and tables,
+checks the saved outputs and stops. Word is a handover-only copy through the host's
+existing document skill. A failed save preserves your accept and stays pending.
+
+A separate build session starts at spec only for the build-these list. It may
+finish every line, may not drop one and may not pick up deferred or forbidden work.
+“Proceed and loop” continues the current item. A wider job needs a new pitch and
+a new accept.
+
+Before every question, status uses four plain lines: **What we are doing**,
+**Where we are**, **What is needed** and **Next step**. The assistant uses the
+host's ask-the-user tool when available; otherwise it prints options and waits.
+Silence is not a yes. Gate tokens, scores and file paths stay in agent records,
+with a plain explanation when their meaning matters to your next choice.
 
 ## Evidence and migration status
 
@@ -81,7 +94,7 @@ an explicit G0 policy rebind before claiming these checks.
 | Confirmed behavior is absent from code | Shape it as a proposed extension with researched basis |
 | Set selects no pieces | Unscored hold naming the walk-away item |
 | Only average <4 fails, every score >=3, evidence unchanged | Stop pitch dispatch; acquire a new fact, name a spike or hold |
-| Actual independent G3 pass plus the person's yes | Later design within its separately authorized scope and requested delivery obligations |
+| Accepted handover, current review, requested copies checked and separate build authority | Start at spec for every build-these line; do not drop one or add deferred/forbidden work |
 
 Cost 3 includes restating appetite. One example of this pattern is listing the
 same bounded operations again without new supported cost evidence; more prose

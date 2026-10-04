@@ -64,22 +64,19 @@ layer sizing omit the layer section.
 
 ## Agent instructions: decisions and later work
 
-Package completeness is not an independent review. Accepted G3 PASS is required
-for later design; it does not fund the proposal or grant execution authority.
-G4 Bet-ready records required delivery verification, not a person's investment.
-Keep the actual G3 and G4 status in the record. Beside a package question, tell
-the person the plain meaning of any pending review or delivery, using the glosses
-below. G3 and G4 each retain their existing acceptance requirements after a bet.
+Package completeness is not independent review or a human accept. Keep current
+review and delivery evidence separate from the three human decisions. The team
+question requires a complete package and current accepted independent review;
+pending or failed review stays in shaping. Applicable requested package copies
+must be saved and checked before the table opens. Do not require unrequested copies.
 
-When an authorized person says bet, record their yes against this proposal
-revision and stop shaping. Keep Bet-ready unchanged. Design, tickets, build and
-the later integration run remain unopened. Describe outstanding review or delivery
-in plain words.
-Later design needs accepted G3, the human bet, any delivery the person actually
-requested, and its own scoped authority. Hand over the exact package revision, evidence, review
-receipts, decisions, open gaps and boundaries; a document link alone is insufficient.
-Design, the integration run that follows the bet, and build happen later. This
-skill starts none of them and creates no implementation tasks.
+On Accept at the table, record the person's answer for this pitch revision and
+write one handover using handover.md. Then ask which outputs they want, produce
+only those copies, verify the saved targets and stop. Preserve the accept if a
+save fails, but report the missing copy and next delivery action. No spec,
+requirements document, design, architecture document, plan or tasks are written.
+A later build session starts at spec only for the handover's build-these list.
+Neither a person's yes nor a review receipt starts that session.
 
 ## Words to use with a person
 
@@ -102,18 +99,19 @@ person's next choice, give the plain gloss once at its first relevant mention.
 
 Treat these as translations, not extra status lines. Keep each statement tied to
 what actually happened. A failed document upload is "the document upload failed."
-After a bet, "Your yes is recorded. Shaping has stopped" describes the human
-choice and the stop; review and delivery keep their separate recorded states.
+After acceptance and selected output checks, say "Your accept is recorded. The
+handover is written. Shaping has stopped." Name failed saves plainly; do not
+claim the chosen outputs are complete until each is verified.
 
 ### Read-aloud status pattern
 
 Fill the braces with actual facts before speaking:
 
 ```text
-Working on: {the person's problem and current action}.
-Where we are: {preparing the proposal, waiting for your choice, reviewing, or stopped}.
-What is missing: {the specific evidence or answer, or nothing needed for this choice}.
-Next step: {the pending choice or next permitted action}.
+What we are doing: {the person's problem and current action}.
+Where we are: {framing, shaping, team decision, betting table, handover, or stopped}.
+What is needed: {the specific evidence or answer, or nothing needed for this choice}.
+Next step: {the pending choice or next permitted transition}.
 ```
 
 ### Agent instructions for questions
@@ -125,82 +123,82 @@ wait. A host with limited choices can use a supported free-text answer or staged
 menu. Dependent work waits for an actual answer; silence, a default selection and
 an empty tool result leave the question pending.
 
-When the package is eligible and betting is in scope, ask the package question
-when independent review returns a pass, a fail, or review_pending. Say the result
-in plain words. Ask then even if target publication is pending or an upload has
-failed; G4 remains a separate delivery check. A person may also request the
-question before review finishes. Apply the same package prerequisites and follow
-the chosen branch. Preserve a recorded bet through a delivery failure. Keep an
-unchanged answer on resume while its record checks are pending.
+Ask the three questions below in order. Do not jump from a frame accept or team
+accept to a funding decision. A prior answer carries only when its proposal
+revision and confirmed authority are unchanged. Show the four plain lines before
+every question, including the output question. Do not call an incomplete or
+failed-review package ready. It stays in shaping with the missing evidence and
+next action visible; the person may keep shaping or stop.
 
 ## Human pauses
 
 The trigger and action paragraphs below are agent instructions. Only the quoted
 questions and listed choices are read aloud.
 
-### Frame decision
+### 1. Before shaping
 
-When the frame and its current review are ready, ask:
+When the solution-free frame and its current review are ready, ask:
 
-"The problem statement is ready. What should happen next?"
+"The frame is ready. Does engineering agree, and are their questions answered?"
 
-- Accept it and prepare the proposal
-- Revise the problem statement
+- Accept the frame and start shaping
+- Revise the frame
 - Stop
 
-For a frame-only request, the first choice is "Accept it and finish here."
-G1 and the G2 research required before shaping retain their existing requirements.
-For a full workshop, proceed through research before shaping.
-A requested frame correction stays in framing; stop ends the current effort.
+Record the actual answer, engineering agreement and answered questions against
+the frame revision. Missing engineering agreement or unanswered questions holds
+shaping even if someone selects Accept. Revise stays in framing; Stop ends the
+effort. Existing frame/research evidence remains required. This is the full
+workshop menu. For an explicitly separate frame-only request, keep the question
+but use “Accept the frame and finish here” as the first choice and stop after
+frame acceptance; do not offer or enter shaping or the later two decisions.
 
-### Package has a gap
+### Inside shaping: API and separate trial
 
-At a package decision, if required artifacts, meaning, evidence, ownership or
-applicable layer sizes are missing, name the actual gap and ask:
+Choosing, revising or omitting an API stays in shaping. Keep the optional network
+API and complete data-contract rules above. A walking skeleton is a separate
+effort the person authorizes. Offer it only inside shaping and omit the offer
+when the person has said there is no code to try. Record its requested scope and
+package revision, then stop this skill; do not launch it, discover repositories,
+clone or write code. The person supplies code locations to that separate effort.
+Neither API choices nor a skeleton choice appears at the betting table.
 
-"The proposal still needs [missing item]. What should happen next?"
+### 2. Before the betting table
 
-- Keep working on the proposal
+When the package is complete and current independent review is accepted, ask:
+
+"The shaping package is ready. Does the team accept it?"
+
+- Accept it and go to the betting table
+- Keep shaping
 - Stop
 
-This menu contains only continued shaping or stopping. "Keep working on the
-proposal" permits the next shaping action within existing authority. Evidence
-requirements and separate authority for executing a spike remain in force.
-New feasibility uncertainty returns to research; changed outcome, scope or
-appetite returns to framing. Do not ask this question for every unfinished draft.
+Record the actual team answer for the package revision. Without team acceptance,
+the table stays closed. Keep shaping returns to shaping; Stop ends the effort.
+Accept opens the table only when applicable package delivery checks also hold.
+A needed API change or omission is shaping work, and a needed trial is a separate
+authorized effort offered only there. New evidence gaps return to research;
+changed outcome, scope or appetite returns to framing and renews affected answers.
 
-### Package decision
+### 3. Betting table
 
-Use the review-return trigger above, or the person's request for an earlier
-decision, once the package is eligible and betting is in scope. Ask:
+After actual team acceptance and the applicable checks, ask:
 
-"The proposal has its diagrams and data contract. A network API is optional.
-What should happen next?"
+"Accept this pitch, send it back, abandon it, or split it?"
 
-- Bet this package
-- Add or revise an API boundary first
-- Authorize a separate walking skeleton — a small trial of the proposed parts together
-- Revise the proposal
-- Stop
+- Accept
+- Send back
+- Abandon
+- Split
 
-Offer the skeleton choice unless the person has said there is no code to try.
-The person supplies repos and code locations after choosing it. Leave repository
-discovery to that separately authorized effort. Keep draft-only and artifact-only
-requests within their original scope.
-
-"Bet" records the authorized person's yes for this revision and stops shaping.
-Bet-ready keeps its existing recorded status; design remains unopened and still
-requires an accepted G3 pass and the person's yes, plus its own scoped authority.
-"Add or revise an API boundary first" stays in shaping:
-use cited interface evidence, an in-process interface or `no API`. If evidence is
-missing, record the question and return to research; the choice cannot authorize
-an invented endpoint. "Revise the proposal" records the requested correction
-and reopens the affected stage. "Stop" records the hold and ends this effort.
-
-A skeleton choice records the person's request, package revision and any supplied
-scope and bounds, then stops this skill. The person supplies repos and code
-locations to that effort. Do not launch it, clone repos or write code here.
-Its scoped execution authority is separate from permission to continue shaping.
+Record the actual choice and pitch revision. Accept writes one scope handover
+under handover.md, asks for output choices and stops after the selected copies.
+It starts no build documents. Send back returns to shaping. Abandon stops.
+Split makes smaller pitch candidates with their own build/deferred/forbidden
+scope and one proof sentence per in-item; hand nothing to build until one smaller
+pitch completes its affected checks, team acceptance and its own table accept.
+An in-item without one proof sentence needs correction or splitting, not an
+invented proof or silent deletion. No partial acceptance of an unresolved list.
 
 ### Skeleton returned
 
@@ -210,17 +208,17 @@ judgment, not technical proof. Compare it with the current package before asking
 "Did the skeleton apply the sequence diagram, the component diagram and the data
 contract?"
 
-- The trial supports the proposal. Return to the bet decision
+- The trial supports the proposal. Return to shaping review and the team decision
 - The proposal needs correction
 - Stop
 
-"The trial supports the proposal" returns to the package decision only if the
-current package remains eligible. Evidence gaps and the person's bet decision
+"The trial supports the proposal" returns through affected shaping review and
+the team decision only if the current package remains eligible. Evidence gaps and the person's bet decision
 retain their own requirements. A mismatch
 returns to the affected shaping or research work; changed outcome, scope or
 appetite returns to framing. Changed artifacts need renewed affected review.
-A skeleton does not set sizes, mark Bet-ready, open design or replace the later
-integration run. Do not repeat a previously confirmed bet for an unchanged revision.
+A skeleton does not set sizes, mark delivery complete, start a build session or
+replace later integration checks. Do not repeat a previously confirmed bet for an unchanged revision.
 
 ## Guidance for different teams
 

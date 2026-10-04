@@ -12,7 +12,9 @@ current source. Respect source classification on each destination.
 | HTML | Complete approved prose/tables, all rendered diagrams, captions, source identity and status; inspect saved page pixels for clipping, labels, layout and full row coverage |
 | JSON document export | schema_version, source revision/hash, stable section IDs/order/full text, table columns and every row/cell ID, diagram source/caption/evidence and rendered references/status, claim/evidence refs and unresolved status; parse and compare against source inventory |
 | Native Google Docs | Full prose, native editable tables with every row, rendered diagrams/captions and source identity; current document/tab/revision readback plus saved-render visual inspection |
+| Word handover only | Same accepted handover prose and three lists, existing diagrams and full contract/security tables; use the host Word skill, reopen the saved .docx, render and inspect every page, compare content and image inventory |
 
+For a handover, follow handover.md for output choice and source reuse.
 A JSON status manifest is not a full document export. Markdown-only and JSON-only
 consumers still receive truthful render and publication status; generating a file
 is not proof it displayed correctly. Preserve complete tables; a summary view may

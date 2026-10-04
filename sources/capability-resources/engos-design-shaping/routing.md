@@ -25,6 +25,7 @@ installed versions. Record missing or conflicting bindings as dependencies.
 | Compatibility or migration proof planning | Conditionally resolve `engos-quality-testing-review`; planned checks are not execution |
 | Independent workshop pitch assessment | `engos-quality-shaping-gate` SKILL and its twelve-score rubric; legacy ten-point review is standalone only |
 | Approved placement | `engos-delivery-artifact-embed` SKILL and target-specific resources |
+| Table Accept | This bundle's `handover` route; existing embed skill for selected HTML/Google Doc/JSON copies, host Word/document skill for a selected handover Word copy |
 | Missing capability | This bundle's `fallback` route |
 
 Do not encode trial-local paths, source failures or CLI workarounds in policy.

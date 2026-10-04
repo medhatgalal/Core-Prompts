@@ -1,5 +1,13 @@
 # Publication dispatch
 
+For a handover after table Accept, read handover.md first. Ask which copies the
+person wants after the source handover is written, then publish only those copies.
+Use the existing embed path for HTML, native Google Docs and full document JSON;
+use the host Word skill for a selected handover Word copy. Internal conversion
+DOCX for Google Docs is not a selected Word deliverable. Reuse the accepted
+diagram sources and source-bound images. No new diagram renderer or downstream
+documents. The verification and reconciliation rules below also apply to handovers.
+
 Preflight target capability/read access early, but publish accepted content only
 after current G3. Resolve the embed helper and target resources; read runtime.md
 and helper help at actual invocation for documented delivery operations. Record

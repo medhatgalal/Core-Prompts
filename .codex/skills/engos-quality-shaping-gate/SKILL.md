@@ -40,16 +40,35 @@ read resources/references/runtime.md and the helper's current --help first.
    manifest claims. A named spike or rejected question is not uncertainty closure.
    At Research, assess the author's source/summary agreement, range-scoped
    exclusivity, updated citation referents and material callee evidence.
-3. Distinguish product decisions, engineering evidence and expert judgments. Ask
-   the designated human when authority is missing; continue independent work only.
+3. Distinguish human decisions, engineering evidence and expert judgments. Check
+   the three actual answers in order using the conductor's ways-of-working.md:
+   engineering accepts the frame before shaping; the team accepts the package
+   before the table; the table accepts a pitch before a handover. Four plain lines
+   precede each question, using the host ask-the-user tool or a text menu and wait.
+   Silence is not a yes. Missing agreement or an unanswered question holds the
+   transition; continue independent work only within the current phase.
 4. For G3 inspect every local render and all contract/security rows, cross-check
    their meaning, apply the existing twelve-score rubric and keep author audit separate from actual
    independent review. Lack of independent context means review_pending.
    A set with no selected work is an unscored hold naming the walk-away item.
    Check proposed extensions as proposals; absent code is not proof they cannot
-   be selected. Check the whole set and the frame's requested observable stop.
-5. For G4 inspect each saved target's revision, content, tables and diagrams. A
-   successful upload, empty target list or source-only image check is insufficient.
+   be selected. Check the whole set and the frame's requested observable stop. Hold shaping
+   output containing a spec, requirements, design, architecture document, plan or
+   task list; they belong to a separate build session. Fat-marker diagrams,
+   contracts and provisional workstreams retain their existing shaping scope.
+   Every in-item needs one proof sentence. Check the proposed build/deferred/
+   forbidden lists against the pitch; no silent drop, addition or scope cut.
+5. On table Accept, require one handover with the three lists, shaping-finished
+   evidence, shaping-did-not-do statement, spec-first next step and Not done list.
+   Check it against the accepted pitch revision using the conductor's handover.md;
+   hold missing or widened scope. Send back returns to shaping; abandon stops;
+   split hands nothing to build until a smaller pitch receives its own accept.
+   Check that API and skeleton choices occurred only inside shaping.
+   After the handover is written, require the output question: HTML, Google Doc,
+   Word, JSON, or all four. Verify only the chosen outputs. For G4 inspect each
+   saved target's revision, content, tables and diagrams. Word is handover-only
+   through the existing host Word skill, reusing source-bound diagram images.
+   A successful upload, empty target list or source-only image check is insufficient.
 6. Return the documented predicate-level ReviewReceipt with exact subject/policy
    and evidence bindings. The controller checks and accepts it using the runtime;
    the reviewing worker never writes accepted state or approves its own work.
@@ -85,12 +104,19 @@ stay history after common integrity checks, without current coverage requirement
 Unverifiable persistent history is recovery_pending, not an ordinary hold. A
 policy migration cannot be used as an automatic retry or counted as a new fact.
 
+The accepted handover permits every build-these line and prohibits dropping one,
+adding a deferred line or building a forbidden line. “Proceed and loop” continues
+the current item; it cannot widen the sheet. A wider job needs a new pitch and a
+new accept. Gate tokens, scores and file paths stay in agent records, not the
+person's handover prose. Source inspection establishes instruction coverage only;
+it does not prove that a later build agent will obey the sheet.
+
 ## Constraints
 
 The script checks mechanical consistency, not truth or human authority. Host-bound
 worker provenance and permission boundaries must be observed separately. It is not
 a sandbox against a caller who can rewrite its state. No sharing, production code,
-Jira work, betting decision, native agent registration or privilege expansion.
+issue-tracker work, betting decision, native agent registration or privilege expansion.
 
 ## Examples
 

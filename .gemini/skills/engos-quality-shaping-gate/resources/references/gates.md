@@ -36,8 +36,10 @@ source agreement and semantic assessment remain necessary even when bindings pas
 Floor classification uses the current policy-binding digest; valid older receipts
 stay history after common integrity checks, without new coverage requirements.
 An explicit policy migration is not new product evidence or an automatic retry.
-An actual G3 pass is the only handoff to design, subject to requested delivery and
-the user's separate design authority. No Research pass or score2 can substitute.
+An actual G3 pass is required before team acceptance and the betting table; it
+does not start downstream documents. A separate build session starts at spec only
+for an accepted handover's build-these list, with applicable delivery checks and
+its own scoped authority. No Research pass or score2 can substitute.
 
 Pass only on the actual current subject hashes and policy version. A reviewer who
 authored the candidate supplies an audit, not independent review. The host/controller
@@ -158,7 +160,9 @@ filesystem confidentiality or remove shared-model bias.
 
 Keep content and delivery status separate. A reviewed pitch with blocked Google
 Docs delivery remains content-approved, delivery-pending, not overall Bet-ready.
-Visual targets such as HTML and Google Docs require saved-target pixel inspection.
+Visual targets such as HTML, Google Docs and selected Word handovers require
+saved-target pixel inspection. Word also requires reopening the .docx and full
+text/table/image inventory comparison through the host Word skill.
 JSON targets require successful parsing and exact structured source/section/table/
 diagram parity, not fictional target pixels. G3 still requires local rendered
 diagram inspection even when JSON is the only requested delivery format. Verify the targets actually required by the request; do not impose the original
@@ -167,6 +171,54 @@ that pilot, both targets remain required alongside any JSON export. A frame-only
 a shaped-draft request at G3. Never invent prior gate history when auditing an
 existing pitch. No score or manifest grants a human bet, staffing, sharing,
 implementation or issue-tracker write authority.
+
+## Human transitions and accepted handover
+
+Read the conductor's ways-of-working.md and handover.md for the exact questions
+and outputs. Check actual answers in this order: engineering frame agreement and
+answered questions before shaping; team acceptance of the complete, independently
+reviewed package before the table; a table choice before a handover. Four plain
+lines precede every question: current action, phase, needed input and next step.
+Use the host ask-the-user tool when available, otherwise print choices and wait.
+Silence, defaults and empty results are not acceptance. Missing engineering
+agreement holds shaping; missing team acceptance keeps the table closed.
+
+Choosing, revising or omitting an API stays in shaping. A separately authorized
+walking skeleton is offered only in shaping and omitted when there is no code to
+try. Neither belongs at the table. Table Send back returns to shaping; Abandon
+stops; Split makes smaller pitches and hands nothing to build until one receives
+its own accept. Each proposed in-item needs one proof sentence; an item without
+one must be corrected or split, never silently dropped or falsely proved.
+
+On Accept, check one handover against the exact accepted pitch. Require:
+- In this handoff, build these: every accepted item with one proof sentence.
+- Named, and not in this handoff: every deferred item, why, and its need for its
+  own pitch before anyone builds it.
+- Do not build: every forbidden line.
+- Shaping finished: agreed frame, component/sequence/data-flow diagrams, data
+  contract, API decision or no API, and any actually run skeleton result.
+- Shaping did not do: spec, requirements, design, architecture, plan, tasks.
+- Next: a separate build session starts at spec only for the build-these list.
+- Not done: everything named and not in this handoff.
+
+Hold missing proof, omitted accepted/deferred/forbidden lines, conflicting lists,
+or a widened handover. Build may finish every build-these line, may not drop one,
+and may not pick up deferred or forbidden work. “Proceed and loop” continues the
+current item; it does not widen the sheet. A wider job needs a new pitch and a
+new accept. Hold shaping output that writes a spec, requirements document,
+design, architecture document, plan or task list; return it for an in-scope
+package without deleting useful user files. Fat-marker diagrams, contract tables,
+provisional workstreams and proof slices remain shaping artifacts.
+
+After the source handover exists, ask for HTML, Google Doc, Word, JSON or all four.
+Produce only the actual selection. Reuse component.mmd, sequence.mmd, data-flow.mmd,
+contracts.md, security-owners.md and their source-bound derivatives. Preserve the
+existing embed/render paths; use the host Word skill only for a handover Word
+copy, never a second diagram renderer. The person's document contains short
+headings, the three lists and package diagrams/tables, not gate tokens, scores or
+file paths. Keep bindings in agent records. Verify each saved selected target;
+an unverified copy remains pending and does not erase the accept. Stop shaping
+after this handover delivery; open no downstream documents.
 
 A human bet is recorded separately from these gates. Meaningful, consistent
 sequence/component/data-contract artifacts are necessary before offering it; keep

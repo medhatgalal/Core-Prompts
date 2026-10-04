@@ -42,35 +42,32 @@ Expect the necessary outcomes and assumptions, failure scenarios, strongest obje
 
 ### `engos-design-shaping`
 
-For a local-file proposal and a pending review:
+For a local-file proposal awaiting independent review:
 
-> Our proposal has its diagrams and data contract. It transforms local files,
-> uses no API, and our team does not size by layer. Independent review has not
-> come back and the document upload failed. Show what is missing and ask what
-> we want to do next.
+> Our proposal has its diagrams and data contract, uses no API, and our team does
+> not size by layer. Independent review has not come back. Show what is needed
+> before the team decision.
 
-Expected: four plain status lines and the eligible-package question while review
-and upload remain pending. The data contract retains input/output meaning,
-producer, consumer, state, evidence and owner; no layer section is imposed.
-A blank required layer size on a team that does size by layer would instead hold
-the bet offer. An unknown interface stays a research gap, not `no API`.
+Expected: four plain status lines and a shaping hold until review returns. The
+complete data contract remains required; no layer section is imposed. API choices
+and separately authorized skeleton offers stay in shaping, outside the table.
 
-> I bet this proposal. Record my yes and stop shaping.
+> At the betting table, accept showing the stored status on the existing page.
+> Proof: the page displays the same status that is stored. Defer the per-worker
+> status row because this pitch covers only the stored status on the existing
+> page; forbid a second queue. Give me HTML only when you ask for copies.
 
-Expected: a decision for that proposal revision and a stop. G4 keeps its delivery
-verification meaning. Later design still needs an accepted G3 pass, that yes and
-its own scoped authority. A failed upload preserves the recorded answer on resume.
+Expected: one accepted handover with the three lists, that proof sentence and the
+reason the row needs its own pitch. Only the HTML copy is produced and saved-target
+checked, using existing diagrams. Shaping writes no spec, design, plan or tasks.
+A separate build session starts at spec for the stored-status item only.
+“Proceed and loop” cannot add the deferred row or drop the accepted item.
 
-For the separate trial choice, offered unless you have said there is no code:
+> Split this pitch: one in-item has no single proof sentence.
 
-> I authorize a separate walking skeleton against this proposal. I will supply
-> the repositories and code locations to that effort. Record the request here.
-
-Expected: the request is recorded and shaping stops; no repository discovery or
-trial execution starts here. A returned trial is checked against the proposal
-before returning to the human bet decision. These are usage examples, not evidence
-that a live workshop has run. [Human choices and evidence limits](engos-design-shaping.md#your-choice-after-shaping).
-
+Expected: smaller pitch candidates, no build handover until one has its own accept.
+These examples describe instructions, not observed live-workshop results.
+[Human choices and evidence limits](engos-design-shaping.md#your-choice-after-shaping).
 
 For an evidence correction during resume:
 
