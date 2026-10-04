@@ -39,8 +39,9 @@ before accepting a frame, not invented as entry defaults.
 
 ## Required Output
 
-Return friendly links and a short status: accepted stage/revision, changed facts,
-content review, delivery per target, open blockers and next action. Maintain
+Return friendly links and a short status in plain words: the last checked version,
+changed facts, independent review, requested copies, missing inputs and next action.
+Keep exact stage/revision identifiers and bookkeeping in the agent records. Maintain
 Markdown brief/intake/frame/research/pitch, question and decision provenance,
 source coverage, role assignments and receipts in the project's authorized artifact
 home. Reached shaping stages add the full diagram/contract/security bundle,
@@ -48,6 +49,30 @@ summary, provisional workstreams/proof slices and traceability. HTML and full
 JSON are derived exports; requested Google Docs get saved-target verification
 and an explicit reconciliation path. Do not fabricate artifacts for unreached
 stages. The phase templates define fields, not gate verdicts.
+
+## Human roles and pauses
+
+Read `resources/ways-of-working.md` through the selected route. Identify the actual
+frame/scope decision owner, technical evidence contributors and funding authority;
+one person may hold several human roles without waiving independent review.
+Preserve human answers as attributable candidate decision events for the package
+revision until existing reconciliation/acceptance incorporates them. A confirmed
+human answer is not an accepted snapshot; never rewrite immutable accepted state
+or derived decision views to record it. Do not use role-play approvals.
+Keep that bookkeeping in agent records. Speak the four status lines and pause
+questions in ordinary language, using the guide's plain gloss when a record detail
+matters to the person's next choice. For example, say "independent review has not
+come back" for review_pending. At milestones, fill the guide's four lines from
+current facts. At a decision pause, use an ask-the-user tool when the host has one;
+otherwise show the choices in text. Wait for an actual answer before dependent
+work. Reuse settled answers when the proposal and decision authority are unchanged.
+
+Keep package completeness, human betting, G3 review and G4 delivery distinct.
+A bet choice records the person's decision and stops; it does not open design,
+tickets or the later integration run. A walking skeleton is a separate effort
+the person authorizes: record the request and stop, without launching it, supplying
+repos or writing code. Omit that choice when the person has said there is no code to try.
+Follow the guide's evidence and revision checks when a skeleton result returns.
 
 ## Workflow
 
@@ -65,7 +90,9 @@ stages. The phase templates define fields, not gate verdicts.
    registered for Research; it does not bypass G1. Inspect only a narrowly needed
    solution-free fact when framing cannot proceed without it, and do not load
    architecture-fit or make repository dispositions during Intake/Framed.
-   Frame-only scope finishes after G1.
+   Ask for the human frame decision at the applicable pause; a human answer does
+   not replace gate evidence. Frame-only scope finishes after G1 and that decision;
+   do not offer continued shaping as acceptance of a frame-only request.
 4. Use `research` to set evidence requirements and answer assigned uncertainties.
    Add `code-scan` only for authorized repository inspection; add `human-evidence`
    for supplied evidence or teammate returns. Research plans and opinions are
@@ -89,17 +116,33 @@ stages. The phase templates define fields, not gate verdicts.
    Judge the selected pieces as one set. A confirmed decision absent from opened
    code is a proposed extension, not a reason to select nothing. A set selecting
    no work is a hold naming the walk-away item; do not send it for scoring.
+   If the person explicitly asks for the package decision during shaping, use the
+   guide's incomplete or complete pause and say "independent review has not
+   come back." G3 and G4 retain their own acceptance requirements. Otherwise
+   finish the package and proceed to author
+   audit and review. Do not ask the funding question merely because the files exist,
+   and do not wait for publication before review can return.
+   Check artifact meaning and agreement, not file existence alone. Keep draft-only
+   and artifact-only requests within their requested stopping scope.
 6. Use `review` for author audit followed by actual independent review under the
    gate policy and its twelve-score rubric. Before reviewer dispatch, compare every
    load-bearing existing claim with accepted Research coverage; a false citation or
    unopened material fact reopens G2. Only the conductor may
    accept current-generation results. Draft-only scope finishes at G3 as a shaped
-   draft, without claiming target delivery or Bet-ready.
+   draft, without claiming target delivery or Bet-ready. When betting is in scope
+   and the package is eligible, ask the package question when independent review
+   returns pass, fail, or review_pending. Explain the result in plain words using
+   the guide. Ask while target publication and G4 are still pending if necessary.
 7. Use `publish` after G3 for approved target writes and full saved-result checks.
    Use `reconcile` for external edits or uncertain publication. G4 and Bet-ready
    remain pending until every required target is verified. A delivery-only failure
    does not reopen unchanged content. An explicit target-scope change gets a new
    decision/revision; it does not retroactively satisfy an earlier target contract.
+   If betting is in scope and the package question is still unanswered, ask it
+   here and describe which requested copies still need saving or checking.
+   Preserve a recorded bet through a delivery failure. Reuse an earlier attributable answer
+   for the unchanged revision and authority; pending snapshot acceptance alone
+   does not require asking again.
 
 ## Rules
 

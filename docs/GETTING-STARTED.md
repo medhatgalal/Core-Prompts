@@ -26,6 +26,13 @@ questions, not require a complete form or choose an architecture immediately.
 No repository access is required merely to start: choose AI-led, human-led or
 hybrid research. [Start or resume guided Shape Up](engos-design-shaping.md).
 
+When a proposal is eligible, expect the choice question when independent review
+returns, including a pending result; an upload failure does not postpone it.
+Your yes is recorded and stops shaping. A walking skeleton is a separate effort
+you authorize, and its choice remains available unless you said there is no code
+to try. See [your choice after shaping](engos-design-shaping.md#your-choice-after-shaping)
+for optional APIs, conditional layer sizing and the boundary before later design.
+
 Install the diagram/contract helper with the conductor and gate. When shaping
 stalls, ask for the next missing fact rather than another rewrite of the same
 evidence. The workshop's twelve-score gate holds empty selections and returns
@@ -35,7 +42,7 @@ reuse or new work. It brings in bounded architecture/code-health/testing advice
 when needed; neither reuse nor a whole-repo audit is compulsory.
 Check that page's current pilot status before assuming every host or publishing
 adapter has been validated.
-Verify all six core skills from the reviewed bundle are available. If any are
+Verify all core skills from the reviewed bundle are available. If any are
 missing or outdated, use the [shaping bundle setup](engos-design-shaping.md#enable-the-shaping-bundle)
 to preview their installation plus optional advisors. Naming the
 entry skill alone does not install its dependencies. Installation, mainline merge

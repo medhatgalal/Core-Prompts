@@ -27,6 +27,14 @@ boundaries. Reuse, justified new work and intentional separation are valid outco
 Keep these decisions consistent with diagram roles and contract ownership; no
 second inventory or exhaustive option matrix is required.
 
+## Conditional layer sizing
+
+Only when the team already sizes by layer, include its existing names and scale
+in pitch.md or workstreams.md. Record each layer's owner, size and evidence or
+attributable estimate, or the explicit non-involvement decision. A blank size is
+unknown and remains a gap. Do not invent a layer taxonomy, capacity formula or
+staffing commitment; omit this section for teams that do not use layer sizing.
+
 ## Required diagram fields
 
 `component.mmd`: components, callers, ownership boundaries and seams.
@@ -46,8 +54,16 @@ output/response meaning; material errors; timeout/retry/idempotency; consistency
 and persistence; trust/access boundary; lifecycle/version expectations where
 material; contract state; evidence; owner/action; explicit non-responsibility.
 Use reasoned not-applicable for irrelevant semantics, never blank cells concealing
-a load-bearing seam. Mark proposed interfaces as proposed with cited precedent;
-do not pretend new methods exist. Retain the exemplar Method/Purpose shape.
+a load-bearing seam. The interface entry is a cited network interface, an identified
+in-process interface, or the exact token no API. Network methods and endpoints need
+source evidence. For a no API interaction, the full data contract remains required.
+Use no API only for an interaction without an API. An unknown or uninspected
+interface remains a research gap.
+Input meaning, output meaning, producer, consumer, state, evidence and owner remain
+required. Mark proposed behavior as proposed with its supporting evidence; never
+invent a method, path or schema or present a proposed interface as observed.
+Retain Method/Purpose where applicable. Compare every material row with its matching
+diagram interaction; unexplained differences are gaps, not builder discretion.
 
 ## Security-owner matrix fields
 
@@ -66,3 +82,11 @@ After G3, `betting-table-prep.md` contains a one-minute pitch, key trade-off,
 appetite, review checklist, three evidence-backed hard questions and handoff.
 It is a local sidecar unless requested on target. Any new substantive claim
 requires content reconciliation and affected review, not a publishing shortcut.
+
+The handoff names the exact package revision and source inventory, accepted G3
+receipt (or pending review), requested delivery status, attributable human bet
+decision (or pending decision), appetite/scope, no-gos, unresolved gaps and next
+permitted action. Carry conditional layer sizing only where used by this team.
+Keep skeleton observations, mocks and limits separate from planned integration
+checks and from design/build authority. A document link or a person's yes cannot
+substitute for these records; handoff preparation starts no downstream work.

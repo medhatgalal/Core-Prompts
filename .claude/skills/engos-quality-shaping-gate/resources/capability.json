@@ -177,11 +177,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "1ee53a73",
+        "selected_commit": "96888e5e",
         "richness_score": 5,
-        "line_count": 149,
+        "line_count": 155,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "1ee53a73",
           "6f574d69",
           "e077ae86",
           "7e94f9eb",
@@ -210,7 +211,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "additive",
+          "classification": "preserved",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -233,7 +234,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "1ee53a73",
+          "baseline_commit": "96888e5e",
           "baseline_slug": "engos-quality-shaping-gate"
         },
         {
@@ -284,7 +285,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "4da31555681e6184eddf5a4c55d986293d4916847a5eb1209c2f719cbff82b30",
+      "effective_sha256": "342066a22d118e9dee7c9372cae46a26ba7d509b86268c007d9a20fbbde02f7c",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -423,11 +424,11 @@
       "provenance": {
         "ssot_path": "ssot/engos-quality-shaping-gate.md",
         "ssot_sha256": "ab1d142a4fbc439e8a05f4cbb30a996693ac06c6419aae04e40a2be0b72f3249",
-        "effective_sha256": "4da31555681e6184eddf5a4c55d986293d4916847a5eb1209c2f719cbff82b30",
+        "effective_sha256": "342066a22d118e9dee7c9372cae46a26ba7d509b86268c007d9a20fbbde02f7c",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-            "sha256": "14e1ce48fad71b7035094dce2a336464b63447431cd1bd09a02b36b1c1e14010"
+            "sha256": "9503848faca2ed7d3a533b6aadf869374bdfeeaa048330598d4d77b38a5a2631"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
@@ -520,7 +521,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "096d22123563f67d170ec1c0d5f4b9715c67f10c73dbfe31a8a3e4b8d0681338"
+        "mapping_sha256": "3e18e057ce6bdd352cb5f935e51deaf4fcdaa283bf5dfb069bc6c8005576b6d1"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

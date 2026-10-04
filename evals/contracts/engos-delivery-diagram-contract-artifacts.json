@@ -11,19 +11,22 @@
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "289f47924cf7669901e5ac323dec5cd9a29eb26cbeba396597e8b61dfc36f6b8",
     "d1a96beb5b94ac57063c07c91061969729b8a9228c7024e542fb0b30593bd138",
-    "2dd27ab8ca83c4057e71c58e45c897bb2d510adc2c95ecbf736f35c99cee0678",
     "de03f385e6beb1789c8306668bafaf81d84c4b493c86ecc112acfea4f889bf32",
     "770880d8b8f51430d356c78492079faa127fb37f800d2587b0a355d858b1e9d3",
-    "615a1acbad36edd29859ecdaf8ea58e2a121cc27355e576092ab7331bab2d060",
+    "d074b18c223eef7948f19d70c335eec6f96eacd2aab7497464ba8e3a810f559e",
     "b84887955cf475a536a511dcf08cfff38e7d520cf0de66b9977186fac816c9f4",
     "b2c405ae372f77fd4c536f94afe969b805f4925d9e5f51dedc0a99ff0a848048",
+    "8034d0005e0ae9496e24ab8ad043732c50276f6d9a677c4e9cec9440521416d4",
+    "c73f9def019d35ea0a3ab0556c041ff601a0f274d2e3fbf9367733140509ee66",
+    "c683cdf3a68bad78265a2dd82d68ba1e5c23f257d30b4289972ccbfe1dee61ea",
+    "3bbab18110af274b2c33e8ed37d523c05640741191a0b6ab2e1f6cf7913f64fe",
     "9c0891e45ac11c8dd48c55034a6f0c41becb1d90f2e96d48502c2cc2505617dd",
     "66b1e93fd7b2990d62d1f1de9a7349c6a008ec8fa620cc3c4f88077071fe7020",
     "186400690de02716671138281f6baa35fcb46e2c31ffea8a1376dddc83649ff8",
     "1a4566c7955e8c3f27fd5aeb0c1e21bd6505b473f2fcc52c708ed27f79a0e6b6",
     "d48b5da667b6c0641d63c2ea88b4e59a1a1a59bad419442297a91f6124668282",
     "41acc42318df7524dbf49873e78bfef1d5b0314205a97511823f6a4545424965",
-    "d16090ea15c3ccd3854f803bf90d7563cbdf7fda3a59422a61a718fbb3474654",
+    "65975f2f23bb9b34db6e27f7cede4eca9ef298ae989d99301febfb35f94a2c87",
     "55ee342d593d7a6e0ac677d63972b29150629a739325e3863f4b0df73793d0be",
     "30beea8c5094a61ac9833a0bffb1e6be440671bde2b0a36adcedb3e4958283f2",
     "0631f727847900799ea0a724c034bbac2e58b933476ef79b896b1292482d4d68",
@@ -113,11 +116,6 @@
       "text": "| Required table | Minimum columns |"
     },
     {
-      "sha256": "2dd27ab8ca83c4057e71c58e45c897bb2d510adc2c95ecbf736f35c99cee0678",
-      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "text": "| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |"
-    },
-    {
       "sha256": "de03f385e6beb1789c8306668bafaf81d84c4b493c86ecc112acfea4f889bf32",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
       "text": "Each diagram source must have a caption, diagram type, evidence references, and"
@@ -128,9 +126,9 @@
       "text": "1. Read the pitch and evidence ledger before drawing. Extract only components,"
     },
     {
-      "sha256": "615a1acbad36edd29859ecdaf8ea58e2a121cc27355e576092ab7331bab2d060",
+      "sha256": "d074b18c223eef7948f19d70c335eec6f96eacd2aab7497464ba8e3a810f559e",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "text": "that covers the required seams; if the source cannot support a diagram,"
+      "text": "and data-flow diagrams. If the source cannot support a required diagram,"
     },
     {
       "sha256": "b84887955cf475a536a511dcf08cfff38e7d520cf0de66b9977186fac816c9f4",
@@ -141,6 +139,26 @@
       "sha256": "b2c405ae372f77fd4c536f94afe969b805f4925d9e5f51dedc0a99ff0a848048",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
       "text": "5. Author the security-owner matrix. Assign responsibility only when the pitch"
+    },
+    {
+      "sha256": "8034d0005e0ae9496e24ab8ad043732c50276f6d9a677c4e9cec9440521416d4",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "text": "Each interface entry must be a cited network interface, an identified"
+    },
+    {
+      "sha256": "c73f9def019d35ea0a3ab0556c041ff601a0f274d2e3fbf9367733140509ee66",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "text": "meaning, producer, consumer, state, evidence and owner/action remain required."
+    },
+    {
+      "sha256": "c683cdf3a68bad78265a2dd82d68ba1e5c23f257d30b4289972ccbfe1dee61ea",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "text": "An unknown interface remains a research gap. Use only evidenced methods,"
+    },
+    {
+      "sha256": "3bbab18110af274b2c33e8ed37d523c05640741191a0b6ab2e1f6cf7913f64fe",
+      "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "text": "Keep component, sequence, data-flow and security ownership required."
     },
     {
       "sha256": "9c0891e45ac11c8dd48c55034a6f0c41becb1d90f2e96d48502c2cc2505617dd",
@@ -173,9 +191,9 @@
       "text": "- Treat an unresolved rabbit hole as a mitigation or blocker, never as a"
     },
     {
-      "sha256": "d16090ea15c3ccd3854f803bf90d7563cbdf7fda3a59422a61a718fbb3474654",
+      "sha256": "65975f2f23bb9b34db6e27f7cede4eca9ef298ae989d99301febfb35f94a2c87",
       "source": "ssot/engos-delivery-diagram-contract-artifacts.md",
-      "text": "- Contracts and interfaces only; do not produce implementation code or Jira"
+      "text": "- Contracts and interfaces only; do not produce implementation code or issue-tracker"
     },
     {
       "sha256": "55ee342d593d7a6e0ac677d63972b29150629a739325e3863f4b0df73793d0be",

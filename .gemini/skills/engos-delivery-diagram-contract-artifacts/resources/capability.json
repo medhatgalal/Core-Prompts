@@ -291,7 +291,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "9683176b85b455bce0a587504e79dc98c4856eb838f4ad7b28f5fc358710c39a",
+      "effective_sha256": "88adb10db05aa7ad6eb9a48b823f009a2da8427b3d67a4cb36af0c637e677553",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -373,7 +373,7 @@
     "primary_job": "Produce one inspectable artifact package that can be rendered or embedded on\nmultiple target surfaces while preserving the same component seams, flow,\ncontract states, ownership, assumptions, no-gos, and evidence references.",
     "use_when": "Use when the user asks to make a shaped pitch visual, add architecture\ndiagrams, define API contracts for a pitch, document security ownership, or\nprepare a pitch for a review/betting gate. Use the companion\n`engos-delivery-artifact-embed` skill only after the bundle has passed this\nskill's completeness checks.",
     "works_on": "- the shaped pitch or solution brief\n- appetite, no-gos, and known rabbit holes\n- cited research or source references for components and seams\n- any stated contract states: `exists_and_works`, `exists_but_broken`,\n  `missing`, or `unknown`\n- target surface hint, if known; the authoring output remains surface-agnostic",
-    "main_output": "Write or return a bundle with this stable shape:\n\n`manifest.json` records the pitch identity, appetite, source hashes or links,\ndiagram inventory, contract row count, security-owner row count, target-neutral\nformat, and source status for each artifact: `authored` or `blocked`. Store render\nand placement observations in separate receipts bound to these source hashes; they\nmust not mutate the reviewed source inventory. The Markdown tables must include at least:\n\n| Required table | Minimum columns |\n\n| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |\n\n| Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |\n\nEach diagram source must have a caption, diagram type, evidence references, and\nan explicit statement of what it does not show. The component diagram shows\nnamed components and seams; the sequence diagram shows a representative\nrequest or event path; the data-flow diagram shows data movement and stores.",
+    "main_output": "Write or return a bundle with this stable shape:\n\n`manifest.json` records the pitch identity, appetite, source hashes or links,\ndiagram inventory, contract row count, security-owner row count, target-neutral\nformat, and source status for each artifact: `authored` or `blocked`. Store render\nand placement observations in separate receipts bound to these source hashes; they\nmust not mutate the reviewed source inventory. The Markdown tables must include at least:\n\n| Required table | Minimum columns |\n\n| Data / interface contracts | Stable row ID, direction, interface (cited network method/endpoint, in-process interface, or no API), purpose, producer, consumer, input meaning/bounds, output meaning, contract state, evidence, owner/action |\n\n| Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |\n\nEach diagram source must have a caption, diagram type, evidence references, and\nan explicit statement of what it does not show. The component diagram shows\nnamed components and seams; the sequence diagram shows a representative\nrequest or event path; the data-flow diagram shows data movement and stores.",
     "not_for": "- This skill does not score or approve the pitch; `engos-audit-pitch-review`\n  owns the betting judgment.\n- This skill does not choose a native agent surface or delegate work.\n- This skill does not upload, share, publish, or edit external documents.\n- It must work from pasted content, a local file, or a read-only source export.\n- If evidence is insufficient, return a partial bundle with explicit blockers;\n  never return a polished but unsupported diagram.",
     "authority": "- This skill does not score or approve the pitch; `engos-audit-pitch-review`\n  owns the betting judgment.\n- This skill does not choose a native agent surface or delegate work.\n- This skill does not upload, share, publish, or edit external documents.\n- It must work from pasted content, a local file, or a read-only source export.\n- If evidence is insufficient, return a partial bundle with explicit blockers;\n  never return a polished but unsupported diagram.",
     "routing_question": "Does this request directly require Shaping Artifact Author \u2014 Diagrams, Contracts, and Security Ownership?",
@@ -393,7 +393,7 @@
               "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
               "start_line": 13,
               "end_line": 19,
-              "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+              "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
             }
           },
           {
@@ -401,19 +401,19 @@
             "heading": "Invocation Hints",
             "source": {
               "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-              "start_line": 29,
-              "end_line": 33,
-              "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+              "start_line": 35,
+              "end_line": 39,
+              "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
             }
           },
           {
-            "text": "1. Read the pitch and evidence ledger before drawing. Extract only components,\n   interfaces, stores, owners, and flows that the pitch or cited evidence names.\n2. Set the artifact budget from the appetite. Choose the smallest diagram set\n   that covers the required seams; if the source cannot support a diagram,\n   record `blocked` with the missing evidence rather than guessing.\n3. Read resources/references/diagram-style.md and resources/references/bundle.md.\n   Author Mermaid first. Prefer LR for flows and TB for hierarchy when legible.\n   Apply the team's semantic style palette, keep node\n   labels short, and label edges with protocol, port, or contract context.\n   Keep sequence.mmd a real sequenceDiagram. The documented limited renderer\n   uses no alt/else, short labels and white background. When its actors remain\n   one gray fill, use role-colored bands around sequence messages plus a legend;\n   changing color treatment may not replace the sequence with a flowchart.\n4. Author the contract table for both provided and required interfaces. Record\n   contract state and distinguish observed behavior from assumption.\n5. Author the security-owner matrix. Assign responsibility only when the pitch\n   or evidence names an owner; otherwise record `unassigned` and a concrete\n   decision needed.\n6. Run the no-fabrication check: every node, edge, table row, owner, and\n   enforcement claim has an evidence reference or is visibly marked assumed.\n7. Run the completeness check: component, sequence, data-flow, contracts, and\n   security ownership exist; source and evidence status are recorded; no-go and\n   appetite constraints are carried forward.\n8. Return the bundle and a short judgment. Do not place it on a Google Doc,\n   wiki, PR/MR, or chat surface; hand that action to the embed skill.",
+            "text": "1. Read the pitch and evidence ledger before drawing. Extract only components,\n   interfaces, stores, owners, and flows that the pitch or cited evidence names.\n2. Set the level of detail from the appetite while retaining component, sequence\n   and data-flow diagrams. If the source cannot support a required diagram,\n   record `blocked` with the missing evidence rather than guessing or omitting it.\n3. Read resources/references/diagram-style.md and resources/references/bundle.md.\n   Author Mermaid first. Prefer LR for flows and TB for hierarchy when legible.\n   Apply the team's semantic style palette, keep node\n   labels short, and label edges with protocol, port, or contract context.\n   Keep sequence.mmd a real sequenceDiagram. The documented limited renderer\n   uses no alt/else, short labels and white background. When its actors remain\n   one gray fill, use role-colored bands around sequence messages plus a legend;\n   changing color treatment may not replace the sequence with a flowchart.\n4. Author the contract table for both provided and required interfaces. Record\n   contract state and distinguish observed behavior from assumption.\n5. Author the security-owner matrix. Assign responsibility only when the pitch\n   or evidence names an owner; otherwise record `unassigned` and a concrete\n   decision needed.\n6. Run the no-fabrication check: every node, edge, table row, owner, and\n   enforcement claim has an evidence reference or is visibly marked assumed.\n7. Run the completeness check: component, sequence, data-flow, contracts, and\n   security ownership exist; source and evidence status are recorded; no-go and\n   appetite constraints are carried forward.\n   Each interface entry must be a cited network interface, an identified\n   in-process interface, or the exact token no API. With no API, input/output\n   meaning, producer, consumer, state, evidence and owner/action remain required.\n   An unknown interface remains a research gap. Use only evidenced methods,\n   endpoints and schemas to complete a cell. Check that rows and diagram interactions agree; populated\n   tables with contradictions or unresolved material gaps are still blocked.\n   Keep component, sequence, data-flow and security ownership required.\n8. Return the bundle and a short judgment. Do not place it on a Google Doc,\n   wiki, PR/MR, or chat surface; hand that action to the embed skill.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-              "start_line": 78,
-              "end_line": 102,
-              "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+              "start_line": 84,
+              "end_line": 115,
+              "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
             }
           }
         ]
@@ -430,9 +430,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-              "start_line": 137,
-              "end_line": 144,
-              "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+              "start_line": 150,
+              "end_line": 157,
+              "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
             }
           }
         ]
@@ -445,9 +445,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-              "start_line": 137,
-              "end_line": 144,
-              "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+              "start_line": 150,
+              "end_line": 157,
+              "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
             }
           }
         ]
@@ -460,8 +460,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-        "ssot_sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929",
-        "effective_sha256": "9683176b85b455bce0a587504e79dc98c4856eb838f4ad7b28f5fc358710c39a",
+        "ssot_sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff",
+        "effective_sha256": "88adb10db05aa7ad6eb9a48b823f009a2da8427b3d67a4cb36af0c637e677553",
         "resources": [
           {
             "path": "sources/capability-resources/engos-delivery-diagram-contract-artifacts/references/diagram-style.md",
@@ -485,9 +485,9 @@
               "heading": "Primary Objective",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 23,
-                "end_line": 25,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 29,
+                "end_line": 31,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             }
           ],
@@ -497,9 +497,9 @@
               "heading": "Invocation Hints",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 29,
-                "end_line": 33,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 35,
+                "end_line": 39,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             }
           ],
@@ -509,9 +509,9 @@
               "heading": "Required Inputs",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 37,
-                "end_line": 42,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 43,
+                "end_line": 48,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             }
           ],
@@ -521,9 +521,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 46,
-                "end_line": 46,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 52,
+                "end_line": 52,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             },
             {
@@ -531,9 +531,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 60,
-                "end_line": 64,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 66,
+                "end_line": 70,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             },
             {
@@ -541,19 +541,19 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 66,
-                "end_line": 66,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 72,
+                "end_line": 72,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             },
             {
-              "text": "| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |",
+              "text": "| Data / interface contracts | Stable row ID, direction, interface (cited network method/endpoint, in-process interface, or no API), purpose, producer, consumer, input meaning/bounds, output meaning, contract state, evidence, owner/action |",
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 68,
-                "end_line": 68,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 74,
+                "end_line": 74,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             },
             {
@@ -561,9 +561,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 69,
-                "end_line": 69,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 75,
+                "end_line": 75,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             },
             {
@@ -571,9 +571,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
-                "start_line": 71,
-                "end_line": 74,
-                "sha256": "6762940d898fc730a057f6197a12c352b360e74e5c9d00e6746293fab9f52929"
+                "start_line": 77,
+                "end_line": 80,
+                "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
               }
             }
           ]
@@ -588,7 +588,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "3e09be3f56b4b352868e81e732b1e3138acdd5514ccee997a7e6f1d81e3e6fd0"
+        "mapping_sha256": "b0eca6b5275ad0540f1813563623dfdc8ad2fb0954fe7a5f17655dcdc5c8e4b4"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

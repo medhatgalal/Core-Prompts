@@ -1,3 +1,21 @@
+## v1.16.4 - 2026-10-03
+
+- Bring the reviewed installed shaping guidance into canonical SSOT and bundled
+  resources. Keep spoken status and questions plain while retaining decision and
+  gate bookkeeping in agent records.
+- Ask the eligible-package question when independent review passes, fails or is
+  pending, independently of upload success and G4 delivery verification. Record
+  the person's yes and stop shaping; later design still needs accepted G3 and
+  that yes under its own authority.
+- Keep the data contract required with an optional API, preserve unknown interfaces
+  as research gaps, and use layer sizing only for teams that already use it.
+  Offer a separately authorized walking skeleton unless the person says there is
+  no code to try; shaping records the request and stops.
+- Document the evidence boundary: no live workshop has been run for this guidance.
+  Existing runs keep pinned gate bytes. Adopting changed prose requires an explicit
+  G0 rebind that invalidates current acceptances; the profile remains
+  shaping-gates.v3+rubric.v4 with the existing twelve scores.
+
 ## v1.16.3 - 2026-10-01
 
 - Extend persistent coordinator/writer/separate-reviewer acceptance to the twelve
