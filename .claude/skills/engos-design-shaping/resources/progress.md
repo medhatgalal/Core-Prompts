@@ -6,15 +6,18 @@ capability's progress/runtime instructions and actual helper help before invocat
 Use its versioned projection for all views; do not derive a competing state from
 chat, filenames, an author's status label or `status: consistent` alone.
 
-Lead with the requested outcome and current action, then show Intake, Framed,
-Research, Shaped and Bet-ready only as applicable to the requested stopping point.
+Lead with the requested outcome and current action in plain words. Keep Intake,
+Framed, Research, Shaped and Bet-ready in the agent's recorded stage projection,
+limited to the requested stopping point. Translate relevant stage meaning through
+ways-of-working.md when speaking to the person.
 Framing-only completion leaves later stages outside scope, not failed. Keep latest
 accepted revision distinct from a newer draft needing review or repair. A document
 written, a gate verified, a target saved, and a human bet are separate events.
 
-Show the actual assigned role/actor or unassigned; the precise blocker and needed
-resource/decision; next permitted action; current draft/accepted artifact links;
-content/visual/per-target delivery status; and snapshot/last-observation times.
+Keep the actual assigned actor or unassigned, blocker, needed input, next action,
+draft/accepted artifact links, review/delivery status and observation times in the
+agent record. Tell the person who is working, what is missing and what can happen
+next. Introduce a technical record detail with its plain gloss when it matters.
 Separate implementation appetite from interview effort. Counts of verified gates
 describe gate coverage, never percentage of effort, savings or predicted finish.
 
@@ -40,3 +43,29 @@ monitor. Generated Markdown/HTML/JSON are as-of views from the same record. Exte
 status publication/updates require actual target authority and preserve edits;
 local receipt integrity does not prove a remote target stayed unchanged since its
 last readback. A delivery-only failure preserves unchanged content approval.
+
+## Spoken status and agent bookkeeping
+
+Load ways-of-working.md and fill its four read-aloud lines at pauses and milestones.
+Use current facts and ordinary words; explanatory placeholders belong in the guide.
+Keep exact G3/G4 labels, candidate decision events, accepted snapshots and derived
+decision views in agent records. Use the guide's plain gloss once when their meaning
+first matters to the person's next choice.
+
+G3 content review, G4 delivery and the person's yes are distinct recorded facts.
+After an attributable yes for this proposal, say "Your yes is recorded. Shaping
+has stopped." If the candidate event awaits snapshot acceptance, say "Your answer
+is recorded; the record checks are still pending." Keep any pending review or
+failed upload visible in plain words. Preserve the recorded answer through a
+delivery failure and reuse it on unchanged-revision progress or resume.
+
+When review_pending applies, say "Independent review has not come back."
+When an upload fails, say "The document upload failed." If the package is eligible
+and betting is in scope, ask its question at the review-return pause while those
+items are pending; publication and G4 remain separate checks. A missing record is
+"I cannot verify the current record yet." Label simulated decisions as simulation.
+
+Ask only for a pending, in-scope decision. Use the host's ask-the-user tool when
+available, otherwise the text choices. Wait for an actual answer before dependent
+work. A missing answer leaves the question pending. Preserve the requested scope
+and describe observed progress without estimating effort from gate counts.

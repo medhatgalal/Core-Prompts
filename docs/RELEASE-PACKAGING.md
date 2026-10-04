@@ -12,10 +12,17 @@ Prefer the repo wrappers for build and validate so the runtime selection stays c
 First verify the comparison baseline and run the release build described below. The full test suite includes archive tests that require the generated `dist/consumer-shell` views. On a clean committed checkout, validate the checked-in surfaces before that build, as CI does.
 
 ```bash
-python3 -m pytest -q
+env -u CORE_PROMPTS_RELEASE_BASE_REF python3 -m pytest -q
 bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 ```
+
+Keep the verified release-base override for actual release builds. The test suite
+creates isolated Git repositories with their own tags; the per-command `env -u`
+keeps the outer release tag out of those fixtures while leaving the shell's build
+setting intact. During uncommitted release preparation, stage the intended new
+source and generated resource files before testing: package fixtures enumerate
+Git-tracked paths. Inspect the staged scope before running the gate.
 
 ## Release comparison baseline
 

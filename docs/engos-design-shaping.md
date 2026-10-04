@@ -5,31 +5,62 @@ collect evidence, shape a bounded solution and prepare a pitch for review. You d
 not need a finished specification, repository access or a separate prompt for every
 stage. You retain decisions about appetite, scope and whether to bet.
 
-This capability is under pilot validation. Generated packages and mechanical tests
-do not establish that every host or external publishing path has been verified.
-Current source-candidate status: local mechanical tests, independent source reviews
-and simulated conversational preflights have run. The user-selected pilot uses
-independent subagents; real-person usability remains unmeasured, not an extra
-recruitment requirement for that pilot. A private Google Docs teaching-fixture import has
-passed saved-content and independent nine-page visual checks; this is adapter
-evidence, not real-pitch acceptance. A subsequent six-role product/engineering
-simulation exercised framing, evidence handoffs and a complete candidate draft.
-Its result was partial. The source candidate now adds rich presentation profiles
-and evidence-derived progress views; visual iterations and independent checks
-are recorded separately from the earlier pilot. Worker access limits must not
-be turned into product requirements. Role-play does not
-establish real-person usability. The repository-fit exercises additionally cover
-reuse, justified new work, intentional separation, missing access and specialist
-scope; two request-overload findings were repaired and replayed successfully.
-A complete real-input pitch on both requested surfaces remains unproven.
-Hosted checks and dual-remote delivery are verified per code revision in the
-corresponding reviews; they do not establish that earlier pilot's acceptance.
-No automatic implementation, tickets, staffing, sharing or global installation
-follows from shaping a pitch.
+## Your choice after shaping
 
-The source corrections below have their own mechanical and bounded authoring
-evidence. Prior real-input/two-surface pilot limitations remain; mainline delivery
-or a small synthetic check is not a claim of complete workshop acceptance.
+The proposal makes the solution visible with a sequence diagram, a component
+diagram and a data contract. The full bundle also includes the data-flow diagram,
+security owners, evidence, risks and exclusions. Missing artifacts or unresolved
+material seams keep the proposal in shaping.
+
+A network API is optional. A contract can identify a cited network interface, an
+in-process interface or `no API`. Input/output meaning, producer, consumer, state,
+evidence and ownership remain required. An unknown interface remains a research
+gap; it cannot be filled with `no API` or an invented endpoint.
+
+Layer sizing applies only when your team already uses it, with your own layer
+names and scale. Each named layer needs an owner and size, or an explicit decision
+that it is not involved. A blank size stays unknown and prevents the bet offer.
+Teams without layer sizing omit that section.
+
+Once the package is eligible, the assistant asks what should happen next when
+independent review returns a pass, a fail or a pending result. It explains the
+review result in ordinary words. A failed document upload does not delay this
+question. You can bet, request an interface revision, authorize a separate walking
+skeleton, send the proposal back or stop. G4 remains delivery verification.
+
+The skeleton choice is offered unless you have said there is no code to try.
+After choosing it, you supply repositories and code locations to that separately
+authorized effort. Shaping records the request and stops. A returned trial is
+checked against the diagrams and data contract; it returns to the bet decision,
+sets no size and supplies no substitute for the later integration run.
+
+Your yes is recorded against the proposal and stops shaping. It does not mark
+Bet-ready or start design. Later design needs an accepted independent G3 pass,
+your yes, any delivery you actually requested and its own scoped authority.
+A delivery failure preserves the recorded yes, and an unchanged answer is kept
+on resume.
+
+Status uses four plain lines: **Working on**, **Where we are**, **What is missing**
+and **Next step**. For example, it says “independent review has not come back” or
+“the document upload failed.” Candidate events, accepted snapshots and exact gate
+labels stay in agent records, with a plain explanation when their meaning matters
+to your next choice. Silence leaves a question pending; the assistant uses the
+host's ask-the-user tool when available.
+
+## Evidence and migration status
+
+A live workshop has not been run for this guidance. Earlier mechanical tests,
+independent source reviews, simulated preflights and teaching-fixture publication
+checks have narrower scopes. Case-reader answers and release checks do not prove
+workshop usability, authenticated host behavior or a complete real-input pitch
+on its requested surfaces. This release makes no such claim.
+
+The profile name remains `shaping-gates.v3+rubric.v4`, with the existing twelve
+scores. An existing run keeps its pinned gate bytes. Adopting the new gate prose
+requires an explicit G0 rebind, which invalidates current acceptances and requires
+reassessment. Installation alone does not rebind a live run or rewrite history.
+No implementation, tickets, staffing, sharing or further installation follows
+from shaping a proposal.
 
 ## Evidence-directed iteration
 
@@ -50,7 +81,7 @@ an explicit G0 policy rebind before claiming these checks.
 | Confirmed behavior is absent from code | Shape it as a proposed extension with researched basis |
 | Set selects no pieces | Unscored hold naming the walk-away item |
 | Only average <4 fails, every score >=3, evidence unchanged | Stop pitch dispatch; acquire a new fact, name a spike or hold |
-| Actual independent G3 pass | Handoff to design within the user's authority and requested delivery scope |
+| Actual independent G3 pass plus the person's yes | Later design within its separately authorized scope and requested delivery obligations |
 
 Cost 3 includes restating appetite. One example of this pattern is listing the
 same bounded operations again without new supported cost evidence; more prose
@@ -84,7 +115,8 @@ Ask for recovery when state cannot be verified:
 > the last review.
 
 A policy migration is deliberate: record changed rules, authority and impact,
-then reaccept the gates invalidated by G0 reopen. A policy hash change is not a
+use an explicit G0 rebind that invalidates current acceptances, then reaccept the
+affected gates. A policy hash change is not a
 new product fact and never automatically makes an old failed receipt a pass.
 
 The researcher checks summary/quoted-source agreement, occurrence claims across

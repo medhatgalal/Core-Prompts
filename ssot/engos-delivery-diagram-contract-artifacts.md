@@ -18,6 +18,12 @@ an API/contract table, and a security-owner matrix from stated evidence. It does
 not decide whether the pitch is worth betting, add implementation code, or
 silently fill gaps with plausible internals.
 
+Resolve `engos-design-shaping` through the host registry or explicit binding and
+read its `ways-of-working.md` resource when advising on a bet, API or skeleton.
+Return package findings to the conductor; human decision authority stays with
+the person. Keep manifest states and receipt details in agent records. Use the
+guide's read-aloud wording for any spoken status or pause question.
+
 ## Primary Objective
 
 Produce one inspectable artifact package that can be rendered or embedded on
@@ -65,7 +71,7 @@ must not mutate the reviewed source inventory. The Markdown tables must include 
 
 | Required table | Minimum columns |
 | --- | --- |
-| API / contracts | Method, endpoint (network only), purpose, direction, interface, producer, consumer, contract state, evidence, owner/action |
+| Data / interface contracts | Stable row ID, direction, interface (cited network method/endpoint, in-process interface, or no API), purpose, producer, consumer, input meaning/bounds, output meaning, contract state, evidence, owner/action |
 | Security ownership | Responsibility, owner, enforcement/control, boundary, evidence, unresolved gap |
 
 Each diagram source must have a caption, diagram type, evidence references, and
@@ -77,9 +83,9 @@ request or event path; the data-flow diagram shows data movement and stores.
 
 1. Read the pitch and evidence ledger before drawing. Extract only components,
    interfaces, stores, owners, and flows that the pitch or cited evidence names.
-2. Set the artifact budget from the appetite. Choose the smallest diagram set
-   that covers the required seams; if the source cannot support a diagram,
-   record `blocked` with the missing evidence rather than guessing.
+2. Set the level of detail from the appetite while retaining component, sequence
+   and data-flow diagrams. If the source cannot support a required diagram,
+   record `blocked` with the missing evidence rather than guessing or omitting it.
 3. Read resources/references/diagram-style.md and resources/references/bundle.md.
    Author Mermaid first. Prefer LR for flows and TB for hierarchy when legible.
    Apply the team's semantic style palette, keep node
@@ -98,6 +104,13 @@ request or event path; the data-flow diagram shows data movement and stores.
 7. Run the completeness check: component, sequence, data-flow, contracts, and
    security ownership exist; source and evidence status are recorded; no-go and
    appetite constraints are carried forward.
+   Each interface entry must be a cited network interface, an identified
+   in-process interface, or the exact token no API. With no API, input/output
+   meaning, producer, consumer, state, evidence and owner/action remain required.
+   An unknown interface remains a research gap. Use only evidenced methods,
+   endpoints and schemas to complete a cell. Check that rows and diagram interactions agree; populated
+   tables with contradictions or unresolved material gaps are still blocked.
+   Keep component, sequence, data-flow and security ownership required.
 8. Return the bundle and a short judgment. Do not place it on a Google Doc,
    wiki, PR/MR, or chat surface; hand that action to the embed skill.
 
@@ -121,7 +134,7 @@ request or event path; the data-flow diagram shows data movement and stores.
 - Preserve the same artifact identity across all surfaces; adapters may change
   representation, not meaning.
 - Fail loudly when the appetite cannot support the requested artifact set.
-- Contracts and interfaces only; do not produce implementation code or Jira
+- Contracts and interfaces only; do not produce implementation code or issue-tracker
   tickets.
 
 ## Surface Contract

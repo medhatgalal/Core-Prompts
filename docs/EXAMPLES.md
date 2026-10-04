@@ -42,6 +42,36 @@ Expect the necessary outcomes and assumptions, failure scenarios, strongest obje
 
 ### `engos-design-shaping`
 
+For a local-file proposal and a pending review:
+
+> Our proposal has its diagrams and data contract. It transforms local files,
+> uses no API, and our team does not size by layer. Independent review has not
+> come back and the document upload failed. Show what is missing and ask what
+> we want to do next.
+
+Expected: four plain status lines and the eligible-package question while review
+and upload remain pending. The data contract retains input/output meaning,
+producer, consumer, state, evidence and owner; no layer section is imposed.
+A blank required layer size on a team that does size by layer would instead hold
+the bet offer. An unknown interface stays a research gap, not `no API`.
+
+> I bet this proposal. Record my yes and stop shaping.
+
+Expected: a decision for that proposal revision and a stop. G4 keeps its delivery
+verification meaning. Later design still needs an accepted G3 pass, that yes and
+its own scoped authority. A failed upload preserves the recorded answer on resume.
+
+For the separate trial choice, offered unless you have said there is no code:
+
+> I authorize a separate walking skeleton against this proposal. I will supply
+> the repositories and code locations to that effort. Record the request here.
+
+Expected: the request is recorded and shaping stops; no repository discovery or
+trial execution starts here. A returned trial is checked against the proposal
+before returning to the human bet decision. These are usage examples, not evidence
+that a live workshop has run. [Human choices and evidence limits](engos-design-shaping.md#your-choice-after-shaping).
+
+
 For an evidence correction during resume:
 
 > Check this Research note against its opened sources before review. If the

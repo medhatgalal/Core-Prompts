@@ -23,6 +23,9 @@ an existing specification; you do not need to choose the supporting skills.
 Expect a problem summary and a few useful questions first—not an instant finished
 pitch. Later stages add source-backed diagrams, contracts, ownership, independent
 review and verified delivery. You retain appetite, scope and betting decisions.
+The eligible-package question follows independent review, including a pending
+result; it can be asked while an upload is blocked. Your recorded yes stops
+shaping. Later design still needs accepted G3 and that yes; G4 verifies delivery.
 
 If a review misses only the twelve-score average on unchanged evidence, the
 workshop stops rewriting pitches and asks for a new fact, a named spike or a hold.

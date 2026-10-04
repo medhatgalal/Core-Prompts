@@ -29,20 +29,26 @@
     "02c669626237dbd709efb0dcd5e4b7877cfabd6a15fdab53bfd9a54516fbb895",
     "cb4547686bf497ced6bfca4d10552e7e2ed68626c9ef9d8183ba09a7c22333e9",
     "3cfba070ca0b476f7995feb1e5955886d777a9de5aad6424c58da989206184ff",
-    "9f9320ecd21859d9ed37b93299299dc050f3746aa22094cf4706939e7f12c09e",
+    "0864524aed6dbd5adde3564b61b7003c737666d9679e08dfe2c7345bbb63964e",
     "92144e81907dee978bf8086cb930f44d09aa200e301fed3228471ed69f2d71fb",
     "142ad5c2a08c8c6bffb84b0222cef12ac7a1f07faef697523776a3f57e667edb",
     "254d67a17700ae0bc76f0847110405d9823f122ad2e893db5cbff09faa020b2f",
     "e4f7203723d676ffa386d1150494f72aaafdf052ced170b49f89e7d04c4cc64c",
     "7fb36ca2a2960d2521622408b7b36c02c84ae72e3ff6411b4397178c436fb711",
     "aa7e5a426fdf68ebfe29ba7e527ae1f5b7821afc88cdd9dfad2346f2fa63b0c4",
-    "72cadfc0d92e3123a9fd3bbba62c50a9c9f84699354e55c0f80b2cfbf60abe0e",
+    "f38a8db04ad1844aa42ffe435b7db1fb86ac2cf0be33e974f7578174a03b062e",
+    "e92f170416256fb71de1274b53acc9a82c8bb9b4e126629af3e52fff538045e2",
+    "a9e0df0c00a0477d854a7b212b6ac238e08806c3983a64633859aae1daa577f9",
+    "9b73f5439677836866afd65dce9e4a2594fade4516f472ff3627a1a5201e2840",
     "4048f6768e6ff3161a9ef6aa528511b7732e79046d92936149c41f4c5c91c542",
     "e961b75927a0c7d524d3f92290308e72044ba0c99d1fe08a96a72fb14ce9d2b1",
     "5489dd44de203c7bcd70f6627da63e23a2cf145e36cc6fd604c6199af7c56ada",
-    "a3c7cda8e724f2dfcbaef62ac9920484c66873c744775cde039b99e2c88ddd90",
-    "6c305a760714aec902540e857be16f62501c22b02869932c194846e95cfed1f9",
-    "dc141f4904b0a3e5867bc143a8c78b594beaf45a6d6950197a3217d2b2d26c5a",
+    "44667938a9538fc972f0a9fa6b5e0357729a62cb77ce83f6c9f7926d55bd023b",
+    "c2b7c16937b36a4035153a9d26c5d1fb54c807a1a5a46272fb9de9c7add5f538",
+    "92779efdc8464b9ecefbc2eaef28ed59c650aa6d7c2555ed4375f30e80422172",
+    "64ba327ab9b484a9cb63875dacc0fec77241ad06e8b5400a262c71e0132c1826",
+    "819ca7e9f42f099b64becd6d03aa7374e586907c7135062770f900c1e25d9ba6",
+    "ec70a3c30244e91d85d19e799599e82c481095a76e5c3b543b15de907caa5324",
     "6353e5a5e9ea1dbc74423cd205aff2ebed07d4eff0134ca56cd822c7db5ac6c6",
     "8876a2dc52e3810c80d741aaeb50075338303352b75a89718e5f1c427d32f743",
     "1d966adee063d7e5088206a1c83e6c1460396860f4f3f6eb37ea136507c9fc8c",
@@ -396,9 +402,9 @@
       "text": "required. Identify migration, owner, rollback and retirement implications only"
     },
     {
-      "sha256": "9f9320ecd21859d9ed37b93299299dc050f3746aa22094cf4706939e7f12c09e",
+      "sha256": "0864524aed6dbd5adde3564b61b7003c737666d9679e08dfe2c7345bbb63964e",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-      "text": "These conditional implications do not waive existing mandatory contract/security"
+      "text": "Contract completeness and security ownership remain required in every applicable"
     },
     {
       "sha256": "92144e81907dee978bf8086cb930f44d09aa200e301fed3228471ed69f2d71fb",
@@ -431,9 +437,24 @@
       "text": "actual rendered pixels, not only a parsing report."
     },
     {
-      "sha256": "72cadfc0d92e3123a9fd3bbba62c50a9c9f84699354e55c0f80b2cfbf60abe0e",
+      "sha256": "f38a8db04ad1844aa42ffe435b7db1fb86ac2cf0be33e974f7578174a03b062e",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-      "text": "and persistence constraints when relevant; do not invent internals."
+      "text": "meaning, producer, consumer, state, evidence and owner remain required. An unknown"
+    },
+    {
+      "sha256": "e92f170416256fb71de1274b53acc9a82c8bb9b4e126629af3e52fff538045e2",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "text": "interface remains a research gap. Use only evidenced methods, paths and schemas."
+    },
+    {
+      "sha256": "a9e0df0c00a0477d854a7b212b6ac238e08806c3983a64633859aae1daa577f9",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "text": "consistency and persistence constraints when relevant; do not invent internals."
+    },
+    {
+      "sha256": "9b73f5439677836866afd65dce9e4a2594fade4516f472ff3627a1a5201e2840",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "text": "Check agreement with the diagram interactions, not only populated cells."
     },
     {
       "sha256": "4048f6768e6ff3161a9ef6aa528511b7732e79046d92936149c41f4c5c91c542",
@@ -451,19 +472,34 @@
       "text": "Only the controller accepts immutable content/question/decision snapshots. Workers"
     },
     {
-      "sha256": "a3c7cda8e724f2dfcbaef62ac9920484c66873c744775cde039b99e2c88ddd90",
+      "sha256": "44667938a9538fc972f0a9fa6b5e0357729a62cb77ce83f6c9f7926d55bd023b",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-      "text": "diagram inspection even when JSON is the only requested delivery format. The"
+      "text": "diagram inspection even when JSON is the only requested delivery format. Verify the targets actually required by the request; do not impose the original"
     },
     {
-      "sha256": "6c305a760714aec902540e857be16f62501c22b02869932c194846e95cfed1f9",
+      "sha256": "c2b7c16937b36a4035153a9d26c5d1fb54c807a1a5a46272fb9de9c7add5f538",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-      "text": "original pilot's required HTML AND Google Doc proof is not waived by JSON export."
+      "text": "pilot's platforms on every team. Where HTML AND Google Doc were required, including"
     },
     {
-      "sha256": "dc141f4904b0a3e5867bc143a8c78b594beaf45a6d6950197a3217d2b2d26c5a",
+      "sha256": "92779efdc8464b9ecefbc2eaef28ed59c650aa6d7c2555ed4375f30e80422172",
       "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-      "text": "A frame-only request ends at G1; a shaped-draft request at G3. Never invent prior"
+      "text": "that pilot, both targets remain required alongside any JSON export. A frame-only request ends at G1;"
+    },
+    {
+      "sha256": "64ba327ab9b484a9cb63875dacc0fec77241ad06e8b5400a262c71e0132c1826",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "text": "a shaped-draft request at G3. Never invent prior gate history when auditing an"
+    },
+    {
+      "sha256": "819ca7e9f42f099b64becd6d03aa7374e586907c7135062770f900c1e25d9ba6",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "text": "the full data-flow/security bundle and any sizing required by the team's existing"
+    },
+    {
+      "sha256": "ec70a3c30244e91d85d19e799599e82c481095a76e5c3b543b15de907caa5324",
+      "source": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "text": "package returns through the existing affected-stage review rules. Do not rebind a"
     },
     {
       "sha256": "6353e5a5e9ea1dbc74423cd205aff2ebed07d4eff0134ca56cd822c7db5ac6c6",

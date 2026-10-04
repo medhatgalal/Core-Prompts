@@ -48,6 +48,25 @@ support the required set, expose that conflict; do not silently omit artifacts.
 Use Mermaid source and the artifact helper's style; an alternative requires a
 documented expressiveness limit and retained source. Inspect actual rendered pixels.
 
+The conductor uses the package decision pause in ways-of-working.md only within
+the requested scope. A bet may be offered only when component.mmd, a real
+sequenceDiagram in sequence.mmd, and the data contract exist with meaningful,
+consistent content. Empty files and headings do not count. The full data-flow
+and security bundle remains required; a package with a known material gap is not
+eligible for the bet question. This completeness check is not G3, G4 or a human bet.
+
+Only if the team already sizes work by layer, use its own layer names and scale.
+Each named layer needs an owner and a size with provenance, or an explicit decision
+that it is not involved. An empty size stays unknown and missing. Do not infer zero,
+require a fixed layer count, prescribe a non-involvement code or calculate capacity.
+Record applicable sizing in the existing bundle, not a new tracker.
+
+The contract's interface entry is a cited interface, an identified in-process
+interface, or the exact token no API. A network API is optional. Input/output
+meaning, producer, consumer, state, evidence and owner remain required. Do not invent an endpoint, method
+or schema when the person asks to add an API; missing basis evidence returns to
+Research. The builder will choose is not a sequence, a component, or a data contract.
+
 Cover component/caller identity, input/output meaning, material failure/timeout/
 retry and consistency semantics, trust boundaries, enforcement owners, persistence
 and non-responsibilities. Compare diagrams and table rows for semantic agreement,
