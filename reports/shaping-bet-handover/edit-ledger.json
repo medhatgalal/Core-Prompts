@@ -1,0 +1,50 @@
+{
+  "status": "instruction update; behavioral_pending",
+  "edited_artifacts": [
+    {
+      "slug": "engos-design-shaping",
+      "originals": {
+        "lines": 262,
+        "words": 2386,
+        "bytes": 17169,
+        "estimated_tokens_at_4_bytes": 4292
+      },
+      "candidates": {
+        "lines": 280,
+        "words": 2630,
+        "bytes": 18730,
+        "estimated_tokens_at_4_bytes": 4682
+      }
+    },
+    {
+      "slug": "engos-quality-shaping-gate",
+      "originals": {
+        "lines": 155,
+        "words": 1246,
+        "bytes": 9112,
+        "estimated_tokens_at_4_bytes": 2278
+      },
+      "candidates": {
+        "lines": 181,
+        "words": 1539,
+        "bytes": 11104,
+        "estimated_tokens_at_4_bytes": 2776
+      }
+    }
+  ],
+  "authorized_changes": [
+    "three ordered human decisions",
+    "one bounded accepted handover",
+    "selected output formats after handover",
+    "Word handover through host document skill"
+  ],
+  "preserved": [
+    "optional network API with full no-API data contract",
+    "separate authorized walking skeleton",
+    "Mermaid source and existing render/embed paths",
+    "independent content review and saved-target checks",
+    "historical pinned policy and receipts"
+  ],
+  "unresolved_ambiguities": [],
+  "token_estimate_method": "UTF-8 bytes / 4, rough estimate only"
+}

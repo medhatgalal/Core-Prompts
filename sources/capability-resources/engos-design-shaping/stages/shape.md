@@ -48,7 +48,7 @@ support the required set, expose that conflict; do not silently omit artifacts.
 Use Mermaid source and the artifact helper's style; an alternative requires a
 documented expressiveness limit and retained source. Inspect actual rendered pixels.
 
-The conductor uses the package decision pause in ways-of-working.md only within
+The conductor uses the team decision pause in ways-of-working.md only within
 the requested scope. A bet may be offered only when component.mmd, a real
 sequenceDiagram in sequence.mmd, and the data contract exist with meaningful,
 consistent content. Empty files and headings do not count. The full data-flow
@@ -83,4 +83,9 @@ condition, not merely an intermediate action. One example of this pattern is a
 proof that observes initiation but never observes the required user-visible result;
 that proof is insufficient. Describe the observation as a future
 acceptance check unless it actually ran. No proof or ownership is invented.
+Every proposed in-item also needs one proof sentence stating its observable
+completion. Record each deferred item with a reason and its need for a separate
+pitch; retain forbidden lines verbatim. Safe cuts are shaping proposals only:
+after table acceptance nobody may drop a build-these line. Write no downstream
+spec, requirements, design, architecture document, plan or task list.
 Author audit precedes the `review` route. Gate criteria and scoring remain there.

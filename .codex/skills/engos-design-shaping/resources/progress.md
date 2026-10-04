@@ -53,16 +53,19 @@ decision views in agent records. Use the guide's plain gloss once when their mea
 first matters to the person's next choice.
 
 G3 content review, G4 delivery and the person's yes are distinct recorded facts.
-After an attributable yes for this proposal, say "Your yes is recorded. Shaping
-has stopped." If the candidate event awaits snapshot acceptance, say "Your answer
+After a table accept, write the one handover, ask for output choices and verify
+the selected copies before reporting shaping stopped. If output choice is pending,
+say "Your accept is recorded. The handover is written. I need your output choice."
+If the candidate event awaits snapshot acceptance, say "Your answer
 is recorded; the record checks are still pending." Keep any pending review or
 failed upload visible in plain words. Preserve the recorded answer through a
 delivery failure and reuse it on unchanged-revision progress or resume.
 
 When review_pending applies, say "Independent review has not come back."
-When an upload fails, say "The document upload failed." If the package is eligible
-and betting is in scope, ask its question at the review-return pause while those
-items are pending; publication and G4 remain separate checks. A missing record is
+When an upload fails, say "The document upload failed." A pending or failed review
+keeps shaping open; the team question requires the ready, reviewed package.
+The table also requires actual team acceptance and applicable package-delivery
+checks. Follow the three ordered questions in ways-of-working.md. A missing record is
 "I cannot verify the current record yet." Label simulated decisions as simulation.
 
 Ask only for a pending, in-scope decision. Use the host's ask-the-user tool when

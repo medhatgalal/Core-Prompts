@@ -23,9 +23,12 @@ an existing specification; you do not need to choose the supporting skills.
 Expect a problem summary and a few useful questions first—not an instant finished
 pitch. Later stages add source-backed diagrams, contracts, ownership, independent
 review and verified delivery. You retain appetite, scope and betting decisions.
-The eligible-package question follows independent review, including a pending
-result; it can be asked while an upload is blocked. Your recorded yes stops
-shaping. Later design still needs accepted G3 and that yes; G4 verifies delivery.
+Three decisions stay separate: engineering accepts the frame, the team accepts
+the shaping package, then the betting table accepts, sends back, abandons or
+splits the pitch. Accept writes one handover with build, deferred and forbidden
+lists, then asks for HTML, Google Doc, Word, JSON or all four. Only chosen copies
+are produced. A later build session starts at spec for the accepted list; it
+cannot drop an item or pick up deferred work. [Human choices and handover](docs/engos-design-shaping.md#your-choice-after-shaping).
 
 If a review misses only the twelve-score average on unchanged evidence, the
 workshop stops rewriting pitches and asks for a new fact, a named spike or a hold.
