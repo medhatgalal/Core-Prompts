@@ -42,6 +42,11 @@ SUCCESSORS = {
 }
 SUCCESSORS.update({slug: slug for slug in tuple(SUCCESSORS.values()) if slug})
 SUCCESSORS["engos-audit-opex-incident-review"] = "engos-audit-opex-incident-review"
+SUCCESSORS.update({slug: slug for slug in (
+    "engos-design-shaping",
+    "engos-quality-shaping-gate",
+    "engos-delivery-diagram-contract-artifacts",
+)})
 PROVIDERS = {"codex": "toml", "gemini": "md", "claude": "md", "kiro": "json", "grok": None}
 
 

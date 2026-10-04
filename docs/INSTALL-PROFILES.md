@@ -104,7 +104,7 @@ The checked-in `.meta/install-profiles/legacy-installations.json` catalog binds
 complete historical package inventories to exact hashes and modes. Its source
 release refs are recorded in `legacy-release-refs.json`. Recognition uses this
 trusted catalog or an existing valid ownership receipt, not a target-authored
-manifest. The catalog covers 54 pinned release versions; the historical 24-skill
+manifest. The catalog covers 55 pinned release versions; the historical 24-skill
 population is one fixture, not a limit on supported current capabilities.
 
 Each skill and agent is recognized independently. A recognized Kiro skill does

@@ -63,6 +63,52 @@ def test_portable_runtime_needs_no_git(monkeypatch):
     assert catalog.runtime_identities(data, "VERSION")
 
 
+@pytest.mark.parametrize("damage", [None, "bytes", "mode", "extra"])
+def test_pinned_shaping_packages_upgrade_without_claiming_custom_files(tmp_path, damage):
+    """A complete released package can upgrade; local changes stay protected."""
+    from core_install import planner
+
+    slugs = ("engos-design-shaping", "engos-quality-shaping-gate",
+             "engos-delivery-diagram-contract-artifacts")
+    target = tmp_path / "target"
+    target.mkdir()
+    for slug in slugs:
+        prefix = f".grok/skills/{slug}"
+        rows = subprocess.check_output(
+            ["git", "ls-tree", "-r", "v1.16.4", "--", prefix], cwd=ROOT, text=True,
+        ).splitlines()
+        assert rows, f"missing pinned release fixture: {prefix}"
+        for row in rows:
+            meta, rel = row.split("\t", 1)
+            path = target / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(subprocess.check_output(["git", "show", f"v1.16.4:{rel}"], cwd=ROOT))
+            path.chmod(int(meta.split()[0], 8) & 0o777)
+
+    changed_root = ".grok/skills/engos-design-shaping"
+    entry = target / changed_root / "SKILL.md"
+    if damage == "bytes":
+        entry.write_bytes(entry.read_bytes() + b"\nUser customization.\n")
+    elif damage == "mode":
+        entry.chmod(0o600)
+    elif damage == "extra":
+        (target / changed_root / "user-notes.md").write_text("Keep my notes.\n")
+
+    result = planner.plan(ROOT, target, dict(
+        mode="install", providers=["grok"], kinds=["skill"], slugs=list(slugs), runtime=False,
+    ))
+    assert not result["blockers"]
+    held = {item["slug"] for item in result["preserved"]}
+    if damage is None:
+        assert not held
+        assert any(action["path"] == changed_root + "/SKILL.md" for action in result["actions"])
+    else:
+        assert held == {"engos-design-shaping"}
+        assert not any(action["path"].startswith(changed_root + "/") for action in result["actions"])
+    assert result["selection"] == [f"grok:skill:{slug}" for slug in sorted(slugs)]
+    assert not any("/agents/" in action["path"] for action in result["actions"])
+
+
 @pytest.mark.parametrize("corrupt", ["path", "hash", "mode", "schema", "root", "release"])
 def test_invalid_catalog_fails_closed(tmp_path, corrupt):
     catalog = api()

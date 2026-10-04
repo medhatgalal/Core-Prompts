@@ -1,4 +1,4 @@
-## Unreleased
+## v1.16.5 - 2026-10-04
 
 - Separate engineering frame agreement, team package acceptance and the betting
   table into three ordered questions with plain phase, needed-input and next-step
@@ -11,6 +11,9 @@
   all four. Preserve existing diagram/export paths and saved-target checks; use
   the host Word skill for a handover-only Word copy. Instruction coverage is not
   live behavior proof.
+- Add the verified v1.16.4 release identity to the historical install catalog,
+  so pristine packages with older ownership records can upgrade normally while
+  customized packages remain preserved.
 
 ## v1.16.4 - 2026-10-03
 
