@@ -5,12 +5,13 @@
     "intake": [],
     "frame": [],
     "research": [],
-    "shaped": ["references/rubrics.md"],
-    "delivery": [],
+    "shaped": ["references/rubrics.md", "references/review-evidence.md"],
+    "delivery": ["references/review-evidence.md"],
+    "review-evidence": ["references/review-evidence.md"],
     "runtime": ["references/runtime.md"],
     "progress": ["references/progress.md"],
     "progress-tools": ["schemas/progress.schema.json", "scripts/shaping_run.py"],
-    "runtime-tools": ["scripts/shaping_run.py", "schemas/runtime.schema.json", "schemas/policy.example.json"]
+    "runtime-tools": ["scripts/shaping_run.py", "schemas/runtime.schema.json", "schemas/review-evidence.schema.json", "schemas/policy.example.json"]
   },
   "dependencies": {}
 }

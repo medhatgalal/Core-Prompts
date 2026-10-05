@@ -1,0 +1,51 @@
+{
+  "status": "historical premerge verification checkpoint; current delivery state is in the attached PR/MR",
+  "request_sha256": "1c69ad600103f654a6ac1c0a958efb36648c6be0bfcbcf9edcd557ad1c657474",
+  "base": "0090681eecff9af1e3eb06ec18f599df713e15e9",
+  "branch": "AI/shaping-review-evidence-markdown",
+  "scope": [
+    "generic shaping review evidence and failure routing",
+    "selectable reusable Markdown handover",
+    "canonical sources and generated surfaces",
+    "focused tests and PR/MR/main delivery"
+  ],
+  "exclusions": [
+    "protected live run reads/writes or rebind",
+    "product implementation",
+    "versioned release",
+    "home installation"
+  ],
+  "evidence_limits": [
+    "supplied protected-run facts only",
+    "no historical re-grading",
+    "mechanical checks do not prove semantic meaning or host authenticity"
+  ],
+  "pending": [
+    "exact-head hosted checks",
+    "authorized merge and main parity",
+    "scoped cleanup"
+  ],
+  "review_findings": [
+    "receipt-only opening evidence replaced by controller-recorded postseal observations",
+    "typed finding ownership, conflicting routes and prerequisite cycles",
+    "G3 dispatch/schema/resource packaging mismatch",
+    "accepted proof and final contributor binding"
+  ],
+  "checks": {
+    "focused_final": "468 passed, 13 optional skips, zero failed",
+    "native_word_approved_runtime": "12 passed, zero failed",
+    "review_evidence_final": "75 passed, zero failed",
+    "handover_outputs": "55 passed, zero failed",
+    "contract_UAC_checks": "288 passed",
+    "presentation_cache_export": "19 passed",
+    "routing": "58 passed",
+    "UAC_workspace_subset": "5 passed, 25 deselected",
+    "package_checks": "253 passed and 2 local tracked-inventory process failures; both resolved by 5-passed packaging recheck after staging",
+    "UAC": "both same-slug plan/judge accepted and apply applied; canonical byte-equal candidates",
+    "generated_readback": "10 skill bodies, 160 resources, 10 descriptors match canonical",
+    "schema_sync": "8 source URLs refreshed strictly",
+    "strict_validation": "passed",
+    "smoke_compile_static_calibration": "passed; no behavioral claim"
+  },
+  "numeric_skill_grade": "none"
+}

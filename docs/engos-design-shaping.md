@@ -44,10 +44,10 @@ and any actual skeleton result. It states what shaping did not do and everything
 still outside this handoff. Shaping writes no spec, requirements, design,
 architecture document, plan or tasks.
 
-The assistant then asks which copies you want: HTML, Google Doc, Word, JSON or all
-four. It produces only your selection, reuses the package diagrams and tables,
+The assistant then asks which copies you want: HTML, Google Doc, Word, JSON, Markdown, or all of them. All means all five. It produces only your selection, reuses the package diagrams and tables,
 checks the saved outputs and stops. Word is a handover-only copy through the host's
-existing document skill. A failed save preserves your accept and stays pending.
+existing document skill. A private DOCX used to convert a Google Doc is not a selected Word output.
+A failed save preserves your accept and stays pending.
 
 A separate build session starts at spec only for the build-these list. It may
 finish every line, may not drop one and may not pick up deferred or forbidden work.
@@ -68,8 +68,8 @@ checks have narrower scopes. Case-reader answers and release checks do not prove
 workshop usability, authenticated host behavior or a complete real-input pitch
 on its requested surfaces. This release makes no such claim.
 
-The profile name remains `shaping-gates.v3+rubric.v4`, with the existing twelve
-scores. An existing run keeps its pinned gate bytes. Adopting the new gate prose
+Future review-evidence runs use `shaping-gates.v4+rubric.v4`, with the existing
+twelve scores. Earlier profiles retain their original interpretation. An existing run keeps its pinned gate bytes. Adopting the new gate prose
 requires an explicit G0 rebind, which invalidates current acceptances and requires
 reassessment. Installation alone does not rebind a live run or rewrite history.
 No implementation, tickets, staffing, sharing or further installation follows
@@ -81,7 +81,7 @@ Use engos-design-shaping as conductor and engos-quality-shaping-gate as the sole
 workshop reviewer/rubric owner. The legacy ten-point pitch-review is available
 for standalone assessment; it does not score this loop.
 
-The current policy is shaping-gates.v3+rubric.v4. Research adds a hashed opened-
+The current review-evidence profile is shaping-gates.v4+rubric.v4. Research adds a hashed opened-
 source inventory, research-coverage.json. Shape adds shape-set.json with selected
 piece IDs, existing/proposed-extension claims and their evidence/basis references.
 These extend the existing journal; old runs retain their pinned history and need
@@ -111,6 +111,43 @@ pixels in independent review. Color limitations do not justify a flowchart.
 Repository maintainers can inspect `reports/engos-design-shaping/` for detailed
 run evidence when available. Reports are not included in release archives; this
 runbook's status and limitations are self-contained and do not depend on that folder.
+
+## Review evidence and repair
+
+Future current-profile reviews use one sealed ordered packet for the exact
+candidate, run, work order, policy and stable reviewer identity. It includes all
+required documents, questions/decisions, diagram sources/renders and cited code
+spans. The reviewer opens these in order with host-observed evidence, then
+independently inspects actual PNG/SVG pixels. A matching hash proves byte identity;
+it proves neither reading nor correctness. Missing host opening or identity
+capabilities hold review honestly. Blank, unusable or missing diagrams also hold
+review; independent substantive defects remain visible.
+
+At an existing decision seam, the contract and sequence message must identify a
+predicate over a typed field the receiving function already reads, with a cited
+read span and relationship to the accepted proof. Proposed behavior may still be
+absent from code. Comments or similar names elsewhere do not establish this.
+Genuinely new or nontechnical seams require a reasoned applicability assessment.
+An unanswered question can remain open when a source-bound quote establishes that
+its exact proof is independent of the answer. That quote can come from code or an
+accepted artifact; it needs no invented respondent answer. When the proof depends
+on the answer, the named respondent must answer with attributable authority.
+
+Every independent finding has one evidence-bound repair route: missing pixels
+holds review; a missing supported predicate returns to research; contract/diagram
+mismatch after grounding returns to shaping; a needed answer returns to its named
+respondent. Concurrent findings retain their prerequisite relationships. These are
+recommendations, not automatic transitions. Numeric score floors remain twelve
+scores, each at least 3 and mean at least 4. The reviewer separately checks whether
+rationales, findings and verdict contradict each other; mechanical checks cannot
+establish semantic truth.
+
+A failed review can offer a fixer independent of author and reviewer. It starts
+only after your explicit acceptance of that repair. Every contributor to the
+revision becomes its author and cannot grade it, even with a renamed role or
+display name. The host must establish stable identities. This grants no new named
+agent, hidden launch, downstream build or authority to answer for someone else.
+Historical receipts, accepted meaning and human bets remain unchanged.
 
 ## Recovery and author handoffs
 
@@ -348,12 +385,37 @@ into an observed result.
 
 ## Documents and edits
 
-Markdown is the editable source. HTML is a review view. JSON contains structured
-documents and workflow records, with source identity. Google Docs uses native tables
-and inline diagram images. You choose the outputs; the assistant manages the files.
-JSON delivery is checked by parsing and full structured-content comparison, not
-by inventing target screenshots. Shaped content still requires local diagram
-render inspection; HTML and Google Docs require saved visual checks.
+Markdown is the editable source and a selectable handover output. The output
+question is “HTML, Google Doc, Word, JSON, Markdown, or all of them?” All means
+all five; only selected deliverables are produced. Word remains handover-only.
+A private DOCX conversion for Google Docs is not a selected Word deliverable.
+
+Markdown reuses the complete existing handover file and records its hash. It keeps
+all three Mermaid fences, captions, full contract and security tables and accepted
+decisions; rendered images supplement the source. Repeating the choice reuses that
+file, rather than writing a second prose document. New handovers include required
+content before sealing. An incomplete sealed or accepted source holds delivery:
+authorized completion uses the existing candidate/reconciliation path with the
+same logical source identity, renewed hashes and affected review, preserving
+accepted bytes/history and the bet.
+
+HTML requires saved-page pixels and full content parity. Google Docs requires
+readback of the current saved revision, native editable tables with every row,
+full inline-image/diagram inventory and saved-target pixels. Word requires
+reopening the saved file for full text/table/image comparison, then rendering and
+inspecting every page. JSON requires parsing and full content parity, including
+diagrams, captions, contract/security tables and accepted decisions. Markdown
+reuse and complete content are checked separately. A successful export or source
+screenshot is not saved-target proof. Unavailable checks remain explicitly pending.
+Shaped content still requires independent local diagram pixel inspection.
+
+The bundle includes a read-only handover selection/reuse helper. It compares the
+supplied source hash and exact accepted diagram/caption/table inventory, returns
+the same Markdown file and checks adapter evidence records for consistency. It
+creates no copies, renders or publications. A valid selection plan is still
+delivery-pending; host-observed readback and independent visual/semantic checks
+remain required. A source symlink, changed bytes or incomplete inventory holds
+reuse without overwriting accepted state.
 
 The engineering pitch includes component, sequence and data-flow diagrams, complete
 interface and security-owner tables, and explicit boundaries. These are required

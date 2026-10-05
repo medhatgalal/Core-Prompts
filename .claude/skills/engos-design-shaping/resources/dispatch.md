@@ -32,7 +32,8 @@ schema/version; run_id; work_order_id; stage; generation/attempt; original const
 skill/resource identities and hashes; source/policy revisions; predecessor receipt;
 input paths/hashes; source index/access scope; accepted decisions; assigned question
 and uncertainty IDs; worker role/context allowlist; candidate write targets; effort
-bound/deadline; stop conditions; expected return schema; required review identity.
+bound/deadline; stop conditions; expected return schema; required review identity; sealed packet/evidence binding and ordered source spans
+for current-profile review; stable host identities and every revision contributor.
 
 ## Common dispatch prompt
 
@@ -71,6 +72,16 @@ The runtime's candidate_returned event requires an already sealed subject; do no
 mislabel that post-seal observation as evidence of who wrote the pre-seal bytes.
 If host return evidence is unavailable, disclose the provenance gap and request
 the author handoff rather than claiming the comparison passed.
+
+## Fixer assignment and independence
+
+A failed review may offer a generic fixer independent of the author and reviewer.
+Dispatch only after explicit user acceptance of that particular repair, bound to
+its findings and candidate. Host-observed stable identities govern independence,
+not display names or role strings. Record every contributor as an author of the
+revised candidate; its next grader cannot be any of them. If the host cannot
+establish identity, hold. The offer grants no named-agent registration, hidden
+launch, downstream work or authority to answer for a needed respondent.
 
 ## Keep execution constraints separate from the product
 

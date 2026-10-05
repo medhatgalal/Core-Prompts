@@ -218,7 +218,7 @@ def atomic_write(path, data):
 
 def validate_policy(policy):
     shape(policy, ["schema_version", "policy_id", "gates", "scoring", "delivery_targets", "references"],
-          ["shaping_loop"])
+          ["shaping_loop", "review_evidence"])
     require(type(policy["schema_version"]) is int and policy["schema_version"] == 1, "unsupported policy schema")
     string(policy["policy_id"])
     if "shaping_loop" in policy:
@@ -226,6 +226,12 @@ def validate_policy(policy):
     if policy["policy_id"] == "shaping-gates.v3+rubric.v4":
         require(policy.get("shaping_loop") is True,
                 "shaping-gates.v3+rubric.v4 requires shaping_loop=true")
+    if "review_evidence" in policy:
+        boolean(policy["review_evidence"])
+    if policy.get("review_evidence"):
+        require(policy["policy_id"] != "shaping-gates.v3+rubric.v4", "review evidence requires new policy ID")
+    if policy["policy_id"] == "shaping-gates.v4+rubric.v4":
+        require(policy.get("review_evidence") is True and policy.get("shaping_loop") is True, "current profile requires review evidence and shaping loop")
     shape(policy["gates"], GATES)
     for i, gate in enumerate(GATES):
         entry = shape(policy["gates"][gate], ["predicates", "required_outputs"])
@@ -253,6 +259,124 @@ def validate_policy(policy):
         shape(target, ["surface", "destination"])
         targets.append((string(target["surface"]), string(target["destination"])))
     require(len(set(targets)) == len(targets), "duplicate targets")
+
+
+def validate_review_png(raw):
+    """Decode bounded noninterlaced 8-bit PNG scanlines; other profiles hold.
+
+    This deliberately narrow stdlib decoder avoids optional runner dependencies.
+    Pixel variation is only a blank-image guard, never semantic visual judgment.
+    """
+    import struct
+    import zlib
+    require(raw.startswith(b'\x89PNG\r\n\x1a\n') and len(raw) <= 20_000_000, 'invalid PNG')
+    offset, chunks, compressed, header = 8, [], bytearray(), None
+    while offset < len(raw):
+        require(offset + 12 <= len(raw), 'truncated PNG')
+        length = struct.unpack('>I', raw[offset:offset+4])[0]
+        tag = raw[offset+4:offset+8]
+        end = offset + 12 + length
+        require(end <= len(raw), 'truncated PNG')
+        data = raw[offset+8:end-4]
+        require(zlib.crc32(tag + data) & 0xffffffff == struct.unpack('>I', raw[end-4:end])[0], 'PNG checksum')
+        chunks.append(tag)
+        if tag == b'IHDR':
+            require(len(chunks) == 1 and length == 13, 'PNG header')
+            header = struct.unpack('>IIBBBBB', data)
+        elif tag == b'IDAT': compressed.extend(data)
+        elif tag == b'IEND':
+            require(length == 0 and end == len(raw), 'PNG trailing bytes')
+            break
+        else:
+            require(tag[0] & 32 or tag == b'PLTE', 'unsupported PNG critical chunk')
+        offset = end
+    require(header and chunks[-1:] == [b'IEND'] and compressed, 'incomplete PNG')
+    width, height, depth, color, compression, filtering, interlace = header
+    require(0 < width * height <= 4_000_000 and width > 1 and height > 1, 'PNG dimensions')
+    channels = {0: 1, 2: 3, 4: 2, 6: 4}.get(color)
+    require(channels and depth == 8 and compression == filtering == interlace == 0, 'unsupported PNG profile')
+    expected = height * (1 + width * channels)
+    try:
+        decoder = zlib.decompressobj()
+        scanlines = decoder.decompress(bytes(compressed), expected + 1)
+    except zlib.error as exc:
+        raise Hold('PNG decode failure') from exc
+    require(len(scanlines) == expected and decoder.eof and not decoder.unused_data and not decoder.unconsumed_tail, 'PNG decoded length')
+    stride, previous, pixels = width * channels, [0] * (width * channels), set()
+    for row in range(height):
+        start = row * (stride + 1)
+        kind = scanlines[start]
+        require(kind <= 4, 'PNG filter')
+        values = list(scanlines[start+1:start+1+stride])
+        for index in range(stride):
+            left = values[index-channels] if index >= channels else 0
+            up = previous[index]
+            corner = previous[index-channels] if index >= channels else 0
+            if kind == 1: predictor = left
+            elif kind == 2: predictor = up
+            elif kind == 3: predictor = (left + up) // 2
+            elif kind == 4:
+                candidate = left + up - corner
+                distances = [abs(candidate - v) for v in (left, up, corner)]
+                predictor = (left, up, corner)[distances.index(min(distances))]
+            else: predictor = 0
+            values[index] = (values[index] + predictor) & 255
+        for index in range(0, stride, channels):
+            pixel = tuple(values[index:index+channels])
+            alpha = pixel[-1] if color in (4, 6) else 255
+            if alpha: pixels.add(pixel)
+        previous = values
+    require(len(pixels) > 1, 'blank PNG')
+    return width, height
+
+
+def validate_review_svg(raw):
+    """Same passive SVG contract as artifact_export; host supplies rendered PNG.
+
+    No renderer or normalization is introduced here. Renderer animation CSS
+    must first follow the existing exporter normalization path.
+    """
+    import xml.etree.ElementTree as ET
+    try: text = raw.decode('utf-8-sig')
+    except UnicodeError as exc: raise Hold('SVG must be UTF-8') from exc
+    require(len(raw) <= 20_000_000 and '\x00' not in text and not re.search(r'<!DOCTYPE|<!ENTITY|<\?', text, re.I), 'unsafe SVG declaration')
+    try: root = ET.fromstring(text)
+    except ET.ParseError as exc: raise Hold('invalid SVG') from exc
+    namespace = '{http://www.w3.org/2000/svg}'
+    tags = {'svg', 'g', 'defs', 'marker', 'path', 'rect', 'line', 'polyline', 'polygon',
+            'circle', 'ellipse', 'text', 'tspan', 'title', 'desc', 'style', 'clipPath',
+            'linearGradient', 'radialGradient', 'stop', 'use', 'symbol', 'filter', 'feDropShadow'}
+    ids, references = set(), []
+    def passive_css(value):
+        require(not re.search(r'[\\@<]|/\*|expression\s*\(|(?:https?|file|data|javascript)\s*:|(?:-webkit-)?image(?:-set)?\s*\(|\banimation(?:-[\w-]+)?\s*:', value, re.I), 'unsafe SVG CSS')
+        without_local = re.sub(r'url\(\s*[\'"]?#[A-Za-z_][\w:.-]*[\'"]?\s*\)', '', value, flags=re.I)
+        require(not re.search(r'url\s*\(', without_local, re.I), 'external SVG resource')
+    for element in root.iter():
+        require(element.tag in {namespace + tag for tag in tags}, 'unsafe SVG element')
+        if element.tag == namespace + 'style':
+            require(not len(element), 'SVG style child element')
+            passive_css(element.text or '')
+        for attribute, value in element.attrib.items():
+            require(not attribute.startswith('{') or attribute in ('{http://www.w3.org/1999/xlink}href', '{http://www.w3.org/XML/1998/namespace}space'), 'unsafe SVG attribute namespace')
+            local = attribute.rsplit('}', 1)[-1].lower()
+            require(not local.startswith('on') and local not in ('src', 'srcset', 'base', 'tabindex'), 'unsafe SVG attribute')
+            if local == 'href':
+                require(re.fullmatch(r'#[A-Za-z_][\w:.-]*', value), 'external SVG reference')
+                references.append(value[1:])
+            elif local == 'id':
+                require(value not in ids, 'duplicate SVG ID'); ids.add(value)
+            else: passive_css(value)
+    require(root.tag == namespace + 'svg' and all(ref in ids for ref in references), 'invalid SVG root/local reference')
+    try:
+        if 'viewBox' in root.attrib:
+            box = [float(value) for value in re.split(r'[\s,]+', root.attrib['viewBox'].strip())]
+            require(len(box) == 4 and all(math.isfinite(value) for value in box), 'SVG viewBox')
+            dimensions = box[2:]
+        else: dimensions = [float(re.sub(r'px$', '', root.attrib[key])) for key in ('width', 'height')]
+        require(all(math.isfinite(value) and 0 < value <= 100000 for value in dimensions), 'SVG dimensions')
+    except (KeyError, ValueError) as exc: raise Hold('SVG needs finite positive dimensions') from exc
+    require(any(element.tag in {namespace+tag for tag in ('path', 'rect', 'line', 'text', 'circle', 'polyline', 'polygon', 'use')} for element in root.iter()), 'blank SVG')
+    return dimensions
 
 
 class Runtime:
@@ -827,7 +951,7 @@ class Runtime:
 
     def _progress_review_failure(self, state, order, review):
         """Use the gate's acceptance checks, including scores, blockers and targets."""
-        files = {name: {"sha256": sha} for name, sha in order["seal"]["subject"].items()}
+        files = order["seal"].get("review_files") or {name: {"sha256": sha} for name, sha in order["seal"]["subject"].items()}
         try:
             self._review(review, state, order, files)
         except (Hold, OSError) as exc:
@@ -880,7 +1004,7 @@ class Runtime:
     def prepare(self, spec, expected):
         shape(spec, ["schema_version", "work_order_id", "gate", "author", "reviewer", "inputs", "source_revision",
                      "resource_revision", "skill_allowlist", "original_constraints", "assigned_questions",
-                     "source_access_scope", "effort_bound", "stop_conditions"], ["shape_basis"])
+                     "source_access_scope", "effort_bound", "stop_conditions"], ["shape_basis", "participation_evidence", "accepted_proof", "seam_applicability"])
         require(type(spec["schema_version"]) is int and spec["schema_version"] == 1, "unsupported work-order schema")
         order_id = identifier(spec["work_order_id"])
         require(spec["gate"] in GATES, "invalid gate")
@@ -909,6 +1033,22 @@ class Runtime:
                 declared_basis_facts = self._evidence_line_facts(
                     spec["shape_basis"], opened, purpose="declared shape_basis", state=state)
                 retry_new_facts = self._check_floor_only_repeat(state, declared_basis_facts)
+            if spec["gate"] == "G3" and state["policy"].get("review_evidence"):
+                require(spec.get("participation_evidence") in spec["inputs"], "host participation evidence required")
+                self._participation(spec, state)
+                proof = shape(spec.get("accepted_proof"), ["text", "source"])
+                string(proof["text"])
+                require(isinstance(spec.get("seam_applicability"), dict) and spec["seam_applicability"], "controller seam applicability inventory required")
+                for key, value in spec["seam_applicability"].items():
+                    identifier(key); require(value in ("existing", "new", "nontechnical"), "invalid controller seam applicability")
+                source = shape(proof["source"], ["path", "sha256", "locator", "quote"])
+                require(source["quote"].rstrip("\r\n") == proof["text"], "accepted proof text must match exact quoted proof")
+                prior = self.snapshot(state["accepted"]["G2"])
+                owned = dict(prior["input_hashes"])
+                owned.update({p: f["sha256"] for p, f in prior["files"].items()})
+                require(owned.get(source["path"]) == source["sha256"], "accepted proof source must belong to accepted G2")
+                raw = (base64.b64decode(prior["files"][source["path"]]["base64"]) if source["path"] in prior["files"] else read_bytes(self.path(source["path"])))
+                require(b"".join(line_span(raw, source["locator"])).decode("utf-8") == source["quote"], "accepted proof quote mismatch")
             require(not self.path(f"candidates/{order_id}").exists(), "candidate directory exists before reviewer assignment")
             for name in spec["inputs"]:
                 self._input_name(name)
@@ -928,6 +1068,8 @@ class Runtime:
                           "accepted_decisions": predecessor.get("decisions", []),
                           "write_targets": [f"candidates/{order_id}"],
                           "required_return_schema": "shaping-runtime.v1#/definitions/review"})
+            if spec["gate"] == "G3" and state["policy"].get("review_evidence"):
+                order["required_return_schema"] = "shaping-review-evidence.v1#/definitions/reviewV2"
             if spec["gate"] == "G3" and state["policy"].get("shaping_loop", False):
                 order["retry_new_facts"] = retry_new_facts
             self._check_bindings(state, order)
@@ -965,6 +1107,8 @@ class Runtime:
         files = self._files(order)
         required = set(state["policy"]["gates"][order["gate"]]["required_outputs"]) | {"questions.json", "decisions.json"}
         require(required <= files.keys(), f"missing outputs: {sorted(required - files.keys())}")
+        if order["gate"] == "G3" and state["policy"].get("review_evidence"):
+            require("review-plan.json" in files, "review-plan.json required before seal")
         cumulative = deepcopy(self.snapshot(order["predecessor"])["files"]) if order["predecessor"] else {}
         # Earlier prose cannot silently change under a later gate.
         for name in cumulative.keys() & files.keys() - {"questions.json", "decisions.json"}:
@@ -1252,7 +1396,7 @@ class Runtime:
                 require(record.get("actor") == order.get("reviewer", {}).get("identity"),
                         "review observation actor does not match its assigned reviewer")
                 seal = shape(order.get("seal"), ["subject", "questions", "decisions", "work_order_id",
-                                                  "generation", "predecessor", "return_hash"])
+                                                  "generation", "predecessor", "return_hash"], ["review_packet", "review_files", "review_inputs"])
                 require(seal["work_order_id"] == work_order_id
                         and seal["generation"] == order.get("generation")
                         and seal["predecessor"] == order.get("predecessor"),
@@ -1264,6 +1408,9 @@ class Runtime:
                             "sealed subject digest is malformed")
                 seal_payload = {key: seal[key] for key in
                                 ("subject", "questions", "decisions", "work_order_id", "generation", "predecessor")}
+                if "review_packet" in seal:
+                    require("review_files" in seal and "review_inputs" in seal, "review evidence retained bytes missing")
+                    seal_payload.update(review_files=seal["review_files"], review_inputs=seal["review_inputs"])
                 require(isinstance(seal["return_hash"], str)
                         and seal["return_hash"] == digest(encoded(seal_payload)),
                         "sealed subject return hash is invalid")
@@ -1285,8 +1432,8 @@ class Runtime:
                                "resource_revision", "predecessor", "return_hash", "subject", "reviewer",
                                "authored_candidate", "independence_confirmed", "evidence", "assessments",
                                "findings", "unresolved_blockers", "verdict", "next_state", "scores",
-                               "render_evidence", "targets"])
-                require(type(review["schema_version"]) is int and review["schema_version"] == 1,
+                               "render_evidence", "targets"], ["review_evidence"])
+                require(type(review["schema_version"]) is int and review["schema_version"] in (1, 2),
                         "unsupported review receipt schema")
                 for key in ("run_id", "gate", "work_order_id", "generation", "policy_hash",
                             "resource_revision", "predecessor"):
@@ -1315,7 +1462,7 @@ class Runtime:
                 if recorded_policy_hash != current_policy_hash:
                     continue
 
-                subject_files = {name: {"sha256": sha} for name, sha in seal["subject"].items()}
+                subject_files = seal.get("review_files") or {name: {"sha256": sha} for name, sha in seal["subject"].items()}
                 review_policy = deepcopy(state["policy"])
                 review_policy["gates"]["G3"]["predicates"] = order["required_predicates"]
                 self._review(review, {**state, "policy": review_policy}, order, subject_files,
@@ -1402,7 +1549,15 @@ class Runtime:
             subject = {p: f["sha256"] for p, f in files.items()}
             result = {"subject": subject, "questions": questions, "decisions": decisions,
                       "work_order_id": order_id, "generation": order["generation"], "predecessor": order["predecessor"]}
+            if state["policy"].get("review_evidence") and order["gate"] == "G3":
+                result["review_files"] = deepcopy(files)
+                inputs = dict(order["policy_bindings"])
+                if order["predecessor"]: inputs.update(self.snapshot(order["predecessor"])["input_hashes"])
+                inputs.update(order["input_hashes"])
+                result["review_inputs"] = {p: base64.b64encode(read_bytes(self.path(p))).decode("ascii") for p in inputs}
             result["return_hash"] = digest(encoded(result))
+            if state["policy"].get("review_evidence") and order["gate"] == "G3":
+                result["review_packet"] = self._review_packet(state, order, files, result)
             if order["seal"] is not None:
                 require(order["seal"] == result, "sealed candidate changed; use new work order")
                 return result
@@ -1410,7 +1565,328 @@ class Runtime:
             self._commit(state, expected)
             return result
 
+    def review_observation(self, order_id, path, expected):
+        """Controller records independent host observations after seal, before return.
+
+        The host enforces controller-only access. This method binds and retains
+        observations; it cannot authenticate who supplied the bytes.
+        """
+        with self.lock():
+            state = self._load()
+            self._expected(state, expected)
+            order = self._current_order(state, order_id)
+            require(state['policy'].get('review_evidence') and order['gate'] == 'G3' and order['seal'], 'post-seal review observation required')
+            self._input_name(path)
+            raw = read_bytes(self.path(path)); record = decode(raw)
+            shape(record, ['schema_version', 'run_id', 'work_order_id', 'packet_hash', 'host', 'openings', 'renders', 'answers', 'contributors'])
+            require(type(record['schema_version']) is int and record['schema_version'] == 1, 'invalid host record schema')
+            packet = order['seal']['review_packet']
+            require(record['run_id'] == order['run_id'] and record['work_order_id'] == order_id and record['packet_hash'] == digest(encoded(packet)), 'host observation packet mismatch')
+            host = shape(record['host'], ['identity', 'reviewer', 'observed', 'return_hash'])
+            string(host['identity'])
+            require(host['observed'] is True and host['reviewer'] == packet['reviewer'] and host['return_hash'] == packet['return_hash'], 'host capability unavailable')
+            participation = self._participation(order, state)
+            require(set(strings(record['contributors'])) == set(participation['contributors']), 'sealed revision contributors changed; prepare a fresh work order')
+            require(host['reviewer'] not in record['contributors'], 'sealed revision contributor cannot grade')
+            require(record['openings'] == packet['entries'], 'host ordered openings mismatch')
+            require(isinstance(record['renders'], dict) and isinstance(record['answers'], dict), 'host observation inventories missing')
+            value = {'binding': {'path': path, 'sha256': digest(raw)}, 'record': record}
+            if order.get('review_observation'):
+                require(order['review_observation'] == value, 'controller host observation conflict')
+                return value
+            order['review_observation'] = value
+            self._commit(state, expected)
+            return value
+
+    def _participation(self, order, state):
+        """Bind host-issued stable IDs, without pretending to authenticate them."""
+        path = order.get('participation_evidence')
+        require(path is not None, 'host participation evidence required')
+        raw = (base64.b64decode(order['seal']['review_inputs'][path]) if order.get('seal') and 'review_inputs' in order['seal'] else read_bytes(self.path(path)))
+        record = decode(raw)
+        shape(record, ['schema_version', 'run_id', 'work_order_id', 'host', 'observed',
+                       'author', 'reviewer', 'contributors', 'repairs'])
+        require(type(record['schema_version']) is int and record['schema_version'] == 1 and record['observed'] is True, 'identity capability unavailable')
+        string(record['host'])
+        require(record['run_id'] == state['run_id'] and record['work_order_id'] == order['work_order_id'], 'participation binding mismatch')
+        require(record['author'] == order['author'] and record['reviewer'] == order['reviewer']['identity'], 'stable identity mismatch')
+        contributors = strings(record['contributors'])
+        require(record['author'] in contributors, 'author absent from participation')
+        require(isinstance(record['repairs'], list), 'repair participation missing')
+        for repair in record['repairs']:
+            shape(repair, ['identity', 'original_author', 'original_reviewer', 'consent', 'contributed', 'work_order_id', 'return_hash', 'finding_id'])
+            string(repair['identity'])
+            require(repair['identity'] not in (repair['original_author'], repair['original_reviewer']), 'fixer must be independent')
+            boolean(repair['contributed'])
+            if repair['contributed']:
+                consent = shape(repair['consent'], ['accepted', 'user', 'reference', 'before_contribution'])
+                require(consent['accepted'] is True and consent['before_contribution'] is True, 'fixer consent required before contribution')
+                string(consent['user']); string(consent['reference'])
+                require(repair['identity'] in contributors, 'fixer absent from authorship')
+                origin = state['orders'].get(repair['work_order_id'])
+                require(origin and origin.get('seal') and origin['seal']['return_hash'] == repair['return_hash'], 'repair origin is not a sealed work order')
+                require(origin['author'] == repair['original_author'] and origin['reviewer']['identity'] == repair['original_reviewer'], 'repair original stable identities mismatch')
+                reviews = [event.get('review') for event in state.get('observations', []) if event.get('record', {}).get('kind') == 'review_returned' and event.get('record', {}).get('work_order_id') == repair['work_order_id']]
+                require(any(review and review.get('verdict') != 'pass' and review.get('return_hash') == repair['return_hash'] and any(isinstance(f, dict) and f.get('id') == repair['finding_id'] for f in review.get('findings', [])) for review in reviews), 'repair must bind a failed finding in this run')
+        prior_contributors = set()
+        for prior in state['orders'].values():
+            if prior.get('participation_evidence'):
+                # Re-read only immutable hashed observations; changed host evidence holds.
+                prior_raw = (base64.b64decode(prior['seal']['review_inputs'][prior['participation_evidence']]) if prior.get('seal') and 'review_inputs' in prior['seal'] else read_bytes(self.path(prior['participation_evidence'])))
+                require(digest(prior_raw) == prior['input_hashes'][prior['participation_evidence']], 'participation history drift')
+                prior_record = decode(prior_raw)
+                prior_contributors.update(prior_record['contributors'])
+        require(record['reviewer'] not in set(contributors) | prior_contributors, 'contributor/fixer cannot grade revision')
+        return record
+
+    def _review_packet(self, state, order, files, seal):
+        inputs = dict(order['policy_bindings'])
+        if order['predecessor']:
+            inputs.update(self.snapshot(order['predecessor'])['input_hashes'])
+        inputs.update(order['input_hashes'])
+        entries = []
+        for path, sha in sorted(inputs.items()):
+            raw = base64.b64decode(seal['review_inputs'][path])
+            require(digest(raw) == sha, 'packet input drift')
+            entries.append((path, sha, raw))
+        for path, item in sorted(files.items()):
+            require(path not in inputs, 'packet path collision')
+            entries.append((path, item['sha256'], base64.b64decode(item['base64'])))
+        packet = {key: order[key] for key in ('run_id', 'work_order_id', 'policy_hash', 'generation')}
+        packet.update(schema_version=1, return_hash=seal['return_hash'], reviewer=order['reviewer']['identity'], entries=[])
+        for path, sha, raw in entries:
+            try:
+                raw.decode('utf-8')
+                locators = [f'1:{len(raw.splitlines())}'] if raw.splitlines() else []
+            except UnicodeDecodeError: locators = []
+            packet['entries'].append({'path': path, 'sha256': sha, 'locators': locators})
+        return packet
+
+    def _review_evidence(self, receipt, state, order, files, acceptance):
+        packet = self._review_packet(state, order, files, order['seal'])
+        require(packet == order['seal']['review_packet'], 'sealed packet drift')
+        record = shape(receipt.get('review_evidence'), ['schema_version', 'packet_hash', 'host',
+                    'openings', 'renders', 'seams', 'questions', 'semantic_audit', 'host_record'])
+        require(type(record['schema_version']) is int and record['schema_version'] == 1 and record['packet_hash'] == digest(encoded(packet)), 'review packet binding mismatch')
+        host = shape(record['host'], ['identity', 'reviewer', 'observed', 'return_hash'])
+        string(host['identity'])
+        require(host['observed'] is True and host['reviewer'] == packet['reviewer'] and host['return_hash'] == packet['return_hash'], 'host observation/identity unavailable or unbound')
+        binding = shape(record['host_record'], ['path', 'sha256'])
+        observed = order.get('review_observation')
+        require(observed is not None and observed['binding'] == binding, 'controller post-seal host record required')
+        observation = observed['record']
+        require(observation['packet_hash'] == record['packet_hash'] and observation['host'] == host, 'controller host record binding mismatch')
+        self._participation(order, state)
+        require(isinstance(record['openings'], list), 'ordered host openings required')
+        expected_openings = [{'path': e['path'], 'sha256': e['sha256'], 'locators': e['locators']} for e in packet['entries']]
+        require(record['openings'] == expected_openings, 'ordered host openings missing or changed')
+        require(observation['openings'] == expected_openings, 'controller ordered host openings missing or changed')
+        entries = {entry['path']: entry for entry in packet['entries']}
+        def quote(item):
+            shape(item, ['path', 'sha256', 'locator', 'quote'])
+            require(item['path'] in entries and item['sha256'] == entries[item['path']]['sha256'], 'quote packet membership/hash mismatch')
+            raw = (base64.b64decode(files[item['path']]['base64']) if item['path'] in files else base64.b64decode(order['seal']['review_inputs'][item['path']]))
+            actual = b''.join(line_span(raw, item['locator'])).decode('utf-8')
+            require(item['quote'] == actual and actual.strip(), 'source quote/span mismatch')
+        plan = decode(base64.b64decode(files['review-plan.json']['base64']))
+        shape(plan, ['schema_version', 'proof', 'proof_source', 'seams'])
+        require(type(plan['schema_version']) is int and plan['schema_version'] == 1, 'unsupported review plan')
+        string(plan['proof']); quote(plan['proof_source'])
+        require(plan['proof'] == order['accepted_proof']['text'] and plan['proof_source'] == order['accepted_proof']['source'], 'accepted proof binding mismatch')
+        require(isinstance(plan['seams'], list) and plan['seams'] and isinstance(record['seams'], list), 'explicit seam applicability inventory required')
+        declared = {}
+        for seam in plan['seams']:
+            shape(seam, ['id', 'applicability', 'reason', 'receiver', 'field', 'field_type',
+                         'expression', 'input', 'message', 'proof', 'read'])
+            identifier(seam['id']); require(seam['id'] not in declared, 'duplicate seam')
+            require(seam['applicability'] in ('existing', 'new', 'nontechnical'), 'unsupported seam applicability')
+            for key in ('reason', 'receiver', 'field', 'field_type', 'expression', 'input', 'message', 'proof'): string(seam[key])
+            require(seam['proof'] == plan['proof'], 'seam proof mismatch')
+            quote(seam['read']); declared[seam['id']] = seam
+        if state['policy'].get('shaping_loop'):
+            shape_set = decode(base64.b64decode(files['shape-set.json']['base64']))
+            existing_ids = {claim['id'] for claim in shape_set['claims'] if claim['status'] == 'existing' and claim['load_bearing']}
+            require(existing_ids <= declared.keys(), 'existing claim seam omitted from review inventory')
+            require(existing_ids <= order['seam_applicability'].keys(), 'existing seam lacks controller applicability')
+            require(all(declared[key]['applicability'] == order['seam_applicability'][key] and declared[key]['applicability'] != 'new' for key in existing_ids), 'existing seam cannot be relabelled against controller applicability')
+        judgments = {}
+        for judgment in record['seams']:
+            shape(judgment, ['id', 'predicate_status', 'read_support', 'applicability_supported', 'message_matches', 'explanation'])
+            require(judgment['id'] in declared and judgment['id'] not in judgments, 'unknown/duplicate seam judgment')
+            require(judgment['predicate_status'] in ('grounded', 'missing', 'not_applicable'), 'invalid predicate status')
+            for key in ('read_support', 'applicability_supported', 'message_matches'): boolean(judgment[key])
+            string(judgment['explanation'])
+            judgments[judgment['id']] = judgment
+        require(judgments.keys() == declared.keys(), 'missing seam assessment')
+        failures = []
+        for key, judgment in judgments.items():
+            seam = declared[key]
+            supported = judgment['applicability_supported'] and (judgment['read_support'] if seam['applicability'] == 'existing' else True)
+            grounded = supported and judgment['predicate_status'] == ('grounded' if seam['applicability'] == 'existing' else 'not_applicable')
+            if not grounded: failures.append(('research', 'contracts_security', key))
+            elif not judgment['message_matches']: failures.append(('shaping', 'contracts_security', key))
+        require(isinstance(record['questions'], list), 'question review inventory required')
+        questions = {q['id']: q for q in order['seal']['questions'] if q['in_scope']}
+        reviewed = set()
+        for review in record['questions']:
+            shape(review, ['id', 'text', 'proof', 'depends', 'source', 'independence_supported', 'respondent', 'answer_observation'])
+            require(review['id'] in questions and review['id'] not in reviewed, 'unknown/duplicate question review')
+            reviewed.add(review['id'])
+            q = questions[review['id']]
+            require(review['text'] == q.get('details', {}).get('text') and review['proof'] == plan['proof'], 'question/proof binding mismatch')
+            boolean(review['depends']); boolean(review['independence_supported']); quote(review['source'])
+            if review['depends']:
+                require(review['respondent'] == q.get('details', {}).get('respondent') and review['respondent'], 'named respondent binding required')
+                answer = review['answer_observation']
+                valid = False
+                if answer is not None:
+                    shape(answer, ['identity', 'authority', 'observed', 'source'])
+                    require(answer['identity'] == review['respondent'] and answer['observed'] is True, 'unauthorized respondent substitution')
+                    string(answer['authority']); quote(answer['source'])
+                    require(observation['answers'].get(review['id']) == answer, 'controller respondent provenance missing')
+                    valid = q['status'] == 'answered'
+                if not valid: failures.append(('respondent', 'workstreams_proof', review['id']))
+            elif q['status'] != 'answered' and not review['independence_supported']:
+                failures.append(('respondent', 'workstreams_proof', review['id']))
+        require(reviewed == questions.keys(), 'missing question-specific independence evidence')
+        require(isinstance(record['renders'], dict), 'render inventory required')
+        require(record['renders'].keys() <= set(DIAGRAMS), 'unknown diagram')
+        for source in DIAGRAMS:
+            render = record['renders'].get(source)
+            if render is None:
+                failures.append(('review_hold', 'diagrams_visual', source)); continue
+            shape(render, ['source_hash', 'path', 'sha256', 'pixels_path', 'pixels_sha256', 'opened', 'visible', 'labels', 'connectors', 'source_agreement', 'explanation'])
+            require(render['source_hash'] == files[source]['sha256'], 'render/source binding mismatch')
+            for pathkey, hashkey in [('path', 'sha256'), ('pixels_path', 'pixels_sha256')]:
+                require(render[pathkey] in files and render[hashkey] == files[render[pathkey]]['sha256'], 'render packet binding mismatch')
+            host_render = {key: render[key] for key in ('source_hash', 'path', 'sha256', 'pixels_path', 'pixels_sha256', 'opened')}
+            require(observation['renders'].get(source) == host_render, 'controller rendered opening record mismatch')
+            raw = base64.b64decode(files[render['path']]['base64'])
+            usable = True
+            try:
+                if render['path'].endswith('.svg'): validate_review_svg(raw)
+                else:
+                    require(render['path'].endswith('.png'), 'unsupported PNG/SVG render')
+                    require(render['path'] == render['pixels_path'], 'PNG pixels mismatch')
+                require(render['pixels_path'].endswith('.png'), 'SVG requires actual PNG rasterization')
+                validate_review_png(base64.b64decode(files[render['pixels_path']]['base64']))
+            except Hold: usable = False
+            for key in ('opened', 'visible', 'labels', 'connectors', 'source_agreement'): boolean(render[key])
+            string(render['explanation'])
+            if not usable or not all(render[key] for key in ('opened', 'visible', 'labels', 'connectors', 'source_agreement')):
+                failures.append(('review_hold', 'diagrams_visual', source))
+        audit = shape(record['semantic_audit'], ['performed', 'consistent', 'explanation', 'contradictions'])
+        require(audit['performed'] is True, 'independent semantic contradiction audit required')
+        boolean(audit['consistent']); string(audit['explanation'])
+        require(isinstance(audit['contradictions'], list), 'structured contradiction inventory required')
+        contradictions = {}
+        special_failures = tuple(failures)
+        special_failure_checks = {failure[1] for failure in special_failures}
+        for contradiction in audit['contradictions']:
+            shape(contradiction, ['id', 'check', 'item', 'route', 'rationale_path', 'rationale_quote', 'source', 'explanation'])
+            identifier(contradiction['id']); require(contradiction['id'] not in contradictions, 'duplicate contradiction ID')
+            require(contradiction['check'] in receipt['assessments'] and contradiction['route'] in ('research', 'shaping', 'respondent'), 'invalid contradiction check/route')
+            subject = contradiction['item']
+            assessment_owned = subject == 'assessment:' + contradiction['check']
+            require(subject in declared or subject in questions or assessment_owned, 'contradiction subject unowned')
+            if assessment_owned:
+                require(contradiction['route'] == 'shaping' and receipt['assessments'][contradiction['check']]['outcome'] != 'pass', 'assessment contradiction requires failed owned check and shaping route')
+            else:
+                require((contradiction['route'], contradiction['check'], subject) in failures, 'contradiction route/check must match structured subject failure')
+            rationale_path = contradiction['rationale_path'].split('.')
+            require((len(rationale_path) == 3 and rationale_path[0] == 'assessments' and rationale_path[1] == contradiction['check'] and rationale_path[2] == 'explanation') or (len(rationale_path) == 4 and rationale_path[:2] == ['scores', 'dimensions'] and rationale_path[2] in TEAM + PITCH and rationale_path[3] == 'rationale'), 'invalid contradiction rationale locator')
+            rationale = receipt
+            for part in rationale_path: rationale = rationale[part]
+            require(string(contradiction['rationale_quote']) == rationale, 'contradiction rationale quote mismatch')
+            quote(contradiction['source']); string(contradiction['explanation'])
+            if assessment_owned and contradiction['check'] in special_failure_checks:
+                require(rationale_path[0] == 'scores', 'special subject failure cannot be relabelled as generic assessment contradiction')
+                generic_source = contradiction['source']
+                generic_first, generic_last = map(int, generic_source['locator'].split(':'))
+                for _, check, special_item in special_failures:
+                    if check != contradiction['check']: continue
+                    if special_item in declared: special_source = declared[special_item]['read']
+                    elif special_item in questions:
+                        special_source = next(q['source'] for q in record['questions'] if q['id'] == special_item)
+                    else: continue
+                    special_first, special_last = map(int, special_source['locator'].split(':'))
+                    same_source = generic_source['path'] == special_source['path'] or generic_source['sha256'] == special_source['sha256']
+                    require(not same_source or generic_last < special_first or special_last < generic_first, 'generic contradiction overlaps special subject evidence')
+            if subject in declared: require(contradiction['source'] == declared[subject]['read'], 'contradiction seam source mismatch')
+            elif subject in questions:
+                question_review = next(q for q in record['questions'] if q['id'] == subject)
+                require(contradiction['source'] == question_review['source'], 'contradiction question source mismatch')
+            else:
+                evidence_ids = receipt['assessments'][contradiction['check']]['evidence_ids']
+                if rationale_path[0] == 'scores': evidence_ids = receipt['scores']['dimensions'][rationale_path[2]]['evidence_ids']
+                require(contradiction['source']['path'] in {receipt['evidence'].get(key) for key in evidence_ids}, 'assessment contradiction requires relevant cited evidence')
+            contradictions[contradiction['id']] = contradiction
+            failures.append((contradiction['route'], contradiction['check'], contradiction['id']))
+        require(audit['consistent'] == (not contradictions), 'semantic audit consistency/inventory mismatch')
+        require(isinstance(receipt['findings'], list), 'typed findings required')
+        finding_ids, bound = set(), []
+        for finding in receipt['findings']:
+            shape(finding, ['id', 'check', 'item', 'route', 'status', 'source', 'repair', 'respondent', 'prerequisite'])
+            identifier(finding['id']); require(finding['id'] not in finding_ids, 'duplicate finding')
+            finding_ids.add(finding['id'])
+            require(finding['check'] in receipt['assessments'] and receipt['assessments'][finding['check']]['outcome'] != 'pass', 'finding/check outcome inconsistency')
+            require(finding['status'] == 'unresolved' and finding['route'] in ('review_hold', 'research', 'shaping', 'respondent'), 'invalid return route/status')
+            quote(finding['source']); string(finding['repair'])
+            if finding['item'] in declared:
+                require(finding['source'] == declared[finding['item']]['read'], 'finding lacks relevant seam evidence')
+            elif finding['item'] in DIAGRAMS:
+                require(finding['source']['path'] == finding['item'], 'finding lacks relevant diagram evidence')
+            elif finding['item'] in contradictions:
+                require(finding['source'] == contradictions[finding['item']]['source'], 'finding lacks relevant rationale contradiction evidence')
+            elif finding['item'] in questions:
+                question_review = next(q for q in record['questions'] if q['id'] == finding['item'])
+                require(finding['source'] == question_review['source'], 'finding lacks relevant question evidence')
+            if finding['route'] == 'respondent':
+                question_id = contradictions[finding['item']]['item'] if finding['item'] in contradictions else finding['item']
+                require(question_id in questions and finding['respondent'] == questions[question_id].get('details', {}).get('respondent') and finding['respondent'], 'return requires named respondent')
+            else: require(finding['respondent'] is None, 'respondent belongs to question route')
+            bound.append((finding['route'], finding['check'], finding['item']))
+        require(len(set(bound)) == len(bound), 'exactly one return per finding/check/item')
+        allowed = set(failures)
+        for check, assessment in receipt['assessments'].items():
+            if assessment['outcome'] != 'pass' and not any(f[1] == check for f in failures):
+                allowed.add(('shaping', check, check))
+        require(set(failures) <= set(bound), 'missing relevant typed finding for failed check')
+        require(set(bound) <= allowed, 'return route/item not owned by failed check')
+        for finding in receipt['findings']:
+            require(finding['prerequisite'] is None or finding['prerequisite'] in finding_ids - {finding['id']}, 'unknown/self prerequisite')
+        dependencies = {f['id']: f['prerequisite'] for f in receipt['findings']}
+        for start in dependencies:
+            seen, current = set(), start
+            while current is not None:
+                require(current not in seen, 'cyclic return prerequisites')
+                seen.add(current); current = dependencies[current]
+        for check, assessment in receipt['assessments'].items():
+            if assessment['outcome'] != 'pass': require(any(f['check'] == check for f in receipt['findings']), 'failed assessment lacks finding')
+        if failures or receipt['findings']:
+            require(receipt['verdict'] != 'pass', 'unresolved finding/predicate cannot pass')
+        if acceptance: require(not failures and not receipt['findings'], 'review evidence unresolved')
+
     def _review(self, receipt, state, order, files, acceptance=True):
+        current_evidence = order["gate"] == "G3" and state["policy"].get("review_evidence", False)
+        if current_evidence:
+            shape(receipt, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
+                "resource_revision", "predecessor", "return_hash", "subject", "reviewer", "authored_candidate",
+                "independence_confirmed", "evidence", "assessments", "findings", "unresolved_blockers",
+                "verdict", "next_state", "scores", "render_evidence", "targets", "review_evidence"])
+            shape(receipt["assessments"], order["required_predicates"])
+            for assessment in receipt["assessments"].values():
+                shape(assessment, ["outcome", "evidence_ids", "explanation"])
+            require(isinstance(receipt["evidence"], dict) and receipt["evidence"], "evidence inventory missing")
+            scores = shape(receipt["scores"], ["dimensions", "team_mean", "pitch_mean", "overall"])
+            shape(scores["dimensions"], TEAM + PITCH)
+            for score in scores["dimensions"].values(): shape(score, ["score", "rationale", "evidence_ids"])
+            require(receipt.get("schema_version") == 2, "review evidence requires G3 receipt v2")
+            self._review_evidence(receipt, state, order, files, acceptance)
+            receipt = deepcopy(receipt)
+            receipt.pop("review_evidence")
+            receipt["schema_version"] = 1
+            receipt["findings"] = [item["id"] for item in receipt["findings"]]
         shape(receipt, ["schema_version", "run_id", "gate", "work_order_id", "generation", "policy_hash",
                         "resource_revision", "predecessor", "return_hash", "subject", "reviewer", "authored_candidate",
                         "independence_confirmed", "evidence", "assessments", "findings", "unresolved_blockers",
@@ -1432,7 +1908,7 @@ class Runtime:
         for key, path in evidence.items():
             identifier(key)
             string(path)
-            require(path in files, "review evidence must be in sealed subject")
+            require(path in files or (current_evidence and path in order["seal"]["review_inputs"]), "review evidence must be in sealed subject or pinned review packet")
         def refs(value):
             strings(value)
             require(all(key in evidence for key in value), "missing evidence ID")
@@ -1446,7 +1922,7 @@ class Runtime:
             string(assessment["explanation"])
         require(isinstance(receipt["targets"], list), "targets must be an array")
         if order["gate"] == "G3":
-            shape(receipt["render_evidence"], DIAGRAMS)
+            shape(receipt["render_evidence"], DIAGRAMS if acceptance or not current_evidence else [], DIAGRAMS)
             for evidence_ids in receipt["render_evidence"].values():
                 refs(evidence_ids)
             scores = shape(receipt["scores"], ["dimensions", "team_mean", "pitch_mean", "overall"])
@@ -1728,6 +2204,7 @@ def main(argv=None):
         "progress": "Read-only, as-of progress projection; no remote or continuous liveness claim.",
         "progress-context": "Record evidence provenance and the requested stopping point in the controller journal.",
         "observe": "Record a timestamped, evidence-bound host observation; never accept a gate.",
+        "review-observation": "Bind controller host opening/pixel/answer records after seal; does not authenticate the host.",
         "prepare": "Assign author/reviewer and hash inputs BEFORE worker dispatch; emit work order.",
         "seal": "Hash candidate bytes and registers BEFORE reviewer assessment; emit subject/return hash.",
         "accept": "Validate review and commit the complete immutable snapshot atomically.",
@@ -1747,6 +2224,9 @@ def main(argv=None):
         if command == "prepare": p.add_argument("--spec", required=True, type=Path)
         if command == "progress-context": p.add_argument("--spec", required=True, type=Path)
         if command == "observe": p.add_argument("--record", required=True, type=Path)
+        if command == "review-observation":
+            p.add_argument("--work-order", required=True)
+            p.add_argument("--record", required=True, help="Run-relative controller host observation path")
         if command == "progress":
             p.add_argument("--format", choices=("json", "markdown", "html"), default="json")
             p.add_argument("--as-of", help="UTC snapshot timestamp; defaults to current UTC")
@@ -1775,6 +2255,7 @@ def main(argv=None):
             return 3 if result["status"] == "unverifiable" else 0
         elif args.command == "progress-context": result = rt.progress_context(decode(read_bytes(args.spec)), args.expected_version)
         elif args.command == "observe": result = rt.observe(decode(read_bytes(args.record)), args.expected_version)
+        elif args.command == "review-observation": result = rt.review_observation(args.work_order, args.record, args.expected_version)
         elif args.command == "prepare": result = rt.prepare(decode(read_bytes(args.spec)), args.expected_version)
         elif args.command == "seal": result = rt.seal(args.work_order, args.expected_version)
         elif args.command == "accept": result = rt.accept(args.receipt, args.expected_version)

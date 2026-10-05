@@ -1,0 +1,75 @@
+[
+  {
+    "command": "python3 -m pytest -q tests/test_capability_resources.py tests/test_resource_delivery.py tests/test_frontier_eval_integration.py tests/test_uac_assessment.py tests/test_uac_ssot.py tests/test_agent_execution_need.py tests/test_agent_approval_lifecycle.py tests/test_agent_surface_preservation.py tests/test_namespace_registration.py tests/test_uac_semantic_uplift.py tests/test_uac_quality.py tests/test_uac_source_integrity.py tests/test_uac_promotion_apply.py tests/test_supercharge_preservation.py tests/test_supercharge_debate.py tests/test_frontier_skill_contracts.py tests/test_resource_backed_skill_surfaces.py",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-0.log",
+    "tail": "........................................................................ [ 25%]\n........................................................................ [ 50%]\n........................................................................ [ 75%]\n........................................................................ [100%]\n288 passed in 60.22s (0:01:00)\n"
+  },
+  {
+    "command": "python3 -m pytest -q tests/test_shaping_runtime.py tests/test_shaping_review_evidence.py tests/test_shaping_handover_outputs.py tests/test_shaping_loop.py tests/test_shaping_policy_recovery.py tests/test_shaping_repository_fit.py tests/test_shaping_progress.py tests/test_shaping_progress_view.py tests/test_shaping_export.py tests/test_shaping_export_docx.py tests/test_shaping_presentation.py",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-1.log",
+    "tail": "........................................................................ [ 14%]\n........................................................................ [ 29%]\n........................................................................ [ 44%]\n........................................................................ [ 59%]\n........................................................................ [ 74%]\n........................................................ssssssssssss.... [ 89%]\n.............................................s...                        [100%]\n468 passed, 13 skipped in 74.78s (0:01:14)\n"
+  },
+  {
+    "command": "python3 -m pytest -q tests/test_presentation_cache.py tests/test_presentation_exporter.py",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-2.log",
+    "tail": "...................                                                      [100%]\n19 passed in 76.65s (0:01:16)\n"
+  },
+  {
+    "command": "python3 -m pytest -q tests/test_skill_job_map.py tests/test_uac_routing_fitness.py tests/test_route_only_battery.py",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-3.log",
+    "tail": "..........................................................               [100%]\n58 passed in 0.71s\n"
+  },
+  {
+    "command": "python3 -m pytest -q tests/test_uac_import.py -k 'bootstrap or writes_ssot_and_descriptor_in_workspace_copy'",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-4.log",
+    "tail": ".....                                                                    [100%]\n5 passed, 25 deselected in 23.44s\n"
+  },
+  {
+    "command": "python3 -m pytest -q tests/test_package_surfaces.py tests/test_package_local_config.py tests/test_deploy_profile.py tests/test_update_core_prompts.py tests/test_deploy_surfaces.py tests/test_agent_retirement.py tests/test_install_catalog.py tests/test_install_transaction.py tests/test_install_capsule.py tests/test_installation.py tests/test_installation_history.py tests/test_install_bootstrap.py",
+    "exit_code": 1,
+    "log": "/private/tmp/shaping-ci-check-5.log",
+    "tail": "_\n\n    def test_runtime_inventory_is_available_in_a_tagged_git_mirror() -> None:\n        import json\n        inventory = json.loads((ROOT / '.meta/install-bundle.json').read_text())['files']\n        tracked = set(subprocess.check_output(['git', 'ls-files'], cwd=ROOT, text=True).splitlines())\n>       assert set(inventory) <= tracked\nE       AssertionError: assert {'.claude/ski...ty.json', ...} <= {'.beads/.git...KILL.md', ...}\nE         \nE         Extra items in the left set:\nE         '.codex/skills/engos-quality-shaping-gate/resources/references/review-evidence.md'\nE         '.codex/skills/engos-design-shaping/resources/scripts/handover_outputs.py'\nE         '.claude/skills/engos-design-shaping/resources/scripts/handover_outputs.py'\nE         '.grok/skills/engos-quality-shaping-gate/resources/references/review-evidence.md'\nE         '.grok/skills/engos-design-shaping/resources/scripts/handover_outputs.py'...\nE         \nE         ...Full output truncated (10 lines hidden), use '-vv' to show\n\ntests/test_package_surfaces.py:247: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_package_surfaces.py::test_packaged_profile_updates_verified_release_and_rolls_back\nFAILED tests/test_package_surfaces.py::test_runtime_inventory_is_available_in_a_tagged_git_mirror\n2 failed, 253 passed, 16 subtests passed in 251.39s (0:04:11)\n"
+  },
+  {
+    "command": "python3 -m pytest -q tests/test_package_surfaces.py",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-6.log",
+    "tail": ".....                                                                    [100%]\n5 passed in 24.07s\n",
+    "remediation": "Initial packaging failures were local process: new resources not yet in Git tracked inventory. Staged reviewed files after preserving empty unheld index lock; no test or production change."
+  },
+  {
+    "command": "python3 scripts/smoke-clis.py",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-7.log",
+    "tail": "Smoke checks complete.\n"
+  },
+  {
+    "command": "bin/capability-eval compile --all --check",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-8.log",
+    "tail": "\n            \"text\": \"6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.\",\n            \"kind\": \"invariant\",\n            \"mapped_to\": []\n          }\n        ],\n        \"risk_tiers\": {\n          \"critical\": [],\n          \"high\": [],\n          \"standard\": []\n        },\n        \"source_references\": [\n          {\n            \"path\": \"ssot/loopy.md\",\n            \"sha256\": \"5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d\"\n          }\n        ],\n        \"known_ambiguities\": [],\n        \"coverage_policy\": {\n          \"normative_clauses\": \"100_percent_mapped_or_waived\",\n          \"nodes\": \"positive_and_boundary\",\n          \"transitions\": \"all_legal_and_forbidden\",\n          \"module_pairs\": \"all_legal_pairs\",\n          \"high_risk_tuples\": \"assigned_strength\",\n          \"critical_mutants\": \"100_percent_killed\"\n        },\n        \"normative_clause_coverage\": {\n          \"total\": 57,\n          \"mapped\": 0,\n          \"waived\": 0\n        },\n        \"review_status\": \"draft\",\n        \"compiler_note\": \"Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.\"\n      },\n      \"clarity\": {\n        \"policy\": \"instruction_clarity.v1\",\n        \"finding_count\": 0,\n        \"findings\": [],\n        \"advisory_only\": true,\n        \"behavioral_claim\": \"none\"\n      },\n      \"status\": \"structural_ready\"\n    }\n  ],\n  \"behavioral_claim\": \"none\",\n  \"check_result\": \"pass\",\n  \"drift\": []\n}\n"
+  },
+  {
+    "command": "bin/capability-eval calibrate --static-only",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-9.log",
+    "tail": "{\n  \"schema_version\": \"EvaluatorCalibration.v1\",\n  \"status\": \"structural_ready\",\n  \"controls_present\": 14,\n  \"missing_controls\": [],\n  \"corpus_contract_blockers\": [],\n  \"pilot_foundations\": {\n    \"status\": \"structural_ready\",\n    \"errors\": [],\n    \"experiment_count\": 4,\n    \"case_count\": 60,\n    \"model_calls\": 0,\n    \"behavioral_claim\": \"none\"\n  },\n  \"judge_qualified\": false,\n  \"judge_note\": \"Semantic judges remain unqualified until gold-label agreement and bias checks are run.\",\n  \"model_calls\": 0\n}\n"
+  },
+  {
+    "command": "python3 scripts/validate-surfaces.py --strict",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-10.log",
+    "tail": "Validation passed.\nSSOT files: 32\n"
+  },
+  {
+    "command": "bin/capability-fabric build",
+    "exit_code": 0,
+    "log": "/private/tmp/shaping-ci-check-11.log",
+    "tail": "installer capsule: generated\nGenerated 32 ssot entries\n"
+  }
+]

@@ -78,6 +78,9 @@ def test_shipped_shaping_skills_have_no_task_local_machine_paths():
 
 def stage_policy(rt, legacy=False):
     policy = json.loads((RESOURCE / "schemas/policy.example.json").read_text())
+    # This module preserves the v3 repository-fit contract; v4 has dedicated evidence tests.
+    policy["policy_id"] = CURRENT
+    policy.pop("review_evidence", None)
     if legacy:
         policy["policy_id"] = LEGACY
         policy.pop("shaping_loop", None)
