@@ -1,0 +1,932 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "shaping-review-evidence.v1",
+  "description": "Controller-trusted host observations and independent semantic judgments. Schema does not authenticate or infer truth. G3 v2 preserves schema-1 history.",
+  "$ref": "#/definitions/reviewV2",
+  "definitions": {
+    "sourceQuote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "locator",
+        "quote"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/definitions/path"
+        },
+        "sha256": {
+          "$ref": "#/definitions/hash"
+        },
+        "locator": {
+          "$ref": "#/definitions/lineLocator"
+        },
+        "quote": {
+          "$ref": "#/definitions/text"
+        }
+      }
+    },
+    "typedFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "check",
+        "item",
+        "route",
+        "status",
+        "source",
+        "repair",
+        "respondent",
+        "prerequisite"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "check": {
+          "$ref": "#/definitions/text"
+        },
+        "item": {
+          "$ref": "#/definitions/text"
+        },
+        "route": {
+          "enum": [
+            "review_hold",
+            "research",
+            "shaping",
+            "respondent"
+          ]
+        },
+        "status": {
+          "const": "unresolved"
+        },
+        "source": {
+          "$ref": "#/definitions/sourceQuote"
+        },
+        "repair": {
+          "$ref": "#/definitions/text"
+        },
+        "respondent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prerequisite": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "renderObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_hash",
+        "path",
+        "sha256",
+        "pixels_path",
+        "pixels_sha256",
+        "opened",
+        "visible",
+        "labels",
+        "connectors",
+        "source_agreement",
+        "explanation"
+      ],
+      "properties": {
+        "source_hash": {
+          "$ref": "#/definitions/hash"
+        },
+        "path": {
+          "$ref": "#/definitions/path"
+        },
+        "sha256": {
+          "$ref": "#/definitions/hash"
+        },
+        "pixels_path": {
+          "$ref": "#/definitions/path"
+        },
+        "pixels_sha256": {
+          "$ref": "#/definitions/hash"
+        },
+        "opened": {
+          "type": "boolean"
+        },
+        "visible": {
+          "type": "boolean"
+        },
+        "labels": {
+          "type": "boolean"
+        },
+        "connectors": {
+          "type": "boolean"
+        },
+        "source_agreement": {
+          "type": "boolean"
+        },
+        "explanation": {
+          "$ref": "#/definitions/text"
+        }
+      }
+    },
+    "seamJudgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "predicate_status",
+        "read_support",
+        "applicability_supported",
+        "message_matches",
+        "explanation"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "predicate_status": {
+          "enum": [
+            "grounded",
+            "missing",
+            "not_applicable"
+          ]
+        },
+        "read_support": {
+          "type": "boolean"
+        },
+        "applicability_supported": {
+          "type": "boolean"
+        },
+        "message_matches": {
+          "type": "boolean"
+        },
+        "explanation": {
+          "$ref": "#/definitions/text"
+        }
+      }
+    },
+    "questionJudgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text",
+        "proof",
+        "depends",
+        "source",
+        "independence_supported",
+        "respondent",
+        "answer_observation"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "text": {
+          "$ref": "#/definitions/text"
+        },
+        "proof": {
+          "$ref": "#/definitions/text"
+        },
+        "depends": {
+          "type": "boolean"
+        },
+        "source": {
+          "$ref": "#/definitions/sourceQuote"
+        },
+        "independence_supported": {
+          "type": "boolean"
+        },
+        "respondent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "answer_observation": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "identity",
+                "authority",
+                "observed",
+                "source"
+              ],
+              "properties": {
+                "identity": {
+                  "$ref": "#/definitions/text"
+                },
+                "authority": {
+                  "$ref": "#/definitions/text"
+                },
+                "observed": {
+                  "const": true
+                },
+                "source": {
+                  "$ref": "#/definitions/sourceQuote"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "reviewEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "packet_hash",
+        "host",
+        "openings",
+        "renders",
+        "seams",
+        "questions",
+        "semantic_audit",
+        "host_record"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": 1,
+          "type": "integer"
+        },
+        "packet_hash": {
+          "$ref": "#/definitions/hash"
+        },
+        "host": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "identity",
+            "reviewer",
+            "observed",
+            "return_hash"
+          ],
+          "properties": {
+            "identity": {
+              "$ref": "#/definitions/text"
+            },
+            "reviewer": {
+              "$ref": "#/definitions/text"
+            },
+            "observed": {
+              "const": true
+            },
+            "return_hash": {
+              "$ref": "#/definitions/hash"
+            }
+          }
+        },
+        "openings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/packetOpening"
+          }
+        },
+        "renders": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "component.mmd": {
+              "$ref": "#/definitions/renderObservation"
+            },
+            "sequence.mmd": {
+              "$ref": "#/definitions/renderObservation"
+            },
+            "data-flow.mmd": {
+              "$ref": "#/definitions/renderObservation"
+            }
+          }
+        },
+        "seams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/seamJudgment"
+          }
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/questionJudgment"
+          }
+        },
+        "semantic_audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "performed",
+            "consistent",
+            "explanation",
+            "contradictions"
+          ],
+          "properties": {
+            "performed": {
+              "const": true
+            },
+            "consistent": {
+              "type": "boolean"
+            },
+            "explanation": {
+              "$ref": "#/definitions/text"
+            },
+            "contradictions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "check",
+                  "item",
+                  "route",
+                  "rationale_path",
+                  "rationale_quote",
+                  "source",
+                  "explanation"
+                ],
+                "properties": {
+                  "id": {
+                    "$ref": "#/definitions/text"
+                  },
+                  "check": {
+                    "$ref": "#/definitions/text"
+                  },
+                  "item": {
+                    "$ref": "#/definitions/text"
+                  },
+                  "rationale_path": {
+                    "$ref": "#/definitions/text"
+                  },
+                  "rationale_quote": {
+                    "$ref": "#/definitions/text"
+                  },
+                  "explanation": {
+                    "$ref": "#/definitions/text"
+                  },
+                  "route": {
+                    "enum": [
+                      "research",
+                      "shaping",
+                      "respondent"
+                    ]
+                  },
+                  "source": {
+                    "$ref": "#/definitions/sourceQuote"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "host_record": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "$ref": "#/definitions/path"
+            },
+            "sha256": {
+              "$ref": "#/definitions/hash"
+            }
+          }
+        }
+      }
+    },
+    "packetOpening": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "locators"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/definitions/path"
+        },
+        "sha256": {
+          "$ref": "#/definitions/hash"
+        },
+        "locators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/lineLocator"
+          }
+        }
+      }
+    },
+    "reviewV2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "run_id",
+        "gate",
+        "work_order_id",
+        "generation",
+        "policy_hash",
+        "resource_revision",
+        "predecessor",
+        "return_hash",
+        "subject",
+        "reviewer",
+        "authored_candidate",
+        "independence_confirmed",
+        "evidence",
+        "assessments",
+        "findings",
+        "unresolved_blockers",
+        "verdict",
+        "next_state",
+        "scores",
+        "render_evidence",
+        "targets",
+        "review_evidence"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "integer",
+          "const": 2
+        },
+        "run_id": {
+          "$ref": "#/definitions/id"
+        },
+        "gate": {
+          "const": "G3"
+        },
+        "work_order_id": {
+          "$ref": "#/definitions/id"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "policy_hash": {
+          "$ref": "#/definitions/hash"
+        },
+        "resource_revision": {
+          "$ref": "#/definitions/text"
+        },
+        "predecessor": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/hash"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "return_hash": {
+          "$ref": "#/definitions/hash"
+        },
+        "subject": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/definitions/hash"
+          }
+        },
+        "reviewer": {
+          "$ref": "#/definitions/text"
+        },
+        "authored_candidate": {
+          "type": "boolean"
+        },
+        "independence_confirmed": {
+          "type": "boolean"
+        },
+        "evidence": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "#/definitions/id"
+          },
+          "additionalProperties": {
+            "$ref": "#/definitions/path"
+          }
+        },
+        "assessments": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/definitions/assessment"
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/typedFinding"
+          }
+        },
+        "unresolved_blockers": {
+          "$ref": "#/definitions/texts"
+        },
+        "verdict": {
+          "enum": [
+            "pass",
+            "fail",
+            "unverifiable"
+          ]
+        },
+        "next_state": {
+          "const": "G3"
+        },
+        "scores": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/scores"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "render_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "component.mmd": {
+              "$ref": "#/definitions/refs"
+            },
+            "sequence.mmd": {
+              "$ref": "#/definitions/refs"
+            },
+            "data-flow.mmd": {
+              "$ref": "#/definitions/refs"
+            }
+          },
+          "required": []
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/targetReview"
+          }
+        },
+        "review_evidence": {
+          "$ref": "#/definitions/reviewEvidence"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "gate": {
+                "const": "G3"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scores": {
+                "$ref": "#/definitions/scores"
+              },
+              "render_evidence": {
+                "required": [
+                  "component.mmd",
+                  "sequence.mmd",
+                  "data-flow.mmd"
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "scores": {
+                "type": "null"
+              },
+              "render_evidence": {
+                "maxProperties": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "gate": {
+                "const": "G4"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "targets": {
+                "minItems": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "targets": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verdict": {
+                "const": "pass"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "render_evidence": {
+                "required": [
+                  "component.mmd",
+                  "sequence.mmd",
+                  "data-flow.mmd"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "reviewPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "proof",
+        "proof_source",
+        "seams"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "integer",
+          "const": 1
+        },
+        "proof": {
+          "$ref": "#/definitions/text"
+        },
+        "proof_source": {
+          "$ref": "#/definitions/sourceQuote"
+        },
+        "seams": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "applicability",
+              "reason",
+              "receiver",
+              "field",
+              "field_type",
+              "expression",
+              "input",
+              "message",
+              "proof",
+              "read"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/id"
+              },
+              "applicability": {
+                "enum": [
+                  "existing",
+                  "new",
+                  "nontechnical"
+                ]
+              },
+              "reason": {
+                "$ref": "#/definitions/text"
+              },
+              "receiver": {
+                "$ref": "#/definitions/text"
+              },
+              "field": {
+                "$ref": "#/definitions/text"
+              },
+              "field_type": {
+                "$ref": "#/definitions/text"
+              },
+              "expression": {
+                "$ref": "#/definitions/text"
+              },
+              "input": {
+                "$ref": "#/definitions/text"
+              },
+              "message": {
+                "$ref": "#/definitions/text"
+              },
+              "proof": {
+                "$ref": "#/definitions/text"
+              },
+              "read": {
+                "$ref": "#/definitions/sourceQuote"
+              }
+            }
+          }
+        }
+      }
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Portable run-relative POSIX path; runtime rejects absolute paths, backslashes, colons, empty/dot/parent segments, symlinks and nonregular files."
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "lineLocator": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
+      "description": "Canonical 1-based inclusive N:M line range, checked against retained UTF-8 bytes."
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,99}$"
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "evidence_ids",
+        "explanation"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "pass",
+            "fail",
+            "unverifiable"
+          ]
+        },
+        "evidence_ids": {
+          "$ref": "#/definitions/refs"
+        },
+        "explanation": {
+          "$ref": "#/definitions/text"
+        }
+      },
+      "description": "Acceptance requires pass for every policy predicate. This is an actual reviewer assessment, never author keyword scoring."
+    },
+    "refs": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/texts"
+        }
+      ],
+      "minItems": 1
+    },
+    "texts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/text"
+      },
+      "uniqueItems": true
+    },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dimensions",
+        "team_mean",
+        "pitch_mean",
+        "overall"
+      ],
+      "properties": {
+        "dimensions": {
+          "type": "object",
+          "minProperties": 12,
+          "maxProperties": 12,
+          "required": [
+            "simplicity",
+            "testability",
+            "security",
+            "architecture",
+            "cost",
+            "feasibility",
+            "confidence",
+            "problem_clarity",
+            "appetite_fit",
+            "solution_sharpness",
+            "contract_quality",
+            "boundary_discipline"
+          ],
+          "additionalProperties": {
+            "$ref": "#/definitions/score"
+          }
+        },
+        "team_mean": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "pitch_mean": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "overall": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "description": "All twelve scores >=3; overall >=4. Overall=sum(all twelve scores)/12, checked to absolute tolerance 1e-9. Category means are reporting only. Use source-specific rubric anchors; no generic all-5 implementation rule."
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "score",
+        "rationale",
+        "evidence_ids"
+      ],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "rationale": {
+          "$ref": "#/definitions/text"
+        },
+        "evidence_ids": {
+          "$ref": "#/definitions/refs"
+        }
+      }
+    },
+    "targetReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operation_id",
+        "readback",
+        "inventory"
+      ],
+      "properties": {
+        "operation_id": {
+          "$ref": "#/definitions/hash"
+        },
+        "readback": {
+          "$ref": "#/definitions/refs"
+        },
+        "pixels": {
+          "$ref": "#/definitions/refs"
+        },
+        "inventory": {
+          "$ref": "#/definitions/refs"
+        },
+        "structured": {
+          "$ref": "#/definitions/refs"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "pixels"
+          ],
+          "not": {
+            "required": [
+              "structured"
+            ]
+          }
+        },
+        {
+          "required": [
+            "structured"
+          ],
+          "not": {
+            "required": [
+              "pixels"
+            ]
+          }
+        }
+      ],
+      "description": "Operation surface=json requires structured parity, not pixels; all visual surfaces require pixels. Runtime binds representation to the previously recorded target."
+    }
+  }
+}

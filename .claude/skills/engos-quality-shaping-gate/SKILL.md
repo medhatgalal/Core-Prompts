@@ -28,7 +28,8 @@ without fabricating historical gates; report unassessed prerequisites explicitly
 Stage, original brief/constraints, candidate inventory, prior receipts, current
 source/policy identities, question/decision snapshots, source access, actual host
 reviewer identity, authorship and targets. Read resources/references/gates.md in
-full. For G3 also read resources/references/rubrics.md. For any runtime operation
+full. For G3 also read resources/references/rubrics.md and the current review-evidence
+route, including resources/references/review-evidence.md. For any runtime operation
 read resources/references/runtime.md and the helper's current --help first.
 
 ## Workflow
@@ -47,7 +48,18 @@ read resources/references/runtime.md and the helper's current --help first.
    precede each question, using the host ask-the-user tool or a text menu and wait.
    Silence is not a yes. Missing agreement or an unanswered question holds the
    transition; continue independent work only within the current phase.
-4. For G3 inspect every local render and all contract/security rows, cross-check
+4. For future `shaping-gates.v4+rubric.v4` / `review_evidence: true` G3,
+   seal the author subject first, then derive one ordered packet for exact subject, run,
+   work order, policy and stable reviewer identity. Include all required artifacts,
+   question/decision snapshots, sources/renders and cited code spans with portable
+   paths/hashes/read order. Bind the immutable seal/return hash; post-seal host
+   observations bind the packet hash, with no circular pre-seal read requirement.
+   Require host-observed opens; receipt assertions alone
+   authenticate neither reading nor identity. Validate membership, hashes, spans
+   and source/render ownership. Require decodable source-bound PNG/SVG and actual
+   independent pixel inspection; Mermaid text or blank/unrendered assets hold
+   review. Continue identifying independent substantive defects.
+   For G3 inspect every local render and all contract/security rows, cross-check
    their meaning, apply the existing twelve-score rubric and keep author audit separate from actual
    independent review. Lack of independent context means review_pending.
    A set with no selected work is an unscored hold naming the walk-away item.
@@ -65,9 +77,21 @@ read resources/references/runtime.md and the helper's current --help first.
    split hands nothing to build until a smaller pitch receives its own accept.
    Check that API and skeleton choices occurred only inside shaping.
    After the handover is written, require the output question: HTML, Google Doc,
-   Word, JSON, or all four. Verify only the chosen outputs. For G4 inspect each
+   Word, JSON, Markdown, or all of them. All means all five; verify only chosen
+   outputs. Markdown reuses the complete existing source/hash with three Mermaid
+   fences, captions and full contract/security tables. Required content precedes
+   candidate seal; incomplete accepted sources hold delivery for candidate/
+   reconciliation, renewed hashes and affected review without accepted overwrite,
+   changed bet or second authored prose. Private Google Doc conversion DOCX is
+   not a selected Word copy. For G4 inspect each
    saved target's revision, content, tables and diagrams. Word is handover-only
    through the existing host Word skill, reusing source-bound diagram images.
+   Reopen Word for full text/table/image inventory, then inspect every rendered
+   page. Google Docs needs current saved-revision readback, native editable tables
+   with every row, full inline-image inventory and saved-target pixels. HTML needs
+   saved-page pixels and full content parity; JSON needs parsing and full diagram/
+   caption/contract/security/accepted-decision parity. Check Markdown reuse and
+   complete content separately; report unavailable verification honestly.
    A successful upload, empty target list or source-only image check is insufficient.
 6. Return the documented predicate-level ReviewReceipt with exact subject/policy
    and evidence bindings. The controller checks and accepts it using the runtime;
@@ -110,6 +134,36 @@ the current item; it cannot widen the sheet. A wider job needs a new pitch and a
 new accept. Gate tokens, scores and file paths stay in agent records, not the
 person's handover prose. Source inspection establishes instruction coverage only;
 it does not prove that a later build agent will obey the sheet.
+
+## Current-profile review contract
+
+Read gates.md and review-evidence.md as the single policy/contract owners. Claims
+about existing decision seams require a predicate over a typed field the receiving
+function actually reads, with cited span, contract input, sequence message and
+accepted-proof relationship. Comments/unrelated fields are insufficient; proposed
+behavior may be absent. New/nontechnical seams need reasoned applicability, never
+an escape from an existing seam. Non-blocking unanswered questions require exact
+proof/question-specific source-bound independence quotes; a respondent answer is
+not required for that evidence. Dependent answers need the named respondent's
+authority and observed provenance, never fixer substitution.
+
+Preserve twelve numeric dimensions, reject booleans/nonfinite/invalid values and
+recompute aggregates: each >=3, mean >=4, mandatory assessments pass. Require
+structured unresolved-predicate and finding/assessment/verdict consistency;
+missing predicates cannot pass beside empty or irrelevant findings. Independently
+audit semantic rationales, paraphrase and negation; scanners cannot determine
+truth. Each substantive finding has exactly one typed evidence-bound return and
+repair: missing pixels -> review hold; missing predicate -> Research; mismatch
+with established predicate -> Shaped; dependent question -> named respondent.
+Report concurrent findings and prerequisites. Routes do not execute transitions;
+next_state remains the assessed gate. Version new structured contracts deliberately
+and preserve legacy schema-1 findings and pinned historical receipt interpretation.
+
+Offer a fixer independent of author/reviewer only after failure; start only with
+explicit user acceptance of that repair. Bind stable host identities and every
+revision contributor as author; none may grade that revision even with renamed
+roles/display names. Missing identity/opening capabilities hold honestly. Consent
+adds no hidden launch, named agent, product work or downstream authority.
 
 ## Constraints
 

@@ -69,6 +69,18 @@ Expected: smaller pitch candidates, no build handover until one has its own acce
 These examples describe instructions, not observed live-workshop results.
 [Human choices and evidence limits](engos-design-shaping.md#your-choice-after-shaping).
 
+For selected Markdown handover reuse:
+
+> When you ask for handover copies, choose Markdown only. Reuse the complete
+> existing handover source, retain all three Mermaid fences, captions and full
+> contract/security tables, and show its source identity. Do not create another
+> prose document or write the unselected copies.
+
+Expected: the same validated source file/hash on repeated selection. An incomplete
+accepted source holds delivery for candidate/reconciliation and affected review,
+without overwriting accepted bytes or changing the bet. Choosing all of them means
+all five outputs. A private DOCX conversion for Google Docs is not a Word deliverable.
+
 For an evidence correction during resume:
 
 > Check this Research note against its opened sources before review. If the
@@ -190,6 +202,17 @@ Expect intake and Framed artifacts; no selected mechanism or later-stage success
 
 Expect a current, attributable verdict. Renaming a question, rejecting its wording
 or naming an unexecuted spike cannot make the underlying uncertainty disappear.
+
+> Review this current-profile package from its sealed ordered packet. Keep
+> independent findings separate: missing diagram pixels, unsupported existing-read
+> predicates, contract/sequence mismatch and a dependent unanswered question.
+> Offer an independent fixer, but wait for my acceptance of the repair.
+
+Expected: host-observed source/span openings and actual pixel inspection, one bound
+return route per finding, and no automatic transition. Missing identity/opening
+capabilities hold honestly. A contributor cannot grade the revised candidate under
+another display name. Old pinned receipts remain readable history; this does not
+re-grade them. [Review evidence](engos-design-shaping.md#review-evidence-and-repair).
 
 ### `engos-memory-context-continuity`
 

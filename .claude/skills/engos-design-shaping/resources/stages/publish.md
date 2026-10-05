@@ -3,7 +3,8 @@
 For a handover after table Accept, read handover.md first. Ask which copies the
 person wants after the source handover is written, then publish only those copies.
 Use the existing embed path for HTML, native Google Docs and full document JSON;
-use the host Word skill for a selected handover Word copy. Internal conversion
+use the host Word skill for a selected handover Word copy; reuse the complete
+existing source file/hash for selected Markdown. All means all five, selected-only. Internal conversion
 DOCX for Google Docs is not a selected Word deliverable. Reuse the accepted
 diagram sources and source-bound images. No new diagram renderer or downstream
 documents. The verification and reconciliation rules below also apply to handovers.
@@ -35,6 +36,16 @@ include operation/target identity, source and target revisions, representation,
 full content/row/diagram comparison, applicable style/visual observations (or JSON
 parse and structured-parity evidence), readback evidence,
 limitations, status, owner and next action. An upload acknowledgement is not proof.
+
+For HTML, inspect the saved page pixels and full content parity. For Word, reopen
+the saved file and compare complete text/table/image inventories, then render and
+inspect every page. For Google Docs, read back the current saved revision, verify
+native editable tables and every row, all inline images/diagrams and saved-target
+pixels. For JSON, parse and compare all prose, accepted decisions, diagrams,
+captions and full contract/security tables. For Markdown, verify reuse of the same
+complete source/hash and its content separately. Export success or source-only
+screenshots cannot establish saved-target fidelity. Unavailable verification stays
+pending with its exact host/access gap.
 
 Follow the gate owner's representation-specific G4 policy. This does not waive
 G3's local diagram render inspection or saved-target pixels for HTML and Docs.

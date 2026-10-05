@@ -1,3 +1,19 @@
+## Unreleased
+
+- Bind future shaping reviews to ordered sealed source packets, host-observed
+  openings, source-bound diagram pixels and stable reviewer/contributor identities.
+  Keep semantic audits separate from deterministic checks and preserve historical
+  pinned receipts. Add grounded predicates, quote-backed question independence,
+  one bound repair route per finding and explicitly accepted independent fixers.
+- Add selectable Markdown handover reuse; all means all five outputs. Preserve
+  Mermaid fences, captions and full tables in one source, complete candidates before
+  sealing, and hold incomplete accepted delivery for reconciliation and affected
+  review. Add a read-only selection/reuse helper with exact accepted inventories
+  and adapter-evidence consistency checks, keeping host authenticity and actual
+  delivery pending. Retain selected-only Word/Google Doc/HTML/JSON verification.
+- No live workshop success, numeric skill grade, installation or release is claimed
+  by these instruction and focused mechanical changes.
+
 ## v1.16.5 - 2026-10-04
 
 - Separate engineering frame agreement, team package acceptance and the betting

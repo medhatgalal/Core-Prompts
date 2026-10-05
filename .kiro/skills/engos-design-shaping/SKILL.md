@@ -44,10 +44,18 @@ source coverage, role assignments and receipts in the project's authorized artif
 home. Reached shaping stages add the full diagram/contract/security bundle,
 summary, provisional workstreams/proof slices and traceability. On a human accept,
 write one scope handover using `resources/handover.md`, then ask which copies the
-person wants: HTML, Google Doc, Word, JSON, or all four. Produce only selected
-outputs and verify their saved targets. Word is an added handover-only output
-through the existing host Word skill; retain the existing pitch export paths. Do not fabricate artifacts for unreached
-stages. The phase templates define fields, not gate verdicts.
+person wants: HTML, Google Doc, Word, JSON, Markdown, or all of them. All means
+all five. Produce only selected
+outputs and verify their saved targets. Markdown reuses the complete existing
+handover file/hash, preserving three Mermaid fences, captions and full contract/
+security tables; do not author a second prose document. Required content belongs
+in the mutable candidate before sealing. Incomplete accepted content holds delivery
+for candidate/reconciliation, renewed hashes and affected review, preserving
+accepted bytes/history and the bet. Word is an added handover-only output
+through the existing host Word skill; retain the existing pitch export paths. The read-only handover-tools route checks explicit selections and exact accepted
+source inventory, with optional adapter evidence consistency; it never publishes
+or authenticates host/visual claims. Read its help before use. Do not fabricate
+artifacts for unreached stages. The phase templates define fields, not gate verdicts.
 
 ## Human roles and pauses
 
@@ -132,7 +140,17 @@ Follow the guide's evidence and revision checks when a skeleton result returns.
    Check artifact meaning and agreement, not file existence alone. Keep draft-only
    and artifact-only requests within their requested stopping scope.
 6. Use `review` for author audit followed by actual independent review under the
-   gate policy and its twelve-score rubric. Before reviewer dispatch, compare every
+   gate policy, its review-evidence route and its twelve-score rubric. Require the
+   sealed ordered packet, host-observed source/span openings, source-bound PNG/SVG
+   and independent pixel inspection. Hashes and receipt assertions cannot prove
+   reading, identity, visual agreement or truth. Preserve every typed finding and
+   its single bound repair route; return routes recommend rather than execute.
+   Missing pixels hold review; missing existing-read predicates return to Research;
+   mismatch with established predicate returns to Shaped; needed answers return
+   to the named respondent. Stable host identities govern all-contributor
+   authorship and reviewer/fixer independence; start an offered independent fixer
+   only after explicit user acceptance, and never let it grade its revision. Before
+   reviewer dispatch, compare every
    load-bearing existing claim with accepted Research coverage; a false citation or
    unopened material fact reopens G2. Only the conductor may
    accept current-generation results. Draft-only scope finishes at G3 as a shaped

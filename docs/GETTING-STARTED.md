@@ -29,10 +29,17 @@ hybrid research. [Start or resume guided Shape Up](engos-design-shaping.md).
 Expect engineering frame agreement, team package acceptance and the betting-table
 choice in that order, each preceded by four plain status lines. A table accept
 writes one handover with build, deferred and forbidden lists and one proof sentence
-per build item, then asks which copies you want: HTML, Google Doc, Word, JSON or
-all four. A separate build session starts at spec for that list only. API choices
+per build item, then asks which copies you want: HTML, Google Doc, Word, JSON,
+Markdown, or all of them. All means all five; Markdown reuses the complete source
+file, with Mermaid fences
+and full tables. A separate build session starts at spec for that list only. API choices
 stay in shaping; a separately authorized skeleton is offered only there and
 omitted when there is no code to try. See [your choice after shaping](engos-design-shaping.md#your-choice-after-shaping).
+
+For independent review, expect an ordered sealed packet, observed source openings
+and inspected diagram pixels. Missing host evidence stays a review hold. An offered
+fixer waits for your acceptance and cannot grade the repaired revision.
+[Review evidence and repair](engos-design-shaping.md#review-evidence-and-repair).
 
 Install the diagram/contract helper with the conductor and gate. When shaping
 stalls, ask for the next missing fact rather than another rewrite of the same

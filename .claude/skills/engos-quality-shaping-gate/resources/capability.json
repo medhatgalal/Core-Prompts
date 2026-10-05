@@ -177,11 +177,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "96888e5e",
+        "selected_commit": "afa02db7",
         "richness_score": 5,
-        "line_count": 155,
+        "line_count": 181,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "96888e5e",
           "1ee53a73",
           "6f574d69",
           "e077ae86",
@@ -234,7 +235,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "96888e5e",
+          "baseline_commit": "afa02db7",
           "baseline_slug": "engos-quality-shaping-gate"
         },
         {
@@ -285,7 +286,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "fcfd606f5c0e48b7509fc10dc90fc8cdfa8527b4aa2b2a7de8ccfef4cb509328",
+      "effective_sha256": "81f2a33c2658a7d60d316a46b7d773158b564a61eb9c6acd769a28cf43eba9cb",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -366,7 +367,7 @@
   "job_contract": {
     "primary_job": "Permit only supported, current stage transitions. A useful hold identifies the\nfailed condition, evidence or decision needed, responsible person/role and next\npermitted action. It does not discard useful drafts or reopen unrelated decisions.",
     "use_when": "Use at each engos-design-shaping handoff, to inspect a resumed run, or as the\ngate component of engos-audit-pitch-review. A standalone pitch can be reviewed\nwithout fabricating historical gates; report unassessed prerequisites explicitly.",
-    "works_on": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+    "works_on": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md and the current review-evidence\nroute, including resources/references/review-evidence.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
     "main_output": "A structured receipt and a short explanation: current stage; pass/fail/unverifiable\nconditions; inspected content hashes; evidence; actual reviewer/authorship; blockers;\nrepair owner; next permitted stage. G3 adds all twelve scores, rationales, means,\ntop fixes and three hardest questions. Never substitute `complete` for a verdict.",
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
@@ -381,13 +382,13 @@
         "kind": "source_conditions",
         "clauses": [
           {
-            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n   At Research, assess the author's source/summary agreement, range-scoped\n   exclusivity, updated citation referents and material callee evidence.\n3. Distinguish human decisions, engineering evidence and expert judgments. Check\n   the three actual answers in order using the conductor's ways-of-working.md:\n   engineering accepts the frame before shaping; the team accepts the package\n   before the table; the table accepts a pitch before a handover. Four plain lines\n   precede each question, using the host ask-the-user tool or a text menu and wait.\n   Silence is not a yes. Missing agreement or an unanswered question holds the\n   transition; continue independent work only within the current phase.\n4. For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n   A set with no selected work is an unscored hold naming the walk-away item.\n   Check proposed extensions as proposals; absent code is not proof they cannot\n   be selected. Check the whole set and the frame's requested observable stop. Hold shaping\n   output containing a spec, requirements, design, architecture document, plan or\n   task list; they belong to a separate build session. Fat-marker diagrams,\n   contracts and provisional workstreams retain their existing shaping scope.\n   Every in-item needs one proof sentence. Check the proposed build/deferred/\n   forbidden lists against the pitch; no silent drop, addition or scope cut.\n5. On table Accept, require one handover with the three lists, shaping-finished\n   evidence, shaping-did-not-do statement, spec-first next step and Not done list.\n   Check it against the accepted pitch revision using the conductor's handover.md;\n   hold missing or widened scope. Send back returns to shaping; abandon stops;\n   split hands nothing to build until a smaller pitch receives its own accept.\n   Check that API and skeleton choices occurred only inside shaping.\n   After the handover is written, require the output question: HTML, Google Doc,\n   Word, JSON, or all four. Verify only the chosen outputs. For G4 inspect each\n   saved target's revision, content, tables and diagrams. Word is handover-only\n   through the existing host Word skill, reusing source-bound diagram images.\n   A successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
+            "text": "1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.\n2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n   At Research, assess the author's source/summary agreement, range-scoped\n   exclusivity, updated citation referents and material callee evidence.\n3. Distinguish human decisions, engineering evidence and expert judgments. Check\n   the three actual answers in order using the conductor's ways-of-working.md:\n   engineering accepts the frame before shaping; the team accepts the package\n   before the table; the table accepts a pitch before a handover. Four plain lines\n   precede each question, using the host ask-the-user tool or a text menu and wait.\n   Silence is not a yes. Missing agreement or an unanswered question holds the\n   transition; continue independent work only within the current phase.\n4. For future `shaping-gates.v4+rubric.v4` / `review_evidence: true` G3,\n   seal the author subject first, then derive one ordered packet for exact subject, run,\n   work order, policy and stable reviewer identity. Include all required artifacts,\n   question/decision snapshots, sources/renders and cited code spans with portable\n   paths/hashes/read order. Bind the immutable seal/return hash; post-seal host\n   observations bind the packet hash, with no circular pre-seal read requirement.\n   Require host-observed opens; receipt assertions alone\n   authenticate neither reading nor identity. Validate membership, hashes, spans\n   and source/render ownership. Require decodable source-bound PNG/SVG and actual\n   independent pixel inspection; Mermaid text or blank/unrendered assets hold\n   review. Continue identifying independent substantive defects.\n   For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n   A set with no selected work is an unscored hold naming the walk-away item.\n   Check proposed extensions as proposals; absent code is not proof they cannot\n   be selected. Check the whole set and the frame's requested observable stop. Hold shaping\n   output containing a spec, requirements, design, architecture document, plan or\n   task list; they belong to a separate build session. Fat-marker diagrams,\n   contracts and provisional workstreams retain their existing shaping scope.\n   Every in-item needs one proof sentence. Check the proposed build/deferred/\n   forbidden lists against the pitch; no silent drop, addition or scope cut.\n5. On table Accept, require one handover with the three lists, shaping-finished\n   evidence, shaping-did-not-do statement, spec-first next step and Not done list.\n   Check it against the accepted pitch revision using the conductor's handover.md;\n   hold missing or widened scope. Send back returns to shaping; abandon stops;\n   split hands nothing to build until a smaller pitch receives its own accept.\n   Check that API and skeleton choices occurred only inside shaping.\n   After the handover is written, require the output question: HTML, Google Doc,\n   Word, JSON, Markdown, or all of them. All means all five; verify only chosen\n   outputs. Markdown reuses the complete existing source/hash with three Mermaid\n   fences, captions and full contract/security tables. Required content precedes\n   candidate seal; incomplete accepted sources hold delivery for candidate/\n   reconciliation, renewed hashes and affected review without accepted overwrite,\n   changed bet or second authored prose. Private Google Doc conversion DOCX is\n   not a selected Word copy. For G4 inspect each\n   saved target's revision, content, tables and diagrams. Word is handover-only\n   through the existing host Word skill, reusing source-bound diagram images.\n   Reopen Word for full text/table/image inventory, then inspect every rendered\n   page. Google Docs needs current saved-revision readback, native editable tables\n   with every row, full inline-image inventory and saved-target pixels. HTML needs\n   saved-page pixels and full content parity; JSON needs parsing and full diagram/\n   caption/contract/security/accepted-decision parity. Check Markdown reuse and\n   complete content separately; report unavailable verification honestly.\n   A successful upload, empty target list or source-only image check is insufficient.\n6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.\n7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
-              "start_line": 39,
-              "end_line": 80,
-              "sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b"
+              "start_line": 40,
+              "end_line": 104,
+              "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
             }
           }
         ]
@@ -404,9 +405,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-shaping-gate.md",
-              "start_line": 119,
-              "end_line": 122,
-              "sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b"
+              "start_line": 173,
+              "end_line": 176,
+              "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
             }
           }
         ]
@@ -423,20 +424,24 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-shaping-gate.md",
-        "ssot_sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b",
-        "effective_sha256": "fcfd606f5c0e48b7509fc10dc90fc8cdfa8527b4aa2b2a7de8ccfef4cb509328",
+        "ssot_sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98",
+        "effective_sha256": "81f2a33c2658a7d60d316a46b7d773158b564a61eb9c6acd769a28cf43eba9cb",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
-            "sha256": "b1b0558c823249605d19aa1eb6814f85d5f958b03185f3067714eb3e2b9c50bf"
+            "sha256": "0869f8f31ca4ad40da2fb7067247ae8b05c359580a7504fadf47b5d91953f36d"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
             "sha256": "29fb3704545aad1de0a176f57fd08adf3b845a8873f967265baacc7f259e04ee"
           },
           {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/references/review-evidence.md",
+            "sha256": "e4d4b6354dc8b3edf877753a0904c01849a2e232925b54348024421756707ef5"
+          },
+          {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
-            "sha256": "4852e02e46eb3bf1a3b5a90747724985fd538ef5d2ea67226c0e0ecd7a902614"
+            "sha256": "86b901cf5dd2cb29c1e4e4cb20378a5f2921c12ad67dd354364d0e5c8982be64"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
@@ -448,15 +453,19 @@
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
-            "sha256": "46f33a6796def198d39f7f78832ae3b447141656c7c5e7378344a5a262350b36"
+            "sha256": "815f89346b87ee97dd77b31c3c2a3b2b3e59f34d7bd1724b0c7b88ed1085c70d"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/runtime.schema.json",
-            "sha256": "1b224f344dc1d50f6aa3fc0184b9602ea680bb2573fc11dbdaf850baca6c2478"
+            "sha256": "87f9f2770b7b6a7ce1e3d0ceb527420059fe4054d6ce04f200130c3da80f5023"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/review-evidence.schema.json",
+            "sha256": "4ca1aa64d6ad0b0583eb3d712573e6221eedee5b84d06cb18215a6eb0428d137"
           },
           {
             "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/policy.example.json",
-            "sha256": "d08e168e26897ced90bbc0a789714d00bfcbe5f362a5e8f290a2e55eb524269c"
+            "sha256": "fa1416316aa08e9a3d1c80ba33d78238dea3bc7e9f8a4bddcd1ce8e5836c3209"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -470,7 +479,7 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 19,
                 "end_line": 21,
-                "sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b"
+                "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
               }
             }
           ],
@@ -482,19 +491,19 @@
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 25,
                 "end_line": 27,
-                "sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b"
+                "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
               }
             }
           ],
           "works_on": [
             {
-              "text": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+              "text": "Stage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md and the current review-evidence\nroute, including resources/references/review-evidence.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
               "heading": "Required Inputs",
               "source": {
                 "path": "ssot/engos-quality-shaping-gate.md",
                 "start_line": 31,
-                "end_line": 35,
-                "sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b"
+                "end_line": 36,
+                "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
               }
             }
           ],
@@ -504,9 +513,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-quality-shaping-gate.md",
-                "start_line": 84,
-                "end_line": 87,
-                "sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b"
+                "start_line": 108,
+                "end_line": 111,
+                "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
               }
             }
           ]
@@ -521,7 +530,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "0cc7c155a9c6b6051f0201fc163cc0721ca96d6ff69c97843ab1f8ab5d467799"
+        "mapping_sha256": "0deb5916f4dcd55293d97018daca55e00be87ecdc52b22b9bcc669186a722dd6"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

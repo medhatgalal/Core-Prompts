@@ -8,13 +8,18 @@ current source. Respect source classification on each destination.
 
 | Representation | Retained content and verification |
 | --- | --- |
-| Markdown | Full human-readable sections, native tables, Mermaid sources, captions and evidence references; immutable accepted revision |
+| Markdown | Reuse the complete existing source file/hash; full human-readable sections, all three Mermaid fences, captions, full contract/security tables, accepted decisions and evidence references; no second authored prose |
 | HTML | Complete approved prose/tables, all rendered diagrams, captions, source identity and status; inspect saved page pixels for clipping, labels, layout and full row coverage |
 | JSON document export | schema_version, source revision/hash, stable section IDs/order/full text, table columns and every row/cell ID, diagram source/caption/evidence and rendered references/status, claim/evidence refs and unresolved status; parse and compare against source inventory |
-| Native Google Docs | Full prose, native editable tables with every row, rendered diagrams/captions and source identity; current document/tab/revision readback plus saved-render visual inspection |
+| Native Google Docs | Full prose, native editable tables with every row, rendered diagrams/captions and source identity; current saved document/tab/revision readback, complete native editable table row and inline-image inventory, plus saved-target pixel inspection |
 | Word handover only | Same accepted handover prose and three lists, existing diagrams and full contract/security tables; use the host Word skill, reopen the saved .docx, render and inspect every page, compare content and image inventory |
 
-For a handover, follow handover.md for output choice and source reuse.
+For a handover, follow handover.md for the HTML, Google Doc, Word, JSON, Markdown
+or all-five selection and source reuse. Produce only selected deliverables; a
+private conversion DOCX for Google Docs is not a selected Word copy. Complete
+required source content before sealing. Incomplete accepted content holds delivery
+for candidate/reconciliation, renewed hashes and affected review; preserve accepted
+bytes/history and the bet. Do not author a second prose document.
 A JSON status manifest is not a full document export. Markdown-only and JSON-only
 consumers still receive truthful render and publication status; generating a file
 is not proof it displayed correctly. Preserve complete tables; a summary view may

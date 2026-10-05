@@ -26,7 +26,8 @@ review and verified delivery. You retain appetite, scope and betting decisions.
 Three decisions stay separate: engineering accepts the frame, the team accepts
 the shaping package, then the betting table accepts, sends back, abandons or
 splits the pitch. Accept writes one handover with build, deferred and forbidden
-lists, then asks for HTML, Google Doc, Word, JSON or all four. Only chosen copies
+lists, then asks for HTML, Google Doc, Word, JSON, Markdown, or all of them.
+All means all five. Markdown reuses the complete handover source; only chosen copies
 are produced. A later build session starts at spec for the accepted list; it
 cannot drop an item or pick up deferred work. [Human choices and handover](docs/engos-design-shaping.md#your-choice-after-shaping).
 
@@ -46,6 +47,12 @@ the note. [Recovery and author handoffs](docs/engos-design-shaping.md#recovery-a
 | “What already exists, and why reuse, extend or build new?” | Scoped evidence and architectural trade-offs, with specialist help when useful |
 | “Where are we, what is blocked, and what do you need from me?” | Accepted versus draft state, blocker, needed owner and next action |
 | “Resume this folder; preserve the edits in its registered Doc.” | Reconciled changes and refreshed reviews where needed |
+
+Current-profile review uses a sealed ordered source packet and source-bound diagram
+pixels. Missing pixels hold review; unsupported existing-code predicates return to
+Research; contract/diagram disagreements return to shaping; needed answers return
+to their named respondent. A repair offer needs your acceptance, and its contributor
+cannot grade the revision. [Review evidence](docs/engos-design-shaping.md#review-evidence-and-repair).
 
 **Setup:** install the [shaping bundle](docs/engos-design-shaping.md#enable-the-shaping-bundle),
 not just the entry skill. You choose local/repository output paths and authorized

@@ -65,7 +65,9 @@ resource dependencies, decisions/authority records and source index into authori
 dependencies or silently track changes to the remote originals of local copies.
 Refresh copies when upstream changes; reopen the earliest affected gate.
 
-The current profile is `shaping-gates.v3+rubric.v4`. It retains G2
+The current profile is `shaping-gates.v4+rubric.v4`, with `shaping_loop: true`
+and `review_evidence: true`. Its G3 protocol is [review-evidence.md](review-evidence.md).
+The prior `shaping-gates.v3+rubric.v4` profile remains readable without reinterpretation. It retains G2
 `existing_capability_evidence`, G3 `architecture_fit` and the same twelve scores
 and 3/4 thresholds. Optional policy `shaping_loop: true` enables the current
 dispatch/seal checks; absent/false preserves historical runtime behavior. Keep the
@@ -117,7 +119,7 @@ Exact `prepare` input (replace labels and evidence with actual host records):
   },
   "inputs": ["sources/original.md", "sources/index.json", "sources/reviewer-assignment.json", "sources/reviewer-context.json"],
   "source_revision": "source-index-revision-1",
-  "resource_revision": "shaping-gates.v3+rubric.v4",
+  "resource_revision": "shaping-gates.v4+rubric.v4",
   "skill_allowlist": ["engos-design-frame-from-vague"],
   "original_constraints": ["Preserve the supplied problem; do not choose a solution in the frame."],
   "assigned_questions": [],
@@ -135,6 +137,87 @@ The directory must not exist before assignment. `seal` checks required outputs
 and registers and returns `subject` (the cumulative filename/SHA256 inventory)
 and `return_hash`. It is idempotent for unchanged bytes; changed sealed candidates
 need a new work order. Store reviews outside candidates so they cannot hash themselves.
+
+## Future-profile G3 observations and receipt v2
+
+G0–G2/G4 retain receipt schema 1. Opt-in G3 work orders name
+`shaping-review-evidence.v1#/definitions/reviewV2`; original receipt definitions
+remain unchanged. `schemas/review-evidence.schema.json` also defines the author
+`reviewPlan` contract. G3 additionally requires `review-plan.json` before seal.
+The plan declares exact proof/source and all load-bearing existing seam IDs from
+`shape-set.json`, including receiving function, field/type, expression, input,
+sequence message and cited actual read quote. Existing claims cannot be relabelled.
+New/nontechnical applicability is explicitly reviewed; proposed behavior absent
+from existing code is legal. Reviewer source meaning and pixel judgments remain
+independent host/reviewer evidence, not tests or keyword inference.
+
+Extend G3 `prepare` with `participation_evidence`, naming a listed hashed input,
+controller-bound `seam_applicability: {"existing-seam": "existing"}` (or explicit
+`nontechnical`/`new` with actual applicability evidence), and `accepted_proof: {"text": "exact accepted proof", "source": {"path":
+"sources/accepted-proof.txt", "sha256": "actual hash", "locator": "1:1",
+"quote": "actual complete quoted line including its newline"}}`. The source
+must belong to accepted G2 files/inputs. The controller designates this exact
+proof, whose text must equal the quoted proof bytes apart from terminal newlines;
+reviewers inspect its actual authority and meaning. An author cannot
+substitute a different proof in the review plan.
+
+Participation records contain `schema_version: 1`, `run_id`, `work_order_id`,
+`host`, `observed: true`, stable `author`/`reviewer`, `contributors`, and `repairs`.
+Each contributing repair binds `identity`, the actual `original_author` and
+`original_reviewer`, failed `work_order_id`, `return_hash`, `finding_id`,
+`contributed: true`, and `consent: {"accepted": true, "user": "actual user",
+"reference": "actual user acceptance evidence", "before_contribution": true}`.
+Consent and origin are bound separately from the repair role. Do not dispatch a
+fixer until acceptance is observed. All contributors join authorship and cannot
+grade later revisions; stable host identities survive display/role renaming.
+The helper validates supplied attribution, not host identity authentication.
+
+Seal retains immutable candidate/input bytes and constructs `review_packet` from
+all policy, cumulative subject, registers, render and cited inputs, in deterministic
+path order. Each entry supplies hash and whole-file line locators (binary files
+have none). Narrow quotes additionally bind actual spans in the sealed plan and
+review. `return_hash` includes retained bytes; the derived packet binds it without
+hashing itself. Only AFTER seal does the host open the ordered packet and renders.
+
+The controller records the separate host record before accepting a return:
+
+```sh
+python3 scripts/shaping_run.py review-observation --run /private/tmp/shaping-demo --expected-version 12 --work-order WORK_ORDER_ID --record sources/host-review.json
+```
+
+The run-relative record contains `schema_version: 1`, `run_id`, `work_order_id`,
+`packet_hash`, `host: {"identity": "actual host", "reviewer": "stable reviewer",
+"observed": true, "return_hash": "sealed return hash"}`, exact ordered
+`openings` copied from the packet ONLY after actual observed opening, final
+`contributors`, `renders`, and `answers`. Each render entry is keyed by diagram
+source and contains `source_hash`, `path`, `sha256`, `pixels_path`,
+`pixels_sha256`, and `opened: true`. SVG needs actual host-rendered PNG pixels;
+PNG needs successful bounded decoding. The helper adds no diagram renderer.
+Each needed answer entry is keyed by question ID and includes respondent
+`identity`, `authority`, `observed: true`, and source quote binding. If unavailable,
+hold the dependent review. A newly observed contributor requires fresh prepare,
+seal and review with renewed consent/participation; it cannot be inserted into an
+already sealed revision.
+
+`review-observation` persists the sidecar bytes/hash in the controller journal;
+it is idempotent for identical records. The v2 receipt references its
+`review_evidence.host_record` path/hash and matches its host/opening/render/answer
+bindings. Receipt assertions without a separately recorded sidecar hold. The host
+must restrict this command/store to the controller. This is consistency evidence,
+not authentication: a malicious controller can fabricate observations. Subsequent
+source/sidecar drift must be reconciled; retained observations remain immutable.
+
+The reviewer adds structured seam, question and visual observations and a
+`semantic_audit` with `performed`, `consistent`, `explanation`, and `contradictions`.
+Each contradiction binds ID, assessment check, seam/question item, typed route,
+actual `rationale_path` (`assessments.<check>.explanation` or
+`scores.dimensions.<dimension>.rationale`), exact `rationale_quote`, actual source
+quote, and explanation. Consistency requires no unresolved contradictions.
+The helper checks these bytes and structure; only the independent reviewer judges
+paraphrase, negation and truth. Each failed check/contradiction has one owned typed
+finding with a source-bound repair route; prerequisite IDs must form a DAG.
+Missing renders remain a review hold alongside independent research/question
+findings. Typed returns do not change `next_state` or trigger repair.
 
 ## Minimum artifacts and predicate mapping
 
@@ -496,3 +579,17 @@ and cannot be substituted with `structured`. JSON-only runs can reach G4 with th
 checks, while G3 still requires all three local rendered-diagram pixel inspections.
 The original pilot requires both HTML AND Google Doc; the supplied policy example
 preserves both. JSON export cannot replace either without an explicit scope change.
+
+General rationale contradictions use `item: "assessment:<check>"`, with that
+assessment failed, actual rationale locator/quote and a packet source in the
+assessment's (or cited score's) evidence inventory. Their route is `shaping`.
+Seam/question contradictions continue to match the structured subject failure;
+generic score audits do not bypass predicate or respondent route ownership.
+
+Concurrent special and generic score defects may share a broad assessment check.
+The generic contradiction must bind an actual score rationale and cited source
+span disjoint from every seam/question failure span for that check. Shared
+assessment explanations and overlapping same-path or same-hash spans hold as
+aliases. Mechanical separation does not establish semantic independence; reviewers
+still inspect both defects. V2 evidence IDs may cite pinned packet input paths;
+legacy receipt evidence remains limited to the sealed subject.

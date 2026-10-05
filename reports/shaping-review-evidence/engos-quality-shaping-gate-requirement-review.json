@@ -1,0 +1,221 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-quality-shaping-gate",
+  "original_sha256": "2c97b3a4b9b899c2090c2419a9f1fee8d9257d32ed0296ed996827d07e10905b",
+  "candidate_sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98",
+  "effective_sha256": "81f2a33c2658a7d60d316a46b7d773158b564a61eb9c6acd769a28cf43eba9cb",
+  "source_line_count": 181,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/instruction_preservation_review",
+    "author_agent_id": "/root/canonical_instructions",
+    "independent": true
+  },
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "identity",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: engos-quality-shaping-gate\ndescription: Check whether a shaping stage may advance from its actual artifacts, evidence and prior receipts. Reject solution-in-framing, invented evidence, unresolved material questions, stale reviews and incomplete publication. Use within guided shaping or independent pitch review.\ndisplay_name: Shape Up Stage Gate\nkind: workflow\ncapability_type: skill\nversion: v1.0\n---\n# Shape Up Stage Gate",
+      "rationale": "Skill identity, workflow classification, version field and existing provider scope remain unchanged."
+    },
+    {
+      "id": "purpose",
+      "source_start_line": 11,
+      "source_end_line": 16,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\n\nJudge Intake, Framed, Research, Shaped and Bet-ready separately. Make missing\ndecisions and evidence actionable without inventing a pass. Own the shared stage\npolicy and mechanical state helper; the host owns tools, permissions and dispatch.",
+      "rationale": "Independent stage judgment and mechanical helper ownership remain distinct from host tools/permissions/dispatch."
+    },
+    {
+      "id": "objective",
+      "source_start_line": 17,
+      "source_end_line": 22,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective\n\nPermit only supported, current stage transitions. A useful hold identifies the\nfailed condition, evidence or decision needed, responsible person/role and next\npermitted action. It does not discard useful drafts or reopen unrelated decisions.",
+      "rationale": "Supported current transitions or useful scoped holds remain the objective; useful drafts and unrelated decisions are preserved."
+    },
+    {
+      "id": "invocation",
+      "source_start_line": 23,
+      "source_end_line": 28,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\n\nUse at each engos-design-shaping handoff, to inspect a resumed run, or as the\ngate component of engos-audit-pitch-review. A standalone pitch can be reviewed\nwithout fabricating historical gates; report unassessed prerequisites explicitly.",
+      "rationale": "Conductor, resumed-run and standalone pitch-review scope remain unchanged; no fabricated earlier gates."
+    },
+    {
+      "id": "inputs",
+      "source_start_line": 29,
+      "source_end_line": 36,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Required Inputs\n\nStage, original brief/constraints, candidate inventory, prior receipts, current\nsource/policy identities, question/decision snapshots, source access, actual host\nreviewer identity, authorship and targets. Read resources/references/gates.md in\nfull. For G3 also read resources/references/rubrics.md and the current review-evidence\nroute, including resources/references/review-evidence.md. For any runtime operation\nread resources/references/runtime.md and the helper's current --help first.",
+      "rationale": "Subject, policy, questions, actual host identities and current runtime/help remain mandatory; requested current-profile evidence route is added."
+    },
+    {
+      "id": "dependencies",
+      "source_start_line": 37,
+      "source_end_line": 40,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Workflow\n\n1. Verify subject identity, predecessor hashes and source coverage. Hold missing,\n   stale or contradictory dependencies before evaluating a later stage.",
+      "rationale": "Subject identity, predecessor hashes and source coverage are checked before later gates."
+    },
+    {
+      "id": "source-review",
+      "source_start_line": 41,
+      "source_end_line": 45,
+      "disposition": "preserved",
+      "candidate_excerpt": "2. Inspect actual prose, citations and required artifacts. Explain each failed\n   predicate with a quote or missing item. Read source evidence instead of trusting\n   manifest claims. A named spike or rejected question is not uncertainty closure.\n   At Research, assess the author's source/summary agreement, range-scoped\n   exclusivity, updated citation referents and material callee evidence.",
+      "rationale": "Actual prose/citation/artifact/source review and Research summary/exclusivity/callee requirements remain unchanged."
+    },
+    {
+      "id": "human-decisions",
+      "source_start_line": 46,
+      "source_end_line": 52,
+      "disposition": "preserved",
+      "candidate_excerpt": "3. Distinguish human decisions, engineering evidence and expert judgments. Check\n   the three actual answers in order using the conductor's ways-of-working.md:\n   engineering accepts the frame before shaping; the team accepts the package\n   before the table; the table accepts a pitch before a handover. Four plain lines\n   precede each question, using the host ask-the-user tool or a text menu and wait.\n   Silence is not a yes. Missing agreement or an unanswered question holds the\n   transition; continue independent work only within the current phase.",
+      "rationale": "Three ordered actual human answers, four plain status lines and wait/no-silent-yes boundaries remain unchanged."
+    },
+    {
+      "id": "G3-review",
+      "source_start_line": 53,
+      "source_end_line": 63,
+      "disposition": "reformulated",
+      "candidate_excerpt": "4. For future `shaping-gates.v4+rubric.v4` / `review_evidence: true` G3,\n   seal the author subject first, then derive one ordered packet for exact subject, run,\n   work order, policy and stable reviewer identity. Include all required artifacts,\n   question/decision snapshots, sources/renders and cited code spans with portable\n   paths/hashes/read order. Bind the immutable seal/return hash; post-seal host\n   observations bind the packet hash, with no circular pre-seal read requirement.\n   Require host-observed opens; receipt assertions alone\n   authenticate neither reading nor identity. Validate membership, hashes, spans\n   and source/render ownership. Require decodable source-bound PNG/SVG and actual\n   independent pixel inspection; Mermaid text or blank/unrendered assets hold\n   review. Continue identifying independent substantive defects.\n   For G3 inspect every local render and all contract/security rows, cross-check\n   their meaning, apply the existing twelve-score rubric and keep author audit separate from actual\n   independent review. Lack of independent context means review_pending.\n   A set with no selected work is an unscored hold naming the walk-away item.\n   Check proposed extensions as proposals; absent code is not proof they cannot\n   be selected. Check the whole set and the frame's requested observable stop. Hold shaping\n   output containing a spec, requirements, design, architecture document, plan or\n   task list; they belong to a separate build session. Fat-marker diagrams,\n   contracts and provisional workstreams retain their existing shaping scope.\n   Every in-item needs one proof sentence. Check the proposed build/deferred/\n   forbidden lists against the pitch; no silent drop, addition or scope cut.",
+      "rationale": "Every local render/table row, twelve-score independent review, unscored empty-set hold, legal proposals, proof stop and no build documents remain; sealed exact packet/observed openings/pixels are added for future v4."
+    },
+    {
+      "id": "handover-delivery",
+      "source_start_line": 64,
+      "source_end_line": 74,
+      "disposition": "reformulated",
+      "candidate_excerpt": "5. On table Accept, require one handover with the three lists, shaping-finished\n   evidence, shaping-did-not-do statement, spec-first next step and Not done list.\n   Check it against the accepted pitch revision using the conductor's handover.md;\n   hold missing or widened scope. Send back returns to shaping; abandon stops;\n   split hands nothing to build until a smaller pitch receives its own accept.\n   Check that API and skeleton choices occurred only inside shaping.\n   After the handover is written, require the output question: HTML, Google Doc,\n   Word, JSON, Markdown, or all of them. All means all five; verify only chosen\n   outputs. Markdown reuses the complete existing source/hash with three Mermaid\n   fences, captions and full contract/security tables. Required content precedes\n   candidate seal; incomplete accepted sources hold delivery for candidate/\n   reconciliation, renewed hashes and affected review without accepted overwrite,\n   changed bet or second authored prose. Private Google Doc conversion DOCX is\n   not a selected Word copy. For G4 inspect each\n   saved target's revision, content, tables and diagrams. Word is handover-only\n   through the existing host Word skill, reusing source-bound diagram images.\n   Reopen Word for full text/table/image inventory, then inspect every rendered\n   page. Google Docs needs current saved-revision readback, native editable tables\n   with every row, full inline-image inventory and saved-target pixels. HTML needs\n   saved-page pixels and full content parity; JSON needs parsing and full diagram/\n   caption/contract/security/accepted-decision parity. Check Markdown reuse and\n   complete content separately; report unavailable verification honestly.\n   A successful upload, empty target list or source-only image check is insufficient.",
+      "rationale": "One accepted-scope handover, sendback/abandon/split, shaping-only API/skeleton and handover-only Word remain. User-authorized Markdown/all-five and complete adapter inventories strengthen delivery without broadening scope."
+    },
+    {
+      "id": "receipt-acceptance",
+      "source_start_line": 75,
+      "source_end_line": 77,
+      "disposition": "preserved",
+      "candidate_excerpt": "6. Return the documented predicate-level ReviewReceipt with exact subject/policy\n   and evidence bindings. The controller checks and accepts it using the runtime;\n   the reviewing worker never writes accepted state or approves its own work.",
+      "rationale": "Predicate receipts remain exactly subject/policy bound; controller accepts and reviewing worker never writes accepted state or self-approves."
+    },
+    {
+      "id": "repair-routing",
+      "source_start_line": 78,
+      "source_end_line": 81,
+      "disposition": "preserved",
+      "candidate_excerpt": "7. After repairs, reevaluate the affected conditions and dependencies. Preserve\n   failed receipts and changes. New scope reopens framing; new material design\n   uncertainty reopens research. Keep content readiness distinct from delivery.",
+      "rationale": "Affected dependencies are reevaluated with failed history preserved; scope/design changes reopen proper phases and delivery remains separate."
+    },
+    {
+      "id": "output",
+      "source_start_line": 82,
+      "source_end_line": 88,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\n\nA structured receipt and a short explanation: current stage; pass/fail/unverifiable\nconditions; inspected content hashes; evidence; actual reviewer/authorship; blockers;\nrepair owner; next permitted stage. G3 adds all twelve scores, rationales, means,\ntop fixes and three hardest questions. Never substitute `complete` for a verdict.",
+      "rationale": "Structured evidence/status/identity/blockers and all twelve scores/rationales/means/fixes/questions remain; complete never substitutes for verdict."
+    },
+    {
+      "id": "policy-ownership",
+      "source_start_line": 89,
+      "source_end_line": 96,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Rules\n\nThe gates and rubric resources are the single policy owners. Missing mandatory\nassessment or unverified material feasibility holds regardless of average. Interpret\nscore anchors at shaping depth; do not demand a built feature solely for points.\nQuestion deletion cannot waive a risk. Human-reviewed private evidence is labeled\naccurately, not AI-verified. Preserve typed scope and source identity across exports.",
+      "rationale": "Single gates/rubric owner, mandatory assessment/feasibility holds, shaping-depth anchors and honest private evidence remain unchanged."
+    },
+    {
+      "id": "floors-and-history",
+      "source_start_line": 97,
+      "source_end_line": 109,
+      "disposition": "preserved",
+      "candidate_excerpt": "Cost 3 includes a restatement of appetite; more wording of the same bound cannot\nearn 4. One example of this pattern is listing the same bounded operations again\nwithout additional supported cost evidence. A failed average below 4 with all\nscores at least 3 and no other miss requires new evidence, a named spike or a\nhold before another pitch. Floors remain 3 per dimension and 4 overall. Unopened\nload-bearing facts return to Research before scoring; Research notes contradicting\nopened code still fail. Reviewers inspect sequence pixels and assess independently;\nno conductor message supplies the preferred verdict.\nFloor classification uses the current policy-binding digest; valid older receipts\nstay history after common integrity checks, without current coverage requirements.\nUnverifiable persistent history is recovery_pending, not an ordinary hold. A\npolicy migration cannot be used as an automatic retry or counted as a new fact.",
+      "rationale": "Cost anchor, new-fact floor retry, 3/4 floors, opened Research, independent pixels and immutable pinned histories remain unchanged."
+    },
+    {
+      "id": "accepted-build-scope",
+      "source_start_line": 110,
+      "source_end_line": 116,
+      "disposition": "preserved",
+      "candidate_excerpt": "The accepted handover permits every build-these line and prohibits dropping one,\nadding a deferred line or building a forbidden line. “Proceed and loop” continues\nthe current item; it cannot widen the sheet. A wider job needs a new pitch and a\nnew accept. Gate tokens, scores and file paths stay in agent records, not the\nperson's handover prose. Source inspection establishes instruction coverage only;\nit does not prove that a later build agent will obey the sheet.",
+      "rationale": "All build-these items remain permitted/required while deferred/forbidden remain excluded; wider work needs new accept and handover hides bookkeeping."
+    },
+    {
+      "id": "authority-constraints",
+      "source_start_line": 117,
+      "source_end_line": 123,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints\n\nThe script checks mechanical consistency, not truth or human authority. Host-bound\nworker provenance and permission boundaries must be observed separately. It is not\na sandbox against a caller who can rewrite its state. No sharing, production code,\nissue-tracker work, betting decision, native agent registration or privilege expansion.",
+      "rationale": "Mechanical checks still do not prove truth/human authority or sandbox caller writes; no sharing/code/issues/bet/agent/privilege authority."
+    },
+    {
+      "id": "examples",
+      "source_start_line": 124,
+      "source_end_line": 130,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\n\nA frame saying \"poll every ten seconds\" fails G1 even if its JSON says no solution.\nA recorded but unrun spike fails G2. A polished pitch without a security owner fails\nG3. Three images uploaded but not read back on the saved Doc fail G4. A prior passed\npitch retains content-ready status when only its requested publication is blocked.",
+      "rationale": "All stage-specific rejection and content-ready/delivery-pending examples remain unchanged."
+    },
+    {
+      "id": "rubric",
+      "source_start_line": 131,
+      "source_end_line": 141,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\n\n| Check | Passing behavior |\n| --- | --- |\n| Meaning | Reads actual clauses and evidence, not just status labels |\n| Progress | Valid current evidence advances; missing evidence holds the right stage |\n| Independence | Actual non-author review; contaminated context restarted or held |\n| Completeness | Exemplar coverage and full saved-target inventories checked |\n| Recovery | Replayed/stale work cannot double-apply or overwrite accepted state |\n| Honesty | Mechanical, semantic, visual and human evidence remain distinct |",
+      "rationale": "Meaning, progress, independence, complete saved-target inventories, recovery and evidence-class honesty remain unchanged."
+    },
+    {
+      "id": "visual-and-progress",
+      "source_start_line": 142,
+      "source_end_line": 163,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Visual Quality and Evidence-Derived Progress\n\nVisual review checks readability and reference fidelity in addition to existence\nand semantic coverage. Inspect labels, captions, legends, hierarchy and all table\nfields at the intended surface size. Reject broken-word table columns or missing\nlinked detail even when row counts match. Source, visual review and saved-target\nproof remain distinct. Preserve every original field and source-bound SVG/PNG.\n\nFor a status/progress request, load the progress/runtime route from the current\nresource map and read helper help. Derive views from controller state and actual\nobservations, not author assertions. Distinguish accepted versus candidate, queued\nversus last-observed active, blocked versus awaiting input, and local receipt\nintegrity versus remote freshness. Requested stopping points govern which stages\nare applicable. Simulation, snapshot time and unknown activity must remain visible.\nThe projection never accepts a stage, overrides drift, appoints owners, publishes\nexternally or grants betting authority. Existing default status behavior remains\ncompatible; the resource contract specifies the actual new interface.\n\nBlast radius: all full-shaping gate users receive the added visual criteria and\noptional progress projection; standalone pitch review still does not fabricate\nhistorical stage acceptance or infer a live monitor.",
+      "rationale": "Full visual/source fidelity and actual observed progress projection remain; no inferred stage acceptance, owner appointment or monitoring."
+    },
+    {
+      "id": "architecture-fit",
+      "source_start_line": 164,
+      "source_end_line": 181,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Existing Capabilities and Architecture Fit\n\nThe current gate policy adds existing_capability_evidence at G2 and architecture_fit\nat G3. Read their meanings in resources/references/gates.md and current rubric;\nuse the current policy example for new runs. Assess scoped investigation, credible\noptions and evidence-backed disposition, not a mandatory reusable-component find.\nJustified new capability and intentionally separate responsibilities may pass.\nMissing optional specialist participation alone is not failure; missing material\nproof, contradictory responsibilities or unreasoned duplicate capability hold.\nFor nontechnical/no-material-seam work require an explicit reasoned applicability\nassessment. Do not invent code findings or force architecture into framing.\n\nUse the existing receipt mechanism for these mandatory current-profile predicates;\nthe helper checks outcomes/evidence bindings, not semantic fit. Preserve old pinned\npolicy history. Adopting current policy requires the documented policy-rebind path,\nnot silently adding assessments to historical receipts. All shared full-shaping\ngate consumers receive this policy; standalone review reports actual coverage\nwithout fabricating earlier stages or implying new checks already passed.",
+      "rationale": "Existing G2/G3 fit predicates, optional specialists, justified new capability, nontechnical applicability and explicit policy rebind preserve scope/history."
+    }
+  ],
+  "review_scope": "Independent source requirement preservation and authorized additions; not numeric grading, promotion, host identity authentication or observed behavioral efficacy.",
+  "contributing_authors": [
+    "/root/canonical_instructions",
+    "/root/runtime_implementation"
+  ],
+  "provenance": "Reviewer task is separate from canonical/resource author tasks; exact source copies retained before UAC apply. Supplied agent IDs record review provenance rather than authenticated host identities.",
+  "adversarial_review": {
+    "Attack Surface": "Author control of evidence, source/pixel substitutions, question authority, revision authorship, score contradictions and immutable handover reuse.",
+    "Contradictions / Gaps": "No remaining instruction-preservation blocker in the final inspected bytes. Previously reported controller evidence, schema packaging/nonpass validity, runtime documentation, supplied-fixture coverage and contradiction inventory defects were returned to their authors and repaired.",
+    "Mitigations / Fixes": [
+      "Separate controller-recorded post-seal host sidecar required; copied receipt openings alone hold.",
+      "New v2 schema bundled; nonpass missing-render receipt can preserve a typed hold.",
+      "Runtime documents exact current-profile participation/proof/observation fields with neutral portable example.",
+      "Supplied historical fixture remains labelled unverified; synthetic 49/12 dimensions remain separate from preserved reported historical pass.",
+      "Assessment-owned rationale contradictions bind actual rationale and cited evidence; special research/respondent routes retain ownership.",
+      "Independent generic contradictions sharing a failed assessment preserve separate findings using an immutable pre-audit special-failure set. Mixed generic/special findings retain both routes when the score rationale and relevant source spans are disjoint; shared explanations and same-path or same-hash span aliases hold. Mechanical span separation is not semantic independence."
+    ],
+    "Residual Risk": "Host record authenticity, actual reading, visual/semantic correctness and later live adapter behavior require host-supported observations and independent judgment. Fake test observations demonstrate mechanical contracts only. This is not a numeric skill grade or promotion verdict."
+  },
+  "review_resource_delivery": {
+    "route": "/adversarial",
+    "bundle_sha256": "c3f30d7f21780d99ee0666e2aa1c4f8fb4a9a7ba57065ea1d9699673402f47b9",
+    "evidence": "Full loader tool output read by the independent reviewer, plus Instruction Editor entry and clarity reference."
+  },
+  "before_after_size": {
+    "original": {
+      "lines": 181,
+      "words": 1539,
+      "bytes": 11104
+    },
+    "candidate": {
+      "lines": 235,
+      "words": 2011,
+      "bytes": 15002
+    }
+  }
+}
