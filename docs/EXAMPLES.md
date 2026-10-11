@@ -943,7 +943,7 @@ Follow with:
 
 ### `engos-meta-instruction-editor`
 
-Preview status: available for auditable editing, but not behaviorally promoted. Treat every semantic rewrite as a candidate until independent evaluation exists.
+Preview status: available for auditable editing, but not behaviorally promoted. Material meaning changes receive independent review; behavioral claims need independent evaluation.
 
 Use when:
 
@@ -967,9 +967,15 @@ Expected output:
 - behavioral claims requiring proof
 - unresolved ambiguities
 
-Follow with:
+For a behavioral benefit claim, follow with:
 
 > Hand the baseline, candidate, preservation map, and Goal Contract to `engos-optimization-auto-research`; do not promote the rewrite from style evidence alone.
+
+For a bounded relocation instead:
+
+> Move this unchanged approval condition next to its command. Preserve its scope and exception; do not claim better agent behavior.
+
+Expect a `SemanticChangeLedger.v1`, source/destination comparison, diff, link and parse results, and any unresolved ambiguity. No universal pressure test is required. “Fix the grammar in this ordinary email” is a non-trigger and remains a direct prose edit.
 
 ### `engos-delivery-diagram-contract-artifacts`
 
@@ -1233,13 +1239,14 @@ Why this skill first:
 
 Ask:
 
-> Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.
+> Use `engos-meta-uac-import` to improve this skill under its current name. Compare current clauses first, choose reuse, harvest, combine or new, name one receiving owner, and prepare a candidate for review.
 
 Expected output:
 
-- capability classification
-- landing shape
-- baseline and benchmark implications
+- authoring choice and one receiving owner
+- completed `PreservationDisplacement.v1` with donor provenance, destination, displaced clause and evidence class
+- capability classification, resource closure and canonical landing shape
+- baseline and benchmark implications, with structural admission separate from efficacy
 - next UAC steps
 
 Follow with:

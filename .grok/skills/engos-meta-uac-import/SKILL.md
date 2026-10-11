@@ -28,7 +28,7 @@ Deterministic clarity lint from `instruction_clarity.v1` is available in every m
 ## Primary Objective
 Improve the supplied skill or agent’s clarity, completeness, coherence, structure, and usability while preserving its intended capability and existing surface kind and provider scope. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.
 
-When structural quality is near the bar but behavioral confidence is still weak, escalate to a bounded behavioral proof workflow instead of overstating readiness.
+When a claimed behavioral benefit needs evidence, escalate to a bounded behavioral proof workflow instead of overstating readiness. An admission-only update can remain `behavioral_pending`; it does not require a new experiment merely to land structurally reviewed instructions.
 
 ## Invocation Contract
 Use this capability as the AI-facing intake contract.
@@ -54,6 +54,13 @@ When exposed as an agent, inspect the supplied source and repository context, pr
 ## Output Directory
 Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task.
 
+## Authoring Decision
+Before drafting a capability addition or material update, read `resources/references/authoring-decisions.md`. Select `reuse`, `harvest`, `combine`, or `new` against current clauses and name one receiving capability owner. Start an existing-owner update from its current SSOT and preserve its slug and surface scope. Keep the intended outcome, precise positive and negative triggers, essential inputs, outputs, and authority in the entrypoint; load optional detail only for the selected work.
+
+For a candidate that changes or moves instructions, read `resources/templates/preservation-displacement.json` and return one completed curation record. It binds the source passage, receiving destination, displaced clause, preservation disposition, and evidence class. Reuse an existing equivalent clause without adding a duplicate. The record supports review; it is not the independently supplied `UACRequirementReview.v1` or a promotion verdict.
+
+Ordinary prose copy editing stays outside canonical intake. Use `engos-meta-instruction-editor` independently when instruction preservation is the central job; return a proposed material capability update here for canonical admission. Preserve workspace/global precedence and permission rules in the invoking host; this portable method does not configure them or schedule workers.
+
 ## Workflow
 1. Ingest the source through the deterministic pipeline.
 2. Produce a clean summary.
@@ -66,7 +73,7 @@ Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.jso
 9. Select a quality profile and benchmark set.
 10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.
 11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.
-12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing.
+12. If `judge` is being used to support a claimed behavioral benefit and confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing. Preserve admission-only status as `behavioral_pending` when no such claim is made.
 13. Search for benchmark sources only when the source is generic or fit confidence is weak.
 14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.
 15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.
@@ -116,6 +123,7 @@ Use this capability when the user asks for any of the following, even without na
 ## Required Output
 Return a concise structured result with these sections:
 - Source
+- Authoring Decision and Preservation / Displacement record when preparing a candidate
 - Summary
 - Uplift
 - Routing
@@ -158,6 +166,16 @@ When `judge` escalates to behavioral proof, also include:
 ## Examples
 ### Example Request
 > Import this prompt folder, tell me whether it belongs as one capability or several, and refuse apply if it misses the benchmark bar.
+
+### Same-owner improvement
+> Improve this skill's intake guidance. Check current clauses first, keep its name, and prepare the smallest candidate for review. Do not claim improved behavior.
+
+Return the selected authoring choice, one receiving owner, current-clause comparison, completed preservation/displacement record, conditional resource closure, and UAC plan/judge findings. Exact relocation without a benefit claim uses preservation, diff, link, and parse checks; it does not start a comparative experiment.
+
+### Non-trigger
+> Fix the grammar in this ordinary email.
+
+Handle the prose edit directly; no canonical intake is needed.
 
 ### Example Output Shape
 - source inventory

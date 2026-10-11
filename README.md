@@ -95,6 +95,10 @@ Codex and Gemini share installed skills under `~/.agents/skills`; Gemini setting
 and agents remain under `~/.gemini`. See [installation and migration](docs/INSTALL-PROFILES.md)
 for exact previews, preservation reports, and rollback.
 
+## Improve a skill or edit its instructions
+
+Ask `engos-meta-uac-import`: “Improve this skill under its current name. Compare existing clauses, choose reuse, harvest, combine or new, and prepare one receiving-owner decision for review.” Expect a candidate and preservation/displacement record before canonical intake. Ask `engos-meta-instruction-editor` independently when the job is to clarify instructions while preserving commands, conditions and authority. Ordinary prose edits need neither intake nor a capability experiment. See [authoring choices and evidence](docs/UAC-USAGE.md#choose-an-authoring-change) and [instruction-editing examples](docs/EXAMPLES.md#engos-meta-instruction-editor).
+
 ## Installed Capabilities First
 
 Start with the shipped capabilities when you want direct help on a real task.

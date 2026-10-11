@@ -1,0 +1,100 @@
+{
+  "schema_version": "D1DonorAdmission.v1",
+  "date": "2026-10-11",
+  "evidence_class": "source_identity_and_pattern_adaptation_not_efficacy",
+  "sources": [
+    {
+      "id": "codex-skill-creator",
+      "origin": "Codex bundled system skill-creator",
+      "revision": "unknown",
+      "body_sha256": "6656e54755638e8efcf275a472b9672eaa8a9a1b9e59dc210e275b03b59e1e66",
+      "passage_lines": [
+        20,
+        24,
+        28
+      ],
+      "pattern": "Outcome, trigger precision, proportional detail",
+      "receiving_owner": "engos-meta-uac-import",
+      "destination": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "license_scope": "Unknown redistribution clearance",
+      "reuse_mode": "independently_expressed_pattern",
+      "decision": "No donor body, templates, scripts or assets copied; unknown rights remain unresolved for literal/substantial reuse.",
+      "selected_resources": [],
+      "dependency_closure": "None imported; existing Core helpers reused.",
+      "host_compatibility": "Portable instruction patterns only; donor scheduling, tools, configuration and permissions not imported."
+    },
+    {
+      "id": "grok-create-skill",
+      "origin": "Grok bundled create-skill",
+      "revision": "unknown",
+      "body_sha256": "89fe3c8058918c02326a6da8700426f480d911b838787f465d409455cd01845e",
+      "passage_lines": [
+        83
+      ],
+      "pattern": "Existing CLI reuse",
+      "receiving_owner": "engos-meta-uac-import",
+      "destination": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "license_scope": "Unknown redistribution clearance",
+      "reuse_mode": "independently_expressed_pattern",
+      "decision": "No donor body, templates, scripts or assets copied; unknown rights remain unresolved for literal/substantial reuse.",
+      "selected_resources": [],
+      "dependency_closure": "None imported; existing Core helpers reused.",
+      "host_compatibility": "Portable instruction patterns only; donor scheduling, tools, configuration and permissions not imported."
+    },
+    {
+      "id": "grok-design-principles",
+      "origin": "Grok bundled skill-design-principles",
+      "revision": "unknown",
+      "body_sha256": "ea85414929f239c7f88dc511ee79111ee5f0687db968ac59a4e1953359f894cf",
+      "passage_lines": [
+        10,
+        15
+      ],
+      "pattern": "Fact ownership and root-cause corrections",
+      "receiving_owner": "engos-meta-uac-import",
+      "destination": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "license_scope": "Unknown redistribution clearance",
+      "reuse_mode": "independently_expressed_pattern",
+      "decision": "No donor body, templates, scripts or assets copied; unknown rights remain unresolved for literal/substantial reuse.",
+      "selected_resources": [],
+      "dependency_closure": "None imported; existing Core helpers reused.",
+      "host_compatibility": "Portable instruction patterns only; donor scheduling, tools, configuration and permissions not imported."
+    },
+    {
+      "id": "anthropic-skill-creator",
+      "origin": "https://github.com/anthropics/skills/blob/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/skill-creator/SKILL.md",
+      "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "body_sha256": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+      "passage_lines": [
+        184,
+        203
+      ],
+      "pattern": "Conditional baseline comparison and human artifact inspection",
+      "receiving_owner": "engos-meta-uac-import",
+      "destination": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "license_scope": "Apache-2.0, creator-local captured LICENSE.txt only",
+      "reuse_mode": "independently_expressed_pattern",
+      "decision": "No donor body, templates, scripts or assets copied; unknown rights remain unresolved for literal/substantial reuse.",
+      "selected_resources": [],
+      "dependency_closure": "None imported; existing Core helpers reused.",
+      "host_compatibility": "Portable instruction patterns only; donor scheduling, tools, configuration and permissions not imported.",
+      "license_sha256": "bc6b3af2f331cbc7fb0da1344efb2cbe5877a31498b4d70dbc7000f3405a1362"
+    },
+    {
+      "id": "kiro-public-method",
+      "origin": "https://kiro.dev/docs/skills/",
+      "revision": "unknown",
+      "body_sha256": null,
+      "source_limit": "Prior captured source identity describes public method; no raw body hash or native creator source was captured. No fresh fetch.",
+      "license_scope": "Unknown",
+      "reuse_mode": "independently_expressed_pattern",
+      "decision": "No literal donor content imported; explicit loading uses existing Core resource map. Host precedence/settings remain outside portable scope.",
+      "receiving_owner": "engos-meta-uac-import"
+    }
+  ],
+  "license_limits": [
+    "Captured Addy and Superpowers MIT evidence is scoped to their sources; neither is harvested in D1.S1.",
+    "Anthropic creator-local Apache-2.0 is not a whole-collection claim.",
+    "No legal clearance is inferred from a hash or method citation."
+  ]
+}

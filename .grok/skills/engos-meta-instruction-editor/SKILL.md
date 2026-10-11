@@ -35,25 +35,28 @@ Check that a proposed edit has a preservation map and identify every behavioral 
 2. Extract its actors, commands, conditions, modality, authority boundaries, ordering, outputs, exceptions, examples, and fallbacks.
 3. Run the shared `instruction_clarity.v1` policy.
 4. Apply only contract-neutral formatting automatically.
-5. For wording or structural edits, produce a candidate and preservation map.
+5. For wording or structural edits, read `resources/templates/semantic-change-ledger.json`; produce a candidate, preservation map, and completed semantic-change ledger. Account for every meaningful edit, including displaced or unresolved clauses, without treating the ledger as independent approval.
 6. Mark contradictions or missing intent as unresolved; do not silently resolve them.
 7. Route behavioral claims to `engos-optimization-auto-research` through `capability-eval`.
 
 ## Stack Contract
-Ordered handoffs are explicit:
+Select handoffs only when their job is needed:
 
-```text
-External source -> engos-meta-uac-import -> engos-meta-instruction-editor -> engos-optimization-auto-research -> reviewed UAC apply
-Draft or hardened prompt -> engos-meta-supercharge -> engos-meta-instruction-editor -> engos-optimization-auto-research
-Documentation analysis -> engos-quality-docs-review -> engos-meta-instruction-editor
-```
+| Trigger | Handoff |
+| --- | --- |
+| External source or material capability update needs canonical intake | `engos-meta-uac-import`; this editor can supply preservation evidence before reviewed UAC apply |
+| A draft needs hardening before instruction editing | `engos-meta-supercharge`, then this editor for the requested preservation work |
+| Documentation analysis finds an instruction-preservation problem | `engos-quality-docs-review`, then this editor |
+| An edit claims improved behavioral outcomes | `engos-optimization-auto-research` through `capability-eval` for bounded comparative evidence |
+
+The editor remains independently callable. A low-risk exact relocation or contract-neutral wording change can finish with source preservation, diff, link, and parse checks. Material meaning changes require explicit intent and independent review. Neither path requires universal pressure testing; evaluation is required to substantiate behavioral claims. Canonical intake belongs to UAC, and ordinary prose copy editing invokes neither job.
 
 Preserve upstream artifact identifiers, clause hashes, unresolved questions, and requested output. Add editorial evidence; do not replace upstream evidence.
 
 ## Tool Boundaries
 - allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence
 - forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success
-- escalation: route semantic comparisons to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer
+- escalation: route claimed behavioral improvements and comparative efficacy questions to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer
 
 ## Invocation Hints
 Use this capability when the user asks to:
@@ -75,7 +78,7 @@ Do not auto-route ordinary prose editing, general documentation architecture, pr
 ## Required Output
 Return these sections:
 - `Edited Artifact`
-- `Edit Ledger`
+- `Edit Ledger` (use `SemanticChangeLedger.v1` for wording or structural edits)
 - `Preservation Map`
 - `Before / After Size`
 - `Behavioral Claims Requiring Proof`
@@ -103,7 +106,12 @@ Return findings with rule IDs, clause references, and risk. Do not claim behavio
 ### Rewrite request
 > Shorten this prompt while preserving every command and safety boundary.
 
-Return the candidate, edit ledger, preservation map, size delta, and the cases needed to prove non-inferiority.
+Return the candidate, edit ledger, preservation map, size delta, and any behavioral claims requiring proof. If non-inferiority is claimed, identify the bounded baseline comparison needed; do not infer it from preservation checks.
+
+### Exact relocation
+> Move this unchanged approval condition next to its command and verify that it still applies.
+
+Compare source and destination clauses, including surrounding scope and exceptions, and check links and syntax. Record the relocation in the ledger. Finish with preservation evidence unless unresolved meaning or a claimed behavioral benefit requires further review.
 
 ## Evaluation Rubric
 | Check | What Passing Looks Like |

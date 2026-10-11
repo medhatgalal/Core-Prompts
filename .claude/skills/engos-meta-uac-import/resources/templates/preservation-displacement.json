@@ -1,0 +1,55 @@
+{
+  "schema_version": "PreservationDisplacement.v1",
+  "record_status": "template_not_evidence",
+  "candidate_id": "",
+  "receiving_owner": "",
+  "choice": "reuse | harvest | combine | new",
+  "outcome": "",
+  "positive_trigger": "",
+  "negative_trigger": "",
+  "original_sha256": "",
+  "candidate_sha256": "",
+  "source_refs": [
+    {
+      "id": "",
+      "origin": "",
+      "revision": "unknown",
+      "body_sha256": "",
+      "selected_resources": [],
+      "passage_ref": "",
+      "license_scope": "unknown",
+      "notice_requirements": "unknown",
+      "reuse_mode": "independently_expressed_pattern | literal_or_substantial",
+      "reuse_decision": "pending",
+      "dependency_closure": [],
+      "host_compatibility": "unassessed",
+      "notes": ""
+    }
+  ],
+  "clauses": [
+    {
+      "id": "",
+      "source_ref": "",
+      "disposition": "preserved | relocated | reformulated | retired | unresolved",
+      "destination": "",
+      "displaced_clause": null,
+      "rationale": "",
+      "authority_ref": null,
+      "evidence_class": "",
+      "review_status": "pending"
+    }
+  ],
+  "consumer_inventory": [
+    {
+      "path": "",
+      "status": "unassessed",
+      "owner": ""
+    }
+  ],
+  "validation": [],
+  "unresolved": [],
+  "limits": [
+    "Authoring template; complete placeholders before treating this as a record.",
+    "Not UACRequirementReview.v1 or PromotionVerdict; no independent approval or behavioral benefit implied."
+  ]
+}

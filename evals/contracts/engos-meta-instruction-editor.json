@@ -10,6 +10,8 @@
     "c0f55eaf04a6d0b9373c2365904440f6e7f94c9d8edaf9cb4957b77919583466",
     "a49603692bea6f50bd4f7341bd71727a03029217b944eeb638be576a7810f4f5",
     "f564388f6807e0f62f2cb9240ab60f28381636c2ac3e9d6ac281b24b02786bbc",
+    "df7dbaa9eb9dd0b6dc23322187a378083b867aa5e3a824a1dca5e2394ab95c7b",
+    "b379752fcb3d1ce73a5c7c3de806cfa87adc84d1f79b3eeab3bf272ce758646d",
     "5d3c1fba35876b3e4db1eec925212d0c51a8fc690ed764b33688b006e8131f21",
     "364de405e96af94bef621de3eef64dbbdcbf173ab390a8dc54a45e5e8a492971",
     "8f868427c1f083db5244095e9aeb3907321953380f985102b64a290a03c0dbdf",
@@ -20,7 +22,10 @@
     "193d744fe113654924c6f1dbf70fa0633ff9a3bcd1479e1aac5f5b58eb8a781a",
     "d96e716252f70c554ac57293d10ce34ba25b3843cb89708dd2dc12a13b3413a3",
     "6d508721a69854e1894ff058f59206a2e0a179630e6238755e745582ca7d78c9",
-    "0939cad02ca14e09d71103f320e8119d2bf8256a6723e5bd6bc2999f2c30128a"
+    "a35272ff901e710524966bf333d268917adda9310c62aa8c72717a57f7893d6d",
+    "0939cad02ca14e09d71103f320e8119d2bf8256a6723e5bd6bc2999f2c30128a",
+    "4f7b9b2385040bbe04caf956f58328f70b2b8e2cf16e3ac06eb7ab8a46c3212a",
+    "22ba44df8dc633ca5b43160744644fbe6a8e34d07e274099e9663ee5194d4dda"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -73,6 +78,16 @@
       "text": "6. Mark contradictions or missing intent as unresolved; do not silently resolve them."
     },
     {
+      "sha256": "df7dbaa9eb9dd0b6dc23322187a378083b867aa5e3a824a1dca5e2394ab95c7b",
+      "source": "ssot/engos-meta-instruction-editor.md",
+      "text": "Select handoffs only when their job is needed:"
+    },
+    {
+      "sha256": "b379752fcb3d1ce73a5c7c3de806cfa87adc84d1f79b3eeab3bf272ce758646d",
+      "source": "ssot/engos-meta-instruction-editor.md",
+      "text": "The editor remains independently callable. A low-risk exact relocation or contract-neutral wording change can finish with source preservation, diff, link, and parse checks. Material meaning changes require explicit intent and independent review. Neither path requires universal pressure testing; evaluation is required to substantiate behavioral claims. Canonical intake belongs to UAC, and ordinary prose copy editing invokes neither job."
+    },
+    {
       "sha256": "5d3c1fba35876b3e4db1eec925212d0c51a8fc690ed764b33688b006e8131f21",
       "source": "ssot/engos-meta-instruction-editor.md",
       "text": "Preserve upstream artifact identifiers, clause hashes, unresolved questions, and requested output. Add editorial evidence; do not replace upstream evidence."
@@ -123,9 +138,24 @@
       "text": "Return findings with rule IDs, clause references, and risk. Do not claim behavior improved."
     },
     {
+      "sha256": "a35272ff901e710524966bf333d268917adda9310c62aa8c72717a57f7893d6d",
+      "source": "ssot/engos-meta-instruction-editor.md",
+      "text": "Return the candidate, edit ledger, preservation map, size delta, and any behavioral claims requiring proof. If non-inferiority is claimed, identify the bounded baseline comparison needed; do not infer it from preservation checks."
+    },
+    {
       "sha256": "0939cad02ca14e09d71103f320e8119d2bf8256a6723e5bd6bc2999f2c30128a",
       "source": "ssot/engos-meta-instruction-editor.md",
       "text": "| Honesty | Editorial quality is never reported as behavioral proof |"
+    },
+    {
+      "sha256": "4f7b9b2385040bbe04caf956f58328f70b2b8e2cf16e3ac06eb7ab8a46c3212a",
+      "source": "sources/capability-resources/engos-meta-instruction-editor/references/instruction-clarity.md",
+      "text": "- `safe_fix`: normalize formatting only when behavior is provably unchanged."
+    },
+    {
+      "sha256": "22ba44df8dc633ca5b43160744644fbe6a8e34d07e274099e9663ee5194d4dda",
+      "source": "sources/capability-resources/engos-meta-instruction-editor/references/instruction-clarity.md",
+      "text": "- `forbidden_auto_fix`: never change commands, modality, authority, safety, prerequisites, ordering, schemas, outputs, examples, exceptions, or fallbacks automatically."
     }
   ],
   "review_status": "draft"

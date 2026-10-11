@@ -1,0 +1,19 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [
+    "references/instruction-clarity.md"
+  ],
+  "routes": {
+    "audit": [],
+    "rewrite": [
+      "templates/semantic-change-ledger.json"
+    ],
+    "diff": [
+      "templates/semantic-change-ledger.json"
+    ],
+    "verify": [
+      "templates/semantic-change-ledger.json"
+    ]
+  },
+  "dependencies": {}
+}

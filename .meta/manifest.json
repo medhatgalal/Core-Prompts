@@ -9524,7 +9524,7 @@
           ],
           "expected_outputs": [
             "`Edited Artifact`",
-            "`Edit Ledger`",
+            "`Edit Ledger` (use `SemanticChangeLedger.v1` for wording or structural edits)",
             "`Preservation Map`",
             "`Before / After Size`",
             "`Behavioral Claims Requiring Proof`",
@@ -9659,69 +9659,238 @@
         {
           "mode_slug": "audit",
           "display_name": "audit",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-meta-instruction-editor.md"
           ],
-          "mode_summary": "Declared by the canonical `audit` section.",
+          "source_line": 24,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "rewrite",
           "display_name": "rewrite",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-meta-instruction-editor.md"
           ],
-          "mode_summary": "Declared by the canonical `rewrite` section.",
+          "source_line": 27,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "diff",
           "display_name": "diff",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-meta-instruction-editor.md"
           ],
-          "mode_summary": "Declared by the canonical `diff` section.",
+          "source_line": 30,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
           "mode_slug": "verify",
           "display_name": "verify",
+          "entry_kind": "mode",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-meta-instruction-editor.md"
           ],
-          "mode_summary": "Declared by the canonical `verify` section.",
+          "source_line": 33,
+          "mode_summary": "Explicitly declared mode in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         }
       ],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-meta-instruction-editor",
+            "strategy": "derived_history",
+            "group": "derived",
+            "baseline_path": null,
+            "selected_commit": "679d3306",
+            "richness_score": 10,
+            "line_count": 119,
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+            "equivalent_commits": [
+              "6fbcff2d"
+            ],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              },
+              {
+                "id": "stepwise_workflow_contract",
+                "kind": "operational_contract",
+                "label": "stepwise workflow contract",
+                "must_contain": [
+                  "## Workflow Contract"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "git_history",
+            "verified_by_git_history": true,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "stepwise_workflow_contract",
+                  "kind": "operational_contract",
+                  "label": "stepwise workflow contract",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 10,
+                "candidate_richness": 8,
+                "baseline_operational_score": 4,
+                "candidate_operational_score": 4,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "679d3306",
+              "baseline_slug": "engos-meta-instruction-editor"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 10,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "16e45a36a9be7e9d530d9e324fc753741890955ac3ea64629e54eab4730d7f55",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {},
       "job_contract": {
         "primary_job": "Make prompts and agent instructions plainer and easier to scan without silently changing behavior.",
@@ -9740,7 +9909,7 @@
         "portfolio_action": "experimental_keep_pending_evidence",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -9751,7 +9920,7 @@
                   "path": "ssot/engos-meta-instruction-editor.md",
                   "start_line": 17,
                   "end_line": 17,
-                  "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                  "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
                 }
               }
             ]
@@ -9764,13 +9933,13 @@
             "grants_authority": false,
             "clauses": [
               {
-                "text": "- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success\n- escalation: route semantic comparisons to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
+                "text": "- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success\n- escalation: route claimed behavioral improvements and comparative efficacy questions to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-meta-instruction-editor.md",
-                  "start_line": 57,
-                  "end_line": 59,
-                  "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                  "start_line": 60,
+                  "end_line": 62,
+                  "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
                 }
               }
             ]
@@ -9785,7 +9954,7 @@
                   "path": "ssot/engos-meta-instruction-editor.md",
                   "start_line": 15,
                   "end_line": 15,
-                  "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                  "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
                 }
               },
               {
@@ -9793,9 +9962,9 @@
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-meta-instruction-editor.md",
-                  "start_line": 70,
-                  "end_line": 70,
-                  "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                  "start_line": 73,
+                  "end_line": 73,
+                  "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
                 }
               }
             ]
@@ -9808,9 +9977,18 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-meta-instruction-editor.md",
-            "ssot_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
-            "effective_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
-            "resources": [],
+            "ssot_sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+            "effective_sha256": "16e45a36a9be7e9d530d9e324fc753741890955ac3ea64629e54eab4730d7f55",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-meta-instruction-editor/references/instruction-clarity.md",
+                "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+              },
+              {
+                "path": "sources/capability-resources/engos-meta-instruction-editor/templates/semantic-change-ledger.json",
+                "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -9828,7 +10006,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "0896254a420374fbded2d57f1cff959d0bf783e5e22a16afe07fea4fb482e5ea"
+            "mapping_sha256": "4fc389c25751f3f5112e40ab8610dff9024eb484fee530243bacc2f53a1369ed"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -9837,6 +10015,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -10749,6 +10929,7 @@
           ],
           "expected_outputs": [
             "Source",
+            "Authoring Decision and Preservation / Displacement record when preparing a candidate",
             "Summary",
             "Uplift",
             "Routing",
@@ -10950,7 +11131,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "additive",
+              "classification": "reviewed_modernization",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -10969,7 +11150,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "not_supplied_or_invalid",
+                "status": "bound_attestation",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -11031,7 +11212,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
+          "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -11096,18 +11277,18 @@
         "portfolio_action": "keep_and_improve_process",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
               {
-                "text": "1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run uplift to extract objective, scope, and constraints.\n4. Run semantic routing.\n5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.\n6. Cluster broad repos into candidate families before recommending any landing.\n7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.\n8. Build layered manifests, cross-analysis, and advisory handoff data.\n9. Select a quality profile and benchmark set.\n10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.\n11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.\n12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing.\n13. Search for benchmark sources only when the source is generic or fit confidence is weak.\n14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.\n15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.\n16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.\n17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.\n18. Keep deployment separate from apply.",
+                "text": "1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run uplift to extract objective, scope, and constraints.\n4. Run semantic routing.\n5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.\n6. Cluster broad repos into candidate families before recommending any landing.\n7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.\n8. Build layered manifests, cross-analysis, and advisory handoff data.\n9. Select a quality profile and benchmark set.\n10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.\n11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.\n12. If `judge` is being used to support a claimed behavioral benefit and confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing. Preserve admission-only status as `behavioral_pending` when no such claim is made.\n13. Search for benchmark sources only when the source is generic or fit confidence is weak.\n14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.\n15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.\n16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.\n17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.\n18. Keep deployment separate from apply.",
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-meta-uac-import.md",
-                  "start_line": 61,
-                  "end_line": 78,
-                  "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                  "start_line": 68,
+                  "end_line": 85,
+                  "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
                 }
               },
               {
@@ -11115,9 +11296,9 @@
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-meta-uac-import.md",
-                  "start_line": 106,
-                  "end_line": 111,
-                  "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                  "start_line": 113,
+                  "end_line": 118,
+                  "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
                 }
               }
             ]
@@ -11134,9 +11315,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-meta-uac-import.md",
-                  "start_line": 81,
-                  "end_line": 83,
-                  "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                  "start_line": 88,
+                  "end_line": 90,
+                  "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
                 }
               },
               {
@@ -11144,9 +11325,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-meta-uac-import.md",
-                  "start_line": 156,
-                  "end_line": 159,
-                  "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                  "start_line": 164,
+                  "end_line": 167,
+                  "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
                 }
               }
             ]
@@ -11161,7 +11342,7 @@
                   "path": "ssot/engos-meta-uac-import.md",
                   "start_line": 29,
                   "end_line": 29,
-                  "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                  "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
                 }
               }
             ]
@@ -11172,9 +11353,9 @@
               "condition_and_handoff": "| The candidate needs deeper prompt hardening before it can pass the benchmark gate | `engos-meta-supercharge` | source excerpt, intended user outcome, weak sections, target capability style |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 147,
-                "end_line": 147,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 155,
+                "end_line": 155,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -11183,9 +11364,9 @@
               "condition_and_handoff": "| The candidate is structurally close to passing but needs bounded behavioral proof against baseline or competing variants | `engos-optimization-auto-research` | baseline artifact, candidate artifact or variants, claimed job, bounded task set or examples, pass/fail threshold |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 148,
-                "end_line": 148,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 156,
+                "end_line": 156,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -11194,9 +11375,9 @@
               "condition_and_handoff": "| The candidate is structurally sound but needs final decision synthesis across several landing options | `engos-reconciliation-converge` | candidate options, trade-offs, target install surfaces, decision criteria |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 149,
-                "end_line": 149,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 157,
+                "end_line": 157,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -11205,9 +11386,9 @@
               "condition_and_handoff": "| The imported capability is fundamentally architectural or system-design oriented | `engos-design-architecture` | source summary, design scope, affected boundaries, unresolved design questions |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 150,
-                "end_line": 150,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 158,
+                "end_line": 158,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -11216,9 +11397,9 @@
               "condition_and_handoff": "| The imported capability needs documentation-quality review before landing | `engos-quality-docs-review` | draft SSOT, descriptor summary, naming questions, drift or IA concerns |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 151,
-                "end_line": 151,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 159,
+                "end_line": 159,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -11227,9 +11408,9 @@
               "condition_and_handoff": "| The imported capability requires stronger validation or test coverage in this repo | `engos-quality-testing-review` | changed scripts, validator paths, expected behaviors, missing coverage risks |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 152,
-                "end_line": 152,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 160,
+                "end_line": 160,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -11238,9 +11419,9 @@
               "condition_and_handoff": "| The imported capability is ready to land but release, packaging, or CI readiness is the real question | `engos-quality-gitops-review` | applied diff, generated artifacts, validation output, release and deploy intent |",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 153,
-                "end_line": 153,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 161,
+                "end_line": 161,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -11252,9 +11433,18 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-meta-uac-import.md",
-            "ssot_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
-            "effective_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
-            "resources": [],
+            "ssot_sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
+            "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-meta-uac-import/templates/preservation-displacement.json",
+                "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+              },
+              {
+                "path": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+                "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -11272,7 +11462,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "faead5b608b2bd46f39668f017998f568cca6cea969bbcae2c3010963ee25b8a"
+            "mapping_sha256": "1e3b0164c6920d7638c57d865beb1f873d7126439f43e1bcb1fcceb87ff5bef8"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -17768,6 +17958,9 @@
       ".grok/skills/engos-memory-threader/resources/capability.json",
       ".grok/skills/engos-meta-instruction-editor/resources/capability.json",
       ".grok/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
+      ".grok/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      ".grok/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      ".grok/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
       ".grok/skills/engos-meta-supercharge/resources/capability.json",
       ".grok/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".grok/skills/engos-meta-supercharge/resources/references/help.md",
@@ -17787,6 +17980,10 @@
       ".grok/skills/engos-meta-supercharge/resources/resource-map.json",
       ".grok/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".grok/skills/engos-meta-uac-import/resources/capability.json",
+      ".grok/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      ".grok/skills/engos-meta-uac-import/resources/resource-map.json",
+      ".grok/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      ".grok/skills/engos-meta-uac-import/resources/scripts/load_module.py",
       ".grok/skills/engos-operations-ic-assistant/resources/capability.json",
       ".grok/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".grok/skills/engos-optimization-auto-research/resources/capability.json",
@@ -17916,6 +18113,9 @@
       ".codex/skills/engos-memory-threader/resources/capability.json",
       ".codex/skills/engos-meta-instruction-editor/resources/capability.json",
       ".codex/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
+      ".codex/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      ".codex/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      ".codex/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
       ".codex/skills/engos-meta-supercharge/resources/capability.json",
       ".codex/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".codex/skills/engos-meta-supercharge/resources/references/help.md",
@@ -17935,6 +18135,10 @@
       ".codex/skills/engos-meta-supercharge/resources/resource-map.json",
       ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".codex/skills/engos-meta-uac-import/resources/capability.json",
+      ".codex/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      ".codex/skills/engos-meta-uac-import/resources/resource-map.json",
+      ".codex/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      ".codex/skills/engos-meta-uac-import/resources/scripts/load_module.py",
       ".codex/skills/engos-operations-ic-assistant/resources/capability.json",
       ".codex/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".codex/skills/engos-optimization-auto-research/resources/capability.json",
@@ -18065,6 +18269,9 @@
       ".gemini/skills/engos-memory-threader/resources/capability.json",
       ".gemini/skills/engos-meta-instruction-editor/resources/capability.json",
       ".gemini/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
+      ".gemini/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      ".gemini/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      ".gemini/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
       ".gemini/skills/engos-meta-supercharge/resources/capability.json",
       ".gemini/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".gemini/skills/engos-meta-supercharge/resources/references/help.md",
@@ -18084,6 +18291,10 @@
       ".gemini/skills/engos-meta-supercharge/resources/resource-map.json",
       ".gemini/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".gemini/skills/engos-meta-uac-import/resources/capability.json",
+      ".gemini/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      ".gemini/skills/engos-meta-uac-import/resources/resource-map.json",
+      ".gemini/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      ".gemini/skills/engos-meta-uac-import/resources/scripts/load_module.py",
       ".gemini/skills/engos-operations-ic-assistant/resources/capability.json",
       ".gemini/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".gemini/skills/engos-optimization-auto-research/resources/capability.json",
@@ -18214,6 +18425,9 @@
       ".claude/skills/engos-memory-threader/resources/capability.json",
       ".claude/skills/engos-meta-instruction-editor/resources/capability.json",
       ".claude/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
+      ".claude/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      ".claude/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      ".claude/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
       ".claude/skills/engos-meta-supercharge/resources/capability.json",
       ".claude/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".claude/skills/engos-meta-supercharge/resources/references/help.md",
@@ -18233,6 +18447,10 @@
       ".claude/skills/engos-meta-supercharge/resources/resource-map.json",
       ".claude/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".claude/skills/engos-meta-uac-import/resources/capability.json",
+      ".claude/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      ".claude/skills/engos-meta-uac-import/resources/resource-map.json",
+      ".claude/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      ".claude/skills/engos-meta-uac-import/resources/scripts/load_module.py",
       ".claude/skills/engos-operations-ic-assistant/resources/capability.json",
       ".claude/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".claude/skills/engos-optimization-auto-research/resources/capability.json",
@@ -18363,6 +18581,9 @@
       ".kiro/skills/engos-memory-threader/resources/capability.json",
       ".kiro/skills/engos-meta-instruction-editor/resources/capability.json",
       ".kiro/skills/engos-meta-instruction-editor/resources/references/instruction-clarity.md",
+      ".kiro/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      ".kiro/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      ".kiro/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
       ".kiro/skills/engos-meta-supercharge/resources/capability.json",
       ".kiro/skills/engos-meta-supercharge/resources/references/help-examples.md",
       ".kiro/skills/engos-meta-supercharge/resources/references/help.md",
@@ -18382,6 +18603,10 @@
       ".kiro/skills/engos-meta-supercharge/resources/resource-map.json",
       ".kiro/skills/engos-meta-supercharge/resources/scripts/load_module.py",
       ".kiro/skills/engos-meta-uac-import/resources/capability.json",
+      ".kiro/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      ".kiro/skills/engos-meta-uac-import/resources/resource-map.json",
+      ".kiro/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      ".kiro/skills/engos-meta-uac-import/resources/scripts/load_module.py",
       ".kiro/skills/engos-operations-ic-assistant/resources/capability.json",
       ".kiro/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
       ".kiro/skills/engos-optimization-auto-research/resources/capability.json",

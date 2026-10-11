@@ -1827,7 +1827,7 @@
       ],
       "expected_outputs": [
         "`Edited Artifact`",
-        "`Edit Ledger`",
+        "`Edit Ledger` (use `SemanticChangeLedger.v1` for wording or structural edits)",
         "`Preservation Map`",
         "`Before / After Size`",
         "`Behavioral Claims Requiring Proof`",
@@ -1879,8 +1879,8 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
       "preferred_use_cases": [],
       "artifact_conventions": [],
       "invocation_style": null,
@@ -2022,6 +2022,7 @@
       ],
       "expected_outputs": [
         "Source",
+        "Authoring Decision and Preservation / Displacement record when preparing a candidate",
         "Summary",
         "Uplift",
         "Routing",
