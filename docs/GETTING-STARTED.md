@@ -20,6 +20,13 @@ For engineering activity, start with `engos-audit-engineering-progress help`. Su
 
 ## Step 1: Use Installed Capabilities
 
+For a focused change, ask: “Use `engos-design-specify-change` to specify this feature
+in our existing format; show acceptance conditions, unchanged behavior and open
+assumptions.” Supply a design to select design-first, or a failure report to select
+bugfix. The result is a draft with source and authority status; a schema pass does
+not approve it. Material design and task planning remain separate jobs.
+[See all three specification routes](EXAMPLES.md#engos-design-specify-change).
+
 For a product/engineering shaping workshop, use `engos-design-shaping` with the
 documents you already have. It should summarize the problem and ask a few useful
 questions, not require a complete form or choose an architecture immediately.

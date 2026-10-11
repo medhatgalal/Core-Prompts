@@ -1,0 +1,30 @@
+{
+  "schema_version": "D2ControllerRepair.v1",
+  "recordedAt": "2026-10-11T18:24:29.225190+00:00",
+  "repairs": [
+    {
+      "class": "test",
+      "problem": "Old single-skill inventory expected32, actual33",
+      "failure": "1 failed,314 passed",
+      "resolution": "Expected33; skill-only assertions preserved",
+      "evidence": "local-ci/receipt.initial-inventory-failure.json"
+    },
+    {
+      "class": "interface/source",
+      "problem": "Generated minimal descriptor exposed generic UAC intake inputs/outputs",
+      "resolution": "Same-content Required Inputs/Required Output bullets supported by existing extractor; renewed independent review and real UAC apply; emitted descriptor regression RED\u2192GREEN",
+      "final": "six specification inputs and seven outputs in all5packages",
+      "evidence": "revision-2-receipt.json"
+    },
+    {
+      "class": "test",
+      "problem": "Archive inventory expected160 skill entries, actual165",
+      "failure": "1 failed,254 passed,16 subtests passed",
+      "resolution": "Expected165 for33skills\u00d75providers; no-agent checks retained",
+      "focused": "1 passed in4.06s",
+      "evidence": "local-ci/receipt.initial-package-inventory-failure.json",
+      "retry": "Full affected packaging group; prior12passingsteps retained without replay"
+    }
+  ],
+  "scope": "No generator/runtime/source/resource mutation for archive-count repair; no merge/install/agent/promotion"
+}

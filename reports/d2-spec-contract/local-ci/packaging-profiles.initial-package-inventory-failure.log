@@ -1,0 +1,81 @@
+.F...................................................... [ 21%]
+........................................................................ [ 50%]
+........................................................................ [ 78%]
+.......................................................                  [100%]
+=================================== FAILURES ===================================
+____________ test_package_boundary_includes_release_watch_contract _____________
+
+tmp_path = PosixPath('<pytest-temporary-path>')
+finalized_release_tree = PosixPath('<pytest-temporary-path>')
+
+    def test_package_boundary_includes_release_watch_contract(
+        tmp_path: Path, finalized_release_tree: Path
+    ) -> None:
+        retired_repo_paths = (
+            ROOT / ".codex" / "skills" / "mentor",
+            ROOT / ".codex" / "agents" / "resources" / "mentor",
+            ROOT / ".gemini" / "skills" / "mentor",
+            ROOT / ".gemini" / "agents" / "resources" / "mentor",
+            ROOT / ".claude" / "skills" / "mentor",
+            ROOT / ".claude" / "agents" / "resources" / "mentor",
+            ROOT / ".kiro" / "skills" / "mentor",
+            ROOT / ".kiro" / "agents" / "resources" / "mentor",
+            ROOT / "sources" / "ssot-baselines" / "mentor",
+        )
+        assert all(not path.exists() for path in retired_repo_paths)
+
+        repo = finalized_release_tree
+        version = (repo / "VERSION").read_text(encoding="utf-8").strip()
+        result = subprocess.run(
+            [str(repo / "scripts/package-surfaces.sh"), "--version", version, "--output-dir", str(tmp_path)],
+            cwd=repo,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            check=True,
+        )
+
+        tar_path = tmp_path / f"core-prompts-{version}-surfaces.tar.gz"
+        zip_path = tmp_path / f"core-prompts-{version}-surfaces.zip"
+        assert tar_path.is_file(), result.stdout
+        assert zip_path.is_file(), result.stdout
+
+        with tarfile.open(tar_path, "r:gz") as archive:
+            tar_names = set(archive.getnames())
+            tar_files = {member.name for member in archive.getmembers() if member.isfile()}
+        with zipfile.ZipFile(zip_path) as archive:
+            zip_names = set(archive.namelist())
+            zip_files = {member.filename for member in archive.infolist() if not member.is_dir()}
+
+        expected = {
+            "VERSION",
+            "RELEASE_SOURCE.env",
+            ".meta/evaluation-policy.json",
+            ".meta/instruction-clarity.json",
+            ".meta/skill-job-map.json",
+            "docs/CAPABILITY-EVALUATION.md",
+            "docs/SKILL-JOB-MAP.md",
+            "docs/engos-design-shaping.md",
+            "docs/FRONTIER-MODERNIZATION.md",
+            "scripts/eng-report.py",
+            "scripts/update-core-prompts.py",
+            "scripts/deploy-surfaces.sh",
+            "scripts/deploy-profile.py",
+            "scripts/core_install/planner.py",
+            ".meta/install-profiles/legacy-installations.json",
+            ".meta/install-profiles/codex-kiro-grok.json",
+            "scripts/install-local.sh",
+        }
+        assert expected <= tar_names
+        assert expected <= zip_names
+        for names in (tar_files, zip_files):
+            assert not any(name.startswith(tuple(f".{p}/agents/" for p in ("codex", "claude", "gemini", "kiro")))
+                           and not name.endswith("/") for name in names)
+>           assert sum(name.endswith("/SKILL.md") for name in names) == 160
+E           assert 165 == 160
+E            +  where 165 = sum(<generator object test_package_boundary_includes_release_watch_contract.<locals>.<genexpr> at 0x10a8d6260>)
+
+tests/test_package_surfaces.py:89: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_package_surfaces.py::test_package_boundary_includes_release_watch_contract
+1 failed, 254 passed, 16 subtests passed in 241.74s (0:04:01)

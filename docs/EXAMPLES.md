@@ -264,6 +264,35 @@ At 450 lines or 45,000 bytes in either file, or at milestone closure, the agent 
 
 Expected output includes each rewritten file's before/after lines and bytes, the trigger, and evidence references. Missing files trigger recovery. TODOs and task completion are unaffected; passing the check does not mean a rewrite happened.
 
+### `engos-design-specify-change`
+
+Use when a feature, supplied design or bugfix needs a clear behavioral contract
+before planning. Preserve an existing spec system; typo-only changes and already
+explicit self-contained edits do not need a new spec.
+
+> Use engos-design-specify-change. Specify CSV export for filtered results in our
+> existing issue template. Preserve current filter and access behavior; identify
+> any target or limit that needs a decision rather than inventing one.
+
+Expect requirements with stable IDs, conditions, observable behavior, acceptance,
+unchanged behavior and priority, plus sources, authority status, non-goals and
+assumptions. Requirements-first is the default. Two alternate entries:
+
+- “Start from this supplied queue design.” Expect explicit design assumptions and
+  reconciliation of conflicts such as immediate versus delayed delivery before
+  task approval; material design choices return to architecture.
+- “Specify the duplicate-invoice bugfix while preserving valid retries.” Expect
+  separate current, expected and unchanged behavior, reproduction evidence status
+  and acceptance conditions for the failing and preservation cases.
+
+Follow with separately authorized architecture or task planning using the exact
+accepted revision. This skill does not implement the change or replace shaping
+acceptance. If machine interchange is needed, the bundled `SpecContract.v1`
+schema checks structure only. Unique ID values require a separate check, and
+neither valid fields nor connected IDs prove truth, authority, approval or correct
+behavior. The optional trace template records supplied links; it is not a checker
+or test coverage report. [Resource commands](CLI-REFERENCE.md#specification-resources).
+
 ### `engos-design-architecture`
 
 Use when:

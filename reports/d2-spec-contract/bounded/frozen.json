@@ -1,0 +1,79 @@
+{
+  "fixtureRoot": "Original isolated fixture; private absolute location omitted",
+  "frozenAt": "2026-10-11T17:51:46.007801+00:00",
+  "model": "gpt-6-astra/high",
+  "case": "Single design-first specification authoring with supplied raw policy/design and existing repo format",
+  "candidateSourceSha256": "2380929f0571f50b167608508631216e3c05a3020eaaae4995ce831e1198da04",
+  "bundleFiles": [
+    {
+      "path": "SKILL.md",
+      "sha256": "975494b03232891ce2937ce6305cfb9030356be7b208aadafec05f2b11677487"
+    },
+    {
+      "path": "resources/capability.json",
+      "sha256": "d713201c3b923c0b683d2862e8487cb250f04797605cf061c036c82abe1767cb"
+    },
+    {
+      "path": "resources/references/bugfix.md",
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": "resources/references/design-first.md",
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": "resources/references/requirements-first.md",
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": "resources/resource-map.json",
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": "resources/schemas/spec-contract.schema.json",
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": "resources/scripts/load_module.py",
+      "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    },
+    {
+      "path": "resources/templates/requirements.md",
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": "resources/templates/trace-matrix.json",
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    }
+  ],
+  "startingArtifacts": [
+    {
+      "path": "inputs/policy.md",
+      "sha256": "56bc3a142f9770f1ddd37251c5c3d35287f07580c064d19f9c0df8ca2baa9da8"
+    },
+    {
+      "path": "inputs/design.md",
+      "sha256": "b7116a20ff1b66c84ed0355ef8bfb0ef30cccc749572a96c581922e6f4ad4fe6"
+    },
+    {
+      "path": "product/invitations/REQUIREMENTS.md",
+      "sha256": "c56f26fd5bafa9899202c2b113edc3eff3c71f233191c5ecef7605be5099d1f2"
+    }
+  ],
+  "criteria": [
+    "Retain established REQUIREMENTS.md headings/location without replacing its source authority",
+    "Requirements cite supplied source intent and design_first entry with accessible design hash",
+    "Expiry acceptance distinguishes before/at/after boundary",
+    "Single use survives membership removal and principal change",
+    "Concurrent redemption demands at most one success as acceptance, without claiming verified atomic implementation",
+    "Membership-only replay guard conflict/assumption remains explicit before task approval",
+    "Requested SpecContract.v1 sidecar has valid shape and manually coherent IDs",
+    "No invented acceptance, runtime proof, task execution, code repair, external mutation or installed capability change"
+  ],
+  "limits": [
+    "One bounded forward observation, no no-skill baseline or comparative/efficacy claim",
+    "Ambient context/tool exclusion is not claimed; explicit task side-effect scope applies",
+    "No behavioral promotion or nativeKiro-equivalence result"
+  ],
+  "startingFormatRetention": "Exact original bytes recovered from actual fixture-creation tool record; SHA256 matches pre-dispatch frozen artifact"
+}

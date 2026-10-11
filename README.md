@@ -60,6 +60,12 @@ Drive destinations; unavailable access is reported, never silently substituted.
 This capability remains under pilot validation: check [current evidence and limits](docs/engos-design-shaping.md)
 before treating it as fully accepted or deployed. [More examples](docs/EXAMPLES.md#engos-design-shaping).
 
+For a focused feature or bugfix specification, use **`engos-design-specify-change`**.
+It supports requirements-first, supplied-design-first and bugfix entry while
+preserving your repository format. Expect acceptance conditions, unchanged
+behavior and explicit assumptions before a separate planning handoff. A typo
+correction needs no new spec. [Specification examples](docs/EXAMPLES.md#engos-design-specify-change).
+
 Use this repository in this order:
 
 1. installed capabilities first
@@ -68,7 +74,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces contain `32` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces contain `33` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
@@ -109,6 +115,7 @@ These are the current source capabilities with a concrete starter ask for each o
 | `engos-design-frame-from-vague` | frame an idea without choosing its solution | "Frame this problem only; identify missing appetite and boundaries without inventing answers." | original intake, solution-free frame, attributable decisions and useful open questions |
 | `engos-quality-shaping-gate` | assess a shaping stage or resumed handoff | "Check this stage against its actual evidence and tell us whether it can advance." | predicate-level verdict, current bindings, actionable holds and no invented approval |
 | `engos-memory-context-continuity` | work through a broad repo investigation without losing context | "Use `engos-memory-context-continuity` to inspect this subsystem over several files and keep its context, todo, and insights files current until the work is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`, accumulated findings, checked progress, and a scoped next action; branch and worktree paths are metadata only |
+| `engos-design-specify-change` | specify a feature, supplied design or bugfix before planning | "Specify this change in our existing format; preserve unchanged behavior and show open assumptions." | source-backed requirements, observable acceptance, non-goals, actual authority status and a bounded handoff |
 | `engos-design-architecture` | design or review interfaces, enforceable boundaries, and migration safety | "Use `engos-design-architecture` to design removal of this legacy adapter; name the check that would fail if the dependency returned." | independently reviewed options, contracts, a proposed or observed falsifier, and rollback-aware migration guidance; reviewer reports zero open findings |
 | `engos-optimization-auto-research` | improve a prompt, workflow, or system through experiments | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
 | `engos-orchestration-batman` | implement through subagent-driven development with blocking review gates | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through subagent-driven TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity result, host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, milestone decisions, progress reports, and state-specific landing receipts |

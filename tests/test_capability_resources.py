@@ -235,3 +235,136 @@ def test_cli_bundled_default_emits_complete_content(tmp_path: Path) -> None:
     assert invalid.returncode != 0
     assert invalid.stdout == ""
     assert "unknown" in invalid.stderr
+
+
+# D2.S1: verify the portable specification contract, not requirement truth or behavior.
+SPEC_RESOURCE_ROOT = Path(__file__).resolve().parents[1] / "sources/capability-resources/engos-design-specify-change"
+
+
+def spec_contract_fixture(entry_order: str = "requirements_first") -> dict:
+    return {
+        "schema_version": "SpecContract.v1",
+        "id": "export-results",
+        "source_refs": [{"id": "issue", "ref": "issues/42"}],
+        "authority_ref": None,
+        "entry_order": entry_order,
+        "requirements": [{
+            "id": "REQ-1", "condition": "An authorized user exports filtered results",
+            "behavior": "Export the matching records", "acceptance": ["Fixture rows match the filter"],
+            "unchanged_behavior": ["Viewing results retains the active filter"], "priority": "undecided",
+        }],
+        "non_goals": ["Changing the filter UI"],
+        "assumptions": [{"id": "A-1", "text": "Export size is acceptable", "status": "open"}],
+        "design_refs": [],
+    }
+
+
+def spec_schema_validator():
+    # jsonschema is a declared dependency on both CI providers; do not skip if absent.
+    from jsonschema import Draft202012Validator
+    schema = json.loads((SPEC_RESOURCE_ROOT / "schemas/spec-contract.schema.json").read_text())
+    Draft202012Validator.check_schema(schema)
+    return Draft202012Validator(schema)
+
+
+@pytest.mark.parametrize("route", ["requirements_first", "design_first"])
+def test_spec_schema_admits_pending_drafts_without_fabricated_authority(route: str) -> None:
+    draft = spec_contract_fixture(route)
+    assert not list(spec_schema_validator().iter_errors(draft))
+    assert draft["authority_ref"] is None and draft["assumptions"][0]["status"] == "open"
+
+
+def test_spec_bugfix_requires_current_expected_and_unchanged_behavior() -> None:
+    draft = spec_contract_fixture("bugfix")
+    validator = spec_schema_validator()
+    assert list(validator.iter_errors(draft))
+    draft["bug_context"] = {
+        "current_behavior": "Two clicks reportedly create two invoices; reproduction pending",
+        "expected_behavior": "The agreed same operation creates one invoice",
+        "unchanged_behavior": ["Legitimate later submissions still work"],
+    }
+    assert not list(validator.iter_errors(draft))
+    for field in draft["bug_context"]:
+        broken = json.loads(json.dumps(draft))
+        del broken["bug_context"][field]
+        assert list(validator.iter_errors(broken)), field
+    draft["bug_context"]["unchanged_behavior"] = []
+    assert list(validator.iter_errors(draft))
+
+
+@pytest.mark.parametrize("field", ["schema_version", "id", "source_refs", "authority_ref", "entry_order", "requirements", "non_goals", "assumptions", "design_refs"])
+def test_spec_contract_requires_its_public_fields(field: str) -> None:
+    draft = spec_contract_fixture()
+    del draft[field]
+    assert list(spec_schema_validator().iter_errors(draft))
+
+
+@pytest.mark.parametrize("field,value", [
+    ("id", "  "), ("condition", ""), ("behavior", "\t"), ("acceptance", []),
+    ("unchanged_behavior", "preserve filters"), ("priority", "guessed-urgent"),
+])
+def test_spec_requirement_rejects_empty_or_mistyped_acceptance_contract(field: str, value) -> None:
+    draft = spec_contract_fixture()
+    draft["requirements"][0][field] = value
+    assert list(spec_schema_validator().iter_errors(draft))
+
+
+def test_spec_design_reference_requires_a_real_digest_shape() -> None:
+    draft = spec_contract_fixture("design_first")
+    draft["design_refs"] = [{"id": "D-1", "path": "design.md", "sha256": "a" * 64}]
+    validator = spec_schema_validator()
+    assert not list(validator.iter_errors(draft))
+    for digest in ["unknown", "", "a" * 63, "g" * 64]:
+        draft["design_refs"][0]["sha256"] = digest
+        assert list(validator.iter_errors(draft))
+
+
+def test_spec_schema_does_not_claim_id_uniqueness_or_semantic_approval() -> None:
+    draft = spec_contract_fixture()
+    duplicate = dict(draft["requirements"][0], behavior="A conflicting behavior")
+    draft["requirements"].append(duplicate)
+    # JSON Schema cannot enforce uniqueness of one property across array items.
+    # This intentional admission requires the skill's separate semantic/ID review.
+    validator = spec_schema_validator()
+    assert not list(validator.iter_errors(draft))
+    draft["approved"] = True
+    assert list(validator.iter_errors(draft))
+
+
+@pytest.mark.parametrize("route,selected", [
+    ("requirements_first", "references/requirements-first.md"),
+    ("design_first", "references/design-first.md"),
+    ("bugfix", "references/bugfix.md"),
+    ("contract", "schemas/spec-contract.schema.json"),
+    ("trace_ledger", "templates/trace-matrix.json"),
+])
+def test_spec_routes_have_bounded_self_contained_resource_closure(route: str, selected: str) -> None:
+    bundle = load_resource_bundle(SPEC_RESOURCE_ROOT, route)
+    assert set(paths(bundle)) == {"templates/requirements.md", selected}
+    assert bundle["delivery_claim"] == "assembled_not_proof_of_consumption"
+
+
+def test_spec_resources_load_from_a_relocated_package(tmp_path: Path) -> None:
+    package = tmp_path / "independent-install" / "resources"
+    shutil.copytree(SPEC_RESOURCE_ROOT, package)
+    helper = package / "scripts" / "load_module.py"
+    helper.parent.mkdir()
+    shutil.copy2(Path(__file__).resolve().parents[1] / "src/intent_pipeline/capability_resources.py", helper)
+    result = subprocess.run(
+        [sys.executable, str(helper), "--route", "design_first", "--format", "json"],
+        cwd=tmp_path, capture_output=True, text=True, check=True,
+    )
+    bundle = json.loads(result.stdout)
+    assert set(paths(bundle)) == {"templates/requirements.md", "references/design-first.md"}
+    assert bundle["sha256"] == load_resource_bundle(SPEC_RESOURCE_ROOT, "design_first")["sha256"]
+
+
+def test_spec_trace_template_is_blank_and_makes_no_coverage_claim() -> None:
+    ledger = json.loads((SPEC_RESOURCE_ROOT / "templates/trace-matrix.json").read_text())
+    assert ledger["links"] == []
+    assert ledger["assessment"] == {
+        "link_validation": "not_assessed", "test_coverage": "not_assessed",
+        "semantic_correctness": "not_assessed", "behavioral_verification": "not_assessed",
+    }
+    assert not (SPEC_RESOURCE_ROOT / "scripts/trace_check.py").exists()
+    assert not (SPEC_RESOURCE_ROOT / "schemas/trace-result.schema.json").exists()

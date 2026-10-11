@@ -24,7 +24,7 @@ def test_audit_ssot_entries_reports_known_entries() -> None:
 
 def test_shipped_capabilities_are_skills_only() -> None:
     audits = audit_ssot_entries(ROOT)
-    assert len(audits) == 32
+    assert len(audits) == 33
     for audit in audits:
         assert audit.manifest['layers']['minimal']['capability_type'] == 'skill'
         assert all(name.endswith('_skill') for name in audit.expected_surface_names)
@@ -89,3 +89,22 @@ def test_every_generated_routing_draft_revalidates_against_canonical_source():
         descriptor=json.loads((ROOT/'.meta/capabilities'/f'{slug}.json').read_text())
         assert descriptor['job_contract']==jobs[slug]
         validate_routing_fitness(descriptor['job_contract'],ROOT,slug)
+
+
+def test_specify_change_generated_descriptor_exposes_the_specification_job() -> None:
+    import json
+
+    descriptor = json.loads((ROOT / ".meta/capabilities/engos-design-specify-change.json").read_text())
+    minimal = descriptor["layers"]["minimal"]
+    inputs = minimal["required_inputs"]
+    outputs = minimal["expected_outputs"]
+    # Test the emitted descriptor, not only the source extractor: discovery and
+    # handoff consumers need specification content rather than intake defaults.
+    assert any("supplied design revision" in item for item in inputs)
+    assert any("observed or reported failure" in item for item in inputs)
+    assert any("scope/acceptance authority" in item for item in inputs)
+    assert any("acceptance, unchanged behavior and priority" in item for item in outputs)
+    assert any("dependent requirements held by unresolved material questions" in item for item in outputs)
+    assert any("accepted revision if evidenced" in item for item in outputs)
+    assert not {"source text", "user intent/context"}.intersection(inputs)
+    assert not {"deterministic summary", "uplift payload", "capability recommendation", "deployment guidance"}.intersection(outputs)

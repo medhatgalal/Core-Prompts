@@ -1,5 +1,13 @@
 ## Unreleased
 
+- Add the skill-only `engos-design-specify-change` job with requirements-first,
+  design-first and bugfix routes, a portable `SpecContract.v1` schema and a blank
+  supplied-link ledger. Preserve repository formats, shaping acceptance and
+  separate architecture/planning/implementation ownership. Schema and link
+  structure do not prove approval, semantic correctness or implemented behavior.
+  Generated inventory moves from 32 to 33 skills with no named agents; behavioral
+  promotion, native Kiro equivalence, release and installation are not claimed.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

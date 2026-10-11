@@ -1628,6 +1628,111 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-design-specify-change",
+      "display_name": "Specify a Change",
+      "capability_type": "skill",
+      "summary": "Specify a feature, design-led change, or bugfix with source-backed requirements, acceptance conditions, explicit assumptions and unchanged behavior. Use before planning when the change needs a specification; preserve existing formats and leave architecture, task planning and implementation to their owners.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "engos",
+        "design",
+        "specify",
+        "change"
+      ],
+      "required_inputs": [
+        "Read the user's request, supplied sources and existing repository conventions.",
+        "Identify the affected people or callers, current behavior, desired outcome, constraints, non-goals and existing decisions. Accept partial inputs; distinguish observed facts, reported behavior, proposed targets and unknowns.",
+        "For a design-first entry, obtain the supplied design revision and its evidence.",
+        "For a bugfix, obtain the observed or reported failure, its trigger and expected behavior.",
+        "Obtain actual scope/acceptance authority from the conversation or an accessible decision record; a role label or a document's claim is insufficient.",
+        "When authority is unknown, keep `authority_ref` null and the draft pending."
+      ],
+      "expected_outputs": [
+        "Identity and objective: Stable change ID, affected actor, desired outcome and selected entry order.",
+        "Sources and authority: Source references/revisions, inaccessible sources, authority reference and actual acceptance status.",
+        "Requirements: Stable IDs, conditions, observable behavior, acceptance, unchanged behavior and priority.",
+        "Scope: Included change, non-goals, compatibility constraints and any supported capability groups.",
+        "Assumptions: IDs, text, status, decision evidence and dependent requirements held by unresolved material questions.",
+        "Supplied design: Design IDs, paths and current SHA-256 digests when available; design assumptions and reconciliation decisions.",
+        "Review and next owner: Conflicts, open questions, explicit holds, accepted revision if evidenced, and bounded handoff."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-design-shaping"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "prompting"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-memory-context-continuity",
       "display_name": "Analyze Context \u2014 Durable Multi-File Investigation",
       "capability_type": "skill",

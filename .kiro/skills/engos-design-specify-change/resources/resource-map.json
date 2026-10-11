@@ -1,0 +1,12 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": ["templates/requirements.md"],
+  "routes": {
+    "requirements_first": ["references/requirements-first.md"],
+    "design_first": ["references/design-first.md"],
+    "bugfix": ["references/bugfix.md"],
+    "contract": ["schemas/spec-contract.schema.json"],
+    "trace_ledger": ["templates/trace-matrix.json"]
+  },
+  "dependencies": {}
+}

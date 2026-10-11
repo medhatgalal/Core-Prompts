@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-10-11T18:01:38.339876+00:00",
+  "reader": "/root/d2_forward_astra",
+  "model": "gpt-6-astra/high",
+  "sourceSha256": "2380929f0571f50b167608508631216e3c05a3020eaaae4995ce831e1198da04",
+  "effectiveSha256": "f3c416c7865ca755e0bfa2a77ef743883069b630fa80be3ef691ad121553a5bf",
+  "case": "One standalone design-first authoring request",
+  "frozenFixture": "frozen.json",
+  "criteria": [
+    {
+      "id": "F1",
+      "criterion": "Retain established REQUIREMENTS.md headings/location without replacing its source authority",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "Existing path and all five headings retained; sidecar is interchange projection."
+    },
+    {
+      "id": "F2",
+      "criterion": "Requirements cite supplied source intent and design_first entry with accessible design hash",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "design_first with actual source references and verified design digest."
+    },
+    {
+      "id": "F3",
+      "criterion": "Expiry acceptance distinguishes before/at/after boundary",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "REQ-INV-001 rejects equality/after; REQ-INV-005 preserves strictly-before success."
+    },
+    {
+      "id": "F4",
+      "criterion": "Single use survives membership removal and principal change",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "REQ-INV-002 covers repeat/removal/changed principal."
+    },
+    {
+      "id": "F5",
+      "criterion": "Concurrent redemption demands at most one success as acceptance, without claiming verified atomic implementation",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "REQ-INV-003 same/distinct principals: at most one success, no verified implementation claim."
+    },
+    {
+      "id": "F6",
+      "criterion": "Membership-only replay guard conflict/assumption remains explicit before task approval",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "Design reconciliation and ASM-INV-001/002 preserve membership-history/concurrency conflicts and hold dependent approval."
+    },
+    {
+      "id": "F7",
+      "criterion": "Requested SpecContract.v1 sidecar has valid shape and manually coherent IDs",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "Full Draft202012 schema passed in controller3.14 env; ID/hash/format checks passed. Reader disclosed unavailable jsonschema."
+    },
+    {
+      "id": "F8",
+      "criterion": "No invented acceptance, runtime proof, task execution, code repair, external mutation or installed capability change",
+      "result": "met in inspected artifacts",
+      "evidenceClass": "Bounded authoring observation",
+      "evidence": "Inspected outputs retain draft/authority_ref null and open assumptions, and claim no implemented or accepted revision. This does not prove absence of all external side effects."
+    }
+  ],
+  "schemaErrors": [],
+  "schemaSha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+  "artifactFiles": [
+    "REQUIREMENTS.md",
+    "SpecContract.v1.json"
+  ],
+  "resourceReads": "Reader reports selected design_first and contract routes; actual reads/isolation were not independently instrumented.",
+  "result": "Eight frozen artifact criteria met; not a general effectiveness or promotion verdict",
+  "lineageNote": "Observed on initial2380929 source. Later input/output presentation fix is not an exact-source behavioral rerun.",
+  "limits": [
+    "No no-skill baseline, statistical/model superiority, cost saving or nativeKiro-equivalence",
+    "No implementation or runtime tests",
+    "Only one mode observed; requirements_first/bugfix/typo not independently executed",
+    "No PromotionVerdict; behavioral_pending remains",
+    "F8 is assessed from inspected artifacts, not an exhaustive external side-effect audit."
+  ]
+}

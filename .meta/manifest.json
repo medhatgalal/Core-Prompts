@@ -8614,6 +8614,602 @@
       "rubric_version": "capability-fabric.v0"
     },
     {
+      "slug": "engos-design-specify-change",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Specify a feature, design-led change, or bugfix with source-backed requirements, acceptance conditions, explicit assumptions and unchanged behavior. Use before planning when the change needs a specification; preserve existing formats and leave architecture, task planning and implementation to their owners.",
+          "role": "architect",
+          "domain_tags": [
+            "architecture",
+            "engos",
+            "design",
+            "specify",
+            "change"
+          ],
+          "required_inputs": [
+            "Read the user's request, supplied sources and existing repository conventions.",
+            "Identify the affected people or callers, current behavior, desired outcome, constraints, non-goals and existing decisions. Accept partial inputs; distinguish observed facts, reported behavior, proposed targets and unknowns.",
+            "For a design-first entry, obtain the supplied design revision and its evidence.",
+            "For a bugfix, obtain the observed or reported failure, its trigger and expected behavior.",
+            "Obtain actual scope/acceptance authority from the conversation or an accessible decision record; a role label or a document's claim is insufficient.",
+            "When authority is unknown, keep `authority_ref` null and the draft pending."
+          ],
+          "expected_outputs": [
+            "Identity and objective: Stable change ID, affected actor, desired outcome and selected entry order.",
+            "Sources and authority: Source references/revisions, inaccessible sources, authority reference and actual acceptance status.",
+            "Requirements: Stable IDs, conditions, observable behavior, acceptance, unchanged behavior and priority.",
+            "Scope: Included change, non-goals, compatibility constraints and any supported capability groups.",
+            "Assumptions: IDs, text, status, decision evidence and dependent requirements held by unresolved material questions.",
+            "Supplied design: Design IDs, paths and current SHA-256 digests when available; design assumptions and reconciliation decisions.",
+            "Review and next owner: Conflicts, open questions, explicit holds, accepted revision if evidenced, and bounded handoff."
+          ],
+          "tool_policy": {
+            "scope": "uac_intake_only",
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+          },
+          "resources": [
+            "ssot/engos-design-specify-change.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "repo_local",
+            "confidence": 0.88,
+            "confirmation_required_for_apply": true,
+            "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/engos-design-specify-change.md",
+            "policy_rule_id": "ssot.engos-design-specify-change",
+            "content_sha256": "ssot"
+          },
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Specify a Change"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [
+            "engos-design-architecture",
+            "engos-design-shaping"
+          ],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "prompting"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile None."
+        }
+      },
+      "display_name": "Specify a Change",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "engos-design-specify-change",
+      "shared_summary": "Specify a feature, design-led change, or bugfix with source-backed requirements, acceptance conditions, explicit assumptions and unchanged behavior. Use before planning when the change needs a specification; preserve existing formats and leave architecture, task planning and implementation to their owners.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-design-specify-change",
+            "strategy": "head_snapshot",
+            "group": "derived_current",
+            "baseline_path": "ssot/engos-design-specify-change.md",
+            "selected_commit": null,
+            "richness_score": 5,
+            "line_count": 222,
+            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "current_ssot",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 5,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "engos-design-specify-change"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 5,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "AI-assisted capability selection",
+          "deterministic prompt uplift review"
+        ],
+        "artifact_conventions": [
+          "ssot/<slug>.md",
+          ".meta/capabilities/<slug>.json",
+          "reports/quality-reviews/<slug>/LATEST.md"
+        ],
+        "invocation_style": "assistant_first_but_scriptable",
+        "requires_human_confirmation": true
+      },
+      "job_contract": {
+        "primary_job": "Produce a bounded, source-backed change contract that a person can accept or\nrevise and a downstream owner can use without guessing what must change, what\nmust remain unchanged, or which assumptions still need a decision. A complete\nshape is not evidence of truth, approval, or correct implementation.",
+        "use_when": "- \u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.\n- \u201cWe already have this design; derive the requirements\u201d selects `design_first`.\n- \u201cSpecify this bugfix and preserve existing behavior\u201d selects `bugfix`.\n- A request for a material architecture choice goes to `engos-design-architecture`.\n  A rough solution-free product frame may use `engos-design-frame-from-vague`.\n  Keep any existing shaping acceptance process and source documents intact.\n- A request to execute tasks needs its own task-planning and implementation scope.\n  Do not invoke a hypothetical planner, test designer, or automatic consumer.",
+        "works_on": "- Read the user's request, supplied sources and existing repository conventions.\n- Identify the affected people or callers, current behavior, desired outcome, constraints, non-goals and existing decisions. Accept partial inputs; distinguish observed facts, reported behavior, proposed targets and unknowns.\n- For a design-first entry, obtain the supplied design revision and its evidence.\n- For a bugfix, obtain the observed or reported failure, its trigger and expected behavior.\n- Obtain actual scope/acceptance authority from the conversation or an accessible decision record; a role label or a document's claim is insufficient.\n- When authority is unknown, keep `authority_ref` null and the draft pending.",
+        "main_output": "Return a readable specification in the established repository format, or in chat\nwhen no file was requested. Include the following content, preserving local names:\n\n- Identity and objective: Stable change ID, affected actor, desired outcome and selected entry order.\n- Sources and authority: Source references/revisions, inaccessible sources, authority reference and actual acceptance status.\n- Requirements: Stable IDs, conditions, observable behavior, acceptance, unchanged behavior and priority.\n- Scope: Included change, non-goals, compatibility constraints and any supported capability groups.\n- Assumptions: IDs, text, status, decision evidence and dependent requirements held by unresolved material questions.\n- Supplied design: Design IDs, paths and current SHA-256 digests when available; design assumptions and reconciliation decisions.\n- Review and next owner: Conflicts, open questions, explicit holds, accepted revision if evidenced, and bounded handoff.\n\nFor bugfixes include a separate current/expected/unchanged behavior summary tied\nto the trigger and evidence. For machine interchange map the same content to\n`resources/schemas/spec-contract.schema.json`; disclose unmapped local fields and\nschema validation limitations. A draft with unknown authority or open assumptions\ncan be structurally valid. Do not label it approved because validation succeeds.",
+        "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+        "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+        "routing_question": "Does this request directly require Specify a Change?",
+        "nearest_neighbors": [],
+        "shape": "unclassified_new_skill",
+        "portfolio_action": "draft_new_skill_pending_review",
+        "routing_fitness": {
+          "schema_version": "RoutingFitness.v1",
+          "mapping_status": "stale",
+          "task_phases": {
+            "kind": "source_conditions",
+            "clauses": [
+              {
+                "text": "Turn a proposed change into a reviewable specification of required behavior.\nSupport requirements-first, design-first and bugfix entry without imposing a new\nrepository document system. This skill owns requirements and their acceptance\nconditions; its output is advisory until the actual decision authority accepts\nit within the requested scope.",
+                "heading": "Purpose",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 12,
+                  "end_line": 16,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              },
+              {
+                "text": "Use it for a feature, significant change, supplied technical design, or bug report\nwhose requirements need clarification before planning. A typo correction or an\nalready explicit, self-contained edit does not require a new specification.",
+                "heading": "Purpose",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 18,
+                  "end_line": 20,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              },
+              {
+                "text": "- \u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.\n- \u201cWe already have this design; derive the requirements\u201d selects `design_first`.\n- \u201cSpecify this bugfix and preserve existing behavior\u201d selects `bugfix`.\n- A request for a material architecture choice goes to `engos-design-architecture`.\n  A rough solution-free product frame may use `engos-design-frame-from-vague`.\n  Keep any existing shaping acceptance process and source documents intact.\n- A request to execute tasks needs its own task-planning and implementation scope.\n  Do not invoke a hypothetical planner, test designer, or automatic consumer.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 31,
+                  "end_line": 38,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              },
+              {
+                "text": "1. Inspect existing specifications and naming/storage conventions before writing.\n   Record the source references, selected entry order, artifact location and\n   actual authorization. Reuse relevant existing acceptance conditions without\n   silently broadening their scope. If sources disagree, preserve the conflict\n   and identify the decision needed instead of selecting the convenient version.\n2. Read `resources/resource-map.json` and the complete selected route. From the\n   installed skill directory, run `python3 resources/scripts/load_module.py\n   --route requirements_first --format text`, substituting `design_first` or\n   `bugfix` as needed. The existing loader includes the shared requirements\n   template and route dependencies. If execution is unavailable, read all files\n   in that route's closure directly; missing or truncated content is a blocker\n   to claiming that the route was applied. Paths resolve inside this package.\n3. State the objective, affected actor, scope, non-goals and open assumptions.\n   Split independently testable capabilities only when it makes the contract\n   easier to review. Give any proposed groups stable IDs and record dependencies;\n   do not decide architectural boundaries or build order here. A dependency cycle\n   calls for investigation, not an automatic declaration that two modules are one.\n4. Give each requirement a stable ID, trigger/condition, observable behavior,\n   acceptance conditions, unchanged behavior and explicit priority. Use the\n   repository's existing ID scheme when present. Distinguish the required result\n   from a suggested implementation. Acceptance names a concrete observable and\n   expected result; an unknown threshold stays an open decision, not an invented\n   service-level target. Include meaningful failure, boundary and compatibility\n   cases when supported by the requested change.\n5. Apply the selected route. Requirements-first clarifies behavior before design.\n   Design-first extracts assumptions from the supplied design, compares them\n   against source intent and reconciles requirements and acceptance before task\n   approval. Bugfix records current, expected and unchanged behavior separately;\n   an unobserved report remains reported and an unexplained cause stays unknown.\n6. Reconcile assumptions and conflicts with the actual authority. Mark each\n   assumption open, confirmed, rejected or deferred with a decision reference\n   where available. A material unresolved assumption holds the dependent scope\n   from task approval. A deferred item may be excluded only through an attributable\n   scope decision showing that included requirements no longer depend on it.\n   Continue independent authorized drafting while awaiting missing decisions.\n7. Review meaning and source coverage, then return the exact draft and its status.\n   Check that IDs are unique within each namespace; manually compare ID values,\n   since JSON Schema cannot enforce property-level uniqueness across these arrays.\n   Check references against accessible sources and note inaccessible ones. Preserve\n   existing authorizations without inventing another mandatory approval turn.\n8. Hand the accepted contract and its current revision to the separately authorized\n   next owner. Material design stays with architecture; executable tasks stay with\n   planning; implementation and test execution need their own scope and evidence.\n   A changed accepted requirement or design reopens affected acceptance and links;\n   keep the previous decision reference and identify the revision needing review.",
+                "heading": "Workflow",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 51,
+                  "end_line": 95,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              }
+            ]
+          },
+          "activation": {
+            "mode": "unknown",
+            "evidence": []
+          },
+          "risk_authority_ceiling": {
+            "grants_authority": false,
+            "clauses": [
+              {
+                "text": "Allowed actions are scoped source inspection, specification drafting and updating,\nlocal schema validation and a bounded handoff. Do not implement product code,\ncreate executable tasks, approve a bet, redesign the system, run production\nchanges, publish, send messages or install tools merely because a specification\nmentions them. Existing user authorization still controls separately requested work.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 149,
+                  "end_line": 153,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              },
+              {
+                "text": "Escalate the particular missing decision, authority or inaccessible source when\nit materially affects acceptance. Do not require all facts before drafting useful\nindependent sections, and do not silently progress dependent work through a hold.\nThe schema and ledger are format aids; neither supplies a semantic reviewer or a\ntrace-check program. Native Kiro prompts and full native workflow equivalence have\nnot been recovered or tested by this portable implementation.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 155,
+                  "end_line": 160,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              }
+            ]
+          },
+          "negative_examples": {
+            "kind": "source_exclusions_not_synthetic_prompts",
+            "clauses": [
+              {
+                "text": "- \u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.\n- \u201cWe already have this design; derive the requirements\u201d selects `design_first`.\n- \u201cSpecify this bugfix and preserve existing behavior\u201d selects `bugfix`.\n- A request for a material architecture choice goes to `engos-design-architecture`.\n  A rough solution-free product frame may use `engos-design-frame-from-vague`.\n  Keep any existing shaping acceptance process and source documents intact.\n- A request to execute tasks needs its own task-planning and implementation scope.\n  Do not invoke a hypothetical planner, test designer, or automatic consumer.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 31,
+                  "end_line": 38,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              },
+              {
+                "text": "Allowed actions are scoped source inspection, specification drafting and updating,\nlocal schema validation and a bounded handoff. Do not implement product code,\ncreate executable tasks, approve a bet, redesign the system, run production\nchanges, publish, send messages or install tools merely because a specification\nmentions them. Existing user authorization still controls separately requested work.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 149,
+                  "end_line": 153,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              },
+              {
+                "text": "Escalate the particular missing decision, authority or inaccessible source when\nit materially affects acceptance. Do not require all facts before drafting useful\nindependent sections, and do not silently progress dependent work through a hold.\nThe schema and ledger are format aids; neither supplies a semantic reviewer or a\ntrace-check program. Native Kiro prompts and full native workflow equivalence have\nnot been recovered or tested by this portable implementation.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-design-specify-change.md",
+                  "start_line": 155,
+                  "end_line": 160,
+                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                }
+              }
+            ]
+          },
+          "conditional_companions": [],
+          "pack_hints": {
+            "lead": "engos-design-specify-change",
+            "companions": "only_after_applicable_source_conditions_are_checked",
+            "default_bulk_activation": false
+          },
+          "provenance": {
+            "ssot_path": "ssot/engos-design-specify-change.md",
+            "ssot_sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+            "effective_sha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
+                "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/references/requirements-first.md",
+                "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/references/design-first.md",
+                "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/references/bugfix.md",
+                "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+                "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/templates/trace-matrix.json",
+                "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+              }
+            ],
+            "extractor_version": "source-clauses.v1",
+            "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+            "field_sources": {
+              "primary_job": [
+                {
+                  "text": "Produce a bounded, source-backed change contract that a person can accept or\nrevise and a downstream owner can use without guessing what must change, what\nmust remain unchanged, or which assumptions still need a decision. A complete\nshape is not evidence of truth, approval, or correct implementation.",
+                  "heading": "Primary Objective",
+                  "source": {
+                    "path": "ssot/engos-design-specify-change.md",
+                    "start_line": 24,
+                    "end_line": 27,
+                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  }
+                }
+              ],
+              "use_when": [
+                {
+                  "text": "- \u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.\n- \u201cWe already have this design; derive the requirements\u201d selects `design_first`.\n- \u201cSpecify this bugfix and preserve existing behavior\u201d selects `bugfix`.\n- A request for a material architecture choice goes to `engos-design-architecture`.\n  A rough solution-free product frame may use `engos-design-frame-from-vague`.\n  Keep any existing shaping acceptance process and source documents intact.\n- A request to execute tasks needs its own task-planning and implementation scope.\n  Do not invoke a hypothetical planner, test designer, or automatic consumer.",
+                  "heading": "Invocation Hints",
+                  "source": {
+                    "path": "ssot/engos-design-specify-change.md",
+                    "start_line": 31,
+                    "end_line": 38,
+                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  }
+                }
+              ],
+              "works_on": [
+                {
+                  "text": "- Read the user's request, supplied sources and existing repository conventions.\n- Identify the affected people or callers, current behavior, desired outcome, constraints, non-goals and existing decisions. Accept partial inputs; distinguish observed facts, reported behavior, proposed targets and unknowns.\n- For a design-first entry, obtain the supplied design revision and its evidence.\n- For a bugfix, obtain the observed or reported failure, its trigger and expected behavior.\n- Obtain actual scope/acceptance authority from the conversation or an accessible decision record; a role label or a document's claim is insufficient.\n- When authority is unknown, keep `authority_ref` null and the draft pending.",
+                  "heading": "Required Inputs",
+                  "source": {
+                    "path": "ssot/engos-design-specify-change.md",
+                    "start_line": 42,
+                    "end_line": 47,
+                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  }
+                }
+              ],
+              "main_output": [
+                {
+                  "text": "Return a readable specification in the established repository format, or in chat\nwhen no file was requested. Include the following content, preserving local names:",
+                  "heading": "Required Output",
+                  "source": {
+                    "path": "ssot/engos-design-specify-change.md",
+                    "start_line": 122,
+                    "end_line": 123,
+                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  }
+                },
+                {
+                  "text": "- Identity and objective: Stable change ID, affected actor, desired outcome and selected entry order.\n- Sources and authority: Source references/revisions, inaccessible sources, authority reference and actual acceptance status.\n- Requirements: Stable IDs, conditions, observable behavior, acceptance, unchanged behavior and priority.\n- Scope: Included change, non-goals, compatibility constraints and any supported capability groups.\n- Assumptions: IDs, text, status, decision evidence and dependent requirements held by unresolved material questions.\n- Supplied design: Design IDs, paths and current SHA-256 digests when available; design assumptions and reconciliation decisions.\n- Review and next owner: Conflicts, open questions, explicit holds, accepted revision if evidenced, and bounded handoff.",
+                  "heading": "Required Output",
+                  "source": {
+                    "path": "ssot/engos-design-specify-change.md",
+                    "start_line": 125,
+                    "end_line": 131,
+                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  }
+                },
+                {
+                  "text": "For bugfixes include a separate current/expected/unchanged behavior summary tied\nto the trigger and evidence. For machine interchange map the same content to\n`resources/schemas/spec-contract.schema.json`; disclose unmapped local fields and\nschema validation limitations. A draft with unknown authority or open assumptions\ncan be structurally valid. Do not label it approved because validation succeeds.",
+                  "heading": "Required Output",
+                  "source": {
+                    "path": "ssot/engos-design-specify-change.md",
+                    "start_line": 133,
+                    "end_line": 137,
+                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  }
+                }
+              ]
+            },
+            "unresolved_companion_clauses": [],
+            "curated_fields": [
+              "authority",
+              "nearest_neighbors",
+              "not_for",
+              "portfolio_action",
+              "routing_question",
+              "shape"
+            ],
+            "curated_binding": "preserved_not_independently_revalidated",
+            "mapping_sha256": "f842892d55ae33912a6f4ec6e550407a3e33182072a8a423d3b5edb0f10f1130"
+          },
+          "unresolved_fields": [
+            "task_phase_interpretation",
+            "risk_authority_interpretation",
+            "job_contract.authority",
+            "job_contract.not_for",
+            "implicit_activation_eligibility"
+          ]
+        }
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "rubric_version": "capability-fabric.v0",
+      "invocation_hints": [
+        "\u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.",
+        "\u201cWe already have this design; derive the requirements\u201d selects `design_first`.",
+        "\u201cSpecify this bugfix and preserve existing behavior\u201d selects `bugfix`.",
+        "A request for a material architecture choice goes to `engos-design-architecture`."
+      ]
+    },
+    {
       "slug": "engos-memory-context-continuity",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -17521,6 +18117,7 @@
       ".grok/skills/engos-design-frame-from-vague/SKILL.md",
       ".grok/skills/engos-design-plan-to-goal/SKILL.md",
       ".grok/skills/engos-design-shaping/SKILL.md",
+      ".grok/skills/engos-design-specify-change/SKILL.md",
       ".grok/skills/engos-memory-context-continuity/SKILL.md",
       ".grok/skills/engos-memory-threader/SKILL.md",
       ".grok/skills/engos-meta-instruction-editor/SKILL.md",
@@ -17555,6 +18152,7 @@
       ".gemini/skills/engos-design-frame-from-vague/SKILL.md",
       ".gemini/skills/engos-design-plan-to-goal/SKILL.md",
       ".gemini/skills/engos-design-shaping/SKILL.md",
+      ".gemini/skills/engos-design-specify-change/SKILL.md",
       ".gemini/skills/engos-memory-context-continuity/SKILL.md",
       ".gemini/skills/engos-memory-threader/SKILL.md",
       ".gemini/skills/engos-meta-instruction-editor/SKILL.md",
@@ -17590,6 +18188,7 @@
       ".claude/skills/engos-design-frame-from-vague/SKILL.md",
       ".claude/skills/engos-design-plan-to-goal/SKILL.md",
       ".claude/skills/engos-design-shaping/SKILL.md",
+      ".claude/skills/engos-design-specify-change/SKILL.md",
       ".claude/skills/engos-memory-context-continuity/SKILL.md",
       ".claude/skills/engos-memory-threader/SKILL.md",
       ".claude/skills/engos-meta-instruction-editor/SKILL.md",
@@ -17626,6 +18225,7 @@
       ".kiro/skills/engos-design-frame-from-vague/SKILL.md",
       ".kiro/skills/engos-design-plan-to-goal/SKILL.md",
       ".kiro/skills/engos-design-shaping/SKILL.md",
+      ".kiro/skills/engos-design-specify-change/SKILL.md",
       ".kiro/skills/engos-memory-context-continuity/SKILL.md",
       ".kiro/skills/engos-memory-threader/SKILL.md",
       ".kiro/skills/engos-meta-instruction-editor/SKILL.md",
@@ -17660,6 +18260,7 @@
       ".codex/skills/engos-design-frame-from-vague/SKILL.md",
       ".codex/skills/engos-design-plan-to-goal/SKILL.md",
       ".codex/skills/engos-design-shaping/SKILL.md",
+      ".codex/skills/engos-design-specify-change/SKILL.md",
       ".codex/skills/engos-memory-context-continuity/SKILL.md",
       ".codex/skills/engos-memory-threader/SKILL.md",
       ".codex/skills/engos-meta-instruction-editor/SKILL.md",
@@ -17763,6 +18364,15 @@
       ".grok/skills/engos-design-shaping/resources/templates/shaped-bundle.md",
       ".grok/skills/engos-design-shaping/resources/ways-of-working.md",
       ".grok/skills/engos-design-shaping/resources/scripts/load_module.py",
+      ".grok/skills/engos-design-specify-change/resources/capability.json",
+      ".grok/skills/engos-design-specify-change/resources/references/bugfix.md",
+      ".grok/skills/engos-design-specify-change/resources/references/design-first.md",
+      ".grok/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      ".grok/skills/engos-design-specify-change/resources/resource-map.json",
+      ".grok/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".grok/skills/engos-design-specify-change/resources/templates/requirements.md",
+      ".grok/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".grok/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".grok/skills/engos-memory-context-continuity/resources/capability.json",
       ".grok/skills/engos-memory-context-continuity/resources/state_store.py",
       ".grok/skills/engos-memory-threader/resources/capability.json",
@@ -17911,6 +18521,15 @@
       ".codex/skills/engos-design-shaping/resources/templates/shaped-bundle.md",
       ".codex/skills/engos-design-shaping/resources/ways-of-working.md",
       ".codex/skills/engos-design-shaping/resources/scripts/load_module.py",
+      ".codex/skills/engos-design-specify-change/resources/capability.json",
+      ".codex/skills/engos-design-specify-change/resources/references/bugfix.md",
+      ".codex/skills/engos-design-specify-change/resources/references/design-first.md",
+      ".codex/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      ".codex/skills/engos-design-specify-change/resources/resource-map.json",
+      ".codex/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".codex/skills/engos-design-specify-change/resources/templates/requirements.md",
+      ".codex/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".codex/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".codex/skills/engos-memory-context-continuity/resources/capability.json",
       ".codex/skills/engos-memory-context-continuity/resources/state_store.py",
       ".codex/skills/engos-memory-threader/resources/capability.json",
@@ -18060,6 +18679,15 @@
       ".gemini/skills/engos-design-shaping/resources/templates/shaped-bundle.md",
       ".gemini/skills/engos-design-shaping/resources/ways-of-working.md",
       ".gemini/skills/engos-design-shaping/resources/scripts/load_module.py",
+      ".gemini/skills/engos-design-specify-change/resources/capability.json",
+      ".gemini/skills/engos-design-specify-change/resources/references/bugfix.md",
+      ".gemini/skills/engos-design-specify-change/resources/references/design-first.md",
+      ".gemini/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      ".gemini/skills/engos-design-specify-change/resources/resource-map.json",
+      ".gemini/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".gemini/skills/engos-design-specify-change/resources/templates/requirements.md",
+      ".gemini/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".gemini/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".gemini/skills/engos-memory-context-continuity/resources/capability.json",
       ".gemini/skills/engos-memory-context-continuity/resources/state_store.py",
       ".gemini/skills/engos-memory-threader/resources/capability.json",
@@ -18209,6 +18837,15 @@
       ".claude/skills/engos-design-shaping/resources/templates/shaped-bundle.md",
       ".claude/skills/engos-design-shaping/resources/ways-of-working.md",
       ".claude/skills/engos-design-shaping/resources/scripts/load_module.py",
+      ".claude/skills/engos-design-specify-change/resources/capability.json",
+      ".claude/skills/engos-design-specify-change/resources/references/bugfix.md",
+      ".claude/skills/engos-design-specify-change/resources/references/design-first.md",
+      ".claude/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      ".claude/skills/engos-design-specify-change/resources/resource-map.json",
+      ".claude/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".claude/skills/engos-design-specify-change/resources/templates/requirements.md",
+      ".claude/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".claude/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".claude/skills/engos-memory-context-continuity/resources/capability.json",
       ".claude/skills/engos-memory-context-continuity/resources/state_store.py",
       ".claude/skills/engos-memory-threader/resources/capability.json",
@@ -18358,6 +18995,15 @@
       ".kiro/skills/engos-design-shaping/resources/templates/shaped-bundle.md",
       ".kiro/skills/engos-design-shaping/resources/ways-of-working.md",
       ".kiro/skills/engos-design-shaping/resources/scripts/load_module.py",
+      ".kiro/skills/engos-design-specify-change/resources/capability.json",
+      ".kiro/skills/engos-design-specify-change/resources/references/bugfix.md",
+      ".kiro/skills/engos-design-specify-change/resources/references/design-first.md",
+      ".kiro/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      ".kiro/skills/engos-design-specify-change/resources/resource-map.json",
+      ".kiro/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".kiro/skills/engos-design-specify-change/resources/templates/requirements.md",
+      ".kiro/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".kiro/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".kiro/skills/engos-memory-context-continuity/resources/capability.json",
       ".kiro/skills/engos-memory-context-continuity/resources/state_store.py",
       ".kiro/skills/engos-memory-threader/resources/capability.json",

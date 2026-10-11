@@ -51,6 +51,27 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 
 ## Task-Oriented Examples
 
+### Specification Resources
+
+From the installed `engos-design-specify-change` skill directory, load the chosen
+entry route with the existing package-local loader:
+
+```bash
+python3 resources/scripts/load_module.py --route requirements_first --format text
+python3 resources/scripts/load_module.py --route design_first --format text
+python3 resources/scripts/load_module.py --route bugfix --format text
+```
+
+Use `--route contract` only for machine interchange or `--route trace_ledger` for
+supplied-link recording. These commands emit resources; they neither execute the
+workflow nor validate a user's specification. The canonical schema is
+`sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json`;
+each generated skill carries it at `resources/schemas/spec-contract.schema.json`.
+Keep the repository's existing spec format and add a sidecar only when needed.
+JSON Schema checks field shape and bugfix triad presence, while property-level ID
+uniqueness, reference existence, decisions and semantics need separate review.
+There is no bundled trace-check command or shared-resource import in this slice.
+
 ### Validate Or Render An OpEx Digest Snapshot
 
 From an emitted `engos-audit-opex-incident-review` skill directory:
