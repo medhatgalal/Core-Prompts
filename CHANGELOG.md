@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Bind code review to explicit commit, staged, working-tree, branch or supplied-diff
+  targets while preserving default HEAD and the existing review lenses. Add verified
+  affected-consumer evidence for introduced breakage and structured Findings.v1
+  output; incomplete or malformed evidence cannot produce a clean verdict. Reuse
+  the resource loader and retain review-only authority. Structural checks do not
+  establish actual reading, review accuracy or behavioral improvement.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

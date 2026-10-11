@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-code-review",
-  "ssot_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+  "ssot_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -34,12 +34,27 @@
   ],
   "authority_boundaries": [
     "engos-quality-code-review:L6:18a0387acace",
-    "engos-quality-code-review:L44:37b9b510e11d",
-    "engos-quality-code-review:L197:45eb57c3f020",
-    "engos-quality-code-review:L199:b80d593de097",
-    "engos-quality-code-review:L222:de3a6a2de402",
-    "engos-quality-code-review:L305:39749905ad53",
-    "engos-quality-code-review:L310:6ec4931c2502"
+    "engos-quality-code-review:L47:857b9d251495",
+    "engos-quality-code-review:L51:37b9b510e11d",
+    "engos-quality-code-review:L89:9d9cd6962f97",
+    "engos-quality-code-review:L96:9d9d4b37c95a",
+    "engos-quality-code-review:L120:98bfc94daf8d",
+    "engos-quality-code-review:L131:0d2cf1ae22e8",
+    "engos-quality-code-review:L139:f57326700c4e",
+    "engos-quality-code-review:L233:45eb57c3f020",
+    "engos-quality-code-review:L235:b80d593de097",
+    "engos-quality-code-review:L258:de3a6a2de402",
+    "engos-quality-code-review:L275:d9b8a645a3f2",
+    "engos-quality-code-review:L343:39749905ad53",
+    "engos-quality-code-review:L348:6ec4931c2502",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L12:be2e8a13f854",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L19:879108c456dc",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L20:05aca0658b41",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L21:12e3caad140f",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L40:29c68c51aac2",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L47:ae7217f8f608",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L57:3fa319cfbdfb",
+    "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L80:ec75032f368b"
   ],
   "resources": [
     "- [ ] early returns and partial failures do not leak resources",
@@ -47,7 +62,6 @@
     "- [ ] files, directories, caches, queues, buffers, connections, tasks, subprocesses, and other resources have explicit growth bounds",
     "- findings with file references",
     "- resources are created without cleanup, eviction, retention, or capacity bounds",
-    "| Evidence quality | Findings are based on the actual diff and reference specific files |",
     "| Resource & lifecycle | No unbounded growth, no incorrectly frozen initialization state, and failure modes are observable and recoverable |",
     "| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |"
   ],
@@ -87,152 +101,672 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L40:23aca3d331b0",
+      "id": "engos-quality-code-review:L36:8f82348d64e2",
       "heading": "Workflow",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 47,
-      "sha256": "23aca3d331b09e9e3cf2cc236213929c713eb27b58d0c7528ee442021717d1e9",
-      "text": "5. End with a clear readiness decision: ready, blocked, or split required.",
+      "source_line": 43,
+      "sha256": "8f82348d64e20b7912085ef9555b3af8821b7610e64c0aa09123ca76b54338e0",
+      "text": "1. Read the complete `review` route in `resources/resource-map.json`: `resources/references/review-targets.md` and its findings schema. Use the existing bundled `resources/scripts/load_module.py --route review` when available, or read both files directly. Missing or unread required resources make the review incomplete.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L41:8fe83f46b1be",
+      "heading": "Workflow",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 48,
+      "sha256": "8fe83f46b1be4cc4eb5fbd77366b171fd012b66aa6658c5e256fac2b34446b70",
+      "text": "6. End with ready, blocked, or split required for a complete review; use unverifiable when evidence or review coverage is incomplete. Review judgment grants no repair, publication, merge, or release authority.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L47:857b9d251495",
+      "heading": "Rules",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 54,
+      "sha256": "857b9d251495f5907c1b0ca2247c783a7d5460da49ef05a6f70a2adf99868b76",
+      "text": "- Missing, malformed, stale, or unread review evidence is incomplete, never a clean result. Collection success, schema validity, or a self-reported read receipt cannot prove actual reading, truthful findings, or permission to merge.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L44:37b9b510e11d",
+      "id": "engos-quality-code-review:L51:37b9b510e11d",
       "heading": "Tool Boundaries",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 51,
+      "source_line": 58,
       "sha256": "37b9b510e11d3d41e0fc01a4bf0abd3e969f631b6e07cc1bbad1e850ae0bb6ee",
       "text": "- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L68:77357dbdaba3",
+      "id": "engos-quality-code-review:L75:77357dbdaba3",
       "heading": "Required Inputs",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 75,
+      "source_line": 82,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L73:3d4b9f171064",
+      "id": "engos-quality-code-review:L80:3d4b9f171064",
       "heading": "Required Output",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 80,
+      "source_line": 87,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L74:c34906b1f1c3",
+      "id": "engos-quality-code-review:L81:c34906b1f1c3",
       "heading": "Required Output",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 81,
+      "source_line": 88,
       "sha256": "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
       "text": "Every substantial response must include:",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L103:69e2d69e633b",
-      "heading": "1. Capture the Commit",
+      "id": "engos-quality-code-review:L89:9d9cd6962f97",
+      "heading": "Required Output",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 110,
-      "sha256": "69e2d69e633b3d0936215810f75fc2527ee735626295c990ce7768e6967df477",
-      "text": "If nothing is staged, inspect the working-tree diff only after saying that the review is not a commit-ready staged review.",
+      "source_line": 96,
+      "sha256": "9d9cd6962f973812e778f6317ab40ad4d6c8074815648ee6134b4f7e86bea22b",
+      "text": "Keep these six sections. In `Commit Under Review`, include the bound target and coverage. In `Findings`, use the fields and evidence links in `resources/schemas/findings.schema.json`; an empty findings list supports a clean verdict only after the declared target is fully reviewed. Include `review_status`, `unreviewed`, and the verdict in `Merge Readiness`. Render these fields inline for chat; when a machine-readable review artifact is requested, write a `Findings.v1` JSON record alongside any requested narrative. Do not write files solely because the schema exists.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L155:a6f77e91ee6c",
+      "id": "engos-quality-code-review:L96:9d9d4b37c95a",
+      "heading": "1. Capture the Commit",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 103,
+      "sha256": "9d9d4b37c95a1577af793ab9d76aef1d03e7b14f8fb6a751553617356b70fec1",
+      "text": "state the selected parent/comparison; do not silently substitute a combined diff.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L120:98bfc94daf8d",
+      "heading": "1. Capture the Commit",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 127,
+      "sha256": "98bfc94daf8dffbc3dbf995caf30bd570ff22273f4f88ddec139a6201efa0210",
+      "text": "drift and renew affected review if the requested target changed; never silently",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L130:04ffdc5e7350",
+      "heading": "1. Capture the Commit",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 137,
+      "sha256": "04ffdc5e73508647ca1481cdf8f59eaa7025ec4ba604f3d2ab18522fa00bf538",
+      "text": "diff only after saying that the review is not a commit-ready staged review; label",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L131:0d2cf1ae22e8",
+      "heading": "1. Capture the Commit",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 138,
+      "sha256": "0d2cf1ae22e8095082ddc2226882a2f66ff843c60ca898ffb92d5f975c1dda62",
+      "text": "that fallback with its own working-tree target and digest. Never stage changes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L136:66a4ed1a80c7",
+      "heading": "1. Capture the Commit",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 143,
+      "sha256": "66a4ed1a80c7dba4bebcf19eed1df93a9141492ab8864d6834a7c266fdc2e707",
+      "text": "the declared full range, not only its last commit. If file output was requested,",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L139:f57326700c4e",
+      "heading": "1. Capture the Commit",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 146,
+      "sha256": "f57326700c4e51457b276332a2e3376377c35aa553dbb43b14bfd42afd9cb03c",
+      "text": "and report inline. Do not turn artifact capture into permission to change source.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L191:a6f77e91ee6c",
       "heading": "4. Check Scope and Complexity",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 162,
+      "source_line": 198,
       "sha256": "a6f77e91ee6c5fd3af9d3deb0640bd277de10352692763bb9b6173e1be1f03fc",
       "text": "- failure modes are silent, unrecoverable, or diagnosable only after redeployment",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L197:45eb57c3f020",
+      "id": "engos-quality-code-review:L233:45eb57c3f020",
       "heading": "6. Check Resource & Lifecycle",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 204,
+      "source_line": 240,
       "sha256": "45eb57c3f020e224c1a857d07246b4495766195c3e8bbdeb426fee8afa303ae2",
       "text": "- [ ] temporary artifacts do not persist without a cleanup mechanism",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L199:b80d593de097",
+      "id": "engos-quality-code-review:L235:b80d593de097",
       "heading": "6. Check Resource & Lifecycle",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 206,
+      "source_line": 242,
       "sha256": "b80d593de097b89e33641755c29754158ac219cd2a1c18aa0dae17473f342eb5",
       "text": "- [ ] early returns and partial failures do not leak resources",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L202:b9e0596a4fd2",
+      "id": "engos-quality-code-review:L238:b9e0596a4fd2",
       "heading": "6. Check Resource & Lifecycle",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 209,
+      "source_line": 245,
       "sha256": "b9e0596a4fd2fa3c6a94dfff083d86915bbdabb45dc8fe99406c1a6a5a4f4c6b",
       "text": "- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L222:de3a6a2de402",
+      "id": "engos-quality-code-review:L258:de3a6a2de402",
       "heading": "6. Check Resource & Lifecycle",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 229,
+      "source_line": 265,
       "sha256": "de3a6a2de402a98c4220e93d7c4388418802b6a618c5130037ad525950c7921b",
       "text": "- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L224:485e7c6d8d96",
+      "id": "engos-quality-code-review:L260:485e7c6d8d96",
       "heading": "6. Check Resource & Lifecycle",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 231,
+      "source_line": 267,
       "sha256": "485e7c6d8d964cee25ce619514a5aaeaca192b9bfc8f35dd8c39527431f49e67",
       "text": "- [ ] versioning, migration, deprecation, and compatibility tests are added when required",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L291:d2e95eececf5",
-      "heading": "Recommendation",
+      "id": "engos-quality-code-review:L268:98ec19e5e370",
+      "heading": "7. Provide Feedback",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 298,
-      "sha256": "d2e95eececf55eecf480dad0149d460303dc1380f7db3cb1883cf57b92c8a2d0",
-      "text": "[Ready for MR / Needs revision before MR / Split required]",
+      "source_line": 275,
+      "sha256": "98ec19e5e37086ce08196c360e7d4a2e9f5a7dbaba9cfafe44962432a5403da9",
+      "text": "- retain a stable finding ID and disposition on re-review; mark resolved only after verifying the repair against the new bound target",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L305:39749905ad53",
-      "heading": "Hard Constraints",
+      "id": "engos-quality-code-review:L275:d9b8a645a3f2",
+      "heading": "7. Provide Feedback",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 312,
+      "source_line": 282,
+      "sha256": "d9b8a645a3f23f94f73282beecb7b7709b6ca7e552a38214a0d92191e01fdbe4",
+      "text": "If coverage, target binding, source reads, or requested output is missing or malformed, retain any confirmed findings, list what remains unreviewed, and report incomplete/unverifiable. Never translate a failed or empty review return into ready.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L312:8a29f76adcda",
+      "heading": "Output Format",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 319,
+      "sha256": "8a29f76adcda574a7b675c9b83366f7e77713cceecf1bbd91f92c7eb0cdb4bb6",
+      "text": "Use the six required sections with a brief overall assessment, findings ordered by",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:L343:39749905ad53",
+      "heading": "Constraints",
+      "source": "ssot/engos-quality-code-review.md",
+      "source_line": 350,
       "sha256": "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
       "text": "- Never skip reading the actual diff.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-code-review:L310:6ec4931c2502",
-      "heading": "Hard Constraints",
+      "id": "engos-quality-code-review:L348:6ec4931c2502",
+      "heading": "Constraints",
       "source": "ssot/engos-quality-code-review.md",
-      "source_line": 317,
+      "source_line": 355,
       "sha256": "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
       "text": "- Do not rubber-stamp a commit just because tests pass.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L8:5f9d2b89c722",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 8,
+      "sha256": "5f9d2b89c7225f84ced43565a71f0c3a6686fdab44cf0f404c0e37a455154998",
+      "text": "\"required\": [\"schema_version\", \"target\", \"review_status\", \"evidence\", \"findings\", \"unreviewed\", \"verdict\"],",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L20:abb51aef2129",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 20,
+      "sha256": "abb51aef21290a0c9264d19062480d60765576702740adb96b2489602df3aaf8",
+      "text": "\"if\": {\"properties\": {\"review_status\": {\"const\": \"incomplete\"}}, \"required\": [\"review_status\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L24:35169204eac8",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 24,
+      "sha256": "35169204eac8c9d56a571355244906667e842157967140216cb754e4648aada3",
+      "text": "\"if\": {\"properties\": {\"review_status\": {\"const\": \"complete\"}}, \"required\": [\"review_status\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L30:c8049d2c3bbc",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 30,
+      "sha256": "c8049d2c3bbcadb232ab80d85381bcf00b79b8d5b6b0006a7c758b1fda875d4b",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"enum\": [\"commit\", \"branch\"]}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L34:c9462770fc4b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 34,
+      "sha256": "c9462770fc4b2dd412742defc700642ef8aa8a6fb94f287b093a346f23a50dd6",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"const\": \"branch\"}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L40:4a109f34aced",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 40,
+      "sha256": "4a109f34aced5154e124930c1025e09ca217e7c51ad4dbeae2284a86634250fb",
+      "text": "\"required\": [\"kind\", \"comparison\"]",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L45:dc07a6cf2201",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 45,
+      "sha256": "dc07a6cf2201e71cbd917104368d9257ccb2cfbb9f985d661146fde8a9575827",
+      "text": "\"if\": {\"properties\": {\"comparison\": {\"const\": \"root\"}}, \"required\": [\"comparison\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L49:8415228cb12c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 49,
+      "sha256": "8415228cb12c7066e9b184f3dddfa36f584e5b924b77e6406730a7c255115711",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"enum\": [\"staged\", \"working_tree\", \"diff\"]}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L64:874e73e94d3a",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 64,
+      "sha256": "874e73e94d3a995a875ca7b74dc404b155840f528843ed47ff2d9ae76f384f2e",
+      "text": "\"contains\": {\"properties\": {\"kind\": {\"const\": \"diff\"}}, \"required\": [\"kind\"]}",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L70:54c99f0ef1ef",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 70,
+      "sha256": "54c99f0ef1efe2fc438df8d153cbc3133b81d124b431a1364c9aabd458b2a9af",
+      "text": "\"if\": {\"properties\": {\"verdict\": {\"const\": \"ready\"}}, \"required\": [\"verdict\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L78:751372455e3c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 78,
+      "sha256": "751372455e3c8565e8692d5981a3b4064642d639d48c7e599794dffcbcad609f",
+      "text": "\"required\": [\"severity\", \"disposition\"]",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L90:0e7eb65d6ff6",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 90,
+      "sha256": "0e7eb65d6ff6c2860c2f25432bbf584432e569ee1317618ce93ba931edfd15eb",
+      "text": "\"required\": [\"kind\", \"base\", \"head\", \"snapshot_digest\", \"comparison\", \"included_change_classes\"],",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L117:1c2b30199b99",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 117,
+      "sha256": "1c2b30199b99f81eebf3d9e3737d5984f427361c6eda895fa61dbd4ef13bb34c",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"const\": \"commit\"}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L127:c9462770fc4b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 127,
+      "sha256": "c9462770fc4b2dd412742defc700642ef8aa8a6fb94f287b093a346f23a50dd6",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"const\": \"branch\"}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L137:485eb3a3ffd6",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 137,
+      "sha256": "485eb3a3ffd6aa05b829dc827f857b5e6f74b94f206c6db4d0b6c03127c4ff98",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"const\": \"staged\"}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L143:5fac3e681683",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 143,
+      "sha256": "5fac3e6816836c74d448dba94a9a1bd468cad5e1fc4228e3c792f11a389a8170",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"const\": \"working_tree\"}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L152:e27c93bdf6f1",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 152,
+      "sha256": "e27c93bdf6f1e3f1a7a7ad168b69247ad021252924f459ffb663d0d861fd7781",
+      "text": "\"if\": {\"properties\": {\"comparison\": {\"const\": \"unstaged\"}}, \"required\": [\"comparison\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L156:dd93ba1c6f01",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 156,
+      "sha256": "dd93ba1c6f01dcd555593561082c86831eade7bed53dbd97c3628fcc063dc4cb",
+      "text": "\"if\": {\"properties\": {\"kind\": {\"const\": \"diff\"}}, \"required\": [\"kind\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L166:259904bec437",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 166,
+      "sha256": "259904bec437ada476d9a5e718e601a6f7ffaa0e404a187456e54f587a252255",
+      "text": "\"required\": [\"id\", \"path\", \"kind\", \"side\", \"identity\", \"line_start\", \"line_end\", \"read_status\"],",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L181:e14bf26a9f81",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 181,
+      "sha256": "e14bf26a9f81eac0afb1fa626d4f0d2e2c24b791b1d1da7bafe1cb2f34a01ab1",
+      "text": "\"required\": [\"path\", \"line\", \"side\"],",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L189:7c88dd3da8ee",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 189,
+      "sha256": "7c88dd3da8eef840bf08a1ac1e801aed1507729a73a5b149f9f034168db3b8ee",
+      "text": "\"if\": {\"properties\": {\"side\": {\"const\": \"message\"}}, \"required\": [\"side\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L193:f2e761d3e030",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 193,
+      "sha256": "f2e761d3e030653f70f6799fb254841b424f922f0ba0d2e696723deea34caf22",
+      "text": "\"if\": {\"properties\": {\"side\": {\"enum\": [\"base\", \"head\", \"snapshot\"]}}, \"required\": [\"side\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L201:e264bf14820f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 201,
+      "sha256": "e264bf14820f4cd6dee642a30536da156e855162de28645e832fa0d25cd640fb",
+      "text": "\"required\": [\"path\", \"line\", \"evidence_refs\"],",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L211:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 211,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L233:2536792297d3",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 233,
+      "sha256": "2536792297d3b1831e98cf06d805553f9c508ab3375d00c4980f8ebcafa92f95",
+      "text": "\"required\": [\"summary\", \"evidence_refs\"],",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L249:88969ec30642",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 249,
+      "sha256": "88969ec30642cfdc7c82d35231d7389fb719ee374eaf95baf2f46096da5d60e8",
+      "text": "\"if\": {\"properties\": {\"category\": {\"const\": \"introduced_breakage\"}}, \"required\": [\"category\"]},",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json:L255:57487194673b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "source_line": 255,
+      "sha256": "57487194673ba085ab3fce3928b2cff276afbbbf8030390a1fd2d98233e006f3",
+      "text": "\"required\": [\"disposition\"]",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L12:be2e8a13f854",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 12,
+      "sha256": "be2e8a13f854bab4d6c60b1127c72283fca3603a65776bdf0136ea6b05b41138",
+      "text": "`comparison`, `included_change_classes`, and `snapshot_digest`. Never infer a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L18:4b8bee28f76d",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 18,
+      "sha256": "4b8bee28f76d8d7543820f23fc1b8505f60a6453edbbfad28065de3647b290ae",
+      "text": "| Explicit staged | `staged`; base=head=checkout HEAD when it exists, `staged` comparison, index snapshot digest | Index only; read changed source and unchanged consumers from the index, not unstaged files |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L19:879108c456dc",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 19,
+      "sha256": "879108c456dca5b9f03dc9e4ce5d75d3fb232e44f8563ae432a9a39b9ad0ca2b",
+      "text": "| Working tree | `working_tree`; declare `unstaged` (index to worktree) or `combined` (HEAD to worktree), head/base=checkout HEAD when it exists, snapshot digest | Declare staged/unstaged inclusion accurately; list untracked paths explicitly if included; never imply they appear in git diff |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L20:05aca0658b41",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 20,
+      "sha256": "05aca0658b4140b4f9ff9a84996d299875ba5e5d174364b3ba52c7ba7c4b3bb2",
+      "text": "| Branch/range | `branch`; full head and actual comparison base; `merge_base` for branch contribution or `range` for explicitly selected endpoints | Full declared range and commit list, including messages; do not substitute HEAD~1 for a multi-commit task |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L21:12e3caad140f",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 21,
+      "sha256": "12e3caad140fff1058a21cc6c6b594e09b486d9fd5cb442e1ea47f4739c03be3",
+      "text": "| Supplied patch | `diff`; `supplied_diff` comparison and digest; keep unknown base/head null | Exact supplied bytes; do not claim repository context or consumer coverage that was not obtained |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L40:29c68c51aac2",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 40,
+      "sha256": "29c68c51aac22c918478f8435a77c825b95ae31832e76ebb0f440be79273fade",
+      "text": "bind a staged or working-tree review. Do not invoke write-tree, stage, reset, or",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L45:0e5a6112e1af",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 45,
+      "sha256": "0e5a6112e1af05520f5c7f74e89aa413022630f7d50ab2a643e315fde12856cc",
+      "text": "task baseline must include all task commits. Keep rename/deletion old and new paths",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L47:ae7217f8f608",
+      "heading": "Select and bind the target",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 47,
+      "sha256": "ae7217f8f60891dd3a6b9d7a7beb49ee7fcb5ce93b37fc80c793936cb3f48e37",
+      "text": "do not invent a new-side line for an inline publisher. This skill does not publish.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L52:d5c301083c9d",
+      "heading": "Verify the changed cause and consumer",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 52,
+      "sha256": "d5c301083c9d96cac3108048c8c5d31a1d50c29ab72db93913233ca9dafef0a6",
+      "text": "bound revision/snapshot. An introduced-breakage finding must connect a changed",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L57:3fa319cfbdfb",
+      "heading": "Verify the changed cause and consumer",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 57,
+      "sha256": "3fa319cfbdfbfd91c5500147913612fa0156068137c2974675cdbdd0734c71dc",
+      "text": "it; do not treat an imagined caller or an unrelated pre-existing defect as proof.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L80:ec75032f368b",
+      "heading": "Structured findings and evidence",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 80,
+      "sha256": "ec75032f368bf60cbc9c5425a99615f7342681f676fd4f293b527bc09983640a",
+      "text": "Do not downgrade a blocker to obtain ready. Accepted risk needs attributable",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L88:663aa678191f",
+      "heading": "Structured findings and evidence",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 88,
+      "sha256": "663aa678191f01874b373d1b11253d465c4a1ab854bd2ede87c20673cc43f32f",
+      "text": "external decision evidence by content hash and attribution. Every evidence ID must",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L89:a41b8089e50e",
+      "heading": "Structured findings and evidence",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 89,
+      "sha256": "a41b8089e50e0c88b8b69e45768fd9a7790092e21af2a2c2a727e2a4bc267ae7",
+      "text": "be unique and referenced IDs must resolve to entries actually read. Use exact",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L96:3ae6e9838869",
+      "heading": "Structured findings and evidence",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 96,
+      "sha256": "3ae6e98388699e66b93395490ca617f548165e6ee5b88796a52c29358d22d8d9",
+      "text": "`unreviewed` is empty only then. `ready` additionally needs no unresolved blocking",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-code-review:sources/capability-resources/engos-quality-code-review/references/review-targets.md:L107:8512d6f06450",
+      "heading": "Structured findings and evidence",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "source_line": 107,
+      "sha256": "8512d6f06450577cfeb0dc6efe71572e6e703ffde11646f31253b8b35dc85f16",
+      "text": "consuming operator must check those semantics against actual evidence before",
       "kind": "invariant",
       "mapped_to": []
     }
@@ -245,7 +779,19 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-code-review.md",
-      "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+      "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/resource-map.json",
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
     }
   ],
   "known_ambiguities": [],
@@ -258,10 +804,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 18,
+    "total": 70,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "1732cd1ffa756fa2666930ebcdc19f5282547450b59f7e3ffd8a79a66073c462"
 }

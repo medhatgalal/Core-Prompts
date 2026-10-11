@@ -1,0 +1,250 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-quality-code-review",
+  "original_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+  "candidate_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
+  "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/d6_requirement_review_astra",
+    "author_agent_id": "/root/d6_implementation_astra",
+    "independent": true
+  },
+  "source_line_count": 317,
+  "requirements": [
+    {
+      "id": "D6-S1-current-L001-L009",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: \"engos-quality-code-review\"\ndescription: \"Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.\"\ndisplay_name: \"Commit Review \u2014 Git Commit Quality Gate\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# Commit Review \u2014 Git Commit Quality Gate",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L010-L014",
+      "source_start_line": 10,
+      "source_end_line": 14,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nUse this capability to review staged changes, working-tree diffs, or git commits before commit, push, merge, or release. It is a review gate: it reads the actual diff, finds correctness and scope risks, checks commit-message quality, flags over-engineering, and gives a clear readiness decision.\n\nUse this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `engos-delivery-address-code-review` when the user wants selected PR/MR review comments implemented.",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L015-L017",
+      "source_start_line": 15,
+      "source_end_line": 17,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective\nDetermine whether the diff under review is ready to move forward, blocked by correctness or scope issues, or should be split into smaller focused changes before review continues.",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L018-L030",
+      "source_start_line": 18,
+      "source_end_line": 30,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Choose the Right Review Capability\nUse `engos-quality-code-review` when the job is judgment.\n\n| User Intent | Use | Why |\n| --- | --- | --- |\n| \"Review my staged changes before I commit\" | `engos-quality-code-review` | pre-commit quality gate; no mutation |\n| \"Review the latest commit\" | `engos-quality-code-review` | commit scope, message quality, and merge readiness |\n| \"Tell me if this MR is too broad\" | `engos-quality-code-review` with `engos-quality-gitops-review` if branch/CI state matters | commit/diff findings first, branch gate second |\n| \"Fix the comments reviewers left on my MR\" | `engos-delivery-address-code-review` | action workflow that reads comments and edits files |\n| \"After fixes, check the fix commit\" | `engos-quality-code-review` | verifies the response commit stayed scoped |\n\nDefault to `engos-quality-code-review` for pre-commit or pre-push checks. Switch to `engos-delivery-address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L031-L034",
+      "source_start_line": 31,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Output Directory\nWhen file output is requested, default to:\n- `reports/code-reviews/<timestamp>-<commit>.md`",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L035-L041",
+      "source_start_line": 35,
+      "source_end_line": 41,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Core Principles\n- **Scope discipline**: changes must match what the commit message describes\n- **Simplicity first**: flag over-engineered solutions and unnecessary spread\n- **Evidence-based**: review the actual diff, not assumptions about intent\n- **AI-aware**: assume AI-assisted changes can drift outside the requested scope unless proven otherwise\n- **Actionable output**: every finding should give the reviewer a concrete next move",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L042-L048",
+      "source_start_line": 42,
+      "source_end_line": 48,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Workflow\n1. Read the complete `review` route in `resources/resource-map.json`: `resources/references/review-targets.md` and its findings schema. Use the existing bundled `resources/scripts/load_module.py --route review` when available, or read both files directly. Missing or unread required resources make the review incomplete.\n2. Capture the exact staged diff, working-tree diff, commit, or branch diff under review; bind it and relevant source/consumer reads to the target as specified in that reference.\n3. Read the commit message and the actual diff before making any judgment.\n4. Check message quality, scope alignment, and implementation complexity.\n5. Record findings with stable IDs, severity, precise location, changed-cause evidence, verified consumer evidence for introduced breakage, impact, repair, and disposition.\n6. End with ready, blocked, or split required for a complete review; use unverifiable when evidence or review coverage is incomplete. Review judgment grants no repair, publication, merge, or release authority.",
+      "rationale": "Exact-target capture, reading message and diff before judgment, complexity/scope checks, actionable findings and a readiness decision remain in order. The route read, caller/cause evidence and incomplete/unverifiable outcome are the authorized S1 additions; no mutation or publication authority is added."
+    },
+    {
+      "id": "D6-S1-current-L049-L053",
+      "source_start_line": 49,
+      "source_end_line": 53,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Tool Boundaries\n- allowed: inspect git history, inspect staged, unstaged, branch, or committed diffs, and write review artifacts when asked\n- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff\n- escalation: if the change crosses into release risk, test gaps, or architecture risk, recommend `engos-quality-gitops-review`, `engos-quality-testing-review`, or `engos-design-architecture`",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L054-L065",
+      "source_start_line": 54,
+      "source_end_line": 65,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Companion Capability Matrix\nUse companion capabilities deliberately instead of flattening every review into one generic answer.\n\n| Situation | Companion Capability | Why |\n| --- | --- | --- |\n| release readiness, changelog, CI, packaging, or merge gates matter | `engos-quality-gitops-review` | commit quality alone is not enough for release or branch health |\n| behavior changed and test confidence is weak | `engos-quality-testing-review` | test coverage and edge-case discovery need a dedicated pass |\n| interface, architecture, or migration risk is material | `engos-design-architecture` | structural risk needs architectural judgment, not just commit review |\n| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |\n| doc drift or example drift is part of the commit | `engos-quality-docs-review` | keep documentation review explicit and separate |\n| reviewer comments need to be implemented | `engos-delivery-address-code-review` | this review gate should not mutate files |",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L066-L074",
+      "source_start_line": 66,
+      "source_end_line": 74,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- review the latest commit\n- review my staged changes before I commit\n- review this diff before I push\n- check whether this diff is too broad\n- judge whether AI-generated changes are over-engineered\n- tell me if this commit message and change scope are strong enough to merge",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L075-L079",
+      "source_start_line": 75,
+      "source_end_line": 79,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs\n- commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`\n- repository context when the commit depends on surrounding conventions\n- any specific review focus such as scope, message quality, or simplicity",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L080-L088",
+      "source_start_line": 80,
+      "source_end_line": 88,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\nEvery substantial response must include:\n- `Commit Under Review`\n- `Findings`\n- `Scope Assessment`\n- `Message Assessment`\n- `Recommended Fixes`\n- `Merge Readiness`",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L089-L089",
+      "source_start_line": 89,
+      "source_end_line": 89,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Review Process",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L090-L111",
+      "source_start_line": 90,
+      "source_end_line": 111,
+      "disposition": "reformulated",
+      "candidate_excerpt": "### 1. Capture the Commit\nDefault to the most recent commit (`HEAD`), even if the checkout is dirty. Resolve\nits full commit ID and the selected parent, or declare a root commit. Inspect the\nactual patch and message, then relevant files at that revision. For merge commits,\nstate the selected parent/comparison; do not silently substitute a combined diff.\n\nResolve the requested ref once and keep that full ID for all subsequent reads:\n\n```bash\nREVIEW_HEAD=$(git rev-parse --verify 'HEAD^{commit}') || exit 1\ngit show --no-patch --format=fuller \"$REVIEW_HEAD\"\ngit rev-list --parents -n 1 \"$REVIEW_HEAD\"\n```\n\nFor a non-merge commit, including a root commit, inspect its patch:\n\n```bash\ngit show --no-ext-diff --no-textconv --format=fuller --no-color \"$REVIEW_HEAD\"\n```\n\nFor a merge commit, set `REVIEW_PARENT` to the explicitly selected full parent ID\nfrom the parent list above and record that choice. Inspect that parent's patch:\n\n```bash\ngit diff --no-ext-diff --no-textconv --no-color \"$REVIEW_PARENT\" \"$REVIEW_HEAD\"\n```\n\nRecheck the requested ref and snapshot bindings before the verdict. Disclose any\ndrift and renew affected review if the requested target changed; never silently\nreplace `REVIEW_HEAD` or read a newer checkout as the captured commit.\n\nFor an explicit pre-commit staged review, inspect the index first:\n\n```bash\ngit diff --staged --no-ext-diff --no-textconv --no-color\n```\n\nIf nothing is staged, say that there is no staged target. Inspect the working-tree\ndiff only after saying that the review is not a commit-ready staged review; label\nthat fallback with its own working-tree target and digest. Never stage changes.\n\nUse the target rules in `resources/references/review-targets.md` for working-tree,\nbranch, root/merge commit, and supplied-diff requests. Bind mutable snapshots to\nthe exact reviewed bytes, not just to the current `HEAD`. A branch review includes\nthe declared full range, not only its last commit. If file output was requested,\nsave the captured material under `reports/code-reviews/` and read it before findings;\nan unread capture or failed capture is incomplete. Without a file request, inspect\nand report inline. Do not turn artifact capture into permission to change source.",
+      "rationale": "HEAD remains the default, with full immutable commit binding, message and patch reads, staged-first handling and a separately disclosed working-tree fallback. Revision 2 uses a fixed REVIEW_HEAD and an explicitly chosen merge parent. The contradictory unconditional mkdir/redirection example is reformulated as request-only capture consistent with both originals Output Directory and Tool Boundaries, the S1 read-only scope, and the controller instruction. Requested captures must still be read before findings. No review obligation is retired."
+    },
+    {
+      "id": "D6-S1-current-L112-L118",
+      "source_start_line": 112,
+      "source_end_line": 118,
+      "disposition": "preserved",
+      "candidate_excerpt": "### 2. Check the Commit Message\nLook for:\n- clear summary of what changed\n- enough context to explain why the change exists\n- note of breaking change or migration risk when relevant\n- related issue or ticket context when that exists",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L119-L126",
+      "source_start_line": 119,
+      "source_end_line": 126,
+      "disposition": "preserved",
+      "candidate_excerpt": "### 3. Commit Message Quality Checklist\nCheck:\n- [ ] title describes **what** changed rather than implementation mechanics\n- [ ] body explains **why** the change exists\n- [ ] body mentions constraints, follow-up work, or migration notes when relevant\n- [ ] breaking changes are called out explicitly\n- [ ] commit message does not promise more than the diff actually delivers",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L127-L170",
+      "source_start_line": 127,
+      "source_end_line": 170,
+      "disposition": "preserved",
+      "candidate_excerpt": "### 4. Check Scope and Complexity\nLook for:\n- strict alignment between message and diff\n- no unrelated refactors mixed with the stated change\n- no unnecessary abstractions, patterns, or file spread\n- a diff size proportionate to the stated task\n\n**Scope Alignment Checklist**\n- [ ] changes are strictly limited to what the commit message describes\n- [ ] no \"while I'm here\" changes or opportunistic cleanup\n- [ ] a bug fix commit fixes the named bug rather than adjacent problems too\n- [ ] unrelated improvements are split into separate commits\n\n**Over-Engineering Checklist**\n- [ ] solution is as simple as possible for the stated problem\n- [ ] no unnecessary abstractions or premature optimization\n- [ ] no new patterns or frameworks without clear justification\n- [ ] changes stay localized unless there is a defensible reason to spread\n\n**Size vs Scope Checks**\n- [ ] large diffs correspond to genuinely large features\n- [ ] small bug fixes remain small and targeted\n- [ ] if the diff is large but the commit message is simple, treat that as a review risk\n- [ ] ask whether the work could have been split into smaller focused commits\n\n**Red Flags**\n- commit says \"fix typo\" but touches many files\n- commit says \"add validation\" but also refactors the module\n- new abstractions or helper layers appear for a simple change\n- files change that are not implied by the commit description\n- refactoring is mixed with behavior changes\n- resources are created without cleanup, eviction, retention, or capacity bounds\n- runtime configuration is frozen during initialization without an explicit immutability contract\n- shared mutable state or non-atomic writes appear in concurrent execution paths\n- critical warnings have no machine-consumable monitoring or escalation path\n- failure modes are silent, unrecoverable, or diagnosable only after redeployment\n- parameters or schema changes appear without downstream compatibility analysis\n\n**When to Reject**\nIf the change is over-engineered or out of scope, recommend one or more of:\n1. revert to a simpler approach\n2. split into smaller focused commits\n3. remove unrelated changes before merge",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L171-L195",
+      "source_start_line": 171,
+      "source_end_line": 195,
+      "disposition": "preserved",
+      "candidate_excerpt": "### 5. Check Code Risk\nLook for:\n- correctness issues, missing edge cases, or unsafe assumptions\n- missing or stale tests when behavior changed\n- security or secrets handling problems\n- debug residue, dead code, or inconsistent conventions\n\n**Correctness Checklist**\n- [ ] no syntax errors, typos, or incorrect imports\n- [ ] logic is sound and edge cases are handled\n- [ ] error handling is explicit enough to debug failures\n- [ ] exceptions are not silently swallowed\n- [ ] tests were updated if behavior changed\n\n**Security Checklist**\n- [ ] no hardcoded secrets or credentials\n- [ ] inputs are validated where appropriate\n- [ ] sensitive data handling matches repo expectations\n\n**Style and Cleanliness Checklist**\n- [ ] naming is clear and consistent\n- [ ] project conventions are followed\n- [ ] no commented-out code or stray debug statements\n- [ ] new dependencies are justified and noted",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L196-L232",
+      "source_start_line": 196,
+      "source_end_line": 232,
+      "disposition": "preserved",
+      "candidate_excerpt": "### 6. Check Resource & Lifecycle\nLook for resource accumulation, initialization-order hazards, concurrency defects, operational blind spots, and downstream contract changes that can make an otherwise correct diff unsafe in production.\n\n**Resource Management Checklist**\n- [ ] files, directories, caches, queues, buffers, connections, tasks, subprocesses, and other resources have explicit growth bounds\n- [ ] every newly created resource has a clear owner and lifecycle\n- [ ] cleanup runs on success, error, timeout, and cancellation paths\n- [ ] accumulation is bounded by TTL, eviction, rotation, quotas, size caps, backpressure, or another explicit mechanism\n- [ ] temporary artifacts do not persist without a cleanup mechanism\n- [ ] disk writes include retention, capacity, and failure handling\n- [ ] early returns and partial failures do not leak resources\n\n**Concurrency and Initialization-Time Checklist**\n- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required\n- [ ] initialization order cannot leave state stale unless startup-time immutability is an explicit contract\n- [ ] shared mutable dictionaries, caches, registries, files, and singleton state have documented ownership and synchronization\n- [ ] async and multi-worker paths avoid lost updates, duplicate work, partial writes, and read-modify-write races\n- [ ] file replacement and state publication are atomic where inconsistent reads are possible\n- [ ] concurrent operations handle cleanup and cancellation safely\n\n**Operational Readiness Checklist**\n- [ ] warnings and errors are actionable rather than repetitive noise\n- [ ] critical failures produce machine-consumable metrics, traces, events, health signals, or alerts\n- [ ] operational signals include stable context for diagnosis and ownership\n- [ ] repeated warnings are aggregated or rate-limited when necessary\n- [ ] operators can inspect or safely change relevant runtime state without redeployment when the system requires it\n- [ ] timeouts, retries, fallbacks, circuit breaking, and partial failures degrade gracefully\n- [ ] failures remain observable instead of silently switching behavior\n\n**API Contract Checklist**\n- [ ] changes to parameters, return values, defaults, ordering, serialization, and error behavior preserve existing callers\n- [ ] defaults retain established behavior rather than merely preventing a syntax error\n- [ ] generated schemas, clients, descriptors, documentation, and reflection-based interfaces are reviewed for contract changes\n- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis\n- [ ] tool-calling and schema-driven consumers can interpret the new contract safely\n- [ ] versioning, migration, deprecation, and compatibility tests are added when required",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L233-L244",
+      "source_start_line": 233,
+      "source_end_line": 244,
+      "disposition": "reformulated",
+      "candidate_excerpt": "### 7. Provide Feedback\nIf issues are found:\n- describe each problem clearly\n- identify the exact target-relative file, line, and side; for a deleted cause use the base side, and for a commit-message issue label the message location\n- provide a concrete fix or shape of fix\n- explain why the fix matters\n- retain a stable finding ID and disposition on re-review; mark resolved only after verifying the repair against the new bound target\n\nIf no issues are found and the declared target is fully reviewed:\n- report an empty findings list and the reviewed coverage\n- highlight especially strong patterns when useful\n- give a clear advisory readiness signal\n\nIf coverage, target binding, source reads, or requested output is missing or malformed, retain any confirmed findings, list what remains unreviewed, and report incomplete/unverifiable. Never translate a failed or empty review return into ready.",
+      "rationale": "Problem, location, concrete fix and reason remain. Precise side-aware locations replace approximate ones, stable IDs support re-review, and clean signaling is conditioned on full coverage. Useful positive notes remain; readiness is advisory."
+    },
+    {
+      "id": "D6-S1-current-L245-L245",
+      "source_start_line": 245,
+      "source_end_line": 245,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L246-L248",
+      "source_start_line": 246,
+      "source_end_line": 248,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Example Request\n> Review the latest commit and tell me whether it is merge-ready or too broad.",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L249-L251",
+      "source_start_line": 249,
+      "source_end_line": 251,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Example Pre-Commit Request\n> Use `engos-quality-code-review` to review my staged changes before I commit.",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L252-L257",
+      "source_start_line": 252,
+      "source_end_line": 257,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Example Output Shape\n- commit under review\n- findings with file references\n- scope and message assessment\n- merge readiness decision",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L258-L278",
+      "source_start_line": 258,
+      "source_end_line": 278,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Usage Examples\n```text\n/engos-quality-code-review\n```\nReviews the most recent commit (`HEAD`).\n\n```text\n/engos-quality-code-review staged\n```\nReviews staged changes before commit.\n\n```text\n/engos-quality-code-review <commit-hash>\n```\nReviews a specific commit.\n\n```text\n/engos-quality-code-review /scope\n```\nBiases the review toward scope discipline and over-engineering detection.",
+      "rationale": "The full source section is retained verbatim in the effective package; all operative clauses and examples in this range were compared, including its conditions and boundaries."
+    },
+    {
+      "id": "D6-S1-current-L279-L300",
+      "source_start_line": 279,
+      "source_end_line": 300,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Output Format\nUse the six required sections with a brief overall assessment, findings ordered by\nimpact, scope and message judgments, concrete repairs, and a final advisory verdict.\nA finding uses this shape; the complete machine contract and applicability rules\nare in `resources/schemas/findings.schema.json` and the review-target reference:\n\n```text\nFinding F-001 | high | introduced_breakage | open\nLocation: src/api.py:42 (head)\nChanged cause: removed the legacy keyword [E-diff]\nAffected consumer: jobs/nightly.py:18 still supplies that keyword [E-caller]\nImpact: the nightly job fails before processing records\nRepair: retain compatibility or update and verify the affected consumer\nDisposition reason: verified caller remains incompatible at the reviewed revision\n```\n\n`Recommended Fixes` may describe a patch without applying it. Include useful\npositive notes without weakening an open blocker. `Merge Readiness` states\n`review_status`, unreviewed items, and `ready`, `blocked`, `split_required`, or\n`unverifiable`; hosted CI and actual merge authorization remain separate gates.",
+      "rationale": "Commit identity, severity, location, problem, repair, why, useful positive notes and final recommendation remain within the original six required sections. Stable IDs, changed cause, verified consumer, impact and disposition make the example more explicit. No file output or automatic publication is required merely by the schema."
+    },
+    {
+      "id": "D6-S1-current-L301-L310",
+      "source_start_line": 301,
+      "source_end_line": 310,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Commit message quality | The message explains what changed and why clearly enough to review |\n| Scope discipline | The diff stays tightly aligned to the stated goal |\n| Simplicity | The implementation avoids unnecessary abstraction or spread |\n| Evidence quality | Findings bind to the actual target and specific changed causes; introduced breakage includes a verified affected consumer |\n| Merge guidance | A complete review ends with ready / blocked / split; missing evidence stays incomplete and unverifiable |\n| Resource & lifecycle | No unbounded growth, no incorrectly frozen initialization state, and failure modes are observable and recoverable |",
+      "rationale": "Message, scope, simplicity, evidence and merge guidance remain. Exact-target cause/consumer evidence strengthens evidence specificity; incomplete/unverifiable clarifies missing verification rather than permitting a false-clean result. The current lifecycle row is retained."
+    },
+    {
+      "id": "D6-S1-current-L311-L317",
+      "source_start_line": 311,
+      "source_end_line": 317,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Constraints\n- Never skip reading the actual diff.\n- Base findings on evidence, not assumptions.\n- Flag scope creep immediately.\n- Prefer the simpler valid implementation when alternatives exist.\n- If something cannot be verified, say so explicitly.\n- Do not rubber-stamp a commit just because tests pass.",
+      "rationale": "Only the heading becomes Constraints. All six operative instructions remain verbatim: read diff, evidence, scope creep, simpler valid implementation, explicit uncertainty, and no test-only rubber stamp."
+    }
+  ],
+  "agent_execution_needs": [],
+  "review_scope": "D6.S1 source-preservation and semantic admission only; not behavioral promotion, merge, install, release, or human approval.",
+  "provenance": {
+    "basis": "Separate controller-dispatched reviewer read current and historical originals, complete selected resource closure, donor clauses/licenses, changed docs/tests and sealed revision 2; authored these mappings independently of the author-proposed map.",
+    "identity_limit": "Host task identity is recorded honestly; UAC validation alone does not authenticate it.",
+    "source_path": "reports/d6-review-targets/original.md",
+    "review_packet_sha256": "0574a6f8c5d8fb6c250b540f16a05f55093bb37cb7546fc4d0dd2502793a4e68",
+    "resource_bundle_review_sha256": "3ed0d2ee715d473e91572a80b0711d421ec9279c5d26bfed9af078cbb1a347de",
+    "requirement_ids": "Reviewer-assigned deterministic source-line IDs; no nonexistent extractor claimed."
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "frozen_plan_sha256": "fb1ce719649adf9903cf8b75ad55d6e2491b4a2fc38371928302e93028af8c06",
+  "admission": [
+    {
+      "id": "D6-addy",
+      "collection": "Addy",
+      "source": "code-review-and-quality",
+      "selected_sources": [
+        {
+          "source_file": "SKILL.md",
+          "source_url": "https://github.com/addyosmani/agent-skills/blob/1be8e34187e34647bb83adc3a1323b26ae6f6abe/skills/code-review-and-quality/SKILL.md#L193",
+          "frozen_sha256": "2db1e850379f255fd3091ef278cde24cd6c7d2ba23e360cc52ea522c40d4396e",
+          "observed_sha256": "2db1e850379f255fd3091ef278cde24cd6c7d2ba23e360cc52ea522c40d4396e",
+          "matches": true,
+          "revision_evidence": "Pinned blob URL if present; otherwise inspected local bytes only, upstream revision unknown."
+        }
+      ],
+      "license_status": "MIT; exact local LICENSE inspected; retain notice for applicable reuse",
+      "license_sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "reuse_mode": "independently expressed attributed pattern synthesis; no literal donor bytes imported",
+      "synthesis": "Severity/actionability inspected; existing multidimensional Core checks preserved and structured fields independently expressed.",
+      "excluded": "No mutation-test commands, fixed sizing thresholds or multi-model policy imported.",
+      "destination_owner": "engos-quality-code-review",
+      "destination": "Target reference and findings schema, plus candidate capture/output clauses",
+      "displaced_clauses": "See author preservation map; existing review lenses retained.",
+      "dependency_closure": "No donor runtime dependency. Two owned resources use existing stdlib loader; schema tests use declared CI jsonschema dependency.",
+      "observations_only": true
+    },
+    {
+      "id": "D6-grok",
+      "collection": "Grok",
+      "source": "review",
+      "selected_sources": [
+        {
+          "source_file": "SKILL.md",
+          "source_url": null,
+          "frozen_sha256": "8e1f0453e8b71c67d32dbfd09f3b1d2659c1195a919797ea01d04e69581d0ec5",
+          "observed_sha256": "8e1f0453e8b71c67d32dbfd09f3b1d2659c1195a919797ea01d04e69581d0ec5",
+          "matches": true,
+          "revision_evidence": "Pinned blob URL if present; otherwise inspected local bytes only, upstream revision unknown."
+        }
+      ],
+      "license_status": "Unknown redistribution clearance for selected bundled/public source; no literal reuse until resolved",
+      "license_sha256": null,
+      "reuse_mode": "independently expressed attributed pattern synthesis; no literal donor bytes imported",
+      "synthesis": "Outside-diff consumer verification and structured finding concepts independently expressed.",
+      "excluded": "Unknown redistribution clearance; no literal donor passages, host APIs or publisher code imported.",
+      "destination_owner": "engos-quality-code-review",
+      "destination": "Target reference and findings schema, plus candidate capture/output clauses",
+      "displaced_clauses": "See author preservation map; existing review lenses retained.",
+      "dependency_closure": "No donor runtime dependency. Two owned resources use existing stdlib loader; schema tests use declared CI jsonschema dependency.",
+      "observations_only": true
+    },
+    {
+      "id": "D6-superpowers",
+      "collection": "Superpowers",
+      "source": "subagent-driven-development",
+      "selected_sources": [
+        {
+          "source_file": "review-package",
+          "source_url": null,
+          "frozen_sha256": "f9275175b2276b1d5fdb1bae0bedaadd2a950659b7c6f311ea37ff85e1861b1f",
+          "observed_sha256": "f9275175b2276b1d5fdb1bae0bedaadd2a950659b7c6f311ea37ff85e1861b1f",
+          "matches": true,
+          "revision_evidence": "Pinned blob URL if present; otherwise inspected local bytes only, upstream revision unknown."
+        },
+        {
+          "source_file": "sdd-workspace",
+          "source_url": null,
+          "frozen_sha256": "75ca46c756ba4209ca36e0d3d65567257ceb33bc7a6775b9dad946707cb3bd7b",
+          "observed_sha256": "75ca46c756ba4209ca36e0d3d65567257ceb33bc7a6775b9dad946707cb3bd7b",
+          "matches": true,
+          "revision_evidence": "Pinned blob URL if present; otherwise inspected local bytes only, upstream revision unknown."
+        }
+      ],
+      "license_status": "MIT; exact local LICENSE inspected; retain notice for applicable reuse",
+      "license_sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+      "reuse_mode": "independently expressed attributed pattern synthesis; no literal donor bytes imported",
+      "synthesis": "Full-range rather than last-commit boundary used only as target semantics.",
+      "excluded": "No collector, workspace helper or integration imported; S2/S3 excluded.",
+      "destination_owner": "engos-quality-code-review",
+      "destination": "Target reference and findings schema, plus candidate capture/output clauses",
+      "displaced_clauses": "See author preservation map; existing review lenses retained.",
+      "dependency_closure": "No donor runtime dependency. Two owned resources use existing stdlib loader; schema tests use declared CI jsonschema dependency.",
+      "observations_only": true
+    }
+  ],
+  "claim": "Hashes, licenses and selected source clauses inspected; no behavioral outcome inferred."
+}

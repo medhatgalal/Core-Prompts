@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:core-prompts:engos-quality-code-review:Findings.v1",
+  "title": "Findings.v1",
+  "description": "Structural review output contract. Validation cannot prove actual reads, truthful findings, evidence-reference resolution, authority, or review completion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "target", "review_status", "evidence", "findings", "unreviewed", "verdict"],
+  "properties": {
+    "schema_version": {"const": "Findings.v1"},
+    "target": {"$ref": "#/$defs/target"},
+    "review_status": {"enum": ["complete", "incomplete"]},
+    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}},
+    "unreviewed": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "verdict": {"enum": ["ready", "blocked", "split_required", "unverifiable"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"review_status": {"const": "incomplete"}}, "required": ["review_status"]},
+      "then": {"properties": {"verdict": {"const": "unverifiable"}, "unreviewed": {"minItems": 1}}}
+    },
+    {
+      "if": {"properties": {"review_status": {"const": "complete"}}, "required": ["review_status"]},
+      "then": {
+        "properties": {
+          "target": {
+            "allOf": [
+              {
+                "if": {"properties": {"kind": {"enum": ["commit", "branch"]}}, "required": ["kind"]},
+                "then": {"properties": {"head": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}}}
+              },
+              {
+                "if": {"properties": {"kind": {"const": "branch"}}, "required": ["kind"]},
+                "then": {"properties": {"base": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}}}
+              },
+              {
+                "if": {
+                  "properties": {"kind": {"const": "commit"}, "comparison": {"enum": ["parent", "merge_parent"]}},
+                  "required": ["kind", "comparison"]
+                },
+                "then": {"properties": {"base": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}}}
+              },
+              {
+                "if": {"properties": {"comparison": {"const": "root"}}, "required": ["comparison"]},
+                "then": {"properties": {"base": {"type": "null"}}}
+              },
+              {
+                "if": {"properties": {"kind": {"enum": ["staged", "working_tree", "diff"]}}, "required": ["kind"]},
+                "then": {"properties": {"snapshot_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}
+              }
+            ]
+          },
+          "unreviewed": {"maxItems": 0},
+          "verdict": {"enum": ["ready", "blocked", "split_required"]},
+          "evidence": {
+            "minItems": 1,
+            "items": {
+              "properties": {
+                "read_status": {"const": "read"},
+                "identity": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}
+              }
+            },
+            "contains": {"properties": {"kind": {"const": "diff"}}, "required": ["kind"]}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"verdict": {"const": "ready"}}, "required": ["verdict"]},
+      "then": {
+        "properties": {
+          "review_status": {"const": "complete"},
+          "findings": {
+            "not": {
+              "contains": {
+                "properties": {"severity": {"enum": ["critical", "high", "medium"]}, "disposition": {"const": "open"}},
+                "required": ["severity", "disposition"]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "base", "head", "snapshot_digest", "comparison", "included_change_classes"],
+      "properties": {
+        "kind": {"enum": ["commit", "staged", "working_tree", "branch", "diff"]},
+        "base": {"anyOf": [{"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}, {"type": "null"}]},
+        "head": {"anyOf": [{"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}, {"type": "null"}]},
+        "snapshot_digest": {"anyOf": [{"type": "string", "pattern": "^[0-9a-f]{64}$"}, {"type": "null"}]},
+        "comparison": {
+          "enum": [
+            "parent",
+            "merge_parent",
+            "root",
+            "staged",
+            "unstaged",
+            "combined",
+            "merge_base",
+            "range",
+            "supplied_diff"
+          ]
+        },
+        "included_change_classes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"enum": ["committed", "staged", "unstaged", "untracked", "supplied"]}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"kind": {"const": "commit"}}, "required": ["kind"]},
+          "then": {
+            "properties": {
+              "comparison": {"enum": ["parent", "merge_parent", "root"]},
+              "snapshot_digest": {"type": "null"},
+              "included_change_classes": {"const": ["committed"]}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"kind": {"const": "branch"}}, "required": ["kind"]},
+          "then": {
+            "properties": {
+              "comparison": {"enum": ["merge_base", "range"]},
+              "snapshot_digest": {"type": "null"},
+              "included_change_classes": {"const": ["committed"]}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"kind": {"const": "staged"}}, "required": ["kind"]},
+          "then": {
+            "properties": {"comparison": {"const": "staged"}, "included_change_classes": {"const": ["staged"]}}
+          }
+        },
+        {
+          "if": {"properties": {"kind": {"const": "working_tree"}}, "required": ["kind"]},
+          "then": {
+            "properties": {
+              "comparison": {"enum": ["unstaged", "combined"]},
+              "included_change_classes": {"minItems": 1, "items": {"enum": ["staged", "unstaged", "untracked"]}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"comparison": {"const": "unstaged"}}, "required": ["comparison"]},
+          "then": {"properties": {"included_change_classes": {"not": {"contains": {"const": "staged"}}}}}
+        },
+        {
+          "if": {"properties": {"kind": {"const": "diff"}}, "required": ["kind"]},
+          "then": {
+            "properties": {"comparison": {"const": "supplied_diff"}, "included_change_classes": {"const": ["supplied"]}}
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "kind", "side", "identity", "line_start", "line_end", "read_status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "kind": {"enum": ["diff", "source", "consumer", "message", "test", "decision"]},
+        "side": {"enum": ["base", "head", "snapshot", "external"]},
+        "identity": {"anyOf": [{"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}, {"type": "null"}]},
+        "line_start": {"anyOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "line_end": {"anyOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "read_status": {"enum": ["read", "unread", "unavailable"]}
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "line", "side"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "line": {"anyOf": [{"type": "integer", "minimum": 1}, {"type": "null"}]},
+        "side": {"enum": ["base", "head", "snapshot", "message"]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"side": {"const": "message"}}, "required": ["side"]},
+          "then": {"properties": {"line": {"type": "null"}}}
+        },
+        {
+          "if": {"properties": {"side": {"enum": ["base", "head", "snapshot"]}}, "required": ["side"]},
+          "then": {"properties": {"line": {"type": "integer", "minimum": 1}}}
+        }
+      ]
+    },
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "line", "evidence_refs"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "line": {"type": "integer", "minimum": 1},
+        "evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "severity",
+        "category",
+        "location",
+        "changed_cause",
+        "evidence_refs",
+        "affected_consumer",
+        "impact",
+        "repair",
+        "disposition",
+        "disposition_reason",
+        "disposition_evidence_refs"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "severity": {"enum": ["critical", "high", "medium", "low"]},
+        "category": {"enum": ["introduced_breakage", "scope", "message", "suggestion"]},
+        "location": {"$ref": "#/$defs/location"},
+        "changed_cause": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["summary", "evidence_refs"],
+          "properties": {
+            "summary": {"type": "string", "minLength": 1},
+            "evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        "evidence_refs": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "affected_consumer": {"anyOf": [{"$ref": "#/$defs/consumer"}, {"type": "null"}]},
+        "impact": {"type": "string", "minLength": 1},
+        "repair": {"type": "string", "minLength": 1},
+        "disposition": {"enum": ["open", "resolved", "accepted_risk", "not_actionable"]},
+        "disposition_reason": {"type": "string", "minLength": 1},
+        "disposition_evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"category": {"const": "introduced_breakage"}}, "required": ["category"]},
+          "then": {"properties": {"affected_consumer": {"$ref": "#/$defs/consumer"}}}
+        },
+        {
+          "if": {
+            "properties": {"disposition": {"enum": ["resolved", "accepted_risk"]}},
+            "required": ["disposition"]
+          },
+          "then": {"properties": {"disposition_evidence_refs": {"minItems": 1}}}
+        }
+      ]
+    }
+  }
+}

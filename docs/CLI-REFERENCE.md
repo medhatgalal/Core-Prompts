@@ -16,6 +16,26 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 
 The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.
 
+## Code review targets and output
+
+Ask `engos-quality-code-review` to review `HEAD` (the default), staged changes,
+a declared working-tree snapshot, a commit, a branch/range, or a supplied diff.
+These are review request forms, not new shell collector commands. Staged and
+working-tree requests bind their exact bytes separately from the checkout commit.
+
+The skill bundles `resources/references/review-targets.md` and
+`resources/schemas/findings.schema.json`; the existing
+`resources/scripts/load_module.py --route review` assembles their complete content
+from an installed skill root. The manifest is `resources/resource-map.json`.
+Canonical resources live under
+`sources/capability-resources/engos-quality-code-review/`. No committed-range
+collector is introduced by this contract change.
+
+Requested JSON output uses `Findings.v1`, alongside the six normal narrative
+sections. Schema validation checks shape and status consistency; actual source
+reads, evidence truth and consumer impact still require review. Missing evidence
+is incomplete/unverifiable. Ready remains advisory and grants no merge authority.
+
 ## Common Commands
 
 ### Capability evaluation

@@ -1,0 +1,273 @@
+{
+  "schema_check": "passed",
+  "cases": [
+    {
+      "case": "complete empty findings",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "root commit",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "merge parent",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "branch full endpoints",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "staged snapshot",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "working tree combined",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "supplied diff snapshot",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "blocked verified consumer",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "incomplete retains findings",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "missing report fields",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "'review_status' is a required property"
+      ]
+    },
+    {
+      "case": "unsupported field",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "Additional properties are not allowed ('approved' was unexpected)"
+      ]
+    },
+    {
+      "case": "incomplete cannot ready",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "'unverifiable' was expected",
+        "'complete' was expected"
+      ]
+    },
+    {
+      "case": "complete cannot hide coverage gap",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "['Unread caller'] is expected to be empty"
+      ]
+    },
+    {
+      "case": "unread evidence cannot complete",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "'read' was expected"
+      ]
+    },
+    {
+      "case": "unavailable evidence cannot complete",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "'read' was expected"
+      ]
+    },
+    {
+      "case": "no diff evidence cannot complete",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "[{'id': 'E-diff', 'path': 'candidate.diff', 'kind': 'source', 'side': 'head', 'identity': 'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc', 'line_start': None, 'line_end': None, 'read_status': 'read'}] does not contain items matching the given schema"
+      ]
+    },
+    {
+      "case": "empty evidence cannot complete",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "[] should be non-empty",
+        "[] does not contain items matching the given schema"
+      ]
+    },
+    {
+      "case": "staged needs digest",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "None is not of type 'string'"
+      ]
+    },
+    {
+      "case": "branch needs base",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "None is not of type 'string'"
+      ]
+    },
+    {
+      "case": "commit needs full head",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "'abc1234' is not valid under any of the given schemas",
+        "'abc1234' does not match '^(?:[0-9a-f]{40}|[0-9a-f]{64})$'"
+      ]
+    },
+    {
+      "case": "commit cannot claim staged",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "['committed'] was expected"
+      ]
+    },
+    {
+      "case": "unstaged cannot include staged",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "['staged', 'unstaged'] should not be valid under {'contains': {'const': 'staged'}}"
+      ]
+    },
+    {
+      "case": "blocking finding cannot ready",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "[{'id': 'F-001', 'severity': 'high', 'category': 'introduced_breakage', 'location': {'path': 'src/api.py', 'line': 42, 'side': 'head'}, 'changed_cause': {'summary': 'Removed keyword still used by nightly job', 'evidence_refs': ['E-diff']}, 'evidence_refs': ['E-diff', 'E-caller'], 'affected_consumer': {'path': 'jobs/nightly.py', 'line': 18, 'evidence_refs': ['E-caller']}, 'impact': 'Nightly job fails', 'repair': 'Retain compatibility or update caller', 'disposition': 'open', 'disposition_reason': 'Verified caller remains incompatible', 'disposition_evidence_refs': []}] should not be valid under {'contains': {'properties': {'severity': {'enum': ['critical', 'high', 'medium']}, 'disposition': {'const': 'open'}}, 'required': ['severity', 'disposition']}}"
+      ]
+    },
+    {
+      "case": "introduced breakage needs consumer",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "None is not of type 'object'"
+      ]
+    },
+    {
+      "case": "cause needs evidence",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "[] should be non-empty"
+      ]
+    },
+    {
+      "case": "repair cannot be empty",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "'' should be non-empty"
+      ]
+    },
+    {
+      "case": "accepted risk needs evidence",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "[] should be non-empty"
+      ]
+    },
+    {
+      "case": "resolved needs evidence",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true,
+      "validation_errors": [
+        "[] should be non-empty"
+      ]
+    },
+    {
+      "case": "deleted cause uses base side",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "message needs no runtime consumer",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "schema cannot prove read truth",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    },
+    {
+      "case": "schema cannot resolve forged reference",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true,
+      "validation_errors": []
+    }
+  ],
+  "passed": 32,
+  "total": 32,
+  "claim": "JSON Schema structure and rejection behavior only; not semantic review or a behavioral pilot"
+}
