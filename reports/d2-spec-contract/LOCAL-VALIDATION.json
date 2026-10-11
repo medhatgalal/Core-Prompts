@@ -42,5 +42,12 @@
   },
   "behavioralStatus": "behavioral_pending",
   "completedAt": "2026-10-11T18:31:27.080819+00:00",
-  "evidenceLogNotation": "Public logs omit temporary fixture absolute paths and normalize trailing whitespace; exact raw controller logs are retained privately."
+  "evidenceLogNotation": "Public logs omit temporary fixture absolute paths and normalize trailing whitespace; exact raw controller logs are retained privately.",
+  "compileLog": {
+    "public": "local-ci/compile-contracts.log",
+    "kind": "head/tail excerpt of complete successful output",
+    "rawSha256": "69df7c6c0477ea35f167ecb56dead85f3761307007b78e5737fe05206a5a3d62",
+    "rawLineCount": 39406,
+    "rawRetention": "Complete stdout remains in task-local private evidence; generated contract bodies already exist in canonical evaluation outputs"
+  }
 }
