@@ -1,0 +1,415 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-meta-uac-import",
+  "original_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
+  "candidate_sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
+  "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
+  "source_line_count": 180,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/d1_requirement_review_astra",
+    "author_agent_id": "/root/d1_implementation_astra",
+    "independent": true
+  },
+  "scope_authority": "Current human D1.S1 instruction: Start D1.S1 using Astra. Keep current skill names, open a PR/MR for my review without merging or installing, and update the private report with the changes and validation evidence.",
+  "source_kind": "current",
+  "agent_execution_needs": [],
+  "resources_reviewed": {
+    "manifest_sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1",
+    "bundle_sha256": "b26969b58317331b4cc14d77363ec9d9e74891f739bba89922f5a6a64e21d555",
+    "route": "all",
+    "files": [
+      {
+        "path": "templates/preservation-displacement.json",
+        "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+      },
+      {
+        "path": "references/authoring-decisions.md",
+        "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "identity",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "source_excerpt": "---\nname: \"engos-meta-uac-import\"\ndescription: \"Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.\"\ndisplay_name: \"UAC Import — Capability Intake, Quality Review, and Uplift\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# UAC Import — Capability Intake, Quality Review, and Uplift",
+      "source_excerpt_sha256": "8a52df61ad4b9f8f671b1b5ebb38542cfdde580c5fb2f6be88ef784cd31d4d64",
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: \"engos-meta-uac-import\"\ndescription: \"Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.\"\ndisplay_name: \"UAC Import — Capability Intake, Quality Review, and Uplift\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# UAC Import — Capability Intake, Quality Review, and Uplift",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 1,
+        "candidate_end_line": 8
+      },
+      "rationale": "Exact slug, display name, description and skill-only frontmatter retained. Added authoring choices do not authorize a surface change."
+    },
+    {
+      "id": "intake-inputs-modes",
+      "source_start_line": 10,
+      "source_end_line": 30,
+      "source_excerpt": "## Purpose\nTake one or more external prompt-like sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `judge`\n- `apply`\n\nDeterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.",
+      "source_excerpt_sha256": "9bc719b04cd648663d974bf2716c18bdbe00795608816a6da9c8a8402d4f8ac6",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nTake one or more external prompt-like sources and turn them into deterministic UAC assessments, layered manifests, canonical SSOT entries, machine-readable descriptors, quality-review artifacts, and advisory handoff contracts.\n\nSupported inputs:\n- local file path\n- local folder path\n- raw public HTTPS URL\n- GitHub repo or folder URL\n- multiple `--source` values in one run\n- repomix-reduced repo input when available\n\nSupported modes:\n- `import`\n- `audit`\n- `explain`\n- `plan`\n- `judge`\n- `apply`\n\nDeterministic clarity lint from `instruction_clarity.v1` is available in every mode and enabled by default for `audit`, `plan`, and `judge`. It is advisory and never counts as behavioral evidence.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 10,
+        "candidate_end_line": 29
+      },
+      "rationale": "External-source intake, source types, six modes and advisory clarity-lint status retained."
+    },
+    {
+      "id": "objective",
+      "source_start_line": 31,
+      "source_end_line": 33,
+      "source_excerpt": "## Primary Objective\nImprove the supplied skill or agent’s clarity, completeness, coherence, structure, and usability while preserving its intended capability and existing surface kind and provider scope. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.",
+      "source_excerpt_sha256": "dccd2fe87014d3854096ec75b3c9c2c509e8965699b39d34521d41ec5b38b377",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective\nImprove the supplied skill or agent’s clarity, completeness, coherence, structure, and usability while preserving its intended capability and existing surface kind and provider scope. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 31,
+        "candidate_end_line": 32
+      },
+      "rationale": "Capability, surface scope and structural/reviewed admission gates retained."
+    },
+    {
+      "id": "conditional-proof",
+      "source_start_line": 34,
+      "source_end_line": 35,
+      "source_excerpt": "When structural quality is near the bar but behavioral confidence is still weak, escalate to a bounded behavioral proof workflow instead of overstating readiness.",
+      "source_excerpt_sha256": "d1254d8f7bbbad7a6d18af1e74d83b5df8a1be24dd092e5e50e8289bf4c654bd",
+      "disposition": "reformulated",
+      "candidate_excerpt": "When a claimed behavioral benefit needs evidence, escalate to a bounded behavioral proof workflow instead of overstating readiness. An admission-only update can remain `behavioral_pending`; it does not require a new experiment merely to land structurally reviewed instructions.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 34,
+        "candidate_end_line": 34
+      },
+      "rationale": "Reviewed D1.S1 meaning change: escalation now depends on a claimed behavioral benefit. Admission remains behavioral_pending, never promotion; structural reviews do not establish efficacy."
+    },
+    {
+      "id": "entrypoints-state-authority",
+      "source_start_line": 36,
+      "source_end_line": 53,
+      "source_excerpt": "## Invocation Contract\nUse this capability as the AI-facing intake contract.\n\nPrimary entrypoints:\n- `bin/uac` for intake, audit, planning, judging, and apply\n- `bin/capability-fabric` for surface build, validation, and deploy steps after landing\n\nCanonical state:\n- `ssot/<slug>.md` is the human-readable prompt source of truth\n- `.meta/capabilities/<slug>.json` is the machine-readable descriptor source of truth\n- `sources/ssot-baselines/<slug>/baseline.md` is the baseline prompt-body fidelity source of truth used by UAC quality judging\n- generated surfaces under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/` are derived artifacts\n\nOperational rule:\n- `apply` may mutate canonical repo state after confirmation\n- deploy is separate and must never be implied by `apply`\n- when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them",
+      "source_excerpt_sha256": "27f45c4bd6e4a1686ce7d4fef9a9db2efe7ea4d33a974206027dc95d36ff30f7",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Contract\nUse this capability as the AI-facing intake contract.\n\nPrimary entrypoints:\n- `bin/uac` for intake, audit, planning, judging, and apply\n- `bin/capability-fabric` for surface build, validation, and deploy steps after landing\n\nCanonical state:\n- `ssot/<slug>.md` is the human-readable prompt source of truth\n- `.meta/capabilities/<slug>.json` is the machine-readable descriptor source of truth\n- `sources/ssot-baselines/<slug>/baseline.md` is the baseline prompt-body fidelity source of truth used by UAC quality judging\n- generated surfaces under `.codex/`, `.gemini/`, `.claude/`, and `.kiro/` are derived artifacts\n\nOperational rule:\n- `apply` may mutate canonical repo state after confirmation\n- deploy is separate and must never be implied by `apply`\n- when shell entrypoints are required to complete the workflow, say so explicitly instead of assuming the caller knows them",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 36,
+        "candidate_end_line": 52
+      },
+      "rationale": "Exact CLIs, canonical paths, apply confirmation, separate deployment and explicit shell disclosure retain scope."
+    },
+    {
+      "id": "independent-review-host-control",
+      "source_start_line": 54,
+      "source_end_line": 56,
+      "source_excerpt": "## Agent Operating Contract\nWhen exposed as an agent, inspect the supplied source and repository context, prepare exhaustive onboarding findings and candidate repairs, and return the same UAC deliverables. Use an actual independent subagent to review material meaning changes before supplying a requirement-review attestation. The invoking host retains runtime and authorization control. A judge run returns analysis and candidate artifacts without landing canonical state; an authorized apply performs the documented write/build/validation sequence.",
+      "source_excerpt_sha256": "b91bf2d406b7140eca086e850aaf5dad3385c6ab7cefccef47a255cc0712acba",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Agent Operating Contract\nWhen exposed as an agent, inspect the supplied source and repository context, prepare exhaustive onboarding findings and candidate repairs, and return the same UAC deliverables. Use an actual independent subagent to review material meaning changes before supplying a requirement-review attestation. The invoking host retains runtime and authorization control. A judge run returns analysis and candidate artifacts without landing canonical state; an authorized apply performs the documented write/build/validation sequence.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 54,
+        "candidate_end_line": 55
+      },
+      "rationale": "Actual independent review and invoking-host control retained; this clause admits no named agent."
+    },
+    {
+      "id": "evidence-paths-lineage",
+      "source_start_line": 57,
+      "source_end_line": 59,
+      "source_excerpt": "## Output Directory\nCanonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task.",
+      "source_excerpt_sha256": "64e6b747de7aae1e3913f8424bacbd900b7f5c354f85bf133ee58bdeaf2a13c3",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Output Directory\nCanonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 57,
+        "candidate_end_line": 58
+      },
+      "rationale": "Canonical writes, report locations and independent baseline-promotion policy retained."
+    },
+    {
+      "id": "inventory-sequence",
+      "source_start_line": 60,
+      "source_end_line": 66,
+      "source_excerpt": "## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run uplift to extract objective, scope, and constraints.\n4. Run semantic routing.\n5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.\n6. Cluster broad repos into candidate families before recommending any landing.",
+      "source_excerpt_sha256": "c87e5afd9e196edbe03279db4b6cf72a5096e174240e2b2924fc6138b4f1e085",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Workflow\n1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run uplift to extract objective, scope, and constraints.\n4. Run semantic routing.\n5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.\n6. Cluster broad repos into candidate families before recommending any landing.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 67,
+        "candidate_end_line": 73
+      },
+      "rationale": "Ordered deterministic intake, inventory and family clustering retained; new authoring decision precedes drafting."
+    },
+    {
+      "id": "surface-approval",
+      "source_start_line": 67,
+      "source_end_line": 67,
+      "source_excerpt": "7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.",
+      "source_excerpt_sha256": "962b6e33d082ac1735fd57b138d61fe9c7f311ccb55a5f5e53fb19fa60c0c268",
+      "disposition": "preserved",
+      "candidate_excerpt": "7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 74,
+        "candidate_end_line": 74
+      },
+      "rationale": "All default-skill, native-config manual review, capability/provider approval and provenance requirements retained verbatim."
+    },
+    {
+      "id": "manifests-profile-baseline",
+      "source_start_line": 68,
+      "source_end_line": 70,
+      "source_excerpt": "8. Build layered manifests, cross-analysis, and advisory handoff data.\n9. Select a quality profile and benchmark set.\n10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.",
+      "source_excerpt_sha256": "15ddf1cf7ce9fa624757b3887b33407f1e06e585eb2c31193120a138cd8a447d",
+      "disposition": "preserved",
+      "candidate_excerpt": "8. Build layered manifests, cross-analysis, and advisory handoff data.\n9. Select a quality profile and benchmark set.\n10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 75,
+        "candidate_end_line": 77
+      },
+      "rationale": "Manifest, quality profile and historical baseline resolution remain before judging."
+    },
+    {
+      "id": "judge-no-mutation",
+      "source_start_line": 71,
+      "source_end_line": 71,
+      "source_excerpt": "11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.",
+      "source_excerpt_sha256": "63afafdd71cc6cdcf95ef2a1cbc255b7841377f88479f27209f457262a84a2e1",
+      "disposition": "preserved",
+      "candidate_excerpt": "11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 78,
+        "candidate_end_line": 78
+      },
+      "rationale": "Canonical no-mutation, targeted repair candidates, applicable findings and independent semantic review retained."
+    },
+    {
+      "id": "judge-conditional-proof",
+      "source_start_line": 72,
+      "source_end_line": 72,
+      "source_excerpt": "12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing.",
+      "source_excerpt_sha256": "a3ca636b20b350adc6cc96dabe9bdd0861287c7b1f6c587ac44fe6521478ef3c",
+      "disposition": "reformulated",
+      "candidate_excerpt": "12. If `judge` is being used to support a claimed behavioral benefit and confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing. Preserve admission-only status as `behavioral_pending` when no such claim is made.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 79,
+        "candidate_end_line": 79
+      },
+      "rationale": "Reviewed D1.S1 reformulation makes behavioral evaluation conditional on claimed benefit; unresolved semantic blockers and promotion gates remain."
+    },
+    {
+      "id": "admission-promotion-build",
+      "source_start_line": 73,
+      "source_end_line": 79,
+      "source_excerpt": "13. Search for benchmark sources only when the source is generic or fit confidence is weak.\n14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.\n15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.\n16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.\n17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.\n18. Keep deployment separate from apply.",
+      "source_excerpt_sha256": "6e51160482f259a1a651671ab48d6ca85b38301e3cc15b2ec1b5dc126000fea2",
+      "disposition": "preserved",
+      "candidate_excerpt": "13. Search for benchmark sources only when the source is generic or fit confidence is weak.\n14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.\n15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.\n16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.\n17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.\n18. Keep deployment separate from apply.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 80,
+        "candidate_end_line": 85
+      },
+      "rationale": "Benchmark condition, distinct evidence, impact plan, promotion hashes, baseline lineage and rebuild/validate sequence remain intact."
+    },
+    {
+      "id": "tool-boundaries",
+      "source_start_line": 80,
+      "source_end_line": 84,
+      "source_excerpt": "## Tool Boundaries\n- allowed: inventory sources, run deterministic uplift and classification, produce advisory manifests, and land canonical SSOT plus descriptor state when the quality gate passes\n- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences\n- escalation: if the work shifts from intake to architecture, docs quality, testing, or release readiness, route to the companion capability with a concrete handoff instead of stretching the import workflow",
+      "source_excerpt_sha256": "4bcbf7bcf18bb2c65dd60deff979fe9d41eb08960f37e17b0d751d945bae27f2",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Tool Boundaries\n- allowed: inventory sources, run deterministic uplift and classification, produce advisory manifests, and land canonical SSOT plus descriptor state when the quality gate passes\n- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences\n- escalation: if the work shifts from intake to architecture, docs quality, testing, or release readiness, route to the companion capability with a concrete handoff instead of stretching the import workflow",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 87,
+        "candidate_end_line": 90
+      },
+      "rationale": "No invented strength, apply-time home deploy or silent surface widening; adjacent jobs keep explicit handoffs."
+    },
+    {
+      "id": "operative-rules",
+      "source_start_line": 85,
+      "source_end_line": 104,
+      "source_excerpt": "## Rules\n- Evaluate outputs against the operative output contract for the selected route, including terminal and stacked precedence; unrelated bullets are not output evidence. Review contradictions using applicable scope and exceptions. Quoted examples are source material and do not become operative obligations merely by containing a keyword.\n- Judge the entry and its explicitly routed resource dependencies together. Missing required files, cycles, path escapes, or mismatched content bindings block the affected operation. A model-authored read receipt is not delivery evidence.\n- Repair the authoritative location of a defect; reuse equivalent existing content before adding a section. Preserve commands, schemas, quoted material, user decisions, and task scope. Do not invent missing facts or fixed procedures.\n- Exact relocation, reviewed reformulation, and authorized retirement are different changes. Use `--requirement-review <path>` for an operator-supplied `UACRequirementReview.v1` binding the original, candidate, effective resource content, independent reviewer, and complete requirement dispositions. The operator must establish review provenance; the code validates bindings and coverage, not reviewer authenticity or semantic correctness. This record is not a `PromotionVerdict`.\n- Stop automatic refinement when candidate and findings stagnate or cycle; report unresolved work. Repeated application to an unchanged accepted artifact must not add obligations or oscillate between styles.\n- Prefer existing pipeline code over ad-hoc parsing.\n- Keep results deterministic and roleplay-free.\n- Fail closed for unsuitable URL content.\n- For folders or repo trees, only group files that were actually inventoried.\n- If the source is config-only, require manual review instead of pretending it is a prompt.\n- If the source is already an agent definition, preserve its control-plane boundaries.\n- Never make orchestration or delegation decisions for the imported runtime or control plane. Publish advisory metadata only. Independent subagents may review onboarding repairs under the invoking host’s authorized review workflow; that does not grant runtime policy authority.\n- Run cross-analysis against current SSOT before any apply is considered safe.\n- Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.\n- Quality review artifacts are advisory evidence; they must not encode runtime routing policy.\n- Do not make UAC the long-term owner of behavioral evaluation logic; route to `engos-optimization-auto-research` when bounded behavioral proof is needed.\n- Do not ingest the Google Style Guide as permissive HTML. Use the reviewed local `instruction_clarity.v1` adapter and preserve the URL content-type rejection boundary.\n- Do not let UAC author a candidate, define or view the sealed promotion set, judge the candidate, and waive its own failures.",
+      "source_excerpt_sha256": "8792291a12d4528721423676fcf549885d075d712c1a0067436c01a04323ef3b",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Rules\n- Evaluate outputs against the operative output contract for the selected route, including terminal and stacked precedence; unrelated bullets are not output evidence. Review contradictions using applicable scope and exceptions. Quoted examples are source material and do not become operative obligations merely by containing a keyword.\n- Judge the entry and its explicitly routed resource dependencies together. Missing required files, cycles, path escapes, or mismatched content bindings block the affected operation. A model-authored read receipt is not delivery evidence.\n- Repair the authoritative location of a defect; reuse equivalent existing content before adding a section. Preserve commands, schemas, quoted material, user decisions, and task scope. Do not invent missing facts or fixed procedures.\n- Exact relocation, reviewed reformulation, and authorized retirement are different changes. Use `--requirement-review <path>` for an operator-supplied `UACRequirementReview.v1` binding the original, candidate, effective resource content, independent reviewer, and complete requirement dispositions. The operator must establish review provenance; the code validates bindings and coverage, not reviewer authenticity or semantic correctness. This record is not a `PromotionVerdict`.\n- Stop automatic refinement when candidate and findings stagnate or cycle; report unresolved work. Repeated application to an unchanged accepted artifact must not add obligations or oscillate between styles.\n- Prefer existing pipeline code over ad-hoc parsing.\n- Keep results deterministic and roleplay-free.\n- Fail closed for unsuitable URL content.\n- For folders or repo trees, only group files that were actually inventoried.\n- If the source is config-only, require manual review instead of pretending it is a prompt.\n- If the source is already an agent definition, preserve its control-plane boundaries.\n- Never make orchestration or delegation decisions for the imported runtime or control plane. Publish advisory metadata only. Independent subagents may review onboarding repairs under the invoking host’s authorized review workflow; that does not grant runtime policy authority.\n- Run cross-analysis against current SSOT before any apply is considered safe.\n- Treat commands, plugins, powers, and extensions as deployment wrappers, not capability types.\n- Quality review artifacts are advisory evidence; they must not encode runtime routing policy.\n- Do not make UAC the long-term owner of behavioral evaluation logic; route to `engos-optimization-auto-research` when bounded behavioral proof is needed.\n- Do not ingest the Google Style Guide as permissive HTML. Use the reviewed local `instruction_clarity.v1` adapter and preserve the URL content-type rejection boundary.\n- Do not let UAC author a candidate, define or view the sealed promotion set, judge the candidate, and waive its own failures.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 92,
+        "candidate_end_line": 110
+      },
+      "rationale": "Output scope, complete resource closure, exact command/schema preservation, stagnation stops, URL/manual review and imported runtime-control boundaries retained."
+    },
+    {
+      "id": "invocation",
+      "source_start_line": 105,
+      "source_end_line": 112,
+      "source_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- import a prompt, prompt pack, or capability into this repo\n- classify whether this source should become a skill, agent, or manual review\n- explain how this external source would land into SSOT and descriptors\n- judge whether a candidate is ready to apply\n- tell me whether this import needs stronger behavioral proof before landing",
+      "source_excerpt_sha256": "5777fd52bdbc2c7954ac0b204f2aec03efec2c10da67ad238f0114adc99f43e3",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- import a prompt, prompt pack, or capability into this repo\n- classify whether this source should become a skill, agent, or manual review\n- explain how this external source would land into SSOT and descriptors\n- judge whether a candidate is ready to apply\n- tell me whether this import needs stronger behavioral proof before landing",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 112,
+        "candidate_end_line": 118
+      },
+      "rationale": "Intake and quality triggers retained; authoring section clarifies same-owner updates without ordinary-prose intake."
+    },
+    {
+      "id": "inputs",
+      "source_start_line": 113,
+      "source_end_line": 118,
+      "source_excerpt": "## Required Inputs\n- one or more explicit sources\n- desired mode such as `plan`, `judge`, or `apply`\n- target system or install target when that materially affects the recommendation\n- any benchmark or quality expectations when the caller wants a stricter gate",
+      "source_excerpt_sha256": "418944c05d7724ac4f420fe2d8d21c5de16acdca112245815c1b544db0b2aef3",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs\n- one or more explicit sources\n- desired mode such as `plan`, `judge`, or `apply`\n- target system or install target when that materially affects the recommendation\n- any benchmark or quality expectations when the caller wants a stricter gate",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 120,
+        "candidate_end_line": 124
+      },
+      "rationale": "Explicit source, mode, relevant target and stricter quality expectations retained."
+    },
+    {
+      "id": "output-source",
+      "source_start_line": 119,
+      "source_end_line": 121,
+      "source_excerpt": "## Required Output\nReturn a concise structured result with these sections:\n- Source",
+      "source_excerpt_sha256": "c6ec9bd99348ee21524e5c8c5450907d40a906b043e18c4306f19dc265c483cd",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\nReturn a concise structured result with these sections:\n- Source",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 126,
+        "candidate_end_line": 128
+      },
+      "rationale": "Structured result and Source retained; conditional authoring record is added after Source."
+    },
+    {
+      "id": "output-sections",
+      "source_start_line": 122,
+      "source_end_line": 134,
+      "source_excerpt": "- Summary\n- Uplift\n- Routing\n- UAC Classification\n- Collection Recommendation\n- Layered Manifest\n- Cross-Analysis\n- Quality Plan / Judge Reports\n- Install Target\n- Advisory Handoff Contract\n- Recommended Surface\n- Modernization Focus\n- Next Actions",
+      "source_excerpt_sha256": "af36de520dae8124879e9b084936f1684e226c2f8e2c591060344bf0026a4244",
+      "disposition": "preserved",
+      "candidate_excerpt": "- Summary\n- Uplift\n- Routing\n- UAC Classification\n- Collection Recommendation\n- Layered Manifest\n- Cross-Analysis\n- Quality Plan / Judge Reports\n- Install Target\n- Advisory Handoff Contract\n- Recommended Surface\n- Modernization Focus\n- Next Actions",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 130,
+        "candidate_end_line": 142
+      },
+      "rationale": "Every existing result section retained in order; conditional authoring record displaces none."
+    },
+    {
+      "id": "proof-handoff",
+      "source_start_line": 135,
+      "source_end_line": 143,
+      "source_excerpt": "When `judge` escalates to behavioral proof, also include:\n- Behavioral Confidence\n- Escalation Reason\n- Auto-Research Handoff\n- Goal Contract and Capability Topology hashes when available\n- Eval Impact Plan and hard token cap\n- Structural Status (`structural_ready` is not `promote`)",
+      "source_excerpt_sha256": "fe76fd43cd8b28d8844f89e7eeea4f7825cec6ccacd1bb355f5ad0b15045e044",
+      "disposition": "preserved",
+      "candidate_excerpt": "When `judge` escalates to behavioral proof, also include:\n- Behavioral Confidence\n- Escalation Reason\n- Auto-Research Handoff\n- Goal Contract and Capability Topology hashes when available\n- Eval Impact Plan and hard token cap\n- Structural Status (`structural_ready` is not `promote`)",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 144,
+        "candidate_end_line": 150
+      },
+      "rationale": "Every behavioral-escalation output field remains required for that selected route."
+    },
+    {
+      "id": "companions",
+      "source_start_line": 144,
+      "source_end_line": 154,
+      "source_excerpt": "## Companion Capability Matrix\n| If the import uncovers this need | Route to | Required handoff |\n| --- | --- | --- |\n| The candidate needs deeper prompt hardening before it can pass the benchmark gate | `engos-meta-supercharge` | source excerpt, intended user outcome, weak sections, target capability style |\n| The candidate is structurally close to passing but needs bounded behavioral proof against baseline or competing variants | `engos-optimization-auto-research` | baseline artifact, candidate artifact or variants, claimed job, bounded task set or examples, pass/fail threshold |\n| The candidate is structurally sound but needs final decision synthesis across several landing options | `engos-reconciliation-converge` | candidate options, trade-offs, target install surfaces, decision criteria |\n| The imported capability is fundamentally architectural or system-design oriented | `engos-design-architecture` | source summary, design scope, affected boundaries, unresolved design questions |\n| The imported capability needs documentation-quality review before landing | `engos-quality-docs-review` | draft SSOT, descriptor summary, naming questions, drift or IA concerns |\n| The imported capability requires stronger validation or test coverage in this repo | `engos-quality-testing-review` | changed scripts, validator paths, expected behaviors, missing coverage risks |\n| The imported capability is ready to land but release, packaging, or CI readiness is the real question | `engos-quality-gitops-review` | applied diff, generated artifacts, validation output, release and deploy intent |",
+      "source_excerpt_sha256": "ac257dc9b1d0316e1a2205d35fb9d4cff79fe8a7b1b5a24c023023da1272f639",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Companion Capability Matrix\n| If the import uncovers this need | Route to | Required handoff |\n| --- | --- | --- |\n| The candidate needs deeper prompt hardening before it can pass the benchmark gate | `engos-meta-supercharge` | source excerpt, intended user outcome, weak sections, target capability style |\n| The candidate is structurally close to passing but needs bounded behavioral proof against baseline or competing variants | `engos-optimization-auto-research` | baseline artifact, candidate artifact or variants, claimed job, bounded task set or examples, pass/fail threshold |\n| The candidate is structurally sound but needs final decision synthesis across several landing options | `engos-reconciliation-converge` | candidate options, trade-offs, target install surfaces, decision criteria |\n| The imported capability is fundamentally architectural or system-design oriented | `engos-design-architecture` | source summary, design scope, affected boundaries, unresolved design questions |\n| The imported capability needs documentation-quality review before landing | `engos-quality-docs-review` | draft SSOT, descriptor summary, naming questions, drift or IA concerns |\n| The imported capability requires stronger validation or test coverage in this repo | `engos-quality-testing-review` | changed scripts, validator paths, expected behaviors, missing coverage risks |\n| The imported capability is ready to land but release, packaging, or CI readiness is the real question | `engos-quality-gitops-review` | applied diff, generated artifacts, validation output, release and deploy intent |",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 152,
+        "candidate_end_line": 161
+      },
+      "rationale": "Existing companion jobs and handoff data preserved; proof row stays conditional on needing proof."
+    },
+    {
+      "id": "constraints",
+      "source_start_line": 155,
+      "source_end_line": 160,
+      "source_excerpt": "## Constraints\n- No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.\n- No packaging claims without evidence.\n- No deployment during `apply`.\n- For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof.",
+      "source_excerpt_sha256": "26b11fe73bc77ff6b3d76624fe981a24ba3deedcd6a90b0bd1e057890136cdcb",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints\n- No hidden execution. UAC coordinates exhaustive onboarding checks; it does not require a separate paid model API for every import. The invoking agent may prepare semantic repairs within authorized scope, and a separate subagent reviews them.\n- No packaging claims without evidence.\n- No deployment during `apply`.\n- For local folders or GitHub repos, inventory the files first and justify whether they belong under one roof.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 163,
+        "candidate_end_line": 167
+      },
+      "rationale": "No hidden execution, unsupported packaging claims or apply-time deployment; no compulsory extra paid API."
+    },
+    {
+      "id": "import-example",
+      "source_start_line": 161,
+      "source_end_line": 164,
+      "source_excerpt": "## Examples\n### Example Request\n> Import this prompt folder, tell me whether it belongs as one capability or several, and refuse apply if it misses the benchmark bar.",
+      "source_excerpt_sha256": "3ca213e56aaecd638c63af31243cbd27168b6805f9ea884da46c061791ba3f48",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\n### Example Request\n> Import this prompt folder, tell me whether it belongs as one capability or several, and refuse apply if it misses the benchmark bar.",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 169,
+        "candidate_end_line": 171
+      },
+      "rationale": "Original folder-intake example retained beside added same-owner and non-trigger examples."
+    },
+    {
+      "id": "output-example",
+      "source_start_line": 165,
+      "source_end_line": 171,
+      "source_excerpt": "### Example Output Shape\n- source inventory\n- classification and fit assessment\n- benchmark and quality status\n- canonical landing recommendation\n- next actions",
+      "source_excerpt_sha256": "ceb63edbd8286da35e0c11bc4131899a70e90905318651b3db7c8ced24aa5d48",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Example Output Shape\n- source inventory\n- classification and fit assessment\n- benchmark and quality status\n- canonical landing recommendation\n- next actions",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 183,
+        "candidate_end_line": 188
+      },
+      "rationale": "Original illustrative output fields retained."
+    },
+    {
+      "id": "rubric",
+      "source_start_line": 172,
+      "source_end_line": 180,
+      "source_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Source fidelity | The recommendation reflects the actual source set rather than guessed structure |\n| Baseline fidelity | The candidate is judged against the repo-resident baseline source, not against metadata polish alone |\n| Classification rigor | The result explains why the source is `skill`, `agent`, `both`, or `manual_review` |\n| Landing safety | `apply` is blocked until benchmark and quality gates pass |\n| Canonical output | The result names the SSOT, descriptor, and generated-surface consequences clearly |\n| Boundary clarity | Deployment wrappers are not confused with capability types |",
+      "source_excerpt_sha256": "f8fbdb493bd8a006f0becbed59be3d6803cc5dc8fddccb38eabb9df00b79c45f",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Source fidelity | The recommendation reflects the actual source set rather than guessed structure |\n| Baseline fidelity | The candidate is judged against the repo-resident baseline source, not against metadata polish alone |\n| Classification rigor | The result explains why the source is `skill`, `agent`, `both`, or `manual_review` |\n| Landing safety | `apply` is blocked until benchmark and quality gates pass |\n| Canonical output | The result names the SSOT, descriptor, and generated-surface consequences clearly |\n| Boundary clarity | Deployment wrappers are not confused with capability types |",
+      "destination": {
+        "path": "ssot/engos-meta-uac-import.md",
+        "candidate_start_line": 190,
+        "candidate_end_line": 198
+      },
+      "rationale": "All source, baseline, classification, landing, canonical-output and boundary checks retained."
+    }
+  ],
+  "limits": [
+    "Independent source-level semantic review; no behavioral promotion or measured benefit.",
+    "Validator checks bindings and coverage, not reviewer authenticity or semantic correctness.",
+    "No retirement, rename, new agent surface, merge, installation, or expanded runtime authority approved.",
+    "Author-prepared mappings viewed only after initial source assessment; this independently authored record replaces rather than countersigns them."
+  ]
+}

@@ -8,11 +8,14 @@
   "protected_behaviors": [
     "f0d947235149d1f776768e53d1bf7eedf6a3f1c185fe10202d102117f85900ec",
     "9581f6c1acb5533bc007bfd7bf29a4a37f716f9428b4aac23fc52a85873b6eff",
+    "910913504dfa7c2012163170d393eeaa1e69964151e83496052a5620fd03727f",
     "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
     "0246bb0452fe016af5e26128122b13e5ef8d943ff6ccd5b437ec5bc65ecf7a89",
     "e22510630d6f328dddd3035251d13d56bc2d43006fa3f3f6d5e6af8460d4850a",
+    "5e71f66889c0c2de209bd9f66766dc558388ca57be9df8beeffa5cc4c26e9183",
     "962b6e33d082ac1735fd57b138d61fe9c7f311ccb55a5f5e53fb19fa60c0c268",
     "63afafdd71cc6cdcf95ef2a1cbc255b7841377f88479f27209f457262a84a2e1",
+    "4e7fec7a8b7d3cbbadf268fb8e7e10c8dd4ed9ae10c43e40d8d8d43e34d1172f",
     "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
     "508b32565297a9501887f58024f855d563b375c159cece377080ea9830e29d10",
     "082360db6cc59590c03f5d502f1aeb2e5311ecf003058abf6c6a13a0f480a535",
@@ -32,7 +35,13 @@
     "2fdb6c8bba0dc7fbeb44b7383c59db630edc3db3578cbbd862ffb00c2dd44509",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
-    "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60"
+    "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60",
+    "1de41b3f1f0b64f1423335dbf4523341b2113a94a267d004392f2a71754766c4",
+    "b4527d57b2a0c48a63ef25acdb70105282db1717636a60a8d2919b66f65e41c7",
+    "b628735b99ea93f98274b344423635b22df3ad0d65977395258a087f7ce8fa0d",
+    "f60650b9c12935640156889e2af324402c239a18c62ae58fafec81664ec11375",
+    "5864b852f2fef667391bd09475ec52087161e4a6db409cb9038f55524a15dd00",
+    "a774e395ea78fc539d90ab05a6c213e25255ad3a543129375d92d0d6c43be21e"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -77,6 +86,11 @@
       "text": "Improve the supplied skill or agent\u2019s clarity, completeness, coherence, structure, and usability while preserving its intended capability and existing surface kind and provider scope. Classify safely, recommend the right surfaces, and refuse landing until the structural and reviewed requirement gates pass. Structural diagnostics do not prove downstream model efficacy."
     },
     {
+      "sha256": "910913504dfa7c2012163170d393eeaa1e69964151e83496052a5620fd03727f",
+      "source": "ssot/engos-meta-uac-import.md",
+      "text": "When a claimed behavioral benefit needs evidence, escalate to a bounded behavioral proof workflow instead of overstating readiness. An admission-only update can remain `behavioral_pending`; it does not require a new experiment merely to land structurally reviewed instructions."
+    },
+    {
       "sha256": "83466994e31cb2c5e6568d5df77cc763081ee051e50abf72e348e72013992fb1",
       "source": "ssot/engos-meta-uac-import.md",
       "text": "- deploy is separate and must never be implied by `apply`"
@@ -92,6 +106,11 @@
       "text": "Canonical application writes `ssot/<slug>.md` and `.meta/capabilities/<slug>.json`, plus generated surfaces and evaluation contracts. Quality review evidence belongs in `reports/quality-reviews/<slug>/`; baseline lineage lives in `sources/ssot-baselines/<slug>/` and changes only under the independent promotion policy. These are UAC-owned onboarding artifacts, not output paths imposed on the imported capability's own task."
     },
     {
+      "sha256": "5e71f66889c0c2de209bd9f66766dc558388ca57be9df8beeffa5cc4c26e9183",
+      "source": "ssot/engos-meta-uac-import.md",
+      "text": "Before drafting a capability addition or material update, read `resources/references/authoring-decisions.md`. Select `reuse`, `harvest`, `combine`, or `new` against current clauses and name one receiving capability owner. Start an existing-owner update from its current SSOT and preserve its slug and surface scope. Keep the intended outcome, precise positive and negative triggers, essential inputs, outputs, and authority in the entrypoint; load optional detail only for the selected work."
+    },
+    {
       "sha256": "962b6e33d082ac1735fd57b138d61fe9c7f311ccb55a5f5e53fb19fa60c0c268",
       "source": "ssot/engos-meta-uac-import.md",
       "text": "7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities."
@@ -100,6 +119,11 @@
       "sha256": "63afafdd71cc6cdcf95ef2a1cbc255b7841377f88479f27209f457262a84a2e1",
       "source": "ssot/engos-meta-uac-import.md",
       "text": "11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count."
+    },
+    {
+      "sha256": "4e7fec7a8b7d3cbbadf268fb8e7e10c8dd4ed9ae10c43e40d8d8d43e34d1172f",
+      "source": "ssot/engos-meta-uac-import.md",
+      "text": "12. If `judge` is being used to support a claimed behavioral benefit and confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing. Preserve admission-only status as `behavioral_pending` when no such claim is made."
     },
     {
       "sha256": "4d6263b784139fcdeeeddd1cd03f337fc233055c2de3a8137c9e2a0c287ec390",
@@ -200,6 +224,36 @@
       "sha256": "b6fcb2a657d0469d0e90e1804952d2fc81b2e0e5ec4cd42e1ac08d62715f0c60",
       "source": "ssot/engos-meta-uac-import.md",
       "text": "| If the import uncovers this need | Route to | Required handoff |"
+    },
+    {
+      "sha256": "1de41b3f1f0b64f1423335dbf4523341b2113a94a267d004392f2a71754766c4",
+      "source": "ssot/engos-meta-uac-import.md",
+      "text": "> Improve this skill's intake guidance. Check current clauses first, keep its name, and prepare the smallest candidate for review. Do not claim improved behavior."
+    },
+    {
+      "sha256": "b4527d57b2a0c48a63ef25acdb70105282db1717636a60a8d2919b66f65e41c7",
+      "source": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "text": "| Choice | Use when | Required decision |"
+    },
+    {
+      "sha256": "b628735b99ea93f98274b344423635b22df3ad0d65977395258a087f7ce8fa0d",
+      "source": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "text": "Keep each operative fact at one authoritative source. Search the current owner before adding text, repair that location, and link to it for optional detail. Generated provider copies are intentional outputs, not additional authored owners. Keep essential outcome, triggers, inputs, outputs, and authority readable in the entrypoint. Declare every packaged dependency in the owner's resource map, with route conditions that say when it must be loaded. Do not depend on a sibling installed skill's private files."
+    },
+    {
+      "sha256": "f60650b9c12935640156889e2af324402c239a18c62ae58fafec81664ec11375",
+      "source": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "text": "Distinguish independently expressed pattern synthesis from literal or substantial text, template, script, or asset reuse. Unknown rights do not authorize literal/substantial copying; leave that harvest unresolved or use an independently written, attributed pattern with the evidence limit recorded. A source hash is identity evidence, not permission. Inspect license scope for the specific file/resource; do not extend a creator-local or repository-specific license to an entire collection."
+    },
+    {
+      "sha256": "5864b852f2fef667391bd09475ec52087161e4a6db409cb9038f55524a15dd00",
+      "source": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "text": "Do not launch a paid experiment merely because a wording edit exists. Keep the baseline and criterion lineage intact; a comparative claim needs evidence, while a structurally admitted candidate without that evidence remains `behavioral_pending`. Human inspection can assess artifact quality; it does not replace independent comparative evidence or prove host consumption. Do not present source readback, lint scores, a smaller file, or a completed map as efficacy proof."
+    },
+    {
+      "sha256": "a774e395ea78fc539d90ab05a6c213e25255ad3a543129375d92d0d6c43be21e",
+      "source": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "text": "No donor body, template, script, or asset is bundled here. Captured Codex and Grok source revisions/redistribution clearance remain unknown; their inspected hashes alone do not resolve rights. The captured Anthropic creator is revision `dbd4588f9e1033efb41dad4bef2f7947c8993d44` with creator-local Apache-2.0 evidence, not collection-wide clearance. Kiro native creator internals were not retrieved. The implementation's exact source identities and reuse dispositions belong in its review evidence; future harvests need their own source admission record."
     }
   ],
   "review_status": "draft"

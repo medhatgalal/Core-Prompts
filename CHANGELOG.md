@@ -38,6 +38,13 @@
 - Receipt validation covers structure and result consistency; it does not prove
   execution, source truth, preservation, behavioral improvement or live acceptance.
 
+- Add a proportionate authoring decision to `engos-meta-uac-import` under its
+  current name: reuse, harvest, combine or new, one receiving owner, source
+  provenance and preservation/displacement evidence. Keep instruction editing
+  independently callable with a semantic-change ledger and conditional handoffs.
+  Exact relocation uses preservation and structural checks; behavioral benefit
+  claims still need independent evaluation. No renames or agent surfaces added.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

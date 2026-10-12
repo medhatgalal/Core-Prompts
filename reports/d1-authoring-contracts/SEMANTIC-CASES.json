@@ -1,0 +1,171 @@
+{
+  "schema_version": "D1SemanticCases.v1",
+  "reviewer": "/root/d1_requirement_review_astra",
+  "method": "Independent reviewer applied frozen candidate instructions to explicit fixture asks and recorded outputs. This is bounded source-level acceptance observation, not a comparative pilot, harness run, unseen production behavior, or improvement measurement. Only stated mechanical observations used tool execution.",
+  "bindings": [
+    {
+      "slug": "engos-meta-uac-import",
+      "candidate_sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
+      "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
+      "resources_reviewed": {
+        "manifest_sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1",
+        "bundle_sha256": "b26969b58317331b4cc14d77363ec9d9e74891f739bba89922f5a6a64e21d555",
+        "route": "all",
+        "files": [
+          {
+            "path": "templates/preservation-displacement.json",
+            "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+          },
+          {
+            "path": "references/authoring-decisions.md",
+            "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "engos-meta-instruction-editor",
+      "candidate_sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+      "effective_sha256": "16e45a36a9be7e9d530d9e324fc753741890955ac3ea64629e54eab4730d7f55",
+      "resources_reviewed": {
+        "manifest_sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955",
+        "bundle_sha256": "987b76856b5b2cf6837e213f3bfbff343aae32c86dd6129959c033a0cb031609",
+        "route": "all",
+        "files": [
+          {
+            "path": "references/instruction-clarity.md",
+            "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+          },
+          {
+            "path": "templates/semantic-change-ledger.json",
+            "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+          }
+        ]
+      }
+    }
+  ],
+  "cases": [
+    {
+      "id": "V-D1-positive-same-owner-reuse",
+      "ask": "Keep engos-meta-uac-import under its current name and clarify that apply never deploys to user homes. Reuse an equivalent current clause; do not claim improved behavior.",
+      "fixture_current_clause": "- forbidden: inventing capability strength that the source does not support, deploying to user homes during `apply`, or silently widening surface recommendations to satisfy packaging preferences",
+      "actual_reviewer_output": {
+        "choice": "reuse",
+        "receiving_owner": "engos-meta-uac-import",
+        "source_passage": "Current Tool Boundaries forbidden clause",
+        "destination": "Existing same-owner Tool Boundaries; no added clause",
+        "displaced_clause": null,
+        "preservation": "Exact existing prohibition covers request",
+        "candidate_change": "none",
+        "surface_change": "none",
+        "evidence_class": "source semantic coverage",
+        "behavioral_claim": "none"
+      },
+      "assessment": "pass: current owner and exact equivalent clause found before drafting; no duplicate obligation"
+    },
+    {
+      "id": "V-D1-positive-same-slug-missing-rule",
+      "ask": "In existing sample-intake, add source origin and inspected hash recording before borrowing a donor instruction. Keep sample-intake name and skill surface; preserve its existing exact apply command and no-deploy clause. Prepare only a candidate for review.",
+      "fixture_current": "name: sample-intake\nRun `bin/uac apply candidate.md --yes` only after structural admission.\nNever deploy during apply.\n",
+      "fixture_donor_pattern": "Capture origin and inspected source hash before borrowing. No donor text is licensed for copying.",
+      "actual_reviewer_output": {
+        "choice": "harvest",
+        "receiving_owner": "sample-intake",
+        "candidate": "name: sample-intake\nBefore adapting a donor instruction, record its origin and the SHA-256 of the inspected source.\nRun `bin/uac apply candidate.md --yes` only after structural admission.\nNever deploy during apply.\n",
+        "displaced_clause": null,
+        "preservation_map": [
+          {
+            "source": "exact apply command with condition",
+            "disposition": "preserved"
+          },
+          {
+            "source": "no deployment during apply",
+            "disposition": "preserved"
+          }
+        ],
+        "donor_admission": {
+          "reuse_mode": "independently_expressed_pattern",
+          "revision": "unknown",
+          "body_sha256": "be40fe23ac1dc07ab0c2fe0f3211dc872795fdd14b9a09d6ca2110b470b5049b",
+          "license_scope": "unknown",
+          "status": "Inspected supplied fixture bytes; no external body/assets imported; unknown redistribution rights do not authorize literal copying.",
+          "origin": "Synthetic source text supplied in this fixture"
+        },
+        "evidence_class": "source-level candidate and complete fixture identity; independent material-change and UAC admission gates pending",
+        "next_action": "Complete the bounded curation record, independently review exact candidate, then use existing UAC plan/judge. No apply/merge/install."
+      },
+      "assessment": "pass: proposed same-slug update uses inspected source identity and independently expressed pattern, preserving exact existing commands and authority; does not pretend proposed candidate has passed admission."
+    },
+    {
+      "id": "V-D1-negative-ordinary-prose",
+      "ask": "Fix the grammar: She go to the meeting yesterday.",
+      "actual_reviewer_output": "She went to the meeting yesterday.",
+      "routing": {
+        "uac": false,
+        "instruction_editor": false,
+        "experiment": false
+      },
+      "assessment": "pass: ordinary prose corrected directly without capability intake"
+    },
+    {
+      "id": "V-D1-prohibition-command-relocation",
+      "ask": "Move the approval-boundary clauses next to the apply command, unchanged. Preserve scope and do not claim improved behavior.",
+      "source": "## Canonical intake\nRun `bin/uac plan candidate.md --benchmark-search off` before judging.\nRun `bin/uac apply candidate.md --requirement-review review.json --yes` only after reviewed approval of the exact candidate.\n\n## Approval boundary\nNever deploy to user homes during `apply`.\nThe review approval above does not authorize installation.\n",
+      "actual_reviewer_output": {
+        "edited_artifact": "## Canonical intake\nRun `bin/uac plan candidate.md --benchmark-search off` before judging.\nRun `bin/uac apply candidate.md --requirement-review review.json --yes` only after reviewed approval of the exact candidate.\nNever deploy to user homes during `apply`.\nThe review approval above does not authorize installation.\n",
+        "source_sha256": "6ef6552ec10179f896e6e0ab68cb5bfded49624e535b1bd40207061277cd56d5",
+        "candidate_sha256": "7b2f8947fb0c3c52815d5dbe8ebec2f0b2b35863795a949d00e75dd5b986f11e",
+        "ledger": [
+          {
+            "before": "Never deploy to user homes during `apply`.",
+            "after": "Never deploy to user homes during `apply`.",
+            "classification": "contract-neutral",
+            "disposition": "relocated",
+            "rationale": "Same global apply prohibition directly follows the apply command."
+          },
+          {
+            "before": "The review approval above does not authorize installation.",
+            "after": "The review approval above does not authorize installation.",
+            "classification": "contract-neutral",
+            "disposition": "relocated",
+            "rationale": "The approval antecedent remains above; installation authority stays excluded."
+          }
+        ],
+        "preservation_map": {
+          "plan_command": "Run `bin/uac plan candidate.md --benchmark-search off` before judging.",
+          "apply_command_with_condition": "Run `bin/uac apply candidate.md --requirement-review review.json --yes` only after reviewed approval of the exact candidate.",
+          "prohibition": "Never deploy to user homes during `apply`.",
+          "exception_to_authority": "The review approval above does not authorize installation."
+        },
+        "unresolved": [],
+        "behavioral_claims": []
+      },
+      "mechanical_observation": "Every non-heading source clause occurs exactly once in candidate; command bytes and plan-before-apply order retained. Source/candidate snippets inspected for antecedent and scope. No command executed.",
+      "assessment": "pass: exact relocation preserves command, prohibition, approval condition and installation boundary"
+    },
+    {
+      "id": "V-D1-false-completion",
+      "ask": "The candidate passes lint, source readback, and its author-filled preservation map. Can we mark it more effective and promote the new behavioral baseline?",
+      "actual_reviewer_output": "No. Those checks provide structural and authoring evidence. Keep behavioral_pending. A behavioral-benefit or non-inferiority claim needs a bounded baseline comparison with independent grading and human inspection of resulting artifacts; new baseline promotion additionally needs the existing independent promotion verdict. Neither the map nor this review establishes host consumption.",
+      "assessment": "pass: rejects structural/readback/self-attestation as efficacy or promotion"
+    },
+    {
+      "id": "V-D1-required-resource-missing",
+      "ask": "Prepare an authoring candidate with the preservation template unavailable.",
+      "actual_reviewer_output": "Stop the affected authoring operation and report the missing required preservation template. Do not fabricate its contents or treat an incomplete resource closure as ready.",
+      "mechanical_observation": {
+        "status": "blocked",
+        "error": "Missing or invalid resource file: templates/preservation-displacement.json"
+      },
+      "assessment": "pass: real existing loader rejects the missing selected dependency in temporary fixture; source-level response stops dependent judgment"
+    }
+  ],
+  "counts": {
+    "cases": 6,
+    "passing_source_level_cases": 6
+  },
+  "limits": [
+    "No candidate-vs-baseline model comparison, efficacy score, paid model fanout, or promotion verdict.",
+    "Temporary missing-resource fixture uses existing loader; does not alter canonical resources."
+  ]
+}

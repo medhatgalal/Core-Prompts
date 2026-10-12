@@ -481,6 +481,17 @@ The helper is read-only and uses the standard library. It emits the selected dep
 
 For reviewed semantic intake, `bin/uac judge <candidate> --requirement-review <review.json>` and `bin/uac apply <candidate> --requirement-review <review.json> --yes` accept independently reviewed, hash-bound requirement dispositions. They do not imply behavioral promotion. See [UAC usage](UAC-USAGE.md#resource-aware-and-reviewed-modernization).
 
+## Prepare a same-owner authoring candidate
+
+The authoring decision and clause records use the existing CLI; no creator router or new evaluation command is added:
+
+```bash
+bin/uac plan reports/<run>/<slug>.md --benchmark-search off
+bin/uac judge reports/<run>/<slug>.md --requirement-review reports/<run>/<review>.json --emit-impact-plan
+```
+
+The candidate starts from current `ssot/<slug>.md`. Its authoring resources are owned by `sources/capability-resources/engos-meta-uac-import/`; the editor's ledger lives under `sources/capability-resources/engos-meta-instruction-editor/`. Their `resource-map.json` files declare conditional closure, and generated packages expose the selected resources under `resources/`. Templates are authoring records, not CLI flags or independent review attestations. [Decision and evidence guidance](UAC-USAGE.md#choose-an-authoring-change).
+
 ## Advisory routing metadata
 
 UAC plan/judge exposes `preview.descriptor_preview.job_contract` and lists job-contract changes in its descriptor delta. `job_contract.routing_fitness` uses `RoutingFitness.v1`; generated `.meta/skill-job-map.json` uses `SkillJobMap.v2` with a `SkillJobMapReceipt.v1` content receipt. Generation and validation share the source compiler. The metadata is not a runtime consumer or permission grant. [Contract and limits](UAC-USAGE.md#source-backed-routing-fitness).

@@ -116,6 +116,12 @@ For complete OpEx meeting preparation, request `briefing` with incident keys; it
 
 For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
 
+### Improve an existing skill
+
+> Use engos-meta-uac-import to improve this skill under its current name. Show which current clause already covers the request, choose the smallest useful change, and prepare the candidate for review.
+
+Expect one receiving owner, a source-to-destination preservation record and the existing UAC plan/judge sequence. For “Move this unchanged approval condition next to its command,” use `engos-meta-instruction-editor` directly: expect a clause ledger and scope/link/syntax checks. A claim of improved behavior needs separate baseline evidence; these checks alone do not establish it. [Authoring choices](UAC-USAGE.md#choose-an-authoring-change).
+
 ### Try a reviewed artifact
 
 These examples describe the v1.16.3 release packages. First apply the released

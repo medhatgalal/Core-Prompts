@@ -79,7 +79,17 @@ How to think about that sequence:
 - `judge` is the quality and ship decision
 - `apply` is the intentional repo mutation step
 
-If `judge` finds the candidate is structurally close to ready but still needs bounded behavioral proof, keep the landing decision open and route that proof to `engos-optimization-auto-research` before `apply`.
+If the landing decision depends on a claimed behavioral benefit, unresolved proof goes to `engos-optimization-auto-research`. Structural admission without that claim can remain `behavioral_pending`; it does not imply promotion.
+
+## Choose an authoring change
+
+`engos-meta-uac-import` compares the requested outcome against current clauses and selects `reuse`, `harvest`, `combine`, or `new`, with one receiving owner. Existing-owner improvements keep their current name and surface scope. The [authoring resource](../sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md) explains the selection and source-admission method; it loads when preparing an addition or material update.
+
+A candidate carries a completed `PreservationDisplacement.v1` record: source passage and identity, destination, displaced clause, preservation disposition, consumer inventory and evidence class. Donor provenance distinguishes independently expressed patterns from literal/substantial reuse and records unknown license or revision information. The record supports the independently supplied UAC review; it does not replace it.
+
+Instruction preservation is separately callable through `engos-meta-instruction-editor`, which supplies a `SemanticChangeLedger.v1` for wording or structural edits. Ordinary prose copy editing stays outside both jobs. Exact relocation can finish with preservation, diff, link and parse checks; material meaning changes receive independent review. Behavioral benefit claims add bounded baseline comparison and artifact inspection through Auto-Research. An admission-only candidate may remain `behavioral_pending` without a new experiment.
+
+For example: “Keep the current skill name, reuse any equivalent clause, and show one reviewed destination for the missing rule.” Expect the decision, mapped candidate and UAC findings, with no automatic host configuration or deployment. The operative contracts live in the two skills and their owned resources; the [repository workflow](../.kiro/steering/repo-workflow.md) governs canonical delivery.
 
 ## Update An Existing Capability
 

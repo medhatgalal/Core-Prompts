@@ -1,0 +1,264 @@
+{
+  "schema_version": "D1LocalCI.v1",
+  "alignment": "Current GitLab declarations; schema refresh and tag fetch already recorded separately; dependencies task-local",
+  "steps": [
+    {
+      "id": "installer-runtime",
+      "command": [
+        "python3.14",
+        "scripts/build-install-runtime.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.147,
+      "log": "reports/d1-authoring-contracts/local-ci/installer-runtime.log",
+      "lastLines": [
+        "installer capsule: verified"
+      ]
+    },
+    {
+      "id": "legacy-catalog",
+      "command": [
+        "python3.14",
+        "scripts/build-legacy-catalog.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 7.324,
+      "log": "reports/d1-authoring-contracts/local-ci/legacy-catalog.log",
+      "lastLines": [
+        "legacy catalog: 55 releases, 1627 package versions, 1514 unique identities"
+      ]
+    },
+    {
+      "id": "resources-uac",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_capability_resources.py",
+        "tests/test_resource_delivery.py",
+        "tests/test_frontier_eval_integration.py",
+        "tests/test_uac_assessment.py",
+        "tests/test_uac_ssot.py",
+        "tests/test_agent_execution_need.py",
+        "tests/test_agent_approval_lifecycle.py",
+        "tests/test_agent_surface_preservation.py",
+        "tests/test_namespace_registration.py",
+        "tests/test_uac_semantic_uplift.py",
+        "tests/test_uac_quality.py",
+        "tests/test_uac_source_integrity.py",
+        "tests/test_uac_promotion_apply.py",
+        "tests/test_supercharge_preservation.py",
+        "tests/test_supercharge_debate.py",
+        "tests/test_frontier_skill_contracts.py",
+        "tests/test_resource_backed_skill_surfaces.py"
+      ],
+      "exitCode": 0,
+      "seconds": 53.664,
+      "log": "reports/d1-authoring-contracts/local-ci/resources-uac.log",
+      "lastLines": [
+        "........................................................................ [ 50%]",
+        "........................................................................ [ 75%]",
+        "........................................................................ [100%]",
+        "288 passed in 52.94s"
+      ]
+    },
+    {
+      "id": "shaping",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_shaping_runtime.py",
+        "tests/test_shaping_review_evidence.py",
+        "tests/test_shaping_handover_outputs.py",
+        "tests/test_shaping_loop.py",
+        "tests/test_shaping_policy_recovery.py",
+        "tests/test_shaping_repository_fit.py",
+        "tests/test_shaping_progress.py",
+        "tests/test_shaping_progress_view.py",
+        "tests/test_shaping_export.py",
+        "tests/test_shaping_export_docx.py",
+        "tests/test_shaping_presentation.py"
+      ],
+      "exitCode": 0,
+      "seconds": 62.665,
+      "log": "reports/d1-authoring-contracts/local-ci/shaping.log",
+      "lastLines": [
+        "........................................................................ [ 74%]",
+        "........................................................................ [ 89%]",
+        ".............................................s...                        [100%]",
+        "480 passed, 1 skipped in 62.09s (0:01:02)"
+      ]
+    },
+    {
+      "id": "presentation",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_presentation_cache.py",
+        "tests/test_presentation_exporter.py"
+      ],
+      "exitCode": 0,
+      "seconds": 68.966,
+      "log": "reports/d1-authoring-contracts/local-ci/presentation.log",
+      "lastLines": [
+        "...................                                                      [100%]",
+        "19 passed in 68.42s (0:01:08)"
+      ]
+    },
+    {
+      "id": "routing",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_skill_job_map.py",
+        "tests/test_uac_routing_fitness.py",
+        "tests/test_route_only_battery.py"
+      ],
+      "exitCode": 0,
+      "seconds": 3.256,
+      "log": "reports/d1-authoring-contracts/local-ci/routing.log",
+      "lastLines": [
+        "..........................................................               [100%]",
+        "58 passed in 0.45s"
+      ]
+    },
+    {
+      "id": "apply-bootstrap",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_uac_import.py",
+        "-k",
+        "bootstrap or writes_ssot_and_descriptor_in_workspace_copy"
+      ],
+      "exitCode": 0,
+      "seconds": 23.965,
+      "log": "reports/d1-authoring-contracts/local-ci/apply-bootstrap.log",
+      "lastLines": [
+        ".....                                                                    [100%]",
+        "5 passed, 25 deselected in 23.49s"
+      ]
+    },
+    {
+      "id": "smoke",
+      "command": [
+        "python3.14",
+        "scripts/smoke-clis.py"
+      ],
+      "exitCode": 0,
+      "seconds": 33.315,
+      "log": "reports/d1-authoring-contracts/local-ci/smoke.log",
+      "lastLines": [
+        "warning: gemini: discovery probe failed (Command '['gemini', 'skills', 'list']' timed out after 30 seconds)",
+        "Smoke checks complete."
+      ]
+    },
+    {
+      "id": "compile-contracts",
+      "command": [
+        "bin/capability-eval",
+        "compile",
+        "--all",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.429,
+      "log": "reports/d1-authoring-contracts/local-ci/compile-contracts.log",
+      "lastLines": [
+        "  \"behavioral_claim\": \"none\",",
+        "  \"check_result\": \"pass\",",
+        "  \"drift\": []",
+        "}"
+      ]
+    },
+    {
+      "id": "calibrate-static",
+      "command": [
+        "bin/capability-eval",
+        "calibrate",
+        "--static-only"
+      ],
+      "exitCode": 0,
+      "seconds": 0.366,
+      "log": "reports/d1-authoring-contracts/local-ci/calibrate-static.log",
+      "lastLines": [
+        "  \"judge_qualified\": false,",
+        "  \"judge_note\": \"Semantic judges remain unqualified until gold-label agreement and bias checks are run.\",",
+        "  \"model_calls\": 0",
+        "}"
+      ]
+    },
+    {
+      "id": "strict-surfaces",
+      "command": [
+        "python3.14",
+        "scripts/validate-surfaces.py",
+        "--strict"
+      ],
+      "exitCode": 0,
+      "seconds": 2.632,
+      "log": "reports/d1-authoring-contracts/local-ci/strict-surfaces.log",
+      "lastLines": [
+        "Validation passed.",
+        "SSOT files: 32"
+      ]
+    },
+    {
+      "id": "distribution-build",
+      "command": [
+        "bin/capability-fabric",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 6.721,
+      "log": "reports/d1-authoring-contracts/local-ci/distribution-build.log",
+      "lastLines": [
+        "installer capsule: generated",
+        "Generated 32 ssot entries"
+      ]
+    },
+    {
+      "id": "packaging-profiles",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_package_surfaces.py",
+        "tests/test_package_local_config.py",
+        "tests/test_deploy_profile.py",
+        "tests/test_update_core_prompts.py",
+        "tests/test_deploy_surfaces.py",
+        "tests/test_agent_retirement.py",
+        "tests/test_install_catalog.py",
+        "tests/test_install_transaction.py",
+        "tests/test_install_capsule.py",
+        "tests/test_installation.py",
+        "tests/test_installation_history.py",
+        "tests/test_install_bootstrap.py"
+      ],
+      "exitCode": 1,
+      "seconds": 225.235,
+      "log": "reports/d1-authoring-contracts/local-ci/packaging-profiles.log",
+      "lastLines": [
+        "=========================== short test summary info ============================",
+        "FAILED tests/test_package_surfaces.py::test_packaged_profile_updates_verified_release_and_rolls_back",
+        "FAILED tests/test_package_surfaces.py::test_runtime_inventory_is_available_in_a_tagged_git_mirror",
+        "2 failed, 253 passed, 16 subtests passed in 224.72s (0:03:44)"
+      ]
+    }
+  ],
+  "complete": true,
+  "passed": false
+}
