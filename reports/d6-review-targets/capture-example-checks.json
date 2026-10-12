@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "scope": "Capture example syntax and actual Git comparison semantics only; no model behavioral claim",
+  "bash_blocks_checked": 4,
+  "checks": [
+    "Non-merge show uses bound feature ID while HEAD is newer merge",
+    "Explicit selected-parent merge diff includes feature change",
+    "Root commit show includes root patch",
+    "No remaining mutable HEAD argument in patch show example"
+  ],
+  "fixture_path": "Task-owned ephemeral Git fixture (local path retained in ignored raw evidence)",
+  "fixture_commits": {
+    "root": "4eff8c0a6a2ab082f90be5ab4ccb5f14db225f18",
+    "nonmerge": "5d05fe9ed1347745581061e285d475acbcdfd300",
+    "selected_parent": "ea5e9cf1f0bd5847f33d452f6a6219f9a0649555",
+    "merge": "271868dd3ec548542a139806ba1feb0e751d9417"
+  }
+}

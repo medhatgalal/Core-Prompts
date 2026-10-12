@@ -14696,10 +14696,194 @@
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-quality-code-review",
-      "shared_summary": "[ScottP] Git commit review with scope control and over-engineering detection",
-      "shared_constraints": [],
+      "shared_summary": "Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.",
+      "shared_constraints": [
+        "Never skip reading the actual diff.",
+        "Base findings on evidence, not assumptions.",
+        "Flag scope creep immediately.",
+        "Prefer the simpler valid implementation when alternatives exist.",
+        "If something cannot be verified, say so explicitly.",
+        "Do not rubber-stamp a commit just because tests pass."
+      ],
       "modes": [],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-quality-code-review",
+            "strategy": "head_snapshot",
+            "group": "additive_preserved",
+            "baseline_path": "sources/ssot-baselines/engos-quality-code-review/baseline.md",
+            "selected_commit": "a78c1c21",
+            "richness_score": 4,
+            "line_count": 236,
+            "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+            "equivalent_commits": [],
+            "expected_companions": [
+              "engos-quality-gitops-review",
+              "engos-quality-testing-review",
+              "engos-design-architecture",
+              "engos-quality-docs-review"
+            ],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "commit_review_procedure",
+                "kind": "individual_module",
+                "label": "commit review procedure and checklists",
+                "must_contain": [
+                  "## Review Process",
+                  "### 1. Capture the Commit",
+                  "### 3. Commit Message Quality Checklist",
+                  "### 4. Check Scope and Complexity",
+                  "### 5. Check Code Risk"
+                ]
+              },
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "a78c1c21",
+              "current_head_richness_score": 4,
+              "current_head_line_count": 237,
+              "materialized_from_commit": "a78c1c21"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "reviewed_modernization",
+              "scenario_results": [
+                {
+                  "id": "commit_review_procedure",
+                  "kind": "individual_module",
+                  "label": "commit review procedure and checklists",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "bound_attestation",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 4,
+                "candidate_richness": 7,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "a78c1c21",
+              "baseline_slug": "engos-quality-code-review"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 4,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {
         "preferred_use_cases": [
           "pre-merge commit review",
@@ -14729,7 +14913,7 @@
         "portfolio_action": "keep",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -14740,7 +14924,7 @@
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 11,
                   "end_line": 11,
-                  "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
                 }
               },
               {
@@ -14750,17 +14934,17 @@
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 13,
                   "end_line": 13,
-                  "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
                 }
               },
               {
-                "text": "1. Capture the exact staged diff, working-tree diff, commit, or branch diff under review.\n2. Read the commit message and the actual diff before making any judgment.\n3. Check message quality, scope alignment, and implementation complexity.\n4. Record findings with file references, concrete fixes, and merge guidance.\n5. End with a clear readiness decision: ready, blocked, or split required.",
+                "text": "1. Read the complete `review` route in `resources/resource-map.json`: `resources/references/review-targets.md` and its findings schema. Use the existing bundled `resources/scripts/load_module.py --route review` when available, or read both files directly. Missing or unread required resources make the review incomplete.\n2. Capture the exact staged diff, working-tree diff, commit, or branch diff under review; bind it and relevant source/consumer reads to the target as specified in that reference.\n3. Read the commit message and the actual diff before making any judgment.\n4. Check message quality, scope alignment, and implementation complexity.\n5. Record findings with stable IDs, severity, precise location, changed-cause evidence, verified consumer evidence for introduced breakage, impact, repair, and disposition.\n6. End with ready, blocked, or split required for a complete review; use unverifiable when evidence or review coverage is incomplete. Review judgment grants no repair, publication, merge, or release authority.",
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 43,
-                  "end_line": 47,
-                  "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                  "end_line": 48,
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
                 }
               },
               {
@@ -14768,9 +14952,9 @@
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 67,
-                  "end_line": 73,
-                  "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                  "start_line": 74,
+                  "end_line": 80,
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
                 }
               }
             ]
@@ -14787,9 +14971,19 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 50,
-                  "end_line": 52,
-                  "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                  "start_line": 57,
+                  "end_line": 59,
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                }
+              },
+              {
+                "text": "- Never skip reading the actual diff.\n- Base findings on evidence, not assumptions.\n- Flag scope creep immediately.\n- Prefer the simpler valid implementation when alternatives exist.\n- If something cannot be verified, say so explicitly.\n- Do not rubber-stamp a commit just because tests pass.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-quality-code-review.md",
+                  "start_line": 350,
+                  "end_line": 355,
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
                 }
               }
             ]
@@ -14804,7 +14998,17 @@
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 13,
                   "end_line": 13,
-                  "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                }
+              },
+              {
+                "text": "- Never skip reading the actual diff.\n- Base findings on evidence, not assumptions.\n- Flag scope creep immediately.\n- Prefer the simpler valid implementation when alternatives exist.\n- If something cannot be verified, say so explicitly.\n- Do not rubber-stamp a commit just because tests pass.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-quality-code-review.md",
+                  "start_line": 350,
+                  "end_line": 355,
+                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
                 }
               }
             ]
@@ -14815,9 +15019,9 @@
               "condition_and_handoff": "| release readiness, changelog, CI, packaging, or merge gates matter | `engos-quality-gitops-review` | commit quality alone is not enough for release or branch health |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 59,
-                "end_line": 59,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 66,
+                "end_line": 66,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -14826,9 +15030,9 @@
               "condition_and_handoff": "| behavior changed and test confidence is weak | `engos-quality-testing-review` | test coverage and edge-case discovery need a dedicated pass |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 60,
-                "end_line": 60,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 67,
+                "end_line": 67,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -14837,9 +15041,9 @@
               "condition_and_handoff": "| interface, architecture, or migration risk is material | `engos-design-architecture` | structural risk needs architectural judgment, not just commit review |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 61,
-                "end_line": 61,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 68,
+                "end_line": 68,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -14848,9 +15052,9 @@
               "condition_and_handoff": "| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 62,
-                "end_line": 62,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 69,
+                "end_line": 69,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -14859,9 +15063,9 @@
               "condition_and_handoff": "| doc drift or example drift is part of the commit | `engos-quality-docs-review` | keep documentation review explicit and separate |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 63,
-                "end_line": 63,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 70,
+                "end_line": 70,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -14870,9 +15074,9 @@
               "condition_and_handoff": "| reviewer comments need to be implemented | `engos-delivery-address-code-review` | this review gate should not mutate files |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 64,
-                "end_line": 64,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 71,
+                "end_line": 71,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -14884,9 +15088,18 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-quality-code-review.md",
-            "ssot_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
-            "effective_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
-            "resources": [],
+            "ssot_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
+            "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+                "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+                "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -14904,7 +15117,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "f2dcd58787dd702e8cd12275befbe11c79be6481f36737fdb0e4e0cc78945424"
+            "mapping_sha256": "b5f978ed47c53b90104938791cd9ce4596888849845f64ece40b42aa0c448d32"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -14913,6 +15126,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -19158,6 +19373,10 @@
       ".grok/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".grok/skills/engos-orchestration-batman/resources/capability.json",
       ".grok/skills/engos-quality-code-review/resources/capability.json",
+      ".grok/skills/engos-quality-code-review/resources/references/review-targets.md",
+      ".grok/skills/engos-quality-code-review/resources/resource-map.json",
+      ".grok/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".grok/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".grok/skills/engos-quality-docs-review/resources/capability.json",
       ".grok/skills/engos-quality-gitops-review/resources/capability.json",
       ".grok/skills/engos-quality-shaping-gate/resources/capability.json",
@@ -19336,6 +19555,10 @@
       ".codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".codex/skills/engos-orchestration-batman/resources/capability.json",
       ".codex/skills/engos-quality-code-review/resources/capability.json",
+      ".codex/skills/engos-quality-code-review/resources/references/review-targets.md",
+      ".codex/skills/engos-quality-code-review/resources/resource-map.json",
+      ".codex/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".codex/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".codex/skills/engos-quality-docs-review/resources/capability.json",
       ".codex/skills/engos-quality-gitops-review/resources/capability.json",
       ".codex/skills/engos-quality-shaping-gate/resources/capability.json",
@@ -19515,6 +19738,10 @@
       ".gemini/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".gemini/skills/engos-orchestration-batman/resources/capability.json",
       ".gemini/skills/engos-quality-code-review/resources/capability.json",
+      ".gemini/skills/engos-quality-code-review/resources/references/review-targets.md",
+      ".gemini/skills/engos-quality-code-review/resources/resource-map.json",
+      ".gemini/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".gemini/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-quality-docs-review/resources/capability.json",
       ".gemini/skills/engos-quality-gitops-review/resources/capability.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/capability.json",
@@ -19694,6 +19921,10 @@
       ".claude/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".claude/skills/engos-orchestration-batman/resources/capability.json",
       ".claude/skills/engos-quality-code-review/resources/capability.json",
+      ".claude/skills/engos-quality-code-review/resources/references/review-targets.md",
+      ".claude/skills/engos-quality-code-review/resources/resource-map.json",
+      ".claude/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".claude/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".claude/skills/engos-quality-docs-review/resources/capability.json",
       ".claude/skills/engos-quality-gitops-review/resources/capability.json",
       ".claude/skills/engos-quality-shaping-gate/resources/capability.json",
@@ -19873,6 +20104,10 @@
       ".kiro/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
       ".kiro/skills/engos-orchestration-batman/resources/capability.json",
       ".kiro/skills/engos-quality-code-review/resources/capability.json",
+      ".kiro/skills/engos-quality-code-review/resources/references/review-targets.md",
+      ".kiro/skills/engos-quality-code-review/resources/resource-map.json",
+      ".kiro/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".kiro/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-quality-docs-review/resources/capability.json",
       ".kiro/skills/engos-quality-gitops-review/resources/capability.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/capability.json",

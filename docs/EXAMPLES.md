@@ -632,12 +632,21 @@ Ask:
 
 Expected output:
 
-- findings first
+- bound commit, staged, working-tree or branch target; no target argument defaults to `HEAD`
+- findings with ID, severity, location, changed cause, verified consumer for introduced breakage, impact, repair and disposition
 - evidence-based resource, concurrency, operational-readiness, or API-contract findings when those risks are present
 - scope and risk assessment
 - commit-message or change-summary feedback
 - open questions or residual risks
-- readiness decision
+- complete review with advisory readiness, or incomplete/unverifiable with explicit unread or missing evidence
+
+For a branch containing several commits:
+
+> Review this branch against the recorded task base, including every task commit. Verify callers outside the diff for any changed or deleted interface. Return the six normal review sections and, if saving a report, a `Findings.v1` record.
+
+A staged review covers the index even if the working tree differs. If the index
+is empty, the response says so before any separately labeled working-tree fallback.
+A review verdict does not apply repairs, post comments or merge the branch.
 
 Follow with:
 

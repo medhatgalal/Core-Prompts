@@ -37,6 +37,26 @@ The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-re
 
 `engos-quality-testing-review` owns resources under `sources/capability-resources/engos-quality-testing-review/`: `references/test-oracles.md`, `templates/test-design.md`, `schemas/test-design.schema.json` and `resource-map.json`. The existing loader routes are `unit`, `e2e`, `edge-cases` and `coverage`. The resources use the existing loader with no additional runtime dependency. TestDesign.v1 is optional interchange with `execution_status=not_run`; schema validation checks shape only.
 
+## Code review targets and output
+
+Ask `engos-quality-code-review` to review `HEAD` (the default), staged changes,
+a declared working-tree snapshot, a commit, a branch/range, or a supplied diff.
+These are review request forms, not new shell collector commands. Staged and
+working-tree requests bind their exact bytes separately from the checkout commit.
+
+The skill bundles `resources/references/review-targets.md` and
+`resources/schemas/findings.schema.json`; the existing
+`resources/scripts/load_module.py --route review` assembles their complete content
+from an installed skill root. The manifest is `resources/resource-map.json`.
+Canonical resources live under
+`sources/capability-resources/engos-quality-code-review/`. No committed-range
+collector is introduced by this contract change.
+
+Requested JSON output uses `Findings.v1`, alongside the six normal narrative
+sections. Schema validation checks shape and status consistency; actual source
+reads, evidence truth and consumer impact still require review. Missing evidence
+is incomplete/unverifiable. Ready remains advisory and grants no merge authority.
+
 ## Common Commands
 
 ### Capability evaluation

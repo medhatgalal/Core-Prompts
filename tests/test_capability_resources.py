@@ -717,3 +717,118 @@ def test_slice_receipt_shape_is_not_execution_or_preservation_proof():
     slice_receipt_validator().validate(receipt)
     schema = json.loads((SLICE_RESOURCES / "schemas/slice-receipt.schema.json").read_text())
     assert "do not establish" in schema["description"]
+
+
+# Findings.v1 checks exercise the shipped schema rather than an implementation mirror.
+# jsonschema is a declared CI dependency; no local executable or network is required.
+@pytest.fixture
+def review_findings_contract():
+    from jsonschema import Draft202012Validator
+
+    resource_root = Path(__file__).parents[1] / "sources/capability-resources/engos-quality-code-review"
+    bundle = load_resource_bundle(resource_root, "review")
+    assert set(paths(bundle)) == {"references/review-targets.md", "schemas/findings.schema.json"}
+    schema = json.loads((resource_root / "schemas/findings.schema.json").read_text())
+    Draft202012Validator.check_schema(schema)
+    record = {
+        "schema_version": "Findings.v1",
+        "target": {"kind": "commit", "base": "b" * 40, "head": "a" * 40,
+                   "snapshot_digest": None, "comparison": "parent", "included_change_classes": ["committed"]},
+        "review_status": "complete",
+        "evidence": [{"id": "E-diff", "path": "candidate.diff", "kind": "diff", "side": "head",
+                      "identity": "c" * 64, "line_start": None, "line_end": None, "read_status": "read"}],
+        "findings": [], "unreviewed": [], "verdict": "ready",
+    }
+    return Draft202012Validator(schema), record
+
+
+@pytest.mark.parametrize("kind,comparison,classes", [
+    ("commit", "parent", ["committed"]), ("commit", "root", ["committed"]),
+    ("commit", "merge_parent", ["committed"]), ("branch", "range", ["committed"]),
+    ("branch", "merge_base", ["committed"]), ("staged", "staged", ["staged"]),
+    ("working_tree", "unstaged", ["unstaged"]),
+    ("working_tree", "combined", ["staged", "unstaged", "untracked"]),
+    ("diff", "supplied_diff", ["supplied"]),
+])
+def test_review_findings_accept_distinct_targets(review_findings_contract, kind, comparison, classes):
+    validator, record = review_findings_contract
+    record["target"].update(kind=kind, comparison=comparison, included_change_classes=classes)
+    if kind in {"staged", "working_tree", "diff"}:
+        record["target"].update(base=None, head=None, snapshot_digest="d" * 64)
+    if comparison == "root":
+        record["target"]["base"] = None
+    validator.validate(record)
+
+
+@pytest.mark.parametrize("failure", [
+    "missing_field", "incomplete_ready", "unreviewed_complete", "unread", "unavailable",
+    "no_diff", "no_evidence", "unbound_evidence", "short_head", "staged_no_digest", "wrong_classes",
+    "branch_no_base", "wrong_staged_comparison", "unstaged_with_staged",
+])
+def test_review_findings_reject_invalid_complete_receipts(review_findings_contract, failure):
+    validator, record = review_findings_contract
+    if failure == "missing_field":
+        del record["review_status"]
+    elif failure == "incomplete_ready":
+        record.update(review_status="incomplete", unreviewed=["Missing consumer"])
+    elif failure == "unreviewed_complete":
+        record["unreviewed"] = ["Missing consumer"]
+    elif failure in {"unread", "unavailable"}:
+        record["evidence"][0]["read_status"] = failure
+    elif failure == "no_diff":
+        record["evidence"][0]["kind"] = "source"
+    elif failure == "no_evidence":
+        record["evidence"] = []
+    elif failure == "unbound_evidence":
+        record["evidence"][0]["identity"] = None
+    elif failure == "short_head":
+        record["target"]["head"] = "a" * 7
+    elif failure == "staged_no_digest":
+        record["target"].update(kind="staged", comparison="staged", included_change_classes=["staged"])
+    elif failure == "wrong_classes":
+        record["target"]["included_change_classes"] = ["staged"]
+    elif failure == "branch_no_base":
+        record["target"].update(kind="branch", comparison="range", base=None)
+    elif failure == "wrong_staged_comparison":
+        record["target"].update(kind="staged", snapshot_digest="d" * 64, included_change_classes=["staged"])
+    elif failure == "unstaged_with_staged":
+        record["target"].update(kind="working_tree", comparison="unstaged", snapshot_digest="d" * 64,
+                                included_change_classes=["staged", "unstaged"])
+    assert not validator.is_valid(record)
+
+
+def test_review_findings_consumer_disposition_and_incomplete_rules(review_findings_contract):
+    validator, record = review_findings_contract
+    finding = {
+        "id": "F-001", "severity": "high", "category": "introduced_breakage",
+        "location": {"path": "api.py", "line": 42, "side": "base"},
+        "changed_cause": {"summary": "Deleted API keyword", "evidence_refs": ["E-diff"]},
+        "evidence_refs": ["E-diff", "E-caller"],
+        "affected_consumer": {"path": "job.py", "line": 18, "evidence_refs": ["E-caller"]},
+        "impact": "Job fails", "repair": "Preserve compatibility or update caller",
+        "disposition": "open", "disposition_reason": "Caller uses removed keyword",
+        "disposition_evidence_refs": [],
+    }
+    record["findings"] = [finding]
+    record["evidence"].append({"id": "E-caller", "path": "job.py", "kind": "consumer", "side": "head",
+                                "identity": "e" * 40, "line_start": 18, "line_end": 18, "read_status": "read"})
+    assert not validator.is_valid(record)  # Open high finding cannot be ready.
+    record["verdict"] = "blocked"
+    validator.validate(record)
+    consumer = finding["affected_consumer"]
+    finding["affected_consumer"] = None
+    assert not validator.is_valid(record)
+    finding["affected_consumer"] = consumer
+    finding["disposition"] = "accepted_risk"
+    assert not validator.is_valid(record)  # A disposition needs evidence, not just a label.
+    finding["disposition"] = "open"
+    record.update(review_status="incomplete", verdict="unverifiable", unreviewed=["Binary not inspected"])
+    validator.validate(record)  # Confirmed findings survive incomplete coverage.
+
+
+def test_review_findings_schema_does_not_claim_reference_truth(review_findings_contract):
+    validator, record = review_findings_contract
+    # This is structurally valid even if a reviewer falsely asserts a read. Semantic
+    # verification belongs to the reviewer/operator; schema success cannot prove it.
+    validator.validate(record)
+    assert "cannot prove actual reads" in validator.schema["description"]
