@@ -66,6 +66,13 @@ preserving your repository format. Expect acceptance conditions, unchanged
 behavior and explicit assumptions before a separate planning handoff. A typo
 correction needs no new spec. [Specification examples](docs/EXAMPLES.md#engos-design-specify-change).
 
+When you supply a `SpecContract.v1` for architecture work,
+**`engos-design-architecture`** can preserve its requirement IDs and acceptance
+conditions while recording design decisions. Its optional `spec-contract` route
+bundles the schema authored by the specification skill; the architecture package
+works on its own, without an installed sibling. Ordinary architecture requests
+need no SpecContract. [Architecture handoff example](docs/EXAMPLES.md#engos-design-architecture).
+
 Use this repository in this order:
 
 1. installed capabilities first

@@ -309,6 +309,21 @@ Ask:
 
 > Use `engos-design-architecture` to recommend the safest design for this capability layout, including migration and rollback considerations.
 
+With an existing structured specification:
+
+> Use `engos-design-architecture` with this accepted `SpecContract.v1` revision.
+> Preserve requirement IDs, acceptance conditions, non-goals, source references
+> and authority status. Link design decisions to those requirements; return any
+> requirement change or unresolved conflict to the specification owner.
+
+Expect the same architecture deliverable, with explicit requirement-to-decision
+links. The optional `spec-contract` route loads a schema authored only by
+`engos-design-specify-change` and copied into the generated architecture package.
+There is no authored schema duplicate under architecture and no installed-sibling
+lookup. Valid schema shape does not establish truth, completeness or approval.
+A prose architecture request does not require a SpecContract.
+[Package-local resource command](CLI-REFERENCE.md#architecture-specification-input).
+
 Expected output:
 
 - options and tradeoffs

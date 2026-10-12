@@ -1,0 +1,15 @@
+# D2.S2 final independent Core review
+
+**Approved — zero open findings.**
+
+The actual 103 changed product paths match product seal `1f620ca5432b8520cde1e7b065cc84851ff8bb94f2ce4386240c4c32e66498c5` exactly against D2.S1 `2f4c16526b75b9df14da8fdedbbb76040878b6cf`. The payload file itself hashes to `a76fc5a54bc8d356f30f0cefffcb925ea7282c40b753f27014b4130ffe2c755d`; this is distinct from its canonical path-to-file-hash seal. All six public docs remain identical to the initial independent review.
+
+The current source/package approval is bound to unchanged implementation hashes. All 864 original architecture lines and 83 preservation dispositions remain intact, with four added lines. The corrected inventory preserves 32 other capabilities plus three separate support files, seven specification-owner resources, four complete curated architecture modes, and all existing skill identities. The shared mode-refresh helper is used by UAC preview/apply and the builder. The final UAC record says `applied`, validation exited zero, and the current-source requirement-review hash matches; historical-baseline attestation remains separately unbound.
+
+All 52 public/private evidence pairs and all 13 local CI log hashes were verified. The commands match the current GitLab verification sequence. Six disjoint pytest groups total **1,207 passed, one skipped, and 16 subtests**. Focused repairs and the interrupted concurrent-generation attempt are retained separately and do not inflate that total. The actual detached skill evidence, canonical/five-provider bundle equality, trust-downgrade negatives and decoded nested JSON Reference negatives remain supported by the inspected source/package evidence and current implementation.
+
+One display-path issue was closed during this review: five public UAC summary references now use repo-relative paths. Private raw stages and their hashes remain unchanged. Initial failed validation, stale-review refusal, pre-repair mode loss, the invalid concurrent-generation check and the superseded counting record are retained with their correction or scope.
+
+This approval covers the frozen Core product and evidence package for draft delivery. It does not claim hosted exact-head CI, private report/plan acceptance, behavioral efficacy, full adoption, main merge, installation or release. The adjacent JSON records the exact evidence hashes and limitations. No completed CI suites were rerun for this review.
+
+Closeout evidence repair: trailing whitespace only was removed from `curated-modes-red.log` and `uac-curated-modes-red.log`. Both public files were compared with the unchanged private originals; paired hashes and whitespace-normalization flags match the manifest. The README accurately describes this display normalization. Final evidence hashes are refreshed; all other previously bound evidence hashes and the product seal receipt remain unchanged. No product review or CI rerun was repeated. Approval remains zero open findings.

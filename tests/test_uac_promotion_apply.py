@@ -578,3 +578,38 @@ def test_promote_compile_check_never_writes_human_reviewed_contracts(monkeypatch
 
     assert result["status"] == "structural_ready"
     assert calls == [False]
+
+
+def test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview(tmp_path, monkeypatch):
+    import copy
+    slug = 'engos-design-architecture'
+    text = '---\nname: engos-design-architecture\n---\n# Architecture\n## Modes\n### Design API\nCurrent API scope.\n'
+    ssot = tmp_path / 'ssot' / f'{slug}.md'; ssot.parent.mkdir(); ssot.write_text(text)
+    resources = tmp_path / 'sources/capability-resources' / slug; resources.mkdir(parents=True)
+    (resources / 'resource-map.json').write_text(json.dumps({'schema_version': 'CapabilityResourceMap.v1', 'shared': [], 'routes': {'context': ['guide.md']}, 'dependencies': {}}))
+    (resources / 'guide.md').write_text('## Module: /current\nCurrent resource context.\n')
+    curated = [{'entry_kind': 'mode', 'mode_slug': name, 'display_name': name,
+                'mode_summary': 'Rich curated behavior for ' + name,
+                'required_inputs': ['product requirement'], 'expected_outputs': ['reviewed design'],
+                'source_refs': ['https://example.org/source/' + name], 'invocations': [],
+                'examples': ['curated example'], 'uplift_notes': ['curated boundary']}
+               for name in ['design-api', 'design-database', 'design-patterns', 'system-design']]
+    existing = {'slug': slug, 'modes': copy.deepcopy(curated) + [{'entry_kind': 'module', 'mode_slug': 'stale'}],
+                'job_contract': {'keep': 'curated job'}}
+    monkeypatch.setattr(UAC_IMPORT, 'ROOT', tmp_path)
+    monkeypatch.setattr(UAC_IMPORT, 'load_descriptor', lambda root, name: copy.deepcopy(existing))
+    quality = {'final_candidate_text': text, 'status': 'structural_ready'}
+    merged, bound = UAC_IMPORT._merge_existing_descriptor_for_apply(slug, {'modes': []}, ssot_text=text, quality_result=quality)
+    assert bound
+    assert [mode for mode in merged['modes'] if mode['entry_kind'] == 'mode'] == curated
+    assert [mode['mode_slug'] for mode in merged['modes'] if mode['entry_kind'] == 'module'] == ['current']
+    assert merged['job_contract'] == existing['job_contract']
+    # Exercise the plan/judge descriptor preview as well as the applied merge.
+    monkeypatch.setattr(UAC_IMPORT, '_preferred_ssot_text', lambda *args, **kwargs: text)
+    monkeypatch.setattr(UAC_IMPORT, '_routing_job_for_text', lambda *args: existing['job_contract'])
+    payload = {'manifest': {'slug': slug, 'layers': {'minimal': {'summary': 'Architecture'}}}, 'items': []}
+    preview, _ = UAC_IMPORT._build_descriptor_preview(payload, quality_result=quality)
+    assert preview['modes'] == merged['modes']
+    existing = copy.deepcopy(merged)
+    replay, replay_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(slug, {'modes': []}, ssot_text=text, quality_result=quality)
+    assert replay_bound and replay == merged

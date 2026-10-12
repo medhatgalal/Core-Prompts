@@ -1,5 +1,15 @@
 ## Unreleased
 
+- Add explicit source-owned resource imports with a finite registry, consumer
+  declarations, generated provenance receipts and portable standalone loading.
+  `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`
+  schema authored by `engos-design-specify-change`; ordinary architecture input
+  remains supported. Bind source identity into review/evaluation hashes and reject
+  drift, missing resources, collisions, shadows, cycles and symlink escapes.
+  Existing no-import bundles remain compatible; importing packages require the
+  new loader, map, resources and receipt together. This is packaging and contract
+  evidence, not a measured behavioral benefit or an installation/release claim.
+
 - Add the skill-only `engos-design-specify-change` job with requirements-first,
   design-first and bugfix routes, a portable `SpecContract.v1` schema and a blank
   supplied-link ledger. Preserve repository formats, shaping acceptance and

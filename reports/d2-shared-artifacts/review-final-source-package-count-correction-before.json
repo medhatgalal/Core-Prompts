@@ -1,0 +1,113 @@
+{
+  "schema_version": "D2S2FinalSourcePackageReview.v1",
+  "reviewer": "/root/d2_s2_review_astra",
+  "status": "approved_source_and_package",
+  "base": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+  "findings": [],
+  "closed_findings": [
+    "D2S2-DESIGN-001",
+    "D2S2-CODE-001",
+    "D2S2-CODE-002",
+    "D2S2-META-003"
+  ],
+  "source": {
+    "changed_ssot": [
+      "ssot/engos-design-architecture.md"
+    ],
+    "unchanged_other_ssot_count": 35,
+    "original_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+    "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+    "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+    "added_lines": 4,
+    "unchanged_owner_files": 7
+  },
+  "metadata": {
+    "architecture_changed_fields": [
+      "judge_reports",
+      "job_contract"
+    ],
+    "exact_four_curated_modes_preserved": true,
+    "other_descriptors_equal": true,
+    "historical_baseline_unchanged": true,
+    "manifest_and_handoff_identity_sets_unchanged": true,
+    "all_emitted_surface_identity_lists_unchanged": true
+  },
+  "providers": [
+    {
+      "provider": "codex",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "descriptor_sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945",
+      "skill_sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee",
+      "bundle_matches_canonical": true,
+      "four_curated_modes_equal": true
+    },
+    {
+      "provider": "gemini",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "descriptor_sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945",
+      "skill_sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee",
+      "bundle_matches_canonical": true,
+      "four_curated_modes_equal": true
+    },
+    {
+      "provider": "claude",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "descriptor_sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945",
+      "skill_sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee",
+      "bundle_matches_canonical": true,
+      "four_curated_modes_equal": true
+    },
+    {
+      "provider": "kiro",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "descriptor_sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945",
+      "skill_sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee",
+      "bundle_matches_canonical": true,
+      "four_curated_modes_equal": true
+    },
+    {
+      "provider": "grok",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "descriptor_sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945",
+      "skill_sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee",
+      "bundle_matches_canonical": true,
+      "four_curated_modes_equal": true
+    }
+  ],
+  "detached": {
+    "copied_single_actual_skill": true,
+    "isolated_python": true,
+    "exit_code": 0,
+    "bundle_sha256": "ec2d5c1386996d92c72dcd860e6da989acbccfaf7efa2af2c0b5717b06c1948e",
+    "equals_canonical": true
+  },
+  "uac": {
+    "actual_apply_status": "applied",
+    "actual_validate_returncode": 0,
+    "independent_review_record_present_exact": true,
+    "independent_current_source_review_valid": true,
+    "historical_baseline_attestation_status": "not_supplied_or_invalid",
+    "historical_interpretation": "The nested baseline-specific status does not match this current-source attestation; historical fidelity remains mechanical additive. No historical baseline review approval or behavioral promotion is claimed."
+  },
+  "artifact_sha256": {
+    "src/intent_pipeline/capability_resources.py": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb",
+    "src/intent_pipeline/uac_modes.py": "334422bc6f781b4d4717ccee9468c6545ea72dc8140e8a25bd94b5a254963e87",
+    "scripts/uac-import.py": "2ce48769370eff07f782ccb9f7274ad0b7a50f2e0b5bcfb84e81b9558e770f52",
+    "scripts/build-surfaces.py": "dc93a0e631e9c8c2ec6a8a6561b25cedcc9ce97fd6920e41aaca641fc501c87d",
+    "scripts/validate-surfaces.py": "9ce79520ebadfed6ef9690634110e82d20fb366d573742a4c4ff4b7cabd1589e",
+    ".meta/manifest.json": "05ab6793bcd846c9f53cfb56e8889a478f0e41598cf81fba7099562bcfa4728e",
+    ".meta/capability-handoff.json": "5b559c6b087f970e874c8886f595103de2fb158360e0b471fa338e7c9517b9ef",
+    ".meta/capabilities/engos-design-architecture.json": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945"
+  },
+  "limits": [
+    "Source/package approval only; controller integrated CI, hosted checks and draft delivery remain separate.",
+    "No merge, installation, release or behavioral promotion performed."
+  ],
+  "verification": {
+    "command": "Python 3.14 validation environment -m pytest tests/test_resource_backed_skill_surfaces.py tests/test_uac_promotion_apply.py -q",
+    "exit_code": 0,
+    "result": "22 passed in 43.96s",
+    "scope": "All actual generation-dependent package checks, curated-mode generator regression, same-slug UAC preview/apply merge regression and surrounding UAC application tests. Prior 162 focused resource tests are recorded separately; counts are not pooled as independent coverage.",
+    "serialization": "Controller held further writes throughout this completed final run; final source/artifact hashes rechecked unchanged after tests."
+  }
+}

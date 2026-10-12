@@ -368,3 +368,221 @@ def test_spec_trace_template_is_blank_and_makes_no_coverage_claim() -> None:
     }
     assert not (SPEC_RESOURCE_ROOT / "scripts/trace_check.py").exists()
     assert not (SPEC_RESOURCE_ROOT / "schemas/trace-result.schema.json").exists()
+
+
+# D2.S2: source authority and detached-package consistency are distinct checks.
+def shared_fixture(repo: Path):
+    import hashlib
+    for slug in ('owner', 'consumer'):
+        (repo / 'ssot').mkdir(exist_ok=True, parents=True)
+        (repo / 'ssot' / f'{slug}.md').write_text(f'---\nname: {slug}\n---\n# {slug}\n')
+        root = repo / 'sources/capability-resources' / slug
+        root.mkdir(parents=True)
+        save_manifest(root, {'schema_version': 'CapabilityResourceMap.v1', 'shared': [],
+                             'routes': {'contract': ['schema.json']}, 'dependencies': {},
+                             **({'shared_imports': ['contract-v1']} if slug == 'consumer' else {})})
+    (repo / 'sources/capability-resources/owner/schema.json').write_text('{"type":"object"}\n')
+    row = {'id': 'contract-v1', 'owner': 'owner', 'source': 'schema.json',
+           'sha256': hashlib.sha256(b'{"type":"object"}\n').hexdigest(),
+           'consumers': [{'slug': 'consumer', 'destination': 'schema.json'}]}
+    registry = {'schema_version': 'SharedResourceImports.v1', 'imports': [row]}
+    (repo / '.meta').mkdir()
+    (repo / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    return registry
+
+
+def shared_load(repo):
+    from intent_pipeline.capability_resources import load_capability_bundle
+    return load_capability_bundle(repo, 'consumer', '', 'contract')
+
+
+def detached_shared(repo, target):
+    bundle = shared_load(repo)
+    target.mkdir(parents=True)
+    shutil.copyfile(repo / 'sources/capability-resources/consumer/resource-map.json', target / 'resource-map.json')
+    for item in bundle['resources']:
+        path = target / item['path']; path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(item['content'].encode())
+    (target / 'shared-resource-imports.json').write_text(json.dumps(bundle['shared_imports']))
+    return bundle
+
+
+def test_shared_package_is_detached_and_provenance_names_authored_owner(tmp_path):
+    shared_fixture(tmp_path)
+    detached = tmp_path / 'detached'
+    bundle = detached_shared(tmp_path, detached)
+    assert bundle['resources'][0]['source_path'] == 'sources/capability-resources/owner/schema.json'
+    assert not (tmp_path / 'sources/capability-resources/consumer/schema.json').exists()
+    (tmp_path / 'sources/capability-resources/owner/schema.json').write_text('owner changed')
+    assert load_resource_bundle(detached, 'contract') == bundle
+    with pytest.raises(ResourceContractError, match='digest'):
+        shared_load(tmp_path)
+
+
+@pytest.mark.parametrize('failure', ['owner_name', 'owner_absent', 'undeclared', 'digest', 'source_missing',
+    'source_symlink', 'root_symlink', 'registry_symlink', 'manifest_symlink', 'traversal', 'absolute', 'duplicate_id',
+    'duplicate_destination', 'collision', 'shadow', 'reserved', 'package_shadow', 'self_cycle', 'unknown', 'unused',
+    'extra_field', 'duplicate_key', 'missing_dependency', 'unresolved_reference', 'local_cycle', 'source_reexport'])
+def test_shared_registry_rejects_invalid_authority(tmp_path, failure):
+    registry = shared_fixture(tmp_path); row = registry['imports'][0]
+    owner = tmp_path / 'sources/capability-resources/owner'
+    consumer = tmp_path / 'sources/capability-resources/consumer'
+    if failure == 'owner_name': (tmp_path / 'ssot/owner.md').write_text('---\nname: wrong\n---\n')
+    elif failure == 'owner_absent': (tmp_path / 'ssot/owner.md').unlink()
+    elif failure == 'undeclared': save_manifest(owner, {'schema_version': 'CapabilityResourceMap.v1', 'shared': [], 'routes': {}, 'dependencies': {}})
+    elif failure == 'digest': row['sha256'] = 'a' * 64
+    elif failure == 'source_missing': (owner / 'schema.json').unlink()
+    elif failure in ('source_symlink', 'manifest_symlink'):
+        source = owner / ('schema.json' if failure == 'source_symlink' else 'resource-map.json')
+        elsewhere = tmp_path / 'elsewhere'; source.rename(elsewhere); source.symlink_to(elsewhere)
+    elif failure == 'root_symlink':
+        elsewhere = tmp_path / 'elsewhere'; owner.rename(elsewhere); owner.symlink_to(elsewhere, target_is_directory=True)
+    elif failure == 'traversal': row['source'] = '../schema.json'
+    elif failure == 'absolute': row['source'] = '/schema.json'
+    elif failure == 'duplicate_id': registry['imports'].append(dict(row))
+    elif failure == 'duplicate_destination': row['consumers'].append(dict(row['consumers'][0]))
+    elif failure == 'collision': row['consumers'].append({'slug': 'consumer', 'destination': 'schema.json/child'})
+    elif failure == 'shadow': (consumer / 'schema.json').write_bytes((owner / 'schema.json').read_bytes())
+    elif failure == 'reserved': row['consumers'][0]['destination'] = 'capability.json'
+    elif failure == 'package_shadow':
+        path = tmp_path / 'sources/skill-package-resources/consumer/resources/schema.json'; path.parent.mkdir(parents=True); path.write_text('shadow')
+    elif failure == 'self_cycle': row['consumers'][0]['slug'] = 'owner'
+    elif failure in ('unknown', 'unused', 'local_cycle', 'source_reexport'):
+        manifest = json.loads((consumer / 'resource-map.json').read_text())
+        if failure == 'unknown': manifest['shared_imports'] = ['unknown']
+        elif failure == 'unused': manifest['shared_imports'] = []
+        elif failure == 'local_cycle': manifest['dependencies'] = {'schema.json': ['schema.json']}
+        else:
+            other = dict(row, id='return-v1', owner='consumer', consumers=[{'slug': 'owner', 'destination': 'schema.json'}])
+            registry['imports'].append(other)
+            (consumer / 'schema.json').write_bytes((owner / 'schema.json').read_bytes())
+        save_manifest(consumer, manifest)
+    elif failure == 'extra_field': row['fallback'] = True
+    elif failure == 'missing_dependency':
+        manifest = json.loads((owner / 'resource-map.json').read_text()); manifest['dependencies'] = {'schema.json': ['dep.md']}
+        (owner / 'dep.md').write_text('dependency'); save_manifest(owner, manifest)
+    elif failure == 'unresolved_reference':
+        import hashlib
+        raw = b'read resources/absent.md'; (owner / 'schema.json').write_bytes(raw); row['sha256'] = hashlib.sha256(raw).hexdigest()
+    path = tmp_path / '.meta/shared-resource-imports.json'; path.write_text(json.dumps(registry))
+    if failure == 'duplicate_key': path.write_text('{"schema_version":1,"schema_version":2}')
+    if failure == 'registry_symlink':
+        elsewhere = tmp_path / 'elsewhere'; path.rename(elsewhere); path.symlink_to(elsewhere)
+    with pytest.raises(ResourceContractError): shared_load(tmp_path)
+
+
+@pytest.mark.parametrize('failure', ['missing_receipt', 'bytes', 'owner', 'id', 'destination', 'unknown_field', 'duplicate', 'undeclared', 'source_path', 'digest'])
+def test_detached_imports_fail_closed(tmp_path, failure):
+    shared_fixture(tmp_path); target = tmp_path / 'detached'; detached_shared(tmp_path, target)
+    path = target / 'shared-resource-imports.json'; receipt = json.loads(path.read_text())
+    if failure == 'missing_receipt': path.unlink()
+    elif failure == 'bytes': (target / 'schema.json').write_text('tampered')
+    else:
+        binding = receipt['imports'][0]
+        if failure == 'owner': binding['owner'] = 'consumer'
+        elif failure == 'id': binding['id'] = 'other'
+        elif failure == 'destination': binding['destination'] = 'capability.json'
+        elif failure == 'unknown_field': receipt['trusted'] = True
+        elif failure == 'duplicate': receipt['imports'].append(dict(binding))
+        elif failure == 'undeclared': binding['destination'] = 'other.json'
+        elif failure == 'source_path': binding['source'] = '../escape'
+        elif failure == 'digest': binding['sha256'] = '0' * 64
+        path.write_text(json.dumps(receipt))
+    with pytest.raises(ResourceContractError): load_resource_bundle(target)
+
+
+def test_shared_identity_binds_owner_but_excludes_unrelated_rows(tmp_path):
+    registry = shared_fixture(tmp_path); before = shared_load(tmp_path)
+    shutil.copytree(tmp_path / 'sources/capability-resources/owner', tmp_path / 'sources/capability-resources/other')
+    (tmp_path / 'ssot/other.md').write_text('---\nname: other\n---\n')
+    registry['imports'][0]['owner'] = 'other'
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    after = shared_load(tmp_path)
+    assert before['resources'][0]['sha256'] == after['resources'][0]['sha256']
+    assert before['sha256'] != after['sha256']
+    shutil.copytree(tmp_path / 'sources/capability-resources/consumer', tmp_path / 'sources/capability-resources/extra')
+    (tmp_path / 'ssot/extra.md').write_text('---\nname: extra\n---\n')
+    manifest_path = tmp_path / 'sources/capability-resources/extra/resource-map.json'
+    manifest = json.loads(manifest_path.read_text()); manifest['shared_imports'] = ['extra-v1']; manifest_path.write_text(json.dumps(manifest))
+    registry['imports'].append(dict(registry['imports'][0], id='extra-v1', owner='owner', consumers=[{'slug': 'extra', 'destination': 'schema.json'}]))
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    assert shared_load(tmp_path) == after
+
+
+def test_shared_explicit_dependency_closure(tmp_path):
+    import hashlib
+    registry = shared_fixture(tmp_path)
+    for slug in ('owner', 'consumer'):
+        root = tmp_path / 'sources/capability-resources' / slug
+        manifest = json.loads((root / 'resource-map.json').read_text()); manifest['dependencies'] = {'schema.json': ['dep.md']}
+        if slug == 'consumer': manifest['shared_imports'].append('dep-v1')
+        else: (root / 'dep.md').write_text('shared dependency\n')
+        save_manifest(root, manifest)
+    registry['imports'].append({'id': 'dep-v1', 'owner': 'owner', 'source': 'dep.md', 'sha256': hashlib.sha256(b'shared dependency\n').hexdigest(), 'consumers': [{'slug': 'consumer', 'destination': 'dep.md'}]})
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    assert paths(shared_load(tmp_path)) == ['dep.md', 'schema.json']
+
+
+def test_uac_resource_admission_uses_canonical_imports(tmp_path):
+    from intent_pipeline.uac_quality import _load_declared_capability_resource_texts
+    shared_fixture(tmp_path)
+    assert _load_declared_capability_resource_texts('consumer', '', repo_root=tmp_path) == ('{"type":"object"}\n',)
+
+
+def test_no_import_hash_contract_remains_byte_equivalent(tmp_path):
+    import hashlib
+    write_bundle(tmp_path)
+    bundle = load_resource_bundle(tmp_path, 'basis')
+    identity = {'schema_version': 'CapabilityResourceBundle.v1',
+                'manifest_sha256': hashlib.sha256((tmp_path / 'resource-map.json').read_bytes()).hexdigest(),
+                'route': 'basis', 'resources': [{'path': p, 'sha256': hashlib.sha256((tmp_path / p).read_bytes()).hexdigest()} for p in ['shared.md', 'principles.md', 'basis.md']]}
+    assert bundle['sha256'] == hashlib.sha256(json.dumps(identity, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    assert 'shared_imports' not in bundle
+    assert all(set(item) == {'path', 'sha256', 'content'} for item in bundle['resources'])
+
+
+@pytest.mark.parametrize('registry_state', ['missing', 'empty', 'undeclared_consumer'])
+@pytest.mark.parametrize('generated_sidecar', [False, True])
+@pytest.mark.parametrize('entrypoint', ['canonical', 'preflight'])
+def test_canonical_shared_import_never_falls_back_to_detached_receipt(tmp_path, registry_state, generated_sidecar, entrypoint):
+    from intent_pipeline.capability_resources import validate_shared_resource_imports
+    registry = shared_fixture(tmp_path)
+    bundle = shared_load(tmp_path)
+    consumer = tmp_path / 'sources/capability-resources/consumer'
+    if generated_sidecar:
+        (consumer / 'schema.json').write_bytes(bundle['resources'][0]['content'].encode())
+        (consumer / 'shared-resource-imports.json').write_text(json.dumps(bundle['shared_imports']))
+        assert load_resource_bundle(consumer, 'contract') == bundle
+    path = tmp_path / '.meta/shared-resource-imports.json'
+    if registry_state == 'missing':
+        path.unlink()
+    elif registry_state == 'empty':
+        path.write_text(json.dumps({'schema_version': 'SharedResourceImports.v1', 'imports': []}))
+    else:
+        shutil.copytree(tmp_path / 'sources/capability-resources/owner', tmp_path / 'sources/capability-resources/other')
+        (tmp_path / 'sources/capability-resources/other/schema.json').unlink()
+        (tmp_path / 'ssot/other.md').write_text('---\nname: other\n---\n')
+        manifest = json.loads((consumer / 'resource-map.json').read_text())
+        save_manifest(tmp_path / 'sources/capability-resources/other', manifest)
+        registry['imports'][0]['consumers'][0]['slug'] = 'other'
+        path.write_text(json.dumps(registry))
+    with pytest.raises(ResourceContractError):
+        (shared_load if entrypoint == "canonical" else validate_shared_resource_imports)(tmp_path)
+
+
+@pytest.mark.parametrize('content', [
+    r'{"\u0024ref": "outside.json"}',
+    r'{"properties":{"nested":{"\u0024ref":"outside.json"}}}',
+    r'{"allOf":[{"\u0024dynamicRef":"outside.json"}]}',
+    r'{"$dynamicRef":"outside.json"}',
+    r'{"$ref":"outside.json"}',
+])
+def test_shared_json_references_are_decoded_before_rejection(tmp_path, content):
+    import hashlib
+    registry = shared_fixture(tmp_path)
+    source = tmp_path / 'sources/capability-resources/owner/schema.json'
+    source.write_text(content)
+    registry['imports'][0]['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    with pytest.raises(ResourceContractError, match='closure'):
+        shared_load(tmp_path)

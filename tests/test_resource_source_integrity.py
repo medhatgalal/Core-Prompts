@@ -118,3 +118,26 @@ def test_topology_modes_and_clauses_use_the_same_resource_snapshot(tmp_path: Pat
     topology = compile_topology(entry)
     assert "/review" in topology["explicit_invocations"]
     assert "/changed" not in topology["explicit_invocations"]
+
+
+def test_imported_modes_and_clauses_name_real_owner_files(tmp_path):
+    import hashlib
+    from test_capability_resources import shared_fixture
+    from intent_pipeline.uac_modes import extract_capability_modes
+    from intent_pipeline.skill_jobs import compile_skill_job
+    registry = shared_fixture(tmp_path)
+    source = tmp_path / 'sources/capability-resources/owner/schema.json'
+    source.write_text('## MODULE: /review\nNever invent approval.\n')
+    registry['imports'][0]['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    entry = tmp_path / 'ssot/consumer.md'; text = entry.read_text()
+    owner_path = 'sources/capability-resources/owner/schema.json'
+    modes = extract_capability_modes(tmp_path, 'consumer', text)
+    assert modes[0]['source_refs'] == [owner_path]
+    topology = compile_topology(entry)
+    clause = next(c for c in topology['protected_invariants'] if 'approval' in c['text'])
+    assert clause['source'] == owner_path
+    assert source.read_text().splitlines()[clause['source_line'] - 1] == clause['text']
+    job = compile_skill_job(tmp_path, 'consumer', text, display_name='Consumer', description='Design')
+    assert owner_path in json.dumps(job)
+    assert 'sources/capability-resources/consumer/schema.json' not in json.dumps(job)

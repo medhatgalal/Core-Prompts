@@ -1,0 +1,174 @@
+F..F..FFFF.                                                              [100%]
+=================================== FAILURES ===================================
+_ test_canonical_shared_import_never_falls_back_to_detached_receipt[False-missing] _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-171/test_canonical_shared_import_n0')
+registry_state = 'missing', generated_sidecar = False
+
+    @pytest.mark.parametrize('registry_state', ['missing', 'empty', 'undeclared_consumer'])
+    @pytest.mark.parametrize('generated_sidecar', [False, True])
+    def test_canonical_shared_import_never_falls_back_to_detached_receipt(tmp_path, registry_state, generated_sidecar):
+        from intent_pipeline.capability_resources import validate_shared_resource_imports
+        registry = shared_fixture(tmp_path)
+        bundle = shared_load(tmp_path)
+        consumer = tmp_path / 'sources/capability-resources/consumer'
+        if generated_sidecar:
+            (consumer / 'schema.json').write_bytes(bundle['resources'][0]['content'].encode())
+            (consumer / 'shared-resource-imports.json').write_text(json.dumps(bundle['shared_imports']))
+            assert load_resource_bundle(consumer, 'contract') == bundle
+        path = tmp_path / '.meta/shared-resource-imports.json'
+        if registry_state == 'missing':
+            path.unlink()
+        elif registry_state == 'empty':
+            path.write_text(json.dumps({'schema_version': 'SharedResourceImports.v1', 'imports': []}))
+        else:
+            shutil.copytree(tmp_path / 'sources/capability-resources/owner', tmp_path / 'sources/capability-resources/other')
+            (tmp_path / 'sources/capability-resources/other/schema.json').unlink()
+            (tmp_path / 'ssot/other.md').write_text('---\nname: other\n---\n')
+            manifest = json.loads((consumer / 'resource-map.json').read_text())
+            save_manifest(tmp_path / 'sources/capability-resources/other', manifest)
+            registry['imports'][0]['consumers'][0]['slug'] = 'other'
+            path.write_text(json.dumps(registry))
+>       with pytest.raises(ResourceContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'intent_pipeline.capability_resources.ResourceContractError'>
+
+tests/test_capability_resources.py:568: Failed
+_ test_canonical_shared_import_never_falls_back_to_detached_receipt[True-missing] _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-171/test_canonical_shared_import_n3')
+registry_state = 'missing', generated_sidecar = True
+
+    @pytest.mark.parametrize('registry_state', ['missing', 'empty', 'undeclared_consumer'])
+    @pytest.mark.parametrize('generated_sidecar', [False, True])
+    def test_canonical_shared_import_never_falls_back_to_detached_receipt(tmp_path, registry_state, generated_sidecar):
+        from intent_pipeline.capability_resources import validate_shared_resource_imports
+        registry = shared_fixture(tmp_path)
+        bundle = shared_load(tmp_path)
+        consumer = tmp_path / 'sources/capability-resources/consumer'
+        if generated_sidecar:
+            (consumer / 'schema.json').write_bytes(bundle['resources'][0]['content'].encode())
+            (consumer / 'shared-resource-imports.json').write_text(json.dumps(bundle['shared_imports']))
+            assert load_resource_bundle(consumer, 'contract') == bundle
+        path = tmp_path / '.meta/shared-resource-imports.json'
+        if registry_state == 'missing':
+            path.unlink()
+        elif registry_state == 'empty':
+            path.write_text(json.dumps({'schema_version': 'SharedResourceImports.v1', 'imports': []}))
+        else:
+            shutil.copytree(tmp_path / 'sources/capability-resources/owner', tmp_path / 'sources/capability-resources/other')
+            (tmp_path / 'sources/capability-resources/other/schema.json').unlink()
+            (tmp_path / 'ssot/other.md').write_text('---\nname: other\n---\n')
+            manifest = json.loads((consumer / 'resource-map.json').read_text())
+            save_manifest(tmp_path / 'sources/capability-resources/other', manifest)
+            registry['imports'][0]['consumers'][0]['slug'] = 'other'
+            path.write_text(json.dumps(registry))
+>       with pytest.raises(ResourceContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'intent_pipeline.capability_resources.ResourceContractError'>
+
+tests/test_capability_resources.py:568: Failed
+_ test_shared_json_references_are_decoded_before_rejection[{"\\u0024ref": "outside.json"}] _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-171/test_shared_json_references_ar0')
+content = '{"\\u0024ref": "outside.json"}'
+
+    @pytest.mark.parametrize('content', [
+        r'{"\u0024ref": "outside.json"}',
+        r'{"properties":{"nested":{"\u0024ref":"outside.json"}}}',
+        r'{"allOf":[{"\u0024dynamicRef":"outside.json"}]}',
+        r'{"$dynamicRef":"outside.json"}',
+        r'{"$ref":"outside.json"}',
+    ])
+    def test_shared_json_references_are_decoded_before_rejection(tmp_path, content):
+        import hashlib
+        registry = shared_fixture(tmp_path)
+        source = tmp_path / 'sources/capability-resources/owner/schema.json'
+        source.write_text(content)
+        registry['imports'][0]['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+        (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+>       with pytest.raises(ResourceContractError, match='closure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'intent_pipeline.capability_resources.ResourceContractError'>
+
+tests/test_capability_resources.py:588: Failed
+_ test_shared_json_references_are_decoded_before_rejection[{"properties":{"nested":{"\\u0024ref":"outside.json"}}}] _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-171/test_shared_json_references_ar1')
+content = '{"properties":{"nested":{"\\u0024ref":"outside.json"}}}'
+
+    @pytest.mark.parametrize('content', [
+        r'{"\u0024ref": "outside.json"}',
+        r'{"properties":{"nested":{"\u0024ref":"outside.json"}}}',
+        r'{"allOf":[{"\u0024dynamicRef":"outside.json"}]}',
+        r'{"$dynamicRef":"outside.json"}',
+        r'{"$ref":"outside.json"}',
+    ])
+    def test_shared_json_references_are_decoded_before_rejection(tmp_path, content):
+        import hashlib
+        registry = shared_fixture(tmp_path)
+        source = tmp_path / 'sources/capability-resources/owner/schema.json'
+        source.write_text(content)
+        registry['imports'][0]['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+        (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+>       with pytest.raises(ResourceContractError, match='closure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'intent_pipeline.capability_resources.ResourceContractError'>
+
+tests/test_capability_resources.py:588: Failed
+_ test_shared_json_references_are_decoded_before_rejection[{"allOf":[{"\\u0024dynamicRef":"outside.json"}]}] _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-171/test_shared_json_references_ar2')
+content = '{"allOf":[{"\\u0024dynamicRef":"outside.json"}]}'
+
+    @pytest.mark.parametrize('content', [
+        r'{"\u0024ref": "outside.json"}',
+        r'{"properties":{"nested":{"\u0024ref":"outside.json"}}}',
+        r'{"allOf":[{"\u0024dynamicRef":"outside.json"}]}',
+        r'{"$dynamicRef":"outside.json"}',
+        r'{"$ref":"outside.json"}',
+    ])
+    def test_shared_json_references_are_decoded_before_rejection(tmp_path, content):
+        import hashlib
+        registry = shared_fixture(tmp_path)
+        source = tmp_path / 'sources/capability-resources/owner/schema.json'
+        source.write_text(content)
+        registry['imports'][0]['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+        (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+>       with pytest.raises(ResourceContractError, match='closure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'intent_pipeline.capability_resources.ResourceContractError'>
+
+tests/test_capability_resources.py:588: Failed
+_ test_shared_json_references_are_decoded_before_rejection[{"$dynamicRef":"outside.json"}] _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-171/test_shared_json_references_ar3')
+content = '{"$dynamicRef":"outside.json"}'
+
+    @pytest.mark.parametrize('content', [
+        r'{"\u0024ref": "outside.json"}',
+        r'{"properties":{"nested":{"\u0024ref":"outside.json"}}}',
+        r'{"allOf":[{"\u0024dynamicRef":"outside.json"}]}',
+        r'{"$dynamicRef":"outside.json"}',
+        r'{"$ref":"outside.json"}',
+    ])
+    def test_shared_json_references_are_decoded_before_rejection(tmp_path, content):
+        import hashlib
+        registry = shared_fixture(tmp_path)
+        source = tmp_path / 'sources/capability-resources/owner/schema.json'
+        source.write_text(content)
+        registry['imports'][0]['sha256'] = hashlib.sha256(source.read_bytes()).hexdigest()
+        (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+>       with pytest.raises(ResourceContractError, match='closure'):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE <class 'intent_pipeline.capability_resources.ResourceContractError'>
+
+tests/test_capability_resources.py:588: Failed
+=========================== short test summary info ============================
+FAILED tests/test_capability_resources.py::test_canonical_shared_import_never_falls_back_to_detached_receipt[False-missing]
+FAILED tests/test_capability_resources.py::test_canonical_shared_import_never_falls_back_to_detached_receipt[True-missing]
+FAILED tests/test_capability_resources.py::test_shared_json_references_are_decoded_before_rejection[{"\\u0024ref": "outside.json"}]
+FAILED tests/test_capability_resources.py::test_shared_json_references_are_decoded_before_rejection[{"properties":{"nested":{"\\u0024ref":"outside.json"}}}]
+FAILED tests/test_capability_resources.py::test_shared_json_references_are_decoded_before_rejection[{"allOf":[{"\\u0024dynamicRef":"outside.json"}]}]
+FAILED tests/test_capability_resources.py::test_shared_json_references_are_decoded_before_rejection[{"$dynamicRef":"outside.json"}]
+6 failed, 5 passed, 108 deselected in 0.42s

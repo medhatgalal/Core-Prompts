@@ -27,6 +27,14 @@ bugfix. The result is a draft with source and authority status; a schema pass do
 not approve it. Material design and task planning remain separate jobs.
 [See all three specification routes](EXAMPLES.md#engos-design-specify-change).
 
+For an optional structured handoff, supply the accepted revision and ask:
+“Use `engos-design-architecture` with this `SpecContract.v1`; preserve requirement
+IDs, acceptance and authority, and return requirement changes to the specification
+owner.” The architecture package carries its own generated schema copy, sourced
+from `engos-design-specify-change`. It does not need that sibling installed. A
+schema pass checks shape; it grants no approval. Ordinary architecture work can
+still start from prose. [Example and expected output](EXAMPLES.md#engos-design-architecture).
+
 For a product/engineering shaping workshop, use `engos-design-shaping` with the
 documents you already have. It should summarize the problem and ask a few useful
 questions, not require a complete form or choose an architecture immediately.

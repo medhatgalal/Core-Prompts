@@ -1,0 +1,53 @@
+{
+  "author": "d2_s2_implementation_astra",
+  "scope": "D2.S2 settled design implementation; candidate only, no canonical SSOT edits, build, UAC apply, commit, push, merge, release or installation",
+  "apis": {
+    "validate_shared_resource_imports(repo_root)": "Complete finite registry validation; sorted per-consumer binding list",
+    "load_capability_bundle(repo_root, slug, entry_text, route)": "Virtual canonical inventory with exact source-owned imports",
+    "load_resource_bundle(resource_root, route)": "Detached local receipt and bytes only; no ambient owner lookup",
+    "bundle.shared_imports": "Derived SharedResourceImportReceipt.v1 object for importing bundles only",
+    "resource.source_path": "Actual canonical owner repo-relative source path on imported items only; item.path retains consumer-local destination"
+  },
+  "verification": {
+    "command": "python -m pytest tests/test_capability_resources.py tests/test_resource_delivery.py tests/test_resource_source_integrity.py tests/test_resource_backed_skill_surfaces.py -q -k 'not bundles_are_complete and not deliver_every_declared_route'",
+    "runtime": "controller-provided Python 3.14 declared-dependency validation environment",
+    "result": "144 passed, 2 deselected in 2.54s",
+    "deselected_reason": "These two existing tests assert real generated surfaces, which remain controller-owned pending canonical UAC apply and generation.",
+    "generation_fixture": "Runs copy_capability_resources into pytest-owned roots for all five providers, detached CLI loader, independent generated validator, and forged-receipt canonical mismatch",
+    "diff_check": "passed",
+    "model_calls": 0,
+    "owner_schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+    "generated_and_ssot_diff": "No changes by author; exact task fixture path absent"
+  },
+  "failures": [
+    {
+      "category": "test",
+      "test": "test_shared_build_and_independent_validation_on_all_providers",
+      "cause": "Initial fixture patched ROOT but not captured RESOURCE_DIRS constants; it wrote one task-created fixture resource-map before relative_to rejected the original checkout path.",
+      "repair": "Patch RESOURCE_DIRS explicitly to fixture-root lambdas. Removed only .codex/skills/consumer/resources/resource-map.json and its two empty task-created directories. Verified no consumer fixture remains and git status shows no generated output modifications.",
+      "result": "Passed on rerun; no production bug claim. No real capability generation occurred."
+    }
+  ],
+  "call_site_audit": "All tracked production load_resource_bundle calls audited. UAC quality now uses canonical resolver. Evaluation runner chooses canonical resolution for explicit sources/capability-resources/<slug> roots and standalone loading for historical snapshots. No production evaluation snapshot materializer exists in scripts/src/evals; tests create detached snapshots from resolved resource bytes and receipt and verify immutability after owner drift. Existing immediate pre-dispatch revalidation blocks owner drift with zero adapter calls.",
+  "pending": [
+    "Controller canonical same-slug UAC apply",
+    "Controller real generation and all-provider inventory tests",
+    "Independent review",
+    "Full integrated CI and draft PR/MR delivery"
+  ],
+  "review_remediation": {
+    "findings": [
+      "D2S2-IMPL-001",
+      "D2S2-IMPL-002"
+    ],
+    "category": "code",
+    "red_evidence": "review-fixes-red-entrypoints.log: 7 failed, 10 passed; independent canonical and preflight entrypoint tests plus escaped and dynamic JSON references",
+    "repairs": [
+      "Registry absence no longer skips canonical declaration scanning. Canonical API always rejects generated sidecars and checks manifest import IDs against actual authorized bindings before legacy fallback.",
+      "Parse valid JSON using duplicate-key parser and recursively reject decoded $ref and $dynamicRef keys rather than matching lexical text. Non-JSON resources and legacy no-import behavior remain unchanged."
+    ],
+    "green_evidence": "review-fixes-green-final.log: 162 passed, 2 generation-dependent tests deselected; review-fixes-builder-preflight.log: 1 passed after adding an unconditional test guard against later build phases",
+    "build_preflight_proof": "Fixture asserts next build phase is unreachable and no provider output directories exist; guard raises immediately if preflight regresses.",
+    "scope": "No UAC, real generation, Git mutations, owner source changes or installation. All tests complete."
+  }
+}

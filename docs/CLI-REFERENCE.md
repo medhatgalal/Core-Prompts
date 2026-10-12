@@ -70,7 +70,74 @@ each generated skill carries it at `resources/schemas/spec-contract.schema.json`
 Keep the repository's existing spec format and add a sidecar only when needed.
 JSON Schema checks field shape and bugfix triad presence, while property-level ID
 uniqueness, reference existence, decisions and semantics need separate review.
-There is no bundled trace-check command or shared-resource import in this slice.
+There is no bundled trace-check command. The architecture handoff below uses an
+explicit shared-resource import.
+
+### Architecture Specification Input
+
+When a supplied `SpecContract.v1` is relevant, run from the generated or installed
+`engos-design-architecture` skill directory:
+
+```bash
+python3 resources/scripts/load_module.py --route spec-contract --format text
+```
+
+The command emits the selected schema; it does not validate a user specification
+or execute architecture work. Architecture preserves the supplied requirement
+IDs, acceptance, non-goals, sources and authority, then links design decisions to
+them. Unresolved requirement changes return to the specification owner. Ordinary
+architecture work does not require this route or a SpecContract.
+
+### Source-Owned Shared Resources
+
+The finite `SharedResourceImports.v1` registry at
+`.meta/shared-resource-imports.json` names each import ID, authored owner/source,
+SHA256 and allowed consumer/destination. An importing `CapabilityResourceMap.v1`
+explicitly selects IDs through optional `shared_imports`; registry presence alone
+does not activate a consumer. The destination must also be declared in its normal
+resource routes or dependency closure.
+
+The first binding is `spec-contract-v1`: `engos-design-specify-change` owns
+`schemas/spec-contract.schema.json`; `engos-design-architecture` consumes those
+unchanged bytes through its optional `spec-contract` route. Do not author another
+schema at the consumer destination. Each of the five generated architecture
+packages contains `resources/schemas/spec-contract.schema.json` and a derived
+`resources/shared-resource-imports.json` (`SharedResourceImportReceipt.v1`).
+The receipt records ownership and byte provenance; it is not an approval.
+
+The package-local loader resolves only its bundled files and receipt. It needs
+neither a source checkout nor the owner's installed skill. Receipt/byte consistency
+alone does not authenticate a package; use the trusted package or installation
+identity. Repository validation also compares the generated package against the
+canonical registry and owner. Missing resources or receipts, digest drift,
+unauthorized bindings, collisions, local or infrastructure shadows, cycles and
+symlink escapes fail closed. Dependencies require explicit consumer bindings.
+Shared JSON does not support JSON Reference dependency resolution in v1: decoded
+`$ref` and `$dynamicRef` directives are rejected recursively, including escaped
+spellings of those keys. Declare supported resource dependencies explicitly;
+do not assume the loader resolves JSON Reference targets.
+
+Existing maps without imports retain their compatibility and bundle identity.
+Older loaders reject the new field. Upgrade an importing package as a complete
+bundle containing its map, loader, schema and receipt; do not copy a new map onto
+an old loader or remove the receipt to simulate a legacy package. This packaging
+change does not expand an installation profile or install another skill.
+
+For an intentional source update:
+
+1. Edit the sole owner's canonical resource and review the intended contract change.
+2. Deliberately update its registry SHA256; stale digests must fail before build.
+3. Regenerate with `python3 scripts/build-surfaces.py`, then validate with
+   `python3 scripts/validate-surfaces.py` and the focused resource checks.
+4. Renew affected requirement reviews and evaluation bindings. Effective identity
+   includes the import ID, owner, source, destination and digest, so a binding
+   change invalidates old evidence even when the bytes or entrypoint are unchanged.
+   Preserve detached historical snapshots rather than hydrating them from today's
+   owner files.
+
+Roll back the route, its import selection, registry binding and architecture
+instructions together, then regenerate and renew the affected evidence. Keep
+intentional generated copies; they are portable delivery outputs.
 
 ### Validate Or Render An OpEx Digest Snapshot
 
@@ -306,7 +373,7 @@ These generated views are derived from canonical metadata and reports. They are 
 
 ## Generated Surfaces
 
-The current inventory emits 29 skills across all five CLIs and no named agents.
+The current inventory emits 33 skills across all five CLIs and no named agents.
 The table documents supported output formats, not a list of installed or shipped
 agents. Agent columns apply only to future explicitly user-approved native
 adapters. UAC improvement within an existing surface does not authorize adding
@@ -325,6 +392,17 @@ approval. See [agent admission](UAC-CAPABILITY-MODEL.md#skill-first-classificati
 ## Direct Surface Standard
 
 Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported CLI. This repo does not deploy direct exposure into vendor `commands/` or `prompts/` directories.
+
+### Vendoring A Generated Skill
+
+When copying a reviewed skill into another repository, copy its complete generated
+`skills/<slug>/` directory, including `SKILL.md` and `resources/`. For an importing
+consumer, keep the map, import-aware loader, imported bytes and provenance receipt
+from the same reviewed bundle. Do not copy only the entrypoint or reconstruct its
+resources from separately installed siblings. The consumer package runs without
+the canonical owner's package; author changes at the canonical owner and regenerate
+instead of treating the generated copy as a new source of truth. See the
+[shared-resource package boundary](RELEASE-PACKAGING.md#shared-resource-consumer-packages).
 
 ## Deploy Contract
 

@@ -1,0 +1,39 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+___ test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview ____
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-181/test_resource_backed_same_slug0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x107e42060>
+
+    def test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview(tmp_path, monkeypatch):
+        import copy
+        slug = 'engos-design-architecture'
+        text = '---\nname: engos-design-architecture\n---\n# Architecture\n## Modes\n### Design API\nCurrent API scope.\n'
+        ssot = tmp_path / 'ssot' / f'{slug}.md'; ssot.parent.mkdir(); ssot.write_text(text)
+        resources = tmp_path / 'sources/capability-resources' / slug; resources.mkdir(parents=True)
+        (resources / 'resource-map.json').write_text(json.dumps({'schema_version': 'CapabilityResourceMap.v1', 'shared': [], 'routes': {'context': ['guide.md']}, 'dependencies': {}}))
+        (resources / 'guide.md').write_text('## Module: /current\nCurrent resource context.\n')
+        curated = [{'entry_kind': 'mode', 'mode_slug': name, 'display_name': name,
+                    'mode_summary': 'Rich curated behavior for ' + name,
+                    'required_inputs': ['product requirement'], 'expected_outputs': ['reviewed design'],
+                    'source_refs': ['https://example.org/source/' + name], 'invocations': [],
+                    'examples': ['curated example'], 'uplift_notes': ['curated boundary']}
+                   for name in ['design-api', 'design-database', 'design-patterns', 'system-design']]
+        existing = {'slug': slug, 'modes': copy.deepcopy(curated) + [{'entry_kind': 'module', 'mode_slug': 'stale'}],
+                    'job_contract': {'keep': 'curated job'}}
+        monkeypatch.setattr(UAC_IMPORT, 'ROOT', tmp_path)
+        monkeypatch.setattr(UAC_IMPORT, 'load_descriptor', lambda root, name: copy.deepcopy(existing))
+        quality = {'final_candidate_text': text, 'status': 'structural_ready'}
+        merged, bound = UAC_IMPORT._merge_existing_descriptor_for_apply(slug, {'modes': []}, ssot_text=text, quality_result=quality)
+        assert bound
+>       assert [mode for mode in merged['modes'] if mode['entry_kind'] == 'mode'] == curated
+E       AssertionError: assert [{'display_na...ts': [], ...}] == [{'display_na...esign'], ...}]
+E
+E         At index 0 diff: {'mode_slug': 'design-api', 'display_name': 'Design API', 'entry_kind': 'mode', 'invocations': [], 'source_refs': ['ssot/engos-design-architecture.md'], 'source_line': 6, 'mode_summary': 'Explicitly declared mode in the canonical skill.', 'required_inputs': [], 'expected_outputs': [], 'examples': [], 'uplift_notes': ['Composition and state rules belong to CapabilityTopology.v1.']} != {'entry_kind': 'mode', 'mode_slug': 'design-api', 'display_name': 'design-api', 'mode_summary': 'Rich curated behavior for design-api', 'required_inputs': ['product require...
+E
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+tests/test_uac_promotion_apply.py:604: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_uac_promotion_apply.py::test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview
+1 failed, 14 deselected in 0.26s

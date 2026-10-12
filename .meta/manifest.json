@@ -6717,7 +6717,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "additive",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -6729,7 +6729,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -6791,7 +6791,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+          "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -6884,7 +6884,7 @@
                   "path": "ssot/engos-design-architecture.md",
                   "start_line": 23,
                   "end_line": 24,
-                  "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+                  "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
                 }
               }
             ]
@@ -6897,9 +6897,14 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-architecture.md",
-            "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-            "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-            "resources": [],
+            "ssot_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+            "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+                "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -6917,7 +6922,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
+            "mapping_sha256": "7beb54fd78e03807513878bbb54b4a888ae081e1323f3996d4765588b3073dd6"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -18315,6 +18320,10 @@
       ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".grok/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".grok/skills/engos-design-architecture/resources/capability.json",
+      ".grok/skills/engos-design-architecture/resources/resource-map.json",
+      ".grok/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      ".grok/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      ".grok/skills/engos-design-architecture/resources/scripts/load_module.py",
       ".grok/skills/engos-design-frame-from-vague/resources/capability.json",
       ".grok/skills/engos-design-frame-from-vague/resources/resource-map.json",
       ".grok/skills/engos-design-frame-from-vague/resources/routing.md",
@@ -18472,6 +18481,10 @@
       ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".codex/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".codex/skills/engos-design-architecture/resources/capability.json",
+      ".codex/skills/engos-design-architecture/resources/resource-map.json",
+      ".codex/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      ".codex/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      ".codex/skills/engos-design-architecture/resources/scripts/load_module.py",
       ".codex/skills/engos-design-frame-from-vague/resources/capability.json",
       ".codex/skills/engos-design-frame-from-vague/resources/resource-map.json",
       ".codex/skills/engos-design-frame-from-vague/resources/routing.md",
@@ -18630,6 +18643,10 @@
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".gemini/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".gemini/skills/engos-design-architecture/resources/capability.json",
+      ".gemini/skills/engos-design-architecture/resources/resource-map.json",
+      ".gemini/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      ".gemini/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      ".gemini/skills/engos-design-architecture/resources/scripts/load_module.py",
       ".gemini/skills/engos-design-frame-from-vague/resources/capability.json",
       ".gemini/skills/engos-design-frame-from-vague/resources/resource-map.json",
       ".gemini/skills/engos-design-frame-from-vague/resources/routing.md",
@@ -18788,6 +18805,10 @@
       ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".claude/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".claude/skills/engos-design-architecture/resources/capability.json",
+      ".claude/skills/engos-design-architecture/resources/resource-map.json",
+      ".claude/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      ".claude/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      ".claude/skills/engos-design-architecture/resources/scripts/load_module.py",
       ".claude/skills/engos-design-frame-from-vague/resources/capability.json",
       ".claude/skills/engos-design-frame-from-vague/resources/resource-map.json",
       ".claude/skills/engos-design-frame-from-vague/resources/routing.md",
@@ -18946,6 +18967,10 @@
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
       ".kiro/skills/engos-delivery-resolve-conflict/resources/capability.json",
       ".kiro/skills/engos-design-architecture/resources/capability.json",
+      ".kiro/skills/engos-design-architecture/resources/resource-map.json",
+      ".kiro/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      ".kiro/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      ".kiro/skills/engos-design-architecture/resources/scripts/load_module.py",
       ".kiro/skills/engos-design-frame-from-vague/resources/capability.json",
       ".kiro/skills/engos-design-frame-from-vague/resources/resource-map.json",
       ".kiro/skills/engos-design-frame-from-vague/resources/routing.md",

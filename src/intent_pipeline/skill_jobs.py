@@ -215,7 +215,7 @@ def compile_skill_job(repo_root: Path, slug: str, raw_text: str, *, display_name
     resources = []
     if bundle:
         for item in bundle["resources"]:
-            resource_path = f"sources/capability-resources/{slug}/{item['path']}"
+            resource_path = item.get("source_path", f"sources/capability-resources/{slug}/{item['path']}")
             resources.append({"path": resource_path, "sha256": item["sha256"]})
             clauses.extend(_source_clauses(item["content"], resource_path))
     def section(*names: str) -> list[dict[str, Any]]:

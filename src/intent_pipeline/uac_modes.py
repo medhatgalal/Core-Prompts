@@ -143,7 +143,7 @@ def extract_capability_modes(repo_root: Path, slug: str, entry_text: str) -> lis
     parts = [(f"ssot/{slug}.md", entry_text)]
     bundle = load_capability_bundle(repo_root, slug, entry_text)
     if bundle is not None:
-        parts.extend((f"sources/capability-resources/{slug}/{item['path']}", item["content"])
+        parts.extend((item.get("source_path", f"sources/capability-resources/{slug}/{item['path']}"), item["content"])
                      for item in bundle["resources"])
     return extract_modes_from_sources(slug, parts)
 
@@ -162,6 +162,20 @@ def extract_modes_from_sources(slug: str, sources: Iterable[tuple[str, str]]) ->
             else:
                 seen[key] = entry
                 modes.append(entry)
+    return modes
+
+
+def refresh_resource_mode_entries(
+    existing: Iterable[Mapping[str, Any]], extracted: Iterable[Mapping[str, Any]],
+) -> list[dict[str, Any]]:
+    """Retain curated product modes while refreshing source-derived context entries."""
+    modes = [deepcopy(dict(mode)) for mode in existing if mode.get("entry_kind", "mode") == "mode"]
+    seen = {(mode.get("entry_kind", "mode"), mode["mode_slug"]) for mode in modes}
+    for mode in extracted:
+        identity = (mode.get("entry_kind", "mode"), mode["mode_slug"])
+        if identity not in seen:
+            modes.append(deepcopy(dict(mode)))
+            seen.add(identity)
     return modes
 
 

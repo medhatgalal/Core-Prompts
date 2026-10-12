@@ -115,7 +115,7 @@ def compile_topology(path: Path) -> dict[str, Any]:
         raise ResourceContractError("Resource-backed topology requires a canonical SSOT path and explicit resource package")
     if bundle is not None:
         for resource in bundle["resources"]:
-            parts.append((f"sources/capability-resources/{slug}/{resource['path']}", resource["content"], resource["sha256"]))
+            parts.append((resource.get("source_path", f"sources/capability-resources/{slug}/{resource['path']}"), resource["content"], resource["sha256"]))
     body = "\n\n".join(part[1] for part in parts)
     lines = [(source, number, number + (body_offset if source == f"ssot/{slug}.md" else 0), line)
              for source, content, _ in parts

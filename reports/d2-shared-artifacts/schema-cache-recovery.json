@@ -1,0 +1,24 @@
+{
+  "classification": "infra",
+  "failure": "Initial apply overlapped unfinished cache refresh; Python transport failed on two Anthropic redirects.",
+  "recovery": [
+    {
+      "url": "https://docs.anthropic.com/en/docs/claude-code/skills",
+      "resolved_url": "https://code.claude.com/docs/en/skills",
+      "status": 200,
+      "checksum": "689d0c3da63ed819eeb45aa1e497d626c86225134e61201529f45a8dbe7c055f",
+      "content_length": 1198911,
+      "fetch_transport": "curl TLS verification enabled; Python transport failed"
+    },
+    {
+      "url": "https://docs.anthropic.com/en/docs/claude-code/sub-agents",
+      "resolved_url": "https://code.claude.com/docs/en/sub-agents",
+      "status": 200,
+      "checksum": "ab7a7c5c63f471502df27b954a82ac384bdd9d70e85e3190d6630f0f95aba94a",
+      "content_length": 1272451,
+      "fetch_transport": "curl TLS verification enabled; Python transport failed"
+    }
+  ],
+  "all_source_entries_ok": 8,
+  "tls_validation_disabled_for_recovery": false
+}

@@ -232,3 +232,35 @@ def test_resource_helper_is_in_evaluator_package_identity(tmp_path: Path) -> Non
     helper = repo / "src/intent_pipeline/capability_resources.py"
     helper.write_text(helper.read_text() + "\n# changed resource assembly\n")
     assert evaluator_package_hash(repo) != before
+
+
+def test_shared_owner_drift_after_preflight_blocks_all_adapter_calls(tmp_path, monkeypatch):
+    from core_prompts_eval import runner
+    from test_capability_resources import shared_fixture, shared_load, detached_shared
+    repo, plan_path = setup_run(tmp_path)
+    shared_fixture(repo)
+    baseline_bundle = detached_shared(repo, repo / 'snapshots/baseline/resources')
+    candidate_bundle = shared_load(repo)
+    payload = json.loads(plan_path.read_text()); payload['order'] = 'candidate_first'
+    payload['artifact_resource_bindings'] = {}
+    for arm, bundle, root in [('baseline', baseline_bundle, 'snapshots/baseline/resources'),
+                               ('candidate', candidate_bundle, 'sources/capability-resources/consumer')]:
+        entry = plan_path.parent / f'{arm}.md'; entry.write_text('Read resources/resource-map.json.')
+        payload[f'{arm}_sha256'] = artifact_hash(entry)
+        payload['artifact_resource_bindings'][arm] = {'resource_root': root, 'manifest_sha256': bundle['manifest_sha256'], 'bundle_sha256': bundle['sha256'], 'route': 'contract'}
+    plan_path.write_text(json.dumps(payload))
+    original = runner.resolve_adapter_cli_sha256
+    observations = 0
+    def resolve(spec):
+        nonlocal observations
+        observations += 1
+        if observations == 2:
+            (repo / 'sources/capability-resources/owner/schema.json').write_text('changed owner')
+        return original(spec)
+    monkeypatch.setattr(runner, 'resolve_adapter_cli_sha256', resolve)
+    calls = capture_calls(monkeypatch)
+    result = run(repo, plan_path)
+    assert result['status'] == 'failed', result
+    assert result['model_calls'] == 0 and calls == []
+    assert 'digest' in result['failure']
+    assert load_resource_bundle(repo / 'snapshots/baseline/resources', 'contract') == baseline_bundle

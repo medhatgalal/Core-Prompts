@@ -1,0 +1,96 @@
+{
+  "schema_version": "D2S2IndependentRepairVerification.v1",
+  "reviewer": "/root/d2_s2_review_astra",
+  "observations": [
+    {
+      "case": "missing/False/preflight",
+      "rejected": true,
+      "error": "Missing or invalid resource file: schema.json"
+    },
+    {
+      "case": "missing/False/canonical",
+      "rejected": true,
+      "error": "Missing or invalid resource file: schema.json"
+    },
+    {
+      "case": "empty/False/preflight",
+      "rejected": true,
+      "error": "Missing or invalid resource file: schema.json"
+    },
+    {
+      "case": "empty/False/canonical",
+      "rejected": true,
+      "error": "Missing or invalid resource file: schema.json"
+    },
+    {
+      "case": "missing/True/preflight",
+      "rejected": true,
+      "error": "Canonical source contains generated receipt: /private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpwdy_d236/sources/capability-resources/consumer/shared-resource-imports.json"
+    },
+    {
+      "case": "missing/True/canonical",
+      "rejected": true,
+      "error": "Canonical source contains generated receipt"
+    },
+    {
+      "case": "empty/True/preflight",
+      "rejected": true,
+      "error": "Canonical source contains generated receipt: /private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmph_31q7z1/sources/capability-resources/consumer/shared-resource-imports.json"
+    },
+    {
+      "case": "empty/True/canonical",
+      "rejected": true,
+      "error": "Canonical source contains generated receipt"
+    },
+    {
+      "case": "{\"\\u0024ref\":\"https://example.invalid/external-schema\"}",
+      "rejected": true,
+      "error": "Shared JSON references require a supported explicit closure rule"
+    },
+    {
+      "case": "{\"allOf\":[{\"\\u0024dynamicRef\":\"outside.json\"}]}",
+      "rejected": true,
+      "error": "Shared JSON references require a supported explicit closure rule"
+    }
+  ],
+  "legacy_effective_identity": {
+    "actual_original_loader_head": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+    "compared_count": 32,
+    "equal": true,
+    "slugs": [
+      "engos-audit-code-health",
+      "engos-audit-engineering-progress",
+      "engos-audit-feature-status",
+      "engos-audit-opex-incident-review",
+      "engos-audit-pitch-review",
+      "engos-audit-weekly-intel",
+      "engos-browser-demo-recorder",
+      "engos-content-dynamic-html-presentations",
+      "engos-delivery-address-code-review",
+      "engos-delivery-artifact-embed",
+      "engos-delivery-diagram-contract-artifacts",
+      "engos-delivery-resolve-conflict",
+      "engos-design-frame-from-vague",
+      "engos-design-plan-to-goal",
+      "engos-design-shaping",
+      "engos-design-specify-change",
+      "engos-memory-context-continuity",
+      "engos-memory-threader",
+      "engos-meta-instruction-editor",
+      "engos-meta-supercharge",
+      "engos-meta-uac-import",
+      "engos-operations-ic-assistant",
+      "engos-optimization-auto-research",
+      "engos-orchestration-batman",
+      "engos-quality-code-review",
+      "engos-quality-docs-review",
+      "engos-quality-gitops-review",
+      "engos-quality-shaping-gate",
+      "engos-quality-testing-review",
+      "engos-reconciliation-converge",
+      "engos-triage-my-inbox-chat-pulse",
+      "loopy"
+    ]
+  },
+  "loader_sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+}

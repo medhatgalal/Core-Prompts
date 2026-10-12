@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from intent_pipeline.capability_resources import ResourceContractError, load_resource_bundle
+from intent_pipeline.capability_resources import ResourceContractError, load_resource_bundle, load_capability_bundle
 
 from .adapters import (
     AdapterError,
@@ -360,7 +360,13 @@ def _prepare_artifact(repo_root: Path, payload: Mapping[str, Any], arm: str, pat
     if not root.is_relative_to(repo_root.resolve()):
         raise RunPlanError(f"{arm} resource_root escapes the repository")
     try:
-        bundle = load_resource_bundle(root, binding["route"], entry_text=entry)
+        canonical_parent = repo_root.resolve() / "sources" / "capability-resources"
+        if root.parent == canonical_parent:
+            bundle = load_capability_bundle(repo_root, root.name, entry, binding["route"])
+            if bundle is None:
+                raise ResourceContractError("Canonical resource manifest is missing")
+        else:
+            bundle = load_resource_bundle(root, binding["route"], entry_text=entry)
     except ResourceContractError as exc:
         raise RunPlanError(f"{arm} resource assembly failed: {exc}") from exc
     if bundle["manifest_sha256"] != binding["manifest_sha256"] or bundle["sha256"] != binding["bundle_sha256"]:

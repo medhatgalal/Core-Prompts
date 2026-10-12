@@ -1789,7 +1789,7 @@
                 "path": "ssot/engos-design-architecture.md",
                 "start_line": 23,
                 "end_line": 24,
-                "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+                "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
               }
             }
           ]
@@ -1802,9 +1802,14 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-design-architecture.md",
-          "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-          "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-          "resources": [],
+          "ssot_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+          "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+              "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {},
@@ -1822,7 +1827,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
+          "mapping_sha256": "7beb54fd78e03807513878bbb54b4a888ae081e1323f3996d4765588b3073dd6"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -5346,7 +5351,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "ce0d3442f7304d0ff1d74e66d7e6e39def5876e620d2d5118dc742232a823172",
+    "skills_sha256": "7873a0a386048d110afd0caba0c532833a2c61d34b57f0993d4bd48739438f70",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -5411,9 +5416,9 @@
         "mapping_sha256": "7e63b7503993b2d1673a407d360db6224444a94ff0d666437ac3fadb79804bf2"
       },
       "engos-design-architecture": {
-        "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-        "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-        "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
+        "ssot_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+        "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+        "mapping_sha256": "7beb54fd78e03807513878bbb54b4a888ae081e1323f3996d4765588b3073dd6"
       },
       "engos-design-frame-from-vague": {
         "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",

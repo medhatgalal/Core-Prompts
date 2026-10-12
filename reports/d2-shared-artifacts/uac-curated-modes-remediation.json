@@ -1,0 +1,15 @@
+{
+  "author": "d2_s2_implementation_astra",
+  "category": "code",
+  "defect": "Same-slug quality-bound UAC descriptor merge replaced curated modes with extracted modes before generation; fixing generation alone could not recover them.",
+  "shared_rule": "refresh_resource_mode_entries in src/intent_pipeline/uac_modes.py preserves deep-copied curated mode dictionaries and adds refreshed extracted contexts, deduplicated by entry_kind/mode_slug.",
+  "call_sites": [
+    "scripts/build-surfaces.py resolve_descriptor",
+    "scripts/uac-import.py _merge_existing_descriptor_for_apply",
+    "scripts/uac-import.py _build_descriptor_preview"
+  ],
+  "red": "uac-curated-modes-red.log: actual UAC merge regression failed (1 failed)",
+  "green": "uac-curated-modes-green.log: UAC apply/preview plus actual builder regressions passed (2 passed)",
+  "regression": "Four rich architecture modes retained exactly; minimal extraction cannot overwrite them; stale context removed and current context refreshed; unchanged curated job; replay stable; builder regression separately retains same-slug/different-kind entries.",
+  "scope": "No source, canonical metadata, generated surfaces, UAC execution, build, or Git mutations. Controller owns restore and serialized apply."
+}
