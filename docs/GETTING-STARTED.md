@@ -20,6 +20,8 @@ For engineering activity, start with `engos-audit-engineering-progress help`. Su
 
 ## Step 1: Use Installed Capabilities
 
+For a failing test or build, select `engos-debug-diagnose-failure` and supply the failure, expected behavior, repository/revision and any known reproduction. For example: “Find why this test fails; preserve the code and active sessions.” The skill discovers the repository’s real diagnostics, checks their side effects and returns causal evidence or an explicit unknown. A short readable diagnosis is sufficient; a structured receipt is optional for handoff. See the [diagnosis example](EXAMPLES.md#engos-debug-diagnose-failure).
+
 For a product/engineering shaping workshop, use `engos-design-shaping` with the
 documents you already have. It should summarize the problem and ask a few useful
 questions, not require a complete form or choose an architecture immediately.

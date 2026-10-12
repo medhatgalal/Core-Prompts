@@ -1,5 +1,11 @@
 ## Unreleased
 
+- Add `engos-debug-diagnose-failure` for bounded reproduction, localization and
+  discriminating causal evidence. Preserve unknown outcomes, redact sensitive
+  evidence and keep repairs and incident coordination with their authorized owners.
+  Include optional hypothesis and `DiagnosisReceipt.v1` handoff resources and
+  focused structural checks; behavioral acceptance and effectiveness remain pending.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

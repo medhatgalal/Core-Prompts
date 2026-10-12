@@ -1,0 +1,67 @@
+{
+  "schema_version": "D4LocalValidation.v1",
+  "passed": true,
+  "completedAt": "2026-10-12T15:32:40.101927+00:00",
+  "alignment": "Current GitLab check sequence with original unadapted commands; Python 3.14.8 and declared CI dependencies. Read-only Git uses GIT_OPTIONAL_LOCKS=0. apt/pip not replayed on macOS; explicit dependencies checked.",
+  "testsPassed": 1128,
+  "testsSkipped": 1,
+  "subtestsPassed": 16,
+  "groups": [
+    {
+      "group": "resources-uac",
+      "passed": 311,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "shaping",
+      "passed": 480,
+      "skipped": 1,
+      "subtests": 0
+    },
+    {
+      "group": "presentation",
+      "passed": 19,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "routing",
+      "passed": 58,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "apply-bootstrap",
+      "passed": 5,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "packaging-profiles",
+      "passed": 255,
+      "skipped": 0,
+      "subtests": 16
+    }
+  ],
+  "stepsCompleted": 13,
+  "strictEntries": 33,
+  "modelCallsInStaticCalibration": 0,
+  "sourceSha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "effectiveSha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+  "descriptorSha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9",
+  "productSeal": "10ae37f6b87144f4f51234711f9610f00194566ead24648185c17b74f63d53ff",
+  "productPaths": 59,
+  "partialPriorRun": {
+    "path": "reports/d4-diagnose-failure/local-ci-revision2-interrupted/receipt.json",
+    "classification": "process: intentionally interrupted for final source wording clarification",
+    "comparativeVerdict": false
+  },
+  "focusedAuthorChecks": {
+    "testsPassed": 63,
+    "includedInUniqueTotal": true,
+    "notAddedAgain": true
+  },
+  "behavioralStatus": "behavioral_pending",
+  "noMergeInstallRelease": true
+}

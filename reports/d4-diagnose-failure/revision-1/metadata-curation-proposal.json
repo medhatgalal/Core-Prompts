@@ -1,0 +1,62 @@
+{
+  "schema_version": "D4MetadataCurationProposal.v1",
+  "status": "proposed_revision_1_requires_final_hash_renewal",
+  "reviewer": "/root/d4_requirement_review_astra",
+  "target": ".meta/capabilities/engos-debug-diagnose-failure.json",
+  "entry_sha256": "d048a399ede0dc8c149555c9e8f91632f4d9c0ff027a8476638ae6e0232de9c8",
+  "effective_sha256": "a2785bd4519f214188221774f97d2dfac66aa444aabb590db4934c26b78a4fa0",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/layers/org_graph/work_graph_impact",
+      "value": "Supplies bounded causal findings or an explicit unknown for a software failure; repair execution, candidate review and incident coordination remain separate jobs.",
+      "rationale": "Purpose; Workflow 5"
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/preferred_use_cases",
+      "value": [
+        "Diagnose a failing test, build, integration or unexpected runtime behavior.",
+        "Compare competing causes using bounded reproduction, localization and discriminating evidence.",
+        "Prepare a redacted technical handoff while keeping repair scope and authority explicit."
+      ],
+      "rationale": "Description; Workflow; Required Output"
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/artifact_conventions",
+      "value": [
+        "Concise readable diagnosis with observed/reported facts, causal conclusion or unknown, scope, uncertainty and evidence.",
+        "Optional hypothesis-evidence table for competing explanations.",
+        "Optional DiagnosisReceipt.v1 sidecar with redacted observation provenance, hypotheses and repair handoff bounds."
+      ],
+      "rationale": "Required Output; Resources"
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/requires_human_confirmation",
+      "value": false,
+      "rationale": "Workflow 1 permits existing-authority scoped reads; specific uncovered actions require confirmation. False does not waive those boundaries."
+    },
+    {
+      "op": "replace",
+      "path": "/layers/expanded/adjustment_recommendations",
+      "value": [],
+      "rationale": "Primary Objective and In Scope are present; Constraints heading repair is separately requested. Empty uplift payload causes false absent-section recommendations."
+    }
+  ],
+  "preserve": [
+    "Every unlisted field",
+    "Intake-only tool policy and its explicit no-runtime-authority scope",
+    "Skill-only surfaces, no execution needs or agent grants",
+    "Source-derived inputs, outputs, roles, tags, source provenance and dependencies"
+  ],
+  "persistence_basis": "build-surfaces.py resolve_descriptor preserves nonempty consumption_hints and overlays non-minimal layers; pure SSOT classifier differs from UAC classifier. No generator/classifier edits authorized.",
+  "readback_required": [
+    "Final source hash and effective resource hash renewal",
+    "Actual canonical descriptor, manifest and five bundled capability.json files",
+    "No residual importer use cases, artifact paths, blanket confirmation or route-profile workgraph text",
+    "Job contract neighbors and exclusions accurately reflect unchanged review/IC ownership; no automatic dispatch",
+    "Pure SSOT description summary supersedes malformed UAC first-example summary during build normalization; verify actual readback."
+  ]
+}

@@ -988,6 +988,186 @@
         ]
       }
     },
+    "engos-debug-diagnose-failure": {
+      "primary_job": "Reproduce, localize, minimize and discriminate hypotheses until the evidence supports\na cause within the investigated scope, or return a bounded unknown with the next useful\nobservation. A passing rerun, correlation or plausible explanation alone is not a cause.",
+      "use_when": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.\nIn Codex select `$engos-debug-diagnose-failure`; in Grok select\n`/engos-debug-diagnose-failure`. Other hosts use the full skill name through their skill interface.",
+      "works_on": "- Observed failure and expected behavior, with available logs or a reproduction request.\n- Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.\n- Existing access, permitted diagnostic actions and any time, attempt or resource limit.\n- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.\n\nStart with available evidence. Missing reproduction details are questions to investigate,\nnot permission to invent observations or expand access.",
+      "main_output": "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.\n- Current, expected and unchanged behavior bound to the subject revision.\n- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.\n- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.\n- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action.\n\nFor a small diagnosis, concise readable evidence is sufficient. Use a structured\n`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence\npackaging, not a claim that a runner or behavioral evaluator executed.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Diagnose a Failure?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "stale",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "Diagnose why an observed software failure occurs while preserving the user's code,\ndata and active sessions. Supply causal evidence before a separately authorized repair.",
+              "heading": "Purpose",
+              "source": {
+                "path": "ssot/engos-debug-diagnose-failure.md",
+                "start_line": 13,
+                "end_line": 14,
+                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "- Do not edit production or working code, install dependencies, add instrumentation,\n  mutate bisection state or execute repairs without separate scoped authorization.\n- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.\n- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a\n  failing test or claim unknown facts as verified.\n- Preserve active processes, user data and unrelated work. Stop only your own bounded\n  diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-debug-diagnose-failure.md",
+                "start_line": 148,
+                "end_line": 154,
+                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "- Do not edit production or working code, install dependencies, add instrumentation,\n  mutate bisection state or execute repairs without separate scoped authorization.\n- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.\n- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a\n  failing test or claim unknown facts as verified.\n- Preserve active processes, user data and unrelated work. Stop only your own bounded\n  diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-debug-diagnose-failure.md",
+                "start_line": 148,
+                "end_line": 154,
+                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-debug-diagnose-failure",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-debug-diagnose-failure.md",
+          "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+          "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+              "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+            },
+            {
+              "path": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+              "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+            },
+            {
+              "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+              "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Reproduce, localize, minimize and discriminate hypotheses until the evidence supports\na cause within the investigated scope, or return a bounded unknown with the next useful\nobservation. A passing rerun, correlation or plausible explanation alone is not a cause.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 18,
+                  "end_line": 20,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.\nIn Codex select `$engos-debug-diagnose-failure`; in Grok select\n`/engos-debug-diagnose-failure`. Other hosts use the full skill name through their skill interface.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 158,
+                  "end_line": 160,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "- Observed failure and expected behavior, with available logs or a reproduction request.\n- Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.\n- Existing access, permitted diagnostic actions and any time, attempt or resource limit.\n- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 30,
+                  "end_line": 33,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              },
+              {
+                "text": "Start with available evidence. Missing reproduction details are questions to investigate,\nnot permission to invent observations or expand access.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 35,
+                  "end_line": 36,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.\n- Current, expected and unchanged behavior bound to the subject revision.\n- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.\n- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.\n- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 112,
+                  "end_line": 116,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              },
+              {
+                "text": "For a small diagnosis, concise readable evidence is sufficient. Use a structured\n`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence\npackaging, not a claim that a runner or behavioral evaluator executed.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 118,
+                  "end_line": 120,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "9a40d7c0895e607ab24db71f3ef49534ed2fd521d5546c5bc505d760fe582aea"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
     "engos-delivery-address-code-review": {
       "primary_job": "Apply selected reviewer comments without changing unrelated code.",
       "use_when": "A PR or MR already has concrete review feedback and the user has chosen what to fix.",
@@ -5094,7 +5274,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "5740082e20493b3d76323b6f1680eef688261d201d9e842be3163458d4367e6a",
+    "skills_sha256": "32cfd212b10e6ce9b0da26291373978563eb058ef84a4f075e20c014c2e6c066",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -5137,6 +5317,11 @@
         "ssot_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
         "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
         "mapping_sha256": "9bbc128f395ffbd4fbb76ffa0dc234f9301b05abc6bb7408473e322a6a0a2668"
+      },
+      "engos-debug-diagnose-failure": {
+        "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+        "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+        "mapping_sha256": "9a40d7c0895e607ab24db71f3ef49534ed2fd521d5546c5bc505d760fe582aea"
       },
       "engos-delivery-address-code-review": {
         "ssot_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",

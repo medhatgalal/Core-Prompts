@@ -1,0 +1,62 @@
+{
+  "schema_version": "D4MetadataCuration.v1",
+  "target": ".meta/capabilities/engos-debug-diagnose-failure.json",
+  "sourceSha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "effectiveSha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+  "changes": [
+    {
+      "path": "/layers/org_graph/work_graph_impact",
+      "before": "Supplies bounded causal findings or an explicit unknown for a software failure; repair execution, candidate review and incident coordination remain separate jobs.",
+      "after": "Supplies bounded causal findings or an explicit unknown for a software failure; repair execution, candidate review and incident coordination remain separate jobs.",
+      "rationale": "Purpose; Workflow 5"
+    },
+    {
+      "path": "/consumption_hints/preferred_use_cases",
+      "before": [
+        "Diagnose a failing test, build, integration or unexpected runtime behavior.",
+        "Compare competing causes using bounded reproduction, localization and discriminating evidence.",
+        "Prepare a redacted technical handoff while keeping repair scope and authority explicit."
+      ],
+      "after": [
+        "Diagnose a failing test, build, integration or unexpected runtime behavior.",
+        "Compare competing causes using bounded reproduction, localization and discriminating evidence.",
+        "Prepare a redacted technical handoff while keeping repair scope and authority explicit."
+      ],
+      "rationale": "Description; Workflow; Required Output"
+    },
+    {
+      "path": "/consumption_hints/artifact_conventions",
+      "before": [
+        "Concise readable diagnosis with observed/reported facts, causal conclusion or unknown, scope, uncertainty and evidence.",
+        "Optional hypothesis-evidence table for competing explanations.",
+        "Optional self-contained DiagnosisReceipt.v1 with conclusion, scope, uncertainty, redacted observation provenance, hypothesis evidence references and repair handoff bounds."
+      ],
+      "after": [
+        "Concise readable diagnosis with observed/reported facts, causal conclusion or unknown, scope, uncertainty and evidence.",
+        "Optional hypothesis-evidence table for competing explanations.",
+        "Optional self-contained DiagnosisReceipt.v1 with conclusion, scope, uncertainty, redacted observation provenance, hypothesis evidence references and repair handoff bounds."
+      ],
+      "rationale": "Required Output; Resources"
+    },
+    {
+      "path": "/consumption_hints/requires_human_confirmation",
+      "before": false,
+      "after": false,
+      "rationale": "Workflow 1 permits existing-authority scoped reads; specific uncovered actions require confirmation. False does not waive those boundaries."
+    },
+    {
+      "path": "/layers/expanded/adjustment_recommendations",
+      "before": [],
+      "after": [],
+      "rationale": "Actual final source contains Primary Objective, In Scope and Constraints. Empty uplift payload creates false absent-section recommendations; clear only these unsupported recommendations."
+    },
+    {
+      "path": "/consumption_hints/invocation_style",
+      "before": "interactive_or_artifact_oriented",
+      "after": "interactive_or_artifact_oriented",
+      "rationale": "Source permits concise readable diagnosis and optional handoff artifacts; only actual repository diagnostics may execute under existing authority. No generic scripted skill runner exists. This existing hint describes interaction/artifact use without granting execution."
+    }
+  ],
+  "scope": "Six source-faithful persistent new-owner fields; no pipeline, neighbor or runtime authority change",
+  "postBuildRequired": true
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "D4IndependentReview.v1",
+  "reviewer": {
+    "agent_id": "/root/d4_requirement_review_astra",
+    "author_agent_id": "/root/d4_implementation_astra",
+    "independent": true
+  },
+  "source_sha256": "d048a399ede0dc8c149555c9e8f91632f4d9c0ff027a8476638ae6e0232de9c8",
+  "effective_sha256": "a2785bd4519f214188221774f97d2dfac66aa444aabb590db4934c26b78a4fa0",
+  "verdict": "revise",
+  "findings": [
+    {
+      "id": "D4-SRC-01",
+      "severity": "material",
+      "scope": "source/resource handoff",
+      "status": "open",
+      "evidence": "captured-source.md:110-127 and receipt schema additionalProperties=false",
+      "finding": "Structured receipt can omit required conclusion/scope/uncertainty and causal explanation/exposure details without an explicit readable companion contract.",
+      "repair": "Make receipt an explicit optional sidecar and retain all unmapped causal findings in authoritative readable findings, or extend schema/template coherently."
+    },
+    {
+      "id": "D4-STRUCT-01",
+      "severity": "blocking admission",
+      "status": "open",
+      "finding": "Actual UAC blocks absent Rules and Constraints headings although equivalent boundary content exists.",
+      "repair": "Rename Boundaries to Constraints unchanged; add concise source-faithful Rules clause. Retain prior seed and renew exact hash review."
+    },
+    {
+      "id": "D4-META-01",
+      "severity": "blocking delivery",
+      "status": "open",
+      "finding": "UAC descriptor contains importer use cases/artifact conventions and blanket confirmation; pure SSOT projection retains false missing-section recommendations and workgraph route boilerplate.",
+      "repair": "Use proposed five narrow persistent edits after final source review; require postbuild direct readback."
+    }
+  ],
+  "donors": "Independent pinned HTTPS body and MIT license byte verification passed; no selected donor resources or transitive runtime dependencies admitted.",
+  "neighbors": "Current canonical code-review and IC purposes read; git diff empty for both neighbor files.",
+  "edited_artifact": "No authored edits; review artifacts only.",
+  "size": {
+    "lines": 182,
+    "words": 1420,
+    "bytes": 10831,
+    "model_token_estimate": null,
+    "model_token_estimate_reason": "No model tokenizer run; do not substitute heuristic for observed tokens."
+  },
+  "behavioral_status": "behavioral_pending",
+  "D4_S2": "not performed",
+  "pure_projection": "revision-1/reviewer-pure-ssot-projection.json",
+  "metadata_proposal": "revision-1/metadata-curation-proposal.json"
+}

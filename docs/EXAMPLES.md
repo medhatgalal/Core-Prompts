@@ -14,6 +14,37 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## engos-debug-diagnose-failure
+
+**Use when:** a test, build or runtime behavior fails and the cause is uncertain.
+**Why this skill first:** diagnosis needs reproduction and discriminating evidence; a candidate diff is not required.
+
+**Ask:**
+
+> Use engos-debug-diagnose-failure to explain why this CI test sometimes fails.
+> Here are the failing and passing run logs and revision. Expected: every item is
+> returned once. Preserve ordering, code and active sessions. Diagnose only;
+> use existing safe diagnostics within ten minutes.
+
+**Expected output:** current, expected and unchanged behavior; actual redacted
+commands, exit statuses, sanitized environment and evidence references; competing
+hypotheses and a discriminator. If the evidence cannot distinguish shared state
+from timing, the cause remains `unknown`. A passing retry does not mean fixed.
+The response names the next useful observation, any action requiring authorization,
+and a repair boundary without executing a repair.
+
+For durable handoff, ask for `DiagnosisReceipt.v1`. Its optional JSON template and
+schema are bundled under the skill’s `resources/templates/` and `resources/schemas/`.
+The receipt carries its conclusion, investigated scope, remaining uncertainty and
+per-hypothesis evidence references. Supported and rejected hypotheses need an actual
+reference; unresolved work may have none. Schema validation checks structure, not
+causal truth, evidence authenticity or behavioral effectiveness.
+
+**Follow with:** separately authorize the repair using the diagnosis and unchanged
+behavior as inputs. Use `engos-quality-code-review` for candidate judgment and
+`engos-operations-ic-assistant` for incident coordination. The new skill’s behavioral
+acceptance remains pending; this example is usage guidance, not an executed trial.
+
 ## One skill in the main session or an independent worker
 
 Start with the job:
