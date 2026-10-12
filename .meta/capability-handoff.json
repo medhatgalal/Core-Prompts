@@ -1429,6 +1429,110 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-design-plan-implementation",
+      "display_name": "Plan Implementation",
+      "capability_type": "skill",
+      "summary": "Plan independently verifiable implementation tasks from accepted requirements and an optional supplied design. Use for multi-step planning or revising unfinished work with explicit dependencies, interfaces, allowed writes and stop conditions; preserve the existing tracker and leave execution, delegation and goal creation to their owners.",
+      "role": "workflow",
+      "domain_tags": [
+        "planning",
+        "engos",
+        "design",
+        "plan",
+        "implementation"
+      ],
+      "required_inputs": [
+        "Read the requested outcome, actual acceptance/authority evidence and current requirement revision.",
+        "Inspect repository conventions and relevant code or interfaces.",
+        "Obtain optional accepted architecture, compatibility constraints and non-goals.",
+        "Read the actual tracker or unfinished plan when present.",
+        "Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system."
+      ],
+      "expected_outputs": [
+        "Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.",
+        "Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.",
+        "Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.",
+        "Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.",
+        "Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-plan-to-goal",
+        "engos-design-architecture",
+        "engos-design-shaping"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "Plan multi-step implementation from accepted requirements and optional architecture.",
+        "Reconcile accepted changes with an unfinished plan while preserving existing tracker IDs and evidence.",
+        "Prepare optional task/plan interchange or a manual dependency map for a separately authorized consumer."
+      ],
+      "artifact_conventions": [
+        "Existing project plan and tracker format; chat when no file write is requested or authorized.",
+        "Optional TaskContract.v1 and TaskPlan.v1 sidecars beside their authoritative plan.",
+        "Manual dependency-map projection referencing its authoritative plan; no competing completion ledger."
+      ],
+      "invocation_style": "artifact_generation_and_validation",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Produces or reconciles bounded implementation task outcomes for the existing plan and tracker; does not dispatch workers, create goals or change execution authority."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-design-plan-to-goal",
       "display_name": "Plan to Goal Design",
       "capability_type": "skill",

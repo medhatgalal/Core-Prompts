@@ -1,0 +1,37 @@
+{
+  "schema_version": "D3PostBuildReadback.v1",
+  "sourceExact": true,
+  "source_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "canonicalMetadata": {
+    "role": "workflow",
+    "orgRole": "workflow_provider",
+    "displayName": "Plan Implementation",
+    "installAdvice": "global",
+    "capabilityType": "skill",
+    "inputCount": 5,
+    "outputCount": 5,
+    "dependencies": [],
+    "tags": [
+      "planning",
+      "engos",
+      "design",
+      "plan",
+      "implementation"
+    ]
+  },
+  "curationFieldsPersisted": 4,
+  "matchingPackages": [
+    "codex",
+    "gemini",
+    "claude",
+    "kiro",
+    "grok"
+  ],
+  "existingSourcesPreserved": 32,
+  "existingBaselinesPreserved": true,
+  "newBehavioralBaselineCreated": false,
+  "newAgentsCreated": false,
+  "generatedLoaderReusedUnchanged": true,
+  "evidenceClass": "Actual canonical and five-package readback after UAC apply and subsequent regeneration; not behavioral proof"
+}

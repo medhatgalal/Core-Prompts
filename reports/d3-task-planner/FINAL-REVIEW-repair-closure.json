@@ -1,0 +1,51 @@
+{
+  "schema_version": "D3FinalReviewRepairClosure.v1",
+  "reviewer": "/root/d3_final_review_astra",
+  "finding": "D3-FINAL-01",
+  "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+  "hints": {
+    "preferred_use_cases": [
+      "Plan multi-step implementation from accepted requirements and optional architecture.",
+      "Reconcile accepted changes with an unfinished plan while preserving existing tracker IDs and evidence.",
+      "Prepare optional task/plan interchange or a manual dependency map for a separately authorized consumer."
+    ],
+    "artifact_conventions": [
+      "Existing project plan and tracker format; chat when no file write is requested or authorized.",
+      "Optional TaskContract.v1 and TaskPlan.v1 sidecars beside their authoritative plan.",
+      "Manual dependency-map projection referencing its authoritative plan; no competing completion ledger."
+    ],
+    "invocation_style": "artifact_generation_and_validation",
+    "requires_human_confirmation": false
+  },
+  "source_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "generated": {
+    "codex": {
+      "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+      "exact_canonical_bytes": true
+    },
+    "gemini": {
+      "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+      "exact_canonical_bytes": true
+    },
+    "claude": {
+      "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+      "exact_canonical_bytes": true
+    },
+    "kiro": {
+      "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+      "exact_canonical_bytes": true
+    },
+    "grok": {
+      "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+      "exact_canonical_bytes": true
+    }
+  },
+  "handoff_hints": {
+    "invocation_style": "artifact_generation_and_validation",
+    "requires_human_confirmation": false
+  },
+  "test_diff": "diff --git a/tests/test_uac_ssot.py b/tests/test_uac_ssot.py\nindex 3f30bc7..b6d00da 100644\n--- a/tests/test_uac_ssot.py\n+++ b/tests/test_uac_ssot.py\n@@ -24,7 +24,7 @@ def test_audit_ssot_entries_reports_known_entries() -> None:\n \n def test_shipped_capabilities_are_skills_only() -> None:\n     audits = audit_ssot_entries(ROOT)\n-    assert len(audits) == 32\n+    assert len(audits) == 33\n     for audit in audits:\n         assert audit.manifest['layers']['minimal']['capability_type'] == 'skill'\n         assert all(name.endswith('_skill') for name in audit.expected_surface_names)\n",
+  "status": "closed",
+  "rationale": "No unconditional runtime confirmation gate remains. Artifact generation and optional shape/resource validation reflect source scope; task execution and task verification remain separately authorized. Inventory test changes only expected count from 32 to 33 and retains skill-only checks.",
+  "final_approval": "pending final CI and exact product seal"
+}

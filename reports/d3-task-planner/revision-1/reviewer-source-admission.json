@@ -1,0 +1,73 @@
+{
+  "schema_version": "D3IndependentSourceAdmission.v1",
+  "reviewer": {
+    "agent_id": "/root/d3_requirement_review_astra",
+    "author_agent_id": "/root/d3_implementation_astra",
+    "independent": true
+  },
+  "source_verdict": "approved",
+  "source_open_findings": [],
+  "delivery_verdict": "blocked_pending_descriptor_curation",
+  "candidate_sha256": "0f4b680745fb6bc1a56bd406a0a75cc3f1218a59bc718d5d8552bebd998871c8",
+  "effective_sha256": "20443424ac68bac246d3dc23c85631a21f6111e41157ec54605a0accbb640cfa",
+  "historical_preservation_claim": false,
+  "behavioral_status": "behavioral_pending",
+  "review_receipt": "reports/d3-task-planner/requirement-review-new-source.json",
+  "schema_attestation_validation_errors": [],
+  "focused_tests": "9 passed, 40 deselected in 0.54s; independently rerun tests/test_capability_resources.py -k planner",
+  "existing_ssot": "All 32 hashes match d3-frozen-plan.json; Batman and goal compiler preserved. D2 exact committed interface inspected and hash matched; no D2 import.",
+  "donor_evidence": "All five upstream pinned body/license/reference byte hashes independently fetched and equal admission evidence. Full local donor bodies/licenses and selected definition-of-done reference independently read. Selected concepts are independently expressed; no donor executor or external runtime dependency admitted.",
+  "resource_closure": {
+    "task_contract": [
+      "schemas/task-contract.schema.json"
+    ],
+    "task_plan": [
+      "schemas/task-contract.schema.json",
+      "schemas/task-plan.schema.json"
+    ],
+    "dependency_map": [
+      "templates/dependency-map.json"
+    ]
+  },
+  "schema_limits_reviewed": [
+    "No forced sidecar or tracker",
+    "Stable task/requirement/design IDs, nullable inspected-byte bindings and authority",
+    "Local sibling $ref declared in resource-map dependency and resolved offline",
+    "Source revision/status/evidence remain in authoritative narrative/tracker; sidecar is intentionally lossy with unmapped-field disclosure",
+    "ID property uniqueness, graph semantics, source truth, acceptance, authority and execution are not shape validation"
+  ],
+  "findings": [
+    {
+      "id": "D3-META-01",
+      "priority": "P2",
+      "location": "controller-plan-before-review.json preview.descriptor_preview",
+      "problem": "The new planning capability is described as an importer with uplift/deployment outputs and generic capability-selection use cases. Expanded packaging dependency and generic overlap adjustments also describe importer work. Persisting this metadata misstates the capability and can misroute discovery.",
+      "fix": "Curate only this new canonical descriptor to the source planning role, inputs, output artifacts, use cases, relevant neighbors and constraints. Remove irrelevant importer/package dependency defaults. Preserve source/hash evidence and intake-only tool_policy; do not patch heuristics or normalize existing owners merely to satisfy this preview.",
+      "status": "open_delivery_hold"
+    }
+  ],
+  "doc_note": "CLI heading separation independently reread and accepted. Planner load instructions now under Plan Implementation And Load Optional Task Contracts; compiler heading applies only to compiler instructions.",
+  "authority": "Root alone controls UAC/build/Git/delivery. No merge/install/agent authority granted.",
+  "metadata_proposal_review": {
+    "path": "reports/d3-task-planner/metadata-curation.json",
+    "sha256": "95a6df5d9e6d19cc56d684fd19fb0d7c70ebfa6afec9889f3b3e6fe3d8e51b00",
+    "verdict": "seven_replacements_supported_remaining_remnants_and_persistence_pending",
+    "approved_proposed_paths": [
+      "/layers/minimal/role",
+      "/layers/minimal/required_inputs",
+      "/layers/minimal/expected_outputs",
+      "/layers/org_graph/org_role",
+      "/layers/org_graph/work_graph_impact",
+      "/consumption_hints/preferred_use_cases",
+      "/consumption_hints/artifact_conventions"
+    ],
+    "remaining_paths": [
+      "/layers/minimal/domain_tags",
+      "/layers/expanded/capability_dependencies",
+      "/layers/expanded/adjustment_recommendations",
+      "/layers/org_graph/collaborates_with_suggestions"
+    ],
+    "remaining_defect": "Unlisted generic importer/package dependency and missing-objective/constraint claims remain. No planner runtime package dependency exists; objective and constraints were directly read.",
+    "required_verification": "Review source-backed remaining curation and actual post-build persistence in the canonical descriptor and generated bundle; a proposed patch is not a final metadata repair."
+  }
+}

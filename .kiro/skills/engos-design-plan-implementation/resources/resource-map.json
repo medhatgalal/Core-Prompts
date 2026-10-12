@@ -1,0 +1,20 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "task_contract": [
+      "schemas/task-contract.schema.json"
+    ],
+    "task_plan": [
+      "schemas/task-plan.schema.json"
+    ],
+    "dependency_map": [
+      "templates/dependency-map.json"
+    ]
+  },
+  "dependencies": {
+    "schemas/task-plan.schema.json": [
+      "schemas/task-contract.schema.json"
+    ]
+  }
+}

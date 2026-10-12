@@ -1987,6 +1987,186 @@
         ]
       }
     },
+    "engos-design-plan-implementation": {
+      "primary_job": "Give an implementer enough source context and explicit interfaces to deliver one\nindependently verifiable outcome at a time, with clear mutation bounds and a\ncredible acceptance oracle. Planning produces artifacts; it does not execute tasks.",
+      "use_when": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and\n\u201crevise our unfinished plan against these accepted changes\u201d enter the same workflow.\nUse plain accepted requirements or an available `SpecContract.v1`; no installed\nspecification skill or machine sidecar is required. An unresolved product decision\nbelongs with its decision owner; material architecture belongs with\n`engos-design-architecture`. A separately requested durable goal packet belongs\nwith `engos-design-plan-to-goal`; explicitly selected controller delivery belongs\nwith `engos-orchestration-batman`. Neither is an automatic next step.",
+      "works_on": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.\n- Inspect repository conventions and relevant code or interfaces.\n- Obtain optional accepted architecture, compatibility constraints and non-goals.\n- Read the actual tracker or unfinished plan when present.\n- Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system.",
+      "main_output": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.\n- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.\n- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.\n- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.\n- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.\n\nOptional machine interchange uses `resources/schemas/task-contract.schema.json`\nand `resources/schemas/task-plan.schema.json`. The dependency-map template is a\nmanual projection of the plan, not a second source of truth or ready-frontier result.\nLoad only the needed resource route from `resources/resource-map.json`: run\n`python3 resources/scripts/load_module.py --route task_plan --format text` from\nthe installed skill directory, substituting `task_contract` or `dependency_map`.\nThe existing standard-library loader resolves the complete route closure. If it\ncannot run, read the map and every selected dependency directly; missing or\ntruncated resources block claims that the resource route was applied. Narrative\nplanning uses this entrypoint without requiring sidecars or a resource invocation.\n\n`TaskPlan.v1` binds the authoritative requirements with `spec_ref` and nullable\n`spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,\ntracker reference and unresolved items. `TaskContract.v1` records nullable consumed\nartifact digests and authority references without pretending unknowns are verified.\nShape validation cannot establish source truth, task quality, ID uniqueness by\nproperty, graph correctness, acceptance, authority, coverage or execution. Review\nthose separately. A plan containing holds can validate while remaining unready.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Plan Implementation?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. Identify the authoritative requirements and their current revision, actual\n   accepted scope and authorization. Read the existing plan and tracker before\n   writing. Preserve their IDs, completed evidence, unresolved items and ownership.\n   If inputs conflict or acceptance is unverified, hold the dependent tasks while\n   drafting useful independent scope. Do not require another approval turn when\n   the existing conversation or decision record already authorizes that scope.\n2. Inspect the relevant implementation boundaries. Carry forward requirements,\n   unchanged behavior, constraints and supplied design IDs. For plain prose, map\n   stable local requirement IDs to exact source passages without rewriting the\n   source. With `SpecContract.v1`, retain its requirement/design IDs, source and\n   authority references; examine open assumptions and design reconciliation.\n   A structurally valid draft is not an accepted input. No cross-skill import is\n   needed to read a supplied artifact.\n3. Choose outcome boundaries that a reviewer can accept or reject separately.\n   Prefer a working feature path when feasible. Attach scaffolding, configuration,\n   tests and documentation to the outcome they enable. Isolate a prerequisite only\n   if its own observable contract can be reviewed independently. Do not size tasks\n   by file count, mandate a fixed number of steps, or invent unrelated refactors.\n4. For each task record the outcome, requirement/design IDs, dependencies, consumed\n   source/interface references, produced artifacts/interfaces, likely files,\n   allowed writes, constraints, verification and stop condition. Distinguish likely\n   files from authorized mutation targets. Describe exact signatures, fields or\n   invariants where later work relies on them; avoid writing the whole implementation\n   into the plan. A planned future input references its producing task and expected\n   contract; its digest stays unknown until bytes exist.\n5. Order dependencies and manually inspect unique task IDs, reference existence,\n   dependency cycles and interface consistency. Identify shared-write conflicts;\n   absence of dependency edges alone does not establish safe parallel execution.\n   Check every included requirement has an owning task or an explicit unresolved\n   disposition. Keep unsupported assumptions and missing sources as holds. This\n   slice provides no graph checker, ready-frontier computation or trace validator.\n6. Give each task a concrete oracle: the observation and expected result that would\n   accept or reject it, the command or inspection that obtains evidence, and where\n   evidence should be recorded in the existing process. Include relevant failure,\n   boundary and compatibility cases. Match verification to risk and repository\n   rules; a prose edit may need a diff inspection, executable behavior focused\n   tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.\n7. Reconcile revisions in the actual plan. Keep incomplete unrelated work intact;\n   add or revise only authorized scope. Preserve completion claims only with their\n   existing evidence, and reopen affected work when changed inputs invalidate it.\n   Show superseded decisions and their replacements instead of silently dropping\n   tasks. If a destination belongs to different unfinished work, return the new\n   draft in chat and request a destination decision before overwriting anything.\n8. Review source coverage, outcome quality, authority and dependency consistency.\n   Return the plan, holds and a bounded handoff. State actual acceptance status\n   separately from format checks. Preserve any execution method already chosen;\n   otherwise name possible consumers without dispatching a worker, invoking a\n   controller or creating a goal. Execution needs its own authorized scope.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-design-plan-implementation.md",
+                "start_line": 52,
+                "end_line": 99,
+                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "This capability owns planning artifacts only. Do not implement product code,\nlaunch agents, run task verification, start a goal, alter accepted requirements or\nselect an unrequested delivery protocol as a side effect. Local shape/resource\nchecks are allowed when useful; distinguish them from task execution. Repository\nrules and separately granted user authority still govern other requested work.\nNo scheduler, cancellation mechanism, ready-frontier helper, automatic resource\nsharing or ingestion, or guaranteed consumer integration is supplied by these\nportable contracts.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-plan-implementation.md",
+                "start_line": 158,
+                "end_line": 165,
+                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "This capability owns planning artifacts only. Do not implement product code,\nlaunch agents, run task verification, start a goal, alter accepted requirements or\nselect an unrequested delivery protocol as a side effect. Local shape/resource\nchecks are allowed when useful; distinguish them from task execution. Repository\nrules and separately granted user authority still govern other requested work.\nNo scheduler, cancellation mechanism, ready-frontier helper, automatic resource\nsharing or ingestion, or guaranteed consumer integration is supplied by these\nportable contracts.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-plan-implementation.md",
+                "start_line": 158,
+                "end_line": 165,
+                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-design-plan-implementation",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-design-plan-implementation.md",
+          "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+          "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+              "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+              "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
+              "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Give an implementer enough source context and explicit interfaces to deliver one\nindependently verifiable outcome at a time, with clear mutation bounds and a\ncredible acceptance oracle. Planning produces artifacts; it does not execute tasks.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 20,
+                  "end_line": 22,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and\n\u201crevise our unfinished plan against these accepted changes\u201d enter the same workflow.\nUse plain accepted requirements or an available `SpecContract.v1`; no installed\nspecification skill or machine sidecar is required. An unresolved product decision\nbelongs with its decision owner; material architecture belongs with\n`engos-design-architecture`. A separately requested durable goal packet belongs\nwith `engos-design-plan-to-goal`; explicitly selected controller delivery belongs\nwith `engos-orchestration-batman`. Neither is an automatic next step.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 26,
+                  "end_line": 33,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.\n- Inspect repository conventions and relevant code or interfaces.\n- Obtain optional accepted architecture, compatibility constraints and non-goals.\n- Read the actual tracker or unfinished plan when present.\n- Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 37,
+                  "end_line": 41,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.\n- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.\n- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.\n- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.\n- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 124,
+                  "end_line": 128,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              },
+              {
+                "text": "Optional machine interchange uses `resources/schemas/task-contract.schema.json`\nand `resources/schemas/task-plan.schema.json`. The dependency-map template is a\nmanual projection of the plan, not a second source of truth or ready-frontier result.\nLoad only the needed resource route from `resources/resource-map.json`: run\n`python3 resources/scripts/load_module.py --route task_plan --format text` from\nthe installed skill directory, substituting `task_contract` or `dependency_map`.\nThe existing standard-library loader resolves the complete route closure. If it\ncannot run, read the map and every selected dependency directly; missing or\ntruncated resources block claims that the resource route was applied. Narrative\nplanning uses this entrypoint without requiring sidecars or a resource invocation.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 130,
+                  "end_line": 139,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              },
+              {
+                "text": "`TaskPlan.v1` binds the authoritative requirements with `spec_ref` and nullable\n`spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,\ntracker reference and unresolved items. `TaskContract.v1` records nullable consumed\nartifact digests and authority references without pretending unknowns are verified.\nShape validation cannot establish source truth, task quality, ID uniqueness by\nproperty, graph correctness, acceptance, authority, coverage or execution. Review\nthose separately. A plan containing holds can validate while remaining unready.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 141,
+                  "end_line": 147,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "3224345fae8a91dfef8b3c167bcc58f245b7a3e3077e9ae5c3a9db197cd7e8c0"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
     "engos-design-plan-to-goal": {
       "primary_job": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
       "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
@@ -5094,7 +5274,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "5740082e20493b3d76323b6f1680eef688261d201d9e842be3163458d4367e6a",
+    "skills_sha256": "9ec48af5aef8cdbc2030a34a68e03c7876f3bd44448dd57caf2c19069b20bb71",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -5167,6 +5347,11 @@
         "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
         "effective_sha256": "d5efc8e8455cd38744814619d9c4aaf05f08cb70781cd527a758421ce7a6a8ae",
         "mapping_sha256": "6386061d3347a50af07122ce84a89845f78ed454c5e3bbd099396a5e52770af3"
+      },
+      "engos-design-plan-implementation": {
+        "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+        "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+        "mapping_sha256": "3224345fae8a91dfef8b3c167bcc58f245b7a3e3077e9ae5c3a9db197cd7e8c0"
       },
       "engos-design-plan-to-goal": {
         "ssot_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",

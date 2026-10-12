@@ -1,0 +1,62 @@
+{
+  "schema_version": "D3FinalPackageReview.v1",
+  "reviewer": "/root/d3_final_review_astra",
+  "author": "/root/d3_implementation_astra",
+  "independent_source_reviewer": "/root/d3_requirement_review_astra",
+  "reviewed_at": "2026-10-12T13:47:11.767430+00:00",
+  "decision": "review_ready_draft",
+  "approved": true,
+  "open_findings": [],
+  "closed_findings": [
+    {
+      "id": "D3-FINAL-01",
+      "priority": "P2",
+      "closure": "Canonical and five generated consumption hints plus handoff now require no blanket confirmation and describe artifact generation/validation; source authority remains binding.",
+      "evidence": "reports/d3-task-planner/FINAL-REVIEW-repair-closure.json"
+    }
+  ],
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "product_path_count": 59,
+  "product_seal_sha256": "2cff3ee6f2988e353fae98c9c3f704787b62e4b4e9d4db3cfb810084ffb063da",
+  "product_seal_algorithm": "SHA-256 of sorted-key compact ASCII JSON path-to-byte-SHA map",
+  "product_payload_sha256": "95358d9bcafa28f801fa85744907d5d58c5207eb3d934fbb09a27d72c48ef99d",
+  "working_equals_staged": true,
+  "all_product_file_hashes_verified": true,
+  "source_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "descriptor_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+  "preservation": {
+    "existing_ssot_skills": 32,
+    "other_ssot_files": 3,
+    "all_exact_base": true,
+    "baseline_agent_runtime_script_pipeline_paths_unchanged": true
+  },
+  "ci": {
+    "class": "adapted_local_reconciled",
+    "receipt_at_review": "reports/d3-task-planner/LOCAL-VALIDATION.json",
+    "receipt_sha256": "740f24478451d70cdb47e08a4d6653808a47d787bf9f8bf3265d3798bff16507",
+    "immutable_review_snapshot": "reports/d3-task-planner/FINAL-REVIEW-ci-snapshot.json",
+    "snapshot_sha256": "740f24478451d70cdb47e08a4d6653808a47d787bf9f8bf3265d3798bff16507",
+    "raw_receipt": "reports/d3-task-planner/local-ci/receipt.json",
+    "raw_receipt_sha256": "d9e3b83c7cf6b2348f3cc0296d743b5de03765e0056dc41f690de56331c04bc5",
+    "all_13_command_groups_compared_with_gitlab": true,
+    "all_13_log_tails_verified": true,
+    "raw_complete": true,
+    "raw_passed": false,
+    "successful_full_run_steps": 12,
+    "packaging_passes_before_repair": 254,
+    "focused_repaired_case_passes": 1,
+    "unique_passed_tests": 1114,
+    "skipped_tests": 1,
+    "subtests_passed": 16,
+    "focused_reruns_added_to_total": false
+  },
+  "limitations": [
+    "Legacy catalog uses reviewed temporary file-backed Git batch transport; unchanged script/pins/parser/catalog checks. One original-pipe calibration is not full original-pipe equivalence.",
+    "Hosted original GitLab/GitHub checks are not yet established; local apt/pip setup was not replayed on macOS.",
+    "No native model behavior, efficacy, integration with a consumer, graph checker or automatic planner execution is established.",
+    "Source-admission attestations are prior independent evidence; this review read them and independently rechecked final source/package identity.",
+    "No commit message supplied for assessment."
+  ],
+  "authority": "Final package is approved only as a zero-open review-ready draft. No merge, installation, release, efficacy or new agent authorization. Later product drift requires affected re-review."
+}

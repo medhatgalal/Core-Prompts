@@ -1,0 +1,110 @@
+{
+  "schema_version": "D3MetadataCurationProposal.v1",
+  "status": "proposed_for_independent_review_not_applied",
+  "target": ".meta/capabilities/engos-design-plan-implementation.json",
+  "entry_sha256": "0f4b680745fb6bc1a56bd406a0a75cc3f1218a59bc718d5d8552bebd998871c8",
+  "effective_sha256": "20443424ac68bac246d3dc23c85631a21f6111e41157ec54605a0accbb640cfa",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/layers/minimal/role",
+      "value": "planner",
+      "rationale": "Advertise the runtime task-planning job rather than the intake importer role.",
+      "source_sections": [
+        "Purpose",
+        "Primary Objective"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/layers/minimal/required_inputs",
+      "value": [
+        "Accepted requirements or available SpecContract.v1, with current source revision and actual acceptance/authority evidence.",
+        "Optional accepted architecture and design IDs; unchanged behavior, compatibility constraints and non-goals.",
+        "Existing repository conventions, relevant implementation interfaces, actual tracker and unfinished plan when present.",
+        "Known gaps, conflicts and unresolved assumptions; missing facts remain visible rather than invented."
+      ],
+      "rationale": "Replace generic source/intake inputs with the actual operating inputs; plain accepted requirements remain sufficient.",
+      "source_sections": [
+        "Required Inputs",
+        "Workflow"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/layers/minimal/expected_outputs",
+      "value": [
+        "One readable implementation plan in the established format with source revisions, accepted scope/status and actual tracker reference.",
+        "Independently verifiable outcome contracts with requirement/design IDs, dependencies, consumed/produced interfaces, likely files, allowed writes, constraints, verification oracles and stop conditions.",
+        "Preserved incomplete work and completed-task evidence references, reconciled changes, explicit unresolved items and a bounded handoff.",
+        "Optional TaskContract.v1 and TaskPlan.v1 interchange sidecars plus a manual dependency-map projection when needed; no computed ready frontier, acceptance certification or execution."
+      ],
+      "rationale": "Describe planned artifacts and holds without claiming implementation, deployment or consumer integration.",
+      "source_sections": [
+        "Required Output",
+        "Rules"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/layers/org_graph/org_role",
+      "value": "workflow_provider",
+      "rationale": "Use the existing skill workflow-provider role for this artifact-producing planner; this is not a registered agent.",
+      "source_sections": [
+        "Purpose",
+        "Constraints"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/layers/org_graph/work_graph_impact",
+      "value": "Produces or reconciles bounded implementation task outcomes for the existing plan and tracker; does not dispatch workers, create goals or change execution authority.",
+      "rationale": "Describe the actual planning contribution rather than generic package registration.",
+      "source_sections": [
+        "Workflow",
+        "Constraints"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/preferred_use_cases",
+      "value": [
+        "Plan multi-step implementation from accepted requirements and optional architecture.",
+        "Reconcile accepted changes with an unfinished plan while preserving existing tracker IDs and evidence.",
+        "Prepare optional task/plan interchange or a manual dependency map for a separately authorized consumer."
+      ],
+      "rationale": "Replace capability-selection and prompt-uplift use cases with ordinary planning/reconciliation.",
+      "source_sections": [
+        "Invocation Hints",
+        "Required Output"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/artifact_conventions",
+      "value": [
+        "Existing project plan and tracker format; chat when no file write is requested or authorized.",
+        "Optional TaskContract.v1 and TaskPlan.v1 sidecars beside their authoritative plan.",
+        "Manual dependency-map projection referencing its authoritative plan; no competing completion ledger."
+      ],
+      "rationale": "Use source-owned destination rules without imposing fixed paths or a new tracker.",
+      "source_sections": [
+        "Output Directory",
+        "Rules",
+        "Required Output"
+      ]
+    }
+  ],
+  "preserve": [
+    "All descriptor paths not explicitly listed",
+    "layers.minimal.tool_policy including scope=uac_intake_only and its runtime_authority separation",
+    "Agent/surface boundaries, job_contract, installed-state and historical evidence"
+  ],
+  "format_evidence": [
+    ".meta/capability-descriptor-contract.json",
+    "src/intent_pipeline/uac_descriptors.py:build_descriptor",
+    "scripts/build-surfaces.py:resolve_descriptor",
+    "D2 descriptor field shapes at supplied d2-spec-contract checkout; that file still contains generic hints, so it is not claimed as a fully curated final result"
+  ],
+  "build_limitation": "Full build currently regenerates minimal fields from SSOT with merge_descriptor=False before descriptor resolution. required_inputs/expected_outputs/tool_policy are excluded from the later minimal overlay and role already exists in base. These proposed minimal values may not survive regeneration. Root must verify exact post-build readback and resolve this within authorized scope; this proposal changes no generator, source or generated surface."
+}

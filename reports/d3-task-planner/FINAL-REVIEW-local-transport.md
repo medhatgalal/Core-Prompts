@@ -1,0 +1,11 @@
+# D3.S1 Adapted Local CI Transport Review
+
+Reviewed the actual temporary adapter, local Git transport receipt and calibration, unchanged catalog script, local CI receipt disclosure, and staging recovery record. This is process-evidence review, not a product repair or final CI approval.
+
+The adapter changes only matching `subprocess.run` calls for `git cat-file --batch` with byte input and captured stdout. It writes identical request bytes into a temporary seeked input file, captures stdout into a temporary file, preserves arguments and `check=True`, adds a 45-second timeout, reads output bytes, and returns the same CompletedProcess shape. Nonmatching calls pass through. No replacement blob content, catalog result, exit success, skipped validator or altered release pins is supplied. The unchanged script still checks tag/commit pins, parses each requested object identity/type, validates catalog semantics and compares rendered catalog bytes with the committed catalog in `--check` mode.
+
+Directly confirmed script SHA-256 `cf0283df04215f26f03cb3c9fbdca4171ba1817c7e4fadfc73749fc8bba068d5` and exact equality with the verified base. The recorded one-object calibration shows byte equality for that original-pipe observation; it is not full-catalog equivalence testing of the hung original path. Successful adapted full-catalog observations support the unchanged validator under file transport, not proof that original pipes work on this host. `local-ci/receipt.json` accurately labels that difference, leaves the hosted path unadapted, discloses local dependency setup, and is still incomplete at this review.
+
+The staging recovery record identifies a verified task child SIGINT and preservation of the inactive partial index lock by adjacent rename. It claims no reset, deletion or other-worktree modification. This reviewer did not independently observe the historical process ownership, so that historical claim is controller-recorded; final staged snapshot equality must be checked independently before approval.
+
+No new product finding. Keep the CI result explicitly labeled **adapted local CI** and retain incomplete/interrupted runs. Do not describe this as a completed unmodified GitLab CI run or hosted pass. Final review-ready-draft approval remains pending the complete receipt and final product seal.

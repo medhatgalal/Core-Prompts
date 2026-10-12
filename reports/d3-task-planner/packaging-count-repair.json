@@ -1,0 +1,20 @@
+{
+  "schema_version": "D3PackagingCountRepair.v1",
+  "author": "/root/d3_implementation_astra",
+  "category": "test",
+  "path": "tests/test_package_surfaces.py",
+  "failure_log": "reports/d3-task-planner/local-ci/packaging-profiles.log",
+  "failure": "tests/test_package_surfaces.py:89: assert 165 == 160; packaging group 1 failed, 254 passed, 16 subtests passed",
+  "rationale": "Authorized new planner increases shipped skills from 32 to 33 across five providers: 165 SKILL.md files. Only expected count changes; archive boundary, no-agent, retired path, link and installer checks remain intact.",
+  "before_sha256": "c1129fed927c0acc4a2c765a1fc0af1dfe747274a6db6898e6a8dae16cabbe6a",
+  "after_sha256": "8aaad7ae9766b1c927e1aabb0bb8297470106bd5eb9f54156c481001ab94fc1f",
+  "diff_sha256": "7a90af0243e2dc1790ee1fa7308e84d53ce9f61262bc19a33592e7d3ebeb75f5",
+  "diff": "--- tests/test_package_surfaces.py\n+++ tests/test_package_surfaces.py\n@@ -86,7 +86,7 @@\n     for names in (tar_files, zip_files):\n         assert not any(name.startswith(tuple(f\".{p}/agents/\" for p in (\"codex\", \"claude\", \"gemini\", \"kiro\")))\n                        and not name.endswith(\"/\") for name in names)\n-        assert sum(name.endswith(\"/SKILL.md\") for name in names) == 160\n+        assert sum(name.endswith(\"/SKILL.md\") for name in names) == 165\n \n     # The shipped guide must resolve its local skill/resource links in both formats.\n     import re\n",
+  "original_full_ci_status": "Not a full pass; this focused repair will be reconciled by controller with retained successful groups.",
+  "rerun_status": "passed",
+  "rerun_command": "PYTHONPATH=src PATH=/private/tmp/core-prompts-d1-s1-test-env/bin:$PATH python3.14 -m pytest -q tests/test_package_surfaces.py::test_package_boundary_includes_release_watch_contract",
+  "rerun_exit_code": 0,
+  "rerun_log": "reports/d3-task-planner/packaging-count-repair-test.log",
+  "rerun_result": ".                                                                        [100%]\n1 passed in 8.31s",
+  "rerun_log_sha256": "ca6957bd2ca0844479c973ddcfac3fb057e919db95750ad96df55594451931e4"
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": "D3MaterialPreservationReview.v1",
+  "reviewer": {
+    "agent_id": "/root/d3_requirement_review_astra",
+    "author_agent_id": "/root/d3_implementation_astra",
+    "independent": true
+  },
+  "original_intake_sha256": "0f4b680745fb6bc1a56bd406a0a75cc3f1218a59bc718d5d8552bebd998871c8",
+  "final_intake_sha256": "7588f8e738f2a1c12eb8101a67adccb43a541dd9aec2909858f0f98ab648fe48",
+  "original_line_count": 219,
+  "final_line_count": 225,
+  "historical_preservation_claim": false,
+  "source_resolution": "Old intake is comparison evidence only, not asserted to be a known original to the final UAC run. Final UAC review binds its actual recognized final source hash.",
+  "coverage": [
+    {
+      "id": "NEW-SOURCE-01",
+      "original_start_line": 1,
+      "original_end_line": 9,
+      "final_start_line": 1,
+      "final_end_line": 9,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-02",
+      "original_start_line": 10,
+      "original_end_line": 16,
+      "final_start_line": 10,
+      "final_end_line": 16,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-03",
+      "original_start_line": 17,
+      "original_end_line": 22,
+      "final_start_line": 17,
+      "final_end_line": 22,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-04",
+      "original_start_line": 23,
+      "original_end_line": 33,
+      "final_start_line": 23,
+      "final_end_line": 33,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-05",
+      "original_start_line": 34,
+      "original_end_line": 41,
+      "final_start_line": 34,
+      "final_end_line": 41,
+      "disposition": "reformulated",
+      "rationale": "All original input content is retained as five bullets: outcome/acceptance/revision; conventions/interfaces; optional architecture/constraints/non-goals; actual tracker/unfinished plan; missing facts and no invented acceptance/tracker."
+    },
+    {
+      "id": "NEW-SOURCE-06",
+      "original_start_line": 42,
+      "original_end_line": 49,
+      "final_start_line": 49,
+      "final_end_line": 56,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-07",
+      "original_start_line": 50,
+      "original_end_line": 56,
+      "final_start_line": 57,
+      "final_end_line": 63,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-08",
+      "original_start_line": 57,
+      "original_end_line": 61,
+      "final_start_line": 64,
+      "final_end_line": 68,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-09",
+      "original_start_line": 62,
+      "original_end_line": 68,
+      "final_start_line": 69,
+      "final_end_line": 75,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-10",
+      "original_start_line": 69,
+      "original_end_line": 74,
+      "final_start_line": 76,
+      "final_end_line": 81,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-11",
+      "original_start_line": 75,
+      "original_end_line": 80,
+      "final_start_line": 82,
+      "final_end_line": 87,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-12",
+      "original_start_line": 81,
+      "original_end_line": 86,
+      "final_start_line": 88,
+      "final_end_line": 93,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-13",
+      "original_start_line": 87,
+      "original_end_line": 92,
+      "final_start_line": 94,
+      "final_end_line": 99,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-14",
+      "original_start_line": 93,
+      "original_end_line": 101,
+      "final_start_line": 100,
+      "final_end_line": 108,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-15",
+      "original_start_line": 102,
+      "original_end_line": 107,
+      "final_start_line": 109,
+      "final_end_line": 114,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-16",
+      "original_start_line": 108,
+      "original_end_line": 113,
+      "final_start_line": 115,
+      "final_end_line": 120,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-17",
+      "original_start_line": 114,
+      "original_end_line": 123,
+      "final_start_line": 121,
+      "final_end_line": 128,
+      "disposition": "reformulated",
+      "rationale": "Output prose becomes five bullets preserving readable plan, source/status/tracker, every task-contract field, completion evidence, holds, next-owner bounds, empty design/writes semantics and no manufactured proof. Optional sidecars restate the immediately following unchanged route contract."
+    },
+    {
+      "id": "NEW-SOURCE-18",
+      "original_start_line": 124,
+      "original_end_line": 134,
+      "final_start_line": 129,
+      "final_end_line": 139,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-19",
+      "original_start_line": 135,
+      "original_end_line": 142,
+      "final_start_line": 140,
+      "final_end_line": 147,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-20",
+      "original_start_line": 143,
+      "original_end_line": 149,
+      "final_start_line": 148,
+      "final_end_line": 154,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-21",
+      "original_start_line": 150,
+      "original_end_line": 159,
+      "final_start_line": 155,
+      "final_end_line": 165,
+      "disposition": "reformulated",
+      "rationale": "All action prohibitions and artifact ownership stay unchanged. The shared-resource-import absence is restated as no automatic resource sharing or ingestion; no cross-skill import dependency remains explicit in Workflow. No resource service or runtime integration is added."
+    },
+    {
+      "id": "NEW-SOURCE-22",
+      "original_start_line": 160,
+      "original_end_line": 173,
+      "final_start_line": 166,
+      "final_end_line": 179,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-23",
+      "original_start_line": 174,
+      "original_end_line": 182,
+      "final_start_line": 180,
+      "final_end_line": 188,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-24",
+      "original_start_line": 183,
+      "original_end_line": 191,
+      "final_start_line": 189,
+      "final_end_line": 197,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-25",
+      "original_start_line": 192,
+      "original_end_line": 209,
+      "final_start_line": 198,
+      "final_end_line": 215,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    },
+    {
+      "id": "NEW-SOURCE-26",
+      "original_start_line": 210,
+      "original_end_line": 219,
+      "final_start_line": 216,
+      "final_end_line": 225,
+      "disposition": "preserved",
+      "rationale": "Original clause is retained verbatim."
+    }
+  ],
+  "new_section": {
+    "final_start_line": 42,
+    "final_end_line": 48,
+    "rationale": "Explicit In Scope restates existing authorized capability; no scope expansion."
+  },
+  "verdict": "preserved_meaning",
+  "open_findings": []
+}

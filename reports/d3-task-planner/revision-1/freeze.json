@@ -1,0 +1,87 @@
+{
+  "schema_version": "D3AuthoringFreeze.v1",
+  "candidate": "reports/d3-task-planner/engos-design-plan-implementation.md",
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "entry_sha256": "0f4b680745fb6bc1a56bd406a0a75cc3f1218a59bc718d5d8552bebd998871c8",
+  "effective_sha256": "20443424ac68bac246d3dc23c85631a21f6111e41157ec54605a0accbb640cfa",
+  "files": {
+    "reports/d3-task-planner/engos-design-plan-implementation.md": "0f4b680745fb6bc1a56bd406a0a75cc3f1218a59bc718d5d8552bebd998871c8",
+    "sources/capability-resources/engos-design-plan-implementation/resource-map.json": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+    "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83",
+    "README.md": "da42156962dd4de9e5af639b6f554b2565285f02e73e472024888ca2c0fae02a",
+    "docs/GETTING-STARTED.md": "01e3df926fdb14321ee890eb006660a065f2612443b39957a2d13486df1fa11b",
+    "docs/EXAMPLES.md": "01508c1b56640dbb1d20f16b3e0cc90e94f206beb98d695d7d95846b240b1e68",
+    "docs/CLI-REFERENCE.md": "2ac5b69258d42e9fcd91fd28e3ea09ee2db4073098a73937df938cf060bd9d83",
+    "CHANGELOG.md": "477a6a4f767054ddb8622fe99eb17e5001508998307856ce12dc0f2133a8512d",
+    "tests/test_capability_resources.py": "87afffce937a403f550a0662dc03b4eb0c74c7c8ba6e62a8b238833d99d5ef49"
+  },
+  "routes": {
+    "task_contract": {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "task_contract",
+      "manifest_sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302",
+      "resources": [
+        {
+          "path": "schemas/task-contract.schema.json",
+          "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "content": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"TaskContract.v1\",\n  \"description\": \"Optional task interchange shape. Validation does not establish source truth, digest correctness, independent task quality, authority, acceptance, reference existence, graph validity or execution. Null digests/authority require explicit unresolved context in the plan.\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"required\": [\n    \"schema_version\",\n    \"id\",\n    \"outcome\",\n    \"requirement_ids\",\n    \"design_ids\",\n    \"depends_on\",\n    \"consumes\",\n    \"produces\",\n    \"likely_files\",\n    \"allowed_writes\",\n    \"constraints\",\n    \"verification\",\n    \"stop_condition\",\n    \"authority_ref\"\n  ],\n  \"properties\": {\n    \"schema_version\": {\n      \"const\": \"TaskContract.v1\"\n    },\n    \"id\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"outcome\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"requirement_ids\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"design_ids\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"depends_on\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"consumes\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\n          \"path\",\n          \"sha256\"\n        ],\n        \"properties\": {\n          \"path\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          },\n          \"sha256\": {\n            \"anyOf\": [\n              {\n                \"type\": \"string\",\n                \"pattern\": \"^[a-f0-9]{64}$\"\n              },\n              {\n                \"type\": \"null\"\n              }\n            ]\n          }\n        }\n      }\n    },\n    \"produces\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"likely_files\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"allowed_writes\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"constraints\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"verification\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\n          \"id\",\n          \"oracle\",\n          \"command_or_inspection\"\n        ],\n        \"properties\": {\n          \"id\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          },\n          \"oracle\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          },\n          \"command_or_inspection\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          }\n        }\n      }\n    },\n    \"stop_condition\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"authority_ref\": {\n      \"anyOf\": [\n        {\n          \"type\": \"string\",\n          \"minLength\": 1,\n          \"pattern\": \"\\\\S\"\n        },\n        {\n          \"type\": \"null\"\n        }\n      ]\n    }\n  }\n}\n"
+        }
+      ],
+      "sha256": "2433645ebdabcad45129722161d01b415ce9e9d08fd5380153d8c1dd91ae4e93",
+      "delivery_claim": "assembled_not_proof_of_consumption"
+    },
+    "task_plan": {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "task_plan",
+      "manifest_sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302",
+      "resources": [
+        {
+          "path": "schemas/task-contract.schema.json",
+          "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "content": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"TaskContract.v1\",\n  \"description\": \"Optional task interchange shape. Validation does not establish source truth, digest correctness, independent task quality, authority, acceptance, reference existence, graph validity or execution. Null digests/authority require explicit unresolved context in the plan.\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"required\": [\n    \"schema_version\",\n    \"id\",\n    \"outcome\",\n    \"requirement_ids\",\n    \"design_ids\",\n    \"depends_on\",\n    \"consumes\",\n    \"produces\",\n    \"likely_files\",\n    \"allowed_writes\",\n    \"constraints\",\n    \"verification\",\n    \"stop_condition\",\n    \"authority_ref\"\n  ],\n  \"properties\": {\n    \"schema_version\": {\n      \"const\": \"TaskContract.v1\"\n    },\n    \"id\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"outcome\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"requirement_ids\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"design_ids\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"depends_on\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"consumes\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\n          \"path\",\n          \"sha256\"\n        ],\n        \"properties\": {\n          \"path\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          },\n          \"sha256\": {\n            \"anyOf\": [\n              {\n                \"type\": \"string\",\n                \"pattern\": \"^[a-f0-9]{64}$\"\n              },\n              {\n                \"type\": \"null\"\n              }\n            ]\n          }\n        }\n      }\n    },\n    \"produces\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"likely_files\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"allowed_writes\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"constraints\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"verification\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"type\": \"object\",\n        \"additionalProperties\": false,\n        \"required\": [\n          \"id\",\n          \"oracle\",\n          \"command_or_inspection\"\n        ],\n        \"properties\": {\n          \"id\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          },\n          \"oracle\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          },\n          \"command_or_inspection\": {\n            \"type\": \"string\",\n            \"minLength\": 1,\n            \"pattern\": \"\\\\S\"\n          }\n        }\n      }\n    },\n    \"stop_condition\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"authority_ref\": {\n      \"anyOf\": [\n        {\n          \"type\": \"string\",\n          \"minLength\": 1,\n          \"pattern\": \"\\\\S\"\n        },\n        {\n          \"type\": \"null\"\n        }\n      ]\n    }\n  }\n}\n"
+        },
+        {
+          "path": "schemas/task-plan.schema.json",
+          "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "content": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"TaskPlan.v1\",\n  \"description\": \"Optional projection of the authoritative plan and existing tracker. No automatic approval, property-level unique task IDs, dependency/cycle validation, completed-ID membership, coverage, source truth, authority or execution checks. Null hashes identify unavailable byte binding; do not invent digests.\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"required\": [\n    \"schema_version\",\n    \"id\",\n    \"spec_ref\",\n    \"spec_sha256\",\n    \"tasks\",\n    \"completed_task_ids\",\n    \"tracker_ref\",\n    \"unresolved\"\n  ],\n  \"properties\": {\n    \"schema_version\": {\n      \"const\": \"TaskPlan.v1\"\n    },\n    \"id\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"spec_ref\": {\n      \"type\": \"string\",\n      \"minLength\": 1,\n      \"pattern\": \"\\\\S\"\n    },\n    \"spec_sha256\": {\n      \"anyOf\": [\n        {\n          \"type\": \"string\",\n          \"pattern\": \"^[a-f0-9]{64}$\"\n        },\n        {\n          \"type\": \"null\"\n        }\n      ]\n    },\n    \"tasks\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"items\": {\n        \"$ref\": \"task-contract.schema.json\"\n      }\n    },\n    \"completed_task_ids\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    },\n    \"tracker_ref\": {\n      \"anyOf\": [\n        {\n          \"type\": \"string\",\n          \"minLength\": 1,\n          \"pattern\": \"\\\\S\"\n        },\n        {\n          \"type\": \"null\"\n        }\n      ]\n    },\n    \"unresolved\": {\n      \"type\": \"array\",\n      \"minItems\": 0,\n      \"items\": {\n        \"type\": \"string\",\n        \"minLength\": 1,\n        \"pattern\": \"\\\\S\"\n      },\n      \"uniqueItems\": true\n    }\n  }\n}\n"
+        }
+      ],
+      "sha256": "e835ce765543edc6dc17a82e67ae897b087a5703042bb718ebba2575d53d87fe",
+      "delivery_claim": "assembled_not_proof_of_consumption"
+    },
+    "dependency_map": {
+      "schema_version": "CapabilityResourceBundle.v1",
+      "route": "dependency_map",
+      "manifest_sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302",
+      "resources": [
+        {
+          "path": "templates/dependency-map.json",
+          "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83",
+          "content": "{\n  \"schema_version\": \"TaskDependencyMapTemplate.v1\",\n  \"plan_ref\": null,\n  \"plan_sha256\": null,\n  \"nodes\": [],\n  \"edges\": [],\n  \"unresolved\": [],\n  \"instructions\": {\n    \"node\": \"For each actual task record id and outcome. Preserve task IDs.\",\n    \"edge\": \"Record predecessor and successor IDs from depends_on; predecessor must finish before successor consumes its output.\",\n    \"authority\": \"Manual projection only; the actual plan/tracker remains authoritative.\",\n    \"review\": \"Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. This is not a graph-check result, a computed ready frontier or approval.\"\n  }\n}\n"
+        }
+      ],
+      "sha256": "0644abe17e7b3013ba891065cfec9f87f3c064591886a5b9487de44d6683f135",
+      "delivery_claim": "assembled_not_proof_of_consumption"
+    }
+  },
+  "preserved": {
+    "ssot/engos-design-plan-to-goal.md": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+    "ssot/engos-orchestration-batman.md": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+  },
+  "tests": {
+    "command": "PYTHONPATH=src python3.14 -m pytest -q tests/test_capability_resources.py -k planner",
+    "result": "9 passed, 40 deselected"
+  },
+  "status": "ready-for-independent-source-review; no UAC apply/build/stage/commit/push/merge/install/publish",
+  "dependency_interface": {
+    "revision": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+    "usage": "Reviewed supplied interface only; no D2 import or installation claim",
+    "files": {
+      "ssot/engos-design-specify-change.md": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+      "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    }
+  },
+  "donor_admission_sha256": "08b2a3523c772ea90a55c1556e504d7b49f993336b25146dcf7f21c5564f81ce"
+}
