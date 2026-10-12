@@ -1,0 +1,35 @@
+Captured pre-implementation failure log; full raw log remains task-local.
+raw_sha256=a3ca8c2d9670ddb25bd0dfc2e34dada1af52bf1b3f2807ff34b5b28c3934239c
+
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+______ test_explicit_taskplan_sibling_admission_and_detached_consistency _______
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-401/test_explicit_taskplan_sibling0')
+
+    def test_explicit_taskplan_sibling_admission_and_detached_consistency(tmp_path):
+        sibling_task_schema_fixture(tmp_path); package=tmp_path/'detached'
+>       original=sibling_detach(tmp_path,package)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_capability_resources.py:1064:
+...
+src/intent_pipeline/capability_resources.py:195: in visit
+    visit(child)
+src/intent_pipeline/capability_resources.py:195: in visit
+    visit(child)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+node = {'$ref': 'task-contract.schema.json'}
+
+    def visit(node):
+        if isinstance(node, dict):
+            if {"$ref", "$dynamicRef"}.intersection(node):
+>               raise ResourceContractError("Shared JSON references require a supported explicit closure rule")
+E               intent_pipeline.capability_resources.ResourceContractError: Shared JSON references require a supported explicit closure rule
+
+src/intent_pipeline/capability_resources.py:193: ResourceContractError
+=========================== short test summary info ============================
+FAILED tests/test_capability_resources.py::test_explicit_taskplan_sibling_admission_and_detached_consistency
+FAILED tests/test_capability_resources.py::test_detached_receipt_is_consistency_not_authenticity
+2 failed, 214 deselected in 0.40s

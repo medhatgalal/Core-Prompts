@@ -1,0 +1,308 @@
+{
+  "schema_version": "LinkageFixtures.v1",
+  "positive": {
+    "spec": {
+      "schema_version": "SpecContract.v1",
+      "id": "S1",
+      "source_refs": [
+        {
+          "id": "SRC1",
+          "ref": "request"
+        }
+      ],
+      "authority_ref": null,
+      "entry_order": "requirements_first",
+      "requirements": [
+        {
+          "id": "R1",
+          "condition": "When export is requested",
+          "behavior": "Export only permitted rows",
+          "acceptance": [
+            "Export only permitted rows"
+          ],
+          "unchanged_behavior": [],
+          "priority": "must"
+        },
+        {
+          "id": "R2",
+          "condition": "When export is requested",
+          "behavior": "Preserve row order",
+          "acceptance": [
+            "Preserve row order"
+          ],
+          "unchanged_behavior": [],
+          "priority": "must"
+        }
+      ],
+      "non_goals": [],
+      "assumptions": [],
+      "design_refs": []
+    },
+    "plan": {
+      "schema_version": "TaskPlan.v1",
+      "id": "P1",
+      "spec_ref": "opaque:request",
+      "spec_sha256": null,
+      "tasks": [
+        {
+          "schema_version": "TaskContract.v1",
+          "id": "T1",
+          "outcome": "Export only permitted rows",
+          "requirement_ids": [
+            "R1"
+          ],
+          "design_ids": [],
+          "depends_on": [],
+          "consumes": [
+            {
+              "path": "spec.json",
+              "sha256": null
+            }
+          ],
+          "produces": [
+            "export.csv"
+          ],
+          "likely_files": [],
+          "allowed_writes": [
+            "export.py"
+          ],
+          "constraints": [],
+          "verification": [
+            {
+              "id": "V1",
+              "oracle": "Only permitted rows appear",
+              "command_or_inspection": "Inspect exported rows"
+            }
+          ],
+          "stop_condition": "Stop on unmet scope",
+          "authority_ref": null
+        },
+        {
+          "schema_version": "TaskContract.v1",
+          "id": "T2",
+          "outcome": "Export only permitted rows",
+          "requirement_ids": [
+            "R2"
+          ],
+          "design_ids": [],
+          "depends_on": [],
+          "consumes": [
+            {
+              "path": "spec.json",
+              "sha256": null
+            }
+          ],
+          "produces": [
+            "export.csv"
+          ],
+          "likely_files": [],
+          "allowed_writes": [
+            "export.py"
+          ],
+          "constraints": [],
+          "verification": [
+            {
+              "id": "V1",
+              "oracle": "Only permitted rows appear",
+              "command_or_inspection": "Inspect exported rows"
+            }
+          ],
+          "stop_condition": "Stop on unmet scope",
+          "authority_ref": null
+        }
+      ],
+      "completed_task_ids": [],
+      "tracker_ref": null,
+      "unresolved": []
+    },
+    "tests": {
+      "schema_version": "TestDesign.v1",
+      "id": "TD1",
+      "requirement_ids": [
+        "R1",
+        "R2"
+      ],
+      "tests": [
+        {
+          "id": "TEST1",
+          "requirements": [
+            "R1"
+          ],
+          "expected": "Export only permitted rows",
+          "oracle": "Export only permitted rows",
+          "fixture": "Rows with mixed permissions",
+          "negative_case": "Unauthorized row",
+          "boundary_case": "Empty export",
+          "command_source": "inspection"
+        },
+        {
+          "id": "TEST2",
+          "requirements": [
+            "R2"
+          ],
+          "expected": "Preserve row order",
+          "oracle": "Preserve row order",
+          "fixture": "Rows with mixed permissions",
+          "negative_case": "Unauthorized row",
+          "boundary_case": "Empty export",
+          "command_source": "inspection"
+        }
+      ],
+      "execution_status": "not_run",
+      "gaps": []
+    }
+  },
+  "semantically_wrong_but_linked": {
+    "spec": {
+      "schema_version": "SpecContract.v1",
+      "id": "S1",
+      "source_refs": [
+        {
+          "id": "SRC1",
+          "ref": "request"
+        }
+      ],
+      "authority_ref": null,
+      "entry_order": "requirements_first",
+      "requirements": [
+        {
+          "id": "R1",
+          "condition": "When export is requested",
+          "behavior": "Export only permitted rows",
+          "acceptance": [
+            "Export only permitted rows"
+          ],
+          "unchanged_behavior": [],
+          "priority": "must"
+        },
+        {
+          "id": "R2",
+          "condition": "When export is requested",
+          "behavior": "Preserve row order",
+          "acceptance": [
+            "Preserve row order"
+          ],
+          "unchanged_behavior": [],
+          "priority": "must"
+        }
+      ],
+      "non_goals": [],
+      "assumptions": [],
+      "design_refs": []
+    },
+    "plan": {
+      "schema_version": "TaskPlan.v1",
+      "id": "P1",
+      "spec_ref": "opaque:request",
+      "spec_sha256": null,
+      "tasks": [
+        {
+          "schema_version": "TaskContract.v1",
+          "id": "T1",
+          "outcome": "Export every row, including forbidden rows",
+          "requirement_ids": [
+            "R1"
+          ],
+          "design_ids": [],
+          "depends_on": [],
+          "consumes": [
+            {
+              "path": "spec.json",
+              "sha256": null
+            }
+          ],
+          "produces": [
+            "export.csv"
+          ],
+          "likely_files": [],
+          "allowed_writes": [
+            "export.py"
+          ],
+          "constraints": [],
+          "verification": [
+            {
+              "id": "V1",
+              "oracle": "Only permitted rows appear",
+              "command_or_inspection": "Inspect exported rows"
+            }
+          ],
+          "stop_condition": "Stop on unmet scope",
+          "authority_ref": null
+        },
+        {
+          "schema_version": "TaskContract.v1",
+          "id": "T2",
+          "outcome": "Export only permitted rows",
+          "requirement_ids": [
+            "R2"
+          ],
+          "design_ids": [],
+          "depends_on": [],
+          "consumes": [
+            {
+              "path": "spec.json",
+              "sha256": null
+            }
+          ],
+          "produces": [
+            "export.csv"
+          ],
+          "likely_files": [],
+          "allowed_writes": [
+            "export.py"
+          ],
+          "constraints": [],
+          "verification": [
+            {
+              "id": "V1",
+              "oracle": "Only permitted rows appear",
+              "command_or_inspection": "Inspect exported rows"
+            }
+          ],
+          "stop_condition": "Stop on unmet scope",
+          "authority_ref": null
+        }
+      ],
+      "completed_task_ids": [],
+      "tracker_ref": null,
+      "unresolved": []
+    },
+    "tests": {
+      "schema_version": "TestDesign.v1",
+      "id": "TD1",
+      "requirement_ids": [
+        "R1",
+        "R2"
+      ],
+      "tests": [
+        {
+          "id": "TEST1",
+          "requirements": [
+            "R1"
+          ],
+          "expected": "Every row appears, including forbidden rows",
+          "oracle": "Every row appears",
+          "fixture": "Rows with mixed permissions",
+          "negative_case": "Unauthorized row",
+          "boundary_case": "Empty export",
+          "command_source": "inspection"
+        },
+        {
+          "id": "TEST2",
+          "requirements": [
+            "R2"
+          ],
+          "expected": "Preserve row order",
+          "oracle": "Preserve row order",
+          "fixture": "Rows with mixed permissions",
+          "negative_case": "Unauthorized row",
+          "boundary_case": "Empty export",
+          "command_source": "inspection"
+        }
+      ],
+      "execution_status": "not_run",
+      "gaps": []
+    }
+  },
+  "semantic_review": "pending independent reviewer; mechanical pass does not assess this contradiction"
+}

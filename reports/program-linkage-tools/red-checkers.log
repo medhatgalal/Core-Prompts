@@ -1,0 +1,35 @@
+Captured pre-implementation failure log; full raw log remains task-local.
+raw_sha256=afb6f62f9366242b2fcd8b9bf0822876e492501a781f467dfc51952e3e609ea3
+
+FFFFFFFFEEEEEEEE                                                         [100%]
+==================================== ERRORS ====================================
+_______ ERROR at setup of test_positive_optional_and_semantically_wrong ________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-394/test_positive_optional_and_sem0')
+
+    @pytest.fixture
+    def checker(tmp_path):
+        root=tmp_path/'resources'; (root/'schemas').mkdir(parents=True); (root/'scripts').mkdir()
+        for slug,name in [('engos-design-specify-change','spec-contract'),('engos-design-plan-implementation','task-plan'),('engos-design-plan-implementation','task-contract'),('engos-quality-testing-review','test-design')]:
+            shutil.copyfile(BASE/slug/'schemas'/f'{name}.schema.json',root/'schemas'/f'{name}.schema.json')
+>       shutil.copyfile(OWNER/'scripts/trace_check.py',root/'scripts/trace_check.py')
+...
+<frozen importlib._bootstrap_external>:954: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_task_graph_check.py::test_sorted_frontier_and_null_observations
+FAILED tests/test_task_graph_check.py::test_invalid_graph_has_no_frontier[cycle-dependency_cycle]
+FAILED tests/test_task_graph_check.py::test_invalid_graph_has_no_frontier[unknown-unknown_dependency]
+FAILED tests/test_task_graph_check.py::test_invalid_graph_has_no_frontier[duplicate-duplicate_id]
+FAILED tests/test_task_graph_check.py::test_invalid_graph_has_no_frontier[self-self_dependency]
+FAILED tests/test_task_graph_check.py::test_invalid_graph_has_no_frontier[completed-unknown_completed_task]
+FAILED tests/test_task_graph_check.py::test_invalid_graph_has_no_frontier[verification-duplicate_id]
+FAILED tests/test_task_graph_check.py::test_diamond_and_historical_completion
+ERROR tests/test_trace_check.py::test_positive_optional_and_semantically_wrong
+ERROR tests/test_trace_check.py::test_near_misses[missing-uncovered_requirement]
+ERROR tests/test_trace_check.py::test_near_misses[unknown-unknown_requirement]
+ERROR tests/test_trace_check.py::test_near_misses[duplicate-duplicate_id] - F...
+ERROR tests/test_trace_check.py::test_near_misses[tests-uncovered_test_requirement]
+ERROR tests/test_trace_check.py::test_near_misses[inventory-test_inventory_mismatch]
+ERROR tests/test_trace_check.py::test_near_misses[unlinked-unlinked_test] - F...
+ERROR tests/test_trace_check.py::test_design_mode_and_nonrequired - FileNotFo...
+8 failed, 8 errors in 0.46s
