@@ -1,0 +1,61 @@
+{
+  "schema_version": "D3IndependentPostBuildReview.v1",
+  "reviewer": "/root/d3_requirement_review_astra",
+  "source_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "canonical_descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+  "four_curated_paths_verified": [
+    "/layers/org_graph/work_graph_impact",
+    "/consumption_hints/preferred_use_cases",
+    "/consumption_hints/artifact_conventions",
+    "/layers/expanded/adjustment_recommendations"
+  ],
+  "curation_proposal_sha256": "0fc1721852b9fb0f7f866efdba33fbfb5ce31dd01c8f48ee2dad521c8dbb3130",
+  "controller_readback_sha256": "541d7323874a3d59a5170e0c159b1885cbe4e88e3c25f93616fa9b98d1867369",
+  "generated": {
+    "codex": {
+      "descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+      "skill_sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd",
+      "loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "source_body_exact": true,
+      "resources_exact": true
+    },
+    "gemini": {
+      "descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+      "skill_sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd",
+      "loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "source_body_exact": true,
+      "resources_exact": true
+    },
+    "claude": {
+      "descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+      "skill_sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd",
+      "loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "source_body_exact": true,
+      "resources_exact": true
+    },
+    "kiro": {
+      "descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+      "skill_sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd",
+      "loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "source_body_exact": true,
+      "resources_exact": true
+    },
+    "grok": {
+      "descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+      "skill_sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd",
+      "loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+      "source_body_exact": true,
+      "resources_exact": true
+    }
+  },
+  "existing_sources_preserved": 32,
+  "baselines_and_agents_unchanged_against_base": true,
+  "new_skill_inventory": 33,
+  "finding": "D3-META-01",
+  "status": "closed",
+  "closure_basis": "Direct actual canonical and five generated descriptor byte readbacks after generation; source body/resources/loader exact, approved curation values persisted. No inference from proposed patch success.",
+  "behavioral_status": "behavioral_pending",
+  "open_findings": [],
+  "authority": "Source-admission and metadata fidelity review only; no promotion, merge, install or release authority."
+}

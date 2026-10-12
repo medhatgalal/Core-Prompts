@@ -1,0 +1,74 @@
+{
+  "schema_version": "D3IndependentSourceAdmission.v1",
+  "reviewer": {
+    "agent_id": "/root/d3_requirement_review_astra",
+    "author_agent_id": "/root/d3_implementation_astra",
+    "independent": true
+  },
+  "source_verdict": "approved",
+  "source_open_findings": [],
+  "delivery_verdict": "pending_curated_post_build_readback",
+  "candidate_sha256": "7588f8e738f2a1c12eb8101a67adccb43a541dd9aec2909858f0f98ab648fe48",
+  "effective_sha256": "c0bccab5a4767711a89fc2cd06afb2ef36f99d813206e059cd21d3c37777d16b",
+  "historical_preservation_claim": false,
+  "behavioral_status": "behavioral_pending",
+  "review_receipt": "reports/d3-task-planner/revision-2/requirement-review-new-source.json",
+  "schema_attestation_validation_errors": [],
+  "focused_tests": "9 passed, 40 deselected in 0.54s; independently rerun tests/test_capability_resources.py -k planner",
+  "existing_ssot": "All 32 hashes match d3-frozen-plan.json; Batman and goal compiler preserved. D2 exact committed interface inspected and hash matched; no D2 import.",
+  "donor_evidence": "All five upstream pinned body/license/reference byte hashes independently fetched and equal admission evidence. Full local donor bodies/licenses and selected definition-of-done reference independently read. Selected concepts are independently expressed; no donor executor or external runtime dependency admitted.",
+  "resource_closure": {
+    "task_contract": [
+      "schemas/task-contract.schema.json"
+    ],
+    "task_plan": [
+      "schemas/task-contract.schema.json",
+      "schemas/task-plan.schema.json"
+    ],
+    "dependency_map": [
+      "templates/dependency-map.json"
+    ]
+  },
+  "schema_limits_reviewed": [
+    "No forced sidecar or tracker",
+    "Stable task/requirement/design IDs, nullable inspected-byte bindings and authority",
+    "Local sibling $ref declared in resource-map dependency and resolved offline",
+    "Source revision/status/evidence remain in authoritative narrative/tracker; sidecar is intentionally lossy with unmapped-field disclosure",
+    "ID property uniqueness, graph semantics, source truth, acceptance, authority and execution are not shape validation"
+  ],
+  "findings": [
+    {
+      "id": "D3-META-01",
+      "priority": "P2",
+      "location": "controller-plan-before-review.json preview.descriptor_preview",
+      "problem": "The new planning capability is described as an importer with uplift/deployment outputs and generic capability-selection use cases. Expanded packaging dependency and generic overlap adjustments also describe importer work. Persisting this metadata misstates the capability and can misroute discovery.",
+      "fix": "Curate only this new canonical descriptor to the source planning role, inputs, output artifacts, use cases, relevant neighbors and constraints. Remove irrelevant importer/package dependency defaults. Preserve source/hash evidence and intake-only tool_policy; do not patch heuristics or normalize existing owners merely to satisfy this preview.",
+      "status": "repair_proposal_approved_post_build_readback_pending",
+      "repair_evidence": {
+        "source": "revision-2 actual UAC preview now workflow/workflow_provider, accurate input/output bullets, no import tag, no packaging dependency, planning/context collaboration",
+        "persistent_fields": [
+          "/layers/org_graph/work_graph_impact",
+          "/consumption_hints/preferred_use_cases",
+          "/consumption_hints/artifact_conventions",
+          "/layers/expanded/adjustment_recommendations"
+        ]
+      }
+    }
+  ],
+  "doc_note": "CLI heading separation independently reread and accepted. Planner load instructions now under Plan Implementation And Load Optional Task Contracts; compiler heading applies only to compiler instructions.",
+  "authority": "Root alone controls UAC/build/Git/delivery. No merge/install/agent authority granted.",
+  "metadata_proposal_review": {
+    "path": "reports/d3-task-planner/revision-2/metadata-curation.json",
+    "sha256": "da2ed1078c9fc80e6746b20d797491e1625d87c1c65605c237bc2c879ae861e1",
+    "verdict": "all_four_replacements_source_supported",
+    "approved_proposed_paths": [
+      "/layers/org_graph/work_graph_impact",
+      "/consumption_hints/preferred_use_cases",
+      "/consumption_hints/artifact_conventions",
+      "/layers/expanded/adjustment_recommendations"
+    ],
+    "remaining_defect": "No remaining defect in the reviewed source-derived preview after the four proposed replacements; actual apply/regeneration persistence remains unverified.",
+    "required_verification": "Exact canonical and generated readback after apply/curation/build."
+  },
+  "revision": 2
+}

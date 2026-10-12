@@ -52,6 +52,13 @@
   the resource loader and retain review-only authority. Structural checks do not
   establish actual reading, review accuracy or behavioral improvement.
 
+- Add `engos-design-plan-implementation` for ordinary task planning from accepted
+  requirements and optional architecture. Preserve existing plans and trackers,
+  describe independently verifiable outcomes and bounded writes, and provide optional
+  TaskContract.v1 / TaskPlan.v1 schemas plus a manual dependency-map template.
+  Planning does not delegate, execute, create goals or certify acceptance; no graph
+  checker, installation, release or measured benefit is claimed by this slice.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

@@ -1,0 +1,27 @@
+{
+  "schema_version": "D3AuthoringFreeze.v2",
+  "candidate": "reports/d3-task-planner/revision-2/engos-design-plan-implementation.md",
+  "predecessor_freeze": "reports/d3-task-planner/freeze.json",
+  "predecessor_freeze_sha256": "86c30654012e5f2152cdc082ba3c3acdf6d1992c9f0b36bfa827903edbe6389a",
+  "entry_sha256": "7588f8e738f2a1c12eb8101a67adccb43a541dd9aec2909858f0f98ab648fe48",
+  "effective_sha256": "c0bccab5a4767711a89fc2cd06afb2ef36f99d813206e059cd21d3c37777d16b",
+  "source_revision": "revision-2; new actual intake seed, not a historical baseline",
+  "resources_unchanged": true,
+  "files": {
+    "reports/d3-task-planner/revision-2/engos-design-plan-implementation.md": "7588f8e738f2a1c12eb8101a67adccb43a541dd9aec2909858f0f98ab648fe48",
+    "reports/d3-task-planner/revision-2/metadata-curation.json": "da2ed1078c9fc80e6746b20d797491e1625d87c1c65605c237bc2c879ae861e1",
+    "reports/d3-task-planner/revision-2/uac-plan.json": "d4f549f0035dc85fc49aa11406ae0f1af84a08e149aef25dda0d15391a6cf86c",
+    "reports/d3-task-planner/revision-2/uac-plan.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/d3-task-planner/revision-2/source-diff.patch": "6a28542bc2c75fa5f9e75fbf8edf298d7b8aeb954fa9d3629bdba0bdd730a918",
+    "docs/CLI-REFERENCE.md": "45472d3c6c5e87c9f48fd72e15eddc6a437435e48c4f4c9b5fc1de8a043087df"
+  },
+  "read_only_uac": {
+    "command": "PATH=/private/tmp/core-prompts-d1-s1-test-env/bin:$PATH bin/uac plan reports/d3-task-planner/revision-2/engos-design-plan-implementation.md --install-target global --benchmark-search off --use-repomix off --output json",
+    "exit_code": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "behavioral_status": "behavioral_pending",
+    "selected_candidate_sha256": "7588f8e738f2a1c12eb8101a67adccb43a541dd9aec2909858f0f98ab648fe48"
+  },
+  "status": "ready-for-renewed-independent-source-review; no apply/build or Git mutation"
+}

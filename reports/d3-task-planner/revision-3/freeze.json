@@ -1,0 +1,77 @@
+{
+  "schema_version": "D3AuthoringFreeze.v3",
+  "candidate": "reports/d3-task-planner/revision-3/engos-design-plan-implementation.md",
+  "predecessor_freeze": "reports/d3-task-planner/revision-2/freeze.json",
+  "predecessor_freeze_sha256": "f3048017217f6ececab130b3642e28952d482ed68f114e15772318029cf62a34",
+  "entry_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "resources_unchanged": true,
+  "status": "ready-for-renewed-independent-source-review; no apply/build or Git mutation",
+  "source_changes": [
+    "description clarifies implementation planning with optional supplied design; body architecture ownership unchanged",
+    "install_target global makes already-intended packaging advice explicit; no installation"
+  ],
+  "checks": {
+    "intake_preview": {
+      "role": "workflow",
+      "org_role": "workflow_provider",
+      "display_name": "engos-design-plan-implementation",
+      "install_target": "global",
+      "capability_type": "skill",
+      "surfaces": [
+        "claude_skill",
+        "codex_skill",
+        "gemini_skill",
+        "grok_skill",
+        "kiro_skill"
+      ],
+      "required_inputs_count": 5,
+      "expected_outputs_count": 5,
+      "domain_tags": [
+        "planning",
+        "context",
+        "engos",
+        "design",
+        "plan",
+        "implementation"
+      ],
+      "capability_dependencies": []
+    },
+    "ssot_projection": {
+      "role": "workflow",
+      "org_role": "workflow_provider",
+      "display_name": "Plan Implementation",
+      "install_target": "global",
+      "capability_type": "skill",
+      "surfaces": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "required_inputs_count": 5,
+      "expected_outputs_count": 5,
+      "domain_tags": [
+        "planning",
+        "engos",
+        "design",
+        "plan",
+        "implementation"
+      ],
+      "capability_dependencies": []
+    }
+  },
+  "display_note": "UAC preview uses the slug; actual pure SSOT projection correctly yields Plan Implementation without a descriptor override.",
+  "uac_status": "accepted",
+  "quality_status": "structural_ready",
+  "behavioral_status": "behavioral_pending",
+  "files": {
+    "reports/d3-task-planner/revision-3/engos-design-plan-implementation.md": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+    "reports/d3-task-planner/revision-3/uac-plan.json": "64fd1e2fb2a410fc8bcc04a1adf6642adacbc406b16a7e32977f076b867b6973",
+    "reports/d3-task-planner/revision-3/uac-plan.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/d3-task-planner/revision-3/ssot-projection.json": "f0d0b6307ec1c0981b6ec3f4514602918e22de6ee8770789a5f94a56e9f86b80",
+    "reports/d3-task-planner/revision-3/metadata-curation.json": "0fc1721852b9fb0f7f866efdba33fbfb5ce31dd01c8f48ee2dad521c8dbb3130",
+    "reports/d3-task-planner/revision-3/source-diff.patch": "517d072b09d0d918b0b4d5dac038fc62206e4034725e8af4edd15448fb4c6784"
+  }
+}

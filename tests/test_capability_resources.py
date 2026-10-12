@@ -832,3 +832,94 @@ def test_review_findings_schema_does_not_claim_reference_truth(review_findings_c
     # verification belongs to the reviewer/operator; schema success cannot prove it.
     validator.validate(record)
     assert "cannot prove actual reads" in validator.schema["description"]
+
+
+def planner_resource_root() -> Path:
+    return Path(__file__).parents[1] / 'sources/capability-resources/engos-design-plan-implementation'
+
+
+def planner_validator():
+    # Resolve the packaged sibling schema offline; no network or D2 checkout.
+    from jsonschema import Draft202012Validator
+    from referencing import Registry, Resource
+    root = planner_resource_root()
+    task = json.loads((root / 'schemas/task-contract.schema.json').read_text())
+    plan = json.loads((root / 'schemas/task-plan.schema.json').read_text())
+    Draft202012Validator.check_schema(task)
+    Draft202012Validator.check_schema(plan)
+    registry = Registry().with_resource('task-contract.schema.json', Resource.from_contents(task))
+    return Draft202012Validator(plan, registry=registry)
+
+
+def planner_fixture() -> dict:
+    return {
+        'schema_version': 'TaskPlan.v1', 'id': 'export-plan',
+        'spec_ref': 'accepted-request.md', 'spec_sha256': None,
+        'tracker_ref': 'existing-tracker/EXPORT-7', 'completed_task_ids': [],
+        'unresolved': ['Source bytes unavailable; authority for execution pending.'],
+        'tasks': [{
+            'schema_version': 'TaskContract.v1', 'id': 'EXPORT-7',
+            'outcome': 'Filtered export contains exactly the accepted rows and columns.',
+            'requirement_ids': ['REQ-1'], 'design_ids': [], 'depends_on': [],
+            'consumes': [{'path': 'accepted-request.md', 'sha256': None}],
+            'produces': ['export(filter) -> CSV with accepted columns'],
+            'likely_files': ['src/export.py'], 'allowed_writes': [],
+            'constraints': ['Preserve filter semantics'],
+            'verification': [{'id': 'CHECK-1', 'oracle': 'CSV rows equal filtered fixture rows',
+                              'command_or_inspection': 'Inspect fixture comparison result'}],
+            'stop_condition': 'Hold execution until source and authority are verified',
+            'authority_ref': None,
+        }],
+    }
+
+
+def test_planner_resource_routes_include_local_schema_closure():
+    root = planner_resource_root()
+    assert paths(load_resource_bundle(root, 'task_plan')) == [
+        'schemas/task-contract.schema.json', 'schemas/task-plan.schema.json',
+    ]
+    assert paths(load_resource_bundle(root, 'task_contract')) == ['schemas/task-contract.schema.json']
+    assert paths(load_resource_bundle(root, 'dependency_map')) == ['templates/dependency-map.json']
+    assert set(paths(load_resource_bundle(root))) == {
+        'schemas/task-contract.schema.json', 'schemas/task-plan.schema.json', 'templates/dependency-map.json',
+    }
+
+
+def test_planner_schemas_allow_pending_plain_requirements_without_d2_or_new_tracker():
+    plan = planner_fixture()
+    planner_validator().validate(plan)
+    plan['tracker_ref'] = None  # Chat-only planning requires no new tracker.
+    plan['completed_task_ids'] = ['EXPORT-7']  # Historical evidence stays in the actual tracker.
+    planner_validator().validate(plan)
+
+
+@pytest.mark.parametrize('mutation', ['missing_oracle', 'missing_authority', 'bad_digest',
+                                     'empty_requirements', 'blank_outcome', 'extra_execution'])
+def test_planner_schemas_reject_incomplete_or_misleading_shapes(mutation: str):
+    from jsonschema import ValidationError
+    plan = planner_fixture()
+    task = plan['tasks'][0]
+    if mutation == 'missing_oracle':
+        del task['verification'][0]['oracle']
+    elif mutation == 'missing_authority':
+        del task['authority_ref']
+    elif mutation == 'bad_digest':
+        task['consumes'][0]['sha256'] = 'not-observed'
+    elif mutation == 'empty_requirements':
+        task['requirement_ids'] = []
+    elif mutation == 'blank_outcome':
+        task['outcome'] = '  '
+    else:
+        task['dispatch_now'] = True
+    with pytest.raises(ValidationError):
+        planner_validator().validate(plan)
+
+
+def test_planner_schema_does_not_claim_graph_or_acceptance_validation():
+    # Deliberately shape-valid but semantically unready: those checks belong to
+    # human/source review now and the separately scoped future graph checker.
+    plan = planner_fixture()
+    plan['tasks'][0]['depends_on'] = ['missing-task']
+    plan['completed_task_ids'] = ['unknown-task']
+    plan['tasks'].append(dict(plan['tasks'][0]))
+    planner_validator().validate(plan)

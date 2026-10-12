@@ -337,6 +337,23 @@ Follow with:
 
 > Now turn that recommendation into the smallest migration-safe implementation plan.
 
+### `engos-design-plan-implementation`
+
+> Plan the accepted filtered export feature using our existing issue tracker.
+> Preserve unfinished billing tasks. Return proposed task updates without posting them.
+
+Expect one readable plan with requirement IDs, independently acceptable outcomes,
+consumed and produced interfaces, dependencies, likely files, allowed writes,
+constraints, verification oracles and stop conditions. Plain accepted requirements
+work; no specification skill or new tracker is required. Existing IDs and completed
+evidence remain intact. Unknown source digests and authority remain explicit holds.
+
+Optional `TaskContract.v1` and `TaskPlan.v1` sidecars support interchange when useful.
+A dependency map is a manual projection, not a computed ready frontier. Schema
+validation establishes shape only; it does not approve the plan, prove source truth
+or graph correctness, run tasks, invoke Batman or create a goal. A spelling fix can
+use one scoped edit and a diff check without this planning ceremony.
+
 ### `engos-design-plan-to-goal`
 
 Use when:

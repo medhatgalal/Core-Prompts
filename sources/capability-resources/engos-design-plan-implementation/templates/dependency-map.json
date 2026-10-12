@@ -1,0 +1,14 @@
+{
+  "schema_version": "TaskDependencyMapTemplate.v1",
+  "plan_ref": null,
+  "plan_sha256": null,
+  "nodes": [],
+  "edges": [],
+  "unresolved": [],
+  "instructions": {
+    "node": "For each actual task record id and outcome. Preserve task IDs.",
+    "edge": "Record predecessor and successor IDs from depends_on; predecessor must finish before successor consumes its output.",
+    "authority": "Manual projection only; the actual plan/tracker remains authoritative.",
+    "review": "Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. This is not a graph-check result, a computed ready frontier or approval."
+  }
+}

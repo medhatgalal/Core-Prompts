@@ -1,0 +1,82 @@
+{
+  "schema_version": "D3IndependentSourceAdmission.v1",
+  "reviewer": {
+    "agent_id": "/root/d3_requirement_review_astra",
+    "author_agent_id": "/root/d3_implementation_astra",
+    "independent": true
+  },
+  "source_verdict": "approved",
+  "source_open_findings": [],
+  "delivery_verdict": "source_and_metadata_ready_for_separate_delivery_checks",
+  "candidate_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "historical_preservation_claim": false,
+  "behavioral_status": "behavioral_pending",
+  "review_receipt": "reports/d3-task-planner/revision-3/requirement-review-new-source.json",
+  "schema_attestation_validation_errors": [],
+  "focused_tests": "9 passed, 40 deselected in 0.54s; independently rerun tests/test_capability_resources.py -k planner",
+  "existing_ssot": "All 32 hashes match d3-frozen-plan.json; Batman and goal compiler preserved. D2 exact committed interface inspected and hash matched; no D2 import.",
+  "donor_evidence": "All five upstream pinned body/license/reference byte hashes independently fetched and equal admission evidence. Full local donor bodies/licenses and selected definition-of-done reference independently read. Selected concepts are independently expressed; no donor executor or external runtime dependency admitted.",
+  "resource_closure": {
+    "task_contract": [
+      "schemas/task-contract.schema.json"
+    ],
+    "task_plan": [
+      "schemas/task-contract.schema.json",
+      "schemas/task-plan.schema.json"
+    ],
+    "dependency_map": [
+      "templates/dependency-map.json"
+    ]
+  },
+  "schema_limits_reviewed": [
+    "No forced sidecar or tracker",
+    "Stable task/requirement/design IDs, nullable inspected-byte bindings and authority",
+    "Local sibling $ref declared in resource-map dependency and resolved offline",
+    "Source revision/status/evidence remain in authoritative narrative/tracker; sidecar is intentionally lossy with unmapped-field disclosure",
+    "ID property uniqueness, graph semantics, source truth, acceptance, authority and execution are not shape validation"
+  ],
+  "findings": [
+    {
+      "id": "D3-META-01",
+      "priority": "P2",
+      "location": "controller-plan-before-review.json preview.descriptor_preview",
+      "problem": "The new planning capability is described as an importer with uplift/deployment outputs and generic capability-selection use cases. Expanded packaging dependency and generic overlap adjustments also describe importer work. Persisting this metadata misstates the capability and can misroute discovery.",
+      "fix": "Curate only this new canonical descriptor to the source planning role, inputs, output artifacts, use cases, relevant neighbors and constraints. Remove irrelevant importer/package dependency defaults. Preserve source/hash evidence and intake-only tool_policy; do not patch heuristics or normalize existing owners merely to satisfy this preview.",
+      "status": "closed",
+      "repair_evidence": {
+        "source": "Revision-3 actual UAC preview and independently reproduced pure SSOT projection: workflow/workflow_provider, correct inputs/outputs, skill-only surfaces, global packaging advice, no importer tag or packaging dependency. Operating body/resources unchanged from revision2.",
+        "persistent_fields": [
+          "/layers/org_graph/work_graph_impact",
+          "/consumption_hints/preferred_use_cases",
+          "/consumption_hints/artifact_conventions",
+          "/layers/expanded/adjustment_recommendations"
+        ]
+      },
+      "closure": {
+        "canonical_descriptor_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+        "evidence": "reports/d3-task-planner/reviewer-post-build-closure.json",
+        "evidence_sha256": "a7681a5bc83c9f1c42751ff011f69ce4e34991672c2348700ecf3e84b7b37b70",
+        "basis": "Direct actual canonical and five generated descriptor byte readbacks after generation; source body/resources/loader exact, approved curation values persisted. No inference from proposed patch success."
+      }
+    }
+  ],
+  "doc_note": "CLI heading separation independently reread and accepted. Planner load instructions now under Plan Implementation And Load Optional Task Contracts; compiler heading applies only to compiler instructions.",
+  "authority": "Root alone controls UAC/build/Git/delivery. No merge/install/agent authority granted.",
+  "metadata_proposal_review": {
+    "path": "reports/d3-task-planner/revision-3/metadata-curation.json",
+    "sha256": "0fc1721852b9fb0f7f866efdba33fbfb5ce31dd01c8f48ee2dad521c8dbb3130",
+    "verdict": "actual_post_build_curation_verified",
+    "approved_proposed_paths": [
+      "/layers/org_graph/work_graph_impact",
+      "/consumption_hints/preferred_use_cases",
+      "/consumption_hints/artifact_conventions",
+      "/layers/expanded/adjustment_recommendations"
+    ],
+    "remaining_defect": "None within source-admission and metadata-fidelity scope.",
+    "required_verification": "Completed through independent direct canonical and five-package byte readback; see reviewer-post-build-closure.json."
+  },
+  "revision": 3,
+  "open_findings": [],
+  "current_scope": "Source admission and actual post-build descriptor fidelity only; no final CI, commit, hosted checks, merge, installation, release or behavioral promotion judgment."
+}

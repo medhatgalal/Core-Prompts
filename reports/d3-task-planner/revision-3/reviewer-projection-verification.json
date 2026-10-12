@@ -1,0 +1,26 @@
+{
+  "schema_version": "D3IndependentProjectionReview.v1",
+  "reviewer": {
+    "agent_id": "/root/d3_requirement_review_astra",
+    "author_agent_id": "/root/d3_implementation_astra",
+    "independent": true
+  },
+  "source_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "pure_projection_matches_author_receipt": true,
+  "intake_and_ssot": {
+    "role": "workflow",
+    "org_role": "workflow_provider",
+    "install_target": "global",
+    "authority_note": "Packaging advice only; actual install excluded.",
+    "required_inputs_count": 5,
+    "expected_outputs_count": 5,
+    "only_five_skill_surfaces": true,
+    "no_importer_tag": true,
+    "no_packaging_dependency": true
+  },
+  "difference": "Intake uses slug display name and context tag; SSOT resolves Plan Implementation and source-description tags. Neither difference misstates the task-planning job.",
+  "persistent_metadata_proposal": "All four exact revision-3 replacements approved; canonical/generated post-build persistence unverified.",
+  "source_findings": [],
+  "behavioral_status": "behavioral_pending"
+}

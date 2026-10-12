@@ -280,6 +280,23 @@ python3 "$STATE_HELPER" write --cwd "$(pwd)" --task-id <safe-task-id> \
 
 The helper derives a readable project slug plus a deterministic hash from the normalized Git common directory, so linked worktrees share one project ID while unrelated same-name repositories do not. Task IDs accept only 1–80 lowercase letters, digits, hyphens, or underscores and must start and end alphanumeric. State stays under `${ANALYZE_CONTEXT_STATE_HOME:-$HOME/.analyze-context}`, outside Git worktrees, with `0700` directories, `0600` files, one-writer locking, path-containment checks, and atomic replacement writes.
 
+### Plan Implementation And Load Optional Task Contracts
+
+The `engos-design-plan-implementation` skill plans accepted requirements in the
+existing project format. Optional interchange resources use the existing loader;
+from that installed skill directory:
+
+```bash
+python3 resources/scripts/load_module.py --route task_contract --format text
+python3 resources/scripts/load_module.py --route task_plan --format text
+python3 resources/scripts/load_module.py --route dependency_map --format text
+```
+
+`task_plan` includes its sibling `task-contract.schema.json` dependency. Narrative
+planning needs no JSON sidecar. The map template records manually inspected
+relationships; no graph checker or ready-frontier command is shipped. Loader output
+proves assembly only, and schema shape does not prove task quality or authorization.
+
 ### Lint, Seal, And Check A Plan To Goal Packet
 
 Run these from the installed `engos-design-plan-to-goal` skill directory after the skill has produced and materialized a packet:
