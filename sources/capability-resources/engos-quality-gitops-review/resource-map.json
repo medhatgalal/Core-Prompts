@@ -1,0 +1,14 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "docs-release-readiness": [
+      "references/docs-release-readiness.md"
+    ]
+  },
+  "dependencies": {
+    "references/docs-release-readiness.md": [
+      "schemas/docs-ship-handoff.schema.json"
+    ]
+  }
+}

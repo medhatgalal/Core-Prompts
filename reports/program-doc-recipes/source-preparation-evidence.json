@@ -1,0 +1,55 @@
+{
+  "schema_version": "D8SourcePreparation.v1",
+  "baseline_head": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+  "accepted_contract_sha256": "2d366589eaddc98ff9651ff81e384b82d1d504657b876a66f0331af46aa6e3b3",
+  "source_owner_hashes": {
+    "ssot/engos-quality-docs-review.md": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+    "ssot/engos-quality-gitops-review.md": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+  },
+  "authored_hashes": {
+    "sources/capability-resources/engos-quality-docs-review/resource-map.json": "fc1834c2c393fc7df4998eae286bfaa34121ae8686713a6c83ef8a91455f6a95",
+    "sources/capability-resources/engos-quality-docs-review/references/ai-onboarding.md": "04d3afb80093f3641f39a085a308c604b33ee42f2df36c2673bd05943b284f58",
+    "sources/capability-resources/engos-quality-docs-review/references/document-visuals.md": "f1161e46a889c60481a64b242f432802d7d9cdc3524b9229b4a3c79a73d29bc4",
+    "sources/capability-resources/engos-quality-docs-review/references/factual-audit.md": "6d0a2526bc55c8c24aed6167ce9eddfa1f1fb5196161b94a4ffca82045f652b1",
+    "sources/capability-resources/engos-quality-docs-review/references/docs-bundle.md": "005a5cfeb3b25790f97e7ba75c8447323e3c6a23fbf5f09c493be390de972d52",
+    "sources/capability-resources/engos-quality-docs-review/references/information-relocation.md": "75b56d74736bab883fb39d3c1f1ed0dd7843d86a1e23eaa887a943ca212ade78",
+    "sources/capability-resources/engos-quality-docs-review/references/adversarial-doc-review.md": "15a260b27f424ac47dcd0c08825a8e96ff29f26f1c51fc754e6a0c1ea695c383",
+    "sources/capability-resources/engos-quality-docs-review/references/readme-authoring.md": "4038cd955a84c49808e0de424e27894e6ae99d387b5cd43f5d726cfabe19aa8c",
+    "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json": "b44de0ae65a20f90539c1a3bcd50afab949d1b82d9db5460ba984c6bcc142483",
+    "sources/capability-resources/engos-quality-docs-review/schemas/factual-audit.schema.json": "77bc55f5f0a6ed445654ae08e2b34d4fa06e9620fd790e96a1ae6ebe7874f5dd",
+    "sources/capability-resources/engos-quality-docs-review/scripts/factual_audit.py": "698f56a6ff612ef32a55b8d2ba6df80e77be141a413ef471d5ac67aaf8fb3b8f",
+    "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-prompt-e.json": "9b12fd2475ee7237db2a5c6418c28fd5864749587a3b47e0cb6bba23b5924fd0",
+    "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-master.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "sources/capability-resources/engos-quality-gitops-review/resource-map.json": "0f1c60708531986f3b7b3df735e5cddea83d89f6107ea71c35fe53daaa0a5e1e",
+    "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md": "16bba8eab4e785d5c078e45004ec4e8763cef27741883e4d4a18e79375adfe27",
+    "reports/program-doc-recipes/source-hashes.json": "2026a55baa8accf62d456a103b7c2ad33810d39ffcb6fa35d1384c9b59fd50da",
+    "reports/program-doc-recipes/engos-quality-docs-review-candidate.md": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a",
+    "reports/program-doc-recipes/shared-resource-import-patch.json": "1541d623fa20cbe57af646de90f5325c9da32d4d00f36f71fe6120477a9a5f20",
+    "reports/program-doc-recipes/engos-quality-gitops-review-candidate.md": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
+  },
+  "clauses_mapped": 250,
+  "donor_files_unchanged": 7,
+  "test_evidence": {
+    "initial_focused": "51 passed",
+    "red": "Overflow float 1e999 in an unknown extension caused roundtrip exit 1 traceback; expected exit 2 structured diagnostic and empty stdout. One failing new regression, five related cases passed.",
+    "repair": "Reject nonfinite float parsing before shape validation/roundtrip emission.",
+    "final_focused": "59 passed in 2.93s",
+    "public_docs": "Combined run before final documentation condensation: 57 passed, 1 known reserved README count failure (33 vs generated manifest 36). New focused checks cover final public fragments."
+  },
+  "pending_controller_gates": [
+    "same-slug UAC plan/judge/apply for two saved full candidates",
+    "add finite shared schema registry binding from shared-resource-import-patch.json",
+    "canonical generation and imported package provenance",
+    "detached provider package closure",
+    "integration counts and full local CI",
+    "independent source/code/docs review and repairs",
+    "exact-head hosted gates and authorized main parity"
+  ],
+  "limits": [
+    "Source-only preparation; SSOT and generated outputs untouched.",
+    "Handoff comparison utilities are finite independent test fixtures, not distributed runtime or ship harness.",
+    "Committed-tree extraction is demonstrated only in local isolated fixture. Actual target and hosted readiness remain unobserved.",
+    "No native invocation, comparative behavioral benefit, release, installation, or D8.S2 completion claim."
+  ],
+  "clause_destination_map": "reports/d8-docs-recipes/clause-destination-map.json"
+}

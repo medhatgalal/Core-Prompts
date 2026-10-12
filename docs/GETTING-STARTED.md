@@ -368,3 +368,9 @@ including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
 
 When importing a new skill, inspect the `job_contract` delta in UAC plan/judge: the mapping should describe the actual job and exclusions, with source references and explicit unknowns. The generated map does not make the host consume it. See [source-backed routing fitness](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Optional documentation recipes
+
+For a bounded first draft, ask: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” Expect that single Markdown draft. For all four coordinated artifacts, name `docs-bundle`. Ordinary review keeps its seven sections and loads no recipe. See [the complete recipe list and exact outputs](EXAMPLES.md#optional-documentation-recipes) and the [retained original prompts](prompt-pack/README.md).
+
+`docs-release-readiness` in GitOps Review supplies candidate-bound evidence under existing authority. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review; findings-only work stays advisory.

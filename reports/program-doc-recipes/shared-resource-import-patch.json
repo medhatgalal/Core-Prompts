@@ -1,0 +1,12 @@
+{
+  "id": "docs-ship-handoff-v1",
+  "owner": "engos-quality-docs-review",
+  "source": "schemas/docs-ship-handoff.schema.json",
+  "sha256": "b44de0ae65a20f90539c1a3bcd50afab949d1b82d9db5460ba984c6bcc142483",
+  "consumers": [
+    {
+      "slug": "engos-quality-gitops-review",
+      "destination": "schemas/docs-ship-handoff.schema.json"
+    }
+  ]
+}

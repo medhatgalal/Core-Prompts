@@ -1,0 +1,675 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DocsShipHandoff.v1",
+  "$defs": {
+    "candidate": {
+      "type": "object",
+      "required": [
+        "target_kind",
+        "base_sha",
+        "head_sha",
+        "manifest_version",
+        "content_digest",
+        "files",
+        "scope_note"
+      ],
+      "properties": {
+        "target_kind": {
+          "enum": [
+            "committed",
+            "snapshot"
+          ]
+        },
+        "base_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "head_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "manifest_version": {
+          "const": "DocsCandidateManifest.v1"
+        },
+        "content_digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "state",
+              "mode",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\\\u0000\\r\\n])(?!.*\\/$).+$"
+              },
+              "state": {
+                "enum": [
+                  "present",
+                  "deleted"
+                ]
+              },
+              "mode": {
+                "enum": [
+                  "100644",
+                  "100755",
+                  null
+                ]
+              },
+              "sha256": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "state": {
+                      "const": "present"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "mode": {
+                      "enum": [
+                        "100644",
+                        "100755"
+                      ]
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  }
+                },
+                "else": {
+                  "properties": {
+                    "mode": {
+                      "type": "null"
+                    },
+                    "sha256": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "scope_note": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "request": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "gate",
+        "candidate",
+        "authority",
+        "content_result",
+        "requested_checks"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "DocsShipHandoff.v1"
+        },
+        "kind": {
+          "const": "request"
+        },
+        "gate": {
+          "enum": [
+            "commit",
+            "merge",
+            "release"
+          ]
+        },
+        "candidate": {
+          "type": "object",
+          "required": [
+            "target_kind",
+            "base_sha",
+            "head_sha",
+            "manifest_version",
+            "content_digest",
+            "files",
+            "scope_note"
+          ],
+          "properties": {
+            "target_kind": {
+              "enum": [
+                "committed",
+                "snapshot"
+              ]
+            },
+            "base_sha": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "head_sha": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "manifest_version": {
+              "const": "DocsCandidateManifest.v1"
+            },
+            "content_digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "state",
+                  "mode",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\\\u0000\\r\\n])(?!.*\\/$).+$"
+                  },
+                  "state": {
+                    "enum": [
+                      "present",
+                      "deleted"
+                    ]
+                  },
+                  "mode": {
+                    "enum": [
+                      "100644",
+                      "100755",
+                      null
+                    ]
+                  },
+                  "sha256": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "state": {
+                          "const": "present"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "mode": {
+                          "enum": [
+                            "100644",
+                            "100755"
+                          ]
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "mode": {
+                          "type": "null"
+                        },
+                        "sha256": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "scope_note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "authority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "content_result": {
+          "type": "object",
+          "required": [
+            "verdict",
+            "evidence",
+            "unknowns"
+          ],
+          "properties": {
+            "verdict": {
+              "enum": [
+                "PASS",
+                "FAIL"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "unknowns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "requested_checks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "kind",
+        "gate",
+        "candidate",
+        "authority",
+        "status",
+        "observed_at",
+        "checks",
+        "version_prerequisites",
+        "proposed_steps",
+        "unknowns",
+        "blockers",
+        "manifest_verification"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "DocsShipHandoff.v1"
+        },
+        "kind": {
+          "const": "response"
+        },
+        "gate": {
+          "enum": [
+            "commit",
+            "merge",
+            "release"
+          ]
+        },
+        "candidate": {
+          "type": "object",
+          "required": [
+            "target_kind",
+            "base_sha",
+            "head_sha",
+            "manifest_version",
+            "content_digest",
+            "files",
+            "scope_note"
+          ],
+          "properties": {
+            "target_kind": {
+              "enum": [
+                "committed",
+                "snapshot"
+              ]
+            },
+            "base_sha": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "head_sha": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "manifest_version": {
+              "const": "DocsCandidateManifest.v1"
+            },
+            "content_digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "files": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "path",
+                  "state",
+                  "mode",
+                  "sha256"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\\\u0000\\r\\n])(?!.*\\/$).+$"
+                  },
+                  "state": {
+                    "enum": [
+                      "present",
+                      "deleted"
+                    ]
+                  },
+                  "mode": {
+                    "enum": [
+                      "100644",
+                      "100755",
+                      null
+                    ]
+                  },
+                  "sha256": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "additionalProperties": false,
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "state": {
+                          "const": "present"
+                        }
+                      }
+                    },
+                    "then": {
+                      "properties": {
+                        "mode": {
+                          "enum": [
+                            "100644",
+                            "100755"
+                          ]
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{64}$"
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "mode": {
+                          "type": "null"
+                        },
+                        "sha256": {
+                          "type": "null"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "scope_note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "authority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "blocked",
+            "unknown"
+          ]
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "status",
+              "evidence_ref",
+              "observed_head",
+              "reason"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  "unknown",
+                  "not_applicable"
+                ]
+              },
+              "evidence_ref": {
+                "type": "string"
+              },
+              "observed_head": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{40}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "reason": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "version_prerequisites": {
+          "type": "object",
+          "required": [
+            "version",
+            "top_changelog_version",
+            "unreleased_empty",
+            "release_base",
+            "package_verified"
+          ],
+          "properties": {
+            "version": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "top_changelog_version": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unreleased_empty": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "release_base": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "package_verified": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "proposed_steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "phase",
+              "argv",
+              "preconditions",
+              "evidence_refs"
+            ],
+            "properties": {
+              "phase": {
+                "type": "string"
+              },
+              "argv": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "preconditions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "manifest_verification": {
+          "type": "object",
+          "required": [
+            "method",
+            "verified_target_kind",
+            "verified_head",
+            "reproduced_content_digest",
+            "evidence_ref",
+            "limitation"
+          ],
+          "properties": {
+            "method": {
+              "enum": [
+                "committed_tree_reproduced",
+                "snapshot_bytes_observed"
+              ]
+            },
+            "verified_target_kind": {
+              "enum": [
+                "committed",
+                "snapshot"
+              ]
+            },
+            "verified_head": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            "reproduced_content_digest": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "evidence_ref": {
+              "type": "string"
+            },
+            "limitation": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/request"
+    },
+    {
+      "$ref": "#/$defs/response"
+    }
+  ]
+}
