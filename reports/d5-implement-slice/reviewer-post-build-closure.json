@@ -1,0 +1,382 @@
+{
+  "schema_version": "D5ReviewerPostBuildClosure.v1",
+  "reviewer": "/root/d5_requirement_review_astra",
+  "reviewed_at": "2026-10-12T19:06:40.360580+00:00",
+  "source_status": "approved_unchanged",
+  "delivery_status": "D5-META-01_closed_local_generated_readback",
+  "behavioral_status": "behavioral_pending",
+  "candidate_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+  "effective_sha256": "343964c3432a50aff35467dc65537d7aade1b57860ed25144dc3a52ecc5c765f",
+  "descriptor_sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+  "curation_readback": [
+    {
+      "target": "canonical",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    },
+    {
+      "target": "manifest",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    },
+    {
+      "target": "codex",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    },
+    {
+      "target": "gemini",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    },
+    {
+      "target": "claude",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    },
+    {
+      "target": "kiro",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    },
+    {
+      "target": "grok",
+      "all_eight_curated_values_match": true,
+      "intake_only_and_runtime_source_authority_retained": true,
+      "source_description_display_name_match": true
+    }
+  ],
+  "handoff_curated_values_match": true,
+  "existing_ssot_unchanged": [
+    {
+      "path": "ssot/engos-audit-code-health.md",
+      "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e"
+    },
+    {
+      "path": "ssot/engos-audit-engineering-progress.md",
+      "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+    },
+    {
+      "path": "ssot/engos-audit-feature-status.md",
+      "sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0"
+    },
+    {
+      "path": "ssot/engos-audit-opex-incident-review.md",
+      "sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b"
+    },
+    {
+      "path": "ssot/engos-audit-weekly-intel.md",
+      "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043"
+    },
+    {
+      "path": "ssot/engos-browser-demo-recorder.md",
+      "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8"
+    },
+    {
+      "path": "ssot/engos-content-dynamic-html-presentations.md",
+      "sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73"
+    },
+    {
+      "path": "ssot/engos-delivery-address-code-review.md",
+      "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+    },
+    {
+      "path": "ssot/engos-delivery-artifact-embed.md",
+      "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de"
+    },
+    {
+      "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff"
+    },
+    {
+      "path": "ssot/engos-delivery-resolve-conflict.md",
+      "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b"
+    },
+    {
+      "path": "ssot/engos-design-architecture.md",
+      "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+    },
+    {
+      "path": "ssot/engos-design-frame-from-vague.md",
+      "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+    },
+    {
+      "path": "ssot/engos-memory-context-continuity.md",
+      "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b"
+    },
+    {
+      "path": "ssot/engos-memory-threader.md",
+      "sha256": "3980433cb346c43e530fd34e800f530fec5759b98ec955ec27f8ed096f4f191c"
+    },
+    {
+      "path": "ssot/engos-meta-instruction-editor.md",
+      "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+    },
+    {
+      "path": "ssot/engos-meta-uac-import.md",
+      "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+    },
+    {
+      "path": "ssot/engos-operations-ic-assistant.md",
+      "sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+    },
+    {
+      "path": "ssot/engos-quality-code-review.md",
+      "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+    },
+    {
+      "path": "ssot/engos-quality-docs-review.md",
+      "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+    },
+    {
+      "path": "ssot/engos-quality-gitops-review.md",
+      "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
+    },
+    {
+      "path": "ssot/engos-quality-testing-review.md",
+      "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+    },
+    {
+      "path": "ssot/engos-triage-my-inbox-chat-pulse.md",
+      "sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3"
+    },
+    {
+      "path": "ssot/loopy.md",
+      "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d"
+    }
+  ],
+  "protected_baseline_agent_files_unchanged": [
+    {
+      "path": "sources/ssot-baselines/README.md",
+      "sha256": "ed4265f81e84890e62e74ad5ffb77e0562c89401b1aa54ef886398cd7889087e"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-audit-code-health/baseline.md",
+      "sha256": "1ffb301944263f68d4f796536d924574b9e51f10b9a5e2436d4644b7fa303234"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-audit-pitch-review/baseline.md",
+      "sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-browser-demo-recorder/baseline.md",
+      "sha256": "a2474f56bcb530c850191ad48a78f0c7ed4d2f67620669e78ffaec307cdb9508"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-content-dynamic-html-presentations/baseline.md",
+      "sha256": "da45c3dd8143e2c1e74c8ad77f3b2b5b1fb311ba9579ab6b010cf28bc0fd2be6"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-delivery-address-code-review/baseline.md",
+      "sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-delivery-resolve-conflict/baseline.md",
+      "sha256": "6141dcd4736ea4c174d64cc02a2c3e0bd902c4bff4f4d5acfc9e907742962b2d"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-design-architecture/baseline.md",
+      "sha256": "b68b463312c76b971a9553b2dc7bf92a7bd6d5f66c3a841326c2012e1cd9cc48"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-memory-context-continuity/baseline.md",
+      "sha256": "a10237c998b8d45222cc62240a68c4f11c6f515823b98a55a6610f1bbce7f126"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-memory-threader/baseline.md",
+      "sha256": "7cf934b9b37029085f31f5b6709fa597f269c1b3ab7398cd8dd35a6b4fe86f3e"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-meta-supercharge/baseline.md",
+      "sha256": "488bc14a2fa4e3ce625adad07c98b2aa7a6af38d6ddbee64e182b2db82d9897a"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-meta-uac-import/baseline.md",
+      "sha256": "cb1f7429d00eaea306e753bbc9cadb7444177083886d4c5b393927ba9ca1b683"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-operations-ic-assistant/baseline.md",
+      "sha256": "6f765b332cdb59352d9a58486e0e22355bae786d57f0717ddf0f200d508aa2d8"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-optimization-auto-research/baseline.md",
+      "sha256": "758e7a7579d97620f2f0b4979e9a0841454c447cf7c22223249e7c377a3fd2d6"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-quality-code-review/baseline.md",
+      "sha256": "3d69c961effabd6074d5bb90dd9c4546f61c2b5a2020ff1928de08bdd25448b7"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-quality-docs-review/baseline.md",
+      "sha256": "b52adde380a5beb338a9426beb5e57420717516b1424eec75d9946e58804abeb"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-quality-gitops-review/baseline.md",
+      "sha256": "087c7156e2c9f140df3b9cd67076b2dbd2089dbda3a168044c8630e63893292d"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-quality-testing-review/baseline.md",
+      "sha256": "7acc2fa2ece3dfaca073942f37dd8d8ff31aad1996ad58e8dd2be484db1122f1"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md",
+      "sha256": "2d836405d6df11ec0267f53a5ab4d74f020675b46296fe04ca72835464060cf1"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-triage-my-inbox-chat-pulse/baseline.md",
+      "sha256": "fed9ca321d23eaedcdb9b4e49085e4b57a19c53996ed47af239ab1a70ceea793"
+    },
+    {
+      "path": "sources/ssot-baselines/index.json",
+      "sha256": "8f049f180a4b32afeb9e99df07b328b28852800e3147d83715b5a7ffcffff761"
+    }
+  ],
+  "no_new_or_changed_agent_or_baseline_files": true,
+  "resource_hashes": {
+    "sources/capability-resources/engos-delivery-implement-slice/resource-map.json": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc",
+    "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507",
+    "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+  },
+  "bundles": [
+    {
+      "provider": "codex",
+      "skill_sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+      "capability_sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+      "resources": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/slice-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/slice-receipt.json"
+      ],
+      "source_body_and_owned_resources_preserved": true,
+      "generic_loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    },
+    {
+      "provider": "gemini",
+      "skill_sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+      "capability_sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+      "resources": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/slice-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/slice-receipt.json"
+      ],
+      "source_body_and_owned_resources_preserved": true,
+      "generic_loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    },
+    {
+      "provider": "claude",
+      "skill_sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+      "capability_sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+      "resources": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/slice-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/slice-receipt.json"
+      ],
+      "source_body_and_owned_resources_preserved": true,
+      "generic_loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    },
+    {
+      "provider": "kiro",
+      "skill_sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+      "capability_sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+      "resources": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/slice-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/slice-receipt.json"
+      ],
+      "source_body_and_owned_resources_preserved": true,
+      "generic_loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    },
+    {
+      "provider": "grok",
+      "skill_sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+      "capability_sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+      "resources": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/slice-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/slice-receipt.json"
+      ],
+      "source_body_and_owned_resources_preserved": true,
+      "generic_loader_sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150"
+    }
+  ],
+  "fix_evidence": {
+    "script_sha256": "a7d73c030cf06a2f2c6e395f6b5f7c02f17e4d2efba8f10a2d27270211ff40fc",
+    "diff_scope": "Only six added lines configuring the two role values in the new slug entry of existing descriptor_defaults.layer_overrides; no shared classifier or runtime changes.",
+    "tests_sha256": "cadeb2df21f967f21c5b38038a003f4d83f7fb5b284e456b0f13f7fb768a6ed6",
+    "author_results_ref": "reports/d5-implement-slice/metadata-role-author-outcome.json",
+    "author_reported_result": "2 implementation-role red cases and 2 passing controls before correction, then 4 passing after correction; reviewer inspected test/diff and actual regenerated result, not claiming separate rerun.",
+    "both_ci_commands_include_test_module_once": true
+  },
+  "correction_history": "Initial controller overlay reading, conditionally accepted by reviewer, was incomplete. Actual prior readback showed merge_descriptor=False precedes resolution and overwrites role. Supported slug-scoped layer_overrides now apply after resolution; actual rebuilt canonical, manifest/handoff and five-bundle readback prove persistence. Prior failed readback retained unchanged.",
+  "fixture_observation_receipt": {
+    "path": "<acceptance-fixtures>/root-verification.json",
+    "sha256": "b6591571af831f0b6fda9b21bc619d6e3e4b60a3a65935d6282551626d4f31d6",
+    "review_scope": "Read controller receipt and its limitations only; reviewer did not independently rerun fixture observations.",
+    "cases": 2,
+    "deadline_met_reported": true,
+    "classification": "Illustrative two-fixture observations, not sealed D5.S2 or comparative model/provider performance.",
+    "limitations": [
+      "Two illustrative fixtures overlap source examples; no independent holdout or comparative/native-provider performance evidence.",
+      "Common ambient host instructions/memory/hooks are not isolated; no skill-only causal attribution.",
+      "Complete frozen bundle supplied; actual resource reads are not established by self-report."
+    ],
+    "promotion": "none; behavioral_pending"
+  },
+  "closed_findings": [
+    "D5-META-01"
+  ],
+  "open_findings": [],
+  "limits": [
+    "Local generated-content closure only; full serial CI and hosted checks remain controller-owned and are not established here.",
+    "Two illustrative fixture observations are not sealed holdout, skill-only causal attribution, native-provider comparison or promotion.",
+    "No merge/install/release or expanded agent/runtime authority."
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": "D5FinalIndependentReview.v1",
+  "reviewed_at": "2026-10-12T19:24:17.855472+00:00",
+  "reviewer": {
+    "agent_id": "/root/d5_final_review_astra",
+    "model": "gpt-6-astra",
+    "independent_of_source_author": true,
+    "authored_product_files": false
+  },
+  "author": {
+    "source_agent_id": "/root/d5_implementation_astra",
+    "source_admission_reviewer": "/root/d5_requirement_review_astra",
+    "controller_and_local_ci_collector": "/root",
+    "metadata_default_and_regression_author": "/root/d5_implementation_astra",
+    "controller_responsibilities": "UAC/apply, eight-field curation, rebuild, CI and evidence display normalization; not metadata-default or test-code author",
+    "identity_provenance": "Direct parent collaboration confirmation in this review turn"
+  },
+  "candidate": {
+    "commit_under_review": "Uncommitted exact product payload; draft commit not yet created",
+    "proposed_commit_message": "Add a bounded slice implementation skill",
+    "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+    "product_seal": "5c451e0da0711277eff362a031714e6e6eea1f326958e8803ac550b1ffcf2997",
+    "product_path_count": 57,
+    "seal_method": "SHA-256 of sorted compact ASCII JSON path-to-file-byte-SHA256 map; evidence excluded to avoid circular self-binding",
+    "product_manifest_sha256": "b1cb2c17b8461b2276b9f4b361c18d43b96f03a065181a0a7b5afca8dab5bc37",
+    "source_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+  },
+  "decision": {
+    "draft_readiness": "ready_for_draft_pr_mr",
+    "code": "approved",
+    "documentation": "approved",
+    "evidence_integrity": "approved_with_explicit_limits",
+    "open_findings": 0,
+    "merge": "not_authorized",
+    "installation": "not_authorized",
+    "release": "HOLD",
+    "behavioral_status": "behavioral_pending"
+  },
+  "findings": [],
+  "closed_findings": [
+    {
+      "id": "D5-META-01",
+      "disposition": "Verified scoped role defaults, persisted/absent descriptor negative controls, unchanged tool policy, regenerated descriptor equality and all five provider resource closures."
+    }
+  ],
+  "scope_assessment": "One bounded direct implementation skill plus three authored resources, regenerated five-provider package closure, scoped new-slug advisory role defaults, focused schema/role/package regression changes and five user-facing docs. Existing skill sources and agent/baseline files unchanged. No full harness, router, new agents, skill merges or lifecycle behavior added.",
+  "message_assessment": "Proposed message accurately describes the final skill addition; draft description should include optional receipt, role persistence, validation and limits.",
+  "independent_checks": {
+    "product_seal_recomputed": true,
+    "all_57_product_hashes_match": true,
+    "evidence_pairs_checked": 62,
+    "raw_and_public_hashes_match": true,
+    "normalization_exact": "Every public evidence file equals raw bytes with only the five documented display path substitutions; no result, command semantics, source passage or digest rewritten.",
+    "noncircular_binding": "Product map excludes reports/evidence; evidence lineage excludes its own manifest and this final review; final review binds product, CI and evidence manifests.",
+    "full_baseline_preservation": {
+      "checked_base_tracked_files_outside_product_map": 2570,
+      "byte_mismatches": 0,
+      "method": "Read git ls-tree and git cat-file blob bytes from declared base; compare every existing tracked path outside product map to current bytes. No Git mutation.",
+      "scope": "Includes 915 historical reports/evidence files plus the controller subset of 1655 non-report protected tracked files; no discrepancy."
+    },
+    "bundles": "Canonical descriptor identical across five providers; three owned resource bytes match canonical; isolated inventory 33.",
+    "fixtures": {
+      "cases": 2,
+      "actual_file_bytes_and_modes_match_manifests": true,
+      "receipt_snapshot_digests_match_exact_manifest_bytes": true,
+      "only_owned_paths_changed": [
+        "case-1/expiry.py",
+        "case-2/GUIDE.md"
+      ],
+      "nonowned_bytes_and_modes_preserved": true,
+      "heads_unchanged": true,
+      "case_1_contract_digest_verified": true,
+      "red_green_evidence": "Command records show 1 then 0 exits with before/equal/after assertions and the exact-expiry failure; patch replaces <= with <. Tests were not rerun by this reviewer.",
+      "case_2_evidence": "Recorded guide verifier and git diff check are inspections, not application tests; wrapper is explicitly not run; generation and structured-contract hash null with reasons.",
+      "frozen_bundle_difference": "Fixture capability.json predates advisory role correction. Supplied instructions and three resources match final candidate; observations cannot certify repaired metadata or native-provider behavior."
+    }
+  },
+  "local_validation": {
+    "status": "passed_recorded_evidence",
+    "steps": 13,
+    "pytest_groups": 6,
+    "passed": 1128,
+    "skipped": 1,
+    "subtests": 16,
+    "all_step_exit_codes_zero": true,
+    "all_log_hashes_and_summaries_verified": true,
+    "pytest_file_groups_disjoint": true,
+    "focused_reruns_added_to_total": false,
+    "ci_config_bound_to_product": true,
+    "receipt_sha256": "79b9aa1bd51576570244cf782a947bfe39fc9acb938c826a8f8683eb4dcb183e",
+    "summary_sha256": "15c1eea576c524cdae54ab3763207fc2b5e5ad1d7da52f3b49526e3d22d62ed8",
+    "evidence_manifest_sha256": "afe40dbd5c7ccd814f4fbd04fffe3843c0a74a051b19e2b9e13a20a1bf37760c",
+    "reviewer_execution": "Read logs and independently verified their hashes/summary accounting; did not rerun tests/build.",
+    "platforms": "Local Python 3.14.8/macOS. Both GitLab and GitHub add the identical manifest-stability module once, declare pytest/jsonschema, and retain Python 3.14. GitLab installs zip/procps; GitHub uses hosted Ubuntu image. New role tests use copied temporary files and existing Python resolver with no new external executable requirement. Hosted Linux outcomes are not yet available."
+  },
+  "remaining_limits": [
+    "Draft creation is ready; this does not authorize merge, install, version/tag, release or deployment.",
+    "Exact commit identity and hosted GitLab/GitHub checks must be recorded after draft creation; local passes do not establish hosted success.",
+    "Two illustrative fixture observations overlap source examples and common ambient instructions; actual resource reads and skill-only causal benefit are not proven. No independent holdout, model/provider comparison or promotion.",
+    "Current source review, schema checks and advisory metadata prove their bounded claims only; receipt validity cannot establish source truth, command execution, authority or completion.",
+    "Final private-report verification is separate and awaits exact head, hosted facts and rendered UI controls."
+  ],
+  "report_preliminary": "d5Implementation and convergenceWorkPlan query shapes exist and separate active local state from not-yet-run hosted checks; no final report readiness granted here."
+}

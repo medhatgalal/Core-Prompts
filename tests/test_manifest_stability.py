@@ -8,6 +8,8 @@ import sys
 import time
 from pathlib import Path
 
+import pytest
+
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILD_SURFACES_PATH = ROOT / "scripts" / "build-surfaces.py"
@@ -117,3 +119,49 @@ def test_build_and_validate_keep_manifest_content_stable(tmp_path: Path) -> None
 
     validation_reports = sorted(validation_dir.glob("*.json"))
     assert len(validation_reports) >= 3  # latest.json + two timestamped runs
+
+
+@pytest.mark.parametrize("descriptor_present", [False, True])
+@pytest.mark.parametrize("slug,expected_role,expected_org_role", [
+    ("engos-delivery-implement-slice", "implementation_worker", "implementation_worker"),
+    ("engos-audit-code-health", "analyst", "specialist_with_workflow_surface"),
+])
+def test_implementation_role_survives_descriptor_resolution(
+    tmp_path: Path, monkeypatch, descriptor_present: bool,
+    slug: str, expected_role: str, expected_org_role: str,
+) -> None:
+    workspace = copy_workspace(tmp_path)
+    monkeypatch.setattr(BUILD_SURFACES, "ROOT", workspace)
+    monkeypatch.setattr(BUILD_SURFACES, "CAPABILITY_RESOURCE_SOURCE_DIR",
+                        workspace / "sources/capability-resources")
+    entry = next(entry for entry in BUILD_SURFACES.load_ssot_entries(workspace / "ssot")
+                 if entry.slug == slug)
+    descriptor_path = workspace / ".meta/capabilities" / f"{slug}.json"
+    if descriptor_present:
+        descriptor = json.loads(descriptor_path.read_text())
+        # Exercise stale persisted metadata as well as clean reconstruction.
+        descriptor["layers"]["minimal"]["role"] = "analyst"
+        if slug == "engos-delivery-implement-slice":
+            descriptor["layers"]["org_graph"]["org_role"] = "specialist_with_workflow_surface"
+        descriptor_path.write_text(json.dumps(descriptor))
+    else:
+        descriptor_path.unlink()
+    if slug == "engos-audit-code-health" and not descriptor_present:
+        expected_org_role = "analyst"  # Preserve existing fresh-inference behavior.
+    job = json.loads((workspace / ".meta/skill-job-map.json").read_text())["skills"][slug]
+    first = None
+    for _ in range(2):
+        # Match main(): pure inference first, resolver persistence, then merged view.
+        projection = BUILD_SURFACES.build_ssot_manifest_entry(entry, workspace, merge_descriptor=False)
+        assert projection["layers"]["minimal"]["role"] == "analyst"
+        resolved = BUILD_SURFACES.resolve_descriptor(entry, projection, job)
+        persisted = json.loads(descriptor_path.read_text())
+        merged = BUILD_SURFACES.build_ssot_manifest_entry(entry, workspace)
+        assert persisted == resolved
+        for payload in (resolved, persisted, merged):
+            assert payload["layers"]["minimal"]["role"] == expected_role
+            assert payload["layers"]["org_graph"]["org_role"] == expected_org_role
+            assert payload["layers"]["minimal"]["tool_policy"] == projection["layers"]["minimal"]["tool_policy"]
+        if first is not None:
+            assert resolved == first
+        first = resolved

@@ -1,5 +1,15 @@
 ## Unreleased
 
+- Add `engos-delivery-implement-slice` for one accepted software task or clear
+  bounded request, with preservation of unrelated work, proportionate checks and
+  an honest handoff. Include optional `SliceReceipt.v1` resources with explicit
+  unknown metadata and commit versus dirty-snapshot identity. Keep the existing
+  review-fix and Batman contracts unchanged; no mandatory receipt, per-slice
+  commit, blanket suite, new agent, install or release is introduced.
+  The new skill's role survives regeneration through existing per-skill defaults; runtime authority is unchanged.
+- Receipt validation covers structure and result consistency; it does not prove
+  execution, source truth, preservation, behavioral improvement or live acceptance.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

@@ -1621,6 +1621,202 @@
         ]
       }
     },
+    "engos-delivery-implement-slice": {
+      "primary_job": "Deliver the requested slice within its allowed writes and stop condition, with proportionate verification and an honest account of what remains unverified.",
+      "use_when": "- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+      "works_on": "- An authorized bounded outcome or accepted task, including constraints and the intended stopping point.\n- Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.\n- Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.\n- When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown.",
+      "main_output": "- The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.\n- Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.\n- Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.\n- When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values.\n\nLoad `resources/resource-map.json` and its `receipt` route only for a structured handoff. The owned template is `resources/templates/slice-receipt.json`; the shape is `resources/schemas/slice-receipt.schema.json`. The generated bundle also contains the repository's unchanged generic `resources/scripts/load_module.py` resource loader; it assembles selected resources and does not implement, diagnose, execute checks or prove consumption.\n\nRecord the actual `base` and `head_or_snapshot_digest` with `target_kind` equal to `commit` or `dirty_snapshot`. A commit target is valid only when the claimed candidate contains no additional uncommitted changes. For a dirty snapshot, bind a stable manifest of repository-relative paths, file byte digests, deletion markers and relevant modes, and retain its evidence reference and digest method. Include task-owned and initial unrelated dirty content needed to identify the inspected state; never label HEAD alone as a dirty candidate. Keep `changed_files` limited to this task and record `initial_dirty_files` separately. If state cannot be bound, leave identity null and explain the gap in `unresolved_context`; do not claim verified completion for that state.\n\nHash exact supplied structured contract bytes when available. `TaskContract.v1` has no generation field: use a separately supplied generation only with its provenance; otherwise `task_generation` is null. A plain ask may have a local task identifier but no structured contract hash. Null contract metadata requires an explicit unresolved-context explanation. `checks[].status = passed` requires an observed zero exit and retained evidence that the intended check actually ran. `failed` requires its observed nonzero exit and evidence; `not_run` and `unavailable` have null exit status and a reason. Schema validation enforces shape and basic consistency only; it cannot prove command execution, source truth, digest correctness, preservation, authority, meaningful assertions or completion. An empty checks list means no recorded command evidence, never a pass. Human inspection evidence can be described in `unverified` or the accompanying readable report; do not fabricate a process exit for it.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Implement a Bounded Slice?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. **Bind the task.** Inspect the accepted request and source evidence. When supplied, read `TaskContract.v1`: `id`, `outcome`, `requirement_ids`, `design_ids`, `depends_on`, `consumes`, `produces`, `likely_files`, `allowed_writes`, `constraints`, `verification`, `stop_condition`, and `authority_ref`. Check referenced inputs and prerequisites against current state; likely files are hints, not expanded write authority. Null references and unsatisfied dependencies remain explicit gaps. A plain request can supply the same meaningful context without this schema or an installed planning skill. Do not invent a task generation or contract digest absent from the supplied context.\n2. **Inspect the starting state.** Confirm repository, base, branch or snapshot and initial dirty files. Locate the affected code, nearest useful tests and actual test configuration or wrappers. Identify a recovery boundary for task-owned edits. State the intended change and any assumption that matters to the outcome.\n3. **Choose decisive verification.** Connect each check to an accepted behavior and an observable expected result derived from the requirement. Name a plausible defect the assertion would catch. Use the smallest relevant test, type, syntax, build or inspection path supported by repository evidence. For a bug or executable behavior change, reproduce failure before the fix when practical or required, then observe the expected pass; disclose missing red evidence. Do not delete or weaken tests to manufacture a pass. For a prose-only correction, diff and relevant link or syntax inspection may suffice. Do not claim an internal call count proves an external outcome or mock away the behavior being checked.\n4. **Implement and inspect.** Edit only the authorized slice and necessary associated documentation. Keep abstractions proportional to present requirements. Use existing diagnostics to investigate an unexpected failure before changing more code. After an ambiguous stateful operation, inspect its effects before retrying. Stop dependent work for material scope changes, inaccessible prerequisites, authority gaps or a violated stop condition; preserve completed work and explain the next decision.\n5. **Verify the candidate.** Run the selected checks on the actual candidate and retain commands, exit results and evidence references. A successful launcher is not evidence that tests ran: inspect the underlying result and expected assertions. Distinguish failed, unavailable and not-run checks. Expand checks only for repository requirements, changed behavior, new failures or unresolved risk. Refresh affected evidence after candidate changes instead of attaching stale results to a later patch.\n6. **Review the diff and hand off.** Compare the result with the accepted outcome and original dirty inventory. Account for task-owned changed files, preserved unrelated changes, actual results, remaining limitations and next owner. Distinguish local implementation from independent review, hosted CI and landing. Stop at the requested boundary; do not convert a draft or no-commit request into a delivery campaign.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 31,
+                "end_line": 36,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "- No installed planner or oracle dependency is required. Supplied reviewed interfaces and repository facts are sufficient; unresolved material context still blocks dependent edits.\n- No hidden delegation, autonomous goal creation, automatic review-comment selection, generalized route selection, unrelated cleanup, home installation or release side effect.\n- No claim of independence from self-review, no test claim from a helper exit alone, and no completion claim from schema validity.\n- Do not expose secrets in receipts or logs. Use safe evidence references and preserve the source's disclosure boundary.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 58,
+                "end_line": 61,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "- No installed planner or oracle dependency is required. Supplied reviewed interfaces and repository facts are sufficient; unresolved material context still blocks dependent edits.\n- No hidden delegation, autonomous goal creation, automatic review-comment selection, generalized route selection, unrelated cleanup, home installation or release side effect.\n- No claim of independence from self-review, no test claim from a helper exit alone, and no completion claim from schema validity.\n- Do not expose secrets in receipts or logs. Use safe evidence references and preserve the source's disclosure boundary.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 58,
+                "end_line": 61,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            },
+            {
+              "text": "- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 64,
+                "end_line": 67,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-delivery-implement-slice",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-delivery-implement-slice.md",
+          "ssot_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+          "effective_sha256": "343964c3432a50aff35467dc65537d7aade1b57860ed25144dc3a52ecc5c765f",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json",
+              "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json",
+              "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Deliver the requested slice within its allowed writes and stop condition, with proportionate verification and an honest account of what remains unverified.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 15,
+                  "end_line": 15,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 64,
+                  "end_line": 67,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "- An authorized bounded outcome or accepted task, including constraints and the intended stopping point.\n- Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.\n- Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.\n- When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 39,
+                  "end_line": 42,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "- The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.\n- Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.\n- Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.\n- When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 45,
+                  "end_line": 48,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              },
+              {
+                "text": "Load `resources/resource-map.json` and its `receipt` route only for a structured handoff. The owned template is `resources/templates/slice-receipt.json`; the shape is `resources/schemas/slice-receipt.schema.json`. The generated bundle also contains the repository's unchanged generic `resources/scripts/load_module.py` resource loader; it assembles selected resources and does not implement, diagnose, execute checks or prove consumption.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 51,
+                  "end_line": 51,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              },
+              {
+                "text": "Record the actual `base` and `head_or_snapshot_digest` with `target_kind` equal to `commit` or `dirty_snapshot`. A commit target is valid only when the claimed candidate contains no additional uncommitted changes. For a dirty snapshot, bind a stable manifest of repository-relative paths, file byte digests, deletion markers and relevant modes, and retain its evidence reference and digest method. Include task-owned and initial unrelated dirty content needed to identify the inspected state; never label HEAD alone as a dirty candidate. Keep `changed_files` limited to this task and record `initial_dirty_files` separately. If state cannot be bound, leave identity null and explain the gap in `unresolved_context`; do not claim verified completion for that state.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 53,
+                  "end_line": 53,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              },
+              {
+                "text": "Hash exact supplied structured contract bytes when available. `TaskContract.v1` has no generation field: use a separately supplied generation only with its provenance; otherwise `task_generation` is null. A plain ask may have a local task identifier but no structured contract hash. Null contract metadata requires an explicit unresolved-context explanation. `checks[].status = passed` requires an observed zero exit and retained evidence that the intended check actually ran. `failed` requires its observed nonzero exit and evidence; `not_run` and `unavailable` have null exit status and a reason. Schema validation enforces shape and basic consistency only; it cannot prove command execution, source truth, digest correctness, preservation, authority, meaningful assertions or completion. An empty checks list means no recorded command evidence, never a pass. Human inspection evidence can be described in `unverified` or the accompanying readable report; do not fabricate a process exit for it.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 55,
+                  "end_line": 55,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "8eac7af08a8086ed1d722f3e592f88fc78525e0068812a5e0ea30e93c3083210"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
     "engos-delivery-resolve-conflict": {
       "primary_job": "Resolve merge conflicts while preserving intent from both sides and documenting trade-offs.",
       "use_when": "Git or content conflicts already exist and need structured, safe resolution.",
@@ -5094,7 +5290,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "5740082e20493b3d76323b6f1680eef688261d201d9e842be3163458d4367e6a",
+    "skills_sha256": "461427e94299be0350b8970aa6028747fa54583f16f6ea9e130103b4417539a5",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -5152,6 +5348,11 @@
         "ssot_sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff",
         "effective_sha256": "88adb10db05aa7ad6eb9a48b823f009a2da8427b3d67a4cb36af0c637e677553",
         "mapping_sha256": "b0eca6b5275ad0540f1813563623dfdc8ad2fb0954fe7a5f17655dcdc5c8e4b4"
+      },
+      "engos-delivery-implement-slice": {
+        "ssot_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+        "effective_sha256": "343964c3432a50aff35467dc65537d7aade1b57860ed25144dc3a52ecc5c765f",
+        "mapping_sha256": "8eac7af08a8086ed1d722f3e592f88fc78525e0068812a5e0ea30e93c3083210"
       },
       "engos-delivery-resolve-conflict": {
         "ssot_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",

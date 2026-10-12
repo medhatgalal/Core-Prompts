@@ -1,0 +1,38 @@
+{
+  "schema_version": "TaskContract.v1",
+  "id": "D5-FIXTURE-EXPIRY",
+  "outcome": "Reject tokens at exact expiry while accepting before and rejecting after; change only expiry.py; no commit or lifecycle action.",
+  "requirement_ids": [
+    "R-EXPIRY"
+  ],
+  "design_ids": [],
+  "depends_on": [],
+  "consumes": [
+    {
+      "path": "README.md",
+      "sha256": "6104ad2c2fda38e9b34aab0d6a093099d987ce8c2749b05ba22818d7b320a129"
+    }
+  ],
+  "produces": [
+    "expiry.py"
+  ],
+  "likely_files": [
+    "expiry.py"
+  ],
+  "allowed_writes": [
+    "expiry.py"
+  ],
+  "constraints": [
+    "Preserve all other files including initial dirty unrelated.txt.",
+    "No test weakening, commit, push, merge, install, agents or goals."
+  ],
+  "verification": [
+    {
+      "id": "V-BOUNDARY",
+      "oracle": "Before true; equal false; after false. Known <= implementation fails equal.",
+      "command_or_inspection": "/opt/homebrew/bin/python3.14 -m unittest -v"
+    }
+  ],
+  "stop_condition": "Stop with corrected dirty patch and honest receipt, or concrete blocker.",
+  "authority_ref": "Frozen D5.S1 fixture authorization"
+}

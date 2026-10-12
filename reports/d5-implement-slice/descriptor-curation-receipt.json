@@ -1,0 +1,75 @@
+{
+  "schema": "D5DescriptorCurationReceipt.v1",
+  "proposal": "reports/d5-implement-slice/metadata-curation-proposal.json",
+  "before_sha256": "80e772b88889970f131e73ba27d7322c62358e2938f5ed36c8ca2dd423c671c2",
+  "after_sha256": "98ab0a813149ff5b02548e3017c9004113a69549e82cee95164c7a702b6e8855",
+  "changes": [
+    {
+      "path": "/layers/minimal/role",
+      "before": "analyst",
+      "after": "implementation_worker",
+      "rationale": "Purpose/Primary Objective/Workflow describe bounded implementation; no separate agent identity."
+    },
+    {
+      "path": "/layers/org_graph/org_role",
+      "before": "workflow_provider",
+      "after": "implementation_worker",
+      "rationale": "Bounded direct implementation job; advisory identity only."
+    },
+    {
+      "path": "/layers/org_graph/work_graph_impact",
+      "before": "Adds or updates a skill capability with route profile None.",
+      "after": "Implements one authorized bounded software slice with candidate-bound verification and preserved unrelated work; reviewer-feedback selection, independent review, controller gates and lifecycle actions remain separately owned.",
+      "rationale": "Purpose; Rules; Workflow 6."
+    },
+    {
+      "path": "/consumption_hints/preferred_use_cases",
+      "before": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "after": [
+        "Implement one accepted task or clear scoped feature request.",
+        "Repair an authorized defect with meaningful focused verification and explicit missing evidence.",
+        "Make a small documentation correction with proportionate inspection."
+      ],
+      "rationale": "Description; Workflow; Examples."
+    },
+    {
+      "path": "/consumption_hints/artifact_conventions",
+      "before": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "after": [
+        "Task-owned patch and concise readable result with actual checks, candidate identity, preserved dirty state, gaps and next owner.",
+        "Optional SliceReceipt.v1 for requested machine interchange, with truthful nulls, check evidence and commit or dirty-snapshot binding."
+      ],
+      "rationale": "Required Output; optional receipt, no runtime SSOT/intake report path obligation."
+    },
+    {
+      "path": "/consumption_hints/requires_human_confirmation",
+      "before": true,
+      "after": false,
+      "rationale": "Authorized scoped work proceeds; uncovered authority, unowned overlapping dirt and lifecycle/destructive boundaries remain controlling. No waiver."
+    },
+    {
+      "path": "/consumption_hints/invocation_style",
+      "before": "assistant_first_but_scriptable",
+      "after": "interactive_or_artifact_oriented",
+      "rationale": "Direct host work and optional handoff artifacts; no generic scripted executor shipped."
+    },
+    {
+      "path": "/layers/expanded/adjustment_recommendations",
+      "before": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ],
+      "after": [],
+      "rationale": "Primary Objective, In Scope and Constraints exist; clear false absent-section advice only."
+    }
+  ],
+  "scope": "Only eight approved new descriptor values; no source, global defaults, pipeline or runtime tool-policy mutation."
+}

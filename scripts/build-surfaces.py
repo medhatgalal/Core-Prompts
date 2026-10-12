@@ -134,6 +134,12 @@ RESOURCE_DIRS = {
 
 def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
     defaults: dict[str, dict[str, object]] = {
+        'engos-delivery-implement-slice': {
+            'layer_overrides': {
+                'minimal': {'role': 'implementation_worker'},
+                'org_graph': {'org_role': 'implementation_worker'},
+            },
+        },
         'engos-design-architecture': {
             'display_name': 'Architecture Studio',
             'consumption_hints': {
