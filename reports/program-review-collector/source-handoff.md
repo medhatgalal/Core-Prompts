@@ -7,3 +7,5 @@ Focused actual collector assertions passed, including commit DAG/endpoints, bina
 Controller must perform same-slug UAC and current source admission, serial aggregate generation, package resource validation and five generated standalone copies (remaining RP-14), shared selected-test wiring and GitLab/GitHub exact-head gates (RP-15), independent implementation/doc review, authorized mainline parity and cleanup. GETTING-STARTED/adoption/RELEASE guidance fragments are integration-doc-fragments.md. D6.S3 consumer verification and any findings/review judgments are outside this patch. No release/live install/new agents.
 
 Preparation outline is a historical entry snapshot; its pending-source gate was subsequently cleared by the controller from renewed independent source-composition review. Source work began only after that clearance.
+
+Exact raw execution log bytes with trailing diagnostic whitespace are retained in raw-execution-logs.json; display logs remove trailing whitespace only.

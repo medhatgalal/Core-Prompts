@@ -58,11 +58,11 @@ formatting = 'diff'
         serialized = json.dumps(events)
 >       assert 'fetch' not in serialized and 'remote-' not in serialized and 'submodule--helper' not in serialized
 E       assert ('fetch' not in '[{"event": ... "code": 0}]'
-E         
+E
 E         'fetch' is contained here:
 E         ?           ^^^^^^^^
 E           --no-lazy-fetch", "-c", "core.attributesFile=/dev/null", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "-c", "protocol.allow=never", "-c", "diff.external=", "-c", "diff.algorithm=myers", "-c", "diff.indentHeuristic=false", "-c", "diff.submodule=short", "-c", "core.quotePath=true", "-C", "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_0/repo", "rev-parse", "--is-bare-repository"]}, {"event": "cmd_ancestry", "sid": "20261012T234113.614333Z-H1b5d7dfc-P0000...
-E         
+E
 E         ...Full output truncated (2 lines hidden), use '-vv' to show)
 
 tests/test_review_package.py:410: AssertionError
@@ -124,11 +124,11 @@ formatting = 'log'
         serialized = json.dumps(events)
 >       assert 'fetch' not in serialized and 'remote-' not in serialized and 'submodule--helper' not in serialized
 E       assert ('fetch' not in '[{"event": ... "code": 0}]'
-E         
+E
 E         'fetch' is contained here:
 E         ?           ^^^^^^^^
 E           --no-lazy-fetch", "-c", "core.attributesFile=/dev/null", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "-c", "protocol.allow=never", "-c", "diff.external=", "-c", "diff.algorithm=myers", "-c", "diff.indentHeuristic=false", "-c", "diff.submodule=short", "-c", "core.quotePath=true", "-C", "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_1/repo", "rev-parse", "--is-bare-repository"]}, {"event": "cmd_ancestry", "sid": "20261012T234123.250732Z-H1b5d7dfc-P0000...
-E         
+E
 E         ...Full output truncated (2 lines hidden), use '-vv' to show)
 
 tests/test_review_package.py:410: AssertionError

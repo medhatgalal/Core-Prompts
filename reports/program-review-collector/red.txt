@@ -13,8 +13,8 @@ tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/p
 >       out = tmp_path / 'package'; m = package(invoke(repo, base, head, out), out)
                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/test_review_package.py:53: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_review_package.py:53:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 result = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...rces/capability-resources/engos-quality-code-review/scripts/review_package.py': [Errno 2] No such file or directory\n")
 out = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-350/test_rp01_exact_endpoints0/package')
