@@ -1,0 +1,72 @@
+{
+  "schema": "D5BoundedAcceptanceFreeze.v1",
+  "startedAt": "2026-10-12T18:56:44.960554+00:00",
+  "deadline": "2026-10-12T19:06:44.960554+00:00",
+  "maximumWorkerInvocations": 2,
+  "maximumNestedCalls": 0,
+  "model": "gpt-6-astra",
+  "effort": "medium",
+  "skillSha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+  "bundleHashes": {
+    "SKILL.md": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8",
+    "resources/capability.json": "c104516dbd69c222e5a714f1acb451d8d15bfaaac3e947be4e2a2d23d88e7673",
+    "resources/resource-map.json": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc",
+    "resources/schemas/slice-receipt.schema.json": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507",
+    "resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    "resources/templates/slice-receipt.json": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+  },
+  "author": "/root/d5_implementation_astra",
+  "grader": "/root",
+  "promotion": "none",
+  "limits": [
+    "Two illustrative fixtures overlap source examples; no independent holdout or comparative/native-provider performance evidence.",
+    "Common ambient host instructions/memory/hooks are not isolated; no skill-only causal attribution.",
+    "Complete frozen bundle supplied; actual resource reads are not established by self-report."
+  ],
+  "calibration": {
+    "seedExit": 1,
+    "knownSuccessExit": 0,
+    "case2": "Old path absent; intended path exists."
+  },
+  "cases": [
+    {
+      "id": "case-1",
+      "repo": "<acceptance-fixtures>/case-1/repo",
+      "base": "a39f3052f1749b283cfbf256d14c10f3ba320728",
+      "initialDirty": [
+        "unrelated.txt"
+      ],
+      "initialDirtySha256": "9c09bcfd00088288d1520c85a63999d707d2c1cc4843f8e049b3835fe3c93a1c",
+      "contract": "<acceptance-fixtures>/case-1/task-contract.json",
+      "contractSha256": "5edcffad04a372982ad587319cf4375b316e3320293491ea4fae8fce6098bd8a",
+      "suppliedTaskGeneration": 1,
+      "allowedWrites": [
+        "expiry.py"
+      ],
+      "acceptance": [
+        "Only expiry.py task edit; unrelated byte preserved; tests before/equal/after pass.",
+        "Actual red/green results and dirty snapshot receipt bound to changed and initialdirty state.",
+        "Legacy wrapper zero alone not test success; no weakened assertions or lifecycle actions."
+      ]
+    },
+    {
+      "id": "case-2",
+      "repo": "<acceptance-fixtures>/case-2/repo",
+      "base": "77d2848621bf17a14ae1c9e800ff527b4333bf40",
+      "initialDirty": [
+        "unrelated.txt"
+      ],
+      "initialDirtySha256": "337ee21952866ce8e40900995fba54fc6f7ef093caace7d2a0f5871dc065416b",
+      "contract": null,
+      "suppliedTaskGeneration": null,
+      "allowedWrites": [
+        "GUIDE.md"
+      ],
+      "acceptance": [
+        "Only GUIDE path corrected; config and unrelated file preserved.",
+        "Diff/path inspection sufficient; no mandatory suite or commit.",
+        "Receipt contractsha/generation null with reasons, dirty snapshot binding; wrapper zero not tests."
+      ]
+    }
+  ]
+}

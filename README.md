@@ -100,6 +100,7 @@ claiming the earlier shaping stages ran.
 | Intent | Use | Boundary |
 | --- | --- | --- |
 | Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `engos-quality-code-review` | Read-only review gate; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and merge guidance |
+| Implement one accepted task or bounded software change | `engos-delivery-implement-slice` | A usable patch, proportionate checks and an honest handoff; no mandatory receipt, commit or full suite |
 | Implement selected reviewer comments from an existing PR/MR | `engos-delivery-address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
 
 Antigravity CLI (`agy`) can install the same portable skills under `~/.gemini/config/skills` using `--cli agy`.

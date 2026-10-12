@@ -1,0 +1,51 @@
+{
+  "schema_version": "SliceReceipt.v1",
+  "task_id": "D5.S1-case-2",
+  "task_generation": null,
+  "task_contract_sha256": null,
+  "base": "77d2848621bf17a14ae1c9e800ff527b4333bf40",
+  "target_kind": "dirty_snapshot",
+  "head_or_snapshot_digest": "f8234f1315ab6db8c6cc7faa1c767515faa79852bb298c4f1010eab201d34ea1",
+  "snapshot_method": "SHA-256 of exact snapshot-manifest.json bytes: sorted repository-relative path map with deleted boolean, four-digit octal permission mode, and SHA-256 file-byte digest; json.dumps(sort_keys=True,separators=(comma,colon),ensure_ascii=True), ASCII, no trailing newline. Includes every tracked fixture file and initial dirty unrelated.txt.",
+  "snapshot_evidence_ref": "case-2/snapshot-manifest.json",
+  "changed_files": [
+    "GUIDE.md"
+  ],
+  "initial_dirty_files": [
+    "unrelated.txt"
+  ],
+  "checks": [
+    {
+      "command": "python3 verify-guide.py",
+      "exit_status": 0,
+      "evidence_ref": "case-2/verification-commands.json",
+      "status": "passed",
+      "reason": "Observed guide/path, candidate binding, and unrelated byte/mode preservation assertions; inspection check, not an application test suite."
+    },
+    {
+      "command": "git diff --check",
+      "exit_status": 0,
+      "evidence_ref": "case-2/verification-commands.json",
+      "status": "passed",
+      "reason": "Observed whitespace/diff check."
+    },
+    {
+      "command": "python3 checks_wrapper.py",
+      "exit_status": null,
+      "evidence_ref": "case-2/wrapper-inspection.json",
+      "status": "not_run",
+      "reason": "No runtime change; inspected wrapper only prints that no tests ran. No launcher or test success is claimed."
+    }
+  ],
+  "unverified": [
+    "No application tests, launcher, hosted CI, commit, or landing performed; documentation-only path correction received proportionate checks.",
+    "Ambient host was not isolated; this illustrative fixture provides no comparative or source-efficacy evidence.",
+    "Root independent verification remains pending."
+  ],
+  "unresolved_context": [
+    "task_contract_sha256 is null because the authorized plain-language request supplied no TaskContract bytes.",
+    "task_generation is null because no generation or generation provenance was supplied."
+  ],
+  "comment_dispositions": [],
+  "next_owner": "Root controller: independently verify the corrected dirty patch, preservation, snapshot digest, and receipt."
+}

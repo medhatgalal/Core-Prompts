@@ -1,0 +1,39 @@
+{
+  "finding": "D5-META-01",
+  "purpose": "Keep the new implementation skill role stable across pure projection and descriptor resolution without changing shared inference or tool policy.",
+  "changes": {
+    "scripts/build-surfaces.py": "Add only engos-delivery-implement-slice defaults: layers.minimal.role and layers.org_graph.org_role = implementation_worker.",
+    "tests/test_manifest_stability.py": "Exercise descriptor absent and stale descriptor present paths, persisted descriptor and merged manifest, second resolution stability, unchanged tool policy and audit-code-health analyst negative controls.",
+    ".gitlab-ci.yml": "Add test_manifest_stability.py once to existing resource/capability regression command; no new job or dependency.",
+    ".github/workflows/cli-surfaces-validate.yml": "Add the same module once at the same capability regression stage; no new job or dependency.",
+    "CHANGELOG.md": "Explain D5 role persistence via existing per-skill defaults, with runtime authority unchanged."
+  },
+  "verification": [
+    {
+      "command": "/opt/homebrew/bin/python3.14 -m pytest -q tests/test_manifest_stability.py -k implementation_role --tb=short",
+      "phase": "before production fix, after correcting negative-control fixture expectation",
+      "exit_status": 1,
+      "result": "2 failed, 2 passed, 2 deselected in 6.83s. Both implementation cases failed because actual minimal.role was analyst; both negative controls passed."
+    },
+    {
+      "command": "/opt/homebrew/bin/python3.14 -m pytest -q tests/test_manifest_stability.py -k implementation_role --tb=short",
+      "phase": "after production fix",
+      "exit_status": 0,
+      "result": "4 passed, 2 deselected in 7.00s."
+    },
+    {
+      "command": "git diff --check",
+      "exit_status": 0
+    }
+  ],
+  "test_setup_note": "Uses existing copy_workspace fixture and temporary descriptor deletion only. json/pytest and existing Python resolver path; no global build or external CLI dependency added. Initial negative-control absent-descriptor expectation was corrected from persisted specialist_with_workflow_surface to existing inferred analyst behavior before collecting the decisive red result.",
+  "hashes": {
+    "scripts/build-surfaces.py": "a7d73c030cf06a2f2c6e395f6b5f7c02f17e4d2efba8f10a2d27270211ff40fc",
+    "tests/test_manifest_stability.py": "cadeb2df21f967f21c5b38038a003f4d83f7fb5b284e456b0f13f7fb768a6ed6",
+    ".gitlab-ci.yml": "069f4e67e272f7903af642b76152d035208f9067394f851e25ce09631e07ef83",
+    ".github/workflows/cli-surfaces-validate.yml": "fb8fba29bd9b731f35bb576b657500d6b84135f2ebb04c6c93e9cdf7e95611a4",
+    "CHANGELOG.md": "74ee3747e657c8ff1ba7147ca81941c919458620e359cdb88ae06d178a738229"
+  },
+  "boundaries": "No source candidate, canonical resource, shared classifier, schema/rules, tool policy, build or Git mutation. Only existing per-skill defaults, focused tests, CI module inclusion and D5 changelog explanation changed. Controller rebuild and renewed review pending.",
+  "ci_wiring_status": "Authored only; no checks or build rerun after CI/changelog wiring. Controller owns exact current sequence and renewed review."
+}

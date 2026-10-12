@@ -1,0 +1,14 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "receipt": [
+      "templates/slice-receipt.json"
+    ]
+  },
+  "dependencies": {
+    "templates/slice-receipt.json": [
+      "schemas/slice-receipt.schema.json"
+    ]
+  }
+}

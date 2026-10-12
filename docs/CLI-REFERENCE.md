@@ -12,6 +12,23 @@ Preferred wrappers:
 
 If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11` or `PYTHON_BIN=python3.14` before using the wrappers.
 
+## Bounded implementation skill
+
+Ask for `engos-delivery-implement-slice` with the accepted outcome, target and stop
+condition. Codex can select `$engos-delivery-implement-slice`; Grok exposes
+`/engos-delivery-implement-slice`. The generated entry is
+`.<provider>/skills/engos-delivery-implement-slice/SKILL.md` for Codex, Gemini,
+Claude, Kiro and Grok. This capability adds no execution CLI or agent registration.
+
+The optional receipt route in the skill's `resources/resource-map.json` resolves
+`resources/templates/slice-receipt.json` and
+`resources/schemas/slice-receipt.schema.json`. Canonical resources live under
+`sources/capability-resources/engos-delivery-implement-slice/`. The generator also
+bundles the existing generic `resources/scripts/load_module.py` resource loader;
+that helper assembles resource context, not implementation or test execution.
+No receipt is needed for an ordinary small request. See the
+[bounded implementation example](EXAMPLES.md#engos-delivery-implement-slice).
+
 ## Engineering report CLI
 
 The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.

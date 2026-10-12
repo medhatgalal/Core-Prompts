@@ -1,0 +1,21 @@
+{
+  "schema": "D5LocalValidation.v1",
+  "status": "passed",
+  "productSeal": "5c451e0da0711277eff362a031714e6e6eea1f326958e8803ac550b1ffcf2997",
+  "steps": 13,
+  "passed": 1128,
+  "skipped": 1,
+  "subtests": 16,
+  "pytestGroups": 6,
+  "doubleCountedFocusedReruns": false,
+  "manifestRoleCases": 4,
+  "receiptSchemaCases": 17,
+  "schemaProbesIndependent": 14,
+  "commandsAndLogs": "local-ci/receipt.json",
+  "staticCalibrationModelCalls": 0,
+  "behavioralPromotion": "pending; two illustrative fixture observations only",
+  "limitations": [
+    "macOS Python3.14.8 and declared dependencies; Linux platform skips recorded separately after hosted CI.",
+    "Static calibration has no model calls; two separately frozen Astra fixture workers are not part of static calibration or original comparative pilot."
+  ]
+}

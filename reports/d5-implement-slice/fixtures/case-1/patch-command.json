@@ -1,0 +1,1 @@
+{"argv":["git","diff","--","expiry.py"],"cwd":"<acceptance-fixtures>/case-1/repo","exit_status":0,"stderr":"","stdout":"diff --git a/expiry.py b/expiry.py\nindex efe9005..cbf920c 100644\n--- a/expiry.py\n+++ b/expiry.py\n@@ -1,2 +1,2 @@\n def is_valid(now: int, expiry: int) -> bool:\n-    return now <= expiry\n+    return now < expiry\n"}

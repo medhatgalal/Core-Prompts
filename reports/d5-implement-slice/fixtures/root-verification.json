@@ -1,0 +1,51 @@
+{
+  "schema": "D5BoundedAcceptanceObservation.v1",
+  "verifiedAt": "2026-10-12T19:01:42.952894+00:00",
+  "deadlineMet": true,
+  "workers": 2,
+  "nestedCalls": 0,
+  "seedCalibration": {
+    "seedExit": 1,
+    "knownSuccessExit": 0,
+    "case2": "Old path absent; intended path exists."
+  },
+  "cases": [
+    {
+      "id": "case-1",
+      "status": "verified_fixture_observation",
+      "receipt_schema": "valid",
+      "preservation": "nonowned file bytes and modes preserved",
+      "head_unchanged": true,
+      "owned_files": [
+        "expiry.py"
+      ],
+      "snapshot_sha256": "f52061fde218a61e28ee8ea00a3ca0732cccbcff9cc1a890c10ea7431831bfee",
+      "snapshot_file_bytes_modes": 5,
+      "red_exit": 1,
+      "green_exit": 0,
+      "root_candidate_check": "3 unittest boundary assertions passed"
+    },
+    {
+      "id": "case-2",
+      "status": "verified_fixture_observation",
+      "receipt_schema": "valid",
+      "preservation": "nonowned file bytes and modes preserved",
+      "head_unchanged": true,
+      "owned_files": [
+        "GUIDE.md"
+      ],
+      "snapshot_sha256": "f8234f1315ab6db8c6cc7faa1c767515faa79852bb298c4f1010eab201d34ea1",
+      "snapshot_file_bytes_modes": 4,
+      "path_inspection": "correct path exists; old path absent",
+      "tests": "not_run; docs-only checks",
+      "wrapper": "inspected, not tests"
+    }
+  ],
+  "limitations": [
+    "Two illustrative fixtures overlap source examples; no independent holdout or comparative/native-provider performance evidence.",
+    "Common ambient host instructions/memory/hooks are not isolated; no skill-only causal attribution.",
+    "Complete frozen bundle supplied; actual resource reads are not established by self-report."
+  ],
+  "promotion": "none; behavioral_pending",
+  "classification": "Illustrative two-fixture observations, not sealed D5.S2 or comparative model/provider performance."
+}

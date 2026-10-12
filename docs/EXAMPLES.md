@@ -674,6 +674,30 @@ Follow with:
 
 > Now give the high-severity findings to `engos-design-architecture` as measured inputs. Design the target boundaries, contracts, validation, and migration without repeating the metric scan or editing files yet.
 
+### `engos-delivery-implement-slice`
+
+Use when an accepted task or clear request is ready for one bounded implementation.
+It accepts a plain request or a supplied `TaskContract.v1`; an installed planner or
+oracle skill is not a prerequisite.
+
+> Use `engos-delivery-implement-slice` to reject tokens at the exact expiry
+> timestamp while preserving valid-token behavior. Preserve the unrelated dirty
+> UI file, run the focused regression checks, and stop before committing.
+
+Expect the scoped patch, actual check commands and results, candidate identity,
+preserved unrelated changes, unverified behavior and next owner. Expected test
+results come from the accepted requirement. A zero-exit wrapper without the
+underlying test evidence does not establish a pass.
+
+For a small guide correction, a readable summary and relevant diff/link inspection
+are enough. A structured `SliceReceipt.v1` is optional for downstream interchange;
+it keeps unknown task generation or contract hashes null and separates commit
+identity from a dirty snapshot. Schema validity is not proof of execution.
+
+Follow with `engos-quality-code-review` when a review is requested. Existing selected
+review comments still belong to `engos-delivery-address-code-review`; the slice
+skill does not start Batman, agents, goals, commits, installation or release.
+
 ### `engos-delivery-address-code-review`
 
 Use when:

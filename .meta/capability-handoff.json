@@ -1116,6 +1116,103 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-delivery-implement-slice",
+      "display_name": "Implement a Bounded Slice",
+      "capability_type": "skill",
+      "summary": "Implement one bounded software change from an accepted task or clear request, preserve unrelated work, and report verification tied to the actual patch. Use for a scoped feature or repair; use the review-feedback capability when selected reviewer comments define the work.",
+      "role": "implementation_worker",
+      "domain_tags": [
+        "review",
+        "engos",
+        "delivery",
+        "implement",
+        "slice"
+      ],
+      "required_inputs": [
+        "An authorized bounded outcome or accepted task, including constraints and the intended stopping point.",
+        "Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.",
+        "Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.",
+        "When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown."
+      ],
+      "expected_outputs": [
+        "The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.",
+        "Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.",
+        "Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.",
+        "When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "Implement one accepted task or clear scoped feature request.",
+        "Repair an authorized defect with meaningful focused verification and explicit missing evidence.",
+        "Make a small documentation correction with proportionate inspection."
+      ],
+      "artifact_conventions": [
+        "Task-owned patch and concise readable result with actual checks, candidate identity, preserved dirty state, gaps and next owner.",
+        "Optional SliceReceipt.v1 for requested machine interchange, with truthful nulls, check evidence and commit or dirty-snapshot binding."
+      ],
+      "invocation_style": "interactive_or_artifact_oriented",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "implementation_worker",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Implements one authorized bounded software slice with candidate-bound verification and preserved unrelated work; reviewer-feedback selection, independent review, controller gates and lifecycle actions remain separately owned."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-delivery-resolve-conflict",
       "display_name": "Merge Conflict Resolution \u2014 Structured Conflict Analysis",
       "capability_type": "skill",

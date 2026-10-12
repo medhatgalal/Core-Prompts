@@ -634,3 +634,86 @@ def test_test_design_schema_allows_design_and_coverage_only_but_rejects_executio
     weak = deepcopy(design)
     weak["tests"][0]["oracle"] = "A mock was called"
     validator.validate(weak)
+
+
+SLICE_RESOURCES = (Path(__file__).resolve().parents[1]
+                   / "sources/capability-resources/engos-delivery-implement-slice")
+
+
+def slice_receipt_validator():
+    from jsonschema import Draft202012Validator
+    schema = json.loads((SLICE_RESOURCES / "schemas/slice-receipt.schema.json").read_text())
+    Draft202012Validator.check_schema(schema)
+    return Draft202012Validator(schema)
+
+
+def slice_receipt_template():
+    return json.loads((SLICE_RESOURCES / "templates/slice-receipt.json").read_text())
+
+
+def test_slice_receipt_optional_route_and_template():
+    bundle = load_resource_bundle(SLICE_RESOURCES, "receipt")
+    assert paths(bundle) == ["schemas/slice-receipt.schema.json", "templates/slice-receipt.json"]
+    receipt = slice_receipt_template()
+    slice_receipt_validator().validate(receipt)
+    assert receipt["checks"] == []
+    assert receipt["task_generation"] is None
+    assert receipt["task_contract_sha256"] is None
+    assert receipt["unresolved_context"]
+    assert not list(SLICE_RESOURCES.rglob("*.py"))
+
+
+@pytest.mark.parametrize("status,exit_status,evidence,reason,valid", [
+    ("passed", 0, "evidence/focused-test.log", None, True),
+    ("passed", None, "evidence/focused-test.log", None, False),
+    ("passed", 1, "evidence/focused-test.log", None, False),
+    ("passed", 0, None, None, False),
+    ("passed", 0, " ", None, False),
+    ("failed", 1, "evidence/failure.log", "assertion failed", True),
+    ("failed", 0, "evidence/failure.log", "assertion failed", False),
+    ("failed", None, "evidence/failure.log", "unknown", False),
+    ("failed", 1, None, "assertion failed", False),
+    ("not_run", None, None, "not selected for this prose change", True),
+    ("not_run", 0, None, "not selected", False),
+    ("unavailable", None, None, "required runner is absent", True),
+    ("unavailable", 127, None, "runner absent", False),
+    ("unavailable", None, None, None, False),
+])
+def test_slice_receipt_cannot_relabel_missing_or_failed_execution(
+    status, exit_status, evidence, reason, valid
+):
+    receipt = slice_receipt_template()
+    receipt["checks"] = [{"command": "python -m pytest tests/test_expiry.py",
+                          "exit_status": exit_status, "evidence_ref": evidence,
+                          "status": status, "reason": reason}]
+    assert slice_receipt_validator().is_valid(receipt) is valid
+
+
+def test_slice_receipt_unknown_context_and_candidate_identity():
+    validator = slice_receipt_validator()
+    receipt = slice_receipt_template()
+    receipt["unresolved_context"] = []
+    assert not validator.is_valid(receipt)
+    receipt["unresolved_context"] = ["Plain ask has no structured contract or generation."]
+    receipt.update(target_kind="commit", base="a" * 40, head_or_snapshot_digest="b" * 40)
+    validator.validate(receipt)
+    receipt["target_kind"] = "dirty_snapshot"
+    assert not validator.is_valid(receipt)  # HEAD alone cannot identify dirty bytes.
+    receipt.update(head_or_snapshot_digest="c" * 64,
+                   snapshot_method="sha256 of retained path/digest/deletion/mode manifest",
+                   snapshot_evidence_ref="evidence/candidate-manifest.json",
+                   changed_files=["src/expiry.py"], initial_dirty_files=["ui/draft.ts"])
+    validator.validate(receipt)
+    receipt["target_kind"] = None
+    assert not validator.is_valid(receipt)
+
+
+def test_slice_receipt_shape_is_not_execution_or_preservation_proof():
+    receipt = slice_receipt_template()
+    receipt["checks"] = [{"command": "example only", "exit_status": 0,
+                          "evidence_ref": "nonexistent.log", "status": "passed", "reason": None}]
+    # This passes deliberately: resolving evidence and checking semantic truth is
+    # the consumer's responsibility, never a claim made by JSON Schema.
+    slice_receipt_validator().validate(receipt)
+    schema = json.loads((SLICE_RESOURCES / "schemas/slice-receipt.schema.json").read_text())
+    assert "do not establish" in schema["description"]
