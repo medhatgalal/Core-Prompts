@@ -174,3 +174,41 @@ def normalize_mode_entries(entries: Iterable[Mapping[str, Any]], slug: str) -> l
         entry.setdefault("source_refs", [f"ssot/{slug}.md"])
         normalized.append(entry)
     return normalized
+
+
+DESCRIPTIVE_MODE_FIELDS = (
+    "mode_summary", "required_inputs", "expected_outputs", "examples", "uplift_notes",
+)
+
+
+def resolve_mode_entries(
+    extracted: Iterable[Mapping[str, Any]],
+    curated: Iterable[Mapping[str, Any]],
+    slug: str,
+    *,
+    authoritative_fields: Mapping[tuple[str, str], set[str]] | None = None,
+) -> list[dict[str, Any]]:
+    """Preserve canonical curation over heading-only extraction defaults.
+
+    Exact identity matching is not semantic revalidation: callers provide existing
+    canonical curation; changed meaning still requires independent source review.
+    Source membership, locations and invocations always win. Extractors supplying
+    explicit default/empty descriptive values must identify them as authoritative.
+    """
+    existing = {
+        (m.get("entry_kind", "mode"), m.get("mode_slug"), m.get("display_name")): m
+        for m in curated
+    }
+    resolved = normalize_mode_entries(extracted, slug)
+    for mode in resolved:
+        key = (mode["entry_kind"], mode["mode_slug"])
+        prior = existing.get((*key, mode.get("display_name")))
+        if prior is None:
+            continue
+        defaults = _entry(slug=slug, label=str(mode["display_name"]),
+                          kind=str(mode["entry_kind"]), source_line=0)
+        authoritative = (authoritative_fields or {}).get(key, set())
+        for field in DESCRIPTIVE_MODE_FIELDS:
+            if field not in authoritative and mode.get(field) == defaults[field] and field in prior:
+                mode[field] = deepcopy(prior[field])
+    return resolved

@@ -1,0 +1,31 @@
+{
+  "schema_version": "D7ModeRepairReceipt.v1",
+  "author": "/root/d7_implementation_astra",
+  "finding": "D7-F1",
+  "disposition": "addressed; awaiting reviewer and actual generated package readback",
+  "previous_seal": {
+    "path": "reports/d7-test-oracles/candidate-seal-pre-mode-repair.json",
+    "sha256": "78ecaa83f9995100d1b12284575021897cfe948590d13552323d655564653359"
+  },
+  "write_set": [
+    ".meta/surface-rules.json",
+    "src/intent_pipeline/uac_modes.py",
+    "scripts/uac-import.py",
+    "scripts/build-surfaces.py",
+    ".meta/capabilities/engos-quality-testing-review.json",
+    "tests/test_uac_ssot.py",
+    "README.md",
+    "docs/UAC-USAGE.md",
+    "docs/RELEASE-PACKAGING.md",
+    "CHANGELOG.md"
+  ],
+  "design": "Policy first. Shared resolver limits fallback to five descriptive fields with exact entry-kind/slug/display identity. Current extraction owns membership, invocations and locations. Non-default extracted descriptions win; authoritative_fields allows deliberate source-derived default or empty values to win. Canonical curation preservation is not semantic revalidation. Unchanged legacy non-resource branch preserved.",
+  "canonical_recovery": "Only mode_summary, required_inputs, expected_outputs, examples, uplift_notes restored in target canonical descriptor from exact captured-descriptor.json; source positions and every other field untouched. No emitted copy patched.",
+  "validation_applicability": "Existing validate-surfaces validates mode schema/types rather than independently resolving modes; no competing extraction there to replace.",
+  "docs_location": "This checkout has neither docs/adoption nor RELEASE.md. Updated existing README, docs/UAC-USAGE.md and docs/RELEASE-PACKAGING.md instead of creating competing documentation homes.",
+  "red": "mode-repair-red.txt: 2 failed against old implementation/package. mode-repair-old-path.txt: executed both actual base-version resolver paths; all four expected_outputs arrays erased.",
+  "green": "...........                                                              [100%]\n11 passed, 1 deselected in 3.72s\n",
+  "pending": "Controller regeneration then full test_uac_ssot including canonical/five-package mode contract readback; strict validation and same independent reviewer closure. No build/apply performed by author.",
+  "candidate_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c"
+}

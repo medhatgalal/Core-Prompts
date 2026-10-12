@@ -1,5 +1,15 @@
 ## Unreleased
 
+- Preserve curated descriptive mode contracts when resource-backed skills are
+  applied or regenerated, while retaining current source membership, locations
+  and invocations. Removed or changed mode identities do not inherit curation.
+
+- Strengthen test design under `engos-quality-testing-review`: source-linked
+  observable outcomes, fault oracles, fixtures, negative/boundary cases and command
+  provenance, plus optional TestDesign.v1 interchange fixed to `not_run`.
+  Preserve all four modes, six artifact sections and independent artifact review.
+  Keep the current name and design-only scope; no behavioral promotion is claimed.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

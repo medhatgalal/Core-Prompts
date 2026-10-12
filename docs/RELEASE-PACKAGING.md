@@ -179,3 +179,8 @@ Journals remain retained, with advisory `retention_candidates` beyond the latest
 two and no automatic pruning. `--snapshot-retention` applies only to older
 snapshot compatibility paths. See [installation and recovery](INSTALL-PROFILES.md)
 for reviewed repair and rollback commands.
+
+
+### Resource-backed mode contracts
+
+When adding capability resources, compare canonical and bundled per-mode descriptions, inputs, outputs and examples against the reviewed prior descriptor. The shared apply/build resolver retains matching curation over heading defaults while refreshing source identity, locations and invocations. Package byte equality alone cannot reveal a contract lost in every copy; review the before/after contract as well. See [UAC mode metadata](UAC-USAGE.md#mode-metadata-when-adding-resources).

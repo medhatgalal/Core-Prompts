@@ -434,3 +434,8 @@ existing resource pointers were unchanged. Repository routing modules do not rea
 these descriptors or the map by default, but reading an enlarged resource can still
 increase context. Source inspection does not establish unchanged native token cost.
 Any runtime consumer or default-load change needs its own review and measured proof.
+
+
+### Mode metadata when adding resources
+
+For a resource-backed same-slug update, apply and generation share a resolver that preserves canonical mode summaries, inputs, outputs, examples and uplift notes when extraction supplies only heading defaults. Membership comes from current source: removed modes stay removed and new identities do not inherit another mode's contract. Current invocations and source locations replace old values. Explicit source-derived descriptive values override curation, including empty values marked authoritative by the caller. Matching identity preserves metadata; it does not establish semantic equivalence. Meaning changes still require independent source review under the [metadata policy](../.meta/surface-rules.json).

@@ -24,8 +24,8 @@ When the user asks for concrete test outputs, place them under the repository's 
 
 ## Workflow
 1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.
-2. Inspect the current repository testing stack and existing tests before recommending changes.
-3. Produce the minimum useful test set or gap analysis for the requested mode.
+2. Inspect the current repository testing stack and existing tests before recommending changes. Record proposed commands with their source and prerequisites; mark unknown runners or provenance explicitly instead of guessing.
+3. Produce the minimum useful test set or gap analysis for the requested mode. Link proposed tests to source requirements, expected observable outcomes, plausible faulty behavior and discriminating assertions, fixtures, negative cases and boundaries; mark unresolved evidence as gaps.
 4. Separate what can be generated now from what still needs repo-specific validation or execution.
 5. End with explicit priorities, risks, and follow-up work.
 
@@ -63,6 +63,14 @@ Every substantial writer-authored artifact must include:
 - Prefer readable test names and explicit assertions.
 - Include failure cases and boundary cases, not only happy path.
 - Call out when a repository needs integration or E2E coverage instead of more unit tests.
+
+## Oracle Resources and Interchange
+
+For substantial design or coverage work, load `resources/resource-map.json` using the existing `resources/scripts/load_module.py` loader with route `unit`, `e2e`, `edge-cases` or `coverage` matching the selected mode. Read the assembled `resources/references/test-oracles.md` and `resources/templates/test-design.md`; use `resources/schemas/test-design.schema.json` only when machine interchange is requested. Loader assembly is not proof of consumption or semantic adequacy.
+
+Keep all six required artifact sections. TestDesign.v1 is optional interchange, not a mandatory sidecar; its execution status is always `not_run`. Coverage-only analysis may have no proposed tests and explicit gaps. Unknown requirements, commands or runner evidence remain explicit; schema validity, IDs and described oracles do not establish source truth, meaningfulness, acceptance, execution or coverage.
+
+Assertions must distinguish required observable behavior from plausible faulty behavior. Mock choreography alone cannot establish redeemed-token rejection; instrumentation may legitimately observe contractual side effects. The independent reviewer checks this distinction against sources. Preserve existing implementation and tests; do not prescribe blanket deletion, full-suite execution, implementation/TDD work or automatic future skill invocation.
 
 ## Modes
 ### Generate Unit Tests

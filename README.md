@@ -136,6 +136,9 @@ These are the current source capabilities with a concrete starter ask for each o
 | `engos-meta-uac-import` | import and uplift new capability source into canonical state | "Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
 | `engos-audit-weekly-intel` | build a weekly report from multiple sources | "Use `engos-audit-weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
 
+`engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. Adding routed resources preserves matching curated per-mode contracts; current source identities and locations remain authoritative. See [the test-design example](docs/EXAMPLES.md#engos-quality-testing-review).
+
+
 Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting preparation, including linked fixes, verified recurrence, customer counts, and coaching for every confirmed selected incident. OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.
 
 ### High-Value Skill Examples

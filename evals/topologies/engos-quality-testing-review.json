@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-testing-review",
-  "ssot_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+  "ssot_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -17,7 +17,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 68,
+        "source_line": 76,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -34,7 +34,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 77,
+        "source_line": 85,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -51,7 +51,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 87,
+        "source_line": 95,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -68,7 +68,7 @@
         "source_refs": [
           "ssot/engos-quality-testing-review.md"
         ],
-        "source_line": 96,
+        "source_line": 104,
         "mode_summary": "Explicitly declared mode in the canonical skill.",
         "required_inputs": [],
         "expected_outputs": [],
@@ -103,15 +103,20 @@
   ],
   "authority_boundaries": [
     "engos-quality-testing-review:L27:a13a67440b6c",
-    "engos-quality-testing-review:L118:efc7137353f0",
-    "engos-quality-testing-review:L119:c541168a6a14",
-    "engos-quality-testing-review:L120:aa421c4141e9",
-    "engos-quality-testing-review:L124:f898261f1eba",
-    "engos-quality-testing-review:L126:fac7308fc753",
-    "engos-quality-testing-review:L130:283e7be539f4",
-    "engos-quality-testing-review:L133:32659bf6e33c",
-    "engos-quality-testing-review:L137:420f35be46a1",
-    "engos-quality-testing-review:L141:ee18a182fff0"
+    "engos-quality-testing-review:L64:d181c5b151ba",
+    "engos-quality-testing-review:L66:6767dd813089",
+    "engos-quality-testing-review:L126:efc7137353f0",
+    "engos-quality-testing-review:L127:c541168a6a14",
+    "engos-quality-testing-review:L128:aa421c4141e9",
+    "engos-quality-testing-review:L132:f898261f1eba",
+    "engos-quality-testing-review:L134:fac7308fc753",
+    "engos-quality-testing-review:L138:283e7be539f4",
+    "engos-quality-testing-review:L141:32659bf6e33c",
+    "engos-quality-testing-review:L145:420f35be46a1",
+    "engos-quality-testing-review:L149:ee18a182fff0",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L9:29c4180fc9a5",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L23:d2bc69ed3c22",
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L29:9e3a8ac6aa1b"
   ],
   "resources": [],
   "handoffs": [],
@@ -167,122 +172,242 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L67:b7a8e70ba8ee",
+      "id": "engos-quality-testing-review:L62:f24a57c2109e",
+      "heading": "Oracle Resources and Interchange",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 69,
+      "sha256": "f24a57c2109e7f8b4a915bcde15dae3023d8600113a09cfceee208526b2b2440",
+      "text": "For substantial design or coverage work, load `resources/resource-map.json` using the existing `resources/scripts/load_module.py` loader with route `unit`, `e2e`, `edge-cases` or `coverage` matching the selected mode. Read the assembled `resources/references/test-oracles.md` and `resources/templates/test-design.md`; use `resources/schemas/test-design.schema.json` only when machine interchange is requested. Loader assembly is not proof of consumption or semantic adequacy.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L64:d181c5b151ba",
+      "heading": "Oracle Resources and Interchange",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 71,
+      "sha256": "d181c5b151ba52f815b98161801a82f979451e2cbb39b5e6e99f9240b1abf38b",
+      "text": "Keep all six required artifact sections. TestDesign.v1 is optional interchange, not a mandatory sidecar; its execution status is always `not_run`. Coverage-only analysis may have no proposed tests and explicit gaps. Unknown requirements, commands or runner evidence remain explicit; schema validity, IDs and described oracles do not establish source truth, meaningfulness, acceptance, execution or coverage.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L66:6767dd813089",
+      "heading": "Oracle Resources and Interchange",
+      "source": "ssot/engos-quality-testing-review.md",
+      "source_line": 73,
+      "sha256": "6767dd8130891f7e286be2b4268c3f604f5ad6c7f749d85fddb0cc604d93dae2",
+      "text": "Assertions must distinguish required observable behavior from plausible faulty behavior. Mock choreography alone cannot establish redeemed-token rejection; instrumentation may legitimately observe contractual side effects. The independent reviewer checks this distinction against sources. Preserve existing implementation and tests; do not prescribe blanket deletion, full-suite execution, implementation/TDD work or automatic future skill invocation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:L75:b7a8e70ba8ee",
       "heading": "Generate Unit Tests",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 74,
+      "source_line": 82,
       "sha256": "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
       "text": "- mocks or fixtures only where needed",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L118:efc7137353f0",
+      "id": "engos-quality-testing-review:L126:efc7137353f0",
       "heading": "Constraints",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 125,
+      "source_line": 133,
       "sha256": "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
       "text": "- Do not execute tests automatically.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L119:c541168a6a14",
+      "id": "engos-quality-testing-review:L127:c541168a6a14",
       "heading": "Constraints",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 126,
+      "source_line": 134,
       "sha256": "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
       "text": "- Do not replace project-specific framework decisions when the repository already has a clear testing stack.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L120:aa421c4141e9",
+      "id": "engos-quality-testing-review:L128:aa421c4141e9",
       "heading": "Constraints",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 127,
+      "source_line": 135,
       "sha256": "aa421c4141e96d7644768b36e6786d2b9fcffc6ea7c100704a3d67f38eeb91b3",
       "text": "- Do not claim coverage metrics without a coverage artifact or direct evidence.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L124:f898261f1eba",
+      "id": "engos-quality-testing-review:L132:f898261f1eba",
       "heading": "Recommendation Artifact Review",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 131,
+      "source_line": 139,
       "sha256": "f898261f1eba0277fb4d3c851f99e215b048093a9495ea399bc761ae7469f2a3",
       "text": "Apply this review only to substantial authored test plans, designed test sets, coverage-gap plans or requested test artifacts. A narrow lookup or externally authored test review keeps its existing route. The writer owns the authored plan or tests; the separate reviewer checks specified behavior, existing framework, risks, assertions and gaps against the sources. Source inspection and design acceptance do not establish test execution, observed coverage or release readiness. No participant silently runs tests through this review.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L126:fac7308fc753",
+      "id": "engos-quality-testing-review:L134:fac7308fc753",
       "heading": "Recommendation Artifact Review",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 133,
+      "source_line": 141,
       "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
       "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L130:283e7be539f4",
+      "id": "engos-quality-testing-review:L138:283e7be539f4",
       "heading": "Three Roles",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 137,
+      "source_line": 145,
       "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
       "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L131:dea1be25a70c",
+      "id": "engos-quality-testing-review:L139:dea1be25a70c",
       "heading": "Three Roles",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 138,
+      "source_line": 146,
       "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
       "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L133:32659bf6e33c",
+      "id": "engos-quality-testing-review:L141:32659bf6e33c",
       "heading": "Three Roles",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 140,
+      "source_line": 148,
       "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
       "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L137:420f35be46a1",
+      "id": "engos-quality-testing-review:L145:420f35be46a1",
       "heading": "Finding and Repair Cycle",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 144,
+      "source_line": 152,
       "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
       "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L139:ddb7354cd7f7",
+      "id": "engos-quality-testing-review:L147:ddb7354cd7f7",
       "heading": "Finding and Repair Cycle",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 146,
+      "source_line": 154,
       "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
       "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:L141:ee18a182fff0",
+      "id": "engos-quality-testing-review:L149:ee18a182fff0",
       "heading": "Finding and Repair Cycle",
       "source": "ssot/engos-quality-testing-review.md",
-      "source_line": 148,
+      "source_line": 156,
       "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
       "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L7:896bc643ca0c",
+      "heading": "Ground the assertion",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "source_line": 7,
+      "sha256": "896bc643ca0cd70eb0068d25770502070d3270ae7cc4ee036b98e64124159f3a",
+      "text": "For each proposed test, identify the requirement and its inspected source location. Derive an expected observable result independently of the implementation under test. Name a plausible faulty behavior and explain which assertion would distinguish it from the required behavior. A requirement ID, a plausible-sounding oracle description or schema validity cannot establish source truth, meaningfulness, acceptance, execution or coverage. Unverified requirements remain assumptions or gaps for review.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L9:29c4180fc9a5",
+      "heading": "Ground the assertion",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "source_line": 9,
+      "sha256": "29c4180fc9a5ebb9fcae5867333cc8f98f057e501c82e772791abe12951d176c",
+      "text": "Prefer outputs, externally visible state and contractual effects. Internal method ordering or mock call counts alone cannot establish a behavioral claim. Instrumentation can legitimately observe a contractual effect such as an emitted event, attempted delivery, absence of a write or retry limit; state the boundary it observes and the remaining integration gap. Do not ban mocks or instrumentation categorically. Keep state essential to the claim real or use a justified faithful fixture; mocking away rejection or persistence cannot prove it works.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L17:055de7385667",
+      "heading": "Worked design challenges",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "source_line": 17,
+      "sha256": "055de738566735737657fc24b7a10611c9f6e9a9a41370356d3101604ef0ef3e",
+      "text": "| A token expires at `now >= expires_at` | Fixed clock and otherwise valid token; at equality reject; immediately before accept; immediately after reject | Changing `>=` to `>` wrongly accepts equality. Assert the rejection result at equality and the acceptance result just before it, so always-reject also fails | Clock precision and rejection shape must come from the actual contract |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L23:d2bc69ed3c22",
+      "heading": "Command provenance and scope",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "source_line": 23,
+      "sha256": "d2bc69ed3c2241c180f2b4de4e421bdee66f96fb77d5efc4ec8a8d6e44160fd8",
+      "text": "Read existing test configuration, checked-in wrappers, neighboring tests and relevant repository/CI documentation. Record each proposed command together with the file/section or supplied instruction that supports it and any prerequisites. If a runner or command is unknown, write `unknown` and the missing evidence. Do not guess a package-manager command or imply a command ran because it was discovered. Conflicting sources remain a gap until resolved. Choose the smallest useful designed test set for the requested risk; this capability imposes no blanket full-suite run.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L25:9ea5731120d9",
+      "heading": "Command provenance and scope",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "source_line": 25,
+      "sha256": "9ea5731120d9a92b24e3468871dc0cc642e7932758ed63baa8fed514d150affc",
+      "text": "Coverage-only analysis may describe evidenced gaps without inventing tests or requirement IDs. Distinguish source-inspection gaps from measured coverage and cite any actual coverage artifact. Preserve existing tests and implementation; designing a stronger oracle is not a direction to delete code, execute TDD or invoke another skill automatically.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L29:9e3a8ac6aa1b",
+      "heading": "Optional interchange",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "source_line": 29,
+      "sha256": "9e3a8ac6aa1b0d424f3420fbe31c0f65073698a3f99595f5689097f5224329cf",
+      "text": "When machine interchange is requested, use TestDesign.v1 with the accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json:L36:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "source_line": 36,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/templates/test-design.md:L13:5643befff3e9",
+      "heading": "Recommended Tests or Gaps",
+      "source": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+      "source_line": 13,
+      "sha256": "5643befff3e93fa07617e9e9920cde9ef3ec5321460d90905081c395628242b5",
+      "text": "For coverage-only work: evidence-backed gaps and proposed next investigation; an empty test list is valid.",
       "kind": "invariant",
       "mapped_to": []
     }
@@ -295,7 +420,23 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-testing-review.md",
-      "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+      "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/resource-map.json",
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
     }
   ],
   "known_ambiguities": [],
@@ -308,10 +449,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 17,
+    "total": 29,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "78a6acd852574d95965af4833786cf55dacbfbb734d67fc7405f4b4135d81c6c"
 }

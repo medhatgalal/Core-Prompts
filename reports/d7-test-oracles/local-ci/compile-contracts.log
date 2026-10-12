@@ -1,0 +1,32 @@
+Successful compilation output excerpt; full generated payload remains in private task evidence.
+Raw SHA256: b2bf2cbaa9e2cc0d7c836e85214ba9ea4f5aa18cdd8cbee189afec9fef58d618
+Raw lines: 38718
+
+{
+  "schema_version": "CorpusTopologyAudit.v1",
+  "generated_at": "2026-10-12T10:53:14.276454+00:00",
+  "skill_count": 32,
+  "blocked_contract": [],
+  "draft_contracts": [
+    "engos-audit-code-health",
+    "engos-audit-engineering-progress",
+    "engos-audit-feature-status",
+    "engos-audit-opex-incident-review",
+
+[Generated bodies omitted]
+
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      },
+      "status": "structural_ready"
+    }
+  ],
+  "behavioral_claim": "none",
+  "check_result": "pass",
+  "drift": []
+}

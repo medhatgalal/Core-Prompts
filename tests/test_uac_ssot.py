@@ -89,3 +89,88 @@ def test_every_generated_routing_draft_revalidates_against_canonical_source():
         descriptor=json.loads((ROOT/'.meta/capabilities'/f'{slug}.json').read_text())
         assert descriptor['job_contract']==jobs[slug]
         validate_routing_fitness(descriptor['job_contract'],ROOT,slug)
+
+
+def test_resource_modes_preserve_only_matching_curation_and_source_authority():
+    from copy import deepcopy
+    from intent_pipeline.uac_modes import extract_declared_modes, resolve_mode_entries
+    source = extract_declared_modes('example', '## Modes\n### Keep\n### New\n')
+    prior = deepcopy(source[0])
+    prior.update(mode_summary='Curated behavior', required_inputs=['contract'], expected_outputs=['plan'], examples=['example'], uplift_notes=['boundary'], source_line=99, source_refs=['old.md'], invocations=['/old'])
+    removed = dict(prior, mode_slug='removed', display_name='Removed')
+    result = resolve_mode_entries(source, [prior, removed], 'example')
+    assert [m['mode_slug'] for m in result] == ['keep', 'new']
+    assert result[0]['expected_outputs'] == ['plan']
+    assert result[0]['source_line'] == 2
+    assert result[0]['source_refs'] == ['ssot/example.md']
+    assert result[0]['invocations'] == []
+    assert result[1]['expected_outputs'] == []
+    changed_identity = dict(prior, display_name='Different')
+    assert resolve_mode_entries(source, [changed_identity], 'example')[0]['expected_outputs'] == []
+    explicit = deepcopy(source)
+    explicit[0]['expected_outputs'] = ['source output']
+    assert resolve_mode_entries(explicit, [prior], 'example')[0]['expected_outputs'] == ['source output']
+    assert resolve_mode_entries(source, [prior], 'example', authoritative_fields={('mode', 'keep'): {'expected_outputs'}})[0]['expected_outputs'] == []
+
+
+def test_testing_modes_retain_curated_contract_in_canonical_and_five_packages():
+    import json
+    # Public per-mode contract: independently specified expected consumer outputs.
+    expected = {
+        'generate-unit-tests': ['test file', 'fixtures or mocks', 'coverage notes'],
+        'generate-e2e-tests': ['journey tests', 'setup/teardown plan', 'diagnostic expectations'],
+        'edge-cases': ['edge-case catalog', 'risk ranking', 'tests to add first'],
+        'coverage-analysis': ['gap report', 'risk-based priorities', 'recommended next tests'],
+    }
+    slug = 'engos-quality-testing-review'
+    canonical = json.loads((ROOT / '.meta/capabilities' / f'{slug}.json').read_text())
+    assert {m['mode_slug']: m['expected_outputs'] for m in canonical['modes']} == expected
+    for provider in ('codex', 'gemini', 'claude', 'kiro', 'grok'):
+        packaged = json.loads((ROOT / f'.{provider}/skills' / slug / 'resources/capability.json').read_text())
+        assert packaged['modes'] == canonical['modes']
+
+
+def test_resource_mode_curation_survives_apply_and_builder_resolution(monkeypatch):
+    import importlib.util
+    import json
+    import sys
+    from copy import deepcopy
+    slug = 'engos-quality-testing-review'
+    source = (ROOT / 'ssot' / f'{slug}.md').read_text()
+    stored = json.loads((ROOT / '.meta/capabilities' / f'{slug}.json').read_text())
+    canonical_path = ROOT / '.meta/capabilities' / f'{slug}.json'
+    canonical_before = canonical_path.read_bytes()
+    saved = []
+    # Distinct contract values expose replacement by heading defaults on either path.
+    curated = deepcopy(stored)
+    fields = ('mode_summary', 'required_inputs', 'expected_outputs', 'examples', 'uplift_notes')
+    for mode in curated['modes']:
+        mode['mode_summary'] = 'Reviewed contract for ' + mode['mode_slug']
+        for field in fields[1:]:
+            mode[field] = [mode['mode_slug'] + ':' + field]
+    loaded = []
+    for name, filename in [('d7_apply_contract', 'uac-import.py'), ('d7_build_contract', 'build-surfaces.py')]:
+        spec = importlib.util.spec_from_file_location(name, ROOT / 'scripts' / filename)
+        module = importlib.util.module_from_spec(spec)
+        monkeypatch.setitem(sys.modules, name, module)
+        spec.loader.exec_module(module)
+        monkeypatch.setattr(module, 'load_descriptor', lambda *args: deepcopy(curated))
+        loaded.append(module)
+    # resolve_descriptor persists through save_descriptor; capture that boundary.
+    # Neither this integration check nor its read helpers may write repository files.
+    monkeypatch.setattr(loaded[1], 'save_descriptor', lambda root, name, payload: saved.append((root, name, deepcopy(payload))))
+    def reject_write(*args, **kwargs):
+        raise AssertionError('resolver test attempted a filesystem write')
+    monkeypatch.setattr(Path, 'write_text', reject_write)
+    monkeypatch.setattr(Path, 'write_bytes', reject_write)
+    applied, bound = loaded[0]._merge_existing_descriptor_for_apply(slug, stored, ssot_text=source, quality_result={'final_candidate_text': source})
+    assert bound
+    entry = next(e for e in load_ssot_entries(ROOT / 'ssot') if e.slug == slug)
+    built = loaded[1].resolve_descriptor(entry, build_ssot_manifest_entry(entry, ROOT), stored['job_contract'])
+    assert len(saved) == 1 and saved[0] == (ROOT, slug, built)
+    assert canonical_path.read_bytes() == canonical_before
+    for output in (applied, built):
+        for actual, previous in zip(output['modes'], curated['modes'], strict=True):
+            assert {f: actual[f] for f in fields} == {f: previous[f] for f in fields}
+            assert actual['source_refs'] == [f'ssot/{slug}.md']
+            assert actual['source_line'] == source.splitlines().index('### ' + actual['display_name']) + 1
