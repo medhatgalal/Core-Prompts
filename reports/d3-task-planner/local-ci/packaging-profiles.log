@@ -23,7 +23,7 @@ finalized_release_tree = PosixPath('<temporary-test-path>')
             ROOT / "sources" / "ssot-baselines" / "mentor",
         )
         assert all(not path.exists() for path in retired_repo_paths)
-    
+
         repo = finalized_release_tree
         version = (repo / "VERSION").read_text(encoding="utf-8").strip()
         result = subprocess.run(
@@ -34,19 +34,19 @@ finalized_release_tree = PosixPath('<temporary-test-path>')
             text=True,
             check=True,
         )
-    
+
         tar_path = tmp_path / f"core-prompts-{version}-surfaces.tar.gz"
         zip_path = tmp_path / f"core-prompts-{version}-surfaces.zip"
         assert tar_path.is_file(), result.stdout
         assert zip_path.is_file(), result.stdout
-    
+
         with tarfile.open(tar_path, "r:gz") as archive:
             tar_names = set(archive.getnames())
             tar_files = {member.name for member in archive.getmembers() if member.isfile()}
         with zipfile.ZipFile(zip_path) as archive:
             zip_names = set(archive.namelist())
             zip_files = {member.filename for member in archive.infolist() if not member.is_dir()}
-    
+
         expected = {
             "VERSION",
             "RELEASE_SOURCE.env",
