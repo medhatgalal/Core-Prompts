@@ -4065,6 +4065,533 @@
       "rubric_version": "capability-fabric.v0"
     },
     {
+      "slug": "engos-debug-diagnose-failure",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Reproduce, localize and explain a software failure using bounded experiments that distinguish competing causes. Use for failing tests, builds or unexpected runtime behavior; return a supported cause or an explicit unknown with evidence for repair handoff.",
+          "role": "analyst",
+          "domain_tags": [
+            "analysis",
+            "debugging",
+            "engos",
+            "debug",
+            "diagnose",
+            "failure"
+          ],
+          "required_inputs": [
+            "Observed failure and expected behavior, with available logs or a reproduction request.",
+            "Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.",
+            "Existing access, permitted diagnostic actions and any time, attempt or resource limit.",
+            "Behavior that must remain unchanged; derive it from supplied requirements or ask only when material."
+          ],
+          "expected_outputs": [
+            "Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.",
+            "Current, expected and unchanged behavior bound to the subject revision.",
+            "Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.",
+            "Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.",
+            "Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action."
+          ],
+          "tool_policy": {
+            "scope": "uac_intake_only",
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+          },
+          "resources": [
+            "ssot/engos-debug-diagnose-failure.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "global",
+            "confidence": 1.0,
+            "confirmation_required_for_apply": true,
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/engos-debug-diagnose-failure.md",
+            "policy_rule_id": "ssot.engos-debug-diagnose-failure",
+            "content_sha256": "ssot"
+          },
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "Diagnose a Failure"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": []
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "analysis",
+            "debugging"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Supplies bounded causal findings or an explicit unknown for a software failure; repair execution, candidate review and incident coordination remain separate jobs."
+        }
+      },
+      "display_name": "Diagnose a Failure",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "engos-debug-diagnose-failure",
+      "shared_summary": "Reproduce, localize and explain a software failure using bounded experiments that distinguish competing causes. Use for failing tests, builds or unexpected runtime behavior; return a supported cause or an explicit unknown with evidence for repair handoff.",
+      "shared_constraints": [
+        "Do not edit production or working code, install dependencies, add instrumentation,",
+        "Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.",
+        "Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a",
+        "Preserve active processes, user data and unrelated work. Stop only your own bounded"
+      ],
+      "modes": [],
+      "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-debug-diagnose-failure",
+            "strategy": "head_snapshot",
+            "group": "derived_current",
+            "baseline_path": "ssot/engos-debug-diagnose-failure.md",
+            "selected_commit": null,
+            "richness_score": 8,
+            "line_count": 195,
+            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "equivalent_commits": [],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              },
+              {
+                "id": "stepwise_workflow_contract",
+                "kind": "operational_contract",
+                "label": "stepwise workflow contract",
+                "must_contain": [
+                  "## Workflow Contract"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "current_ssot",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "stepwise_workflow_contract",
+                  "kind": "operational_contract",
+                  "label": "stepwise workflow contract",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 8,
+                "candidate_richness": 8,
+                "baseline_operational_score": 4,
+                "candidate_operational_score": 4,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": null,
+              "baseline_slug": "engos-debug-diagnose-failure"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
+      "consumption_hints": {
+        "preferred_use_cases": [
+          "Diagnose a failing test, build, integration or unexpected runtime behavior.",
+          "Compare competing causes using bounded reproduction, localization and discriminating evidence.",
+          "Prepare a redacted technical handoff while keeping repair scope and authority explicit."
+        ],
+        "artifact_conventions": [
+          "Concise readable diagnosis with observed/reported facts, causal conclusion or unknown, scope, uncertainty and evidence.",
+          "Optional hypothesis-evidence table for competing explanations.",
+          "Optional self-contained DiagnosisReceipt.v1 with conclusion, scope, uncertainty, redacted observation provenance, hypothesis evidence references and repair handoff bounds."
+        ],
+        "invocation_style": "interactive_or_artifact_oriented",
+        "requires_human_confirmation": false
+      },
+      "job_contract": {
+        "primary_job": "Reproduce, localize, minimize and discriminate hypotheses until the evidence supports\na cause within the investigated scope, or return a bounded unknown with the next useful\nobservation. A passing rerun, correlation or plausible explanation alone is not a cause.",
+        "use_when": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.\nIn Codex select `$engos-debug-diagnose-failure`; in Grok select\n`/engos-debug-diagnose-failure`. Other hosts use the full skill name through their skill interface.",
+        "works_on": "- Observed failure and expected behavior, with available logs or a reproduction request.\n- Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.\n- Existing access, permitted diagnostic actions and any time, attempt or resource limit.\n- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.\n\nStart with available evidence. Missing reproduction details are questions to investigate,\nnot permission to invent observations or expand access.",
+        "main_output": "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.\n- Current, expected and unchanged behavior bound to the subject revision.\n- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.\n- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.\n- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action.\n\nFor a small diagnosis, concise readable evidence is sufficient. Use a structured\n`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence\npackaging, not a claim that a runner or behavioral evaluator executed.",
+        "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+        "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+        "routing_question": "Does this request directly require Diagnose a Failure?",
+        "nearest_neighbors": [],
+        "shape": "unclassified_new_skill",
+        "portfolio_action": "draft_new_skill_pending_review",
+        "routing_fitness": {
+          "schema_version": "RoutingFitness.v1",
+          "mapping_status": "stale",
+          "task_phases": {
+            "kind": "source_conditions",
+            "clauses": [
+              {
+                "text": "Diagnose why an observed software failure occurs while preserving the user's code,\ndata and active sessions. Supply causal evidence before a separately authorized repair.",
+                "heading": "Purpose",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 13,
+                  "end_line": 14,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ]
+          },
+          "activation": {
+            "mode": "unknown",
+            "evidence": []
+          },
+          "risk_authority_ceiling": {
+            "grants_authority": false,
+            "clauses": [
+              {
+                "text": "- Do not edit production or working code, install dependencies, add instrumentation,\n  mutate bisection state or execute repairs without separate scoped authorization.\n- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.\n- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a\n  failing test or claim unknown facts as verified.\n- Preserve active processes, user data and unrelated work. Stop only your own bounded\n  diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 148,
+                  "end_line": 154,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ]
+          },
+          "negative_examples": {
+            "kind": "source_exclusions_not_synthetic_prompts",
+            "clauses": [
+              {
+                "text": "- Do not edit production or working code, install dependencies, add instrumentation,\n  mutate bisection state or execute repairs without separate scoped authorization.\n- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.\n- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a\n  failing test or claim unknown facts as verified.\n- Preserve active processes, user data and unrelated work. Stop only your own bounded\n  diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+                "heading": "Constraints",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 148,
+                  "end_line": 154,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ]
+          },
+          "conditional_companions": [],
+          "pack_hints": {
+            "lead": "engos-debug-diagnose-failure",
+            "companions": "only_after_applicable_source_conditions_are_checked",
+            "default_bulk_activation": false
+          },
+          "provenance": {
+            "ssot_path": "ssot/engos-debug-diagnose-failure.md",
+            "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+            "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+                "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+              },
+              {
+                "path": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+                "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+              },
+              {
+                "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+                "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+              }
+            ],
+            "extractor_version": "source-clauses.v1",
+            "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+            "field_sources": {
+              "primary_job": [
+                {
+                  "text": "Reproduce, localize, minimize and discriminate hypotheses until the evidence supports\na cause within the investigated scope, or return a bounded unknown with the next useful\nobservation. A passing rerun, correlation or plausible explanation alone is not a cause.",
+                  "heading": "Primary Objective",
+                  "source": {
+                    "path": "ssot/engos-debug-diagnose-failure.md",
+                    "start_line": 18,
+                    "end_line": 20,
+                    "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                  }
+                }
+              ],
+              "use_when": [
+                {
+                  "text": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.\nIn Codex select `$engos-debug-diagnose-failure`; in Grok select\n`/engos-debug-diagnose-failure`. Other hosts use the full skill name through their skill interface.",
+                  "heading": "Invocation Hints",
+                  "source": {
+                    "path": "ssot/engos-debug-diagnose-failure.md",
+                    "start_line": 158,
+                    "end_line": 160,
+                    "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                  }
+                }
+              ],
+              "works_on": [
+                {
+                  "text": "- Observed failure and expected behavior, with available logs or a reproduction request.\n- Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.\n- Existing access, permitted diagnostic actions and any time, attempt or resource limit.\n- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.",
+                  "heading": "Required Inputs",
+                  "source": {
+                    "path": "ssot/engos-debug-diagnose-failure.md",
+                    "start_line": 30,
+                    "end_line": 33,
+                    "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                  }
+                },
+                {
+                  "text": "Start with available evidence. Missing reproduction details are questions to investigate,\nnot permission to invent observations or expand access.",
+                  "heading": "Required Inputs",
+                  "source": {
+                    "path": "ssot/engos-debug-diagnose-failure.md",
+                    "start_line": 35,
+                    "end_line": 36,
+                    "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                  }
+                }
+              ],
+              "main_output": [
+                {
+                  "text": "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.\n- Current, expected and unchanged behavior bound to the subject revision.\n- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.\n- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.\n- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action.",
+                  "heading": "Required Output",
+                  "source": {
+                    "path": "ssot/engos-debug-diagnose-failure.md",
+                    "start_line": 112,
+                    "end_line": 116,
+                    "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                  }
+                },
+                {
+                  "text": "For a small diagnosis, concise readable evidence is sufficient. Use a structured\n`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence\npackaging, not a claim that a runner or behavioral evaluator executed.",
+                  "heading": "Required Output",
+                  "source": {
+                    "path": "ssot/engos-debug-diagnose-failure.md",
+                    "start_line": 118,
+                    "end_line": 120,
+                    "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                  }
+                }
+              ]
+            },
+            "unresolved_companion_clauses": [],
+            "curated_fields": [
+              "authority",
+              "nearest_neighbors",
+              "not_for",
+              "portfolio_action",
+              "routing_question",
+              "shape"
+            ],
+            "curated_binding": "preserved_not_independently_revalidated",
+            "mapping_sha256": "9a40d7c0895e607ab24db71f3ef49534ed2fd521d5546c5bc505d760fe582aea"
+          },
+          "unresolved_fields": [
+            "task_phase_interpretation",
+            "risk_authority_interpretation",
+            "job_contract.authority",
+            "job_contract.not_for",
+            "implicit_activation_eligibility"
+          ]
+        }
+      },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
       "slug": "engos-delivery-address-code-review",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -19544,6 +20071,7 @@
       ".grok/skills/engos-audit-weekly-intel/SKILL.md",
       ".grok/skills/engos-browser-demo-recorder/SKILL.md",
       ".grok/skills/engos-content-dynamic-html-presentations/SKILL.md",
+      ".grok/skills/engos-debug-diagnose-failure/SKILL.md",
       ".grok/skills/engos-delivery-address-code-review/SKILL.md",
       ".grok/skills/engos-delivery-artifact-embed/SKILL.md",
       ".grok/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
@@ -19581,6 +20109,7 @@
       ".gemini/skills/engos-audit-weekly-intel/SKILL.md",
       ".gemini/skills/engos-browser-demo-recorder/SKILL.md",
       ".gemini/skills/engos-content-dynamic-html-presentations/SKILL.md",
+      ".gemini/skills/engos-debug-diagnose-failure/SKILL.md",
       ".gemini/skills/engos-delivery-address-code-review/SKILL.md",
       ".gemini/skills/engos-delivery-artifact-embed/SKILL.md",
       ".gemini/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
@@ -19619,6 +20148,7 @@
       ".claude/skills/engos-audit-weekly-intel/SKILL.md",
       ".claude/skills/engos-browser-demo-recorder/SKILL.md",
       ".claude/skills/engos-content-dynamic-html-presentations/SKILL.md",
+      ".claude/skills/engos-debug-diagnose-failure/SKILL.md",
       ".claude/skills/engos-delivery-address-code-review/SKILL.md",
       ".claude/skills/engos-delivery-artifact-embed/SKILL.md",
       ".claude/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
@@ -19658,6 +20188,7 @@
       ".kiro/skills/engos-audit-weekly-intel/SKILL.md",
       ".kiro/skills/engos-browser-demo-recorder/SKILL.md",
       ".kiro/skills/engos-content-dynamic-html-presentations/SKILL.md",
+      ".kiro/skills/engos-debug-diagnose-failure/SKILL.md",
       ".kiro/skills/engos-delivery-address-code-review/SKILL.md",
       ".kiro/skills/engos-delivery-artifact-embed/SKILL.md",
       ".kiro/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
@@ -19695,6 +20226,7 @@
       ".codex/skills/engos-audit-weekly-intel/SKILL.md",
       ".codex/skills/engos-browser-demo-recorder/SKILL.md",
       ".codex/skills/engos-content-dynamic-html-presentations/SKILL.md",
+      ".codex/skills/engos-debug-diagnose-failure/SKILL.md",
       ".codex/skills/engos-delivery-address-code-review/SKILL.md",
       ".codex/skills/engos-delivery-artifact-embed/SKILL.md",
       ".codex/skills/engos-delivery-diagram-contract-artifacts/SKILL.md",
@@ -19744,6 +20276,12 @@
       ".grok/skills/engos-content-dynamic-html-presentations/resources/example.html",
       ".grok/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".grok/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
+      ".grok/skills/engos-debug-diagnose-failure/resources/capability.json",
+      ".grok/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      ".grok/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      ".grok/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      ".grok/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      ".grok/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
       ".grok/skills/engos-delivery-address-code-review/resources/capability.json",
       ".grok/skills/engos-delivery-artifact-embed/resources/capability.json",
       ".grok/skills/engos-delivery-artifact-embed/resources/references/export.md",
@@ -19932,6 +20470,12 @@
       ".codex/skills/engos-content-dynamic-html-presentations/resources/example.html",
       ".codex/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".codex/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
+      ".codex/skills/engos-debug-diagnose-failure/resources/capability.json",
+      ".codex/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      ".codex/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      ".codex/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      ".codex/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      ".codex/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
       ".codex/skills/engos-delivery-address-code-review/resources/capability.json",
       ".codex/skills/engos-delivery-artifact-embed/resources/capability.json",
       ".codex/skills/engos-delivery-artifact-embed/resources/references/export.md",
@@ -20121,6 +20665,12 @@
       ".gemini/skills/engos-content-dynamic-html-presentations/resources/example.html",
       ".gemini/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".gemini/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
+      ".gemini/skills/engos-debug-diagnose-failure/resources/capability.json",
+      ".gemini/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      ".gemini/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      ".gemini/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      ".gemini/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      ".gemini/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
       ".gemini/skills/engos-delivery-address-code-review/resources/capability.json",
       ".gemini/skills/engos-delivery-artifact-embed/resources/capability.json",
       ".gemini/skills/engos-delivery-artifact-embed/resources/references/export.md",
@@ -20310,6 +20860,12 @@
       ".claude/skills/engos-content-dynamic-html-presentations/resources/example.html",
       ".claude/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".claude/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
+      ".claude/skills/engos-debug-diagnose-failure/resources/capability.json",
+      ".claude/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      ".claude/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      ".claude/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      ".claude/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      ".claude/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
       ".claude/skills/engos-delivery-address-code-review/resources/capability.json",
       ".claude/skills/engos-delivery-artifact-embed/resources/capability.json",
       ".claude/skills/engos-delivery-artifact-embed/resources/references/export.md",
@@ -20499,6 +21055,12 @@
       ".kiro/skills/engos-content-dynamic-html-presentations/resources/example.html",
       ".kiro/skills/engos-content-dynamic-html-presentations/resources/export_slides.swift",
       ".kiro/skills/engos-content-dynamic-html-presentations/resources/images_to_pptx.py",
+      ".kiro/skills/engos-debug-diagnose-failure/resources/capability.json",
+      ".kiro/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      ".kiro/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      ".kiro/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      ".kiro/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      ".kiro/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
       ".kiro/skills/engos-delivery-address-code-review/resources/capability.json",
       ".kiro/skills/engos-delivery-artifact-embed/resources/capability.json",
       ".kiro/skills/engos-delivery-artifact-embed/resources/references/export.md",

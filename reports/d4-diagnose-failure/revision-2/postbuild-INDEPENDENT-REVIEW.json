@@ -1,0 +1,51 @@
+{
+  "schema_version": "D4IndependentReview.v1",
+  "reviewer": {
+    "agent_id": "/root/d4_requirement_review_astra",
+    "author_agent_id": "/root/d4_implementation_astra",
+    "independent": true
+  },
+  "source_sha256": "a373df4d0684d0c2c73e784e4586263cb43a442cc8e2a829f7402a1c88761bf0",
+  "effective_sha256": "5b2079ef6dbdc9657d937231e091971f5be44b33d31d14397a079e89ff136450",
+  "source_verdict": "approved",
+  "delivery_verdict": "closed_by_independent_postbuild_readback",
+  "findings": [
+    {
+      "id": "D4-SRC-01",
+      "status": "closed",
+      "evidence": "Revision2 source/resources add required conclusion, investigated_scope, remaining_uncertainty and hypothesis evidence_refs. Exposure/confounder text destinations are explicit."
+    },
+    {
+      "id": "D4-STRUCT-01",
+      "status": "closed",
+      "evidence": "Rules and Constraints present; actual UAC plan structural_ready without repair requests."
+    },
+    {
+      "id": "D4-META-01",
+      "status": "closed",
+      "evidence": "All six approved fields verified in actual canonical descriptor/manifest/handoff/five bundles; source/resources exact hashes retained. See reviewer-post-build-closure.json."
+    }
+  ],
+  "historical_preservation_claim": false,
+  "behavioral_status": "behavioral_pending",
+  "D4_S2": "not performed",
+  "edited_artifact": "No authored edits; review evidence only.",
+  "size": {
+    "revision_1_lines": 182,
+    "revision_2_lines": 195,
+    "revision_1_words": 1420,
+    "revision_2_words": 1525,
+    "revision_1_bytes": 10831,
+    "revision_2_bytes": 11649,
+    "model_token_estimate": null
+  },
+  "evidence": [
+    "reports/d4-diagnose-failure/revision-2/uac-plan.json",
+    "reports/d4-diagnose-failure/revision-2/freeze.json",
+    "reports/d4-diagnose-failure/revision2-change-record.json",
+    "reports/d4-diagnose-failure/reviewer-donor-verification.json",
+    "reports/d4-diagnose-failure/revision-2/reviewer-pure-ssot-projection.json",
+    "reports/d4-diagnose-failure/revision-2/metadata-curation-proposal.json"
+  ],
+  "postbuild_evidence": "reports/d4-diagnose-failure/reviewer-post-build-closure.json"
+}

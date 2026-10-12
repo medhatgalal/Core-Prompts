@@ -1,0 +1,43 @@
+{
+  "schema_version": "D4IndependentReview.v1",
+  "reviewer": {
+    "agent_id": "/root/d4_requirement_review_astra",
+    "author_agent_id": "/root/d4_implementation_astra",
+    "independent": true
+  },
+  "source_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+  "source_verdict": "approved",
+  "delivery_verdict": "closed_by_independent_final_revision3_postbuild_readback",
+  "findings": [
+    {
+      "id": "D4-SRC-01",
+      "status": "closed"
+    },
+    {
+      "id": "D4-STRUCT-01",
+      "status": "closed"
+    },
+    {
+      "id": "D4-NOTE-LOADER",
+      "status": "closed"
+    },
+    {
+      "id": "D4-META-01",
+      "status": "closed",
+      "evidence": "Six approved values verified in final canonical descriptor, manifest, handoff and all five bundled descriptors; exact final source/resources and route closure verified."
+    }
+  ],
+  "historical_preservation_claim": false,
+  "behavioral_status": "behavioral_pending",
+  "D4_S2": "not performed",
+  "evidence": [
+    "reports/d4-diagnose-failure/revision-3/uac-plan.json",
+    "reports/d4-diagnose-failure/revision-3/freeze.json",
+    "reports/d4-diagnose-failure/revision-3/reviewer-preservation-comparison.json",
+    "reports/d4-diagnose-failure/reviewer-donor-verification.json",
+    "reports/d4-diagnose-failure/revision-3/reviewer-pure-ssot-projection.json",
+    "reports/d4-diagnose-failure/revision-3/metadata-curation-proposal.json"
+  ],
+  "postbuild_evidence": "reports/d4-diagnose-failure/revision-3/reviewer-post-build-closure.json"
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "D4MetadataCurationProposal.v1",
+  "status": "approved_unchanged_six_values_for_revision3_pending_postbuild_readback",
+  "reviewer": "/root/d4_requirement_review_astra",
+  "target": ".meta/capabilities/engos-debug-diagnose-failure.json",
+  "entry_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/layers/org_graph/work_graph_impact",
+      "value": "Supplies bounded causal findings or an explicit unknown for a software failure; repair execution, candidate review and incident coordination remain separate jobs.",
+      "rationale": "Purpose; Workflow 5"
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/preferred_use_cases",
+      "value": [
+        "Diagnose a failing test, build, integration or unexpected runtime behavior.",
+        "Compare competing causes using bounded reproduction, localization and discriminating evidence.",
+        "Prepare a redacted technical handoff while keeping repair scope and authority explicit."
+      ],
+      "rationale": "Description; Workflow; Required Output"
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/artifact_conventions",
+      "value": [
+        "Concise readable diagnosis with observed/reported facts, causal conclusion or unknown, scope, uncertainty and evidence.",
+        "Optional hypothesis-evidence table for competing explanations.",
+        "Optional self-contained DiagnosisReceipt.v1 with conclusion, scope, uncertainty, redacted observation provenance, hypothesis evidence references and repair handoff bounds."
+      ],
+      "rationale": "Required Output; Resources"
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/requires_human_confirmation",
+      "value": false,
+      "rationale": "Workflow 1 permits existing-authority scoped reads; specific uncovered actions require confirmation. False does not waive those boundaries."
+    },
+    {
+      "op": "replace",
+      "path": "/layers/expanded/adjustment_recommendations",
+      "value": [],
+      "rationale": "Actual final source contains Primary Objective, In Scope and Constraints. Empty uplift payload creates false absent-section recommendations; clear only these unsupported recommendations."
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/invocation_style",
+      "value": "interactive_or_artifact_oriented",
+      "rationale": "Source permits concise readable diagnosis and optional handoff artifacts; only actual repository diagnostics may execute under existing authority. No generic scripted skill runner exists. This existing hint describes interaction/artifact use without granting execution."
+    }
+  ],
+  "preserve": [
+    "Every unlisted field",
+    "Intake-only tool policy and its explicit no-runtime-authority scope",
+    "Skill-only surfaces, no execution needs or agent grants",
+    "Source-derived inputs, outputs, roles, tags, source provenance and dependencies"
+  ],
+  "persistence_basis": "build-surfaces.py resolve_descriptor preserves nonempty consumption_hints and overlays non-minimal layers; pure SSOT classifier differs from UAC classifier. No generator/classifier edits authorized.",
+  "readback_required": [
+    "Final source hash and effective resource hash renewal",
+    "Actual canonical descriptor, manifest and five bundled capability.json files",
+    "No residual importer use cases, artifact paths, blanket confirmation or route-profile workgraph text",
+    "Job contract neighbors and exclusions accurately reflect unchanged review/IC ownership; no automatic dispatch",
+    "Pure SSOT description summary supersedes malformed UAC first-example summary during build normalization; verify actual readback."
+  ]
+}

@@ -35,6 +35,8 @@ from `engos-design-specify-change`. It does not need that sibling installed. A
 schema pass checks shape; it grants no approval. Ordinary architecture work can
 still start from prose. [Example and expected output](EXAMPLES.md#engos-design-architecture).
 
+For a failing test or build, select `engos-debug-diagnose-failure` and supply the failure, expected behavior, repository/revision and any known reproduction. For example: “Find why this test fails; preserve the code and active sessions.” The skill discovers the repository’s real diagnostics, checks their side effects and returns causal evidence or an explicit unknown. A short readable diagnosis is sufficient; a structured receipt is optional for handoff. See the [diagnosis example](EXAMPLES.md#engos-debug-diagnose-failure).
+
 For a product/engineering shaping workshop, use `engos-design-shaping` with the
 documents you already have. It should summarize the problem and ask a few useful
 questions, not require a complete form or choose an architecture immediately.

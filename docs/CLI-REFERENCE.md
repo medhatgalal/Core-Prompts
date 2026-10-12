@@ -57,6 +57,22 @@ sections. Schema validation checks shape and status consistency; actual source
 reads, evidence truth and consumer impact still require review. Missing evidence
 is incomplete/unverifiable. Ready remains advisory and grants no merge authority.
 
+## Failure diagnosis skill
+
+Select `$engos-debug-diagnose-failure` in Codex or `/engos-debug-diagnose-failure`
+in Grok; use the full skill name in other supported hosts. Each provider bundle
+places it at `.<provider>/skills/engos-debug-diagnose-failure/SKILL.md`, with
+`resources/resource-map.json`, `resources/templates/hypothesis-evidence.md`,
+`resources/templates/reproduction-receipt.json` and
+`resources/schemas/diagnosis-receipt.schema.json`. The resource routes are
+`hypotheses` and `receipt`; the receipt route includes the schema dependency.
+
+There is no universal diagnosis command or new runner. The skill uses the target
+repository’s actual diagnostics after checking side effects. `DiagnosisReceipt.v1`
+is an optional handoff format with conclusion, investigated scope, remaining uncertainty
+and per-hypothesis evidence references; ordinary small diagnoses may remain readable prose.
+See the [worked request](EXAMPLES.md#engos-debug-diagnose-failure).
+
 ## Common Commands
 
 ### Capability evaluation

@@ -81,6 +81,12 @@ def test_package_boundary_includes_release_watch_contract(
         ".meta/install-profiles/codex-kiro-grok.json",
         "scripts/install-local.sh",
     }
+    for provider in ("codex", "gemini", "claude", "kiro", "grok"):
+        prefix = f".{provider}/skills/engos-debug-diagnose-failure"
+        expected.add(f"{prefix}/SKILL.md")
+        for resource in ("resource-map.json", "templates/hypothesis-evidence.md",
+                         "templates/reproduction-receipt.json", "schemas/diagnosis-receipt.schema.json"):
+            expected.add(f"{prefix}/resources/{resource}")
     assert expected <= tar_names
     assert expected <= zip_names
     for names in (tar_files, zip_files):

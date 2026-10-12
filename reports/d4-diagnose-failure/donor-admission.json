@@ -1,0 +1,50 @@
+{
+  "schema_version": "D4DonorAdmission.v1",
+  "sources": [
+    {
+      "source_url": "https://github.com/addyosmani/agent-skills/blob/1be8e34187e34647bb83adc3a1323b26ae6f6abe/skills/debugging-and-error-recovery/SKILL.md",
+      "revision": "1be8e34187e34647bb83adc3a1323b26ae6f6abe",
+      "body_sha256": "21f3960f5d7ae2cc95c40896545004dbbcbbd752ea65fc2d53962554d4174220",
+      "pinned_bytes_verified": true,
+      "license_url": "https://github.com/addyosmani/agent-skills/blob/1be8e34187e34647bb83adc3a1323b26ae6f6abe/LICENSE",
+      "license_sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "license": "MIT",
+      "mode": "independently expressed attributed pattern synthesis",
+      "selected_resource_bytes": [],
+      "dependency_closure": "No donor resources, scripts, external skills or runtime dependencies imported. Supporting donor links were inspected as dependency references but not admitted.",
+      "destination_owner": "engos-debug-diagnose-failure",
+      "displaced_clause": "none: new focused job; existing owners unchanged"
+    },
+    {
+      "source_url": "https://github.com/obra/superpowers/blob/8ca22dba9a94f28898bbce59f2537ff4d87c747d/skills/systematic-debugging/SKILL.md",
+      "revision": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "body_sha256": "808fc5717aa88ad65efff312b11c186294d3e6ee301afb584e2f86599b137787",
+      "pinned_bytes_verified": true,
+      "license_url": "https://github.com/obra/superpowers/blob/8ca22dba9a94f28898bbce59f2537ff4d87c747d/LICENSE",
+      "license_sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+      "license": "MIT",
+      "mode": "independently expressed attributed pattern synthesis",
+      "selected_resource_bytes": [],
+      "dependency_closure": "No donor resources, scripts, external skills or runtime dependencies imported. Supporting donor links were inspected as dependency references but not admitted.",
+      "destination_owner": "engos-debug-diagnose-failure",
+      "displaced_clause": "none: new focused job; existing owners unchanged"
+    }
+  ],
+  "accepted_patterns": [
+    "reproduction before inference",
+    "localize and minimize",
+    "explicit competing predictions and discriminating observation",
+    "non-reproducible branch"
+  ],
+  "rejected_patterns": [
+    "automatic repair or dependency install",
+    "mutating Git bisect on diagnosis-only authority",
+    "secret-printing commands",
+    "fixed failure-count architecture diagnosis",
+    "unsupported quantitative effectiveness claims"
+  ],
+  "notice_decision": "No literal or substantial donor code/template/body copying. Attribution retained in skill. MIT license bytes inspected and hashes recorded; no donor assets redistributed.",
+  "host_compatibility": "Existing host file reading and actual repository diagnostic commands only; no universal runner or required agent package.",
+  "seed_sha256": "d048a399ede0dc8c149555c9e8f91632f4d9c0ff027a8476638ae6e0232de9c8",
+  "status": "source admission checked; structural validation pending; behavioral acceptance pending"
+}

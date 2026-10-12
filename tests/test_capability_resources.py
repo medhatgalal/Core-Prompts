@@ -923,3 +923,102 @@ def test_planner_schema_does_not_claim_graph_or_acceptance_validation():
     plan['completed_task_ids'] = ['unknown-task']
     plan['tasks'].append(dict(plan['tasks'][0]))
     planner_validator().validate(plan)
+
+
+DIAGNOSIS_ROOT = Path(__file__).resolve().parents[1] / "sources/capability-resources/engos-debug-diagnose-failure"
+
+
+def test_diagnosis_routes_keep_optional_receipt_separate_and_close_dependencies() -> None:
+    assert paths(load_resource_bundle(DIAGNOSIS_ROOT, "hypotheses")) == ["templates/hypothesis-evidence.md"]
+    assert paths(load_resource_bundle(DIAGNOSIS_ROOT, "receipt")) == [
+        "schemas/diagnosis-receipt.schema.json", "templates/reproduction-receipt.json"
+    ]
+
+
+def diagnosis_contract() -> tuple[dict, dict]:
+    schema = json.loads((DIAGNOSIS_ROOT / "schemas/diagnosis-receipt.schema.json").read_text())
+    receipt = json.loads((DIAGNOSIS_ROOT / "templates/reproduction-receipt.json").read_text())
+    return schema, receipt
+
+
+def test_diagnosis_receipt_accepts_explicit_unknown_without_fabricated_observations() -> None:
+    import jsonschema
+    schema, receipt = diagnosis_contract()
+    jsonschema.Draft202012Validator.check_schema(schema)
+    jsonschema.validate(receipt, schema)
+    assert receipt["cause_status"] == "unknown"
+    assert receipt["observations"] == receipt["hypotheses"] == []
+
+
+def test_diagnosis_receipt_requires_structural_support_for_identified() -> None:
+    import jsonschema
+    schema, receipt = diagnosis_contract()
+    receipt["cause_status"] = "identified"
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)
+    receipt["observations"] = [{"command_redacted": "fixture: compare retained traces", "exit_status": None,
+                                "environment": "isolated structural fixture", "evidence_ref": "fixture://trace"}]
+    receipt["hypotheses"] = [{"id": "h1", "prediction": "one boundary differs", "discriminator": "compare boundaries",
+                              "result": "fixture://trace: contrast observed", "status": "unresolved", "evidence_refs": []}]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)
+    receipt["hypotheses"][0]["status"] = "supported"
+    receipt["hypotheses"][0]["evidence_refs"] = ["fixture://trace"]
+    jsonschema.validate(receipt, schema)  # Shape only; this fixture does not prove causal truth.
+
+
+@pytest.mark.parametrize("field", ["subject_revision", "current_behavior", "expected_behavior", "unchanged_behavior",
+                                  "observations", "hypotheses", "repair_scope", "next_owner",
+                                  "conclusion", "investigated_scope", "remaining_uncertainty"])
+def test_diagnosis_receipt_rejects_incomplete_handoff(field: str) -> None:
+    import jsonschema
+    schema, receipt = diagnosis_contract()
+    del receipt[field]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)
+
+
+@pytest.mark.parametrize("change", ["unredacted_field", "invented_status", "text_exit"])
+def test_diagnosis_receipt_rejects_unsupported_contract_shapes(change: str) -> None:
+    import jsonschema
+    schema, receipt = diagnosis_contract()
+    if change == "unredacted_field":
+        receipt["raw_environment"] = "unapproved extra field"
+    elif change == "invented_status":
+        receipt["cause_status"] = "fixed"
+    else:
+        receipt["observations"] = [{"command_redacted": "fixture", "exit_status": "passed",
+                                    "environment": "fixture", "evidence_ref": "fixture://trace"}]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)
+
+
+@pytest.mark.parametrize("status", ["supported", "rejected", "unresolved"])
+def test_diagnosis_hypothesis_reference_requirement_depends_on_status(status: str) -> None:
+    import jsonschema
+    schema, receipt = diagnosis_contract()
+    hypothesis = {"id": "h1", "prediction": "fixture prediction", "discriminator": "fixture contrast",
+                  "result": "structural fixture only", "status": status, "evidence_refs": []}
+    receipt["hypotheses"] = [hypothesis]
+    if status == "unresolved":
+        jsonschema.validate(receipt, schema)
+    else:
+        with pytest.raises(jsonschema.ValidationError):
+            jsonschema.validate(receipt, schema)
+    hypothesis["evidence_refs"] = ["fixture://observation"]
+    jsonschema.validate(receipt, schema)  # Structural reference presence is not evidence authenticity.
+    hypothesis["evidence_refs"] = [""]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)
+    del hypothesis["evidence_refs"]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)
+
+
+@pytest.mark.parametrize("field", ["conclusion", "investigated_scope", "remaining_uncertainty"])
+def test_diagnosis_receipt_requires_nonempty_summary_fields(field: str) -> None:
+    import jsonschema
+    schema, receipt = diagnosis_contract()
+    receipt[field] = ""
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(receipt, schema)

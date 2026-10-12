@@ -1,0 +1,26 @@
+{
+  "schema_version": "D4IndependentPreservationComparison.v1",
+  "original_revision_1_sha256": "d048a399ede0dc8c149555c9e8f91632f4d9c0ff027a8476638ae6e0232de9c8",
+  "candidate_revision_2_sha256": "a373df4d0684d0c2c73e784e4586263cb43a442cc8e2a829f7402a1c88761bf0",
+  "original_seed_unchanged": true,
+  "changes": [
+    {
+      "range": "hypothesis evidence requirement",
+      "classification": "source-faithful explicit evidence link",
+      "assessment": "Strengthens reference mapping without asserting truth from nonempty references."
+    },
+    {
+      "range": "receipt closure",
+      "classification": "authorized additive minimum schema expansion",
+      "assessment": "Original keys/enums preserved; adds conclusion/scope/uncertainty and evidence refs. Unknown remains allowed and honest."
+    },
+    {
+      "range": "Rules/Constraints headings",
+      "classification": "contract-neutral clarification",
+      "assessment": "Existing prohibitions retained verbatim; no new job or authority."
+    }
+  ],
+  "behavioral_status": "behavioral_pending",
+  "requirement_review_validation": [],
+  "effective_hash_independently_recomputed": "5b2079ef6dbdc9657d937231e091971f5be44b33d31d14397a079e89ff136450"
+}

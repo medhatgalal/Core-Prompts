@@ -117,12 +117,15 @@ Ask `engos-meta-uac-import`: “Improve this skill under its current name. Compa
 
 Start with the shipped capabilities when you want direct help on a real task.
 
+Diagnose a concrete failure with `engos-debug-diagnose-failure`: “Explain why this test fails; do not change code.” Expect a supported cause or an explicit unknown, with redacted reproduction evidence and a bounded repair handoff. [Example](docs/EXAMPLES.md#engos-debug-diagnose-failure).
+
 ### Full Skill Index
 
 These are the current source capabilities with a concrete starter ask for each one:
 
 | Skill | Use it when you need to... | Starter ask | What good output looks like |
 | --- | --- | --- | --- |
+| `engos-debug-diagnose-failure` | explain a test, build or runtime failure | “Diagnose this intermittent failure without editing code.” | observed evidence, competing hypotheses, supported cause or unknown, and explicit repair scope |
 | `engos-design-shaping` | guide a rough idea through framing, evidence and a shaped pitch | "Help us frame and shape this from these notes; guide product and engineering through the missing decisions." | accepted stage, source-backed documents, scoped worker/reviewer handoffs and honest delivery status |
 | `engos-design-frame-from-vague` | frame an idea without choosing its solution | "Frame this problem only; identify missing appetite and boundaries without inventing answers." | original intake, solution-free frame, attributable decisions and useful open questions |
 | `engos-quality-shaping-gate` | assess a shaping stage or resumed handoff | "Check this stage against its actual evidence and tell us whether it can advance." | predicate-level verdict, current bindings, actionable holds and no invented approval |
