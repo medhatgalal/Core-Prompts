@@ -43,7 +43,8 @@
     "subtestsPassed": 16,
     "focusedRerunsIncludedInTotals": false,
     "failedInitialApplyStaleReviewRetryPreRepairModeLossAndConcurrentGenerationInterruptionRetained": true,
-    "mainMergeInstallationReleaseOrBehavioralPromotionClaimed": false
+    "mainMergeInstallationReleaseOrBehavioralPromotionClaimed": false,
+    "localCiLogHashScope": "Original logs; condensed compile-contracts public display is separately bound by EVIDENCE-MANIFEST.json."
   },
   "closedDuringThisReview": [
     {
@@ -52,12 +53,19 @@
       "location": "reports/d2-shared-artifacts/uac-summary.json",
       "issue": "Five source-review display paths retained the machine-local worktree prefix.",
       "resolution": "Controller normalized only those display paths to repo-relative values; reviewer checked all paths, matching requirement-review hash, unchanged six raw stage hashes and unchanged product seal."
+    },
+    {
+      "id": "D2S2-FINAL-CONDENSE-002",
+      "severity": "medium",
+      "location": "reports/d2-shared-artifacts/local-ci/compile-contracts.log",
+      "issue": "Initial condensation omitted 23 advisory clarity findings across 12 skills.",
+      "resolution": "Controller restored each complete clarity dictionary, all 23 diagnostic records and explicit summary. Reviewer verified every complete dictionary against the retained original; structural statuses remain distinct from advisory findings."
     }
   ],
   "evidenceHashes": {
-    "EVIDENCE-MANIFEST.json": "c8101a0a6ac1150daf68848d34df39df49a0dadd62825b5ff84836101682f6fd",
+    "EVIDENCE-MANIFEST.json": "2ad6a64b1049a39097a9a4dad48410c5666cfb38e2a0222297c0ad0c174dab90",
     "LOCAL-VALIDATION.json": "59ea9991e647f63d7230fbb9df047d1e43fa6d66e8b8ba3d75f91ce229bc75c9",
-    "README.md": "fd6b595a9053ad6d0ba964ac5fb00a60b974c8240c81ef2dd4407ba217ab77f4",
+    "README.md": "6ec1fe8d11a76bc0e567254c9b4aa3db97500a51430eb0f9cca4f6bd6fe3ebd1",
     "architecture-descriptor-before-apply.json": "e7762f3334ca54a3d9aed17ff0c6f61ef4c49ea81e5da31a280fe3be800285ca",
     "candidate-architecture.md": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
     "curated-modes-focused.log": "1fbedd515ca659a616dbccbcabf192b263e626fc4d1d121e64c83d7a194b67ce",
@@ -67,7 +75,7 @@
     "implementation-evidence.json": "c17a5a45f80e1e5599b7f22cdcdba6012bd1746aac9fe118a54048914119e2e1",
     "local-ci/apply-bootstrap.log": "3fa5e6076396b79008f09b23ed9259084bab7f839cb69db320e1ff37cf64ac5f",
     "local-ci/calibrate-static.log": "40185376e1ca8255c3597080ff4b17e12b076729513db4edd51a900604a05a97",
-    "local-ci/compile-contracts.log": "f276e0597f6d47478ac84032d8e3d647db4e21d8d6ee5db55929301992f82957",
+    "local-ci/compile-contracts.log": "c2c2d02f0cf0353253de2a1505c797167d1ab0a918c90199bcb5a67ac2076649",
     "local-ci/distribution-build.log": "c49df8fb6e7f9c8cf1b9c14ed92642ac60868e5721c5c94af93969e1cf878957",
     "local-ci/installer-runtime.log": "073cb208fa060bbfb8f523669cc40a6c8e015669f36f882695b1e18e05896dd1",
     "local-ci/legacy-catalog.log": "5c8e7329f92d4cae7898526e11080a66fcfa8d8afda28dfafad08139e06635f5",
@@ -144,5 +152,23 @@
     ],
     "manifestAndReadmeUpdated": true,
     "allOtherPreviouslyBoundEvidenceHashesUnchanged": true
+  },
+  "compilationDisplayCondensation": {
+    "reviewedAt": "2026-10-12T21:53:54.080745+00:00",
+    "status": "approved",
+    "rawSha256": "f276e0597f6d47478ac84032d8e3d647db4e21d8d6ee5db55929301992f82957",
+    "publicSha256": "c2c2d02f0cf0353253de2a1505c797167d1ab0a918c90199bcb5a67ac2076649",
+    "rawLines": 39559,
+    "publicLines": 767,
+    "allOriginalTopLevelAuditFieldsPreserved": true,
+    "slugStatusesMatched": 33,
+    "artifactFileHashesVerified": 66,
+    "clarityAdvisoryFindingsPreserved": 23,
+    "skillsWithClarityFindings": 12,
+    "allPerSlugClarityPoliciesAndAdvisoryFlagsAndCountsMatchRaw": true,
+    "ciReceiptLogSha256StillPinsOriginalRawLog": true,
+    "allOtherPreviouslyBoundEvidenceHashesUnchanged": true,
+    "scope": "Display condensation, manifest/README transparency and exact current artifact file hashes only; no product review or test rerun.",
+    "allCompletePerSlugClarityRecordsMatchRaw": true
   }
 }
