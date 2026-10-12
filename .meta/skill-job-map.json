@@ -988,6 +988,186 @@
         ]
       }
     },
+    "engos-debug-diagnose-failure": {
+      "primary_job": "Reproduce, localize, minimize and discriminate hypotheses until the evidence supports\na cause within the investigated scope, or return a bounded unknown with the next useful\nobservation. A passing rerun, correlation or plausible explanation alone is not a cause.",
+      "use_when": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.\nIn Codex select `$engos-debug-diagnose-failure`; in Grok select\n`/engos-debug-diagnose-failure`. Other hosts use the full skill name through their skill interface.",
+      "works_on": "- Observed failure and expected behavior, with available logs or a reproduction request.\n- Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.\n- Existing access, permitted diagnostic actions and any time, attempt or resource limit.\n- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.\n\nStart with available evidence. Missing reproduction details are questions to investigate,\nnot permission to invent observations or expand access.",
+      "main_output": "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.\n- Current, expected and unchanged behavior bound to the subject revision.\n- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.\n- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.\n- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action.\n\nFor a small diagnosis, concise readable evidence is sufficient. Use a structured\n`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence\npackaging, not a claim that a runner or behavioral evaluator executed.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Diagnose a Failure?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "stale",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "Diagnose why an observed software failure occurs while preserving the user's code,\ndata and active sessions. Supply causal evidence before a separately authorized repair.",
+              "heading": "Purpose",
+              "source": {
+                "path": "ssot/engos-debug-diagnose-failure.md",
+                "start_line": 13,
+                "end_line": 14,
+                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "- Do not edit production or working code, install dependencies, add instrumentation,\n  mutate bisection state or execute repairs without separate scoped authorization.\n- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.\n- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a\n  failing test or claim unknown facts as verified.\n- Preserve active processes, user data and unrelated work. Stop only your own bounded\n  diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-debug-diagnose-failure.md",
+                "start_line": 148,
+                "end_line": 154,
+                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "- Do not edit production or working code, install dependencies, add instrumentation,\n  mutate bisection state or execute repairs without separate scoped authorization.\n- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.\n- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a\n  failing test or claim unknown facts as verified.\n- Preserve active processes, user data and unrelated work. Stop only your own bounded\n  diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-debug-diagnose-failure.md",
+                "start_line": 148,
+                "end_line": 154,
+                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-debug-diagnose-failure",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-debug-diagnose-failure.md",
+          "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+          "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+              "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+            },
+            {
+              "path": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+              "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+            },
+            {
+              "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+              "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Reproduce, localize, minimize and discriminate hypotheses until the evidence supports\na cause within the investigated scope, or return a bounded unknown with the next useful\nobservation. A passing rerun, correlation or plausible explanation alone is not a cause.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 18,
+                  "end_line": 20,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.\nIn Codex select `$engos-debug-diagnose-failure`; in Grok select\n`/engos-debug-diagnose-failure`. Other hosts use the full skill name through their skill interface.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 158,
+                  "end_line": 160,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "- Observed failure and expected behavior, with available logs or a reproduction request.\n- Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.\n- Existing access, permitted diagnostic actions and any time, attempt or resource limit.\n- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 30,
+                  "end_line": 33,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              },
+              {
+                "text": "Start with available evidence. Missing reproduction details are questions to investigate,\nnot permission to invent observations or expand access.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 35,
+                  "end_line": 36,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.\n- Current, expected and unchanged behavior bound to the subject revision.\n- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.\n- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.\n- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 112,
+                  "end_line": 116,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              },
+              {
+                "text": "For a small diagnosis, concise readable evidence is sufficient. Use a structured\n`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence\npackaging, not a claim that a runner or behavioral evaluator executed.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-debug-diagnose-failure.md",
+                  "start_line": 118,
+                  "end_line": 120,
+                  "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "9a40d7c0895e607ab24db71f3ef49534ed2fd521d5546c5bc505d760fe582aea"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
     "engos-delivery-address-code-review": {
       "primary_job": "Apply selected reviewer comments without changing unrelated code.",
       "use_when": "A PR or MR already has concrete review feedback and the user has chosen what to fix.",
@@ -1621,6 +1801,202 @@
         ]
       }
     },
+    "engos-delivery-implement-slice": {
+      "primary_job": "Deliver the requested slice within its allowed writes and stop condition, with proportionate verification and an honest account of what remains unverified.",
+      "use_when": "- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+      "works_on": "- An authorized bounded outcome or accepted task, including constraints and the intended stopping point.\n- Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.\n- Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.\n- When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown.",
+      "main_output": "- The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.\n- Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.\n- Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.\n- When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values.\n\nLoad `resources/resource-map.json` and its `receipt` route only for a structured handoff. The owned template is `resources/templates/slice-receipt.json`; the shape is `resources/schemas/slice-receipt.schema.json`. The generated bundle also contains the repository's unchanged generic `resources/scripts/load_module.py` resource loader; it assembles selected resources and does not implement, diagnose, execute checks or prove consumption.\n\nRecord the actual `base` and `head_or_snapshot_digest` with `target_kind` equal to `commit` or `dirty_snapshot`. A commit target is valid only when the claimed candidate contains no additional uncommitted changes. For a dirty snapshot, bind a stable manifest of repository-relative paths, file byte digests, deletion markers and relevant modes, and retain its evidence reference and digest method. Include task-owned and initial unrelated dirty content needed to identify the inspected state; never label HEAD alone as a dirty candidate. Keep `changed_files` limited to this task and record `initial_dirty_files` separately. If state cannot be bound, leave identity null and explain the gap in `unresolved_context`; do not claim verified completion for that state.\n\nHash exact supplied structured contract bytes when available. `TaskContract.v1` has no generation field: use a separately supplied generation only with its provenance; otherwise `task_generation` is null. A plain ask may have a local task identifier but no structured contract hash. Null contract metadata requires an explicit unresolved-context explanation. `checks[].status = passed` requires an observed zero exit and retained evidence that the intended check actually ran. `failed` requires its observed nonzero exit and evidence; `not_run` and `unavailable` have null exit status and a reason. Schema validation enforces shape and basic consistency only; it cannot prove command execution, source truth, digest correctness, preservation, authority, meaningful assertions or completion. An empty checks list means no recorded command evidence, never a pass. Human inspection evidence can be described in `unverified` or the accompanying readable report; do not fabricate a process exit for it.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Implement a Bounded Slice?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. **Bind the task.** Inspect the accepted request and source evidence. When supplied, read `TaskContract.v1`: `id`, `outcome`, `requirement_ids`, `design_ids`, `depends_on`, `consumes`, `produces`, `likely_files`, `allowed_writes`, `constraints`, `verification`, `stop_condition`, and `authority_ref`. Check referenced inputs and prerequisites against current state; likely files are hints, not expanded write authority. Null references and unsatisfied dependencies remain explicit gaps. A plain request can supply the same meaningful context without this schema or an installed planning skill. Do not invent a task generation or contract digest absent from the supplied context.\n2. **Inspect the starting state.** Confirm repository, base, branch or snapshot and initial dirty files. Locate the affected code, nearest useful tests and actual test configuration or wrappers. Identify a recovery boundary for task-owned edits. State the intended change and any assumption that matters to the outcome.\n3. **Choose decisive verification.** Connect each check to an accepted behavior and an observable expected result derived from the requirement. Name a plausible defect the assertion would catch. Use the smallest relevant test, type, syntax, build or inspection path supported by repository evidence. For a bug or executable behavior change, reproduce failure before the fix when practical or required, then observe the expected pass; disclose missing red evidence. Do not delete or weaken tests to manufacture a pass. For a prose-only correction, diff and relevant link or syntax inspection may suffice. Do not claim an internal call count proves an external outcome or mock away the behavior being checked.\n4. **Implement and inspect.** Edit only the authorized slice and necessary associated documentation. Keep abstractions proportional to present requirements. Use existing diagnostics to investigate an unexpected failure before changing more code. After an ambiguous stateful operation, inspect its effects before retrying. Stop dependent work for material scope changes, inaccessible prerequisites, authority gaps or a violated stop condition; preserve completed work and explain the next decision.\n5. **Verify the candidate.** Run the selected checks on the actual candidate and retain commands, exit results and evidence references. A successful launcher is not evidence that tests ran: inspect the underlying result and expected assertions. Distinguish failed, unavailable and not-run checks. Expand checks only for repository requirements, changed behavior, new failures or unresolved risk. Refresh affected evidence after candidate changes instead of attaching stale results to a later patch.\n6. **Review the diff and hand off.** Compare the result with the accepted outcome and original dirty inventory. Account for task-owned changed files, preserved unrelated changes, actual results, remaining limitations and next owner. Distinguish local implementation from independent review, hosted CI and landing. Stop at the requested boundary; do not convert a draft or no-commit request into a delivery campaign.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 31,
+                "end_line": 36,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "- No installed planner or oracle dependency is required. Supplied reviewed interfaces and repository facts are sufficient; unresolved material context still blocks dependent edits.\n- No hidden delegation, autonomous goal creation, automatic review-comment selection, generalized route selection, unrelated cleanup, home installation or release side effect.\n- No claim of independence from self-review, no test claim from a helper exit alone, and no completion claim from schema validity.\n- Do not expose secrets in receipts or logs. Use safe evidence references and preserve the source's disclosure boundary.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 58,
+                "end_line": 61,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "- No installed planner or oracle dependency is required. Supplied reviewed interfaces and repository facts are sufficient; unresolved material context still blocks dependent edits.\n- No hidden delegation, autonomous goal creation, automatic review-comment selection, generalized route selection, unrelated cleanup, home installation or release side effect.\n- No claim of independence from self-review, no test claim from a helper exit alone, and no completion claim from schema validity.\n- Do not expose secrets in receipts or logs. Use safe evidence references and preserve the source's disclosure boundary.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 58,
+                "end_line": 61,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            },
+            {
+              "text": "- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-delivery-implement-slice.md",
+                "start_line": 64,
+                "end_line": 67,
+                "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-delivery-implement-slice",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-delivery-implement-slice.md",
+          "ssot_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+          "effective_sha256": "343964c3432a50aff35467dc65537d7aade1b57860ed25144dc3a52ecc5c765f",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json",
+              "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+            },
+            {
+              "path": "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json",
+              "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Deliver the requested slice within its allowed writes and stop condition, with proportionate verification and an honest account of what remains unverified.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 15,
+                  "end_line": 15,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 64,
+                  "end_line": 67,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "- An authorized bounded outcome or accepted task, including constraints and the intended stopping point.\n- Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.\n- Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.\n- When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 39,
+                  "end_line": 42,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "- The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.\n- Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.\n- Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.\n- When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 45,
+                  "end_line": 48,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              },
+              {
+                "text": "Load `resources/resource-map.json` and its `receipt` route only for a structured handoff. The owned template is `resources/templates/slice-receipt.json`; the shape is `resources/schemas/slice-receipt.schema.json`. The generated bundle also contains the repository's unchanged generic `resources/scripts/load_module.py` resource loader; it assembles selected resources and does not implement, diagnose, execute checks or prove consumption.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 51,
+                  "end_line": 51,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              },
+              {
+                "text": "Record the actual `base` and `head_or_snapshot_digest` with `target_kind` equal to `commit` or `dirty_snapshot`. A commit target is valid only when the claimed candidate contains no additional uncommitted changes. For a dirty snapshot, bind a stable manifest of repository-relative paths, file byte digests, deletion markers and relevant modes, and retain its evidence reference and digest method. Include task-owned and initial unrelated dirty content needed to identify the inspected state; never label HEAD alone as a dirty candidate. Keep `changed_files` limited to this task and record `initial_dirty_files` separately. If state cannot be bound, leave identity null and explain the gap in `unresolved_context`; do not claim verified completion for that state.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 53,
+                  "end_line": 53,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              },
+              {
+                "text": "Hash exact supplied structured contract bytes when available. `TaskContract.v1` has no generation field: use a separately supplied generation only with its provenance; otherwise `task_generation` is null. A plain ask may have a local task identifier but no structured contract hash. Null contract metadata requires an explicit unresolved-context explanation. `checks[].status = passed` requires an observed zero exit and retained evidence that the intended check actually ran. `failed` requires its observed nonzero exit and evidence; `not_run` and `unavailable` have null exit status and a reason. Schema validation enforces shape and basic consistency only; it cannot prove command execution, source truth, digest correctness, preservation, authority, meaningful assertions or completion. An empty checks list means no recorded command evidence, never a pass. Human inspection evidence can be described in `unverified` or the accompanying readable report; do not fabricate a process exit for it.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-delivery-implement-slice.md",
+                  "start_line": 55,
+                  "end_line": 55,
+                  "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "8eac7af08a8086ed1d722f3e592f88fc78525e0068812a5e0ea30e93c3083210"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
     "engos-delivery-resolve-conflict": {
       "primary_job": "Resolve merge conflicts while preserving intent from both sides and documenting trade-offs.",
       "use_when": "Git or content conflicts already exist and need structured, safe resolution.",
@@ -1989,6 +2365,186 @@
           "job_contract.not_for",
           "implicit_activation_eligibility",
           "negative_examples"
+        ]
+      }
+    },
+    "engos-design-plan-implementation": {
+      "primary_job": "Give an implementer enough source context and explicit interfaces to deliver one\nindependently verifiable outcome at a time, with clear mutation bounds and a\ncredible acceptance oracle. Planning produces artifacts; it does not execute tasks.",
+      "use_when": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and\n\u201crevise our unfinished plan against these accepted changes\u201d enter the same workflow.\nUse plain accepted requirements or an available `SpecContract.v1`; no installed\nspecification skill or machine sidecar is required. An unresolved product decision\nbelongs with its decision owner; material architecture belongs with\n`engos-design-architecture`. A separately requested durable goal packet belongs\nwith `engos-design-plan-to-goal`; explicitly selected controller delivery belongs\nwith `engos-orchestration-batman`. Neither is an automatic next step.",
+      "works_on": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.\n- Inspect repository conventions and relevant code or interfaces.\n- Obtain optional accepted architecture, compatibility constraints and non-goals.\n- Read the actual tracker or unfinished plan when present.\n- Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system.",
+      "main_output": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.\n- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.\n- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.\n- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.\n- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.\n\nOptional machine interchange uses `resources/schemas/task-contract.schema.json`\nand `resources/schemas/task-plan.schema.json`. The dependency-map template is a\nmanual projection of the plan, not a second source of truth or ready-frontier result.\nLoad only the needed resource route from `resources/resource-map.json`: run\n`python3 resources/scripts/load_module.py --route task_plan --format text` from\nthe installed skill directory, substituting `task_contract` or `dependency_map`.\nThe existing standard-library loader resolves the complete route closure. If it\ncannot run, read the map and every selected dependency directly; missing or\ntruncated resources block claims that the resource route was applied. Narrative\nplanning uses this entrypoint without requiring sidecars or a resource invocation.\n\n`TaskPlan.v1` binds the authoritative requirements with `spec_ref` and nullable\n`spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,\ntracker reference and unresolved items. `TaskContract.v1` records nullable consumed\nartifact digests and authority references without pretending unknowns are verified.\nShape validation cannot establish source truth, task quality, ID uniqueness by\nproperty, graph correctness, acceptance, authority, coverage or execution. Review\nthose separately. A plan containing holds can validate while remaining unready.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Plan Implementation?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. Identify the authoritative requirements and their current revision, actual\n   accepted scope and authorization. Read the existing plan and tracker before\n   writing. Preserve their IDs, completed evidence, unresolved items and ownership.\n   If inputs conflict or acceptance is unverified, hold the dependent tasks while\n   drafting useful independent scope. Do not require another approval turn when\n   the existing conversation or decision record already authorizes that scope.\n2. Inspect the relevant implementation boundaries. Carry forward requirements,\n   unchanged behavior, constraints and supplied design IDs. For plain prose, map\n   stable local requirement IDs to exact source passages without rewriting the\n   source. With `SpecContract.v1`, retain its requirement/design IDs, source and\n   authority references; examine open assumptions and design reconciliation.\n   A structurally valid draft is not an accepted input. No cross-skill import is\n   needed to read a supplied artifact.\n3. Choose outcome boundaries that a reviewer can accept or reject separately.\n   Prefer a working feature path when feasible. Attach scaffolding, configuration,\n   tests and documentation to the outcome they enable. Isolate a prerequisite only\n   if its own observable contract can be reviewed independently. Do not size tasks\n   by file count, mandate a fixed number of steps, or invent unrelated refactors.\n4. For each task record the outcome, requirement/design IDs, dependencies, consumed\n   source/interface references, produced artifacts/interfaces, likely files,\n   allowed writes, constraints, verification and stop condition. Distinguish likely\n   files from authorized mutation targets. Describe exact signatures, fields or\n   invariants where later work relies on them; avoid writing the whole implementation\n   into the plan. A planned future input references its producing task and expected\n   contract; its digest stays unknown until bytes exist.\n5. Order dependencies and manually inspect unique task IDs, reference existence,\n   dependency cycles and interface consistency. Identify shared-write conflicts;\n   absence of dependency edges alone does not establish safe parallel execution.\n   Check every included requirement has an owning task or an explicit unresolved\n   disposition. Keep unsupported assumptions and missing sources as holds. This\n   slice provides no graph checker, ready-frontier computation or trace validator.\n6. Give each task a concrete oracle: the observation and expected result that would\n   accept or reject it, the command or inspection that obtains evidence, and where\n   evidence should be recorded in the existing process. Include relevant failure,\n   boundary and compatibility cases. Match verification to risk and repository\n   rules; a prose edit may need a diff inspection, executable behavior focused\n   tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.\n7. Reconcile revisions in the actual plan. Keep incomplete unrelated work intact;\n   add or revise only authorized scope. Preserve completion claims only with their\n   existing evidence, and reopen affected work when changed inputs invalidate it.\n   Show superseded decisions and their replacements instead of silently dropping\n   tasks. If a destination belongs to different unfinished work, return the new\n   draft in chat and request a destination decision before overwriting anything.\n8. Review source coverage, outcome quality, authority and dependency consistency.\n   Return the plan, holds and a bounded handoff. State actual acceptance status\n   separately from format checks. Preserve any execution method already chosen;\n   otherwise name possible consumers without dispatching a worker, invoking a\n   controller or creating a goal. Execution needs its own authorized scope.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-design-plan-implementation.md",
+                "start_line": 52,
+                "end_line": 99,
+                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "This capability owns planning artifacts only. Do not implement product code,\nlaunch agents, run task verification, start a goal, alter accepted requirements or\nselect an unrequested delivery protocol as a side effect. Local shape/resource\nchecks are allowed when useful; distinguish them from task execution. Repository\nrules and separately granted user authority still govern other requested work.\nNo scheduler, cancellation mechanism, ready-frontier helper, automatic resource\nsharing or ingestion, or guaranteed consumer integration is supplied by these\nportable contracts.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-plan-implementation.md",
+                "start_line": 158,
+                "end_line": 165,
+                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "This capability owns planning artifacts only. Do not implement product code,\nlaunch agents, run task verification, start a goal, alter accepted requirements or\nselect an unrequested delivery protocol as a side effect. Local shape/resource\nchecks are allowed when useful; distinguish them from task execution. Repository\nrules and separately granted user authority still govern other requested work.\nNo scheduler, cancellation mechanism, ready-frontier helper, automatic resource\nsharing or ingestion, or guaranteed consumer integration is supplied by these\nportable contracts.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-design-plan-implementation.md",
+                "start_line": 158,
+                "end_line": 165,
+                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-design-plan-implementation",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-design-plan-implementation.md",
+          "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+          "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+              "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+              "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+            },
+            {
+              "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
+              "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Give an implementer enough source context and explicit interfaces to deliver one\nindependently verifiable outcome at a time, with clear mutation bounds and a\ncredible acceptance oracle. Planning produces artifacts; it does not execute tasks.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 20,
+                  "end_line": 22,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and\n\u201crevise our unfinished plan against these accepted changes\u201d enter the same workflow.\nUse plain accepted requirements or an available `SpecContract.v1`; no installed\nspecification skill or machine sidecar is required. An unresolved product decision\nbelongs with its decision owner; material architecture belongs with\n`engos-design-architecture`. A separately requested durable goal packet belongs\nwith `engos-design-plan-to-goal`; explicitly selected controller delivery belongs\nwith `engos-orchestration-batman`. Neither is an automatic next step.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 26,
+                  "end_line": 33,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.\n- Inspect repository conventions and relevant code or interfaces.\n- Obtain optional accepted architecture, compatibility constraints and non-goals.\n- Read the actual tracker or unfinished plan when present.\n- Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 37,
+                  "end_line": 41,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.\n- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.\n- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.\n- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.\n- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 124,
+                  "end_line": 128,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              },
+              {
+                "text": "Optional machine interchange uses `resources/schemas/task-contract.schema.json`\nand `resources/schemas/task-plan.schema.json`. The dependency-map template is a\nmanual projection of the plan, not a second source of truth or ready-frontier result.\nLoad only the needed resource route from `resources/resource-map.json`: run\n`python3 resources/scripts/load_module.py --route task_plan --format text` from\nthe installed skill directory, substituting `task_contract` or `dependency_map`.\nThe existing standard-library loader resolves the complete route closure. If it\ncannot run, read the map and every selected dependency directly; missing or\ntruncated resources block claims that the resource route was applied. Narrative\nplanning uses this entrypoint without requiring sidecars or a resource invocation.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 130,
+                  "end_line": 139,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              },
+              {
+                "text": "`TaskPlan.v1` binds the authoritative requirements with `spec_ref` and nullable\n`spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,\ntracker reference and unresolved items. `TaskContract.v1` records nullable consumed\nartifact digests and authority references without pretending unknowns are verified.\nShape validation cannot establish source truth, task quality, ID uniqueness by\nproperty, graph correctness, acceptance, authority, coverage or execution. Review\nthose separately. A plan containing holds can validate while remaining unready.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 141,
+                  "end_line": 147,
+                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "3224345fae8a91dfef8b3c167bcc58f245b7a3e3077e9ae5c3a9db197cd7e8c0"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
         ]
       }
     },
@@ -3093,7 +3649,7 @@
       "portfolio_action": "experimental_keep_pending_evidence",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": [
@@ -3104,7 +3660,7 @@
                 "path": "ssot/engos-meta-instruction-editor.md",
                 "start_line": 17,
                 "end_line": 17,
-                "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
               }
             }
           ]
@@ -3117,13 +3673,13 @@
           "grants_authority": false,
           "clauses": [
             {
-              "text": "- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success\n- escalation: route semantic comparisons to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
+              "text": "- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success\n- escalation: route claimed behavioral improvements and comparative efficacy questions to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
               "heading": "Tool Boundaries",
               "source": {
                 "path": "ssot/engos-meta-instruction-editor.md",
-                "start_line": 57,
-                "end_line": 59,
-                "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                "start_line": 60,
+                "end_line": 62,
+                "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
               }
             }
           ]
@@ -3138,7 +3694,7 @@
                 "path": "ssot/engos-meta-instruction-editor.md",
                 "start_line": 15,
                 "end_line": 15,
-                "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
               }
             },
             {
@@ -3146,9 +3702,9 @@
               "heading": "Invocation Hints",
               "source": {
                 "path": "ssot/engos-meta-instruction-editor.md",
-                "start_line": 70,
-                "end_line": 70,
-                "sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c"
+                "start_line": 73,
+                "end_line": 73,
+                "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
               }
             }
           ]
@@ -3161,9 +3717,18 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-meta-instruction-editor.md",
-          "ssot_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
-          "effective_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
-          "resources": [],
+          "ssot_sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+          "effective_sha256": "16e45a36a9be7e9d530d9e324fc753741890955ac3ea64629e54eab4730d7f55",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-meta-instruction-editor/references/instruction-clarity.md",
+              "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+            },
+            {
+              "path": "sources/capability-resources/engos-meta-instruction-editor/templates/semantic-change-ledger.json",
+              "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {},
@@ -3181,7 +3746,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "0896254a420374fbded2d57f1cff959d0bf783e5e22a16afe07fea4fb482e5ea"
+          "mapping_sha256": "4fc389c25751f3f5112e40ab8610dff9024eb484fee530243bacc2f53a1369ed"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -3391,18 +3956,18 @@
       "portfolio_action": "keep_and_improve_process",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": [
             {
-              "text": "1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run uplift to extract objective, scope, and constraints.\n4. Run semantic routing.\n5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.\n6. Cluster broad repos into candidate families before recommending any landing.\n7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.\n8. Build layered manifests, cross-analysis, and advisory handoff data.\n9. Select a quality profile and benchmark set.\n10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.\n11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.\n12. If `judge` finds that structural quality is close to passing but behavioral confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing.\n13. Search for benchmark sources only when the source is generic or fit confidence is weak.\n14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.\n15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.\n16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.\n17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.\n18. Keep deployment separate from apply.",
+              "text": "1. Ingest the source through the deterministic pipeline.\n2. Produce a clean summary.\n3. Run uplift to extract objective, scope, and constraints.\n4. Run semantic routing.\n5. If the source is a folder or repo subtree, inventory prompt-like files and classify them one by one.\n6. Cluster broad repos into candidate families before recommending any landing.\n7. Classify reusable workflows as `skill` by default. Agent-related headings, quoted examples, and independent-review requirements do not justify a named agent. Route undeclared native-agent configuration to `manual_review`; preserve existing explicit `agent` or `both` declarations until a reviewed surface change. New or expanded agent emission requires the user's explicit approval for the capability and each provider, plus a hash-bound independent UAC requirement review explaining the execution need. A general improvement request, reviewer verdict, score, or `--yes` does not grant creation approval. Record the actual user approval reference and scoped identities in the existing review's `user_approval` field; never synthesize approval from an inferred preference. Preserve an existing approval reference when improving the same approved registration; ask only for genuinely new identities.\n8. Build layered manifests, cross-analysis, and advisory handoff data.\n9. Select a quality profile and benchmark set.\n10. Resolve the canonical baseline source from `sources/ssot-baselines/` before judging fidelity.\n11. On `judge`, do not land or modify canonical repository state. Mechanical repairs produce a candidate artifact only. Inspect structure, formatting, style, ambiguity, contradictions, missing details, references, outputs, boundaries, and preservation. Return an explicit disposition for each applicable dimension. Apply only targeted mechanical repairs; request source-grounded semantic repairs from the invoking agent and an independent reviewer when meaning is unresolved. Do not append generic obligations to satisfy a count.\n12. If `judge` is being used to support a claimed behavioral benefit and confidence is insufficient, route to `engos-optimization-auto-research` for bounded capability evaluation instead of guessing. Preserve admission-only status as `behavioral_pending` when no such claim is made.\n13. Search for benchmark sources only when the source is generic or fit confidence is weak.\n14. Report `structural_ready` only for structural checks. Keep semantic review attestations, assembled resource content, host delivery evidence, and measured behavioral results distinct. No average score can waive an unresolved blocker.\n15. Emit `EvalImpactPlan.v1` when requested and on `judge` or `apply` so the behavioral evaluator can select the minimum safe profile.\n16. On `apply`, refuse landing unless the quality loop reaches `structural_ready`. Validate any supplied `PromotionVerdict.v2`; reject stale hashes or a mismatched slug. Treat `PromotionVerdict.v1` as read-only legacy evidence that cannot authorize promotion. During advisory rollout, an absent verdict leaves the result `behavioral_pending` and cannot materialize a new behavioral baseline.\n17. On authorized `apply`, write canonical SSOT and the descriptor, persist the quality reviews, then rebuild and validate generated surfaces. Materialize a new baseline only after an independent `promote` verdict, or preserve a valid historical baseline without rewriting its lineage.\n18. Keep deployment separate from apply.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 61,
-                "end_line": 78,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 68,
+                "end_line": 85,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               }
             },
             {
@@ -3410,9 +3975,9 @@
               "heading": "Invocation Hints",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 106,
-                "end_line": 111,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 113,
+                "end_line": 118,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               }
             }
           ]
@@ -3429,9 +3994,9 @@
               "heading": "Tool Boundaries",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 81,
-                "end_line": 83,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 88,
+                "end_line": 90,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               }
             },
             {
@@ -3439,9 +4004,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-meta-uac-import.md",
-                "start_line": 156,
-                "end_line": 159,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "start_line": 164,
+                "end_line": 167,
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               }
             }
           ]
@@ -3456,7 +4021,7 @@
                 "path": "ssot/engos-meta-uac-import.md",
                 "start_line": 29,
                 "end_line": 29,
-                "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+                "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
               }
             }
           ]
@@ -3467,9 +4032,9 @@
             "condition_and_handoff": "| The candidate needs deeper prompt hardening before it can pass the benchmark gate | `engos-meta-supercharge` | source excerpt, intended user outcome, weak sections, target capability style |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 147,
-              "end_line": 147,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 155,
+              "end_line": 155,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -3478,9 +4043,9 @@
             "condition_and_handoff": "| The candidate is structurally close to passing but needs bounded behavioral proof against baseline or competing variants | `engos-optimization-auto-research` | baseline artifact, candidate artifact or variants, claimed job, bounded task set or examples, pass/fail threshold |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 148,
-              "end_line": 148,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 156,
+              "end_line": 156,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -3489,9 +4054,9 @@
             "condition_and_handoff": "| The candidate is structurally sound but needs final decision synthesis across several landing options | `engos-reconciliation-converge` | candidate options, trade-offs, target install surfaces, decision criteria |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 149,
-              "end_line": 149,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 157,
+              "end_line": 157,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -3500,9 +4065,9 @@
             "condition_and_handoff": "| The imported capability is fundamentally architectural or system-design oriented | `engos-design-architecture` | source summary, design scope, affected boundaries, unresolved design questions |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 150,
-              "end_line": 150,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 158,
+              "end_line": 158,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -3511,9 +4076,9 @@
             "condition_and_handoff": "| The imported capability needs documentation-quality review before landing | `engos-quality-docs-review` | draft SSOT, descriptor summary, naming questions, drift or IA concerns |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 151,
-              "end_line": 151,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 159,
+              "end_line": 159,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -3522,9 +4087,9 @@
             "condition_and_handoff": "| The imported capability requires stronger validation or test coverage in this repo | `engos-quality-testing-review` | changed scripts, validator paths, expected behaviors, missing coverage risks |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 152,
-              "end_line": 152,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 160,
+              "end_line": 160,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -3533,9 +4098,9 @@
             "condition_and_handoff": "| The imported capability is ready to land but release, packaging, or CI readiness is the real question | `engos-quality-gitops-review` | applied diff, generated artifacts, validation output, release and deploy intent |",
             "source": {
               "path": "ssot/engos-meta-uac-import.md",
-              "start_line": 153,
-              "end_line": 153,
-              "sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6"
+              "start_line": 161,
+              "end_line": 161,
+              "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
             },
             "interpretation": "source_clause_requires_stage_review"
           }
@@ -3547,9 +4112,18 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-meta-uac-import.md",
-          "ssot_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
-          "effective_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
-          "resources": [],
+          "ssot_sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
+          "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-meta-uac-import/templates/preservation-displacement.json",
+              "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+            },
+            {
+              "path": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+              "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {},
@@ -3567,7 +4141,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "faead5b608b2bd46f39668f017998f568cca6cea969bbcae2c3010963ee25b8a"
+          "mapping_sha256": "1e3b0164c6920d7638c57d865beb1f873d7126439f43e1bcb1fcceb87ff5bef8"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -4237,7 +4811,7 @@
       "portfolio_action": "keep",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": [
@@ -4248,7 +4822,7 @@
                 "path": "ssot/engos-quality-code-review.md",
                 "start_line": 11,
                 "end_line": 11,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               }
             },
             {
@@ -4258,17 +4832,17 @@
                 "path": "ssot/engos-quality-code-review.md",
                 "start_line": 13,
                 "end_line": 13,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               }
             },
             {
-              "text": "1. Capture the exact staged diff, working-tree diff, commit, or branch diff under review.\n2. Read the commit message and the actual diff before making any judgment.\n3. Check message quality, scope alignment, and implementation complexity.\n4. Record findings with file references, concrete fixes, and merge guidance.\n5. End with a clear readiness decision: ready, blocked, or split required.",
+              "text": "1. Read the complete `review` route in `resources/resource-map.json`: `resources/references/review-targets.md` and its findings schema. Use the existing bundled `resources/scripts/load_module.py --route review` when available, or read both files directly. Missing or unread required resources make the review incomplete.\n2. Capture the exact staged diff, working-tree diff, commit, or branch diff under review; bind it and relevant source/consumer reads to the target as specified in that reference.\n3. Read the commit message and the actual diff before making any judgment.\n4. Check message quality, scope alignment, and implementation complexity.\n5. Record findings with stable IDs, severity, precise location, changed-cause evidence, verified consumer evidence for introduced breakage, impact, repair, and disposition.\n6. End with ready, blocked, or split required for a complete review; use unverifiable when evidence or review coverage is incomplete. Review judgment grants no repair, publication, merge, or release authority.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
                 "start_line": 43,
-                "end_line": 47,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "end_line": 48,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               }
             },
             {
@@ -4276,9 +4850,9 @@
               "heading": "Invocation Hints",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 67,
-                "end_line": 73,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 74,
+                "end_line": 80,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               }
             }
           ]
@@ -4295,9 +4869,19 @@
               "heading": "Tool Boundaries",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 50,
-                "end_line": 52,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "start_line": 57,
+                "end_line": 59,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              }
+            },
+            {
+              "text": "- Never skip reading the actual diff.\n- Base findings on evidence, not assumptions.\n- Flag scope creep immediately.\n- Prefer the simpler valid implementation when alternatives exist.\n- If something cannot be verified, say so explicitly.\n- Do not rubber-stamp a commit just because tests pass.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-quality-code-review.md",
+                "start_line": 350,
+                "end_line": 355,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               }
             }
           ]
@@ -4312,7 +4896,17 @@
                 "path": "ssot/engos-quality-code-review.md",
                 "start_line": 13,
                 "end_line": 13,
-                "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              }
+            },
+            {
+              "text": "- Never skip reading the actual diff.\n- Base findings on evidence, not assumptions.\n- Flag scope creep immediately.\n- Prefer the simpler valid implementation when alternatives exist.\n- If something cannot be verified, say so explicitly.\n- Do not rubber-stamp a commit just because tests pass.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-quality-code-review.md",
+                "start_line": 350,
+                "end_line": 355,
+                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
               }
             }
           ]
@@ -4323,9 +4917,9 @@
             "condition_and_handoff": "| release readiness, changelog, CI, packaging, or merge gates matter | `engos-quality-gitops-review` | commit quality alone is not enough for release or branch health |",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 59,
-              "end_line": 59,
-              "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+              "start_line": 66,
+              "end_line": 66,
+              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -4334,9 +4928,9 @@
             "condition_and_handoff": "| behavior changed and test confidence is weak | `engos-quality-testing-review` | test coverage and edge-case discovery need a dedicated pass |",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 60,
-              "end_line": 60,
-              "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+              "start_line": 67,
+              "end_line": 67,
+              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -4345,9 +4939,9 @@
             "condition_and_handoff": "| interface, architecture, or migration risk is material | `engos-design-architecture` | structural risk needs architectural judgment, not just commit review |",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 61,
-              "end_line": 61,
-              "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+              "start_line": 68,
+              "end_line": 68,
+              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -4356,9 +4950,9 @@
             "condition_and_handoff": "| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 62,
-              "end_line": 62,
-              "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+              "start_line": 69,
+              "end_line": 69,
+              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -4367,9 +4961,9 @@
             "condition_and_handoff": "| doc drift or example drift is part of the commit | `engos-quality-docs-review` | keep documentation review explicit and separate |",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 63,
-              "end_line": 63,
-              "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+              "start_line": 70,
+              "end_line": 70,
+              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
             },
             "interpretation": "source_clause_requires_stage_review"
           },
@@ -4378,9 +4972,9 @@
             "condition_and_handoff": "| reviewer comments need to be implemented | `engos-delivery-address-code-review` | this review gate should not mutate files |",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 64,
-              "end_line": 64,
-              "sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5"
+              "start_line": 71,
+              "end_line": 71,
+              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
             },
             "interpretation": "source_clause_requires_stage_review"
           }
@@ -4392,9 +4986,18 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-quality-code-review.md",
-          "ssot_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
-          "effective_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
-          "resources": [],
+          "ssot_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
+          "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+              "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+              "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {},
@@ -4412,7 +5015,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "f2dcd58787dd702e8cd12275befbe11c79be6481f36737fdb0e4e0cc78945424"
+          "mapping_sha256": "b5f978ed47c53b90104938791cd9ce4596888849845f64ece40b42aa0c448d32"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -4883,13 +5486,13 @@
           "kind": "source_conditions",
           "clauses": [
             {
-              "text": "1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes.\n3. Produce the minimum useful test set or gap analysis for the requested mode.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
+              "text": "1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes. Record proposed commands with their source and prerequisites; mark unknown runners or provenance explicitly instead of guessing.\n3. Produce the minimum useful test set or gap analysis for the requested mode. Link proposed tests to source requirements, expected observable outcomes, plausible faulty behavior and discriminating assertions, fixtures, negative cases and boundaries; mark unresolved evidence as gaps.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-quality-testing-review.md",
                 "start_line": 26,
                 "end_line": 30,
-                "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+                "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
               }
             }
           ]
@@ -4908,7 +5511,7 @@
                 "path": "ssot/engos-quality-testing-review.md",
                 "start_line": 33,
                 "end_line": 35,
-                "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+                "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
               }
             },
             {
@@ -4916,9 +5519,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-quality-testing-review.md",
-                "start_line": 125,
-                "end_line": 127,
-                "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+                "start_line": 133,
+                "end_line": 135,
+                "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
               }
             }
           ]
@@ -4931,9 +5534,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-quality-testing-review.md",
-                "start_line": 125,
-                "end_line": 127,
-                "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+                "start_line": 133,
+                "end_line": 135,
+                "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
               }
             }
           ]
@@ -4946,9 +5549,22 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-quality-testing-review.md",
-          "ssot_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
-          "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
-          "resources": [],
+          "ssot_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+          "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+              "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+              "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+            },
+            {
+              "path": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+              "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+            }
+          ],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
           "field_sources": {},
@@ -4966,7 +5582,7 @@
             "works_on"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "9df91ce12d94bd1c87aa65f403f5f83d0bceb29d626ab92112459e6bc75bc6a0"
+          "mapping_sha256": "389eb8f101daa7c2b28d69dd389f5afc67bfa1c2e854ecfbf5b27212f64073d3"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -5351,7 +5967,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "7873a0a386048d110afd0caba0c532833a2c61d34b57f0993d4bd48739438f70",
+    "skills_sha256": "db25782ae750de71e80be9f19e2a37d8cc8813fba2117e37454560ab0e972813",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -5395,6 +6011,11 @@
         "effective_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
         "mapping_sha256": "9bbc128f395ffbd4fbb76ffa0dc234f9301b05abc6bb7408473e322a6a0a2668"
       },
+      "engos-debug-diagnose-failure": {
+        "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+        "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+        "mapping_sha256": "9a40d7c0895e607ab24db71f3ef49534ed2fd521d5546c5bc505d760fe582aea"
+      },
       "engos-delivery-address-code-review": {
         "ssot_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
         "effective_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
@@ -5410,6 +6031,11 @@
         "effective_sha256": "88adb10db05aa7ad6eb9a48b823f009a2da8427b3d67a4cb36af0c637e677553",
         "mapping_sha256": "b0eca6b5275ad0540f1813563623dfdc8ad2fb0954fe7a5f17655dcdc5c8e4b4"
       },
+      "engos-delivery-implement-slice": {
+        "ssot_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+        "effective_sha256": "343964c3432a50aff35467dc65537d7aade1b57860ed25144dc3a52ecc5c765f",
+        "mapping_sha256": "8eac7af08a8086ed1d722f3e592f88fc78525e0068812a5e0ea30e93c3083210"
+      },
       "engos-delivery-resolve-conflict": {
         "ssot_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
         "effective_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
@@ -5424,6 +6050,11 @@
         "ssot_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
         "effective_sha256": "d5efc8e8455cd38744814619d9c4aaf05f08cb70781cd527a758421ce7a6a8ae",
         "mapping_sha256": "6386061d3347a50af07122ce84a89845f78ed454c5e3bbd099396a5e52770af3"
+      },
+      "engos-design-plan-implementation": {
+        "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+        "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+        "mapping_sha256": "3224345fae8a91dfef8b3c167bcc58f245b7a3e3077e9ae5c3a9db197cd7e8c0"
       },
       "engos-design-plan-to-goal": {
         "ssot_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
@@ -5451,9 +6082,9 @@
         "mapping_sha256": "4d690b1ef17ac8adf19888a68501ff6aabff93bc68087b1837928e535a880180"
       },
       "engos-meta-instruction-editor": {
-        "ssot_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
-        "effective_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
-        "mapping_sha256": "0896254a420374fbded2d57f1cff959d0bf783e5e22a16afe07fea4fb482e5ea"
+        "ssot_sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+        "effective_sha256": "16e45a36a9be7e9d530d9e324fc753741890955ac3ea64629e54eab4730d7f55",
+        "mapping_sha256": "4fc389c25751f3f5112e40ab8610dff9024eb484fee530243bacc2f53a1369ed"
       },
       "engos-meta-supercharge": {
         "ssot_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
@@ -5461,9 +6092,9 @@
         "mapping_sha256": "642b685fe272a8948c63b81022580bc298c0a9f17a3aae60ce2de52e26f44784"
       },
       "engos-meta-uac-import": {
-        "ssot_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
-        "effective_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
-        "mapping_sha256": "faead5b608b2bd46f39668f017998f568cca6cea969bbcae2c3010963ee25b8a"
+        "ssot_sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
+        "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
+        "mapping_sha256": "1e3b0164c6920d7638c57d865beb1f873d7126439f43e1bcb1fcceb87ff5bef8"
       },
       "engos-operations-ic-assistant": {
         "ssot_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
@@ -5481,9 +6112,9 @@
         "mapping_sha256": "a33f44ec71a6ce7683ae5c46a349bcf4abf07c9eab23b0ebd52499df791f9894"
       },
       "engos-quality-code-review": {
-        "ssot_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
-        "effective_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
-        "mapping_sha256": "f2dcd58787dd702e8cd12275befbe11c79be6481f36737fdb0e4e0cc78945424"
+        "ssot_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
+        "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+        "mapping_sha256": "b5f978ed47c53b90104938791cd9ce4596888849845f64ece40b42aa0c448d32"
       },
       "engos-quality-docs-review": {
         "ssot_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
@@ -5501,9 +6132,9 @@
         "mapping_sha256": "0deb5916f4dcd55293d97018daca55e00be87ecdc52b22b9bcc669186a722dd6"
       },
       "engos-quality-testing-review": {
-        "ssot_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
-        "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
-        "mapping_sha256": "9df91ce12d94bd1c87aa65f403f5f83d0bceb29d626ab92112459e6bc75bc6a0"
+        "ssot_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+        "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+        "mapping_sha256": "389eb8f101daa7c2b28d69dd389f5afc67bfa1c2e854ecfbf5b27212f64073d3"
       },
       "engos-reconciliation-converge": {
         "ssot_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",

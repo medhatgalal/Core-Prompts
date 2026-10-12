@@ -206,9 +206,12 @@
     {
       "mode_slug": "design-api",
       "display_name": "Design API",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-api.toml"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 146,
       "mode_summary": "Design resource-oriented APIs with explicit resource models, endpoint contracts, validation, security, and error behavior.",
       "required_inputs": [
         "product requirements",
@@ -233,16 +236,17 @@
         "Prefer nouns and stable resource boundaries.",
         "Keep auth, pagination, and versioning explicit.",
         "Include at least one explicit rollback path for API changes."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "design-database",
       "display_name": "Design Database",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-database.toml"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 149,
       "mode_summary": "Design schemas and storage structures that match access patterns, consistency goals, and evolution needs.",
       "required_inputs": [
         "entity list",
@@ -265,17 +269,17 @@
         "Call out intentional denormalization and failure impact.",
         "Tie indexes to actual query paths.",
         "Include consistency-vs-availability trade-off and rollback checkpoint."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "design-patterns",
       "display_name": "Design Patterns",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-patterns.toml",
-        "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 152,
       "mode_summary": "Choose structural patterns that reduce coupling and improve replaceability under changing requirements.",
       "required_inputs": [
         "current design problem",
@@ -299,17 +303,17 @@
         "Explain trade-offs and why each fit is chosen.",
         "Avoid pattern cargo-culting; always include replacement implications.",
         "Include rollback plan for each non-backward-compatible boundary change."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "system-design",
       "display_name": "System Design",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/system-design.toml",
-        "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 155,
       "mode_summary": "Design end-to-end architecture with explicit scaling, reliability, observability, and migration plan.",
       "required_inputs": [
         "functional requirements",
@@ -333,9 +337,7 @@
       "uplift_notes": [
         "Keep modules replaceable where possible.",
         "Separate policy from mechanism in each subsystem."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     }
   ],
   "benchmark_sources": [

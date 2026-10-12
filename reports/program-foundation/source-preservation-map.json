@@ -1,0 +1,217 @@
+{
+  "schema": "ProgramSourcePreservationMap.v1",
+  "capturedAt": "2026-10-12T22:54:16.857653+00:00",
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "drafts": [
+    {
+      "taskId": "D1.S1",
+      "head": "c414663438734f793c8acf04283e1ecd90ca80c4",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-meta-instruction-editor.json": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676",
+        ".meta/capabilities/engos-meta-uac-import.json": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c",
+        "sources/capability-resources/engos-meta-instruction-editor/resource-map.json": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955",
+        "sources/capability-resources/engos-meta-instruction-editor/templates/semantic-change-ledger.json": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee",
+        "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735",
+        "sources/capability-resources/engos-meta-uac-import/resource-map.json": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1",
+        "sources/capability-resources/engos-meta-uac-import/templates/preservation-displacement.json": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1",
+        "ssot/engos-meta-instruction-editor.md": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+        "ssot/engos-meta-uac-import.md": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
+      },
+      "canonicalSsot": [
+        "ssot/engos-meta-instruction-editor.md",
+        "ssot/engos-meta-uac-import.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-meta-instruction-editor/resource-map.json",
+        "sources/capability-resources/engos-meta-instruction-editor/templates/semantic-change-ledger.json",
+        "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+        "sources/capability-resources/engos-meta-uac-import/resource-map.json",
+        "sources/capability-resources/engos-meta-uac-import/templates/preservation-displacement.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D6.S1",
+      "head": "db542a0597e630e3ca4460cd0976f701994b6474",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-quality-code-review.json": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d",
+        "sources/capability-resources/engos-quality-code-review/references/review-targets.md": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba",
+        "sources/capability-resources/engos-quality-code-review/resource-map.json": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b",
+        "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f",
+        "ssot/engos-quality-code-review.md": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+      },
+      "canonicalSsot": [
+        "ssot/engos-quality-code-review.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+        "sources/capability-resources/engos-quality-code-review/resource-map.json",
+        "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D2.S1",
+      "head": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-design-specify-change.json": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e",
+        "sources/capability-resources/engos-design-specify-change/references/bugfix.md": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef",
+        "sources/capability-resources/engos-design-specify-change/references/design-first.md": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6",
+        "sources/capability-resources/engos-design-specify-change/references/requirements-first.md": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3",
+        "sources/capability-resources/engos-design-specify-change/resource-map.json": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7",
+        "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+        "sources/capability-resources/engos-design-specify-change/templates/requirements.md": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4",
+        "sources/capability-resources/engos-design-specify-change/templates/trace-matrix.json": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b",
+        "ssot/engos-design-specify-change.md": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+      },
+      "canonicalSsot": [
+        "ssot/engos-design-specify-change.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-design-specify-change/references/bugfix.md",
+        "sources/capability-resources/engos-design-specify-change/references/design-first.md",
+        "sources/capability-resources/engos-design-specify-change/references/requirements-first.md",
+        "sources/capability-resources/engos-design-specify-change/resource-map.json",
+        "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+        "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
+        "sources/capability-resources/engos-design-specify-change/templates/trace-matrix.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D7.S1",
+      "head": "52063bdc8eec0cdd01296ccbd32d483223c05470",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-quality-testing-review.json": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1",
+        ".meta/surface-rules.json": "d9444d3365dad05b9adb8e13bb3a876ddffb35a96c17c3c938ecaf9d6e247d4e",
+        "scripts/build-surfaces.py": "ce4840881887c83d133add023bb215164247b7bd15cc98eec30f29c179f178b2",
+        "scripts/uac-import.py": "fa87a91e06bbf8b7a55b87e6a913e83fee44b2e012facb67878217773433ae50",
+        "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae",
+        "sources/capability-resources/engos-quality-testing-review/resource-map.json": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6",
+        "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2",
+        "sources/capability-resources/engos-quality-testing-review/templates/test-design.md": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6",
+        "src/intent_pipeline/uac_modes.py": "89d0be2b2aa798a4af1492c21c25c760d62fba31d6f59f9bdf89950808d9235b",
+        "ssot/engos-quality-testing-review.md": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+      },
+      "canonicalSsot": [
+        "ssot/engos-quality-testing-review.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+        "sources/capability-resources/engos-quality-testing-review/resource-map.json",
+        "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+        "sources/capability-resources/engos-quality-testing-review/templates/test-design.md"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D3.S1",
+      "head": "16bfb9b5a6265a2bf981dbbab26e89323c0aa6cf",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-design-plan-implementation.json": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+        "sources/capability-resources/engos-design-plan-implementation/resource-map.json": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302",
+        "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+        "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+        "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83",
+        "ssot/engos-design-plan-implementation.md": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+      },
+      "canonicalSsot": [
+        "ssot/engos-design-plan-implementation.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-design-plan-implementation/resource-map.json",
+        "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+        "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+        "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D4.S1",
+      "head": "18e77aaffe07a97c121fdfd550e08eddaa6e0c30",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-debug-diagnose-failure.json": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9",
+        "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6",
+        "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340",
+        "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b",
+        "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065",
+        "ssot/engos-debug-diagnose-failure.md": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+      },
+      "canonicalSsot": [
+        "ssot/engos-debug-diagnose-failure.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json",
+        "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+        "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+        "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D5.S1",
+      "head": "3873fdeef60abdbc84b2a454d3a5cacb512d5d7e",
+      "reviewParent": "5a6503b65fa28586437965ea6a01540b955fd953",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-delivery-implement-slice.json": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc",
+        "scripts/build-surfaces.py": "a7d73c030cf06a2f2c6e395f6b5f7c02f17e4d2efba8f10a2d27270211ff40fc",
+        "sources/capability-resources/engos-delivery-implement-slice/resource-map.json": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc",
+        "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507",
+        "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e",
+        "ssot/engos-delivery-implement-slice.md": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+      },
+      "canonicalSsot": [
+        "ssot/engos-delivery-implement-slice.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-delivery-implement-slice/resource-map.json",
+        "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json",
+        "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    },
+    {
+      "taskId": "D2.S2",
+      "head": "8781f08d21b55b54b5770ab1eda077557ab3723a",
+      "reviewParent": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+      "canonicalAndCodeFiles": {
+        ".meta/capabilities/engos-design-architecture.json": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945",
+        ".meta/shared-resource-imports.json": "c632163cfd647f24b1b9c10f2eb6b4727c3b133d0ec9c429d61b2a0298d0ac3b",
+        ".meta/surface-rules.json": "b4690b16329f07c4dd7543222be21f395580059a0765eee52b3d9762dfcaf5dd",
+        "scripts/build-surfaces.py": "dc93a0e631e9c8c2ec6a8a6561b25cedcc9ce97fd6920e41aaca641fc501c87d",
+        "scripts/uac-import.py": "2ce48769370eff07f782ccb9f7274ad0b7a50f2e0b5bcfb84e81b9558e770f52",
+        "scripts/validate-surfaces.py": "9ce79520ebadfed6ef9690634110e82d20fb366d573742a4c4ff4b7cabd1589e",
+        "sources/capability-resources/engos-design-architecture/resource-map.json": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea",
+        "src/core_prompts_eval/runner.py": "1edf93af1ecc897329274dabec74214fd830474a89ec419218c45d9dfbca65e7",
+        "src/core_prompts_eval/topology.py": "9144ccc0516eaa1c3e4602ac64f2f4d9adac57b9be83737050197fc933ab204a",
+        "src/intent_pipeline/capability_resources.py": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb",
+        "src/intent_pipeline/skill_jobs.py": "810a7d65338c971942e402feec0e5a2a87987d0fee50799677cc1deb0b8f14a9",
+        "src/intent_pipeline/uac_modes.py": "334422bc6f781b4d4717ccee9468c6545ea72dc8140e8a25bd94b5a254963e87",
+        "src/intent_pipeline/uac_quality.py": "288f966bfb7852a24cbc251a6ffd8486c92c3de59c442c3bfc4fb02b3141c504",
+        "ssot/engos-design-architecture.md": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
+      },
+      "canonicalSsot": [
+        "ssot/engos-design-architecture.md"
+      ],
+      "authoredResourcePaths": [
+        "sources/capability-resources/engos-design-architecture/resource-map.json"
+      ],
+      "newAgents": false,
+      "readiness": "Historical per-slice review/CI; combined source compatibility not yet accepted"
+    }
+  ],
+  "policy": "Every canonical source/curation/input must survive exactly or receive explicit source-grounded disposition; generated union never counts as reconciliation. Do not rely on descriptors alone for changed effective resources."
+}

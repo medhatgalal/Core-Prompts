@@ -1,0 +1,109 @@
+{
+  "schema": "FoundationSourceUnion.v1",
+  "capturedAt": "2026-10-12T23:24:08.481279+00:00",
+  "head": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+  "draftLineage": [
+    {
+      "taskId": "D1.S1",
+      "head": "c414663438734f793c8acf04283e1ecd90ca80c4",
+      "included": true
+    },
+    {
+      "taskId": "D6.S1",
+      "head": "db542a0597e630e3ca4460cd0976f701994b6474",
+      "included": true
+    },
+    {
+      "taskId": "D2.S1",
+      "head": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+      "included": true
+    },
+    {
+      "taskId": "D7.S1",
+      "head": "52063bdc8eec0cdd01296ccbd32d483223c05470",
+      "included": true
+    },
+    {
+      "taskId": "D3.S1",
+      "head": "16bfb9b5a6265a2bf981dbbab26e89323c0aa6cf",
+      "included": true
+    },
+    {
+      "taskId": "D4.S1",
+      "head": "18e77aaffe07a97c121fdfd550e08eddaa6e0c30",
+      "included": true
+    },
+    {
+      "taskId": "D5.S1",
+      "head": "3873fdeef60abdbc84b2a454d3a5cacb512d5d7e",
+      "included": true
+    },
+    {
+      "taskId": "D2.S2",
+      "head": "8781f08d21b55b54b5770ab1eda077557ab3723a",
+      "included": true
+    }
+  ],
+  "canonicalSourcesExact": true,
+  "curatedDescriptorsExactBeforeGeneration": true,
+  "intentionalSharedCodeDifferences": [
+    {
+      "taskId": "D7.S1",
+      "path": ".meta/surface-rules.json",
+      "old": "d9444d3365dad05b9adb8e13bb3a876ddffb35a96c17c3c938ecaf9d6e247d4e",
+      "current": "bc804cd16bd077ec3e98e594a33a23fc91425d5a6b2c2c8c1c5493f2fbe39e81"
+    },
+    {
+      "taskId": "D7.S1",
+      "path": "scripts/build-surfaces.py",
+      "old": "ce4840881887c83d133add023bb215164247b7bd15cc98eec30f29c179f178b2",
+      "current": "b4d39218b8e0e275800ada2946a9a3882946783a5eb89626556db174c48ef31c"
+    },
+    {
+      "taskId": "D7.S1",
+      "path": "scripts/uac-import.py",
+      "old": "fa87a91e06bbf8b7a55b87e6a913e83fee44b2e012facb67878217773433ae50",
+      "current": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+    },
+    {
+      "taskId": "D7.S1",
+      "path": "src/intent_pipeline/uac_modes.py",
+      "old": "89d0be2b2aa798a4af1492c21c25c760d62fba31d6f59f9bdf89950808d9235b",
+      "current": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+    },
+    {
+      "taskId": "D5.S1",
+      "path": "scripts/build-surfaces.py",
+      "old": "a7d73c030cf06a2f2c6e395f6b5f7c02f17e4d2efba8f10a2d27270211ff40fc",
+      "current": "b4d39218b8e0e275800ada2946a9a3882946783a5eb89626556db174c48ef31c"
+    },
+    {
+      "taskId": "D2.S2",
+      "path": ".meta/surface-rules.json",
+      "old": "b4690b16329f07c4dd7543222be21f395580059a0765eee52b3d9762dfcaf5dd",
+      "current": "bc804cd16bd077ec3e98e594a33a23fc91425d5a6b2c2c8c1c5493f2fbe39e81"
+    },
+    {
+      "taskId": "D2.S2",
+      "path": "scripts/build-surfaces.py",
+      "old": "dc93a0e631e9c8c2ec6a8a6561b25cedcc9ce97fd6920e41aaca641fc501c87d",
+      "current": "b4d39218b8e0e275800ada2946a9a3882946783a5eb89626556db174c48ef31c"
+    },
+    {
+      "taskId": "D2.S2",
+      "path": "scripts/uac-import.py",
+      "old": "2ce48769370eff07f782ccb9f7274ad0b7a50f2e0b5bcfb84e81b9558e770f52",
+      "current": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+    },
+    {
+      "taskId": "D2.S2",
+      "path": "src/intent_pipeline/uac_modes.py",
+      "old": "334422bc6f781b4d4717ccee9468c6545ea72dc8140e8a25bd94b5a254963e87",
+      "current": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+    }
+  ],
+  "skills": 36,
+  "expectedGeneratedSkills": 180,
+  "modeGate": "reports/program-foundation/mode-independent-review.json",
+  "generation": "pending"
+}

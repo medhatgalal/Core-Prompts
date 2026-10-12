@@ -1,0 +1,188 @@
+{
+  "schema": "FoundationModeIndependentReview.v1",
+  "reviewedAt": "2026-10-12T23:11:02.467162+00:00",
+  "reviewer": "program_strategy_reviewer_astra",
+  "round": 2,
+  "verdict": "accepted_for_combined_generation",
+  "openFindingCount": 0,
+  "findings": [],
+  "resolvedFindings": [
+    {
+      "id": "MODE-001",
+      "status": "resolved",
+      "scope": "Retained UAC same-slug regression compatibility",
+      "location": "tests/test_uac_promotion_apply.py:583",
+      "reason": "Repaired fixture reads actual architecture Mode Selection declarations and canonical rich curation separately, exercises both all-four and source-removed system-design cases, seeds undeclared/stale modes, and asserts exact current identities, source refs/line positions, empty current invocations and all five descriptive fields. Real preview/apply calls, existing job-contract preservation and exact replay remain asserted. Unsafe retain-all behavior was not restored.",
+      "evidence": "Independent focused run passed all seven parameterized cases in 0.69s; only tests/test_uac_promotion_apply.py changed among previously bound files, and all seven author repair-receipt hashes match current bytes."
+    }
+  ],
+  "Commit Under Review": {
+    "kind": "uncommitted merge/reconciliation working tree; not commit-ready review",
+    "worktree": "/Users/medhat.galal/.codex/worktrees/program-convergence/Core-Prompts",
+    "head": "8781f08d21b55b54b5770ab1eda077557ab3723a",
+    "mergeHead": "52063bdc8eec0cdd01296ccbd32d483223c05470",
+    "bindings": [
+      {
+        "path": "scripts/build-surfaces.py",
+        "sha256": "64e341c5ab0c44c271e58e80f588964b89164e727b881329c63d7cfdb941005c"
+      },
+      {
+        "path": "scripts/uac-import.py",
+        "sha256": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+      },
+      {
+        "path": "src/intent_pipeline/uac_modes.py",
+        "sha256": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+      },
+      {
+        "path": "tests/test_resource_backed_skill_surfaces.py",
+        "sha256": "7de52519c03177b5df96317230415074d1c3f609d34701d52b0341913185781e"
+      },
+      {
+        "path": "tests/test_uac_ssot.py",
+        "sha256": "5b5f182f5fb4e83db084c4f8227afd0a65c4a6633b47062a555f283b6d39c9b3"
+      },
+      {
+        "path": "tests/test_capability_resources.py",
+        "sha256": "ffa0fc58b2e367f90d0ab71aca3a0e6352aebf1a48c2032f0efe47f01b52bc18"
+      },
+      {
+        "path": ".meta/surface-rules.json",
+        "sha256": "bc804cd16bd077ec3e98e594a33a23fc91425d5a6b2c2c8c1c5493f2fbe39e81"
+      },
+      {
+        "path": "tests/test_uac_promotion_apply.py",
+        "sha256": "c309c71fb8becff34102338a285ad08483fe9ce0c55afa95eb4c0e2a6466df37"
+      },
+      {
+        "path": "ssot/engos-design-architecture.md",
+        "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
+      },
+      {
+        "path": ".meta/capabilities/engos-design-architecture.json",
+        "sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945"
+      }
+    ]
+  },
+  "Scope Assessment": "Bounded pre-generation mode reconciliation across real builder/UAC preview/apply, retained source attribution and focused regressions. Other staged D7 content and intentionally stale aggregate/generated artifacts are outside this code gate. No combined 36/180 result claimed.",
+  "Message Assessment": "No new commit message supplied; not assessed.",
+  "Recommended Fixes": [],
+  "Merge Readiness": "Pre-generation mode/code gate accepted at bound bytes. Controller may proceed with authoritative combined generation and its dependent checks. This is not main merge or whole-foundation acceptance.",
+  "evidence": {
+    "independentFocusedRun": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <initiative/.validation-env-d5/bin/python> -m pytest -q -p no:cacheprovider tests/test_uac_promotion_apply.py::test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview tests/test_resource_backed_skill_surfaces.py::test_mode_reconciliation_through_generator_and_uac_paths tests/test_resource_backed_skill_surfaces.py::test_actual_architecture_declarations_preserve_exact_curated_identity tests/test_uac_ssot.py::test_resource_modes_preserve_only_matching_curation_and_source_authority tests/test_uac_ssot.py::test_resource_mode_curation_survives_apply_and_builder_resolution",
+      "exitCode": 0,
+      "result": "7 passed in 0.69s"
+    },
+    "hashCheck": "All seven mode-reconciliation-review-green.json hashes match current bytes. Only repaired test_uac_promotion_apply.py differs from prior review snapshot.",
+    "authorFocusedRun": "Inspected raw 172 passed in 3.50s log and exact-file receipt; not used as a substitute for independent code reasoning or focused rerun.",
+    "pregenerationInventoryFailure": "Author broader run records 1 failed, 176 passed, 28 deselected: missing D7 test-oracles.md install-bundle entry before combined regeneration. This is an explicitly pending generated-state acceptance check, not a passed check or a code repair waiver. Controller must rerun after authoritative generation.",
+    "priorEvidence": {
+      "reviewerTestRun": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <initiative/.validation-env-d5/bin/python> -m pytest -q -p no:cacheprovider tests/test_uac_promotion_apply.py::test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview tests/test_resource_backed_skill_surfaces.py::test_mode_reconciliation_through_generator_and_uac_paths tests/test_resource_backed_skill_surfaces.py::test_actual_architecture_declarations_preserve_exact_curated_identity tests/test_uac_ssot.py::test_resource_modes_preserve_only_matching_curation_and_source_authority tests/test_uac_ssot.py::test_resource_mode_curation_survives_apply_and_builder_resolution",
+        "exitCode": 1,
+        "result": "1 failed, 5 passed in 0.73s",
+        "failure": "test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview: expected four stored curated modes; actual current source-authoritative Design API mode only"
+      },
+      "readOnlyCorpusScan": "All current resource-backed capability mode identity sets (entry_kind, mode_slug, display_name) matched stored descriptor identity sets after extraction/resolution. This checks current corpus coverage, not behavior superiority.",
+      "sourceFidelity": "git diff versus 8781f08d on ssot/engos-design-architecture.md and .meta/capabilities/engos-design-architecture.json was empty; exact source/descriptor retained.",
+      "diffCheck": "git diff --check over six author-owned files passed.",
+      "inspectedHistoricalRed": "Actual red log demonstrates architecture identifier display mismatch; red receipt records missing Mode Selection declarations before repair.",
+      "authorFocusedRun": "Read raw 136 passed in 2.47s log, not self-grade; omitted failing adjacent UAC-promotion regression exposed independently."
+    }
+  },
+  "passedAnalysis": [
+    "Mode Selection recognized generically; bare backticked machine identifiers derive title labels and conventional API casing without four-slug exceptions; explicit human headings retain exact spelling.",
+    "The source-authoritative D7 resolver replaces unsafe D2 retain-all helper at builder and UAC preview/apply boundaries; exact matched descriptive default curation transfer preserved.",
+    "Imported resource source_path uses authored-owner location in extraction; real cross-owner fixture checks this through all three descriptor boundaries.",
+    "New tests cover removed stored/current modes, changed explicit display identity, moved source line, stale invocation removal/replacement, explicit empty values and eligible/nonmatching curation.",
+    "Surface-rules preservation policy matches implementation; no policy relaxation found."
+  ],
+  "history": [
+    {
+      "round": 1,
+      "reviewedAt": "2026-10-12T23:06:53.318134+00:00",
+      "verdict": "blocked",
+      "findings": [
+        {
+          "id": "MODE-001",
+          "severity": "high",
+          "scope": "Retained UAC same-slug regression compatibility with accepted mode policy",
+          "location": "tests/test_uac_promotion_apply.py:583-621 (failing assertion at line 604)",
+          "problem": "The retained D2.S2 regression still asserts unsafe retain-all behavior: its source declares only Design API, while expected curated contains four stored modes with historical refs and a nonmatching display identity. The reconciled resolver correctly emits only the current declaration with current refs, so this required test fails. The focused 136-test selection omitted this adjacent actual UAC-path regression.",
+          "concreteFix": "Extend the scoped repair to this test. Make current source declarations and matching display identities explicit when checking rich curation, assert current source_refs/locations and invocations, and assert undeclared stored modes are removed. Preserve meaningful apply, preview, existing job-contract preservation and idempotent replay checks. Do not restore the old retain-all implementation or simply delete/skip the test. Run this focused regression and the already passing mode boundary cases.",
+          "source": [
+            {
+              "path": ".meta/surface-rules.json",
+              "field": "metadata_policy.mode_contract_preservation.source_authority and removed_or_new"
+            },
+            {
+              "path": "src/intent_pipeline/uac_modes.py",
+              "symbol": "resolve_mode_entries"
+            },
+            {
+              "path": "tests/test_uac_promotion_apply.py",
+              "line": 604
+            },
+            {
+              "path": "program-loop.json",
+              "field": "strategy.foundationPreGenerationGate.contract"
+            }
+          ],
+          "status": "open",
+          "classification": "test"
+        }
+      ],
+      "bindings": [
+        {
+          "path": "scripts/build-surfaces.py",
+          "sha256": "64e341c5ab0c44c271e58e80f588964b89164e727b881329c63d7cfdb941005c"
+        },
+        {
+          "path": "scripts/uac-import.py",
+          "sha256": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+        },
+        {
+          "path": "src/intent_pipeline/uac_modes.py",
+          "sha256": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+        },
+        {
+          "path": "tests/test_resource_backed_skill_surfaces.py",
+          "sha256": "7de52519c03177b5df96317230415074d1c3f609d34701d52b0341913185781e"
+        },
+        {
+          "path": "tests/test_uac_ssot.py",
+          "sha256": "5b5f182f5fb4e83db084c4f8227afd0a65c4a6633b47062a555f283b6d39c9b3"
+        },
+        {
+          "path": "tests/test_capability_resources.py",
+          "sha256": "ffa0fc58b2e367f90d0ab71aca3a0e6352aebf1a48c2032f0efe47f01b52bc18"
+        },
+        {
+          "path": ".meta/surface-rules.json",
+          "sha256": "bc804cd16bd077ec3e98e594a33a23fc91425d5a6b2c2c8c1c5493f2fbe39e81"
+        },
+        {
+          "path": "tests/test_uac_promotion_apply.py",
+          "sha256": "39dd9b87801d0322f2d143bed0b2f26a3dcdb8dc8a2ffa767e31e285aab51ba5"
+        },
+        {
+          "path": "ssot/engos-design-architecture.md",
+          "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
+        },
+        {
+          "path": ".meta/capabilities/engos-design-architecture.json",
+          "sha256": "38e7ebf3579fea6eee3eedfa1b3fde1299ad0b34f62634f1a85952dca1e74945"
+        }
+      ],
+      "status": "historical_superseded_by_round_2"
+    }
+  ],
+  "limits": [
+    "No authoritative generation, broad module/full CI, staging, Git merge or source modification performed by reviewer.",
+    "Historical aggregate/generated placeholders are intentionally awaiting authoritative reconciliation; actual 36/180 inventory is not yet accepted.",
+    "This acceptance covers the D7/D2 mode repair only; source-preservation/remaining-draft integration, D5 role and CI union, final generated/evaluator/topology/routing bindings, independent full-candidate review and exact-head hosted checks remain downstream obligations.",
+    "Changes to reviewed code/policy bytes or material integration effects require renewed affected evidence."
+  ],
+  "next": "Proceed with controller-owned integration/generation; retain and rerun the known pending install inventory assertion afterward. Do not interpret this narrow acceptance as a merge/release/install result."
+}

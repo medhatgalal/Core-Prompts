@@ -1,0 +1,73 @@
+{
+  "schema_version": "ModeReconciliationReviewRepair.v1",
+  "finding": "Retained D2 UAC fixture asserted preservation of four modes despite declaring only one and stale source refs; repaired fixture, not resolver semantics. Formal review ID pending controller receipt.",
+  "head": "8781f08d21b55b54b5770ab1eda077557ab3723a",
+  "merge_head": "52063bdc8eec0cdd01296ccbd32d483223c05470",
+  "files": [
+    {
+      "path": "scripts/build-surfaces.py",
+      "sha256": "64e341c5ab0c44c271e58e80f588964b89164e727b881329c63d7cfdb941005c"
+    },
+    {
+      "path": "scripts/uac-import.py",
+      "sha256": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+    },
+    {
+      "path": "src/intent_pipeline/uac_modes.py",
+      "sha256": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+    },
+    {
+      "path": "tests/test_resource_backed_skill_surfaces.py",
+      "sha256": "7de52519c03177b5df96317230415074d1c3f609d34701d52b0341913185781e"
+    },
+    {
+      "path": "tests/test_uac_ssot.py",
+      "sha256": "5b5f182f5fb4e83db084c4f8227afd0a65c4a6633b47062a555f283b6d39c9b3"
+    },
+    {
+      "path": "tests/test_capability_resources.py",
+      "sha256": "ffa0fc58b2e367f90d0ab71aca3a0e6352aebf1a48c2032f0efe47f01b52bc18"
+    },
+    {
+      "path": "tests/test_uac_promotion_apply.py",
+      "sha256": "c309c71fb8becff34102338a285ad08483fe9ce0c55afa95eb4c0e2a6466df37"
+    }
+  ],
+  "repair": {
+    "file": "tests/test_uac_promotion_apply.py",
+    "positive": "Actual architecture Mode Selection declarations and actual canonical rich descriptor read separately; all four current exact identities and five descriptive fields preserved.",
+    "negative": "Source removal drops system-design; undeclared product mode and stale context module drop; stale source refs/line/invocations refresh.",
+    "boundaries": "Real _build_descriptor_preview/_merge_existing_descriptor_for_apply and exact replay assertions retained; temporary fixture owns all mutations."
+  },
+  "red": {
+    "log": "mode-reconciliation-review-red.log",
+    "exit_code": 1,
+    "result": "1 failed in 0.26s"
+  },
+  "green": {
+    "log": "mode-reconciliation-review-green.log",
+    "exit_code": 0,
+    "result": "172 passed in 3.50s",
+    "test_modules": [
+      "test_capability_resources.py",
+      "test_resource_backed_skill_surfaces.py (six explicit isolated/source node IDs)",
+      "test_uac_ssot.py (two explicit mode node IDs; actual-source test parametrized)",
+      "test_uac_promotion_apply.py (repaired parametrized regression)",
+      "test_resource_source_integrity.py",
+      "test_resource_delivery.py",
+      "test_uac_quality.py (source fidelity gate node)"
+    ]
+  },
+  "syntax": "all seven files parse",
+  "diff_check": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "pregeneration_limitation": {
+    "log": "mode-reconciliation-review-focused.log",
+    "result": "1 failed, 176 passed, 28 deselected in 43.62s",
+    "failure": "test_resource_backed_skill_bundles_are_complete_and_installed_in_manifest: missing D7 test-oracles.md install entry; combined generated install inventory has not been regenerated.",
+    "disposition": "Controller must verify after independent approval/authoritative generation; no generated files changed for this repair."
+  },
+  "authority": "No staging, generation, Git index/merge/branch mutation, or full CI performed."
+}

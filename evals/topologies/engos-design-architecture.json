@@ -8,7 +8,76 @@
   "auto_routes": [],
   "nodes": {
     "commands": [],
-    "modes_modules": [],
+    "modes_modules": [
+      {
+        "mode_slug": "design-api",
+        "display_name": "Design API",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 146,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "design-database",
+        "display_name": "Design Database",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 149,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "design-patterns",
+        "display_name": "Design Patterns",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 152,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "system-design",
+        "display_name": "System Design",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 155,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      }
+    ],
     "controls": [],
     "modifiers": []
   },

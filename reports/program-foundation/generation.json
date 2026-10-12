@@ -1,0 +1,25 @@
+{
+  "schema": "FoundationGeneration.v1",
+  "startedAt": "2026-10-12T23:24:54.772417+00:00",
+  "steps": [
+    {
+      "name": "build",
+      "exitCode": 0,
+      "log": "reports/program-foundation/build.log",
+      "logSHA256": "2223faedf36b045ee694307d119cbfb52b7e7589af84fd7d8d50cf34eb9e43fa",
+      "tail": [
+        "installer capsule: generated",
+        "Generated 36 ssot entries"
+      ]
+    },
+    {
+      "name": "schema-refresh",
+      "exitCode": 0,
+      "log": "reports/program-foundation/schema-refresh.log",
+      "logSHA256": "8e47007d272bdc3c64e2b75b02eb71070ccc5abf332a893e8205ea725dc5536d",
+      "tail": [
+        "synced 8 schema-source URLs into /Users/medhat.galal/.codex/worktrees/program-convergence/Core-Prompts/.meta/schema-cache/manifest.json"
+      ]
+    }
+  ]
+}

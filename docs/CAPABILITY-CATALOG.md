@@ -2,25 +2,25 @@
 
 Generated from canonical manifest and descriptor metadata. Use this page to see what Core-Prompts ships, what each capability is for, and where it lands.
 
-- Capability count: `33`
+- Capability count: `36`
 
 ## Start Here
 - `engos-quality-testing-review` — Testing Studio — Test Design and Coverage Analysis: Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.
 - `engos-quality-docs-review` — Docs Review Expert — Documentation IA, Drift, and Release Hygiene: Review repository documentation for information architecture, stale commands, broken links, misplaced content, drift, and release hygiene. Use when docs quality or discoverability is the primary concern; do not use for ordinary sentence editing.
 - `engos-design-architecture` — Architecture Studio: Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.
 - `engos-delivery-resolve-conflict` — Merge Conflict Resolution — Structured Conflict Analysis: Analyze and plan the safe resolution of Git or document conflicts while preserving valuable content, exposing contradictions, and defining verification. Use when an actual merge or content conflict exists; do not use for ordinary proposal disagreement without conflict markers.
-- `loopy` — Loopy — Bounded Agent Loops: Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.
+- `engos-debug-diagnose-failure` — Diagnose a Failure: Reproduce, localize and explain a software failure using bounded experiments that distinguish competing causes. Use for failing tests, builds or unexpected runtime behavior; return a supported cause or an explicit unknown with evidence for repair handoff.
 
 ## By CLI
-- `claude`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
-- `codex`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
-- `gemini`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
-- `grok`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
-- `kiro`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `claude`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-debug-diagnose-failure`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `codex`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-debug-diagnose-failure`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `gemini`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-debug-diagnose-failure`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `grok`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-debug-diagnose-failure`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
+- `kiro`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-debug-diagnose-failure`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`, `loopy`
 
 ## By Use Case
 - `address`: `engos-delivery-address-code-review`
-- `analysis`: `engos-delivery-resolve-conflict`, `loopy`
+- `analysis`: `engos-debug-diagnose-failure`, `engos-delivery-resolve-conflict`, `loopy`
 - `architecture`: `engos-audit-pitch-review`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-specify-change`, `engos-quality-docs-review`
 - `artifact`: `engos-delivery-artifact-embed`
 - `artifacts`: `engos-delivery-diagram-contract-artifacts`
@@ -38,17 +38,20 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `continuity`: `engos-memory-context-continuity`
 - `contract`: `engos-delivery-diagram-contract-artifacts`
 - `converge`: `engos-reconciliation-converge`
-- `debugging`: `engos-design-architecture`
-- `delivery`: `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`
+- `debug`: `engos-debug-diagnose-failure`
+- `debugging`: `engos-debug-diagnose-failure`, `engos-design-architecture`
+- `delivery`: `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`
 - `demo`: `engos-browser-demo-recorder`
-- `design`: `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`
+- `design`: `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`
+- `diagnose`: `engos-debug-diagnose-failure`
 - `diagram`: `engos-delivery-diagram-contract-artifacts`
 - `docs`: `engos-quality-docs-review`
 - `dynamic`: `engos-content-dynamic-html-presentations`
 - `editor`: `engos-meta-instruction-editor`
 - `embed`: `engos-delivery-artifact-embed`
 - `engineering`: `engos-audit-engineering-progress`
-- `engos`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`
+- `engos`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-browser-demo-recorder`, `engos-content-dynamic-html-presentations`, `engos-debug-diagnose-failure`, `engos-delivery-address-code-review`, `engos-delivery-artifact-embed`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-delivery-resolve-conflict`, `engos-design-architecture`, `engos-design-frame-from-vague`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-design-shaping`, `engos-design-specify-change`, `engos-memory-context-continuity`, `engos-memory-threader`, `engos-meta-instruction-editor`, `engos-meta-supercharge`, `engos-meta-uac-import`, `engos-operations-ic-assistant`, `engos-optimization-auto-research`, `engos-orchestration-batman`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `engos-reconciliation-converge`, `engos-triage-my-inbox-chat-pulse`
+- `failure`: `engos-debug-diagnose-failure`
 - `feature`: `engos-audit-feature-status`
 - `frame`: `engos-design-frame-from-vague`
 - `from`: `engos-design-frame-from-vague`
@@ -57,6 +60,8 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `goal`: `engos-design-plan-to-goal`
 - `health`: `engos-audit-code-health`
 - `html`: `engos-content-dynamic-html-presentations`
+- `implement`: `engos-delivery-implement-slice`
+- `implementation`: `engos-design-plan-implementation`
 - `import`: `engos-meta-uac-import`
 - `inbox`: `engos-triage-my-inbox-chat-pulse`
 - `incident`: `engos-audit-opex-incident-review`
@@ -71,8 +76,8 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `orchestration`: `engos-orchestration-batman`
 - `packaging`: `engos-delivery-diagram-contract-artifacts`, `engos-meta-uac-import`, `engos-reconciliation-converge`
 - `pitch`: `engos-audit-pitch-review`
-- `plan`: `engos-design-plan-to-goal`
-- `planning`: `engos-browser-demo-recorder`, `engos-delivery-resolve-conflict`, `engos-design-plan-to-goal`, `engos-meta-supercharge`, `engos-meta-uac-import`
+- `plan`: `engos-design-plan-implementation`, `engos-design-plan-to-goal`
+- `planning`: `engos-browser-demo-recorder`, `engos-delivery-resolve-conflict`, `engos-design-plan-implementation`, `engos-design-plan-to-goal`, `engos-meta-supercharge`, `engos-meta-uac-import`
 - `presentations`: `engos-content-dynamic-html-presentations`
 - `progress`: `engos-audit-engineering-progress`
 - `prompting`: `engos-design-architecture`, `engos-meta-supercharge`
@@ -82,8 +87,9 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - `recorder`: `engos-browser-demo-recorder`
 - `research`: `engos-optimization-auto-research`
 - `resolve`: `engos-delivery-resolve-conflict`
-- `review`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-delivery-address-code-review`, `engos-delivery-diagram-contract-artifacts`, `engos-design-shaping`, `engos-meta-instruction-editor`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `loopy`
+- `review`: `engos-audit-code-health`, `engos-audit-engineering-progress`, `engos-audit-feature-status`, `engos-audit-opex-incident-review`, `engos-audit-pitch-review`, `engos-audit-weekly-intel`, `engos-delivery-address-code-review`, `engos-delivery-diagram-contract-artifacts`, `engos-delivery-implement-slice`, `engos-design-shaping`, `engos-meta-instruction-editor`, `engos-quality-code-review`, `engos-quality-docs-review`, `engos-quality-gitops-review`, `engos-quality-shaping-gate`, `engos-quality-testing-review`, `loopy`
 - `shaping`: `engos-design-shaping`, `engos-quality-shaping-gate`
+- `slice`: `engos-delivery-implement-slice`
 - `specify`: `engos-design-specify-change`
 - `status`: `engos-audit-feature-status`
 - `supercharge`: `engos-meta-supercharge`
@@ -219,6 +225,13 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - "Use `engos-browser-demo-recorder` to script a demo that creates a resource, runs it, and shows the trace output."
 - Summary: Plan and generate a complete Playwright browser walkthrough with authentication, realistic pacing, and video capture. Use when the goal is a shareable product demo; do not use for test coverage or CI.
 
+### Diagnose a Failure
+- Slug: `engos-debug-diagnose-failure`
+- Type: `skill`
+- Install target: `global`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
+- Summary: Reproduce, localize and explain a software failure using bounded experiments that distinguish competing causes. Use for failing tests, builds or unexpected runtime behavior; return a supported cause or an explicit unknown with evidence for repair handoff.
+
 ### Docs Review Expert — Documentation IA, Drift, and Release Hygiene
 - Slug: `engos-quality-docs-review`
 - Type: `skill`
@@ -300,6 +313,18 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - update changelog or release notes as part of a release gate
 - Summary: Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.
 
+### Implement a Bounded Slice
+- Slug: `engos-delivery-implement-slice`
+- Type: `skill`
+- Install target: `global`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
+- Invocation hints:
+  - “Implement this accepted task and stop with a reviewable patch.”
+  - “Fix the boundary error, show the focused regression result, and do not commit.”
+  - “Use `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.”
+  - For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.
+- Summary: Implement one bounded software change from an accepted task or clear request, preserve unrelated work, and report verification tied to the actual patch. Use for a scoped feature or repair; use the review-feedback capability when selected reviewer comments define the work.
+
 ### Incident Commander Assistant
 - Slug: `engos-operations-ic-assistant`
 - Type: `skill`
@@ -366,6 +391,13 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
   - bootstrap a pitch from this goal
   - what does good integration proof look like / how do I prove integration / what spike do I need
 - Summary: Create, review, score, improve, or export Shape Up pitches by checking problem framing, appetite, architecture, rendered diagram and contract artifacts, dependencies, integration proof, risks, and betting readiness. Use for pitch artifacts; do not use for feature status or general proposal synthesis.
+
+### Plan Implementation
+- Slug: `engos-design-plan-implementation`
+- Type: `skill`
+- Install target: `global`
+- Supported CLIs: `claude, codex, gemini, grok, kiro`
+- Summary: Plan independently verifiable implementation tasks from accepted requirements and an optional supplied design. Use for multi-step planning or revising unfinished work with explicit dependencies, interfaces, allowed writes and stop conditions; preserve the existing tracker and leave execution, delegation and goal creation to their owners.
 
 ### Plan to Goal Design
 - Slug: `engos-design-plan-to-goal`
