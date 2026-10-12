@@ -586,3 +586,51 @@ def test_shared_json_references_are_decoded_before_rejection(tmp_path, content):
     (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
     with pytest.raises(ResourceContractError, match='closure'):
         shared_load(tmp_path)
+
+
+D7_RESOURCE_ROOT = Path(__file__).parents[1] / "sources/capability-resources/engos-quality-testing-review"
+
+
+def test_test_design_routes_deliver_schema_and_bind_oracle_edits(tmp_path: Path) -> None:
+    shutil.copytree(D7_RESOURCE_ROOT, tmp_path / "design")
+    root = tmp_path / "design"
+    for route in ("unit", "e2e", "edge-cases", "coverage"):
+        bundle = load_resource_bundle(root, route)
+        assert set(paths(bundle)) == {"references/test-oracles.md", "templates/test-design.md", "schemas/test-design.schema.json"}
+    before = load_resource_bundle(root, "unit")["sha256"]
+    oracle = root / "references/test-oracles.md"
+    oracle.write_text(oracle.read_text() + "\nAdditional fixture constraint.\n")
+    assert load_resource_bundle(root, "unit")["sha256"] != before
+    oracle.unlink()
+    with pytest.raises(ResourceContractError):
+        load_resource_bundle(root, "coverage")
+
+
+def test_test_design_schema_allows_design_and_coverage_only_but_rejects_execution() -> None:
+    from copy import deepcopy
+    from jsonschema import Draft202012Validator
+
+    schema = json.loads((D7_RESOURCE_ROOT / "schemas/test-design.schema.json").read_text())
+    Draft202012Validator.check_schema(schema)
+    validator = Draft202012Validator(schema)
+    coverage = {"schema_version": "TestDesign.v1", "id": "coverage-1", "requirement_ids": [], "tests": [], "execution_status": "not_run", "gaps": ["No coverage artifact supplied; source inspection only."]}
+    validator.validate(coverage)
+    design = deepcopy(coverage)
+    design["requirement_ids"] = ["spec.md#expiry"]
+    design["tests"] = [{"id": "expiry-equality", "requirements": ["spec.md#expiry"], "expected": "Reject at expiry equality", "oracle": "A > comparison accepts equality; rejection assertion catches it", "fixture": "Fixed clock at expiration", "negative_case": "Malformed token rejected", "boundary_case": "One tick before accepted; equality rejected", "command_source": "unknown: repository runner not supplied"}]
+    validator.validate(design)
+    for field in design["tests"][0]:
+        invalid = deepcopy(design)
+        del invalid["tests"][0][field]
+        assert list(validator.iter_errors(invalid)), field
+    for status in ("passed", "failed", "run", None):
+        invalid = deepcopy(design)
+        invalid["execution_status"] = status
+        assert list(validator.iter_errors(invalid))
+    invalid = deepcopy(design)
+    invalid["coverage_percent"] = 100
+    assert list(validator.iter_errors(invalid))
+    # Shape validity deliberately cannot certify a meaningful oracle.
+    weak = deepcopy(design)
+    weak["tests"][0]["oracle"] = "A mock was called"
+    validator.validate(weak)

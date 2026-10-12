@@ -1212,6 +1212,13 @@ If the decision itself is contentious, use:
 
 ### `engos-quality-testing-review`
 
+Ask for source-grounded test oracles:
+
+> Design tests for our token expiry and redemption contract. Link each expectation to the source, name the faulty behavior its assertion catches, and record fixture, negative/boundary cases and the repository command source. Mark unknowns and do not run tests.
+
+The artifact includes Scope, Assumptions, Recommended Tests or Gaps, Priority or Risk, Framework Notes and Follow-up Work. At an expiry equality boundary it asks which assertion distinguishes `>` from the required `>=`; a mocked lookup call alone cannot establish redeemed-token rejection. Instrumentation can observe contractual side effects. Request optional TestDesign.v1 JSON only for machine interchange; it always records `not_run`. Coverage-only analysis can return gaps without inventing tests. Source links and schema validity do not prove semantic adequacy or observed coverage.
+
+
 Use when:
 
 - you do not want a long unprioritized test list

@@ -16,6 +16,10 @@ If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11`
 
 The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.
 
+## Test-design resources
+
+`engos-quality-testing-review` owns resources under `sources/capability-resources/engos-quality-testing-review/`: `references/test-oracles.md`, `templates/test-design.md`, `schemas/test-design.schema.json` and `resource-map.json`. The existing loader routes are `unit`, `e2e`, `edge-cases` and `coverage`. The resources use the existing loader with no additional runtime dependency. TestDesign.v1 is optional interchange with `execution_status=not_run`; schema validation checks shape only.
+
 ## Common Commands
 
 ### Capability evaluation

@@ -62,6 +62,7 @@ def extract_declared_modes(slug: str, body: str) -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
     seen: dict[tuple[str, str], dict[str, Any]] = {}
     active_section: str | None = None
+    identifier_mode_labels = False
 
     def add(entry: dict[str, Any]) -> None:
         if not entry["mode_slug"]:
@@ -93,9 +94,11 @@ def extract_declared_modes(slug: str, body: str) -> list[dict[str, Any]]:
                     )
                 )
             if level == 2:
+                identifier_mode_labels = False
                 normalized = NUMBERED_PREFIX.sub("", label).strip().lower()
-                if normalized in {"modes", "operating modes", "modes of operation"}:
+                if normalized in {"modes", "operating modes", "modes of operation", "mode selection"}:
                     active_section = "mode"
+                    identifier_mode_labels = normalized == "mode selection"
                 elif normalized == "commands":
                     active_section = "command"
                 elif normalized == "invocation":
@@ -104,6 +107,12 @@ def extract_declared_modes(slug: str, body: str) -> list[dict[str, Any]]:
                     active_section = None
                 continue
             if level == 3 and active_section in {"mode", "command"}:
+                # Mode Selection uses backticked machine identifiers. Derive a
+                # display label from that syntax, never from stored curation.
+                # Explicit human headings retain their exact source spelling.
+                if identifier_mode_labels and re.fullmatch(r"`[a-z][a-z0-9]*(?:-[a-z0-9]+)*`", heading.group(2)):
+                    label = " ".join("API" if word == "api" else word.title()
+                                     for word in label.split("-"))
                 invocation = _invocation(label)
                 add(
                     _entry(
@@ -165,20 +174,6 @@ def extract_modes_from_sources(slug: str, sources: Iterable[tuple[str, str]]) ->
     return modes
 
 
-def refresh_resource_mode_entries(
-    existing: Iterable[Mapping[str, Any]], extracted: Iterable[Mapping[str, Any]],
-) -> list[dict[str, Any]]:
-    """Retain curated product modes while refreshing source-derived context entries."""
-    modes = [deepcopy(dict(mode)) for mode in existing if mode.get("entry_kind", "mode") == "mode"]
-    seen = {(mode.get("entry_kind", "mode"), mode["mode_slug"]) for mode in modes}
-    for mode in extracted:
-        identity = (mode.get("entry_kind", "mode"), mode["mode_slug"])
-        if identity not in seen:
-            modes.append(deepcopy(dict(mode)))
-            seen.add(identity)
-    return modes
-
-
 def normalize_mode_entries(entries: Iterable[Mapping[str, Any]], slug: str) -> list[dict[str, Any]]:
     normalized: list[dict[str, Any]] = []
     for raw in entries:
@@ -188,3 +183,41 @@ def normalize_mode_entries(entries: Iterable[Mapping[str, Any]], slug: str) -> l
         entry.setdefault("source_refs", [f"ssot/{slug}.md"])
         normalized.append(entry)
     return normalized
+
+
+DESCRIPTIVE_MODE_FIELDS = (
+    "mode_summary", "required_inputs", "expected_outputs", "examples", "uplift_notes",
+)
+
+
+def resolve_mode_entries(
+    extracted: Iterable[Mapping[str, Any]],
+    curated: Iterable[Mapping[str, Any]],
+    slug: str,
+    *,
+    authoritative_fields: Mapping[tuple[str, str], set[str]] | None = None,
+) -> list[dict[str, Any]]:
+    """Preserve canonical curation over heading-only extraction defaults.
+
+    Exact identity matching is not semantic revalidation: callers provide existing
+    canonical curation; changed meaning still requires independent source review.
+    Source membership, locations and invocations always win. Extractors supplying
+    explicit default/empty descriptive values must identify them as authoritative.
+    """
+    existing = {
+        (m.get("entry_kind", "mode"), m.get("mode_slug"), m.get("display_name")): m
+        for m in curated
+    }
+    resolved = normalize_mode_entries(extracted, slug)
+    for mode in resolved:
+        key = (mode["entry_kind"], mode["mode_slug"])
+        prior = existing.get((*key, mode.get("display_name")))
+        if prior is None:
+            continue
+        defaults = _entry(slug=slug, label=str(mode["display_name"]),
+                          kind=str(mode["entry_kind"]), source_line=0)
+        authoritative = (authoritative_fields or {}).get(key, set())
+        for field in DESCRIPTIVE_MODE_FIELDS:
+            if field not in authoritative and mode.get(field) == defaults[field] and field in prior:
+                mode[field] = deepcopy(prior[field])
+    return resolved

@@ -171,13 +171,13 @@ def test_resource_conversion_preserves_curated_product_modes_and_refreshes_modul
     builder = importlib.util.module_from_spec(spec); sys.modules[spec.name] = builder; spec.loader.exec_module(builder)
     slug = 'engos-design-architecture'
     entry_path = tmp_path / 'ssot' / f'{slug}.md'; entry_path.parent.mkdir()
-    text = '# Architecture\n## Modes\n### Design API\nDesign the API.\n'
+    text = '# Architecture\n## Mode Selection\n' + ''.join(f'### `{mode}`\nDesign this concern.\n' for mode in ['design-api', 'design-database', 'design-patterns', 'system-design'])
     entry_path.write_text(text)
     resource_root = tmp_path / 'sources/capability-resources' / slug; resource_root.mkdir(parents=True)
     (resource_root / 'resource-map.json').write_text(json.dumps({'schema_version': 'CapabilityResourceMap.v1', 'shared': [], 'routes': {'context': ['guide.md']}, 'dependencies': {}}))
     # Same slug, different entry_kind must coexist with the curated product mode.
     (resource_root / 'guide.md').write_text('## Module: /design-api\nFresh API context.\n## Module: /current\nFresh current context.\n')
-    curated = [{'entry_kind': 'mode', 'mode_slug': mode, 'display_name': mode,
+    curated = [{'entry_kind': 'mode', 'mode_slug': mode, 'display_name': mode.replace('-', ' ').title().replace('Api', 'API'),
                 'source_refs': ['https://example.org/original/' + mode],
                 'invocations': [], 'mode_summary': 'Curated behavior for ' + mode,
                 'required_inputs': ['existing requirements'], 'expected_outputs': ['reviewed design'],
@@ -194,9 +194,129 @@ def test_resource_conversion_preserves_curated_product_modes_and_refreshes_modul
     entry = SimpleNamespace(slug=slug, display_name='Architecture', path=entry_path, body=text)
     manifest = {'slug': slug, 'layers': {'minimal': {'summary': 'Architecture design'}}, 'expected_surface_names': ['codex_skill']}
     result = builder.resolve_descriptor(entry, manifest, {})
-    assert [mode for mode in result['modes'] if mode['entry_kind'] == 'mode'] == curated
+    actual_modes = [mode for mode in result['modes'] if mode['entry_kind'] == 'mode']
+    assert [mode['mode_slug'] for mode in actual_modes] == [mode['mode_slug'] for mode in curated]
+    for actual, prior in zip(actual_modes, curated, strict=True):
+        assert actual['source_refs'] == [f'ssot/{slug}.md']
+        assert actual['invocations'] == []
+        assert actual['source_line'] == text.splitlines().index('### `' + actual['mode_slug'] + '`') + 1
+        for field in ('mode_summary', 'required_inputs', 'expected_outputs', 'examples', 'uplift_notes'):
+            assert actual[field] == prior[field]
     modules = [mode for mode in result['modes'] if mode['entry_kind'] == 'module']
     assert [mode['mode_slug'] for mode in modules] == ['design-api', 'current']
     assert all(mode['source_refs'] == [f'sources/capability-resources/{slug}/guide.md'] for mode in modules)
     assert len({(mode['entry_kind'], mode['mode_slug']) for mode in result['modes']}) == 6
     assert builder.resolve_descriptor(entry, manifest, {}) == result
+
+
+def test_mode_selection_declarations_match_current_architecture_source():
+    from intent_pipeline.uac_modes import extract_declared_modes
+    slug = 'engos-design-architecture'
+    source = (ROOT / 'ssot' / f'{slug}.md').read_text()
+    modes = extract_declared_modes(slug, source)
+    assert [m['mode_slug'] for m in modes if m['entry_kind'] == 'mode'] == [
+        'design-api', 'design-database', 'design-patterns', 'system-design']
+
+
+def test_mode_reconciliation_through_generator_and_uac_paths(tmp_path, monkeypatch):
+    """Source changes and imported ownership reach all three descriptor boundaries."""
+    import copy
+    import importlib.util
+    from types import SimpleNamespace
+    from test_capability_resources import shared_fixture
+    from intent_pipeline.uac_modes import extract_capability_modes
+
+    registry = shared_fixture(tmp_path)
+    slug = 'consumer'
+    entry_path = tmp_path / 'ssot/consumer.md'
+    owner_path = tmp_path / 'sources/capability-resources/owner/schema.json'
+    owner_text = '## Module: /current\nFresh imported context.\n'
+    owner_path.write_text(owner_text)
+    registry['imports'][0]['sha256'] = hashlib.sha256(owner_text.encode()).hexdigest()
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    names = ['design-api', 'design-database', 'design-patterns', 'system-design']
+    original = '---\nname: consumer\n---\n# Architecture\n## Mode Selection\n' + ''.join(f'### `{name}`\nChoose this concern.\n' for name in names)
+    curated = [{'entry_kind': 'mode', 'mode_slug': name, 'display_name': name.replace('-', ' ').title().replace('Api', 'API'),
+                'source_refs': ['stale-source'], 'source_line': 999, 'invocations': ['/stale'],
+                'mode_summary': 'Reviewed ' + name, 'required_inputs': ['reviewed input'],
+                'expected_outputs': ['reviewed output'], 'examples': ['reviewed example'],
+                'uplift_notes': ['reviewed note']} for name in names]
+    curated += [{'entry_kind': 'mode', 'mode_slug': 'removed', 'display_name': 'removed'},
+                {'entry_kind': 'module', 'mode_slug': 'stale-context', 'display_name': 'stale-context'}]
+    stored = {'modes': curated}
+    loaded = []
+    for name, filename in [('foundation_mode_builder', 'build-surfaces.py'), ('foundation_mode_uac', 'uac-import.py')]:
+        spec = importlib.util.spec_from_file_location(name, ROOT / 'scripts' / filename)
+        module = importlib.util.module_from_spec(spec)
+        monkeypatch.setitem(sys.modules, name, module)
+        spec.loader.exec_module(module)
+        monkeypatch.setattr(module, 'ROOT', tmp_path)
+        monkeypatch.setattr(module, 'load_descriptor', lambda *args: copy.deepcopy(stored))
+        loaded.append(module)
+    builder, uac = loaded
+    monkeypatch.setattr(builder, 'CAPABILITY_RESOURCE_SOURCE_DIR', tmp_path / 'sources/capability-resources')
+    monkeypatch.setattr(builder, 'resolve_historical_baseline', lambda *args: SimpleNamespace(as_payload=lambda: {}, scenario_matrix=[]))
+    saved = []
+    monkeypatch.setattr(builder, 'save_descriptor', lambda *args: saved.append(copy.deepcopy(args[-1])))
+    manifest = {'slug': slug, 'layers': {'minimal': {'summary': 'Architecture design'}}, 'expected_surface_names': ['codex_skill']}
+
+    def boundaries(text):
+        entry_path.write_text(text)
+        entry = SimpleNamespace(slug=slug, display_name='Architecture', path=entry_path, body=text)
+        built = builder.resolve_descriptor(entry, manifest, {})
+        preview, _ = uac._build_descriptor_preview({'manifest': manifest, 'items': []}, quality_result={'final_candidate_text': text})
+        applied, bound = uac._merge_existing_descriptor_for_apply(slug, {}, ssot_text=text, quality_result={'final_candidate_text': text})
+        assert bound
+        assert built['modes'] == preview['modes'] == applied['modes']
+        assert saved[-1]['modes'] == built['modes']
+        return built['modes']
+
+    current = boundaries(original)
+    assert [m['mode_slug'] for m in current if m['entry_kind'] == 'mode'] == names
+    for mode in current[:4]:
+        assert mode['source_refs'] == ['ssot/consumer.md']
+        assert mode['source_line'] == original.splitlines().index('### `' + mode['mode_slug'] + '`') + 1
+        assert mode['invocations'] == []  # Explicit current absence clears old invocations.
+        assert mode['expected_outputs'] == ['reviewed output']
+    assert current[-1]['source_refs'] == ['sources/capability-resources/owner/schema.json']
+    assert current[-1]['source_line'] == 1
+    assert current[-1]['invocations'] == ['/current']
+    assert not {'removed', 'stale-context'} & {m['mode_slug'] for m in current}
+
+    # Removed declarations drop; same slug with changed display identity must not inherit curation.
+    changed = original.replace('### `system-design`\nChoose this concern.\n', '').replace('### `design-database`', '### design Database')
+    # A moved source declaration refreshes source locations even when curation matches.
+    changed = changed.replace('# Architecture\n', '# New preface\n# Architecture\n')
+    updated = boundaries(changed)
+    assert [m['mode_slug'] for m in updated if m['entry_kind'] == 'mode'] == names[:3]
+    database = next(m for m in updated if m['mode_slug'] == 'design-database')
+    assert database['display_name'] == 'design Database'
+    assert database['expected_outputs'] == []
+    api = next(m for m in updated if m['mode_slug'] == 'design-api' and m['entry_kind'] == 'mode')
+    assert api['source_line'] == current[0]['source_line'] + 1
+    assert api['expected_outputs'] == ['reviewed output']
+
+    # Resource membership and invocations also obey current source, not stored modes.
+    owner_text = '## Module: /replacement\nReplacement imported context.\n'
+    owner_path.write_text(owner_text)
+    registry['imports'][0]['sha256'] = hashlib.sha256(owner_text.encode()).hexdigest()
+    (tmp_path / '.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    final = boundaries(changed)
+    assert [m['mode_slug'] for m in final if m['entry_kind'] == 'module'] == ['replacement']
+    assert final[-1]['invocations'] == ['/replacement']
+    assert final[-1]['source_refs'] == ['sources/capability-resources/owner/schema.json']
+    assert extract_capability_modes(tmp_path, slug, changed)[-1]['source_refs'] == final[-1]['source_refs']
+
+def test_actual_architecture_declarations_preserve_exact_curated_identity():
+    from intent_pipeline.uac_modes import extract_capability_modes, resolve_mode_entries
+    slug = 'engos-design-architecture'
+    source = (ROOT / 'ssot' / f'{slug}.md').read_text()
+    curated = json.loads((ROOT / '.meta/capabilities' / f'{slug}.json').read_text())['modes']
+    actual = resolve_mode_entries(extract_capability_modes(ROOT, slug, source), curated, slug)
+    modes = [m for m in actual if m['entry_kind'] == 'mode']
+    assert [(m['mode_slug'], m['display_name']) for m in modes] == [(m['mode_slug'], m['display_name']) for m in curated]
+    for mode, prior in zip(modes, curated, strict=True):
+        assert mode['source_refs'] == [f'ssot/{slug}.md']
+        assert mode['invocations'] == []
+        for field in ('mode_summary', 'required_inputs', 'expected_outputs', 'examples', 'uplift_notes'):
+            assert mode[field] == prior[field]

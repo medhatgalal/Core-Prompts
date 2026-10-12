@@ -1,0 +1,137 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-quality-testing-review",
+  "original_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+  "candidate_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+  "source_line_count": 148,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/d7_requirement_review_astra",
+    "author_agent_id": "/root/d7_implementation_astra",
+    "independent": true
+  },
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "current-01-identity",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: \"engos-quality-testing-review\"\ndescription: \"Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.\"\ndisplay_name: \"Testing Studio — Test Design and Coverage Analysis\"\ncapability_type: \"skill\"\ninstall_target: \"global\"\n---\n\n# Testing Studio — Test Design and Coverage Analysis",
+      "rationale": "Current name, display name, description, skill capability type and global install target are retained byte-for-byte. No agent identity or provider expansion is introduced."
+    },
+    {
+      "id": "current-02-purpose",
+      "source_start_line": 11,
+      "source_end_line": 13,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nUse this capability to design tests, identify missing coverage, and turn vague quality concerns into concrete test work without silently running the test suite.",
+      "rationale": "Design, coverage identification and concrete test work remain the job; silent suite execution remains excluded."
+    },
+    {
+      "id": "current-03-primary-objective",
+      "source_start_line": 14,
+      "source_end_line": 16,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective\nProduce deterministic, framework-aware testing recommendations or test artifacts that improve confidence while making assumptions, risk, and remaining gaps explicit.",
+      "rationale": "Framework-aware deterministic recommendations or test artifacts still expose assumptions, risks and remaining gaps."
+    },
+    {
+      "id": "current-04-output-directory",
+      "source_start_line": 17,
+      "source_end_line": 24,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Output Directory\nWhen the user wants analysis artifacts instead of direct test files, default to:\n- `reports/testing/<timestamp>-plan.md`\n- `reports/testing/<timestamp>-coverage-gap.md`\n- `reports/testing/<timestamp>-edge-cases.md`\n\nWhen the user asks for concrete test outputs, place them under the repository's existing test layout. If the repo has no established layout, propose one before writing files.",
+      "rationale": "All three analysis artifact paths and the established test-layout/propose-first rule remain intact."
+    },
+    {
+      "id": "current-05-workflow",
+      "source_start_line": 25,
+      "source_end_line": 31,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Workflow\n1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes. Record proposed commands with their source and prerequisites; mark unknown runners or provenance explicitly instead of guessing.\n3. Produce the minimum useful test set or gap analysis for the requested mode. Link proposed tests to source requirements, expected observable outcomes, plausible faulty behavior and discriminating assertions, fixtures, negative cases and boundaries; mark unresolved evidence as gaps.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
+      "rationale": "All five original steps and their original sentences are retained. Steps 2 and 3 add provenance, source links, observable expectations, discriminating fault oracles, fixtures and cases without requiring execution or fabricated evidence."
+    },
+    {
+      "id": "current-06-tool-boundaries",
+      "source_start_line": 32,
+      "source_end_line": 36,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Tool Boundaries\n- allowed: inspect source code and existing tests, design test cases, and write test artifacts when asked\n- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence\n- escalation: if the request is actually a release gate or CI readiness question, recommend `engos-quality-gitops-review`",
+      "rationale": "Allowed inspection and requested artifact writing, forbidden silent execution/framework invention/unsupported coverage, and GitOps release escalation are retained."
+    },
+    {
+      "id": "current-07-invocation-hints",
+      "source_start_line": 37,
+      "source_end_line": 44,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- generate unit tests\n- design end-to-end tests\n- find edge cases we are missing\n- show me coverage gaps\n- tell me what to test first for this change",
+      "rationale": "All five original invocations remain available."
+    },
+    {
+      "id": "current-08-required-inputs",
+      "source_start_line": 45,
+      "source_end_line": 50,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs\n- source code, feature description, or failing scenario\n- repository testing stack when known\n- risk areas or priority workflows\n- existing tests or coverage report when available",
+      "rationale": "All four original input classes and their when-known/when-available qualifications remain intact."
+    },
+    {
+      "id": "current-09-required-output",
+      "source_start_line": 51,
+      "source_end_line": 59,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\nEvery substantial writer-authored artifact must include:\n- `Scope`\n- `Assumptions`\n- `Recommended Tests or Gaps`\n- `Priority or Risk`\n- `Framework Notes`\n- `Follow-up Work`",
+      "rationale": "All six original artifact sections are retained. Optional JSON explicitly supplements them and never replaces them."
+    },
+    {
+      "id": "current-10-rules",
+      "source_start_line": 60,
+      "source_end_line": 66,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Rules\n- Respect the existing test framework and project conventions.\n- Separate generation of tests from execution of tests.\n- Prefer readable test names and explicit assertions.\n- Include failure cases and boundary cases, not only happy path.\n- Call out when a repository needs integration or E2E coverage instead of more unit tests.",
+      "rationale": "All five original testing rules remain intact; added oracle guidance distinguishes contractual instrumentation from unsupported private choreography."
+    },
+    {
+      "id": "current-11-modes",
+      "source_start_line": 67,
+      "source_end_line": 104,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Modes\n### Generate Unit Tests\nUse when the job is creating or improving isolated tests around functions, classes, or modules.\n\nProduce:\n- framework-aware test file\n- happy-path, error-path, and boundary tests\n- mocks or fixtures only where needed\n- clear assertions and setup notes\n\n### Generate E2E Tests\nUse when the job is validating a real workflow across interfaces or services.\n\nProduce:\n- critical user journeys\n- setup and teardown strategy\n- waiting and synchronization guidance\n- environment and test-data notes\n- failure capture or diagnostics expectations\n\n### Edge Cases\nUse when the job is finding what the current design or tests are likely missing.\n\nProduce:\n- categorized edge cases\n- risk level\n- likely impact\n- suggested tests to add first\n\n### Coverage Analysis\nUse when the job is deciding where coverage is weak.\n\nProduce:\n- current coverage summary if data exists\n- specific untested branches, functions, or scenarios\n- risk-based prioritization\n- recommended next tests",
+      "rationale": "All four original modes and every mode-specific output are retained verbatim. Coverage-only work may state evidenced gaps with no invented tests."
+    },
+    {
+      "id": "current-12-examples",
+      "source_start_line": 105,
+      "source_end_line": 114,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\n### Example Request\n> Review this change and tell me which tests to add first, including edge cases we are currently missing.\n\n### Example Output Shape\n- scope and assumptions\n- recommended tests by priority\n- unresolved risks\n- framework-specific notes",
+      "rationale": "Original example request and four example output categories remain intact."
+    },
+    {
+      "id": "current-13-evaluation-rubric",
+      "source_start_line": 115,
+      "source_end_line": 123,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Mode selection | The response chooses the correct testing mode for the task |\n| Framework fit | Recommendations respect the repo’s existing testing stack |\n| Risk coverage | Happy path, failures, and boundary cases are all considered |\n| Actionability | A developer can implement the proposed tests directly |\n| Boundary clarity | The response does not pretend tests were run when they were not |",
+      "rationale": "All five original criteria remain intact. New structure and trace links are explicitly not semantic or executed-test evidence."
+    },
+    {
+      "id": "current-14-constraints",
+      "source_start_line": 124,
+      "source_end_line": 128,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints\n- Do not execute tests automatically.\n- Do not replace project-specific framework decisions when the repository already has a clear testing stack.\n- Do not claim coverage metrics without a coverage artifact or direct evidence.",
+      "rationale": "Automatic execution, framework replacement and unsupported coverage claims remain forbidden."
+    },
+    {
+      "id": "current-15-recommendation-artifact-review",
+      "source_start_line": 129,
+      "source_end_line": 148,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Recommendation Artifact Review\n\nApply this review only to substantial authored test plans, designed test sets, coverage-gap plans or requested test artifacts. A narrow lookup or externally authored test review keeps its existing route. The writer owns the authored plan or tests; the separate reviewer checks specified behavior, existing framework, risks, assertions and gaps against the sources. Source inspection and design acceptance do not establish test execution, observed coverage or release readiness. No participant silently runs tests through this review.\n\nExisting domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.\n\n### Three Roles\n- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.\n- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.\n- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.\n\nUse actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.\n\n### Finding and Repair Cycle\n1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.\n2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.\n3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.\n4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.\n5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.\n6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "rationale": "Entire existing three-participant review protocol is retained verbatim: same writer/reviewer, no round cap, human reopened-wontfix stalemate resolution, zero open findings, source-grounded findings and no widened execution authority."
+    }
+  ]
+}

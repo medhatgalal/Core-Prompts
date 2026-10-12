@@ -28,6 +28,13 @@
   },
   "metadata_policy": {
     "portable_local_source_refs": true,
+    "mode_contract_preservation": {
+      "matching": "Exact current entry_kind, mode_slug and display_name; source inventory alone determines membership.",
+      "descriptive_fields": ["mode_summary", "required_inputs", "expected_outputs", "examples", "uplift_notes"],
+      "fallback": "For resource-backed modes, preserve existing canonical curation only where extraction supplies its documented heading-only defaults. This is preservation, not semantic revalidation; changed meaning requires independent source review.",
+      "source_authority": "Current extracted identity, invocations and source locations always win. Explicit source-authoritative descriptive fields, including empty values, override curation.",
+      "removed_or_new": "Never resurrect a removed mode or transfer curation across changed identities; new modes use current extraction."
+    },
     "routing_fitness": {
       "contract": ".meta/capability-descriptor-contract.json",
       "map_schema": "SkillJobMap.v2",

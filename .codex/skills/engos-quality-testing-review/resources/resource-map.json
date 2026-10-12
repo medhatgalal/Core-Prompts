@@ -1,0 +1,27 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "unit": [
+      "references/test-oracles.md",
+      "templates/test-design.md"
+    ],
+    "e2e": [
+      "references/test-oracles.md",
+      "templates/test-design.md"
+    ],
+    "edge-cases": [
+      "references/test-oracles.md",
+      "templates/test-design.md"
+    ],
+    "coverage": [
+      "references/test-oracles.md",
+      "templates/test-design.md"
+    ]
+  },
+  "dependencies": {
+    "templates/test-design.md": [
+      "schemas/test-design.schema.json"
+    ]
+  }
+}

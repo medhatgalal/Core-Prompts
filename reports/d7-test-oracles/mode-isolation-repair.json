@@ -1,0 +1,18 @@
+{
+  "schema_version": "D7TestIsolationRepair.v1",
+  "author": "/root/d7_implementation_astra",
+  "defect": "Resolver integration test invoked build resolve_descriptor with a mocked loader but real save_descriptor, persisting sentinel mode descriptions to the real canonical descriptor. The earlier base-path diagnostic also invoked that persistence boundary. Both were unintended writes.",
+  "observed_failure": "Controller reported canonical/five-package regression: 1 failed, 53 passed; canonical outputs held generate-unit-tests:expected_outputs and equivalent sentinels.",
+  "repair": "Capture builder save_descriptor in memory; assert exactly one save with the returned payload. Reject Path.write_text/write_bytes calls during resolver checks. Snapshot target canonical bytes and assert unchanged after both actual resolver calls.",
+  "side_effect_inspection": "Inspected full resolve_descriptor: its terminal save_descriptor is its direct write. _merge_existing_descriptor_for_apply returns an in-memory copy. Baseline resolution is read-only; baseline materialization is separate and not invoked. Imports do not invoke main.",
+  "recovery": "Restored only five target descriptive fields from captured exact base descriptor after patch; verified all four against captured values following isolated test run. Current identity/source locations retained. No emitted copies changed.",
+  "green": "..                                                                       [100%]\n2 passed, 10 deselected in 0.47s\n",
+  "pending": "Controller canonical regeneration and full canonical/five-package regression, current-source review renewal and final reviewer acceptance.",
+  "candidate_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+  "previous_seal": {
+    "path": "reports/d7-test-oracles/candidate-seal-pre-isolation-repair.json",
+    "sha256": "b6d0ca4019c78a5a1412ceec7a09b78659886ce95212f517369024f37bc840e0"
+  },
+  "old_evidence": "Original RED/base-path evidence retained, with unintended write disclosed here."
+}

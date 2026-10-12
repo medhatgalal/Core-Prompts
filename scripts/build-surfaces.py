@@ -36,7 +36,7 @@ from intent_pipeline.uac_descriptors import (
     save_descriptor,
     source_note_path,
 )
-from intent_pipeline.uac_modes import extract_declared_modes, extract_capability_modes, normalize_mode_entries, refresh_resource_mode_entries
+from intent_pipeline.uac_modes import extract_declared_modes, extract_capability_modes, normalize_mode_entries, resolve_mode_entries
 from intent_pipeline.capability_resources import effective_capability_text, load_capability_bundle, validate_shared_resource_imports
 from intent_pipeline.uac_ssot import (
     build_ssot_handoff_contract,
@@ -568,9 +568,6 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: d
     if descriptor:
         stored_quality_status = descriptor.get('quality_status')
         normalized_quality_status = 'structural_ready' if stored_quality_status == 'ship' else stored_quality_status
-        mode_entries = descriptor.get('modes') or extracted_modes
-        if (CAPABILITY_RESOURCE_SOURCE_DIR / entry.slug / 'resource-map.json').is_file():
-            mode_entries = refresh_resource_mode_entries(descriptor.get('modes') or [], extracted_modes)
         resolved = build_descriptor(
             manifest=manifest_entry,
             display_name=str(
@@ -583,7 +580,10 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: d
             family_slug=str(descriptor.get('family_slug') or entry.slug),
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
-            modes=tuple(normalize_mode_entries(mode_entries, entry.slug)),
+            modes=tuple(normalize_mode_entries(
+                resolve_mode_entries(extracted_modes, descriptor.get('modes') or [], entry.slug)
+                if (CAPABILITY_RESOURCE_SOURCE_DIR / entry.slug / 'resource-map.json').is_file()
+                else descriptor.get('modes') or extracted_modes, entry.slug)),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
             quality_status=str(normalized_quality_status) if normalized_quality_status is not None else None,

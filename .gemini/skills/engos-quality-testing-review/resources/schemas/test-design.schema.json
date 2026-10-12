@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TestDesign.v1",
+  "description": "Optional design interchange. Shape validation does not establish semantic quality, source truth, execution or coverage. Empty links mean unresolved traceability.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "requirement_ids",
+    "tests",
+    "execution_status",
+    "gaps"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "TestDesign.v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requirement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "requirements",
+          "expected",
+          "oracle",
+          "fixture",
+          "negative_case",
+          "boundary_case",
+          "command_source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "expected": {
+            "type": "string",
+            "minLength": 1
+          },
+          "oracle": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fixture": {
+            "type": "string",
+            "minLength": 1
+          },
+          "negative_case": {
+            "type": "string",
+            "minLength": 1
+          },
+          "boundary_case": {
+            "type": "string",
+            "minLength": 1
+          },
+          "command_source": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "execution_status": {
+      "const": "not_run"
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

@@ -188,9 +188,12 @@
     {
       "mode_slug": "generate-unit-tests",
       "display_name": "Generate Unit Tests",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-quality-testing-review/generate-unit-tests.toml"
+        "ssot/engos-quality-testing-review.md"
       ],
+      "source_line": 76,
       "mode_summary": "Generate isolated, framework-aware unit tests for functions, classes, and modules.",
       "required_inputs": [
         "code under test",
@@ -209,16 +212,17 @@
       "uplift_notes": [
         "Include failure and boundary cases.",
         "Prefer readable assertions and deterministic setup."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "generate-e2e-tests",
       "display_name": "Generate E2E Tests",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-quality-testing-review/generate-e2e-tests.toml"
+        "ssot/engos-quality-testing-review.md"
       ],
+      "source_line": 85,
       "mode_summary": "Design end-to-end tests around complete user or system journeys.",
       "required_inputs": [
         "workflow description",
@@ -237,16 +241,17 @@
       "uplift_notes": [
         "Call out test-data setup and synchronization explicitly.",
         "Prefer critical user paths over broad UI clicking."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "edge-cases",
       "display_name": "Edge Cases",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-quality-testing-review/edge-cases.toml"
+        "ssot/engos-quality-testing-review.md"
       ],
+      "source_line": 95,
       "mode_summary": "Identify boundary conditions, invalid states, and failure modes missing from current coverage.",
       "required_inputs": [
         "feature description",
@@ -265,16 +270,17 @@
       "uplift_notes": [
         "Rank by business or failure impact.",
         "Avoid flat lists without prioritization."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "coverage-analysis",
       "display_name": "Coverage Analysis",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-quality-testing-review/coverage-analysis.toml"
+        "ssot/engos-quality-testing-review.md"
       ],
+      "source_line": 104,
       "mode_summary": "Analyze current coverage and identify what remains untested or under-tested.",
       "required_inputs": [
         "coverage report or test inventory",
@@ -293,9 +299,7 @@
       "uplift_notes": [
         "Tie missing tests to specific code paths or workflows.",
         "Separate critical gaps from routine improvements."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     }
   ],
   "benchmark_sources": [
@@ -430,7 +434,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+      "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -537,13 +541,13 @@
         "kind": "source_conditions",
         "clauses": [
           {
-            "text": "1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes.\n3. Produce the minimum useful test set or gap analysis for the requested mode.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
+            "text": "1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes. Record proposed commands with their source and prerequisites; mark unknown runners or provenance explicitly instead of guessing.\n3. Produce the minimum useful test set or gap analysis for the requested mode. Link proposed tests to source requirements, expected observable outcomes, plausible faulty behavior and discriminating assertions, fixtures, negative cases and boundaries; mark unresolved evidence as gaps.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-quality-testing-review.md",
               "start_line": 26,
               "end_line": 30,
-              "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
             }
           }
         ]
@@ -562,7 +566,7 @@
               "path": "ssot/engos-quality-testing-review.md",
               "start_line": 33,
               "end_line": 35,
-              "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
             }
           },
           {
@@ -570,9 +574,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-testing-review.md",
-              "start_line": 125,
-              "end_line": 127,
-              "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+              "start_line": 133,
+              "end_line": 135,
+              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
             }
           }
         ]
@@ -585,9 +589,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-testing-review.md",
-              "start_line": 125,
-              "end_line": 127,
-              "sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222"
+              "start_line": 133,
+              "end_line": 135,
+              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
             }
           }
         ]
@@ -600,9 +604,22 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-testing-review.md",
-        "ssot_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
-        "effective_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
-        "resources": [],
+        "ssot_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+        "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+            "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+            "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+            "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+          }
+        ],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {},
@@ -620,7 +637,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "9df91ce12d94bd1c87aa65f403f5f83d0bceb29d626ab92112459e6bc75bc6a0"
+        "mapping_sha256": "389eb8f101daa7c2b28d69dd389f5afc67bfa1c2e854ecfbf5b27212f64073d3"
       },
       "unresolved_fields": [
         "task_phase_interpretation",
