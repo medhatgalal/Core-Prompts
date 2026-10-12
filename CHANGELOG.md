@@ -1,5 +1,13 @@
 ## Unreleased
 
+- Add explicit committed-range collection to `engos-quality-code-review`: a
+  standalone stdlib/Git helper, closed `ReviewPackage.v1` schema, exact endpoint
+  and source bindings, raw path/blob evidence, and exclusive atomic manifest
+  publication. Preserve ordinary review defaults and `Findings.v1`. Binary data
+  stays unreviewed; changed gitlinks remain incomplete without nested traversal.
+  Collection completeness is separate from correctness/security judgment,
+  consumer verification, merge, release and installation.
+
 - Add explicit source-owned resource imports with a finite registry, consumer
   declarations, generated provenance receipts and portable standalone loading.
   `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`

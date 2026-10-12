@@ -1,0 +1,138 @@
+...........................................................sFF           [100%]
+=================================== FAILURES ===================================
+________________ test_rp16_hostile_initialized_submodule[diff] _________________
+
+git_repo = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_0/repo'), <function git_repo.<locals>.git at 0x10919ddd0>, '9bea20668a99677122cc734cf70049a6d4730f0a')
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10913b930>
+capfd = <_pytest.capture.CaptureFixture object at 0x1091ade50>
+formatting = 'diff'
+
+    @pytest.mark.parametrize('formatting', ['diff', 'log'])
+    def test_rp16_hostile_initialized_submodule(git_repo, tmp_path, monkeypatch, capfd, formatting):
+        repo, git, base = git_repo
+        nested = tmp_path / 'nested'; nested.mkdir()
+        def sub(*args): return subprocess.check_output(['git', '-C', str(nested), *args], stderr=subprocess.PIPE)
+        sub('init', '-q'); sub('config', 'user.name', 'Fixture'); sub('config', 'user.email', 'fixture@example.invalid')
+        content_sentinel = b'NESTED_CONTENT_SENTINEL_D6_RP16'
+        message_sentinel = 'NESTED_MESSAGE_SENTINEL_D6_RP16'
+        (nested / 'secret').write_bytes(b'first\n'); sub('add', '.'); sub('commit', '-qm', 'nested initial')
+        first = sub('rev-parse', 'HEAD').decode().strip()
+        (nested / 'secret').write_bytes(content_sentinel); sub('commit', '-qam', message_sentinel)
+        second = sub('rev-parse', 'HEAD').decode().strip()
+        # Local file transport is permitted only in fixture SETUP, before observation.
+        git('-c', 'protocol.file.allow=always', 'submodule', 'add', '-q', str(nested), 'module')
+        child = repo / 'module'
+        subprocess.check_call(['git', '-C', str(child), 'checkout', '-q', first])
+        git('add', '.'); git('commit', '-qm', 'base gitlink'); base = git('rev-parse', 'HEAD').decode().strip()
+        subprocess.check_call(['git', '-C', str(child), 'checkout', '-q', second])
+        subprocess.check_call(['git', '-C', str(child), 'config', 'diff.submodule', formatting])
+        git('add', '.'); git('commit', '-qm', 'head gitlink'); head = git('rev-parse', 'HEAD').decode().strip()
+        git('config', 'diff.submodule', formatting)
+        module = load_collector(); original = module.Git.execute; observations = []; trace = tmp_path / 'trace.jsonl'
+        def execute(self, args):
+            # Actual Git subprocess with normal argv/environment; only add test-owned trace.
+            self.environment['GIT_TRACE2_EVENT'] = str(trace)
+            observations.append((self.command(args), str(self.repo)))
+            return original(self, args)
+        monkeypatch.setattr(module.Git, 'execute', execute)
+        out = tmp_path / 'package'; assert call_module(module, repo, base, head, out) == 2
+        captured = capfd.readouterr(); assert captured.out
+        m = json.loads((out / 'manifest.json').read_bytes())
+        assert m['status'] == 'incomplete' and any(e['code'] == 'unsupported_gitlink' for e in m['collection_errors'])
+        assert m['files'][0]['old']['mode'] == m['files'][0]['new']['mode'] == '160000'
+        assert m['files'][0]['old']['oid'] == first and m['files'][0]['new']['oid'] == second
+        diffs = [argv for argv, _ in observations if 'diff' in argv]
+        assert len(diffs) == 3
+        for argv in diffs:
+            assert '--submodule=short' in argv and '--ignore-submodules=none' in argv and 'diff.submodule=short' in argv
+        assert all(cwd == str(repo) for _, cwd in observations)
+        assert not any('cat-file' in argv and (first in argv or second in argv) for argv, _ in observations)
+        artifacts = b''.join(p.read_bytes() for p in out.rglob('*') if p.is_file())
+        assert content_sentinel not in artifacts and message_sentinel.encode() not in artifacts
+        assert first.encode() in (out / 'diff.patch').read_bytes() and second.encode() in (out / 'diff.patch').read_bytes()
+        events = [json.loads(line) for line in trace.read_bytes().splitlines()]
+        starts = [e for e in events if e.get('event') == 'start']
+        assert starts and len(starts) == len(observations)  # instrumentation positively fired
+        assert not any(e.get('event') == 'child_start' for e in events)
+        serialized = json.dumps(events)
+>       assert 'fetch' not in serialized and 'remote-' not in serialized and 'submodule--helper' not in serialized
+E       assert ('fetch' not in '[{"event": ... "code": 0}]'
+E         
+E         'fetch' is contained here:
+E         ?           ^^^^^^^^
+E           --no-lazy-fetch", "-c", "core.attributesFile=/dev/null", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "-c", "protocol.allow=never", "-c", "diff.external=", "-c", "diff.algorithm=myers", "-c", "diff.indentHeuristic=false", "-c", "diff.submodule=short", "-c", "core.quotePath=true", "-C", "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_0/repo", "rev-parse", "--is-bare-repository"]}, {"event": "cmd_ancestry", "sid": "20261012T234113.614333Z-H1b5d7dfc-P0000...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show)
+
+tests/test_review_package.py:410: AssertionError
+_________________ test_rp16_hostile_initialized_submodule[log] _________________
+
+git_repo = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_1/repo'), <function git_repo.<locals>.git at 0x109346fb0>, 'c4eec2d19a072a9c25af3e4de349127fc0b401cc')
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108b41da0>
+capfd = <_pytest.capture.CaptureFixture object at 0x1090f25d0>
+formatting = 'log'
+
+    @pytest.mark.parametrize('formatting', ['diff', 'log'])
+    def test_rp16_hostile_initialized_submodule(git_repo, tmp_path, monkeypatch, capfd, formatting):
+        repo, git, base = git_repo
+        nested = tmp_path / 'nested'; nested.mkdir()
+        def sub(*args): return subprocess.check_output(['git', '-C', str(nested), *args], stderr=subprocess.PIPE)
+        sub('init', '-q'); sub('config', 'user.name', 'Fixture'); sub('config', 'user.email', 'fixture@example.invalid')
+        content_sentinel = b'NESTED_CONTENT_SENTINEL_D6_RP16'
+        message_sentinel = 'NESTED_MESSAGE_SENTINEL_D6_RP16'
+        (nested / 'secret').write_bytes(b'first\n'); sub('add', '.'); sub('commit', '-qm', 'nested initial')
+        first = sub('rev-parse', 'HEAD').decode().strip()
+        (nested / 'secret').write_bytes(content_sentinel); sub('commit', '-qam', message_sentinel)
+        second = sub('rev-parse', 'HEAD').decode().strip()
+        # Local file transport is permitted only in fixture SETUP, before observation.
+        git('-c', 'protocol.file.allow=always', 'submodule', 'add', '-q', str(nested), 'module')
+        child = repo / 'module'
+        subprocess.check_call(['git', '-C', str(child), 'checkout', '-q', first])
+        git('add', '.'); git('commit', '-qm', 'base gitlink'); base = git('rev-parse', 'HEAD').decode().strip()
+        subprocess.check_call(['git', '-C', str(child), 'checkout', '-q', second])
+        subprocess.check_call(['git', '-C', str(child), 'config', 'diff.submodule', formatting])
+        git('add', '.'); git('commit', '-qm', 'head gitlink'); head = git('rev-parse', 'HEAD').decode().strip()
+        git('config', 'diff.submodule', formatting)
+        module = load_collector(); original = module.Git.execute; observations = []; trace = tmp_path / 'trace.jsonl'
+        def execute(self, args):
+            # Actual Git subprocess with normal argv/environment; only add test-owned trace.
+            self.environment['GIT_TRACE2_EVENT'] = str(trace)
+            observations.append((self.command(args), str(self.repo)))
+            return original(self, args)
+        monkeypatch.setattr(module.Git, 'execute', execute)
+        out = tmp_path / 'package'; assert call_module(module, repo, base, head, out) == 2
+        captured = capfd.readouterr(); assert captured.out
+        m = json.loads((out / 'manifest.json').read_bytes())
+        assert m['status'] == 'incomplete' and any(e['code'] == 'unsupported_gitlink' for e in m['collection_errors'])
+        assert m['files'][0]['old']['mode'] == m['files'][0]['new']['mode'] == '160000'
+        assert m['files'][0]['old']['oid'] == first and m['files'][0]['new']['oid'] == second
+        diffs = [argv for argv, _ in observations if 'diff' in argv]
+        assert len(diffs) == 3
+        for argv in diffs:
+            assert '--submodule=short' in argv and '--ignore-submodules=none' in argv and 'diff.submodule=short' in argv
+        assert all(cwd == str(repo) for _, cwd in observations)
+        assert not any('cat-file' in argv and (first in argv or second in argv) for argv, _ in observations)
+        artifacts = b''.join(p.read_bytes() for p in out.rglob('*') if p.is_file())
+        assert content_sentinel not in artifacts and message_sentinel.encode() not in artifacts
+        assert first.encode() in (out / 'diff.patch').read_bytes() and second.encode() in (out / 'diff.patch').read_bytes()
+        events = [json.loads(line) for line in trace.read_bytes().splitlines()]
+        starts = [e for e in events if e.get('event') == 'start']
+        assert starts and len(starts) == len(observations)  # instrumentation positively fired
+        assert not any(e.get('event') == 'child_start' for e in events)
+        serialized = json.dumps(events)
+>       assert 'fetch' not in serialized and 'remote-' not in serialized and 'submodule--helper' not in serialized
+E       assert ('fetch' not in '[{"event": ... "code": 0}]'
+E         
+E         'fetch' is contained here:
+E         ?           ^^^^^^^^
+E           --no-lazy-fetch", "-c", "core.attributesFile=/dev/null", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", "-c", "protocol.allow=never", "-c", "diff.external=", "-c", "diff.algorithm=myers", "-c", "diff.indentHeuristic=false", "-c", "diff.submodule=short", "-c", "core.quotePath=true", "-C", "/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-377/test_rp16_hostile_initialized_1/repo", "rev-parse", "--is-bare-repository"]}, {"event": "cmd_ancestry", "sid": "20261012T234123.250732Z-H1b5d7dfc-P0000...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show)
+
+tests/test_review_package.py:410: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_package.py::test_rp16_hostile_initialized_submodule[diff]
+FAILED tests/test_review_package.py::test_rp16_hostile_initialized_submodule[log]
+2 failed, 59 passed, 1 skipped in 69.95s (0:01:09)

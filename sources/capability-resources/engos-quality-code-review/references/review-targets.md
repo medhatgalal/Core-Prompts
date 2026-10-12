@@ -107,3 +107,59 @@ truth, consumer applicability, severity or acceptance authority. The reviewer an
 consuming operator must check those semantics against actual evidence before
 using the verdict. A successful capture or collection is not review completion.
 No verdict grants repair, posting, approval, merge, installation or release rights.
+
+## Explicit committed-range collection
+
+Only when an immutable committed-range package is requested, use the additive
+`collect` route: `resources/scripts/review_package.py` with its adjacent
+`resources/schemas/review-package.schema.json` and `resources/resource-map.json`.
+Ordinary review keeps the `review` route, `HEAD` default, six narrative sections
+and `Findings.v1`; staged, dirty, root-with-null-base and supplied patches are
+outside this collector. Read `--help` before invocation.
+
+```text
+python3 <owner-skill>/resources/scripts/review_package.py \
+  --repo <repository> --base <full-recorded-baseline-commit> \
+  --head <full-exact-candidate-commit> --out <new-task-owned-leaf> \
+  --task-id <task-id> --owner <task-owner> --generation <positive-integer> \
+  --repository-id <controller-repository-id> \
+  [--spec-sha256 <64-lowercase-hex>] [--plan-sha256 <64-lowercase-hex>]
+```
+
+Supply exact lowercase full commit IDs and an ancestor base. The new output leaf
+must be absent, its parent must already exist, and all ancestors must be real
+directories without symlinks or dot/dotdot components. Prefer a task-owned reports
+parent outside the repository. The helper never overwrites/resumes/removes output;
+preserve partial leaves for separately authorized cleanup and retry with a new
+leaf. Python 3.11+, Git supporting `--no-lazy-fetch` and `--attr-source`, and POSIX
+nofollow directory descriptors and no-replace hard links are required; unsupported
+runtime/preflight fails without a weaker fallback. No model, network or pip package
+is needed by the helper.
+
+Exit 0 means complete collection, 2 means incomplete collection or freeze failure,
+and 3 means invalid invocation, unsupported preflight or unsafe destination.
+A safely frozen package emits exactly one `ReviewPackageResult.v1` JSON stdout
+object containing relative `manifest.json`, its SHA-256 and collection status.
+Before freeze or on freeze failure stdout is empty; a marker left after a failed
+publication/cleanup/stdout operation is unconfirmed. Retain the receipt digest
+independently; do not accept partial files or multiply linked manifests.
+
+`ReviewPackage.v1` retains the complete parent-first base..head commit list and raw
+commit messages, endpoint net patch, NUL-framed raw/numstat records, and both-side
+raw blobs of net changed paths. Raw filenames are base64 data with escaped display
+strings; no repository filename or committed symlink target is materialized.
+Binary bytes are collected without claiming review. Changed gitlinks retain
+endpoint metadata and short-form patch IDs but make collection incomplete; no
+nested submodule history/content is read. Intermediate per-commit patches and
+unchanged consumers are not collected, even when a range's commits cancel.
+
+Caller task/owner/generation/repository and optional spec/plan hashes are assertions,
+not authenticated ownership or proof of a reviewed specification. Producer script,
+schema and map hashes bind bytes but need independent expected identities. Local
+repository identity binds the resolved common Git directory and object format;
+it is not a remote URL or portability claim. D6.S3 consumer verification is a
+separate step: reject untrusted, stale, mismatched, incomplete or tampered packages
+against independently recorded expectations. Collection completeness grants no
+correctness/security verdict, model-read proof, consumer coverage, merge, release
+or repair authority. Review still reads the material and relevant unchanged
+consumers at the exact target before producing findings.

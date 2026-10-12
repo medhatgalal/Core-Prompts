@@ -4,11 +4,17 @@
   "routes": {
     "review": [
       "references/review-targets.md"
+    ],
+    "collect": [
+      "scripts/review_package.py"
     ]
   },
   "dependencies": {
     "references/review-targets.md": [
       "schemas/findings.schema.json"
+    ],
+    "scripts/review_package.py": [
+      "schemas/review-package.schema.json"
     ]
   }
 }
