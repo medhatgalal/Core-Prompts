@@ -13,6 +13,7 @@ The standalone updater and launcher are installed or refreshed within the same p
 Exit 2 means packages were preserved and require attention; exit 1 means blocked.
 
 Options:
+  --selection-policy full-catalog|curated  Explicit future skills; one --cli or exact --profile
   --profile PATH                     Use explicit receipt-protected skills target profile
   --apply-plan PATH                  Apply only a byte/hash-verified reviewed JSON dry-run plan
   --rollback ID                      Restore exact transaction preimages, preserving later edits
@@ -37,6 +38,7 @@ DRY_RUN=0
 STRICT_CLI=0
 ALLOW_NONLOCAL_TARGET=0
 SURFACE_ONLY=0
+SELECTION_POLICY=""
 PROFILE=""
 PROFILE_AUTO=0
 APPLY_PLAN=""
@@ -44,10 +46,11 @@ ROLLBACK=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --profile|--apply-plan|--rollback)
+    --profile|--apply-plan|--rollback|--selection-policy)
       flag="$1"; shift
       [[ -n "${1:-}" ]] || { echo "error: $flag requires a value"; exit 1; }
       case "$flag" in
+        --selection-policy) SELECTION_POLICY="$1" ;;
         --profile) PROFILE="$1" ;;
         --apply-plan) APPLY_PLAN="$1" ;;
         --rollback) ROLLBACK="$1" ;;
@@ -133,6 +136,10 @@ if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
     exit 1
   fi
   exec "$installer_python" "$REPO_ROOT/scripts/deploy-profile.py" --install --repo "$REPO_ROOT" "${ORIGINAL_ARGS[@]}"
+fi
+
+if [[ -n "$SELECTION_POLICY" ]]; then
+  echo "error: --selection-policy requires an external installation target"; exit 1
 fi
 
 # A saved profile keeps later updater syncs on the selected installation contract.

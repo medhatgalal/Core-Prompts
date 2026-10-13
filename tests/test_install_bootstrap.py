@@ -262,3 +262,24 @@ def test_legacy_rollback_cannot_cross_completed_current_repair(old_runtime, brid
     assert undo_bridge.returncode == 0, output(undo_bridge)
     assert (target / ".core-prompts-updater/scripts/deploy-profile.py").read_bytes() == (old_runtime / "scripts/deploy-profile.py").read_bytes()
     assert not (target / V2_STATE).exists()
+
+
+def test_a11_real_v1_14_bridge_then_explicit_program_catalog(old_runtime, bridged):
+    target, _, _ = bridged
+    current = target/'.core-prompts-updater'
+    profile = {'schema':1,'scope':'skills','targets':['codex','kiro'],'slugs':[]}
+    request = {'mode':'repair','profile':profile,'selection_policy':'full_catalog'}
+    # Load current source only for the one reviewed bridge choice. Actual next
+    # invocation remains detached with the source-denial audit guard.
+    sys.path.insert(0,str(ROOT/'scripts'))
+    from core_install import planner,transaction
+    plan=planner.plan(ROOT,target,request)
+    assert not plan['blockers']
+    result=transaction.apply(ROOT,target,plan,lambda:planner.plan(ROOT,target,request))
+    assert result['status']=='complete'
+    additions={'engos-design-specify-change','engos-design-plan-implementation','engos-debug-diagnose-failure','engos-delivery-implement-slice'}
+    for provider in ('codex','kiro'):
+        assert additions <= {k.split(':',2)[2] for k in plan['selection'] if k.startswith(provider+':skill:')}
+    detached=detached_call(old_runtime,target,'--install','--repo',str(current),'--target',str(target),'--dry-run')
+    assert detached.returncode==0,output(detached)
+    assert json.loads(detached.stdout)['policy_after']=={'codex':'full_catalog','kiro':'full_catalog'}

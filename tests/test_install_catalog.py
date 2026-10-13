@@ -140,3 +140,39 @@ def test_generator_rejects_unverified_tag_object(tmp_path):
     actual = subprocess.check_output(["git", "rev-parse", "refs/tags/v1.12.2"], cwd=ROOT).decode().strip()
     with pytest.raises(ValueError, match="peeled commit"):
         module.verified_releases(ROOT, {"refs/tags/v1.12.2": actual, "refs/tags/v1.12.2^{}": "0" * 40})
+
+
+def test_v1_16_3_receipt_only_membership_does_not_grant_receiptless_adoption(tmp_path):
+    catalog = api()
+    value = catalog.load_catalog(ROOT)
+    assert value['releases']['v1.16.3'] == {'commit':'8e24429574d7348fca070170e2197a36d627cd2d','tag_object':'faa10b133ec38dea7ebc3376d3f59d17b4b02d59'}
+    assert {p['slug'] for p in value['receipt_membership_packages']} == catalog.RECEIPT_PROOF_SLUGS
+    assert not any(p['slug'] in catalog.RECEIPT_PROOF_SLUGS for p in catalog.packages(value))
+    from core_install import planner, transaction
+    target = tmp_path/'target';target.mkdir()
+    for spec in catalog.membership_packages(value):
+        if spec['provider'] != 'kiro' or spec['slug'] not in catalog.RECEIPT_PROOF_SLUGS:
+            continue
+        for rel, ident in spec['files'].items():
+            content = subprocess.check_output(['git','show','8e24429574d7348fca070170e2197a36d627cd2d:'+rel],cwd=ROOT)
+            path = target/rel;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(content);path.chmod(ident['mode'])
+            assert transaction.identity(path) == ident
+    plan = planner.plan(ROOT,target,{'mode':'repair','providers':['kiro'],'runtime':False})
+    assert set(catalog.RECEIPT_PROOF_SLUGS) <= {p['slug'] for p in plan['preserved']}
+    assert not any(a['path'].startswith('.kiro/') for a in plan['actions'])
+
+
+@pytest.mark.parametrize('mutation',['proof-promoted','proof-duplicate','normal-duplicate','normal-authority'])
+def test_adopt_src003_container_authority_cannot_be_promoted_or_duplicated(mutation):
+    catalog=api()
+    data=copy.deepcopy(catalog.load_catalog(ROOT))
+    if mutation=='proof-promoted':
+        data['packages'].append(copy.deepcopy(data['receipt_membership_packages'][0]))
+    elif mutation=='proof-duplicate':
+        data['receipt_membership_packages'].append(copy.deepcopy(data['receipt_membership_packages'][0]))
+    elif mutation=='normal-duplicate':
+        data['packages'].append(copy.deepcopy(data['packages'][0]))
+    else:
+        data['packages'][0]['authority']='receipt_membership_only'
+    with pytest.raises(ValueError,match='authority|duplicate'):
+        catalog.validate_catalog(data)

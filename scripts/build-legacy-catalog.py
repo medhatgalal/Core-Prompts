@@ -118,7 +118,10 @@ def build(repo: Path) -> dict:
             result["identities"][ident] = {"sha256": digest, "mode": mode}
         return identity_keys[key]
 
-    for tag, release in releases.items():
+    # Append the newly reviewed donor after the original pin set so existing
+    # identity IDs and package inventory records remain stable.
+    for tag in [t for t in releases if t != 'v1.16.3'] + (['v1.16.3'] if 'v1.16.3' in releases else []):
+        release = releases[tag]
         entries = tree(repo, release["commit"])
         script_rel = "scripts/deploy-surfaces.sh"
         script = git(repo, "show", f"{release['commit']}:{script_rel}").decode() if script_rel in entries else ""
@@ -139,6 +142,18 @@ def build(repo: Path) -> dict:
                     if any(p.startswith(resources + "/") for p in entries):
                         agent_roots.append(resources)
                     candidates.append((provider, "agent", slug, successor, agent_roots))
+        # Exactly pinned v1.16.3 supplies saved-empty-profile membership proof.
+        # These names do not join the receiptless recognition/adoption registry.
+        if tag == 'v1.16.3':
+            manifest = json.loads(git(repo, 'show', release['commit'] + ':.meta/manifest.json'))
+            for entry in manifest['ssot_sources']:
+                slug = entry['slug']
+                if slug in SUCCESSORS:
+                    continue
+                for provider in PROVIDERS:
+                    root = f'.{provider}/skills/{slug}'
+                    if root + '/SKILL.md' in entries:
+                        candidates.append((provider, 'skill', slug, slug, [root]))
         package_files = []
         for provider, kind, slug, successor, roots in candidates:
             names = sorted(p for p in entries if any(p == r or p.startswith(r + "/") for r in roots))
@@ -153,6 +168,8 @@ def build(repo: Path) -> dict:
         for provider, kind, slug, successor, roots, names in package_files:
             spec = {"provider": provider, "kind": kind, "slug": slug, "successor": package_successor(provider, kind, slug),
                     "roots": roots, "files": {p: file_ids[p] for p in names}}
+            if slug not in SUCCESSORS:
+                spec['authority'] = 'receipt_membership_only'
             key = json.dumps(spec, sort_keys=True)
             if key not in package_versions:
                 package_versions[key] = {**spec, "releases": []}
@@ -163,7 +180,8 @@ def build(repo: Path) -> dict:
             values = result["launchers"].setdefault("update_core_prompts.sh", [])
             if ident not in values:
                 values.append(ident)
-    result["packages"] = list(package_versions.values())
+    result["packages"] = [p for p in package_versions.values() if 'authority' not in p]
+    result['receipt_membership_packages'] = [p for p in package_versions.values() if p.get('authority') == 'receipt_membership_only']
     return validate_catalog(result)
 
 

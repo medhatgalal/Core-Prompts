@@ -629,3 +629,19 @@ python3 <skill>/resources/scripts/factual_audit.py roundtrip --format prompt-e-o
 Select `master-array` or `prompt-e-object` explicitly for either command. Validation returns format, valid and issues; roundtrip emits the same original-format payload only on success. Exit codes are 0 valid, 2 invalid JSON/shape/counts, and 3 CLI/input failure. Roundtrip preserves extensions and item/key order, never recomputes counts or writes the input. No cross-format conversion or DocsFactualAudit.v1 envelope is implemented.
 
 Successful factual roundtrip emits the validated original UTF-8 JSON wire text unchanged, including numeric tokens and escaped Unicode. Decimal validation preserves finite JSON values beyond binary-float range. Summary counts use JSON Schema integer semantics (0.0 is integral); booleans and fractional counts fail. This establishes format preservation, not factual truth.
+
+## Future skill selection on external targets
+
+`--selection-policy full-catalog|curated` is accepted by `install-local.sh`,
+`deploy-surfaces.sh` and `deploy-profile.py --install`. Give exactly one explicit
+`--cli` or a schema1 skills `--profile`; profiles reject `--cli` and `--slug`.
+The flag rejects `--repair`, `--with-agents`, `--surface-only`, and transaction
+controls. Full catalog rejects slug limits; fresh curated requires concrete
+skills. `--apply-plan` uses the saved request without repeating the flag.
+Repository-root deployment rejects this installation-only option.
+
+The complete whole-package import and update guidance is in [install profiles](INSTALL-PROFILES.md#choose-future-skill-membership),
+including state3 versus plan2/journal1/receipt2 and saved legacy membership
+proof. Legacy `docs/adoption/IMPORT_PROMPTS.md` guidance resolves there. Copy
+entire packages, including loader, resource map and owner-bound import receipt;
+a copied entrypoint alone cannot establish resource closure or native acceptance.

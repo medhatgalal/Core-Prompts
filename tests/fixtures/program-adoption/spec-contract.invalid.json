@@ -1,0 +1,45 @@
+{
+  "schema_version": "SpecContract.invalid",
+  "id": "native-fixture-spec-1",
+  "source_refs": [
+    {
+      "id": "request-1",
+      "ref": "fixture-request.md"
+    }
+  ],
+  "authority_ref": null,
+  "entry_order": "requirements_first",
+  "requirements": [
+    {
+      "id": "R1",
+      "condition": "positive whole-number input",
+      "behavior": "Return the square.",
+      "acceptance": [
+        "Input 3 returns 9."
+      ],
+      "unchanged_behavior": [
+        "Existing output format stays plain integer."
+      ],
+      "priority": "must"
+    },
+    {
+      "id": "R2",
+      "condition": "malformed input",
+      "behavior": "Return a clear validation error.",
+      "acceptance": [
+        "Input abc returns invalid input without a numeric result."
+      ],
+      "unchanged_behavior": [
+        "No file or network writes."
+      ],
+      "priority": "must"
+    }
+  ],
+  "non_goals": [
+    "deployment",
+    "home settings changes",
+    "implementation approval"
+  ],
+  "assumptions": [],
+  "design_refs": []
+}

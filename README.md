@@ -529,3 +529,14 @@ UAC also prepares source-backed advisory routing metadata during intake. It pres
 Name a recipe with `engos-quality-docs-review` when you need a particular artifact: `readme-authoring` produces only README_vNext.md ending in Claim Notes; `docs-bundle` produces README, technical README, visuals plan and the original array audit. Ordinary review retains its seven sections. See [all recipe examples and outputs](docs/EXAMPLES.md#optional-documentation-recipes). The [seven original prompts](docs/prompt-pack/README.md) remain callable.
 
 Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bound ship evidence. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Recipe selection grants no mutation or release authority.
+
+## Choose future skill membership for an existing installation
+
+The current source catalog contains 36 skills. An installation that previously
+selected 32 keeps those concrete skills during ordinary sync. Choose
+`--selection-policy full-catalog` to adopt current and future skills, or choose
+`curated` and add only named skills. Codex and Gemini share a physical skill root,
+so expanding both requires an explicit joint choice. See [selection and recovery](docs/INSTALL-PROFILES.md#choose-future-skill-membership)
+for the exact commands, historical receipt proof and preserved-package limits.
+Package availability does not establish native discovery or resource delivery;
+release and home activation are separate evidence.
