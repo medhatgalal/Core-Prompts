@@ -1,0 +1,39 @@
+{
+  "schema_version": "D1CIClosure.v1",
+  "result": "passed_after_process_recovery",
+  "productPayloadSha256": "c9b04205784cea34c86f8b05fc2c024d98d49c4c062d857d69c08504c6b8635f",
+  "runtime": "Python 3.14.8, task-local declared CI dependencies",
+  "alignment": "Current .gitlab-ci.yml checks; schema refresh/tag fetch recorded in D1-S1.md",
+  "originalRun": "local-ci/receipt.json",
+  "testCounts": {
+    "passedUnique": 1105,
+    "skipped": 1,
+    "subtestsPassed": 16,
+    "focusedPreReview": 45,
+    "focusedOverlap": "45 pre-review checks are not added to 1105"
+  },
+  "recovery": {
+    "classification": "process",
+    "originalFailedTests": [
+      "tests/test_package_surfaces.py::test_packaged_profile_updates_verified_release_and_rolls_back",
+      "tests/test_package_surfaces.py::test_runtime_inventory_is_available_in_a_tagged_git_mirror"
+    ],
+    "cause": "Untracked reviewed resource files omitted by git ls-files in fixture archive/mirror construction",
+    "action": "Staged exact 80-path reviewed payload; no source/test repair",
+    "rerunExit": 0,
+    "rerunOutput": "..                                                                       [100%]\n2 passed in 20.86s\n"
+  },
+  "validation": {
+    "strictSurfaces": "pass; 32 SSOT entries",
+    "compileContracts": "pass",
+    "staticCalibration": "pass; 0 model calls, semantic judges remain unqualified",
+    "installerSourceAndLegacyCatalog": "pass",
+    "packageAndProfileChecks": "pass after staged-index rerun"
+  },
+  "limitations": [
+    "Gemini native skills discovery timed out at 30 seconds; smoke has 0 failures and 1 warning, native discovery remains unverified.",
+    "One shaping test was skipped.",
+    "Structural/semantic acceptance is not behavioral improvement or promotion.",
+    "No user-home skill install or merge performed."
+  ]
+}

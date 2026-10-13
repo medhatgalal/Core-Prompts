@@ -1,0 +1,76 @@
+{
+  "schema_version": "LocalCIReceipt.v1",
+  "alignment": "Current GitLab check sequence, Python 3.14.8 and declared CI dependencies; apt/pip not replayed on macOS, explicit host tool/dependency checks retained separately",
+  "startedAt": "2026-10-11T17:53:22.028925+00:00",
+  "steps": [
+    {
+      "name": "installer-runtime",
+      "command": [
+        "python3.14",
+        "scripts/build-install-runtime.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.145,
+      "log": "reports/d2-spec-contract/local-ci/installer-runtime.log",
+      "tail": [
+        "installer capsule: verified"
+      ]
+    },
+    {
+      "name": "legacy-catalog",
+      "command": [
+        "python3.14",
+        "scripts/build-legacy-catalog.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 8.428,
+      "log": "reports/d2-spec-contract/local-ci/legacy-catalog.log",
+      "tail": [
+        "legacy catalog: 55 releases, 1627 package versions, 1514 unique identities"
+      ]
+    },
+    {
+      "name": "resources-uac",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_capability_resources.py",
+        "tests/test_resource_delivery.py",
+        "tests/test_frontier_eval_integration.py",
+        "tests/test_uac_assessment.py",
+        "tests/test_uac_ssot.py",
+        "tests/test_agent_execution_need.py",
+        "tests/test_agent_approval_lifecycle.py",
+        "tests/test_agent_surface_preservation.py",
+        "tests/test_namespace_registration.py",
+        "tests/test_uac_semantic_uplift.py",
+        "tests/test_uac_quality.py",
+        "tests/test_uac_source_integrity.py",
+        "tests/test_uac_promotion_apply.py",
+        "tests/test_supercharge_preservation.py",
+        "tests/test_supercharge_debate.py",
+        "tests/test_frontier_skill_contracts.py",
+        "tests/test_resource_backed_skill_surfaces.py"
+      ],
+      "exitCode": 1,
+      "seconds": 62.095,
+      "log": "reports/d2-spec-contract/local-ci/resources-uac.log",
+      "tail": [
+        "E        +  where 33 = len([SsotAuditEntry(slug='engos-audit-code-health', file='ssot/engos-audit-code-health.md', description='Perform a read-on...aph_change_summary': 'engos-audit-weekly-intel fits the current capability graph without required adjustments.'}), ...])",
+        "",
+        "tests/test_uac_ssot.py:27: AssertionError",
+        "=========================== short test summary info ============================",
+        "FAILED tests/test_uac_ssot.py::test_shipped_capabilities_are_skills_only - As...",
+        "1 failed, 314 passed in 56.78s"
+      ]
+    }
+  ],
+  "complete": false,
+  "passed": false,
+  "finishedAt": "2026-10-11T17:54:32.700181+00:00",
+  "commandNotation": "Interpreter location normalized to python3.14 for publication; exact invocation/results retained privately. Commands otherwise unchanged."
+}

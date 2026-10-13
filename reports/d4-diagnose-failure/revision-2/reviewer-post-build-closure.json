@@ -1,0 +1,200 @@
+{
+  "schema_version": "D4IndependentPostBuildClosure.v1",
+  "reviewer": "/root/d4_requirement_review_astra",
+  "reviewed_at": "2026-10-12T15:18:33.456786+00:00",
+  "source_sha256": "a373df4d0684d0c2c73e784e4586263cb43a442cc8e2a829f7402a1c88761bf0",
+  "effective_sha256": "5b2079ef6dbdc9657d937231e091971f5be44b33d31d14397a079e89ff136450",
+  "verdict": "delivery_metadata_and_resource_readback_closed",
+  "closed_findings": [
+    "D4-SRC-01",
+    "D4-STRUCT-01",
+    "D4-META-01"
+  ],
+  "open_material_findings": [],
+  "curation_checks": [
+    {
+      "path": "/layers/org_graph/work_graph_impact",
+      "matches_approved_curation": true
+    },
+    {
+      "path": "/consumption_hints/preferred_use_cases",
+      "matches_approved_curation": true
+    },
+    {
+      "path": "/consumption_hints/artifact_conventions",
+      "matches_approved_curation": true
+    },
+    {
+      "path": "/consumption_hints/requires_human_confirmation",
+      "matches_approved_curation": true
+    },
+    {
+      "path": "/layers/expanded/adjustment_recommendations",
+      "matches_approved_curation": true
+    },
+    {
+      "path": "/consumption_hints/invocation_style",
+      "matches_approved_curation": true
+    }
+  ],
+  "packages": [
+    {
+      "host": "codex",
+      "source_body_equal": true,
+      "descriptor_equal": true,
+      "authored_resource_hashes_equal": true,
+      "route_closure_equal": true,
+      "loader_equal_to_existing_infrastructure": true,
+      "resource_files": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/diagnosis-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/hypothesis-evidence.md",
+        "templates/reproduction-receipt.json"
+      ]
+    },
+    {
+      "host": "gemini",
+      "source_body_equal": true,
+      "descriptor_equal": true,
+      "authored_resource_hashes_equal": true,
+      "route_closure_equal": true,
+      "loader_equal_to_existing_infrastructure": true,
+      "resource_files": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/diagnosis-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/hypothesis-evidence.md",
+        "templates/reproduction-receipt.json"
+      ]
+    },
+    {
+      "host": "claude",
+      "source_body_equal": true,
+      "descriptor_equal": true,
+      "authored_resource_hashes_equal": true,
+      "route_closure_equal": true,
+      "loader_equal_to_existing_infrastructure": true,
+      "resource_files": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/diagnosis-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/hypothesis-evidence.md",
+        "templates/reproduction-receipt.json"
+      ]
+    },
+    {
+      "host": "kiro",
+      "source_body_equal": true,
+      "descriptor_equal": true,
+      "authored_resource_hashes_equal": true,
+      "route_closure_equal": true,
+      "loader_equal_to_existing_infrastructure": true,
+      "resource_files": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/diagnosis-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/hypothesis-evidence.md",
+        "templates/reproduction-receipt.json"
+      ]
+    },
+    {
+      "host": "grok",
+      "source_body_equal": true,
+      "descriptor_equal": true,
+      "authored_resource_hashes_equal": true,
+      "route_closure_equal": true,
+      "loader_equal_to_existing_infrastructure": true,
+      "resource_files": [
+        "capability.json",
+        "resource-map.json",
+        "schemas/diagnosis-receipt.schema.json",
+        "scripts/load_module.py",
+        "templates/hypothesis-evidence.md",
+        "templates/reproduction-receipt.json"
+      ]
+    }
+  ],
+  "summary_correct": true,
+  "handoff_matches_curation": true,
+  "neighbors_unchanged_at_frozen_base": true,
+  "skill_only_surfaces": true,
+  "loader_inventory": {
+    "canonical_source": "src/intent_pipeline/capability_resources.py",
+    "generated_path_pattern": ".<provider>/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
+    "sha256": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    "unchanged_from_frozen_base": true,
+    "purpose": "Existing standard-library resource validation and context assembly only; no subprocess, diagnostic runner, repair or causal assessment. File reads and emitted context do not prove model consumption.",
+    "new_diagnosis_code": false,
+    "donor_asset": false
+  },
+  "nonblocking_notes": [
+    {
+      "id": "D4-NOTE-LOADER",
+      "text": "Source Resources contain no execution helper is broad wording. In context it promises no diagnostic execution helper, which is verified. All five bundles physically include existing context assembly loader, disclosed here; do not describe bundles as containing no executable files."
+    },
+    {
+      "id": "D4-NOTE-ROUTING",
+      "text": "Job contract retains conservative source_derived_draft/unclassified_new_skill, draft_new_skill_pending_review, empty nearest_neighbors and generic not_for fallback. This is not evidence of behavioral routing fitness; canonical source explicitly preserves code-review and IC ownership."
+    }
+  ],
+  "hashes": {
+    "ssot/engos-debug-diagnose-failure.md": "a373df4d0684d0c2c73e784e4586263cb43a442cc8e2a829f7402a1c88761bf0",
+    ".meta/capabilities/engos-debug-diagnose-failure.json": "7e34c07991ad996c45496ecb637e3c0233c9e7f76326bd122c6d336cec54c87e",
+    ".meta/manifest.json": "0272d5defa75ae9a102c4a4802be071a0e00ed5d913090b015a5482715cbe654",
+    ".meta/capability-handoff.json": "2e44da273d9059562fd14531a378c78cf3dd6cdd7126d463b855361e21e4ba4e",
+    "src/intent_pipeline/capability_resources.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    ".codex/skills/engos-debug-diagnose-failure/resources/resource-map.json": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6",
+    ".codex/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340",
+    ".codex/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b",
+    ".codex/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065",
+    ".codex/skills/engos-debug-diagnose-failure/SKILL.md": "72f9936d152fe596c1c2f9228afdeb459e0b0c9ffc767901dd7d42a82d5ecba5",
+    ".codex/skills/engos-debug-diagnose-failure/resources/capability.json": "7e34c07991ad996c45496ecb637e3c0233c9e7f76326bd122c6d336cec54c87e",
+    ".codex/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    ".gemini/skills/engos-debug-diagnose-failure/resources/resource-map.json": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6",
+    ".gemini/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340",
+    ".gemini/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b",
+    ".gemini/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065",
+    ".gemini/skills/engos-debug-diagnose-failure/SKILL.md": "72f9936d152fe596c1c2f9228afdeb459e0b0c9ffc767901dd7d42a82d5ecba5",
+    ".gemini/skills/engos-debug-diagnose-failure/resources/capability.json": "7e34c07991ad996c45496ecb637e3c0233c9e7f76326bd122c6d336cec54c87e",
+    ".gemini/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    ".claude/skills/engos-debug-diagnose-failure/resources/resource-map.json": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6",
+    ".claude/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340",
+    ".claude/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b",
+    ".claude/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065",
+    ".claude/skills/engos-debug-diagnose-failure/SKILL.md": "72f9936d152fe596c1c2f9228afdeb459e0b0c9ffc767901dd7d42a82d5ecba5",
+    ".claude/skills/engos-debug-diagnose-failure/resources/capability.json": "7e34c07991ad996c45496ecb637e3c0233c9e7f76326bd122c6d336cec54c87e",
+    ".claude/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    ".kiro/skills/engos-debug-diagnose-failure/resources/resource-map.json": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6",
+    ".kiro/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340",
+    ".kiro/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b",
+    ".kiro/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065",
+    ".kiro/skills/engos-debug-diagnose-failure/SKILL.md": "72f9936d152fe596c1c2f9228afdeb459e0b0c9ffc767901dd7d42a82d5ecba5",
+    ".kiro/skills/engos-debug-diagnose-failure/resources/capability.json": "7e34c07991ad996c45496ecb637e3c0233c9e7f76326bd122c6d336cec54c87e",
+    ".kiro/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    ".grok/skills/engos-debug-diagnose-failure/resources/resource-map.json": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6",
+    ".grok/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340",
+    ".grok/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b",
+    ".grok/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065",
+    ".grok/skills/engos-debug-diagnose-failure/SKILL.md": "72f9936d152fe596c1c2f9228afdeb459e0b0c9ffc767901dd7d42a82d5ecba5",
+    ".grok/skills/engos-debug-diagnose-failure/resources/capability.json": "7e34c07991ad996c45496ecb637e3c0233c9e7f76326bd122c6d336cec54c87e",
+    ".grok/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py": "48e30c5a38201f3c0f428daec99c7c60560420a50f6e1a170a03dc2e30d68150",
+    "ssot/engos-quality-code-review.md": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+    "ssot/engos-operations-ic-assistant.md": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0"
+  },
+  "behavioral_status": "behavioral_pending",
+  "excluded_claims": [
+    "D4.S2 diagnosis exercises",
+    "behavioral promotion",
+    "comparative benefit",
+    "CI/hosted checks completion",
+    "merge",
+    "installation",
+    "release"
+  ],
+  "review_execution": "Read-only source, metadata, package and base-file comparisons; in-memory resource assembly comparisons; report writes only."
+}

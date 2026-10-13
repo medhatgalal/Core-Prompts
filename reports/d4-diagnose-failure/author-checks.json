@@ -1,0 +1,54 @@
+{
+  "schema_version": "D4AuthorChecks.v1",
+  "scope": "D4.S1 candidate/resources/docs/focused structural tests",
+  "not_run": [
+    "UAC apply",
+    "surface generation",
+    "post-generation 33/165 inventory and package checks",
+    "D4.S2 behavioral suite",
+    "new model effectiveness trials"
+  ],
+  "status": "revision2 focused structural checks pass; controller freeze, independent review and integration pending",
+  "preflight_limitation": "Default python3 resolved to Python 3.15 without pytest. Used existing isolated Python 3.14 test environment; no dependency installation.",
+  "revision1_historical_checks": [
+    {
+      "command": "python -m pytest tests/test_capability_resources.py -q",
+      "runtime": "existing isolated Python 3.14 test environment",
+      "result": "54 passed in 1.14s",
+      "exit_status": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_status": 0
+    },
+    {
+      "check": "candidate and immutable original-author-seed byte equality",
+      "result": "pass"
+    },
+    {
+      "check": "32 existing SSOT SHA256 comparisons against frozen baseline",
+      "result": "all unchanged"
+    },
+    {
+      "check": "hypotheses/receipt resource route closure",
+      "result": "pass"
+    }
+  ],
+  "checks": [
+    {
+      "command": "python -m pytest tests/test_capability_resources.py -q",
+      "runtime": "existing isolated Python 3.14 test environment",
+      "result": "63 passed in 1.29s",
+      "exit_status": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_status": 0
+    },
+    {
+      "check": "immutable original author seed SHA256 against donor admission",
+      "result": "pass"
+    }
+  ],
+  "revision": 2
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "D2S1RevisionReceipt.v1",
+  "revision": 2,
+  "reason": [
+    "test inventory still expected32 after authorized new skill33",
+    "descriptor input/output extractor requires supported list structure"
+  ],
+  "changes": [
+    "Only Required Inputs/Required Output presentation changed in candidate; sentences and seven output categories retained",
+    "Inventory assertion32to33; skill-only assertions retained",
+    "Regression asserts generated descriptor contains design/bug/authority inputs and acceptance/assumption/handoff outputs rather than generic UAC fallback"
+  ],
+  "baseline_source_sha256": "2380929f0571f50b167608508631216e3c05a3020eaaae4995ce831e1198da04",
+  "candidate_sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+  "effective_sha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+  "authority": "controller narrow repair handoff; no directSSOT/apply authority",
+  "validation": {
+    "uac_plan": "structural_ready; specification inputs/outputs verified in manifest",
+    "uac_judge": "structural_ready; candidate unchanged",
+    "inventory_tests": ".........                                                                [100%]\n9 passed, 1 deselected in 3.34s",
+    "generated_descriptor_test": "Expected RED before controller re-apply: current canonical descriptor still generic; exact failure in revision-2-preapply-tests.log",
+    "diff_check": "passed",
+    "behavioral_evidence": "previous bounded run belongs to original2380929 source; not rerun for presentation-only change, semantics pending independent renewed review"
+  },
+  "scope": "No canonical source, metadata, generated package, resource, docs or controller report modified in revision2 author repair; candidate/report artifacts and tests/test_uac_ssot.py only."
+}

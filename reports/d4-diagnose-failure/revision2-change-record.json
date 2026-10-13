@@ -1,0 +1,9 @@
+{
+  "schema_version": "D4CandidateRevision.v1",
+  "revision": 2,
+  "status": "authored; awaiting controller freeze and independent review",
+  "reason": "Independent revision1 review found required UAC headings missing and optional receipt unable to express all Required Output facts without companion prose.",
+  "contract_expansion": "Preserve every frozen DiagnosisReceipt.v1 minimum field and enum; add required nonempty conclusion, investigated_scope, remaining_uncertainty and required hypotheses[].evidence_refs. Supported/rejected require a nonempty reference list; unresolved permits empty.",
+  "original_seed_disposition": "original-author-seed.md and original donor-admission.json remain immutable revision1 provenance. Revision2 is an attributable correction, not a replacement original seed.",
+  "authority": "No new runner, repair authority, D4.S2 fixtures, apply, generation or delivery."
+}

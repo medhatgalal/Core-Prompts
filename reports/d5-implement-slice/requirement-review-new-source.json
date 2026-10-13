@@ -1,0 +1,219 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-delivery-implement-slice",
+  "original_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+  "candidate_sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a",
+  "effective_sha256": "343964c3432a50aff35467dc65537d7aade1b57860ed25144dc3a52ecc5c765f",
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/d5_requirement_review_astra",
+    "author_agent_id": "/root/d5_implementation_astra",
+    "independent": true
+  },
+  "source_line_count": 94,
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "NEW-SOURCE-01",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: \"engos-delivery-implement-slice\"\ndescription: \"Implement one bounded software change from an accepted task or clear request, preserve unrelated work, and report verification tied to the actual patch. Use for a scoped feature or repair; use the review-feedback capability when selected reviewer comments define the work.\"\ndisplay_name: \"Implement a Bounded Slice\"\nkind: \"workflow\"\ncapability_type: \"skill\"\ninstall_target: \"global\"\n---\n# Implement a Bounded Slice",
+      "rationale": "Skill-only identity and bounded description; global packaging intent grants no install authority. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-02",
+      "source_start_line": 11,
+      "source_end_line": 16,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nTurn an authorized implementation request into a small, usable software change with evidence a reviewer can inspect. Start from an accepted task contract or an equally clear plain-language request. A small ask needs a readable result, not a new planning ceremony or mandatory JSON file.\n\n## Primary Objective\nDeliver the requested slice within its allowed writes and stop condition, with proportionate verification and an honest account of what remains unverified.",
+      "rationale": "Authorized contract or clear plain request; bounded outcome without mandatory JSON or ceremony. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-03",
+      "source_start_line": 17,
+      "source_end_line": 21,
+      "disposition": "preserved",
+      "candidate_excerpt": "## In Scope\n- One bounded feature, defect repair, or implementation step in an accepted plan.\n- Repository inspection, scoped edits, relevant documentation, and checks needed to demonstrate the requested outcome.\n- A concise handoff, optionally using `SliceReceipt.v1` when a controller or downstream reviewer requests machine interchange.",
+      "rationale": "One feature, repair or accepted step; scoped docs/checks and optional receipt. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-04",
+      "source_start_line": 22,
+      "source_end_line": 24,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Rules\n- Establish the outcome, permitted changes, constraints, dependencies, verification and stop condition before editing. Resolve accessible facts yourself. Ask only when a material decision or missing authority prevents safe progress; continue independent authorized work.\n- Read applicable repository instructions and actual files. Record the starting revision and initial dirty paths; preserve unrelated changes and active work. If edits overlap unowned dirty content, resolve ownership before changing it. Never reset or rewrite unrelated work to obtain a clean tree.",
+      "rationale": "Material task context, actual repository/dirty state and ownership; unrelated work preserved. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-05",
+      "source_start_line": 25,
+      "source_end_line": 26,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Make the smallest coherent change that delivers the outcome. Do not substitute scaffolding for a usable behavior, add adjacent cleanup, invent requirements, or silently reduce acceptance criteria. Record out-of-scope discoveries for their owner.\n- Use the existing host's editor, shell, diagnostics and test facilities. Load a companion or playbook only when the current work needs it and its use is authorized. This skill does not launch agents, create goals, configure providers, or supply a universal executor.",
+      "rationale": "Small useful change, no scope expansion; existing host tools, no hidden agents/goals/provider controls. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-06",
+      "source_start_line": 27,
+      "source_end_line": 29,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Inherit stronger repository and controller requirements. This skill itself requires neither a commit after every slice nor a blanket full suite. Commit, push, merge, publish, deploy, install and destructive actions retain their existing authority boundaries; invocation alone grants none of those actions.\n- Preserve selected reviewer comment IDs and dispositions when supplied by an authorized review-fix owner. Unselected or rejected comments are context, not permission to implement them. `engos-delivery-address-code-review` remains the owner of selecting and resolving review feedback; this skill does not replace its workflow or Batman's controller gates.",
+      "rationale": "No mandatory commit or full suite; stronger rules, lifecycle authority and selected-feedback ownership preserved. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-07",
+      "source_start_line": 30,
+      "source_end_line": 31,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Workflow\n1. **Bind the task.** Inspect the accepted request and source evidence. When supplied, read `TaskContract.v1`: `id`, `outcome`, `requirement_ids`, `design_ids`, `depends_on`, `consumes`, `produces`, `likely_files`, `allowed_writes`, `constraints`, `verification`, `stop_condition`, and `authority_ref`. Check referenced inputs and prerequisites against current state; likely files are hints, not expanded write authority. Null references and unsatisfied dependencies remain explicit gaps. A plain request can supply the same meaningful context without this schema or an installed planning skill. Do not invent a task generation or contract digest absent from the supplied context.",
+      "rationale": "D3 TaskContract fields independently checked; likely_files do not expand allowed_writes. Null references and prerequisites remain gaps; plain asks do not fabricate generation/digest. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-08",
+      "source_start_line": 32,
+      "source_end_line": 33,
+      "disposition": "preserved",
+      "candidate_excerpt": "2. **Inspect the starting state.** Confirm repository, base, branch or snapshot and initial dirty files. Locate the affected code, nearest useful tests and actual test configuration or wrappers. Identify a recovery boundary for task-owned edits. State the intended change and any assumption that matters to the outcome.\n3. **Choose decisive verification.** Connect each check to an accepted behavior and an observable expected result derived from the requirement. Name a plausible defect the assertion would catch. Use the smallest relevant test, type, syntax, build or inspection path supported by repository evidence. For a bug or executable behavior change, reproduce failure before the fix when practical or required, then observe the expected pass; disclose missing red evidence. Do not delete or weaken tests to manufacture a pass. For a prose-only correction, diff and relevant link or syntax inspection may suffice. Do not claim an internal call count proves an external outcome or mock away the behavior being checked.",
+      "rationale": "Recovery boundary, requirement-derived oracles, plausible faults, practical red evidence, proportionate checks and no test weakening or mock-away proof. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-09",
+      "source_start_line": 34,
+      "source_end_line": 36,
+      "disposition": "preserved",
+      "candidate_excerpt": "4. **Implement and inspect.** Edit only the authorized slice and necessary associated documentation. Keep abstractions proportional to present requirements. Use existing diagnostics to investigate an unexpected failure before changing more code. After an ambiguous stateful operation, inspect its effects before retrying. Stop dependent work for material scope changes, inaccessible prerequisites, authority gaps or a violated stop condition; preserve completed work and explain the next decision.\n5. **Verify the candidate.** Run the selected checks on the actual candidate and retain commands, exit results and evidence references. A successful launcher is not evidence that tests ran: inspect the underlying result and expected assertions. Distinguish failed, unavailable and not-run checks. Expand checks only for repository requirements, changed behavior, new failures or unresolved risk. Refresh affected evidence after candidate changes instead of attaching stale results to a later patch.\n6. **Review the diff and hand off.** Compare the result with the accepted outcome and original dirty inventory. Account for task-owned changed files, preserved unrelated changes, actual results, remaining limitations and next owner. Distinguish local implementation from independent review, hosted CI and landing. Stop at the requested boundary; do not convert a draft or no-commit request into a delivery campaign.",
+      "rationale": "Scoped work and inspect-before-retry; stop dependent work when needed; actual candidate/launcher verification, refreshed evidence, dirty preservation and requested stopping boundary. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-10",
+      "source_start_line": 37,
+      "source_end_line": 43,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs\n- An authorized bounded outcome or accepted task, including constraints and the intended stopping point.\n- Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.\n- Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.\n- When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown.",
+      "rationale": "Authority, access and verification inputs; optional metadata remains unknown. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-11",
+      "source_start_line": 44,
+      "source_end_line": 49,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\n- The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.\n- Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.\n- Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.\n- When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values.",
+      "rationale": "Readable small-ask output; changed files, real evidence, gaps, candidate/start state, next owner and optional truthful receipt. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-12",
+      "source_start_line": 50,
+      "source_end_line": 51,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Optional receipt contract\nLoad `resources/resource-map.json` and its `receipt` route only for a structured handoff. The owned template is `resources/templates/slice-receipt.json`; the shape is `resources/schemas/slice-receipt.schema.json`. The generated bundle also contains the repository's unchanged generic `resources/scripts/load_module.py` resource loader; it assembles selected resources and does not implement, diagnose, execute checks or prove consumption.",
+      "rationale": "Optional receipt route and owned resources; generic generated Core loader is assembly-only, never execution/consumption proof. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-13",
+      "source_start_line": 52,
+      "source_end_line": 53,
+      "disposition": "preserved",
+      "candidate_excerpt": "Record the actual `base` and `head_or_snapshot_digest` with `target_kind` equal to `commit` or `dirty_snapshot`. A commit target is valid only when the claimed candidate contains no additional uncommitted changes. For a dirty snapshot, bind a stable manifest of repository-relative paths, file byte digests, deletion markers and relevant modes, and retain its evidence reference and digest method. Include task-owned and initial unrelated dirty content needed to identify the inspected state; never label HEAD alone as a dirty candidate. Keep `changed_files` limited to this task and record `initial_dirty_files` separately. If state cannot be bound, leave identity null and explain the gap in `unresolved_context`; do not claim verified completion for that state.",
+      "rationale": "Clean commit versus dirty manifest identity, file digests/deletions/modes, separate task/initial dirty paths. Unbound state cannot be verified complete. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-14",
+      "source_start_line": 54,
+      "source_end_line": 55,
+      "disposition": "preserved",
+      "candidate_excerpt": "Hash exact supplied structured contract bytes when available. `TaskContract.v1` has no generation field: use a separately supplied generation only with its provenance; otherwise `task_generation` is null. A plain ask may have a local task identifier but no structured contract hash. Null contract metadata requires an explicit unresolved-context explanation. `checks[].status = passed` requires an observed zero exit and retained evidence that the intended check actually ran. `failed` requires its observed nonzero exit and evidence; `not_run` and `unavailable` have null exit status and a reason. Schema validation enforces shape and basic consistency only; it cannot prove command execution, source truth, digest correctness, preservation, authority, meaningful assertions or completion. An empty checks list means no recorded command evidence, never a pass. Human inspection evidence can be described in `unverified` or the accompanying readable report; do not fabricate a process exit for it.",
+      "rationale": "Exact supplied contract bytes; D3 independently has no generation. Actual execution/evidence and exit/status consistency; schema/empty checks cannot prove pass, inspections invent no process exit. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-15",
+      "source_start_line": 56,
+      "source_end_line": 62,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints\n- No installed planner or oracle dependency is required. Supplied reviewed interfaces and repository facts are sufficient; unresolved material context still blocks dependent edits.\n- No hidden delegation, autonomous goal creation, automatic review-comment selection, generalized route selection, unrelated cleanup, home installation or release side effect.\n- No claim of independence from self-review, no test claim from a helper exit alone, and no completion claim from schema validity.\n- Do not expose secrets in receipts or logs. Use safe evidence references and preserve the source's disclosure boundary.",
+      "rationale": "No installed sibling dependency, hidden delegation/goal/router, feedback selection, home/release side effects or self-review independence. Secrets/disclosure preserved. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-16",
+      "source_start_line": 63,
+      "source_end_line": 68,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\n- \u201cImplement this accepted task and stop with a reviewable patch.\u201d\n- \u201cFix the boundary error, show the focused regression result, and do not commit.\u201d\n- \u201cUse `engos-delivery-implement-slice` for the next bounded step; preserve the unrelated dirty files.\u201d\n- For existing selected reviewer feedback, begin with `engos-delivery-address-code-review`. For an explicitly requested controller protocol, use `engos-orchestration-batman`; this capability does not start it.",
+      "rationale": "Bounded direct invocation and unchanged review-feedback/Batman ownership; no automatic dispatch. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-17",
+      "source_start_line": 69,
+      "source_end_line": 71,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\n### Bounded bug repair\nRequest: \u201cReject an expired token at the exact expiry timestamp; keep valid tokens working and do not commit.\u201d Inspect the actual expiry contract and test configuration, reproduce the boundary failure when practical, change the comparison, then run boundary and valid-token checks. Report observed red/green evidence, changed files and the dirty candidate identity. Do not present a hypothetical test invocation as executed.",
+      "rationale": "Hypothetical boundary repair requires actual contract and real checks; no fabricated execution. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-18",
+      "source_start_line": 72,
+      "source_end_line": 74,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Small documentation change\nRequest: \u201cCorrect the stale configuration path in this guide.\u201d Verify the intended path, edit that guide, and inspect the diff and relevant link. A short response states the correction and inspection. No structured receipt, test suite, task generation or commit is imposed.",
+      "rationale": "Prose change permits inspection without imposed receipt, suite, generation or commit. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-19",
+      "source_start_line": 75,
+      "source_end_line": 77,
+      "disposition": "preserved",
+      "candidate_excerpt": "### False completion and missing tools\nA wrapper exits zero but produces no underlying test result. Report the test as unverified; investigate through existing diagnostics. If the required runner is missing, record `unavailable`, null exit and the missing prerequisite. Do not convert either observation into passed tests.",
+      "rationale": "Wrapper zero is not test proof; missing runner remains unavailable with null exit. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-20",
+      "source_start_line": 78,
+      "source_end_line": 80,
+      "disposition": "preserved",
+      "candidate_excerpt": "### Preserved unrelated work\nThe user authorizes one parser repair while a separate UI file is dirty. Record both starting paths, change only the parser and needed regression test, and verify the UI content remains unchanged. If selected feedback A is authorized but comment B was rejected, preserve B's rejected disposition and implement only A.",
+      "rationale": "Unrelated dirty content and rejected feedback preserved while authorized repair proceeds. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-21",
+      "source_start_line": 81,
+      "source_end_line": 90,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\nScore each dimension 0 (absent or contradicted), 1 (partial with explicit gap), or 2 (supported by inspectable evidence):\n- **Outcome and scope:** the accepted slice is usable and allowed writes and stop condition are respected.\n- **Preservation:** initial dirty state is accounted for and unrelated work remains intact.\n- **Verification:** checks target requirement-derived outcomes and plausible faults, with actual execution and limits distinguished.\n- **Evidence integrity:** results are bound to the assessed state; failed, unavailable and not-run checks cannot become passed.\n- **Handoff and authority:** remaining work and next owner are clear; no unauthorized lifecycle step, hidden agent or goal occurred.\nA reviewable result needs no zero scores and explicit treatment of partial dimensions. Verified completion additionally requires evidence for every material acceptance criterion and no unresolved identity or authority gap. A numeric score or valid receipt alone never establishes completion or comparative improvement.",
+      "rationale": "Rubric separates reviewable partial result from acceptance-complete state and identity/authority gaps; no numeric/schema comparative proof. Preservation describes this newly authored immutable intake, not a historical baseline."
+    },
+    {
+      "id": "NEW-SOURCE-22",
+      "source_start_line": 91,
+      "source_end_line": 94,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Source Admission and Differences\nThis is independently written pattern synthesis informed by [Addy Osmani's incremental implementation guidance](https://github.com/addyosmani/agent-skills/blob/1be8e34187e34647bb83adc3a1323b26ae6f6abe/skills/incremental-implementation/SKILL.md), inspected at revision `1be8e34187e34647bb83adc3a1323b26ae6f6abe`, SHA-256 `df66536610071727feae1ca95f3c391c248ad828041750ccd3699cce763aa00b`, under MIT (copyright 2025 Addy Osmani). No donor body, code, template, asset or dependency is copied. Its per-slice commit and blanket full-suite requirements are not adopted.\n\nA local installed `kiro/deliver` snapshot, SHA-256 `5c6d794efa0f8a8c9c02b5b68fd4d61958da6ae34f20c47020e083b576c23eac`, informed phase-specific context loading and honest completion concepts. Upstream revision and redistribution clearance are unknown; no literal content or bundled resources are imported. No universal router, provider controls or local installation dependency is adopted. The destination owns this new implementation workflow and its three resources; no existing clause is displaced. Reviewed TaskContract and oracle principles inform compatibility only; shared imports and sibling wiring remain separate work. This admission records inspected inputs and independently expressed differences, not behavioral superiority.",
+      "rationale": "Pinned Addy body/license and installed deliver observed hash independently checked. Attributed independent synthesis only; no donor code/resources, installed dependency, superiority or sibling wiring. Preservation describes this newly authored immutable intake, not a historical baseline."
+    }
+  ],
+  "review_kind": "new_source_admission_revision_1",
+  "reviewed_at": "2026-10-12T18:51:40.394961+00:00",
+  "source_path": "reports/d5-implement-slice/revision-1/captured-source.md",
+  "historical_preservation_claim": false,
+  "behavioral_status": "behavioral_pending",
+  "approval_scope": "D5.S1 source and three owned resources only. No agent admission, D5.S2/shared imports, merge/install/release, historical or behavioral baseline promotion, model/native equivalence or comparative benefit.",
+  "open_findings": [],
+  "separate_delivery_hold": null,
+  "resource_hashes": {
+    "sources/capability-resources/engos-delivery-implement-slice/resource-map.json": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc",
+    "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507",
+    "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+  },
+  "source_provenance": "UAC source_text/final_candidate_text exactly match frozen 94-line source. Effective closure independently recomputed and matches quality_result.judge_reports[-1].effective_sha256. Original and candidate denote exact new intake; no historical baseline claimed.",
+  "evidence": [
+    "reports/d5-implement-slice/revision-1/uac-plan.json",
+    "reports/d5-implement-slice/reviewer-pure-ssot-projection.json",
+    "reports/d5-implement-slice/reviewer-donor-verification.json",
+    "reports/d5-implement-slice/reviewer-schema-checks.json",
+    "reports/d5-implement-slice/metadata-curation-proposal.json"
+  ],
+  "closed_findings": [
+    "D5-META-01"
+  ],
+  "delivery_readback": "reports/d5-implement-slice/reviewer-post-build-closure.json",
+  "delivery_status": "local_generated_readback_verified"
+}

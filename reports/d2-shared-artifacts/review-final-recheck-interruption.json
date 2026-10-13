@@ -1,0 +1,9 @@
+{
+  "schema_version": "D2S2ReviewVerificationInterruption.v1",
+  "category": "process",
+  "command": "Python 3.14 validation environment -m pytest tests/test_capability_resources.py tests/test_resource_delivery.py tests/test_resource_source_integrity.py tests/test_resource_backed_skill_surfaces.py -q",
+  "result": "164 passed, 1 failed in 20.22s",
+  "failure": "Generated Claude specification skill directory disappeared during loader subprocess because controller recovery reapply regenerated surfaces concurrently.",
+  "evidence_status": "Invalid generation-dependent check due to concurrent build; not classified as product defect. Curated-mode unit regression passed.",
+  "recovery": "Wait for controller notification that serialized UAC recovery finished, then rerun affected generation-dependent module and final artifact readback."
+}

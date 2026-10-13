@@ -1,0 +1,87 @@
+{
+  "schema_version": "LocalCIReceipt.v1",
+  "alignment": "Current GitLab sequence, original unadapted verification commands; Python 3.14.8 plus declared dependencies. macOS setup differs from Linux apt; dependency imports verified. Read-only Git uses GIT_OPTIONAL_LOCKS=0.",
+  "gitlab_config_sha256": "a948fd07629285840955902f691d0cf88f4a424985cb348ef215edf09643a51f",
+  "startedAt": "2026-10-12T23:25:32.583544+00:00",
+  "steps": [
+    {
+      "name": "installer-runtime",
+      "sourceCommand": "python3 scripts/build-install-runtime.py --check",
+      "command": [
+        "/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skill-landscape/initiative/.validation-env-d5/bin/python",
+        "scripts/build-install-runtime.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.21,
+      "log": "reports/program-foundation/local-ci/installer-runtime.log",
+      "log_sha256": "073cb208fa060bbfb8f523669cc40a6c8e015669f36f882695b1e18e05896dd1",
+      "tail": [
+        "installer capsule: verified"
+      ]
+    },
+    {
+      "name": "legacy-catalog",
+      "sourceCommand": "python3 scripts/build-legacy-catalog.py --check",
+      "command": [
+        "/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skill-landscape/initiative/.validation-env-d5/bin/python",
+        "scripts/build-legacy-catalog.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 7.958,
+      "log": "reports/program-foundation/local-ci/legacy-catalog.log",
+      "log_sha256": "5c8e7329f92d4cae7898526e11080a66fcfa8d8afda28dfafad08139e06635f5",
+      "tail": [
+        "legacy catalog: 55 releases, 1627 package versions, 1514 unique identities"
+      ]
+    },
+    {
+      "name": "resources-uac",
+      "sourceCommand": "python3 -m pytest -q tests/test_capability_resources.py tests/test_manifest_stability.py tests/test_resource_delivery.py tests/test_resource_source_integrity.py tests/test_frontier_eval_integration.py tests/test_uac_assessment.py tests/test_uac_ssot.py tests/test_agent_execution_need.py tests/test_agent_approval_lifecycle.py tests/test_agent_surface_preservation.py tests/test_namespace_registration.py tests/test_uac_semantic_uplift.py tests/test_uac_quality.py tests/test_uac_source_integrity.py tests/test_uac_promotion_apply.py tests/test_supercharge_preservation.py tests/test_supercharge_debate.py tests/test_frontier_skill_contracts.py tests/test_resource_backed_skill_surfaces.py",
+      "command": [
+        "/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skill-landscape/initiative/.validation-env-d5/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_capability_resources.py",
+        "tests/test_manifest_stability.py",
+        "tests/test_resource_delivery.py",
+        "tests/test_resource_source_integrity.py",
+        "tests/test_frontier_eval_integration.py",
+        "tests/test_uac_assessment.py",
+        "tests/test_uac_ssot.py",
+        "tests/test_agent_execution_need.py",
+        "tests/test_agent_approval_lifecycle.py",
+        "tests/test_agent_surface_preservation.py",
+        "tests/test_namespace_registration.py",
+        "tests/test_uac_semantic_uplift.py",
+        "tests/test_uac_quality.py",
+        "tests/test_uac_source_integrity.py",
+        "tests/test_uac_promotion_apply.py",
+        "tests/test_supercharge_preservation.py",
+        "tests/test_supercharge_debate.py",
+        "tests/test_frontier_skill_contracts.py",
+        "tests/test_resource_backed_skill_surfaces.py"
+      ],
+      "exitCode": 1,
+      "seconds": 112.961,
+      "log": "reports/program-foundation/local-ci/resources-uac.log",
+      "log_sha256": "48809621e40cfb45726d49e36b42173d761a6e7dbb04786ed310845e1d9c6530",
+      "tail": [
+        "    def test_shipped_capabilities_are_skills_only() -> None:",
+        "        audits = audit_ssot_entries(ROOT)",
+        ">       assert len(audits) == 33",
+        "E       AssertionError: assert 36 == 33",
+        "E        +  where 36 = len([SsotAuditEntry(slug='engos-audit-code-health', file='ssot/engos-audit-code-health.md', description='Perform a read-on...aph_change_summary': 'engos-audit-weekly-intel fits the current capability graph without required adjustments.'}), ...])",
+        "",
+        "tests/test_uac_ssot.py:29: AssertionError",
+        "=========================== short test summary info ============================",
+        "FAILED tests/test_uac_ssot.py::test_shipped_capabilities_are_skills_only - As...",
+        "1 failed, 479 passed in 112.22s (0:01:52)"
+      ],
+      "pytestSummary": "1 failed, 479 passed in 112.22s (0:01:52)"
+    }
+  ],
+  "updatedAt": "2026-10-12T23:27:33.716948+00:00"
+}

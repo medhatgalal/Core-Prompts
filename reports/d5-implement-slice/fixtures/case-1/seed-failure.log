@@ -1,0 +1,17 @@
+test_after (test_expiry.ExpiryTests.test_after) ... ok
+test_before (test_expiry.ExpiryTests.test_before) ... ok
+test_equal (test_expiry.ExpiryTests.test_equal) ... FAIL
+
+======================================================================
+FAIL: test_equal (test_expiry.ExpiryTests.test_equal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<acceptance-fixtures>/case-1/repo/test_expiry.py", line 6, in test_equal
+    def test_equal(self): self.assertFalse(is_valid(100, 100))
+                          ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (failures=1)

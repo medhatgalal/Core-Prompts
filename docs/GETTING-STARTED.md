@@ -20,6 +20,23 @@ For engineering activity, start with `engos-audit-engineering-progress help`. Su
 
 ## Step 1: Use Installed Capabilities
 
+For a focused change, ask: “Use `engos-design-specify-change` to specify this feature
+in our existing format; show acceptance conditions, unchanged behavior and open
+assumptions.” Supply a design to select design-first, or a failure report to select
+bugfix. The result is a draft with source and authority status; a schema pass does
+not approve it. Material design and task planning remain separate jobs.
+[See all three specification routes](EXAMPLES.md#engos-design-specify-change).
+
+For an optional structured handoff, supply the accepted revision and ask:
+“Use `engos-design-architecture` with this `SpecContract.v1`; preserve requirement
+IDs, acceptance and authority, and return requirement changes to the specification
+owner.” The architecture package carries its own generated schema copy, sourced
+from `engos-design-specify-change`. It does not need that sibling installed. A
+schema pass checks shape; it grants no approval. Ordinary architecture work can
+still start from prose. [Example and expected output](EXAMPLES.md#engos-design-architecture).
+
+For a failing test or build, select `engos-debug-diagnose-failure` and supply the failure, expected behavior, repository/revision and any known reproduction. For example: “Find why this test fails; preserve the code and active sessions.” The skill discovers the repository’s real diagnostics, checks their side effects and returns causal evidence or an explicit unknown. A short readable diagnosis is sufficient; a structured receipt is optional for handoff. See the [diagnosis example](EXAMPLES.md#engos-debug-diagnose-failure).
+
 For a product/engineering shaping workshop, use `engos-design-shaping` with the
 documents you already have. It should summarize the problem and ask a few useful
 questions, not require a complete form or choose an architecture immediately.
@@ -77,13 +94,15 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, Kiro, or Grok, be
 | `engos-quality-docs-review` | "Use `engos-quality-docs-review` to review our docs IA and recommend the smallest rewrite that restores clarity." | placement decisions, drift findings, and rewrite guidance |
 | `engos-quality-gitops-review` | "Use `engos-quality-gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, companion reviews, and next steps |
 | `engos-audit-code-health` | "Use `engos-audit-code-health` to audit this repo for LOC hotspots, god objects, coupling, likely dead code, and drift from this prior audit block." | metric-backed structural findings, drift analysis, and slice-ready remediation |
-| `engos-quality-code-review` | "Use `engos-quality-code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope assessment, lifecycle and contract risks, message guidance, and merge readiness |
+| `engos-quality-code-review` | "Use `engos-quality-code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | exact staged target, findings with changed-cause and consumer evidence, scope and lifecycle risks, message guidance, and advisory readiness; missing evidence stays unverifiable |
+| `engos-delivery-implement-slice` | "Implement the expiry-boundary fix, preserve unrelated dirty files, and stop before committing." | scoped patch, actual focused check results, remaining limits and next owner; a plain request needs no installed planner or JSON contract |
 | `engos-delivery-address-code-review` | "Use `engos-delivery-address-code-review` to inspect the open MR comments and apply only the selected reviewer-requested fixes." | comments found, targeted fixes, changed files, commit guidance, and follow-up review |
 | `engos-delivery-diagram-contract-artifacts` | "Use `engos-delivery-diagram-contract-artifacts` to turn this shaped pitch into Mermaid component/sequence/data-flow diagrams plus contract and security-owner tables." | source-backed artifact manifest, diagrams, tables, evidence ledger, no-gos, and completeness judgment |
 | `engos-delivery-artifact-embed` | "Use `engos-delivery-artifact-embed` to place this unchanged shaping bundle on the HTML site and Google Doc, preserving source identity." | one placement receipt per surface, visual/readback evidence, or an explicit human step/blocker |
 | `engos-audit-engineering-progress` | "Use `engos-audit-engineering-progress` to generate an HTML progress report for this repo since 2026-06-01." | git-derived metrics, report path, and narrative tied to deterministic data |
 | `engos-audit-opex-incident-review` | "Use `engos-audit-opex-incident-review` to build today's Daily OpEx Digest and compare it with yesterday's snapshot." | decisions, owner obligations, reconciled incident and DPA metrics, progress/correction separation, stalled cohorts, evidence caveats, and the local report path |
 | `engos-operations-ic-assistant` | "Use `engos-operations-ic-assistant` to track this active incident and tell me the current phase, overdue items, and next required action." | mode, phase, next action, status-update timer, and escalation flags |
+| `engos-design-plan-implementation` | "Plan these accepted requirements using our existing plan and tracker." | independently verifiable outcomes, consumed/produced interfaces, dependency IDs, allowed writes, constraints and stop conditions; one-step work can skip elaborate planning |
 | `engos-design-plan-to-goal` | "Use `engos-design-plan-to-goal` to inspect this rollout plan and repository, then compile a compact goal plus a sealed spec/verifier packet without starting execution." | research receipt, bounded mechanism-proof anchor, empty population/exclusion intersection, per-criterion flip evidence, packet status, and host-correct next action |
 | `engos-meta-supercharge` | "Use `engos-meta-supercharge /adversarial /debate /deep` to stress-test this release decision with Bull/Bear/Decider analysis, risks, mitigants, and flip conditions." | stronger framing, constraints, sequencing, first-principles accounting, and adversarial debate when requested |
 | `engos-optimization-auto-research` | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more regressions without increasing noise." | experiment design, evaluation, and a validated winner |
@@ -93,9 +112,18 @@ If Core-Prompts is already installed in Codex, Gemini, Claude, Kiro, or Grok, be
 | `engos-content-dynamic-html-presentations` | "Use `engos-content-dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats." | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |
 | `engos-quality-testing-review` | "Use `engos-quality-testing-review` to identify the edge cases and tests this change needs." | prioritized tests and missing edge cases |
 
+`engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. See [the test-design example](EXAMPLES.md#engos-quality-testing-review).
+
+
 For complete OpEx meeting preparation, request `briefing` with incident keys; it defaults to `BRIEFING.html` and `BRIEFING.md` in your chosen directory and preserves the daily board. For an individual deep review, request `deep-dive` with the incident keys and choose Markdown or both formats. The renderer includes supplied drill-down evidence and labels missing evidence explicitly.
 
 For a complete Plan to Goal walkthrough, including a two-criterion verifier and the lint/seal/check commands, see [Plan to Goal Design](EXAMPLES.md#engos-design-plan-to-goal).
+
+### Improve an existing skill
+
+> Use engos-meta-uac-import to improve this skill under its current name. Show which current clause already covers the request, choose the smallest useful change, and prepare the candidate for review.
+
+Expect one receiving owner, a source-to-destination preservation record and the existing UAC plan/judge sequence. For “Move this unchanged approval condition next to its command,” use `engos-meta-instruction-editor` directly: expect a clause ledger and scope/link/syntax checks. A claim of improved behavior needs separate baseline evidence; these checks alone do not establish it. [Authoring choices](UAC-USAGE.md#choose-an-authoring-change).
 
 ### Try a reviewed artifact
 

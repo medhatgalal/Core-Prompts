@@ -589,10 +589,10 @@ def evaluate_imported_source_fidelity(
 def _load_declared_capability_resource_texts(
     slug: str, candidate_text: str, *, repo_root: Path | None = None,
 ) -> tuple[str, ...]:
-    from intent_pipeline.capability_resources import load_resource_bundle
+    from intent_pipeline.capability_resources import load_capability_bundle
     resource_root = ((repo_root or REPO_ROOT) / "sources" / "capability-resources" / slug).resolve()
     if (resource_root / "resource-map.json").exists():
-        return tuple(item["content"] for item in load_resource_bundle(resource_root)["resources"])
+        return tuple(item["content"] for item in load_capability_bundle(repo_root or REPO_ROOT, slug, candidate_text)["resources"])
     resource_refs = set()
     for match in re.finditer(r"`?(resources/[A-Za-z0-9_.:/@+~=-][A-Za-z0-9_./:@+~=-]*)`?", candidate_text):
         resource_refs.add(match.group(1))

@@ -1,0 +1,17 @@
+{
+  "schema_version": "SharedResourceImports.v1",
+  "imports": [
+    {
+      "id": "spec-contract-v1",
+      "owner": "engos-design-specify-change",
+      "source": "schemas/spec-contract.schema.json",
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "consumers": [
+        {
+          "slug": "engos-design-architecture",
+          "destination": "schemas/spec-contract.schema.json"
+        }
+      ]
+    }
+  ]
+}

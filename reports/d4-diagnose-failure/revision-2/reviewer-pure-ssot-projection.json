@@ -1,0 +1,161 @@
+{
+  "slug": "engos-debug-diagnose-failure",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Reproduce, localize and explain a software failure using bounded experiments that distinguish competing causes. Use for failing tests, builds or unexpected runtime behavior; return a supported cause or an explicit unknown with evidence for repair handoff.",
+      "role": "analyst",
+      "domain_tags": [
+        "analysis",
+        "debugging",
+        "engos",
+        "debug",
+        "diagnose",
+        "failure"
+      ],
+      "required_inputs": [
+        "Observed failure and expected behavior, with available logs or a reproduction request.",
+        "Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.",
+        "Existing access, permitted diagnostic actions and any time, attempt or resource limit.",
+        "Behavior that must remain unchanged; derive it from supplied requirements or ask only when material."
+      ],
+      "expected_outputs": [
+        "Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.",
+        "Current, expected and unchanged behavior bound to the subject revision.",
+        "Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.",
+        "Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.",
+        "Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-debug-diagnose-failure.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-debug-diagnose-failure.md",
+        "policy_rule_id": "ssot.engos-debug-diagnose-failure",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Diagnose a Failure"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "analysis",
+        "debugging"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Diagnose a Failure",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0"
+}

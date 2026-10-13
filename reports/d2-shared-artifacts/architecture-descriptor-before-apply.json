@@ -1,0 +1,676 @@
+{
+  "slug": "engos-design-architecture",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "debugging",
+        "prompting",
+        "engos",
+        "design"
+      ],
+      "required_inputs": [
+        "problem statement, feature request, or architectural question",
+        "current system context when refactoring or integrating with existing code",
+        "explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries",
+        "any non-goals, fixed decisions, or compatibility requirements",
+        "optional structural audit findings, with their source and measurement date; use these as design inputs rather than re-measuring codebase health"
+      ],
+      "expected_outputs": [
+        "`Problem Framing`",
+        "`Objective`",
+        "`In Scope`",
+        "`Out of Scope`",
+        "`Assumptions & Constraints`",
+        "`Architecture Recommendation`",
+        "`Component or Module Boundaries`",
+        "`Interface Contracts`",
+        "`Trade-offs`",
+        "`Rejected Alternatives`",
+        "`Migration / Rollback Plan`",
+        "`Risks & Validation`",
+        "`Decision Log`",
+        "`Confidence`"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-design-architecture.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-design-architecture.md",
+        "policy_rule_id": "ssot.engos-design-architecture",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Architecture Studio"
+    },
+    "expanded": {
+      "relationship_suggestions": [
+        "prefer explicit review or analyst companions before high-authority use",
+        "pair with review and analysis capabilities when converging design proposals"
+      ],
+      "capability_dependencies": [
+        "analysis",
+        "context"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ],
+      "quality_criteria": [
+        "Require a separate source-checking reviewer to report zero open findings on the current recommendation",
+        "Include rejected alternatives and explicit trade-offs for major design decisions",
+        "Keep migration, rollback, and validation concrete enough to execute",
+        "Meet or exceed the Harish/Alexanderdunlop source bar and the local code-review/resolve-conflict bar"
+      ],
+      "quality_gate": {
+        "reviewer_must_differ_from_writer": true,
+        "required_open_findings": 0,
+        "round_cap": null,
+        "same_writer_and_reviewer_on_revision": true
+      }
+    },
+    "org_graph": {
+      "org_role": "specialist_with_workflow_surface",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "engos-design-architecture",
+        "review"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "Architecture Studio",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "design or review an API contract",
+    "propose a schema, indexing plan, or data model",
+    "choose between design patterns or refactor directions",
+    "design a system topology, reliability model, or scale strategy",
+    "produce a migration-safe architecture recommendation with rollback guidance"
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-design-architecture",
+  "shared_summary": "Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.",
+  "shared_constraints": [
+    "Publish advisory architecture artifacts through a coordinator, one writer and a separate reviewer; do not implement application code or claim wider runtime-control authority.",
+    "Use deterministic, sectioned artifacts; finalize only when the separate reviewer reports zero open findings.",
+    "Prefer replaceable interfaces and stable boundaries over implementation-heavy advice.",
+    "Make assumptions, trade-offs, evidence, and rollback explicit.",
+    "Validate and report migration impact when designs change interfaces or ownership."
+  ],
+  "modes": [
+    {
+      "mode_slug": "design-api",
+      "display_name": "Design API",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-api.toml"
+      ],
+      "mode_summary": "Design resource-oriented APIs with explicit resource models, endpoint contracts, validation, security, and error behavior.",
+      "required_inputs": [
+        "product requirements",
+        "resource model",
+        "auth or policy constraints"
+      ],
+      "expected_outputs": [
+        "endpoint contract map",
+        "request/response contract",
+        "error model",
+        "trade-off assessment",
+        "rejected alternative",
+        "migration and rollback guidance",
+        "separate reviewer finding list with zero open findings",
+        "validation plan"
+      ],
+      "examples": [
+        "RESTful CRUD service",
+        "internal service boundary"
+      ],
+      "uplift_notes": [
+        "Prefer nouns and stable resource boundaries.",
+        "Keep auth, pagination, and versioning explicit.",
+        "Include at least one explicit rollback path for API changes."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "design-database",
+      "display_name": "Design Database",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-database.toml"
+      ],
+      "mode_summary": "Design schemas and storage structures that match access patterns, consistency goals, and evolution needs.",
+      "required_inputs": [
+        "entity list",
+        "access patterns",
+        "integrity requirements"
+      ],
+      "expected_outputs": [
+        "schema outline",
+        "index strategy",
+        "normalization notes",
+        "consistency trade-off",
+        "migration and rollback guidance",
+        "separate reviewer finding list with zero open findings"
+      ],
+      "examples": [
+        "OLTP schema",
+        "event-driven analytics subsystem"
+      ],
+      "uplift_notes": [
+        "Call out intentional denormalization and failure impact.",
+        "Tie indexes to actual query paths.",
+        "Include consistency-vs-availability trade-off and rollback checkpoint."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "design-patterns",
+      "display_name": "Design Patterns",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-patterns.toml",
+        "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md"
+      ],
+      "mode_summary": "Choose structural patterns that reduce coupling and improve replaceability under changing requirements.",
+      "required_inputs": [
+        "current design problem",
+        "extensibility goals",
+        "change history",
+        "risk boundaries"
+      ],
+      "expected_outputs": [
+        "pattern candidate list",
+        "before/after boundary sketch",
+        "rejected alternatives",
+        "risk assessment",
+        "separate reviewer finding list with zero open findings",
+        "replacement and rollback strategy"
+      ],
+      "examples": [
+        "Factory vs builder",
+        "adapter for legacy integration"
+      ],
+      "uplift_notes": [
+        "Explain trade-offs and why each fit is chosen.",
+        "Avoid pattern cargo-culting; always include replacement implications.",
+        "Include rollback plan for each non-backward-compatible boundary change."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    },
+    {
+      "mode_slug": "system-design",
+      "display_name": "System Design",
+      "source_refs": [
+        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/system-design.toml",
+        "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md"
+      ],
+      "mode_summary": "Design end-to-end architecture with explicit scaling, reliability, observability, and migration plan.",
+      "required_inputs": [
+        "functional requirements",
+        "non-functional requirements",
+        "constraints",
+        "risk tolerance"
+      ],
+      "expected_outputs": [
+        "requirements-to-architecture mapping",
+        "component model",
+        "data flow",
+        "failure model",
+        "deployment and rollback plan",
+        "dependency ownership map",
+        "separate reviewer finding list with zero open findings"
+      ],
+      "examples": [
+        "SaaS control plane",
+        "event-driven pipeline"
+      ],
+      "uplift_notes": [
+        "Keep modules replaceable where possible.",
+        "Separate policy from mechanism in each subsystem."
+      ],
+      "entry_kind": "mode",
+      "invocations": []
+    }
+  ],
+  "benchmark_sources": [
+    {
+      "provider": "github",
+      "label": "Harish Garg architecture family seed",
+      "url": "https://github.com/harish-garg/gemini-cli-prompt-library/tree/main/commands/engos-design-architecture",
+      "note": "Mode scaffold and practical request framing."
+    },
+    {
+      "provider": "github",
+      "label": "Alexanderdunlop ai-architecture-prompts",
+      "url": "https://github.com/Alexanderdunlop/ai-architecture-prompts",
+      "note": "Primary quality benchmark for black-box design and replaceability."
+    },
+    {
+      "provider": "raw",
+      "label": "Alexanderdunlop architecture prompt variant (claude-code)",
+      "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md",
+      "note": "Black-box interface doctrine and cognitive-load constraints."
+    },
+    {
+      "provider": "raw",
+      "label": "Alexanderdunlop architecture prompt variant (claude)",
+      "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md",
+      "note": "Strategic architecture framework and disciplined decision process."
+    },
+    {
+      "provider": "raw",
+      "label": "Alexanderdunlop architecture prompt variant (cursor)",
+      "url": "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/cursor-prompt.md",
+      "note": "Implementation-oriented black-box approach."
+    },
+    {
+      "provider": "local",
+      "label": "Code Review benchmark",
+      "url": "ssot/engos-quality-code-review.md",
+      "note": "Concrete output checklist, decision format, and strict quality structure."
+    },
+    {
+      "provider": "local",
+      "label": "Resolve Conflict benchmark",
+      "url": "ssot/engos-delivery-resolve-conflict.md",
+      "note": "Failure-first analysis, explicit alternatives, and deterministic decision output."
+    }
+  ],
+  "quality_profile": "architecture",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-design-architecture",
+        "strategy": "head_snapshot",
+        "group": "current_oracle",
+        "baseline_path": "sources/ssot-baselines/engos-design-architecture/baseline.md",
+        "selected_commit": "db5c3789",
+        "richness_score": 4,
+        "line_count": 842,
+        "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "db5c3789",
+          "current_head_richness_score": 4,
+          "current_head_line_count": 842,
+          "materialized_from_commit": "db5c3789"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "reviewed_modernization",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "bound_attestation",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 4,
+            "candidate_richness": 7,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "db5c3789",
+          "baseline_slug": "engos-design-architecture"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 4,
+        "candidate_richness": 7,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "API design",
+      "database design",
+      "design-pattern selection",
+      "system design",
+      "migration-safe architecture review"
+    ],
+    "artifact_conventions": [
+      "reports/engos-design-architecture/<timestamp>-summary.md",
+      "reports/engos-design-architecture/<timestamp>-decision-log.md",
+      "architecture/spec.md",
+      "architecture/decision-log.md",
+      "architecture/migration-plan.md",
+      "architecture/validation-plan.md"
+    ],
+    "invocation_style": "interactive_or_artifact_oriented",
+    "requires_human_confirmation": false
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "engos-design-architecture",
+    "strategy": "head_snapshot",
+    "group": "current_oracle",
+    "baseline_path": "sources/ssot-baselines/engos-design-architecture/baseline.md",
+    "selected_commit": "db5c3789",
+    "richness_score": 4,
+    "line_count": 842,
+    "reason": "Current SSOT baseline source snapshot materialized into the source library because no stronger curated pre-SSOT baseline has been recorded yet.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {
+      "current_head_commit": "db5c3789",
+      "current_head_richness_score": 4,
+      "current_head_line_count": 842,
+      "materialized_from_commit": "db5c3789"
+    },
+    "source": "source_library",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    }
+  ],
+  "legacy_quality_status": "ship",
+  "job_contract": {
+    "primary_job": "Design a concrete system boundary, interface, schema, or migration with explicit trade-offs.",
+    "use_when": "The user needs an implementable technical design or architecture decision.",
+    "works_on": "Systems, APIs, components, data models, dependencies, and migrations.",
+    "main_output": "A chosen design with boundaries, alternatives, failure modes, migration, and rollback.",
+    "not_for": "General mentoring, choosing among arbitrary proposals without design work, or broad repo health scanning.",
+    "authority": "Advisory design; implementation requires separate authorization.",
+    "routing_question": "Is the deliverable a technical design, or merely a recommendation among existing options?",
+    "nearest_neighbors": [
+      "engos-reconciliation-converge",
+      "engos-audit-code-health"
+    ],
+    "shape": "deep_specialist",
+    "portfolio_action": "keep_and_clarify_boundary",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "stale",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": []
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": []
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": [
+          {
+            "text": "This skill publishes advisory architecture guidance and decision artifacts through the three roles below. Its coordination is limited to this recommendation review; it grants no implementation or wider runtime-control authority.\nDo not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
+            "heading": "Purpose",
+            "source": {
+              "path": "ssot/engos-design-architecture.md",
+              "start_line": 23,
+              "end_line": 24,
+              "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+            }
+          }
+        ]
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-design-architecture",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-design-architecture.md",
+        "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+        "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {},
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "main_output",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "primary_job",
+          "routing_question",
+          "shape",
+          "use_when",
+          "works_on"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "implicit_activation_eligibility",
+        "task_phases",
+        "risk_authority_ceiling"
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "DerivedTopologyRefresh.v1",
+  "cause": "Combined source-authoritative mode locations differ from isolated D2.S2 topology",
+  "previewDidNotWrite": true,
+  "writeCommand": [
+    "bin/capability-eval",
+    "compile",
+    "--skill",
+    "engos-design-architecture",
+    "--write"
+  ],
+  "beforeSHA256": "e4a3308d523d2481c9435e255e3f22baa636374dacfd9616cb9179605c1d4055",
+  "afterSHA256": "718a05bfdbd96443948c31a820c047bbaf3627619c1578481d1763077170c3ea",
+  "scope": "generated architecture topology; no source or executable change"
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "D7DonorAdmission.v1",
+  "recorded_before_synthesis": "2026-10-12T10:11:18.353081+00:00",
+  "decision": "Admit limited independently expressed synthesis; source inspection is not efficacy evidence",
+  "donors": [
+    {
+      "donor": "Addy",
+      "origin": "https://github.com/addyosmani/agent-skills.git",
+      "expected_revision": "1be8e34187e34647bb83adc3a1323b26ae6f6abe",
+      "actual_revision": "1be8e34187e34647bb83adc3a1323b26ae6f6abe",
+      "files": [
+        {
+          "path": "skills/test-driven-development/SKILL.md",
+          "sha256": "7c0c6ac057c19d7f8be65d9f49c3a638703b868f4625c78b70da5439d5d74fca",
+          "matches_pinned_blob": true
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+          "matches_pinned_blob": true
+        }
+      ],
+      "license": "MIT; inspected entire local LICENSE, copyright 2025 Addy Osmani",
+      "reuse": "Independently expressed attributed pattern synthesis only; no copied prose, code, templates or assets. Literal or substantial reuse would require retained MIT notice.",
+      "closure": "Only command-discovery and outcome-assertion concepts selected. JS/TS testing-patterns and browser DevTools are not dependencies of the synthesis; no framework examples imported.",
+      "compatibility": "Portable design guidance; no runtime, framework, shell command or host dependency added. Existing loader retained.",
+      "rejected": "Mandatory TDD execution, blanket full-suite runs, delete-existing-code prescriptions, automatic follow-on skill invocation.",
+      "core_gap": "Existing Core Workflow step 2 inspects stack and Rules require explicit assertions; lacks command-source recording and distinction between observable outcome and internal call sequence.",
+      "destination": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "displaced_clause": "None; extend existing Workflow step 2/3 and Rules without removing four modes or review contract."
+    },
+    {
+      "donor": "Superpowers",
+      "origin": "https://github.com/obra/superpowers.git",
+      "expected_revision": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "actual_revision": "8ca22dba9a94f28898bbce59f2537ff4d87c747d",
+      "files": [
+        {
+          "path": "skills/test-driven-development/SKILL.md",
+          "sha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d",
+          "matches_pinned_blob": true
+        },
+        {
+          "path": "skills/test-driven-development/writing-good-tests.md",
+          "sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
+          "matches_pinned_blob": true
+        },
+        {
+          "path": "LICENSE",
+          "sha256": "a37e0e9697144819e1d965176ac4ae5bc3fa02d11e7812036bbcadf6dafe2400",
+          "matches_pinned_blob": true
+        }
+      ],
+      "license": "MIT; inspected entire local LICENSE, copyright 2025 Jesse Vincent",
+      "reuse": "Independently expressed attributed pattern synthesis only; no copied prose, code, templates or assets. Literal or substantial reuse would require retained MIT notice.",
+      "closure": "Read complete SKILL.md and linked writing-good-tests.md. testing-anti-patterns.md absent; actual pinned reference is writing-good-tests.md. No scripts, MCP, child skills or execution workflow imported.",
+      "compatibility": "Portable design guidance; no runtime, framework, shell command or host dependency added. Existing loader retained.",
+      "rejected": "Mandatory TDD execution, blanket full-suite runs, delete-existing-code prescriptions, automatic follow-on skill invocation.",
+      "core_gap": "Existing Core has failure/boundary cases and independent assertion review; lacks named plausible faulty implementation, independently derived expected value and worked false-positive oracle examples.",
+      "destination": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "displaced_clause": "None; extend existing Workflow step 2/3 and Rules without removing four modes or review contract."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "D5RolePersistenceRecommendation.v1",
+  "reviewer": "/root/d5_requirement_review_astra",
+  "reviewed_at": "2026-10-12T18:59:43.882551+00:00",
+  "recommendation": "Use existing slug-scoped descriptor_defaults.layer_overrides for this new capability only.",
+  "product_file": "scripts/build-surfaces.py",
+  "function": "descriptor_defaults",
+  "entry": {
+    "engos-delivery-implement-slice": {
+      "layer_overrides": {
+        "minimal": {
+          "role": "implementation_worker"
+        },
+        "org_graph": {
+          "org_role": "implementation_worker"
+        }
+      }
+    }
+  },
+  "why": "Existing resolve_descriptor applies supported layer overrides after pure classifier/descriptor resolution in both descriptor-present and descriptor-absent branches. Source Purpose/Primary Objective/Workflow establish direct implementation. No classifier logic, source wording, universal defaults, tool policy or execution mechanism changes are needed.",
+  "correction_to_prior_inference": "Controller initially inferred that the later merged descriptor read preserved role. Reviewer had conditionally agreed. Actual build readback disproved this: main first computes merge_descriptor=False at line 729, resolves/writes at 730, then merges at 731. Record the readback as controlling evidence.",
+  "focused_validation": [
+    {
+      "test": "test_implement_slice_role_override_survives_descriptor_resolution",
+      "location": "tests/test_manifest_stability.py",
+      "contract": "Parameterize descriptor absent and existing descriptor. Use actual approved source and real resolve_descriptor with writes isolated to tmp_path. Start from pure SSOT role analyst, resolve through supported defaults, assert returned and persisted roles are implementation_worker while tool_policy and approved source bytes stay unchanged. Do not stub classifier or override-application behavior."
+    },
+    {
+      "test": "test_role_override_does_not_change_other_slug",
+      "location": "tests/test_manifest_stability.py",
+      "contract": "Use another slug whose source actually classifies analyst, resolve through the same real path and assert role remains analyst. This detects accidental global override."
+    },
+    {
+      "command": "PYTHONPATH=src python3.14 -m pytest -q tests/test_manifest_stability.py -k \"implement_slice_role_override or role_override_does_not_change_other_slug\"",
+      "purpose": "Focused positive/persistence and negative scope evidence; observe pre-fix failure and post-fix pass where possible."
+    },
+    {
+      "command": "PYTHONPATH=src python3.14 -m pytest -q tests/test_manifest_stability.py::test_build_and_validate_keep_manifest_content_stable",
+      "purpose": "Existing real two-build/validation stability path; no new runner or repeated universal suite."
+    },
+    {
+      "command": "python3.14 scripts/build-surfaces.py",
+      "purpose": "Regenerate actual delivery artifacts serially after focused implementation."
+    },
+    {
+      "inspection": "Renew actual descriptor, manifest/handoff and five bundled capability.json values and byte hashes; source/resources, all existing SSOT/baseline/agent surfaces unchanged.",
+      "purpose": "Close D5-META-01 only on actual postbuild evidence, not configuration or passing unit probes alone."
+    }
+  ],
+  "authority": "Recommendation only. Reviewer has edited no product files. Controller assigns scoped implementation; no broader pipeline remediation authorized.",
+  "delivery_status": "held_pending_implementation_and_readback",
+  "behavioral_status": "behavioral_pending"
+}

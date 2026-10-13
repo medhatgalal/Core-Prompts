@@ -1,0 +1,36 @@
+{
+  "schema_version": "D7LocalValidation.v1",
+  "passed": true,
+  "testsPassed": 1110,
+  "testsSkipped": 1,
+  "subtestsPassed": 16,
+  "groups": {
+    "resources-uac": 293,
+    "shaping": 480,
+    "presentation": 19,
+    "routing": 58,
+    "apply-bootstrap": 5,
+    "packaging-profiles": 255
+  },
+  "productPaths": 61,
+  "productSha256": "70b8c7709a5d36e1efd4ff099b6fdbab3bb2d0042fbf70712f641a7577702296",
+  "python": "3.14.8",
+  "sourceSha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effectiveSha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+  "nativeDiscovery": {
+    "codex": "skipped",
+    "gemini": "ok",
+    "claude": "skipped",
+    "kiro": "skipped",
+    "grok": "skipped"
+  },
+  "limitationsText": "Local macOS run of the declared GitLab check sequence uses Python3.14.8 and declared dependencies; apt/pip setup is not replayed. One skip and four unavailable native discovery probes are disclosed; Gemini discovery passes. Test volume, schema validity and metadata preservation are not measured model benefit or native-provider equivalence.",
+  "behavioralStatus": "behavioral_pending",
+  "completedAt": "2026-10-12T11:00:08.036129+00:00",
+  "compileLog": {
+    "rawSha256": "b2bf2cbaa9e2cc0d7c836e85214ba9ea4f5aa18cdd8cbee189afec9fef58d618",
+    "rawLines": 38718,
+    "public": "local-ci/compile-contracts.log",
+    "kind": "head/tail excerpt, complete stdout retained privately"
+  }
+}

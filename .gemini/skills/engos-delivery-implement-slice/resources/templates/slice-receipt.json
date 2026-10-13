@@ -1,0 +1,22 @@
+{
+  "schema_version": "SliceReceipt.v1",
+  "task_id": null,
+  "task_generation": null,
+  "task_contract_sha256": null,
+  "base": null,
+  "target_kind": null,
+  "head_or_snapshot_digest": null,
+  "snapshot_method": null,
+  "snapshot_evidence_ref": null,
+  "changed_files": [],
+  "initial_dirty_files": [],
+  "checks": [],
+  "unverified": [
+    "Template only: no implementation or verification is recorded."
+  ],
+  "unresolved_context": [
+    "Populate actual task and candidate context; generation and structured contract hash may remain null for a plain request."
+  ],
+  "comment_dispositions": [],
+  "next_owner": "Request owner: bind the task and candidate before using this receipt."
+}

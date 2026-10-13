@@ -1,0 +1,17 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "hypotheses": [
+      "templates/hypothesis-evidence.md"
+    ],
+    "receipt": [
+      "templates/reproduction-receipt.json"
+    ]
+  },
+  "dependencies": {
+    "templates/reproduction-receipt.json": [
+      "schemas/diagnosis-receipt.schema.json"
+    ]
+  }
+}

@@ -206,9 +206,12 @@
     {
       "mode_slug": "design-api",
       "display_name": "Design API",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-api.toml"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 146,
       "mode_summary": "Design resource-oriented APIs with explicit resource models, endpoint contracts, validation, security, and error behavior.",
       "required_inputs": [
         "product requirements",
@@ -233,16 +236,17 @@
         "Prefer nouns and stable resource boundaries.",
         "Keep auth, pagination, and versioning explicit.",
         "Include at least one explicit rollback path for API changes."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "design-database",
       "display_name": "Design Database",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-database.toml"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 149,
       "mode_summary": "Design schemas and storage structures that match access patterns, consistency goals, and evolution needs.",
       "required_inputs": [
         "entity list",
@@ -265,17 +269,17 @@
         "Call out intentional denormalization and failure impact.",
         "Tie indexes to actual query paths.",
         "Include consistency-vs-availability trade-off and rollback checkpoint."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "design-patterns",
       "display_name": "Design Patterns",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/design-patterns.toml",
-        "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-prompt.md"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 152,
       "mode_summary": "Choose structural patterns that reduce coupling and improve replaceability under changing requirements.",
       "required_inputs": [
         "current design problem",
@@ -299,17 +303,17 @@
         "Explain trade-offs and why each fit is chosen.",
         "Avoid pattern cargo-culting; always include replacement implications.",
         "Include rollback plan for each non-backward-compatible boundary change."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     },
     {
       "mode_slug": "system-design",
       "display_name": "System Design",
+      "entry_kind": "mode",
+      "invocations": [],
       "source_refs": [
-        "https://github.com/harish-garg/gemini-cli-prompt-library/blob/main/commands/engos-design-architecture/system-design.toml",
-        "https://raw.githubusercontent.com/Alexanderdunlop/ai-architecture-prompts/main/prompts/claude-code-prompt.md"
+        "ssot/engos-design-architecture.md"
       ],
+      "source_line": 155,
       "mode_summary": "Design end-to-end architecture with explicit scaling, reliability, observability, and migration plan.",
       "required_inputs": [
         "functional requirements",
@@ -333,9 +337,7 @@
       "uplift_notes": [
         "Keep modules replaceable where possible.",
         "Separate policy from mechanism in each subsystem."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
+      ]
     }
   ],
   "benchmark_sources": [
@@ -426,7 +428,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
+          "classification": "additive",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -438,7 +440,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -500,7 +502,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+      "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -629,7 +631,7 @@
               "path": "ssot/engos-design-architecture.md",
               "start_line": 23,
               "end_line": 24,
-              "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+              "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
             }
           }
         ]
@@ -642,9 +644,14 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-architecture.md",
-        "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-        "effective_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
-        "resources": [],
+        "ssot_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+        "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+            "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+          }
+        ],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {},
@@ -662,7 +669,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "f1f884b16803f6d4ae00e9c0fee57fc781ddb53725f5f88d14a6db4d48f0925a"
+        "mapping_sha256": "7beb54fd78e03807513878bbb54b4a888ae081e1323f3996d4765588b3073dd6"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

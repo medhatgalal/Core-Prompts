@@ -11,6 +11,9 @@
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "a2fc641d93d08632ebbac1d834a554a189c23391d903088c08c85ac09444d2d6",
     "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
+    "f24a57c2109e7f8b4a915bcde15dae3023d8600113a09cfceee208526b2b2440",
+    "d181c5b151ba52f815b98161801a82f979451e2cbb39b5e6e99f9240b1abf38b",
+    "6767dd8130891f7e286be2b4268c3f604f5ad6c7f749d85fddb0cc604d93dae2",
     "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
     "efc7137353f02e587b1b56a35f88ea5711adbf9a34348ce88e293222c300cfd8",
     "c541168a6a146b24f47259f557c38d55d4ead0716e9257689600034b01f0bd79",
@@ -22,7 +25,16 @@
     "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
     "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
     "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
-    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+    "896bc643ca0cd70eb0068d25770502070d3270ae7cc4ee036b98e64124159f3a",
+    "29c4180fc9a5ebb9fcae5867333cc8f98f057e501c82e772791abe12951d176c",
+    "055de738566735737657fc24b7a10611c9f6e9a9a41370356d3101604ef0ef3e",
+    "d2bc69ed3c2241c180f2b4de4e421bdee66f96fb77d5efc4ec8a8d6e44160fd8",
+    "9ea5731120d9a92b24e3468871dc0cc642e7932758ed63baa8fed514d150affc",
+    "9e3a8ac6aa1b0d424f3420fbe31c0f65073698a3f99595f5689097f5224329cf",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "5643befff3e93fa07617e9e9920cde9ef3ec5321460d90905081c395628242b5"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -78,6 +90,21 @@
       "sha256": "4fdce19e68b0a2453e14c85026f2d9ed6179af4a17ffc0a48830cedb52fcd93a",
       "source": "ssot/engos-quality-testing-review.md",
       "text": "- Include failure cases and boundary cases, not only happy path."
+    },
+    {
+      "sha256": "f24a57c2109e7f8b4a915bcde15dae3023d8600113a09cfceee208526b2b2440",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "For substantial design or coverage work, load `resources/resource-map.json` using the existing `resources/scripts/load_module.py` loader with route `unit`, `e2e`, `edge-cases` or `coverage` matching the selected mode. Read the assembled `resources/references/test-oracles.md` and `resources/templates/test-design.md`; use `resources/schemas/test-design.schema.json` only when machine interchange is requested. Loader assembly is not proof of consumption or semantic adequacy."
+    },
+    {
+      "sha256": "d181c5b151ba52f815b98161801a82f979451e2cbb39b5e6e99f9240b1abf38b",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "Keep all six required artifact sections. TestDesign.v1 is optional interchange, not a mandatory sidecar; its execution status is always `not_run`. Coverage-only analysis may have no proposed tests and explicit gaps. Unknown requirements, commands or runner evidence remain explicit; schema validity, IDs and described oracles do not establish source truth, meaningfulness, acceptance, execution or coverage."
+    },
+    {
+      "sha256": "6767dd8130891f7e286be2b4268c3f604f5ad6c7f749d85fddb0cc604d93dae2",
+      "source": "ssot/engos-quality-testing-review.md",
+      "text": "Assertions must distinguish required observable behavior from plausible faulty behavior. Mock choreography alone cannot establish redeemed-token rejection; instrumentation may legitimately observe contractual side effects. The independent reviewer checks this distinction against sources. Preserve existing implementation and tests; do not prescribe blanket deletion, full-suite execution, implementation/TDD work or automatic future skill invocation."
     },
     {
       "sha256": "b7a8e70ba8ee249b10c13fd4798a88c5eb6770f0b12fd6c2f75fd49533790f13",
@@ -138,6 +165,51 @@
       "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
       "source": "ssot/engos-quality-testing-review.md",
       "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
+    },
+    {
+      "sha256": "896bc643ca0cd70eb0068d25770502070d3270ae7cc4ee036b98e64124159f3a",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "text": "For each proposed test, identify the requirement and its inspected source location. Derive an expected observable result independently of the implementation under test. Name a plausible faulty behavior and explain which assertion would distinguish it from the required behavior. A requirement ID, a plausible-sounding oracle description or schema validity cannot establish source truth, meaningfulness, acceptance, execution or coverage. Unverified requirements remain assumptions or gaps for review."
+    },
+    {
+      "sha256": "29c4180fc9a5ebb9fcae5867333cc8f98f057e501c82e772791abe12951d176c",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "text": "Prefer outputs, externally visible state and contractual effects. Internal method ordering or mock call counts alone cannot establish a behavioral claim. Instrumentation can legitimately observe a contractual effect such as an emitted event, attempted delivery, absence of a write or retry limit; state the boundary it observes and the remaining integration gap. Do not ban mocks or instrumentation categorically. Keep state essential to the claim real or use a justified faithful fixture; mocking away rejection or persistence cannot prove it works."
+    },
+    {
+      "sha256": "055de738566735737657fc24b7a10611c9f6e9a9a41370356d3101604ef0ef3e",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "text": "| A token expires at `now >= expires_at` | Fixed clock and otherwise valid token; at equality reject; immediately before accept; immediately after reject | Changing `>=` to `>` wrongly accepts equality. Assert the rejection result at equality and the acceptance result just before it, so always-reject also fails | Clock precision and rejection shape must come from the actual contract |"
+    },
+    {
+      "sha256": "d2bc69ed3c2241c180f2b4de4e421bdee66f96fb77d5efc4ec8a8d6e44160fd8",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "text": "Read existing test configuration, checked-in wrappers, neighboring tests and relevant repository/CI documentation. Record each proposed command together with the file/section or supplied instruction that supports it and any prerequisites. If a runner or command is unknown, write `unknown` and the missing evidence. Do not guess a package-manager command or imply a command ran because it was discovered. Conflicting sources remain a gap until resolved. Choose the smallest useful designed test set for the requested risk; this capability imposes no blanket full-suite run."
+    },
+    {
+      "sha256": "9ea5731120d9a92b24e3468871dc0cc642e7932758ed63baa8fed514d150affc",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "text": "Coverage-only analysis may describe evidenced gaps without inventing tests or requirement IDs. Distinguish source-inspection gaps from measured coverage and cite any actual coverage artifact. Preserve existing tests and implementation; designing a stronger oracle is not a direction to delete code, execute TDD or invoke another skill automatically."
+    },
+    {
+      "sha256": "9e3a8ac6aa1b0d424f3420fbe31c0f65073698a3f99595f5689097f5224329cf",
+      "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "text": "When machine interchange is requested, use TestDesign.v1 with the accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination."
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "5643befff3e93fa07617e9e9920cde9ef3ec5321460d90905081c395628242b5",
+      "source": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+      "text": "For coverage-only work: evidence-backed gaps and proposed next investigation; an empty test list is valid."
     }
   ],
   "review_status": "draft"

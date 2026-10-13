@@ -1,5 +1,70 @@
 ## Unreleased
 
+- Add explicit source-owned resource imports with a finite registry, consumer
+  declarations, generated provenance receipts and portable standalone loading.
+  `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`
+  schema authored by `engos-design-specify-change`; ordinary architecture input
+  remains supported. Bind source identity into review/evaluation hashes and reject
+  drift, missing resources, collisions, shadows, cycles and symlink escapes.
+  Existing no-import bundles remain compatible; importing packages require the
+  new loader, map, resources and receipt together. This is packaging and contract
+  evidence, not a measured behavioral benefit or an installation/release claim.
+
+- Add the skill-only `engos-design-specify-change` job with requirements-first,
+  design-first and bugfix routes, a portable `SpecContract.v1` schema and a blank
+  supplied-link ledger. Preserve repository formats, shaping acceptance and
+  separate architecture/planning/implementation ownership. Schema and link
+  structure do not prove approval, semantic correctness or implemented behavior.
+  Generated inventory moves from 32 to 33 skills with no named agents; behavioral
+  promotion, native Kiro equivalence, release and installation are not claimed.
+
+- Preserve curated descriptive mode contracts when resource-backed skills are
+  applied or regenerated, while retaining current source membership, locations
+  and invocations. Removed or changed mode identities do not inherit curation.
+
+- Strengthen test design under `engos-quality-testing-review`: source-linked
+  observable outcomes, fault oracles, fixtures, negative/boundary cases and command
+  provenance, plus optional TestDesign.v1 interchange fixed to `not_run`.
+  Preserve all four modes, six artifact sections and independent artifact review.
+  Keep the current name and design-only scope; no behavioral promotion is claimed.
+
+- Add `engos-delivery-implement-slice` for one accepted software task or clear
+  bounded request, with preservation of unrelated work, proportionate checks and
+  an honest handoff. Include optional `SliceReceipt.v1` resources with explicit
+  unknown metadata and commit versus dirty-snapshot identity. Keep the existing
+  review-fix and Batman contracts unchanged; no mandatory receipt, per-slice
+  commit, blanket suite, new agent, install or release is introduced.
+  The new skill's role survives regeneration through existing per-skill defaults; runtime authority is unchanged.
+- Receipt validation covers structure and result consistency; it does not prove
+  execution, source truth, preservation, behavioral improvement or live acceptance.
+
+- Add a proportionate authoring decision to `engos-meta-uac-import` under its
+  current name: reuse, harvest, combine or new, one receiving owner, source
+  provenance and preservation/displacement evidence. Keep instruction editing
+  independently callable with a semantic-change ledger and conditional handoffs.
+  Exact relocation uses preservation and structural checks; behavioral benefit
+  claims still need independent evaluation. No renames or agent surfaces added.
+
+- Bind code review to explicit commit, staged, working-tree, branch or supplied-diff
+  targets while preserving default HEAD and the existing review lenses. Add verified
+  affected-consumer evidence for introduced breakage and structured Findings.v1
+  output; incomplete or malformed evidence cannot produce a clean verdict. Reuse
+  the resource loader and retain review-only authority. Structural checks do not
+  establish actual reading, review accuracy or behavioral improvement.
+
+- Add `engos-design-plan-implementation` for ordinary task planning from accepted
+  requirements and optional architecture. Preserve existing plans and trackers,
+  describe independently verifiable outcomes and bounded writes, and provide optional
+  TaskContract.v1 / TaskPlan.v1 schemas plus a manual dependency-map template.
+  Planning does not delegate, execute, create goals or certify acceptance; no graph
+  checker, installation, release or measured benefit is claimed by this slice.
+
+- Add `engos-debug-diagnose-failure` for bounded reproduction, localization and
+  discriminating causal evidence. Preserve unknown outcomes, redact sensitive
+  evidence and keep repairs and incident coordination with their authorized owners.
+  Include optional hypothesis and `DiagnosisReceipt.v1` handoff resources and
+  focused structural checks; behavioral acceptance and effectiveness remain pending.
+
 - Bind future shaping reviews to ordered sealed source packets, host-observed
   openings, source-bound diagram pixels and stable reviewer/contributor identities.
   Keep semantic audits separate from deterministic checks and preserve historical

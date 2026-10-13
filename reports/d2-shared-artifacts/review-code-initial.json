@@ -1,0 +1,47 @@
+{
+  "schema_version": "D2S2IndependentCodeReview.v1",
+  "reviewer": {
+    "agent": "/root/d2_s2_review_astra",
+    "model_requested": "gpt-6-astra",
+    "reasoning_requested": "high",
+    "role": "independent reviewer",
+    "authored_design": false,
+    "authored_product": false
+  },
+  "status": "needs_revision",
+  "scope": "Interim implementation review before UAC and final generation",
+  "reviewed_head": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+  "source_sha256": "21c80a7b1855d1baae8d26a66815ae7bef4404624ae3940ea79dadacb7b4dc5f",
+  "open_findings": [
+    {
+      "id": "D2S2-CODE-001",
+      "severity": "high",
+      "status": "open",
+      "location": "src/intent_pipeline/capability_resources.py:204-209, load_capability_bundle no-bindings fallback",
+      "problem": "A missing registry skips consumer-declaration validation and lets canonical loading fall through to detached receipt verification. A self-consistent copied schema and receipt in the canonical consumer source is accepted without registry authority.",
+      "reproduction": "Construct owner/consumer fixture, resolve valid bundle, copy effective resource and receipt into canonical consumer, delete .meta/shared-resource-imports.json. validate_shared_resource_imports returns {}; load_capability_bundle returns identical prior hash.",
+      "observed_output": "registry_missing_canonical_receipt: {} True",
+      "required_repair": "On missing registry, scan/reject any declared shared imports or canonical receipt before build writes; canonical resolution must never use a detached receipt as import authority. Preserve legacy no-import behavior.",
+      "required_regression": "Missing registry with importing map must fail in preflight before output writes, both with absent imported bytes and with a self-consistent forged canonical bundle."
+    },
+    {
+      "id": "D2S2-CODE-002",
+      "severity": "medium",
+      "status": "open",
+      "location": "src/intent_pipeline/capability_resources.py unsupported JSON reference guard",
+      "problem": "Regex over encoded JSON misses escaped $ref keys, admitting references outside the explicitly closed shared-resource package.",
+      "reproduction": "Use valid JSON {\"\\u0024ref\":\"https://example.invalid/external-schema\"} as owner schema, update pinned digest, resolve consumer. Assembly succeeds.",
+      "observed_output": "escaped_json_ref_accepted: {\"\\u0024ref\":\"https://example.invalid/external-schema\"}",
+      "required_repair": "Check decoded JSON object keys recursively for unsupported JSON Schema reference keywords, including escaped spellings. Reject unsupported reference closure consistently; standard library only.",
+      "required_regression": "Nested/escaped $ref and $dynamicRef inputs fail closed; real SpecContract schema and ordinary imported text remain supported."
+    }
+  ],
+  "checks": [
+    "Inspected resource loader, build/validation integration, eval runner, source-path emitters and added regression diffs.",
+    "Reproduced both defects with disposable stdlib fixtures and current implementation.",
+    "Confirmed documentation substitutions are existing paths."
+  ],
+  "limits": [
+    "Implementation still in progress; full tests, candidate UAC, generated parity and final scope readback pending."
+  ]
+}

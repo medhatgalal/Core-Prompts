@@ -1,0 +1,49 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_resource_conversion_preserves_curated_product_modes_and_refreshes_modules _
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-177/test_resource_conversion_prese0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x10af429e0>
+
+    def test_resource_conversion_preserves_curated_product_modes_and_refreshes_modules(tmp_path, monkeypatch):
+        import copy
+        import importlib.util
+        from types import SimpleNamespace
+        spec = importlib.util.spec_from_file_location('build_curated_modes', ROOT / 'scripts/build-surfaces.py')
+        builder = importlib.util.module_from_spec(spec); sys.modules[spec.name] = builder; spec.loader.exec_module(builder)
+        slug = 'engos-design-architecture'
+        entry_path = tmp_path / 'ssot' / f'{slug}.md'; entry_path.parent.mkdir()
+        text = '# Architecture\n## Modes\n### Design API\nDesign the API.\n'
+        entry_path.write_text(text)
+        resource_root = tmp_path / 'sources/capability-resources' / slug; resource_root.mkdir(parents=True)
+        (resource_root / 'resource-map.json').write_text(json.dumps({'schema_version': 'CapabilityResourceMap.v1', 'shared': [], 'routes': {'context': ['guide.md']}, 'dependencies': {}}))
+        # Same slug, different entry_kind must coexist with the curated product mode.
+        (resource_root / 'guide.md').write_text('## Module: /design-api\nFresh API context.\n## Module: /current\nFresh current context.\n')
+        curated = [{'entry_kind': 'mode', 'mode_slug': mode, 'display_name': mode,
+                    'source_refs': ['https://example.org/original/' + mode],
+                    'invocations': [], 'mode_summary': 'Curated behavior for ' + mode,
+                    'required_inputs': ['existing requirements'], 'expected_outputs': ['reviewed design'],
+                    'examples': ['preserved example'], 'uplift_notes': ['preserved decision']}
+                   for mode in ['design-api', 'design-database', 'design-patterns', 'system-design']]
+        stored = {'modes': copy.deepcopy(curated) + [{'entry_kind': 'module', 'mode_slug': 'stale-context', 'mode_summary': 'Removed resource'}]}
+        monkeypatch.setattr(builder, 'ROOT', tmp_path)
+        monkeypatch.setattr(builder, 'CAPABILITY_RESOURCE_SOURCE_DIR', tmp_path / 'sources/capability-resources')
+        monkeypatch.setattr(builder, 'load_descriptor', lambda root, name: copy.deepcopy(stored))
+        monkeypatch.setattr(builder, 'resolve_historical_baseline', lambda root, name: SimpleNamespace(as_payload=lambda: {}, scenario_matrix=[]))
+        def save(root, name, value):
+            stored.clear(); stored.update(copy.deepcopy(value))
+        monkeypatch.setattr(builder, 'save_descriptor', save)
+        entry = SimpleNamespace(slug=slug, display_name='Architecture', path=entry_path, body=text)
+        manifest = {'slug': slug, 'layers': {'minimal': {'summary': 'Architecture design'}}, 'expected_surface_names': ['codex_skill']}
+        result = builder.resolve_descriptor(entry, manifest, {})
+>       assert [mode for mode in result['modes'] if mode['entry_kind'] == 'mode'] == curated
+E       AssertionError: assert [{'display_na...ts': [], ...}] == [{'display_na...esign'], ...}]
+E
+E         At index 0 diff: {'mode_slug': 'design-api', 'display_name': 'Design API', 'entry_kind': 'mode', 'invocations': [], 'source_refs': ['ssot/engos-design-architecture.md'], 'source_line': 3, 'mode_summary': 'Explicitly declared mode in the canonical skill.', 'required_inputs': [], 'expected_outputs': [], 'examples': [], 'uplift_notes': ['Composition and state rules belong to CapabilityTopology.v1.']} != {'entry_kind': 'mode', 'mode_slug': 'design-api', 'display_name': 'design-api', 'source_refs': ['https://example.org/original/design-api'], 'invocations': [], 'mode_summary...
+E
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+tests/test_resource_backed_skill_surfaces.py:197: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_resource_backed_skill_surfaces.py::test_resource_conversion_preserves_curated_product_modes_and_refreshes_modules
+1 failed, 6 deselected in 0.21s

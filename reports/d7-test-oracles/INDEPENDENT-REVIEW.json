@@ -1,0 +1,20 @@
+{
+  "schema_version": "D7IndependentReview.v1",
+  "reviewer": "/root/d7_requirement_review_astra",
+  "author": "/root/d7_implementation_astra",
+  "candidate_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+  "seal_sha256": "2bbf1baa0d5e1c4707ead106a3c6521e89d398de5f1337f62a8e3a9ee723c2ff",
+  "scope": "sealed source, routed resources, donor admission, current and historical preservation, author docs/test diff; not final generated/hosted acceptance",
+  "findings": [],
+  "open_findings": 0,
+  "source_verdict": "approved",
+  "structural_status": "structural_ready",
+  "behavioral_status": "behavioral_pending",
+  "delivery_pending": [
+    "Controller verifies actual canonical/generated display name, description, skill-only five-provider surfaces and global install guidance after authorized apply/build.",
+    "Pre-apply routing-binding failure must pass after reviewed generation; this review does not waive it.",
+    "Update candidate-only documentation when canonical apply changes that state; any author changes require renewed exact seal/diff review.",
+    "Hosted exact-head draft PR/MR checks, private report update; no merge/install/release authorized."
+  ]
+}

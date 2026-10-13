@@ -60,6 +60,19 @@ Drive destinations; unavailable access is reported, never silently substituted.
 This capability remains under pilot validation: check [current evidence and limits](docs/engos-design-shaping.md)
 before treating it as fully accepted or deployed. [More examples](docs/EXAMPLES.md#engos-design-shaping).
 
+For a focused feature or bugfix specification, use **`engos-design-specify-change`**.
+It supports requirements-first, supplied-design-first and bugfix entry while
+preserving your repository format. Expect acceptance conditions, unchanged
+behavior and explicit assumptions before a separate planning handoff. A typo
+correction needs no new spec. [Specification examples](docs/EXAMPLES.md#engos-design-specify-change).
+
+When you supply a `SpecContract.v1` for architecture work,
+**`engos-design-architecture`** can preserve its requirement IDs and acceptance
+conditions while recording design decisions. Its optional `spec-contract` route
+bundles the schema authored by the specification skill; the architecture package
+works on its own, without an installed sibling. Ordinary architecture requests
+need no SpecContract. [Architecture handoff example](docs/EXAMPLES.md#engos-design-architecture).
+
 Use this repository in this order:
 
 1. installed capabilities first
@@ -68,7 +81,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces contain `32` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces contain `36` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
@@ -86,7 +99,8 @@ claiming the earlier shaping stages ran.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |
-| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `engos-quality-code-review` | Read-only review gate; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and merge guidance |
+| Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `engos-quality-code-review` | Read-only review gate; binds the exact target and consumer evidence, with structured findings; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and advisory merge guidance |
+| Implement one accepted task or bounded software change | `engos-delivery-implement-slice` | A usable patch, proportionate checks and an honest handoff; no mandatory receipt, commit or full suite |
 | Implement selected reviewer comments from an existing PR/MR | `engos-delivery-address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
 
 Antigravity CLI (`agy`) can install the same portable skills under `~/.gemini/config/skills` using `--cli agy`.
@@ -95,9 +109,15 @@ Codex and Gemini share installed skills under `~/.agents/skills`; Gemini setting
 and agents remain under `~/.gemini`. See [installation and migration](docs/INSTALL-PROFILES.md)
 for exact previews, preservation reports, and rollback.
 
+## Improve a skill or edit its instructions
+
+Ask `engos-meta-uac-import`: “Improve this skill under its current name. Compare existing clauses, choose reuse, harvest, combine or new, and prepare one receiving-owner decision for review.” Expect a candidate and preservation/displacement record before canonical intake. Ask `engos-meta-instruction-editor` independently when the job is to clarify instructions while preserving commands, conditions and authority. Ordinary prose edits need neither intake nor a capability experiment. See [authoring choices and evidence](docs/UAC-USAGE.md#choose-an-authoring-change) and [instruction-editing examples](docs/EXAMPLES.md#engos-meta-instruction-editor).
+
 ## Installed Capabilities First
 
 Start with the shipped capabilities when you want direct help on a real task.
+
+Diagnose a concrete failure with `engos-debug-diagnose-failure`: “Explain why this test fails; do not change code.” Expect a supported cause or an explicit unknown, with redacted reproduction evidence and a bounded repair handoff. [Example](docs/EXAMPLES.md#engos-debug-diagnose-failure).
 
 ### Full Skill Index
 
@@ -105,15 +125,17 @@ These are the current source capabilities with a concrete starter ask for each o
 
 | Skill | Use it when you need to... | Starter ask | What good output looks like |
 | --- | --- | --- | --- |
+| `engos-debug-diagnose-failure` | explain a test, build or runtime failure | “Diagnose this intermittent failure without editing code.” | observed evidence, competing hypotheses, supported cause or unknown, and explicit repair scope |
 | `engos-design-shaping` | guide a rough idea through framing, evidence and a shaped pitch | "Help us frame and shape this from these notes; guide product and engineering through the missing decisions." | accepted stage, source-backed documents, scoped worker/reviewer handoffs and honest delivery status |
 | `engos-design-frame-from-vague` | frame an idea without choosing its solution | "Frame this problem only; identify missing appetite and boundaries without inventing answers." | original intake, solution-free frame, attributable decisions and useful open questions |
 | `engos-quality-shaping-gate` | assess a shaping stage or resumed handoff | "Check this stage against its actual evidence and tell us whether it can advance." | predicate-level verdict, current bindings, actionable holds and no invented approval |
 | `engos-memory-context-continuity` | work through a broad repo investigation without losing context | "Use `engos-memory-context-continuity` to inspect this subsystem over several files and keep its context, todo, and insights files current until the work is complete." | one three-file task set under `~/.analyze-context/<project>/<task-id>/`, accumulated findings, checked progress, and a scoped next action; branch and worktree paths are metadata only |
+| `engos-design-specify-change` | specify a feature, supplied design or bugfix before planning | "Specify this change in our existing format; preserve unchanged behavior and show open assumptions." | source-backed requirements, observable acceptance, non-goals, actual authority status and a bounded handoff |
 | `engos-design-architecture` | design or review interfaces, enforceable boundaries, and migration safety | "Use `engos-design-architecture` to design removal of this legacy adapter; name the check that would fail if the dependency returned." | independently reviewed options, contracts, a proposed or observed falsifier, and rollback-aware migration guidance; reviewer reports zero open findings |
 | `engos-optimization-auto-research` | improve a prompt, workflow, or system through experiments | "Use `engos-optimization-auto-research` to improve our review prompt so it catches more behavioral regressions without increasing noise." | goal contract, evaluation plan, experiments, and a winner only after evidence |
 | `engos-orchestration-batman` | implement through subagent-driven development with blocking review gates | "Batman: verify this request, publish the Host-Fit Plan, then implement this shipped-defect correction through subagent-driven TDD, blocking milestone reviews, verification, docs, PR, authorized merge, release, install, and cleanup." | instruction-integrity result, host-fit decisions, independent subagent evidence, provenance-qualified red and mutation checks, milestone decisions, progress reports, and state-specific landing receipts |
 | `engos-audit-code-health` | audit brownfield structural health without changing the repo | "Use `engos-audit-code-health` to audit this repo for LOC hotspots, god objects, coupling, dead code, and drift from this prior audit block." | verified structural findings, drift analysis, and slice-ready remediation |
-| `engos-quality-code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `engos-quality-code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | evidence-based findings, scope risks, message-quality feedback, and merge readiness |
+| `engos-quality-code-review` | review staged changes, diffs, or commits before commit, push, merge, or release | "Use `engos-quality-code-review` to review my staged changes, including resource cleanup, concurrency, operational readiness, and API/schema compatibility." | target-bound findings and verified consumer evidence, scope risks, message-quality feedback, and complete or unverifiable review status |
 | `engos-delivery-address-code-review` | apply selected fixes for existing PR/MR reviewer comments | "Use `engos-delivery-address-code-review` to inspect the open review comments on this MR and address the selected fixes only." | comments found, selected fixes, changes applied, commit guidance, and follow-up review |
 | `engos-delivery-diagram-contract-artifacts` | turn a shaped solution into durable Mermaid diagrams, API/contracts, and security ownership artifacts | "Use `engos-delivery-diagram-contract-artifacts` on this shaped pitch and produce the component, sequence, data-flow, contract, and security-owner bundle without inventing internals." | source-backed artifact manifest, Mermaid sources, contract/security tables, evidence ledger, no-gos, and completeness judgment |
 | `engos-delivery-artifact-embed` | place the authored artifact bundle on an HTML, PR/MR, chat, Google Doc, or wiki surface | "Use `engos-delivery-artifact-embed` to put this shaping bundle into the HTML site and Google Doc, preserving the source identity and naming any human step." | target adapter, source-preserving placement receipt, visual verification, or an explicit blocker/human step |
@@ -127,6 +149,7 @@ These are the current source capabilities with a concrete starter ask for each o
 | `engos-quality-gitops-review` | judge branch, PR, merge, or release readiness | "Use `engos-quality-gitops-review` to tell me whether this branch is ready for PR and what blockers remain." | gate type, blockers, required companion reviews, and next actions |
 | `engos-operations-ic-assistant` | keep an Incident Commander on-process with generic guidance by default and internal runbook mode only on request | "Use `engos-operations-ic-assistant` to track this incident, identify the current phase, and tell me the next required action." | mode, current phase, next action, status-update timer, and overdue or escalation flags |
 | `engos-audit-pitch-review` | create, review, score, or improve Shape Up pitches | "Use `engos-audit-pitch-review` to review this Shape Up engos-audit-pitch-review for appetite, risks, and betting readiness." | shaped problem, appetite fit, risks, score, and concrete improvement guidance |
+| `engos-design-plan-implementation` | turn accepted requirements into independently verifiable tasks | "Plan this accepted feature in our existing tracker; preserve unfinished work." | outcome contracts, dependencies, interfaces, bounded writes, verification and holds; optional JSON sidecars, no automatic execution |
 | `engos-design-plan-to-goal` | turn a researched implementation plan into a bounded goal packet | "Use `engos-design-plan-to-goal` to inspect this migration plan and repo, then produce a compact goal, durable spec, bounded anchor, per-criterion flip fixtures, and a sealed verifier packet." | research receipt, goal/spec/baseline packet, criterion-flip results, verifier trust, honest terminal state, and a host-correct launch command only when supported |
 | `engos-triage-my-inbox-chat-pulse` | triage Gmail and Google Chat noise into clear priorities | "Use `engos-triage-my-inbox-chat-pulse` to tell me what needs my attention across Gmail and Google Chat, then propose the next actions without sending anything." | priority-classified comms table, source summary, and proposed next actions for the hot items |
 | `engos-delivery-resolve-conflict` | analyze a merge conflict or competing edits | "Use `engos-delivery-resolve-conflict` to compare these conflicting branch edits and tell me what should survive." | conflict map, additive merge opportunities, explicit tradeoffs, and a recommended resolution |
@@ -135,6 +158,9 @@ These are the current source capabilities with a concrete starter ask for each o
 | `engos-memory-threader` | export a conversation or create a durable handoff | "Use `engos-memory-threader` to turn this chat into a reusable handoff for another engineer or model." | durable summary, preserved decisions, and next-step continuity |
 | `engos-meta-uac-import` | import and uplift new capability source into canonical state | "Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply." | landing shape, classification, overlap concerns, and the next UAC step |
 | `engos-audit-weekly-intel` | build a weekly report from multiple sources | "Use `engos-audit-weekly-intel` to produce a weekly status report from these sources." | executive summary, technical appendix, and fact-check audit |
+
+`engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. Adding routed resources preserves matching curated per-mode contracts; current source identities and locations remain authoritative. See [the test-design example](docs/EXAMPLES.md#engos-quality-testing-review).
+
 
 Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting preparation, including linked fixes, verified recurrence, customer counts, and coaching for every confirmed selected incident. OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.
 

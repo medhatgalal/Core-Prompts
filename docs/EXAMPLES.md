@@ -14,6 +14,37 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## engos-debug-diagnose-failure
+
+**Use when:** a test, build or runtime behavior fails and the cause is uncertain.
+**Why this skill first:** diagnosis needs reproduction and discriminating evidence; a candidate diff is not required.
+
+**Ask:**
+
+> Use engos-debug-diagnose-failure to explain why this CI test sometimes fails.
+> Here are the failing and passing run logs and revision. Expected: every item is
+> returned once. Preserve ordering, code and active sessions. Diagnose only;
+> use existing safe diagnostics within ten minutes.
+
+**Expected output:** current, expected and unchanged behavior; actual redacted
+commands, exit statuses, sanitized environment and evidence references; competing
+hypotheses and a discriminator. If the evidence cannot distinguish shared state
+from timing, the cause remains `unknown`. A passing retry does not mean fixed.
+The response names the next useful observation, any action requiring authorization,
+and a repair boundary without executing a repair.
+
+For durable handoff, ask for `DiagnosisReceipt.v1`. Its optional JSON template and
+schema are bundled under the skill’s `resources/templates/` and `resources/schemas/`.
+The receipt carries its conclusion, investigated scope, remaining uncertainty and
+per-hypothesis evidence references. Supported and rejected hypotheses need an actual
+reference; unresolved work may have none. Schema validation checks structure, not
+causal truth, evidence authenticity or behavioral effectiveness.
+
+**Follow with:** separately authorize the repair using the diagnosis and unchanged
+behavior as inputs. Use `engos-quality-code-review` for candidate judgment and
+`engos-operations-ic-assistant` for incident coordination. The new skill’s behavioral
+acceptance remains pending; this example is usage guidance, not an executed trial.
+
 ## One skill in the main session or an independent worker
 
 Start with the job:
@@ -264,6 +295,35 @@ At 450 lines or 45,000 bytes in either file, or at milestone closure, the agent 
 
 Expected output includes each rewritten file's before/after lines and bytes, the trigger, and evidence references. Missing files trigger recovery. TODOs and task completion are unaffected; passing the check does not mean a rewrite happened.
 
+### `engos-design-specify-change`
+
+Use when a feature, supplied design or bugfix needs a clear behavioral contract
+before planning. Preserve an existing spec system; typo-only changes and already
+explicit self-contained edits do not need a new spec.
+
+> Use engos-design-specify-change. Specify CSV export for filtered results in our
+> existing issue template. Preserve current filter and access behavior; identify
+> any target or limit that needs a decision rather than inventing one.
+
+Expect requirements with stable IDs, conditions, observable behavior, acceptance,
+unchanged behavior and priority, plus sources, authority status, non-goals and
+assumptions. Requirements-first is the default. Two alternate entries:
+
+- “Start from this supplied queue design.” Expect explicit design assumptions and
+  reconciliation of conflicts such as immediate versus delayed delivery before
+  task approval; material design choices return to architecture.
+- “Specify the duplicate-invoice bugfix while preserving valid retries.” Expect
+  separate current, expected and unchanged behavior, reproduction evidence status
+  and acceptance conditions for the failing and preservation cases.
+
+Follow with separately authorized architecture or task planning using the exact
+accepted revision. This skill does not implement the change or replace shaping
+acceptance. If machine interchange is needed, the bundled `SpecContract.v1`
+schema checks structure only. Unique ID values require a separate check, and
+neither valid fields nor connected IDs prove truth, authority, approval or correct
+behavior. The optional trace template records supplied links; it is not a checker
+or test coverage report. [Resource commands](CLI-REFERENCE.md#specification-resources).
+
 ### `engos-design-architecture`
 
 Use when:
@@ -280,6 +340,21 @@ Ask:
 
 > Use `engos-design-architecture` to recommend the safest design for this capability layout, including migration and rollback considerations.
 
+With an existing structured specification:
+
+> Use `engos-design-architecture` with this accepted `SpecContract.v1` revision.
+> Preserve requirement IDs, acceptance conditions, non-goals, source references
+> and authority status. Link design decisions to those requirements; return any
+> requirement change or unresolved conflict to the specification owner.
+
+Expect the same architecture deliverable, with explicit requirement-to-decision
+links. The optional `spec-contract` route loads a schema authored only by
+`engos-design-specify-change` and copied into the generated architecture package.
+There is no authored schema duplicate under architecture and no installed-sibling
+lookup. Valid schema shape does not establish truth, completeness or approval.
+A prose architecture request does not require a SpecContract.
+[Package-local resource command](CLI-REFERENCE.md#architecture-specification-input).
+
 Expected output:
 
 - options and tradeoffs
@@ -292,6 +367,23 @@ Expected output:
 Follow with:
 
 > Now turn that recommendation into the smallest migration-safe implementation plan.
+
+### `engos-design-plan-implementation`
+
+> Plan the accepted filtered export feature using our existing issue tracker.
+> Preserve unfinished billing tasks. Return proposed task updates without posting them.
+
+Expect one readable plan with requirement IDs, independently acceptable outcomes,
+consumed and produced interfaces, dependencies, likely files, allowed writes,
+constraints, verification oracles and stop conditions. Plain accepted requirements
+work; no specification skill or new tracker is required. Existing IDs and completed
+evidence remain intact. Unknown source digests and authority remain explicit holds.
+
+Optional `TaskContract.v1` and `TaskPlan.v1` sidecars support interchange when useful.
+A dependency map is a manual projection, not a computed ready frontier. Schema
+validation establishes shape only; it does not approve the plan, prove source truth
+or graph correctness, run tasks, invoke Batman or create a goal. A spelling fix can
+use one scoped edit and a diff check without this planning ceremony.
 
 ### `engos-design-plan-to-goal`
 
@@ -588,12 +680,21 @@ Ask:
 
 Expected output:
 
-- findings first
+- bound commit, staged, working-tree or branch target; no target argument defaults to `HEAD`
+- findings with ID, severity, location, changed cause, verified consumer for introduced breakage, impact, repair and disposition
 - evidence-based resource, concurrency, operational-readiness, or API-contract findings when those risks are present
 - scope and risk assessment
 - commit-message or change-summary feedback
 - open questions or residual risks
-- readiness decision
+- complete review with advisory readiness, or incomplete/unverifiable with explicit unread or missing evidence
+
+For a branch containing several commits:
+
+> Review this branch against the recorded task base, including every task commit. Verify callers outside the diff for any changed or deleted interface. Return the six normal review sections and, if saving a report, a `Findings.v1` record.
+
+A staged review covers the index even if the working tree differs. If the index
+is empty, the response says so before any separately labeled working-tree fallback.
+A review verdict does not apply repairs, post comments or merge the branch.
 
 Follow with:
 
@@ -629,6 +730,30 @@ Expected output:
 Follow with:
 
 > Now give the high-severity findings to `engos-design-architecture` as measured inputs. Design the target boundaries, contracts, validation, and migration without repeating the metric scan or editing files yet.
+
+### `engos-delivery-implement-slice`
+
+Use when an accepted task or clear request is ready for one bounded implementation.
+It accepts a plain request or a supplied `TaskContract.v1`; an installed planner or
+oracle skill is not a prerequisite.
+
+> Use `engos-delivery-implement-slice` to reject tokens at the exact expiry
+> timestamp while preserving valid-token behavior. Preserve the unrelated dirty
+> UI file, run the focused regression checks, and stop before committing.
+
+Expect the scoped patch, actual check commands and results, candidate identity,
+preserved unrelated changes, unverified behavior and next owner. Expected test
+results come from the accepted requirement. A zero-exit wrapper without the
+underlying test evidence does not establish a pass.
+
+For a small guide correction, a readable summary and relevant diff/link inspection
+are enough. A structured `SliceReceipt.v1` is optional for downstream interchange;
+it keeps unknown task generation or contract hashes null and separates commit
+identity from a dirty snapshot. Schema validity is not proof of execution.
+
+Follow with `engos-quality-code-review` when a review is requested. Existing selected
+review comments still belong to `engos-delivery-address-code-review`; the slice
+skill does not start Batman, agents, goals, commits, installation or release.
 
 ### `engos-delivery-address-code-review`
 
@@ -943,7 +1068,7 @@ Follow with:
 
 ### `engos-meta-instruction-editor`
 
-Preview status: available for auditable editing, but not behaviorally promoted. Treat every semantic rewrite as a candidate until independent evaluation exists.
+Preview status: available for auditable editing, but not behaviorally promoted. Material meaning changes receive independent review; behavioral claims need independent evaluation.
 
 Use when:
 
@@ -967,9 +1092,15 @@ Expected output:
 - behavioral claims requiring proof
 - unresolved ambiguities
 
-Follow with:
+For a behavioral benefit claim, follow with:
 
 > Hand the baseline, candidate, preservation map, and Goal Contract to `engos-optimization-auto-research`; do not promote the rewrite from style evidence alone.
+
+For a bounded relocation instead:
+
+> Move this unchanged approval condition next to its command. Preserve its scope and exception; do not claim better agent behavior.
+
+Expect a `SemanticChangeLedger.v1`, source/destination comparison, diff, link and parse results, and any unresolved ambiguity. No universal pressure test is required. “Fix the grammar in this ordinary email” is a non-trigger and remains a direct prose edit.
 
 ### `engos-delivery-diagram-contract-artifacts`
 
@@ -1168,6 +1299,13 @@ If the decision itself is contentious, use:
 
 ### `engos-quality-testing-review`
 
+Ask for source-grounded test oracles:
+
+> Design tests for our token expiry and redemption contract. Link each expectation to the source, name the faulty behavior its assertion catches, and record fixture, negative/boundary cases and the repository command source. Mark unknowns and do not run tests.
+
+The artifact includes Scope, Assumptions, Recommended Tests or Gaps, Priority or Risk, Framework Notes and Follow-up Work. At an expiry equality boundary it asks which assertion distinguishes `>` from the required `>=`; a mocked lookup call alone cannot establish redeemed-token rejection. Instrumentation can observe contractual side effects. Request optional TestDesign.v1 JSON only for machine interchange; it always records `not_run`. Coverage-only analysis can return gaps without inventing tests. Source links and schema validity do not prove semantic adequacy or observed coverage.
+
+
 Use when:
 
 - you do not want a long unprioritized test list
@@ -1233,13 +1371,14 @@ Why this skill first:
 
 Ask:
 
-> Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.
+> Use `engos-meta-uac-import` to improve this skill under its current name. Compare current clauses first, choose reuse, harvest, combine or new, name one receiving owner, and prepare a candidate for review.
 
 Expected output:
 
-- capability classification
-- landing shape
-- baseline and benchmark implications
+- authoring choice and one receiving owner
+- completed `PreservationDisplacement.v1` with donor provenance, destination, displaced clause and evidence class
+- capability classification, resource closure and canonical landing shape
+- baseline and benchmark implications, with structural admission separate from efficacy
 - next UAC steps
 
 Follow with:

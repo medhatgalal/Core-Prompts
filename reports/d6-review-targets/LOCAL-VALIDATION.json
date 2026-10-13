@@ -1,0 +1,62 @@
+{
+  "schema_version": "D6LocalValidation.v1",
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "product_sha256": "a5beee5a1eb83d9d3cb4d39ce9684c97eb918ca555ab13a3aa7db05f151a5152",
+  "product_paths": 49,
+  "candidate_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
+  "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+  "python": "3.14.8",
+  "ci": {
+    "complete": true,
+    "passedUnique": 1130,
+    "skipped": 1,
+    "subtestsPassed": 16,
+    "groups": {
+      "resources_uac": 313,
+      "shaping": 480,
+      "presentation": 19,
+      "routing": 58,
+      "apply_bootstrap": 5,
+      "packaging_profiles": 255
+    },
+    "failedProductTests": 0,
+    "receipt": "local-ci/receipt.json"
+  },
+  "schema_checks": {
+    "author": 32,
+    "independent": 14,
+    "scope": "Overlapping schema fixtures; not added to CI unique count or behavioral results"
+  },
+  "semantic_assessments": {
+    "cases": 18,
+    "scope": "Source contract implications, not executed model trials"
+  },
+  "native_smoke": {
+    "failures": 0,
+    "warnings": 0,
+    "discovery": {
+      "gemini": "passed",
+      "codex": "skipped",
+      "claude": "skipped",
+      "kiro": "skipped",
+      "grok": "skipped"
+    },
+    "scope": "Startup/filesystem and available discovery probes only; no efficacy or installation proof"
+  },
+  "preservation": {
+    "names": 32,
+    "currentNameAndDisplayAndDescription": true,
+    "qualityMatrix": true,
+    "curatedJobFields": true,
+    "baselineTree": true,
+    "otherSsotUnchanged": true,
+    "agentsAdded": 0,
+    "runtimeCollectorAdded": false
+  },
+  "process_recoveries": [
+    "A sandbox-root denial affected controller evidence writing; scoped worktree escalation resolved it without product mutation.",
+    "Task-local runner accepted the prior receipt step label after name-key mismatch; no tests had started at that mismatch."
+  ],
+  "status": "source/package/CI checks passed; behavioral_pending; hosted checks remain separate",
+  "completedAt": "2026-10-11T13:46:49.201617+00:00"
+}

@@ -1,0 +1,12 @@
+{
+  "classification": [
+    "infra",
+    "process"
+  ],
+  "initial_status": "apply_failed_validation",
+  "second_status": "manual_review",
+  "reason": "First failed validation had already written canonical candidate; original independent attestation is no longer recognized as current source on retry.",
+  "recovery": "Restored exactly our four-line candidate delta to captured original source before same-candidate scoped reapply. No baseline mutation, bypass, or new attestation identity.",
+  "original_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
+}

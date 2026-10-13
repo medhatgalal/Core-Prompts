@@ -1,0 +1,52 @@
+{
+  "schema_version": "D7DocsRepairReceipt.v1",
+  "author": "/root/d7_implementation_astra",
+  "reason": "Controller completed reviewed canonical apply/build in isolated branch. Remove stale pre-apply wording; public docs describe final skill behavior while hosted delivery and installation remain controller-owned status.",
+  "previous_seal": {
+    "path": "reports/d7-test-oracles/candidate-seal-pre-docs.json",
+    "sha256": "2bbf1baa0d5e1c4707ead106a3c6521e89d398de5f1337f62a8e3a9ee723c2ff"
+  },
+  "candidate_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+  "changes": [
+    {
+      "path": "README.md",
+      "before_sha256": "8ece360f075112fd934548fd982bcc62800bfcd4bc22d27a5e7c772e2135b97b",
+      "after_sha256": "0b39652d56a85853db8b1ae96934d86a2a054711b02c12f2d328e914b4ace95b",
+      "diff": "--- README.md\n+++ README.md\n@@ -136,7 +136,7 @@\n | `engos-meta-uac-import` | import and uplift new capability source into canonical state | \"Use `engos-meta-uac-import` to inspect this external prompt family and tell me how it should land into SSOT before apply.\" | landing shape, classification, overlap concerns, and the next UAC step |\n | `engos-audit-weekly-intel` | build a weekly report from multiple sources | \"Use `engos-audit-weekly-intel` to produce a weekly status report from these sources.\" | executive summary, technical appendix, and fact-check audit |\n \n-D7.S1 review candidate: test design adds source-linked expected outcomes, plausible faults and command provenance under the current `engos-quality-testing-review` name. Its optional TestDesign.v1 interchange remains `not_run`; coverage-only gaps remain supported. This candidate is not yet applied or installed. See [the test-design example](docs/EXAMPLES.md#engos-quality-testing-review).\n+`engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. See [the test-design example](docs/EXAMPLES.md#engos-quality-testing-review).\n \n \n Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting preparation, including linked fixes, verified recurrence, customer counts, and coaching for every confirmed selected incident. OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.\n"
+    },
+    {
+      "path": "docs/GETTING-STARTED.md",
+      "before_sha256": "f261d16ed435863554ebc816e669d4c820e43ea622101e90840f40c1fe9e9065",
+      "after_sha256": "fadd2c22441805f5cc39b8330dc7472ca0c67a2dbeb88baeb1a234845f144bd8",
+      "diff": "--- docs/GETTING-STARTED.md\n+++ docs/GETTING-STARTED.md\n@@ -93,7 +93,7 @@\n | `engos-content-dynamic-html-presentations` | \"Use `engos-content-dynamic-html-presentations` to create a standalone HTML deck and ask me whether I want PNG, PPTX, or all formats.\" | narrative-first deck, polished 16:9 visuals, interaction behavior, and validated requested exports |\n | `engos-quality-testing-review` | \"Use `engos-quality-testing-review` to identify the edge cases and tests this change needs.\" | prioritized tests and missing edge cases |\n \n-D7.S1 review candidate: test design adds source-linked expected outcomes, plausible faults and command provenance under the current `engos-quality-testing-review` name. Its optional TestDesign.v1 interchange remains `not_run`; coverage-only gaps remain supported. This candidate is not yet applied or installed. See [the test-design example](EXAMPLES.md#engos-quality-testing-review).\n+`engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. See [the test-design example](EXAMPLES.md#engos-quality-testing-review).\n \n \n For complete OpEx meeting preparation, request `briefing` with incident keys; it defaults to `BRIEFING.html` and `BRIEFING.md` in your chosen directory and preserves the daily board. For an individual deep review, request `deep-dive` with the incident keys and choose Markdown or both formats. The renderer includes supplied drill-down evidence and labels missing evidence explicitly.\n"
+    },
+    {
+      "path": "docs/EXAMPLES.md",
+      "before_sha256": "a31ea8a8144364d8a895efce7ba0799ba02e3202fbd6829ee869b8aa2f3ce428",
+      "after_sha256": "968ee39cd207d7cd9fd6377c5d1505357fd4160e2f52f2e0c87155dfc7595188",
+      "diff": "--- docs/EXAMPLES.md\n+++ docs/EXAMPLES.md\n@@ -1168,11 +1168,11 @@\n \n ### `engos-quality-testing-review`\n \n-D7.S1 review candidate (not yet applied or installed):\n+Ask for source-grounded test oracles:\n \n > Design tests for our token expiry and redemption contract. Link each expectation to the source, name the faulty behavior its assertion catches, and record fixture, negative/boundary cases and the repository command source. Mark unknowns and do not run tests.\n \n-The candidate retains Scope, Assumptions, Recommended Tests or Gaps, Priority or Risk, Framework Notes and Follow-up Work. At an expiry equality boundary it asks which assertion distinguishes `>` from the required `>=`; a mocked lookup call alone cannot establish redeemed-token rejection. Instrumentation can observe contractual side effects. Request optional TestDesign.v1 JSON only for machine interchange; it always records `not_run`. Coverage-only analysis can return gaps without inventing tests. Source links and schema validity do not prove semantic adequacy or observed coverage.\n+The artifact includes Scope, Assumptions, Recommended Tests or Gaps, Priority or Risk, Framework Notes and Follow-up Work. At an expiry equality boundary it asks which assertion distinguishes `>` from the required `>=`; a mocked lookup call alone cannot establish redeemed-token rejection. Instrumentation can observe contractual side effects. Request optional TestDesign.v1 JSON only for machine interchange; it always records `not_run`. Coverage-only analysis can return gaps without inventing tests. Source links and schema validity do not prove semantic adequacy or observed coverage.\n \n \n Use when:\n"
+    },
+    {
+      "path": "docs/CLI-REFERENCE.md",
+      "before_sha256": "dc563260d6a73b723066fe1c105c856b1c3eba45cf37b3a9cf924ece7708d005",
+      "after_sha256": "80a65c545d1f3c54417170adb361020aa5a07d9234f6b72a4a27b482e04fbc5e",
+      "diff": "--- docs/CLI-REFERENCE.md\n+++ docs/CLI-REFERENCE.md\n@@ -16,9 +16,9 @@\n \n The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.\n \n-## Test-design candidate resources\n-\n-D7.S1 keeps the name `engos-quality-testing-review`. Its review candidate is `reports/d7-test-oracles/engos-quality-testing-review.md`; it has not been applied or installed. Owned resources are under `sources/capability-resources/engos-quality-testing-review/`: `references/test-oracles.md`, `templates/test-design.md`, `schemas/test-design.schema.json` and `resource-map.json`. The existing loader routes are `unit`, `e2e`, `edge-cases` and `coverage`. No loader change or new runtime dependency is proposed. TestDesign.v1 is optional interchange with `execution_status=not_run`; schema validation checks shape only.\n+## Test-design resources\n+\n+`engos-quality-testing-review` owns resources under `sources/capability-resources/engos-quality-testing-review/`: `references/test-oracles.md`, `templates/test-design.md`, `schemas/test-design.schema.json` and `resource-map.json`. The existing loader routes are `unit`, `e2e`, `edge-cases` and `coverage`. The resources use the existing loader with no additional runtime dependency. TestDesign.v1 is optional interchange with `execution_status=not_run`; schema validation checks shape only.\n \n ## Common Commands\n \n"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "before_sha256": "8499bbe327e2c209a2b5c0d67824c403435bd447cef91190578adfaefcae43db",
+      "after_sha256": "285689e6f60d5febd269ed3f34db940f270cf414df6eacbef7f9615a80895fd3",
+      "diff": "--- CHANGELOG.md\n+++ CHANGELOG.md\n@@ -1,10 +1,10 @@\n ## Unreleased\n \n-- Prepare D7.S1 for review under `engos-quality-testing-review`: source-linked\n+- Strengthen test design under `engos-quality-testing-review`: source-linked\n   observable outcomes, fault oracles, fixtures, negative/boundary cases and command\n   provenance, plus optional TestDesign.v1 interchange fixed to `not_run`.\n   Preserve all four modes, six artifact sections and independent artifact review.\n-  Candidate only: not applied, installed, renamed or behaviorally promoted.\n+  Keep the current name and design-only scope; no behavioral promotion is claimed.\n \n - Bind future shaping reviews to ordered sealed source packets, host-observed\n   openings, source-bound diagram pixels and stable reviewer/contributor identities.\n"
+    }
+  ],
+  "verification": "Exact source/effective hashes unchanged; no new build, apply or tests performed for prose-only change. Historical author receipt retained unchanged.",
+  "controller_reported_evidence": "Post-generation resource and UAC SSOT modules: 51 passed. Actual descriptor preserves display name through existing same-slug merge; schema cache refresh/strict validation owned by controller.",
+  "not_claimed": [
+    "merge",
+    "installation",
+    "release",
+    "behavioral promotion",
+    "final independent acceptance"
+  ]
+}

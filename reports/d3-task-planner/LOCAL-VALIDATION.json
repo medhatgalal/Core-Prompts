@@ -1,0 +1,90 @@
+{
+  "schema_version": "LocalCIReconciliation.v1",
+  "passed": true,
+  "completedAt": "2026-10-12T13:43:14.933054+00:00",
+  "alignment": "Current GitLab check sequence, Python 3.14.8 and declared CI dependencies. Legacy-catalog only uses calibrated file-backed Git batch stdin/stdout after two local pipe stalls; same unchanged script/args/catalog validator. Original hosted CI remains unadapted. apt/pip not replayed on macOS; explicit dependencies checked.",
+  "originalFullAttempt": {
+    "complete": true,
+    "passed": false,
+    "successfulSteps": 12,
+    "totalSteps": 13,
+    "failedStep": "packaging-profiles",
+    "failedCase": "test_package_boundary_includes_release_watch_contract",
+    "otherPackagingCasesPassed": 254,
+    "originalReceipt": "reports/d3-task-planner/local-ci/receipt.json"
+  },
+  "reconciliation": {
+    "classification": "test expectation",
+    "onlyProductRepairAfterFullAttempt": "tests/test_package_surfaces.py expected count160\u2192165; no archive/agent/retirement/link assertions removed. Generated docsSTATUS records requiredCI times/smoke. Source/resources/canonicaldescriptor/pipeline code unchanged.",
+    "rerunCommand": "PYTHONPATH=src PATH=/private/tmp/core-prompts-d1-s1-test-env/bin:$PATH python3.14 -m pytest -q tests/test_package_surfaces.py::test_package_boundary_includes_release_watch_contract",
+    "rerunExitCode": 0,
+    "rerunLog": "reports/d3-task-planner/packaging-count-repair-test.log",
+    "rerunLogSha256": "ca6957bd2ca0844479c973ddcfac3fb057e919db95750ad96df55594451931e4",
+    "requiredChecksCovered": true,
+    "originalFailureRetained": true
+  },
+  "testsPassed": 1114,
+  "testsSkipped": 1,
+  "subtestsPassed": 16,
+  "groupCountsBeforeTargetedRerun": [
+    {
+      "group": "resources-uac",
+      "passed": 297,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "shaping",
+      "passed": 480,
+      "skipped": 1,
+      "subtests": 0
+    },
+    {
+      "group": "presentation",
+      "passed": 19,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "routing",
+      "passed": 58,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "apply-bootstrap",
+      "passed": 5,
+      "skipped": 0,
+      "subtests": 0
+    },
+    {
+      "group": "packaging-profiles",
+      "passed": 254,
+      "skipped": 0,
+      "subtests": 16
+    }
+  ],
+  "focusedPlanner": {
+    "passed": 9,
+    "deselected": 40,
+    "seconds": 0.49,
+    "command": "python3.14 -m pytest -q tests/test_capability_resources.py -k planner"
+  },
+  "focusedSkillInventory": {
+    "passed": 1,
+    "evidence": "metadata-curation-supplement.json"
+  },
+  "strictEntries": 33,
+  "modelCallsInStaticCalibration": 0,
+  "productSeal": "2cff3ee6f2988e353fae98c9c3f704787b62e4b4e9d4db3cfb810084ffb063da",
+  "sourceSha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effectiveSha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "descriptorSha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+  "finalReviewPassed": true,
+  "finalReviewState": "Independent Astra final package review approved as review_ready_draft; zero open findings; actual59path product seal and reviewed CI snapshot retained.",
+  "limitationsText": "Local legacy catalog check uses calibrated file-backed Git batch I/O after two pipe stalls; the original code/pins/parser/validator are unchanged. Single observed pipe/file blob equality is not full original-pipe equivalence. Hosted CI will run original unadapted commands. macOS apt/pip setup not replayed; declared Python3.14.8 dependencies freshly verified. Original failed/terminated attempts and one targeted packaging rerun remain explicit. Counts are unique across disjoint suites; focused reruns are not added. Structural/source checks do not establish efficacy, native skill behavior, merge or installation.",
+  "finalReviewRecord": "reports/d3-task-planner/FINAL-REVIEW.json",
+  "finalReviewRecordSha256": "4b1f2433ccc8428beb19470e9c93bf410086e12420fefec626c829e9410a4a23",
+  "reviewedPriorLocalReceiptSha256": "740f24478451d70cdb47e08a4d6653808a47d787bf9f8bf3265d3798bff16507",
+  "verificationAdapterScope": "Evidence-only local Git I/O adapter archived separately; original hosted code/pipeline unmodified."
+}

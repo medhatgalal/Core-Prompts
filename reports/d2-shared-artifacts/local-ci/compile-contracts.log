@@ -1,0 +1,767 @@
+{
+  "schema_version": "CorpusTopologyAudit.v1",
+  "generated_at": "2026-10-12T21:23:41.793805+00:00",
+  "skill_count": 33,
+  "blocked_contract": [],
+  "draft_contracts": [
+    "engos-audit-code-health",
+    "engos-audit-engineering-progress",
+    "engos-audit-feature-status",
+    "engos-audit-opex-incident-review",
+    "engos-audit-pitch-review",
+    "engos-audit-weekly-intel",
+    "engos-browser-demo-recorder",
+    "engos-content-dynamic-html-presentations",
+    "engos-delivery-address-code-review",
+    "engos-delivery-artifact-embed",
+    "engos-delivery-diagram-contract-artifacts",
+    "engos-delivery-resolve-conflict",
+    "engos-design-architecture",
+    "engos-design-frame-from-vague",
+    "engos-design-plan-to-goal",
+    "engos-design-shaping",
+    "engos-design-specify-change",
+    "engos-memory-context-continuity",
+    "engos-memory-threader",
+    "engos-meta-instruction-editor",
+    "engos-meta-supercharge",
+    "engos-meta-uac-import",
+    "engos-operations-ic-assistant",
+    "engos-optimization-auto-research",
+    "engos-orchestration-batman",
+    "engos-quality-code-review",
+    "engos-quality-docs-review",
+    "engos-quality-gitops-review",
+    "engos-quality-shaping-gate",
+    "engos-quality-testing-review",
+    "engos-reconciliation-converge",
+    "engos-triage-my-inbox-chat-pulse",
+    "loopy"
+  ],
+  "behavioral_claim": "none",
+  "check_result": "pass",
+  "drift": [],
+  "display_kind": "Condensed compilation receipt; raw original retained privately",
+  "raw_sha256": "f276e0597f6d47478ac84032d8e3d647db4e21d8d6ee5db55929301992f82957",
+  "results": [
+    {
+      "slug": "engos-audit-code-health",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-audit-code-health.json": "4773768e5511f3ab5fdf208fe3124ffa53cebf55e33a09ede6c22f52c5e780f8",
+        "evals/topologies/engos-audit-code-health.json": "3d4ef4b4cba40d6560adcf683ceb06304d0d84c70188567a1b8b6ab98bbd22cf"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-audit-engineering-progress",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-audit-engineering-progress.json": "2dbf6c94a2f0d63b474a350d66a4804c36bbdbd6b2920e4149e0a83261b50c57",
+        "evals/topologies/engos-audit-engineering-progress.json": "90ca631ac60b5a90fe9a79f9718eb2eb3601f15e17075bad79b20b4c8da3850a"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 3,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 296,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 318,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 332,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-audit-feature-status",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-audit-feature-status.json": "a4150a3988b0076cf25f6a36c856d3016fad4862d84fdfa9674fd9d081610d81",
+        "evals/topologies/engos-audit-feature-status.json": "91ae5f91fd18af0acede941a78c66065c8582a25f6bf84e38863e1ec9e8aa84a"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 230,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-audit-opex-incident-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-audit-opex-incident-review.json": "af99776950f1538b162506165f4d04d8e7d9fd7efb7e3a4520169c1696a549b1",
+        "evals/topologies/engos-audit-opex-incident-review.json": "9ab49d5dad227580cf4c1bb2eb787e85d951e7f197859ba9ceed1416d65c989e"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-audit-pitch-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-audit-pitch-review.json": "2b5173408a8ba0e1a2007c3e6a339d419db14334f3e8dcb4e1ac8cdb5cb4e51c",
+        "evals/topologies/engos-audit-pitch-review.json": "99d5662fc49bda95b4c4567e8329b15f2348b967336b8fa069e8647775202571"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 4,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 282,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 354,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 356,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 419,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-audit-weekly-intel",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-audit-weekly-intel.json": "c4e1d0e87c3b96be790855088af82b6c892f6a238dbb5db6320650c0b236f821",
+        "evals/topologies/engos-audit-weekly-intel.json": "3bcce1638ed164f471c0762354412f20b2528e4f9e7fe629f77e9641963e097d"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-browser-demo-recorder",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-browser-demo-recorder.json": "ddbfba1feb072470d439c32c9143e96731a447180612f46bac9e375bb8090e83",
+        "evals/topologies/engos-browser-demo-recorder.json": "51464b49dc04437217242032daa1f4b270fb20f461902ee1c91fcac6a30577ae"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-content-dynamic-html-presentations",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-content-dynamic-html-presentations.json": "b54ac1399855246842da7e45a910b34dd32f165511e564122b76efe4431515b6",
+        "evals/topologies/engos-content-dynamic-html-presentations.json": "9c9535aed804065cd263e20d732696072dc3ab1d9aa0b5fb565ade311ae9b76f"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-delivery-address-code-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-delivery-address-code-review.json": "38286a4857d2f7d480ad7a8a8f3683147002330f5bd7e0fbde458efde6fe4da0",
+        "evals/topologies/engos-delivery-address-code-review.json": "88825bfd57e83bc09dad4a214cc3df4d60c0887f979d2166dc964745f12d9d6f"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-delivery-artifact-embed",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-delivery-artifact-embed.json": "300da556d23ebdf808578637d795a592d41410d4a26c3036038b6a34d939af00",
+        "evals/topologies/engos-delivery-artifact-embed.json": "3e00a7f1ba74bad1e6e75c809ac9644b71b8b5192ed7161f4fb5adfc041d33fc"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-delivery-diagram-contract-artifacts",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-delivery-diagram-contract-artifacts.json": "2b1e99562286cfec82f3330cf2836ed85eeaf8ed1c2a63c4ac1b8f112bb58d05",
+        "evals/topologies/engos-delivery-diagram-contract-artifacts.json": "b47e37438c8e15e3e0c916e12d604b46b6ae68349de3e629feee649b0930fcc6"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 210,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-delivery-resolve-conflict",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-delivery-resolve-conflict.json": "81f0ab013e519506ac089a04db63fdcc97586fafebaa45ad05e2b4a24d810536",
+        "evals/topologies/engos-delivery-resolve-conflict.json": "01f3a3824c0cb7530513f32ea6e1efe8f18ef44f16550605b2450c2ce4f265a6"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 40,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-design-architecture",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-design-architecture.json": "6b6236901be941f9091748dee33d2deeda69646b96752e9ac24606695d8a371d",
+        "evals/topologies/engos-design-architecture.json": "e4a3308d523d2481c9435e255e3f22baa636374dacfd9616cb9179605c1d4055"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 137,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-design-frame-from-vague",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-design-frame-from-vague.json": "081048566541b4aa4704cb808ee2446081fd24dcc08d21ef7b53c207914164a6",
+        "evals/topologies/engos-design-frame-from-vague.json": "efb0dee74b7917f99feb3f1b4ea304f147464eccc5b8ec414f605fdab16a5a90"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-design-plan-to-goal",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-design-plan-to-goal.json": "804b0e6995cd02303327948d74be0b82779728058e58b9511567b4b1128bc2a1",
+        "evals/topologies/engos-design-plan-to-goal.json": "d2f3954f4836feb6f7a63fe372a44520bf59acacd74ac25974c70223599db9b6"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-design-shaping",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-design-shaping.json": "21e4126c62db1c23596c278e76e12e6cdb0731ae17f8118a8ffeb1fafb90aa2c",
+        "evals/topologies/engos-design-shaping.json": "d2dc24f8243703b5401420164cd1b488910fca4352479c6e64f5ce02838eb72d"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-design-specify-change",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-design-specify-change.json": "e5b81729fcb5d3f5a64c9b0fcc36d6e37f25b2139d5e3fbff60cea94e16e9878",
+        "evals/topologies/engos-design-specify-change.json": "87e44ba5a34dc4facacfc9cd84406c52e0057a732122976d67f4fbc73ef9ae46"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-memory-context-continuity",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-memory-context-continuity.json": "2e883de4e3d78dccd082060f6022a186203c6cf48993e2dc488a6d5c16c8b3db",
+        "evals/topologies/engos-memory-context-continuity.json": "466babdb3572d8ae8f3d7438ca535ea989137e702763a0b009defd20b36de2ee"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-memory-threader",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-memory-threader.json": "3ff4f0a33e768f729bc346265a33026463bdd9f719434bc073293b22760334a1",
+        "evals/topologies/engos-memory-threader.json": "94ce2f9bb848d0133d960d115b47050a7561b35448c4f4c40bf6d39b553b39a5"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-meta-instruction-editor",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-meta-instruction-editor.json": "b54e80c54e736cd88b1b7d3c2bfceab584c6d15f391aa978d69b7e2a6b5ea090",
+        "evals/topologies/engos-meta-instruction-editor.json": "62b7a26796c834d3262f5cd9556c197a7e2834cdc1bdead4d26837c91de1a795"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-meta-supercharge",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-meta-supercharge.json": "1a3b04a69c5238eb4905e6ecc6cf07681a99bdc33c4eb52e56757bbd584e7754",
+        "evals/topologies/engos-meta-supercharge.json": "e2fa7154c3c6b9135bcf542a2478dd37a872616a660d7903c1e3a027b95b0a80"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-003",
+            "line": 88,
+            "class": "lint",
+            "risk": "low",
+            "message": "Avoid anthropomorphizing a system when a concrete operation is clearer.",
+            "source_url": "https://developers.google.com/style/tone",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-meta-uac-import",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-meta-uac-import.json": "6f9a3b0a805d896de3c9ab8803ea6a0ede0f3a6f6d58d4cda855e96c9372555a",
+        "evals/topologies/engos-meta-uac-import.json": "2a8f309a0f874b9ae67ce3d307b3c002f0a2e66874a0af7d8ec2ce9f6e218198"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-operations-ic-assistant",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-operations-ic-assistant.json": "c19aaf6e95d61945b205f9f197ebd7a4907a23191e18412eda2631f39fd9d3a9",
+        "evals/topologies/engos-operations-ic-assistant.json": "1a03112cc49ea1e3689f3e1ce97fea9c8af1c9785a17103ef401a0e3276f6b6c"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-optimization-auto-research",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-optimization-auto-research.json": "42d0961cc6162e51efe46bb9e75425d347f8767c47c240a6cb275cc0c32197c7",
+        "evals/topologies/engos-optimization-auto-research.json": "feeaa5af07b12baec5416257c535b2934b276e1ae4fe5008d88969cc8ab7c848"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 179,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-orchestration-batman",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-orchestration-batman.json": "5aed7cb19ca865f0f7d95f2e468630999836e09f0b81996972db7184f475e031",
+        "evals/topologies/engos-orchestration-batman.json": "74fc2307dc8d02565a721eba9e7d2f22fa2e98e119decea98f95391f446a11f8"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-quality-code-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-quality-code-review.json": "699b6411ec98770959959558712e118251a93ffa1cab129ee611db879256375a",
+        "evals/topologies/engos-quality-code-review.json": "18b2515e2a5dc6999470564d16dfffe5eb3129039f23325bd3a2232f1dd7ef69"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 2,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 61,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 317,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-quality-docs-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-quality-docs-review.json": "4b6277afaf40ba1074ff3800fa94007e755538fa57761901fa050bba2365be1b",
+        "evals/topologies/engos-quality-docs-review.json": "d816f41dff5234515d34dadf747bd59835404530fef3907dd5b42941631acedd"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-quality-gitops-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-quality-gitops-review.json": "9f742944bc108a531a125b311c1c97fe0796743fa17e218ccc29a1233eadac0d",
+        "evals/topologies/engos-quality-gitops-review.json": "2bec2fe66fef1b27bc22f28465b2e7e59e085b63e560904bb96acb1924353507"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 58,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-quality-shaping-gate",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-quality-shaping-gate.json": "d9c1357a8570766b46790942f4a4423f10e9eb117aa32683d094099093240752",
+        "evals/topologies/engos-quality-shaping-gate.json": "fc6d8fa36c08338fb38c0fe0fa63d2d3c15367c7276c5af5d2b2351b765531d6"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 1,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 189,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-quality-testing-review",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-quality-testing-review.json": "30fabe6a27c6f39354e6e84cbac0ff0cf3d1d928ca59091f0bbc0418f3809d89",
+        "evals/topologies/engos-quality-testing-review.json": "d32a8a328c5e6316fa0860147015b7fc84af6f49e6a8d7958fe82872475bd8e4"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-reconciliation-converge",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-reconciliation-converge.json": "1b211589bef62ebb922384b5267597dda6022c3b85cfdf5ec99fe86f22d2878e",
+        "evals/topologies/engos-reconciliation-converge.json": "cb3f1496a8f64c32cba571ce91bd1e7cd1d2425632d425e8de6c8e346d1aeb3b"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "engos-triage-my-inbox-chat-pulse",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/engos-triage-my-inbox-chat-pulse.json": "afa6acacb80813e7ec878a5865757da8811f0f87bc3767985b0adc572e1ce4c9",
+        "evals/topologies/engos-triage-my-inbox-chat-pulse.json": "b9a96730d8a9520b56e3014f01b719a873fb5d6acfeb48fbd75ac89f29b0657f"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 6,
+        "findings": [
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 75,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 707,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 776,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 784,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 785,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          },
+          {
+            "rule_id": "IC-LINT-002",
+            "line": 787,
+            "class": "lint",
+            "risk": "medium",
+            "message": "Replace vague catch-all language with explicit scope.",
+            "source_url": "https://developers.google.com/style/translation",
+            "repair_permitted": false
+          }
+        ],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    },
+    {
+      "slug": "loopy",
+      "status": "structural_ready",
+      "artifacts": {
+        "evals/contracts/loopy.json": "99973a6a4987d5bff8f5ebc6cf5adaaf33fcacea6057ceed03e291aacdb03bf6",
+        "evals/topologies/loopy.json": "72b615656dd08672bdb6f6db8b0760ff6f3f79a5d3a9d389920e9bd2c1be20f4"
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      }
+    }
+  ],
+  "clarity_summary": {
+    "advisory_findings": 23,
+    "skills_with_findings": 12,
+    "scope": "Retained original advisory lint, separate from compilation/no-drift and independent material-findings review."
+  }
+}

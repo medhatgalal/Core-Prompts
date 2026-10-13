@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-11T18:15:37.035484+00:00",
+  "revision": 2,
+  "sourceSha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+  "effectiveSha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+  "uac": {
+    "plan": {
+      "status": "accepted",
+      "qualityStatus": "structural_ready",
+      "independentRequirementReviews": 1
+    },
+    "judge": {
+      "status": "accepted",
+      "qualityStatus": "structural_ready",
+      "independentRequirementReviews": 1
+    },
+    "apply": {
+      "status": "applied",
+      "qualityStatus": "structural_ready",
+      "independentRequirementReviews": 1
+    }
+  },
+  "focusedSSOTTests": {
+    "command": "python -m pytest -q tests/test_uac_ssot.py",
+    "result": "10 passed in 3.40s",
+    "descriptorRegression": "GREEN after authentic reapply"
+  },
+  "descriptor": {
+    "inputs": 6,
+    "outputs": 7,
+    "fivePackagesMatch": true
+  },
+  "preservation": {
+    "existingSSOT": "32 existing capability sources plus control files exact verified main",
+    "newHistoricalBaseline": false
+  },
+  "behavioralStatus": "behavioral_pending"
+}

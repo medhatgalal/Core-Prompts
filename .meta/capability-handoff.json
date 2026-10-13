@@ -816,6 +816,106 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-debug-diagnose-failure",
+      "display_name": "Diagnose a Failure",
+      "capability_type": "skill",
+      "summary": "Reproduce, localize and explain a software failure using bounded experiments that distinguish competing causes. Use for failing tests, builds or unexpected runtime behavior; return a supported cause or an explicit unknown with evidence for repair handoff.",
+      "role": "analyst",
+      "domain_tags": [
+        "analysis",
+        "debugging",
+        "engos",
+        "debug",
+        "diagnose",
+        "failure"
+      ],
+      "required_inputs": [
+        "Observed failure and expected behavior, with available logs or a reproduction request.",
+        "Target repository/system and revision, including relevant dirty-state context; mark unavailable facts unknown.",
+        "Existing access, permitted diagnostic actions and any time, attempt or resource limit.",
+        "Behavior that must remain unchanged; derive it from supplied requirements or ask only when material."
+      ],
+      "expected_outputs": [
+        "Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.",
+        "Current, expected and unchanged behavior bound to the subject revision.",
+        "Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.",
+        "Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.",
+        "Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "Diagnose a failing test, build, integration or unexpected runtime behavior.",
+        "Compare competing causes using bounded reproduction, localization and discriminating evidence.",
+        "Prepare a redacted technical handoff while keeping repair scope and authority explicit."
+      ],
+      "artifact_conventions": [
+        "Concise readable diagnosis with observed/reported facts, causal conclusion or unknown, scope, uncertainty and evidence.",
+        "Optional hypothesis-evidence table for competing explanations.",
+        "Optional self-contained DiagnosisReceipt.v1 with conclusion, scope, uncertainty, redacted observation provenance, hypothesis evidence references and repair handoff bounds."
+      ],
+      "invocation_style": "interactive_or_artifact_oriented",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "analysis",
+          "debugging"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Supplies bounded causal findings or an explicit unknown for a software failure; repair execution, candidate review and incident coordination remain separate jobs."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-delivery-address-code-review",
       "display_name": "Address Code Review \u2014 PR/MR Feedback Resolution",
       "capability_type": "skill",
@@ -1112,6 +1212,103 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-delivery-implement-slice",
+      "display_name": "Implement a Bounded Slice",
+      "capability_type": "skill",
+      "summary": "Implement one bounded software change from an accepted task or clear request, preserve unrelated work, and report verification tied to the actual patch. Use for a scoped feature or repair; use the review-feedback capability when selected reviewer comments define the work.",
+      "role": "implementation_worker",
+      "domain_tags": [
+        "review",
+        "engos",
+        "delivery",
+        "implement",
+        "slice"
+      ],
+      "required_inputs": [
+        "An authorized bounded outcome or accepted task, including constraints and the intended stopping point.",
+        "Repository or target files, applicable instructions, and access sufficient for the authorized edits and checks.",
+        "Relevant source requirements and verification expectations, or permission to derive proportionate checks from inspected repository evidence.",
+        "When applicable, selected review-comment IDs, task identity, upstream contract reference and controller handoff requirements; missing optional structured metadata stays unknown."
+      ],
+      "expected_outputs": [
+        "The implemented outcome and task-owned changed files, or a concrete blocker with completed independent work preserved.",
+        "Checks actually performed, their results and inspectable evidence; explicitly list unverified behavior and unavailable or not-run checks with reasons.",
+        "Candidate identity and relevant starting state, preservation of unrelated dirty work, remaining work and next owner. Readable prose is enough for a small request.",
+        "When machine interchange is requested, a `SliceReceipt.v1` matching the optional resource schema, with truthful nulls and unresolved context rather than invented values."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "Implement one accepted task or clear scoped feature request.",
+        "Repair an authorized defect with meaningful focused verification and explicit missing evidence.",
+        "Make a small documentation correction with proportionate inspection."
+      ],
+      "artifact_conventions": [
+        "Task-owned patch and concise readable result with actual checks, candidate identity, preserved dirty state, gaps and next owner.",
+        "Optional SliceReceipt.v1 for requested machine interchange, with truthful nulls, check evidence and commit or dirty-snapshot binding."
+      ],
+      "invocation_style": "interactive_or_artifact_oriented",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "implementation_worker",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Implements one authorized bounded software slice with candidate-bound verification and preserved unrelated work; reviewer-feedback selection, independent review, controller gates and lifecycle actions remain separately owned."
       },
       "advisory_only": true
     },
@@ -1429,6 +1626,110 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-design-plan-implementation",
+      "display_name": "Plan Implementation",
+      "capability_type": "skill",
+      "summary": "Plan independently verifiable implementation tasks from accepted requirements and an optional supplied design. Use for multi-step planning or revising unfinished work with explicit dependencies, interfaces, allowed writes and stop conditions; preserve the existing tracker and leave execution, delegation and goal creation to their owners.",
+      "role": "workflow",
+      "domain_tags": [
+        "planning",
+        "engos",
+        "design",
+        "plan",
+        "implementation"
+      ],
+      "required_inputs": [
+        "Read the requested outcome, actual acceptance/authority evidence and current requirement revision.",
+        "Inspect repository conventions and relevant code or interfaces.",
+        "Obtain optional accepted architecture, compatibility constraints and non-goals.",
+        "Read the actual tracker or unfinished plan when present.",
+        "Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system."
+      ],
+      "expected_outputs": [
+        "Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.",
+        "Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.",
+        "Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.",
+        "Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.",
+        "Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-plan-to-goal",
+        "engos-design-architecture",
+        "engos-design-shaping"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "Plan multi-step implementation from accepted requirements and optional architecture.",
+        "Reconcile accepted changes with an unfinished plan while preserving existing tracker IDs and evidence.",
+        "Prepare optional task/plan interchange or a manual dependency map for a separately authorized consumer."
+      ],
+      "artifact_conventions": [
+        "Existing project plan and tracker format; chat when no file write is requested or authorized.",
+        "Optional TaskContract.v1 and TaskPlan.v1 sidecars beside their authoritative plan.",
+        "Manual dependency-map projection referencing its authoritative plan; no competing completion ledger."
+      ],
+      "invocation_style": "artifact_generation_and_validation",
+      "requires_human_confirmation": false,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "context"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Produces or reconciles bounded implementation task outcomes for the existing plan and tracker; does not dispatch workers, create goals or change execution authority."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-design-plan-to-goal",
       "display_name": "Plan to Goal Design",
       "capability_type": "skill",
@@ -1621,6 +1922,111 @@
         "collaborates_with_suggestions": [
           "review",
           "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-design-specify-change",
+      "display_name": "Specify a Change",
+      "capability_type": "skill",
+      "summary": "Specify a feature, design-led change, or bugfix with source-backed requirements, acceptance conditions, explicit assumptions and unchanged behavior. Use before planning when the change needs a specification; preserve existing formats and leave architecture, task planning and implementation to their owners.",
+      "role": "architect",
+      "domain_tags": [
+        "architecture",
+        "engos",
+        "design",
+        "specify",
+        "change"
+      ],
+      "required_inputs": [
+        "Read the user's request, supplied sources and existing repository conventions.",
+        "Identify the affected people or callers, current behavior, desired outcome, constraints, non-goals and existing decisions. Accept partial inputs; distinguish observed facts, reported behavior, proposed targets and unknowns.",
+        "For a design-first entry, obtain the supplied design revision and its evidence.",
+        "For a bugfix, obtain the observed or reported failure, its trigger and expected behavior.",
+        "Obtain actual scope/acceptance authority from the conversation or an accessible decision record; a role label or a document's claim is insufficient.",
+        "When authority is unknown, keep `authority_ref` null and the draft pending."
+      ],
+      "expected_outputs": [
+        "Identity and objective: Stable change ID, affected actor, desired outcome and selected entry order.",
+        "Sources and authority: Source references/revisions, inaccessible sources, authority reference and actual acceptance status.",
+        "Requirements: Stable IDs, conditions, observable behavior, acceptance, unchanged behavior and priority.",
+        "Scope: Included change, non-goals, compatibility constraints and any supported capability groups.",
+        "Assumptions: IDs, text, status, decision evidence and dependent requirements held by unresolved material questions.",
+        "Supplied design: Design IDs, paths and current SHA-256 digests when available; design assumptions and reconciliation decisions.",
+        "Review and next owner: Conflicts, open questions, explicit holds, accepted revision if evidenced, and bounded handoff."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-design-shaping"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "prompting"
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile None."
@@ -1827,7 +2233,7 @@
       ],
       "expected_outputs": [
         "`Edited Artifact`",
-        "`Edit Ledger`",
+        "`Edit Ledger` (use `SemanticChangeLedger.v1` for wording or structural edits)",
         "`Preservation Map`",
         "`Before / After Size`",
         "`Behavioral Claims Requiring Proof`",
@@ -1879,8 +2285,8 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
       "preferred_use_cases": [],
       "artifact_conventions": [],
       "invocation_style": null,
@@ -2022,6 +2428,7 @@
       ],
       "expected_outputs": [
         "Source",
+        "Authoring Decision and Preservation / Displacement record when preparing a candidate",
         "Summary",
         "Uplift",
         "Routing",
@@ -2527,8 +2934,8 @@
       "review_status": "ready_for_orchestrator_review",
       "overlap_candidates": [],
       "relationship_suggestions": [],
-      "quality_status": null,
-      "benchmark_profile": null,
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
       "preferred_use_cases": [
         "pre-merge commit review",
         "scope creep detection",

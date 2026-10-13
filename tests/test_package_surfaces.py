@@ -81,12 +81,31 @@ def test_package_boundary_includes_release_watch_contract(
         ".meta/install-profiles/codex-kiro-grok.json",
         "scripts/install-local.sh",
     }
+    for provider in ("codex", "gemini", "claude", "kiro", "grok"):
+        prefix = f".{provider}/skills/engos-debug-diagnose-failure"
+        expected.add(f"{prefix}/SKILL.md")
+        for resource in ("resource-map.json", "templates/hypothesis-evidence.md",
+                         "templates/reproduction-receipt.json", "schemas/diagnosis-receipt.schema.json"):
+            expected.add(f"{prefix}/resources/{resource}")
     assert expected <= tar_names
     assert expected <= zip_names
     for names in (tar_files, zip_files):
         assert not any(name.startswith(tuple(f".{p}/agents/" for p in ("codex", "claude", "gemini", "kiro")))
                        and not name.endswith("/") for name in names)
-        assert sum(name.endswith("/SKILL.md") for name in names) == 160
+        assert sum(name.endswith("/SKILL.md") for name in names) == 180
+
+    # Every provider ships the same owned receipt bytes in both archive formats.
+    slug = "engos-delivery-implement-slice"
+    resource_names = ("resource-map.json", "templates/slice-receipt.json",
+                      "schemas/slice-receipt.schema.json")
+    for archive_path, opener in ((tar_path, tarfile.open), (zip_path, zipfile.ZipFile)):
+        with opener(archive_path) as archive:
+            for provider in ("codex", "gemini", "claude", "kiro", "grok"):
+                for resource in resource_names:
+                    name = f".{provider}/skills/{slug}/resources/{resource}"
+                    actual = (archive.extractfile(name).read() if isinstance(archive, tarfile.TarFile)
+                              else archive.read(name))
+                    assert actual == (repo / "sources/capability-resources" / slug / resource).read_bytes()
 
     # The shipped guide must resolve its local skill/resource links in both formats.
     import re

@@ -1,0 +1,478 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SliceReceipt.v1",
+  "description": "Optional evidence interchange. Shape and consistency checks do not establish source truth, execution, digest correctness, preservation, authority, meaningful verification or completion. Null identities remain unresolved. No schema field grants authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "task_generation",
+    "task_contract_sha256",
+    "base",
+    "target_kind",
+    "head_or_snapshot_digest",
+    "snapshot_method",
+    "snapshot_evidence_ref",
+    "changed_files",
+    "initial_dirty_files",
+    "checks",
+    "unverified",
+    "unresolved_context",
+    "comment_dispositions",
+    "next_owner"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "SliceReceipt.v1"
+    },
+    "task_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "task_generation": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "task_contract_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "base": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "target_kind": {
+      "enum": [
+        "commit",
+        "dirty_snapshot",
+        null
+      ]
+    },
+    "head_or_snapshot_digest": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "snapshot_method": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "snapshot_evidence_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "uniqueItems": true
+    },
+    "initial_dirty_files": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "uniqueItems": true
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "command",
+          "exit_status",
+          "evidence_ref",
+          "status",
+          "reason"
+        ],
+        "properties": {
+          "command": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "exit_status": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "evidence_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": [
+              "passed",
+              "failed",
+              "not_run",
+              "unavailable"
+            ]
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "passed"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "exit_status": {
+                  "const": 0
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "failed"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "exit_status": {
+                  "type": "integer",
+                  "not": {
+                    "const": 0
+                  }
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "not_run",
+                    "unavailable"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "exit_status": {
+                  "type": "null"
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "unverified": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "uniqueItems": true
+    },
+    "unresolved_context": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "uniqueItems": true
+    },
+    "comment_dispositions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "comment_id",
+          "disposition",
+          "reason",
+          "evidence_ref"
+        ],
+        "properties": {
+          "comment_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "disposition": {
+            "enum": [
+              "addressed",
+              "rejected",
+              "deferred",
+              "unselected",
+              "unresolved"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "evidence_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "next_owner": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "task_id": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "properties": {
+              "task_generation": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "properties": {
+              "task_contract_sha256": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "properties": {
+              "base": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "properties": {
+              "target_kind": {
+                "type": "null"
+              }
+            }
+          },
+          {
+            "properties": {
+              "head_or_snapshot_digest": {
+                "type": "null"
+              }
+            }
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "unresolved_context": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target_kind": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "head_or_snapshot_digest": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target_kind": {
+            "const": "commit"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "head_or_snapshot_digest": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "snapshot_method": {
+            "type": "null"
+          },
+          "snapshot_evidence_ref": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target_kind": {
+            "const": "dirty_snapshot"
+          },
+          "head_or_snapshot_digest": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_kind",
+          "head_or_snapshot_digest"
+        ]
+      },
+      "then": {
+        "properties": {
+          "head_or_snapshot_digest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "snapshot_method": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "snapshot_evidence_ref": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    }
+  ]
+}

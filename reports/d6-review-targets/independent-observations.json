@@ -1,0 +1,220 @@
+{
+  "schema_version": "D6S1IndependentObservations.v1",
+  "candidate_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
+  "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+  "schema_sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f",
+  "execution_environment": "Python3.14.8 in a task-local environment with declared CI dependencies",
+  "environment_note": "Default python3 lacked jsonschema. Reused existing aligned Python environment; no dependency installation.",
+  "executed_schema_cases": [
+    {
+      "case": "complete empty findings structure",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "unread evidence rejects complete",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true
+    },
+    {
+      "case": "unavailable evidence rejects complete",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true
+    },
+    {
+      "case": "incomplete cannot ready",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true
+    },
+    {
+      "case": "incomplete explicit gap",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "mutable digest required",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true
+    },
+    {
+      "case": "staged snapshot",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "branch base required",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true
+    },
+    {
+      "case": "root base null",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "commit mismatched comparison",
+      "expected_valid": false,
+      "actual_valid": false,
+      "passed": true
+    },
+    {
+      "case": "duplicate IDs require semantic rejection",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "false read claim structurally valid",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "wrong claimed revision structurally valid",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    },
+    {
+      "case": "dangling IDs and invented consumer structurally valid",
+      "expected_valid": true,
+      "actual_valid": true,
+      "passed": true
+    }
+  ],
+  "source_semantic_assessments": [
+    {
+      "id": "S01",
+      "assessment": "HEAD default explicitly excludes dirty checkout edits.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S02",
+      "assessment": "Index source/consumer reads prevent unstaged repair clearing a staged defect.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S03",
+      "assessment": "Empty index must be disclosed before a separately bound fallback.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S04",
+      "assessment": "Working-tree comparison and untracked inclusion are explicit; manifest binds bytes.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S05",
+      "assessment": "End recheck invalidates stale affected evidence.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S06",
+      "assessment": "Branch target requires full declared range and commit messages; HEAD~1 substitution forbidden.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S07",
+      "assessment": "Deleted cause uses base side and actual unchanged caller evidence.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S08",
+      "assessment": "Search-only and unrelated pre-existing findings rejected by causal/consumer rule.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S09",
+      "assessment": "Uninspectable material caller becomes explicit gap and unverifiable.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S10",
+      "assessment": "Missing, empty or malformed requested output cannot be empty findings.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S11",
+      "assessment": "Fully reviewed empty findings may be advisory ready with no automatic action.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S12",
+      "assessment": "Collection and self-reported reads explicitly cannot prove actual review.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S13",
+      "assessment": "Root and selected merge-parent rules explicit; revision-2 merge example repaired.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S14",
+      "assessment": "Message/scope categories allow null runtime consumer and require rationale.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S15",
+      "assessment": "Stable IDs retained; resolution needs current repair evidence.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S16",
+      "assessment": "Risk acceptance needs authorized attributable decision evidence, not reviewer choice.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S17",
+      "assessment": "Unreviewable binary disclosed; deletion/rename paths and sides distinguished.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    },
+    {
+      "id": "S18",
+      "assessment": "Current lifecycle, initialization, concurrency, operational and API clauses preserved verbatim.",
+      "status": "contract_inspected",
+      "behavioral_execution": "not_run"
+    }
+  ],
+  "requirement_validation": [
+    {
+      "name": "current",
+      "source_lines": 317,
+      "mapped_sections": 28,
+      "validation_errors": []
+    },
+    {
+      "name": "historical",
+      "source_lines": 236,
+      "mapped_sections": 25,
+      "validation_errors": []
+    }
+  ],
+  "command_observation": "Independently reran bound nonmerge show and explicit selected-parent merge diff against the author fixture; both included feature.txt. This verifies these Git commands only.",
+  "claim_limit": "No task-level behavioral pilot, comparative uplift, accuracy, actual future read, authority or promotion claim."
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "D4CandidateRevision.v1",
+  "revision": 3,
+  "status": "source-only clarification; awaiting controller freeze",
+  "change": "Clarify that owned resources contain no diagnostic execution helper. Core may bundle its unchanged generic read-only resource loader.",
+  "old_text": "Resources contain no execution helper",
+  "new_text": "The owned resources contain no diagnostic execution helper",
+  "candidate_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "preservation": "Every other candidate byte, owned resource, test, doc and original seed is unchanged."
+}

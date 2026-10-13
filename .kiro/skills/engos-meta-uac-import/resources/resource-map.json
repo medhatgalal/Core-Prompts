@@ -1,0 +1,17 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "authoring": [
+      "references/authoring-decisions.md"
+    ],
+    "preservation": [
+      "templates/preservation-displacement.json"
+    ]
+  },
+  "dependencies": {
+    "references/authoring-decisions.md": [
+      "templates/preservation-displacement.json"
+    ]
+  }
+}

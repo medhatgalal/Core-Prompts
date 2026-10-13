@@ -1,0 +1,37 @@
+{
+  "schema_version": "D2S2IndependentGeneratedResourceReadback.v1",
+  "status": "resource_readback_passed_metadata_repair_pending",
+  "providers": [
+    {
+      "provider": "codex",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "bundle_equal": true
+    },
+    {
+      "provider": "gemini",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "bundle_equal": true
+    },
+    {
+      "provider": "claude",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "bundle_equal": true
+    },
+    {
+      "provider": "kiro",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "bundle_equal": true
+    },
+    {
+      "provider": "grok",
+      "schema_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "bundle_equal": true
+    }
+  ],
+  "bundle_sha256": "ec2d5c1386996d92c72dcd860e6da989acbccfaf7efa2af2c0b5717b06c1948e",
+  "detached_command": "python3 -I resources/scripts/load_module.py --route spec-contract --format json",
+  "detached_exit_code": 0,
+  "detached_equal": true,
+  "trust_claim": "Single copied skill, no repository or installed sibling lookup, standard-library isolated interpreter. Resource assembly is not model consumption or authenticity.",
+  "pending": "Four curated architecture modes are being restored before final descriptor/manifest/handoff approval."
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": "D2S2ReviewCountCorrection.v1",
+  "reviewer": "/root/d2_s2_review_astra",
+  "base": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+  "error": "Initial count used all 36 tracked ssot files minus architecture, producing 35; that included three non-capability YAML/JSON files.",
+  "correction": "33 canonical emitted capabilities; architecture changed, 32 unchanged. Three additional support files remain unchanged.",
+  "old_field": "source.unchanged_other_ssot_count",
+  "old_value": 35,
+  "new_field": "source.unchanged_other_capability_ssot_count",
+  "new_value": 32,
+  "old_report_sha256": "59cf567c228a1892c5a04611492ac5c0ec5e4b21f10462157f9c9338fcca7509",
+  "corrected_report_sha256": "c10df9e4631883da4e0395a7d1ae7626c5305477c65ec4dcfebd1d7ca3aaca9c",
+  "preserved_report": "review-final-source-package-count-correction-before.json",
+  "count_basis_manifest_sha256": "05ab6793bcd846c9f53cfb56e8889a478f0e41598cf81fba7099562bcfa4728e",
+  "files": [
+    {
+      "path": "ssot/eng-report-config-example.yaml",
+      "canonical_capability": false,
+      "current_sha256": "09dd69ae610b03ca0cf59a4319ffe7ba43e73cd47eda823055f8dcf41e18c430",
+      "parent_sha256": "09dd69ae610b03ca0cf59a4319ffe7ba43e73cd47eda823055f8dcf41e18c430",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-code-health.md",
+      "canonical_capability": true,
+      "current_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+      "parent_sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-engineering-progress.md",
+      "canonical_capability": true,
+      "current_sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+      "parent_sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-engineering-progress.metadata.json",
+      "canonical_capability": false,
+      "current_sha256": "b7abc2a8de6eeee1879b98f17fa20c6a0630bccdab4e5da210d4ad95564025ba",
+      "parent_sha256": "b7abc2a8de6eeee1879b98f17fa20c6a0630bccdab4e5da210d4ad95564025ba",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-feature-status.md",
+      "canonical_capability": true,
+      "current_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+      "parent_sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-opex-incident-review.md",
+      "canonical_capability": true,
+      "current_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+      "parent_sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "canonical_capability": true,
+      "current_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+      "parent_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.metadata.json",
+      "canonical_capability": false,
+      "current_sha256": "38c3ebe787b767255624aa8a7f50a43051a1758f6f14fb5f2d1b52670922d9fb",
+      "parent_sha256": "38c3ebe787b767255624aa8a7f50a43051a1758f6f14fb5f2d1b52670922d9fb",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-audit-weekly-intel.md",
+      "canonical_capability": true,
+      "current_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+      "parent_sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-browser-demo-recorder.md",
+      "canonical_capability": true,
+      "current_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+      "parent_sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-content-dynamic-html-presentations.md",
+      "canonical_capability": true,
+      "current_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+      "parent_sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-delivery-address-code-review.md",
+      "canonical_capability": true,
+      "current_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
+      "parent_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-delivery-artifact-embed.md",
+      "canonical_capability": true,
+      "current_sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de",
+      "parent_sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
+      "canonical_capability": true,
+      "current_sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff",
+      "parent_sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-delivery-resolve-conflict.md",
+      "canonical_capability": true,
+      "current_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+      "parent_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-design-architecture.md",
+      "canonical_capability": true,
+      "current_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "parent_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+      "unchanged": false
+    },
+    {
+      "path": "ssot/engos-design-frame-from-vague.md",
+      "canonical_capability": true,
+      "current_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
+      "parent_sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "canonical_capability": true,
+      "current_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+      "parent_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "canonical_capability": true,
+      "current_sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa",
+      "parent_sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-design-specify-change.md",
+      "canonical_capability": true,
+      "current_sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+      "parent_sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-memory-context-continuity.md",
+      "canonical_capability": true,
+      "current_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+      "parent_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-memory-threader.md",
+      "canonical_capability": true,
+      "current_sha256": "3980433cb346c43e530fd34e800f530fec5759b98ec955ec27f8ed096f4f191c",
+      "parent_sha256": "3980433cb346c43e530fd34e800f530fec5759b98ec955ec27f8ed096f4f191c",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-meta-instruction-editor.md",
+      "canonical_capability": true,
+      "current_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+      "parent_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "canonical_capability": true,
+      "current_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
+      "parent_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-meta-uac-import.md",
+      "canonical_capability": true,
+      "current_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
+      "parent_sha256": "02fcab63a9cd1eee4e3eec95faee140c283ebae6e48b681755cffccfef5005e6",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-operations-ic-assistant.md",
+      "canonical_capability": true,
+      "current_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+      "parent_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "canonical_capability": true,
+      "current_sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52",
+      "parent_sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "canonical_capability": true,
+      "current_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+      "parent_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-quality-code-review.md",
+      "canonical_capability": true,
+      "current_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+      "parent_sha256": "62b63eca881414e843f09f0a0f0e337f51f293075577a05050914fad5af15fd5",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-quality-docs-review.md",
+      "canonical_capability": true,
+      "current_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+      "parent_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-quality-gitops-review.md",
+      "canonical_capability": true,
+      "current_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+      "parent_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "canonical_capability": true,
+      "current_sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98",
+      "parent_sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-quality-testing-review.md",
+      "canonical_capability": true,
+      "current_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+      "parent_sha256": "39b42b58dc7cf1797c8b250cce4510430c2fc5eaa330aafe7cdfbf944376b222",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "canonical_capability": true,
+      "current_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+      "parent_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/engos-triage-my-inbox-chat-pulse.md",
+      "canonical_capability": true,
+      "current_sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",
+      "parent_sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",
+      "unchanged": true
+    },
+    {
+      "path": "ssot/loopy.md",
+      "canonical_capability": true,
+      "current_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+      "parent_sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+      "unchanged": true
+    }
+  ],
+  "scope": "Read-only source enumeration and review-artifact correction only; no builds, tests, product edits or Git mutations; review product hashes and conclusion unchanged."
+}

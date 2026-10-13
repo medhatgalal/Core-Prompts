@@ -36,8 +36,8 @@ from intent_pipeline.uac_descriptors import (
     save_descriptor,
     source_note_path,
 )
-from intent_pipeline.uac_modes import extract_declared_modes, extract_capability_modes, normalize_mode_entries
-from intent_pipeline.capability_resources import effective_capability_text, load_resource_bundle
+from intent_pipeline.uac_modes import extract_declared_modes, extract_capability_modes, normalize_mode_entries, resolve_mode_entries
+from intent_pipeline.capability_resources import effective_capability_text, load_capability_bundle, validate_shared_resource_imports
 from intent_pipeline.uac_ssot import (
     build_ssot_handoff_contract,
     build_ssot_manifest_entry,
@@ -134,6 +134,12 @@ RESOURCE_DIRS = {
 
 def descriptor_defaults(slug: str, display_name: str) -> dict[str, object]:
     defaults: dict[str, dict[str, object]] = {
+        'engos-delivery-implement-slice': {
+            'layer_overrides': {
+                'minimal': {'role': 'implementation_worker'},
+                'org_graph': {'org_role': 'implementation_worker'},
+            },
+        },
         'engos-design-architecture': {
             'display_name': 'Architecture Studio',
             'consumption_hints': {
@@ -503,7 +509,7 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
     target_dir.mkdir(parents=True, exist_ok=True)
     copied: list[str] = []
     if (source_dir / 'resource-map.json').is_file():
-        load_resource_bundle(source_dir)
+        load_capability_bundle(ROOT, slug, (ROOT / "ssot" / f"{slug}.md").read_text(encoding="utf-8"))
     for source_path in sorted(source_dir.rglob('*')):
         if not source_path.is_file():
             continue
@@ -515,6 +521,17 @@ def copy_capability_resources(surface_name: str, slug: str) -> list[str]:
         shutil.copy2(source_path, target_path)
         copied.append(str(target_path.relative_to(ROOT)))
     if (source_dir / 'resource-map.json').is_file():
+        bundle = load_capability_bundle(ROOT, slug, (ROOT / "ssot" / f"{slug}.md").read_text(encoding="utf-8"))
+        if bundle and "shared_imports" in bundle:
+            for item in bundle["resources"]:
+                target = target_dir / item["path"]
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(item["content"].encode("utf-8"))
+                if str(target.relative_to(ROOT)) not in copied:
+                    copied.append(str(target.relative_to(ROOT)))
+            receipt = target_dir / "shared-resource-imports.json"
+            receipt.write_text(json.dumps(bundle["shared_imports"], indent=2) + "\n", encoding="utf-8")
+            copied.append(str(receipt.relative_to(ROOT)))
         helper = target_dir / 'scripts' / 'load_module.py'
         helper.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / 'src' / 'intent_pipeline' / 'capability_resources.py', helper)
@@ -570,7 +587,8 @@ def resolve_descriptor(entry, manifest_entry: dict[str, object], job_contract: d
             shared_summary=str(descriptor.get('shared_summary') or manifest_entry['layers']['minimal'].get('summary') or ''),
             shared_constraints=section_constraints or tuple(descriptor.get('shared_constraints') or ()),
             modes=tuple(normalize_mode_entries(
-                extracted_modes if (CAPABILITY_RESOURCE_SOURCE_DIR / entry.slug / 'resource-map.json').is_file()
+                resolve_mode_entries(extracted_modes, descriptor.get('modes') or [], entry.slug)
+                if (CAPABILITY_RESOURCE_SOURCE_DIR / entry.slug / 'resource-map.json').is_file()
                 else descriptor.get('modes') or extracted_modes, entry.slug)),
             benchmark_sources=tuple(descriptor.get('benchmark_sources') or defaults.get('benchmark_sources') or ()),
             quality_profile=str(descriptor.get('quality_profile')) if descriptor.get('quality_profile') is not None else None,
@@ -696,6 +714,7 @@ def write_build_report(generator: dict[str, object], manifest_changed: bool, han
 
 
 def main():
+    validate_shared_resource_imports(ROOT)
     admission_errors = preflight_agent_emission(ROOT)
     if admission_errors:
         raise SystemExit("Agent emission preflight failed:\n" + "\n".join(admission_errors))

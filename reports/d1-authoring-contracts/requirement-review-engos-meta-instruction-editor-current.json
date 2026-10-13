@@ -1,0 +1,280 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-meta-instruction-editor",
+  "original_sha256": "b6803835ccaf0663d270653dfd6d5418adc237da079716b98eddf1ea12a8102c",
+  "candidate_sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+  "effective_sha256": "16e45a36a9be7e9d530d9e324fc753741890955ac3ea64629e54eab4730d7f55",
+  "source_line_count": 119,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/d1_requirement_review_astra",
+    "author_agent_id": "/root/d1_implementation_astra",
+    "independent": true
+  },
+  "scope_authority": "Current human D1.S1 instruction: Start D1.S1 using Astra. Keep current skill names, open a PR/MR for my review without merging or installing, and update the private report with the changes and validation evidence.",
+  "source_kind": "current",
+  "agent_execution_needs": [],
+  "resources_reviewed": {
+    "manifest_sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955",
+    "bundle_sha256": "987b76856b5b2cf6837e213f3bfbff343aae32c86dd6129959c033a0cb031609",
+    "route": "all",
+    "files": [
+      {
+        "path": "references/instruction-clarity.md",
+        "sha256": "cfd61f749bd1dcf07a56a10f36fce091a17d8e9b63b70836fecea8d8a9f63b61"
+      },
+      {
+        "path": "templates/semantic-change-ledger.json",
+        "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "identity-experimental",
+      "source_start_line": 1,
+      "source_end_line": 13,
+      "source_excerpt": "---\nname: \"engos-meta-instruction-editor\"\ndescription: \"Audit, rewrite, diff, or verify prompts, skills, and agent instructions for clarity while preserving commands, authority, safety boundaries, and behavior. Use when instruction preservation is the central task; do not use for general prose editing.\"\ndisplay_name: \"Instruction Editor\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# Instruction Editor\n\n## Evidence Status\n\nThis skill is experimental during the advisory evaluation rollout. It can produce auditable edits and preservation evidence, but it cannot promote its own rewrite or claim that clearer language improved agent behavior. UAC keeps automatic candidate rewriting off until independent evaluation proves value.",
+      "source_excerpt_sha256": "dcf135ff4d2a467136a1ac74467717d41cf1688abbc13a3f49942d04c56f3b30",
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: \"engos-meta-instruction-editor\"\ndescription: \"Audit, rewrite, diff, or verify prompts, skills, and agent instructions for clarity while preserving commands, authority, safety boundaries, and behavior. Use when instruction preservation is the central task; do not use for general prose editing.\"\ndisplay_name: \"Instruction Editor\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# Instruction Editor\n\n## Evidence Status\n\nThis skill is experimental during the advisory evaluation rollout. It can produce auditable edits and preservation evidence, but it cannot promote its own rewrite or claim that clearer language improved agent behavior. UAC keeps automatic candidate rewriting off until independent evaluation proves value.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 1,
+        "candidate_end_line": 12
+      },
+      "rationale": "Exact names and skill scope retained, with experimental status and no self-promotion."
+    },
+    {
+      "id": "purpose-policy-objective",
+      "source_start_line": 14,
+      "source_end_line": 21,
+      "source_excerpt": "## Purpose\nMake instruction artifacts easier to read and invoke while preserving their behavior. Treat clarity as an editorial hypothesis, never as proof that an agent will perform better.\n\nRead `resources/references/instruction-clarity.md` before applying the policy or proposing a rewrite.\n\n## Primary Objective\nReturn a clearer artifact plus an auditable map from every meaningful edit to the behavior it preserves, changes, or leaves unresolved.",
+      "source_excerpt_sha256": "1f5c435bbadafd330791ca6c57bc755c2072202f98b96cae4a4d1c5db1b3955b",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nMake instruction artifacts easier to read and invoke while preserving their behavior. Treat clarity as an editorial hypothesis, never as proof that an agent will perform better.\n\nRead `resources/references/instruction-clarity.md` before applying the policy or proposing a rewrite.\n\n## Primary Objective\nReturn a clearer artifact plus an auditable map from every meaningful edit to the behavior it preserves, changes, or leaves unresolved.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 14,
+        "candidate_end_line": 20
+      },
+      "rationale": "Preservation-oriented clarity and existing mandatory clarity reference retained."
+    },
+    {
+      "id": "four-modes",
+      "source_start_line": 22,
+      "source_end_line": 35,
+      "source_excerpt": "## Modes\n\n### `audit`\nReport clarity findings without changing the artifact.\n\n### `rewrite`\nProduce a candidate rewrite. Preserve commands, modality, authority, safety, prerequisites, order, schemas, required outputs, examples, exceptions, and fallbacks unless the user explicitly authorizes a semantic change.\n\n### `diff`\nCompare two versions clause by clause and classify changes as contract-neutral, behavior-affecting, ambiguous, or removed.\n\n### `verify`\nCheck that a proposed edit has a preservation map and identify every behavioral claim that still requires evaluation.",
+      "source_excerpt_sha256": "1867095fdbf2591c555de5f952ae6f4906833b67b6d54b0b48abfe6dd16d7e1d",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Modes\n\n### `audit`\nReport clarity findings without changing the artifact.\n\n### `rewrite`\nProduce a candidate rewrite. Preserve commands, modality, authority, safety, prerequisites, order, schemas, required outputs, examples, exceptions, and fallbacks unless the user explicitly authorizes a semantic change.\n\n### `diff`\nCompare two versions clause by clause and classify changes as contract-neutral, behavior-affecting, ambiguous, or removed.\n\n### `verify`\nCheck that a proposed edit has a preservation map and identify every behavioral claim that still requires evaluation.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 22,
+        "candidate_end_line": 34
+      },
+      "rationale": "Audit/rewrite/diff/verify contracts retain preservation, explicit semantic authorization and ambiguity classification."
+    },
+    {
+      "id": "extract-lint-format",
+      "source_start_line": 36,
+      "source_end_line": 40,
+      "source_excerpt": "## Workflow Contract\n1. Identify the artifact, intended user, and requested mode.\n2. Extract its actors, commands, conditions, modality, authority boundaries, ordering, outputs, exceptions, examples, and fallbacks.\n3. Run the shared `instruction_clarity.v1` policy.\n4. Apply only contract-neutral formatting automatically.",
+      "source_excerpt_sha256": "0999a07afe052d87610a38665256ccdefe361290acf708307b685156f4016f79",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Workflow Contract\n1. Identify the artifact, intended user, and requested mode.\n2. Extract its actors, commands, conditions, modality, authority boundaries, ordering, outputs, exceptions, examples, and fallbacks.\n3. Run the shared `instruction_clarity.v1` policy.\n4. Apply only contract-neutral formatting automatically.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 36,
+        "candidate_end_line": 40
+      },
+      "rationale": "Actor, modality, authority, sequence and exception extraction remains before lint and safe formatting."
+    },
+    {
+      "id": "completed-ledger",
+      "source_start_line": 41,
+      "source_end_line": 41,
+      "source_excerpt": "5. For wording or structural edits, produce a candidate and preservation map.",
+      "source_excerpt_sha256": "aa086dddc6d64992deff0fa4c54158d95baeb5c3872fa56e711f89d929bab32b",
+      "disposition": "reformulated",
+      "candidate_excerpt": "5. For wording or structural edits, read `resources/templates/semantic-change-ledger.json`; produce a candidate, preservation map, and completed semantic-change ledger. Account for every meaningful edit, including displaced or unresolved clauses, without treating the ledger as independent approval.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 41,
+        "candidate_end_line": 41
+      },
+      "rationale": "Existing candidate and map duty strengthened with owned ledger covering meaningful edits; ledger is not independent approval."
+    },
+    {
+      "id": "unresolved-claims",
+      "source_start_line": 42,
+      "source_end_line": 45,
+      "source_excerpt": "6. Mark contradictions or missing intent as unresolved; do not silently resolve them.\n7. Route behavioral claims to `engos-optimization-auto-research` through `capability-eval`.\n\n## Stack Contract",
+      "source_excerpt_sha256": "6156f3feaaa4b0de402d750d2c8ecbf5ba4c102a5eca3f5d3f1ddf9127966dfa",
+      "disposition": "preserved",
+      "candidate_excerpt": "6. Mark contradictions or missing intent as unresolved; do not silently resolve them.\n7. Route behavioral claims to `engos-optimization-auto-research` through `capability-eval`.\n\n## Stack Contract",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 42,
+        "candidate_end_line": 45
+      },
+      "rationale": "Unresolved intent stays unresolved; behavioral claims still route through capability-eval."
+    },
+    {
+      "id": "conditional-stack",
+      "source_start_line": 46,
+      "source_end_line": 53,
+      "source_excerpt": "Ordered handoffs are explicit:\n\n```text\nExternal source -> engos-meta-uac-import -> engos-meta-instruction-editor -> engos-optimization-auto-research -> reviewed UAC apply\nDraft or hardened prompt -> engos-meta-supercharge -> engos-meta-instruction-editor -> engos-optimization-auto-research\nDocumentation analysis -> engos-quality-docs-review -> engos-meta-instruction-editor\n```",
+      "source_excerpt_sha256": "939b7805348491d76fc1554c30a850433cf441f462b33bd969304913d79f1ed6",
+      "disposition": "reformulated",
+      "candidate_excerpt": "Select handoffs only when their job is needed:\n\n| Trigger | Handoff |\n| --- | --- |\n| External source or material capability update needs canonical intake | `engos-meta-uac-import`; this editor can supply preservation evidence before reviewed UAC apply |\n| A draft needs hardening before instruction editing | `engos-meta-supercharge`, then this editor for the requested preservation work |\n| Documentation analysis finds an instruction-preservation problem | `engos-quality-docs-review`, then this editor |\n| An edit claims improved behavioral outcomes | `engos-optimization-auto-research` through `capability-eval` for bounded comparative evidence |\n\nThe editor remains independently callable. A low-risk exact relocation or contract-neutral wording change can finish with source preservation, diff, link, and parse checks. Material meaning changes require explicit intent and independent review. Neither path requires universal pressure testing; evaluation is required to substantiate behavioral claims. Canonical intake belongs to UAC, and ordinary prose copy editing invokes neither job.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 46,
+        "candidate_end_line": 55
+      },
+      "rationale": "Reviewed D1.S1 meaning change replaces automatic-looking chains with job-triggered handoffs. Original companion jobs remain; editor independently callable; material changes require explicit intent and independent review."
+    },
+    {
+      "id": "upstream-boundaries",
+      "source_start_line": 54,
+      "source_end_line": 58,
+      "source_excerpt": "Preserve upstream artifact identifiers, clause hashes, unresolved questions, and requested output. Add editorial evidence; do not replace upstream evidence.\n\n## Tool Boundaries\n- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success",
+      "source_excerpt_sha256": "5e0e9a40d1ae7a0a56ad5d6e39c7cae986f7aeeee236d21143df47b619163d11",
+      "disposition": "preserved",
+      "candidate_excerpt": "Preserve upstream artifact identifiers, clause hashes, unresolved questions, and requested output. Add editorial evidence; do not replace upstream evidence.\n\n## Tool Boundaries\n- allowed: read artifacts, run deterministic clarity lint, propose edits, compute size deltas, and emit preservation evidence\n- forbidden: promote the editor's own output, weaken behavior for fluency, invent missing intent, fetch Google HTML through UAC, or treat style compliance as task success",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 57,
+        "candidate_end_line": 61
+      },
+      "rationale": "Upstream identifiers, hashes, questions and outputs retained; prohibitions against self-promotion, weakening, invention and style-as-success remain."
+    },
+    {
+      "id": "escalation",
+      "source_start_line": 59,
+      "source_end_line": 60,
+      "source_excerpt": "- escalation: route semantic comparisons to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
+      "source_excerpt_sha256": "8ab7485ca43a1a1068544199829cd3741c28ed52200bed7927bf8edaa4ab80ff",
+      "disposition": "reformulated",
+      "candidate_excerpt": "- escalation: route claimed behavioral improvements and comparative efficacy questions to `engos-optimization-auto-research`; route unresolved capability contracts back to the owner or UAC reviewer",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 62,
+        "candidate_end_line": 62
+      },
+      "rationale": "Evaluation handoff narrowed to claimed behavioral improvement or comparative efficacy. Unresolved contracts still go to owner/UAC; material changes still receive independent review."
+    },
+    {
+      "id": "triggers-inputs",
+      "source_start_line": 61,
+      "source_end_line": 77,
+      "source_excerpt": "## Invocation Hints\nUse this capability when the user asks to:\n- remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing\n- apply Google developer documentation style to a prompt or skill\n- tighten or shorten instructions without changing behavior\n- clarify actors, conditions, commands, or outputs\n- audit an instruction artifact for readability or translation risk\n- compare an edited instruction against its original contract\n\nDo not auto-route ordinary prose editing, general documentation architecture, prompt hardening, or capability intake here unless instruction preservation is the central job.\n\n## Required Inputs\n- the instruction artifact or path\n- the requested mode, defaulting to `audit`\n- any authorized semantic changes\n- an upstream Goal Contract or topology when available",
+      "source_excerpt_sha256": "bb716ae374f0d2d5e902fa2fbb9c94e57c62c522a2de34391f2dd87c4296cf50",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks to:\n- remove AI-ish, Claude-ish, ChatGPT-ish, corporate, or exhausting phrasing\n- apply Google developer documentation style to a prompt or skill\n- tighten or shorten instructions without changing behavior\n- clarify actors, conditions, commands, or outputs\n- audit an instruction artifact for readability or translation risk\n- compare an edited instruction against its original contract\n\nDo not auto-route ordinary prose editing, general documentation architecture, prompt hardening, or capability intake here unless instruction preservation is the central job.\n\n## Required Inputs\n- the instruction artifact or path\n- the requested mode, defaulting to `audit`\n- any authorized semantic changes\n- an upstream Goal Contract or topology when available",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 64,
+        "candidate_end_line": 79
+      },
+      "rationale": "Instruction-focused invocation, ordinary-prose exclusion and default audit inputs retained."
+    },
+    {
+      "id": "output-artifact",
+      "source_start_line": 78,
+      "source_end_line": 80,
+      "source_excerpt": "## Required Output\nReturn these sections:\n- `Edited Artifact`",
+      "source_excerpt_sha256": "b466907a54b1f8ad47d78926b76a5af222e8a9694456cbd02b01ed705dc11915",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\nReturn these sections:\n- `Edited Artifact`",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 81,
+        "candidate_end_line": 83
+      },
+      "rationale": "Result structure and Edited Artifact retained."
+    },
+    {
+      "id": "ledger-output",
+      "source_start_line": 81,
+      "source_end_line": 81,
+      "source_excerpt": "- `Edit Ledger`",
+      "source_excerpt_sha256": "2e46bb31a7c3d1a6e7581fc0f3f10e1724a8b1f5065ebaf77c6e5b0d2776bd06",
+      "disposition": "reformulated",
+      "candidate_excerpt": "- `Edit Ledger` (use `SemanticChangeLedger.v1` for wording or structural edits)",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 84,
+        "candidate_end_line": 84
+      },
+      "rationale": "Edit Ledger retained with SemanticChangeLedger.v1 required for wording/structural work only; no independent attestation implied."
+    },
+    {
+      "id": "output-preservation-rules",
+      "source_start_line": 82,
+      "source_end_line": 98,
+      "source_excerpt": "- `Preservation Map`\n- `Before / After Size`\n- `Behavioral Claims Requiring Proof`\n- `Unresolved Ambiguities`\n\nFor `audit`, `Edited Artifact` may state `No edit requested`.\n\n## Rules\n- Use direct language only when it preserves the named actor and action.\n- Keep `must`, `must not`, `never`, `only`, and approval requirements exact.\n- Do not delete low-frequency modules or examples merely to reduce size.\n- Keep human readability and behavioral fitness as separate scorecards.\n- Report lines, words, bytes, and model-token estimates before and after.\n- A smaller artifact is not automatically better.\n- A model-preferred artifact is not automatically clearer to people.\n- A human-preferred artifact is not automatically safer or more effective for agents.",
+      "source_excerpt_sha256": "55972601e8ba8fbd189c748700d76fad238d29aa951c2f508b37db1392cbbc06",
+      "disposition": "preserved",
+      "candidate_excerpt": "- `Preservation Map`\n- `Before / After Size`\n- `Behavioral Claims Requiring Proof`\n- `Unresolved Ambiguities`\n\nFor `audit`, `Edited Artifact` may state `No edit requested`.\n\n## Rules\n- Use direct language only when it preserves the named actor and action.\n- Keep `must`, `must not`, `never`, `only`, and approval requirements exact.\n- Do not delete low-frequency modules or examples merely to reduce size.\n- Keep human readability and behavioral fitness as separate scorecards.\n- Report lines, words, bytes, and model-token estimates before and after.\n- A smaller artifact is not automatically better.\n- A model-preferred artifact is not automatically clearer to people.\n- A human-preferred artifact is not automatically safer or more effective for agents.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 85,
+        "candidate_end_line": 100
+      },
+      "rationale": "Other output headings, audit no-edit option, exact modality/approval rules, rare modules and separate human/behavioral scorecards retained."
+    },
+    {
+      "id": "example-asks",
+      "source_start_line": 99,
+      "source_end_line": 108,
+      "source_excerpt": "## Examples\n\n### Audit request\n> Audit this skill for Claude-ish phrasing and buried conditions. Do not rewrite it.\n\nReturn findings with rule IDs, clause references, and risk. Do not claim behavior improved.\n\n### Rewrite request\n> Shorten this prompt while preserving every command and safety boundary.",
+      "source_excerpt_sha256": "d23262bc57a757078d341fb61d70172bf81b5391aee0bbbc8c4ba7edb8237c6b",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\n\n### Audit request\n> Audit this skill for Claude-ish phrasing and buried conditions. Do not rewrite it.\n\nReturn findings with rule IDs, clause references, and risk. Do not claim behavior improved.\n\n### Rewrite request\n> Shorten this prompt while preserving every command and safety boundary.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 102,
+        "candidate_end_line": 110
+      },
+      "rationale": "Original audit no-rewrite and preserve-every-command asks unchanged."
+    },
+    {
+      "id": "conditional-noninferiority",
+      "source_start_line": 109,
+      "source_end_line": 110,
+      "source_excerpt": "Return the candidate, edit ledger, preservation map, size delta, and the cases needed to prove non-inferiority.",
+      "source_excerpt_sha256": "4ddfb24c3892e47b30708109b52f0fa29b0d63da57d6ca6aba7ba618d1d32914",
+      "disposition": "reformulated",
+      "candidate_excerpt": "Return the candidate, edit ledger, preservation map, size delta, and any behavioral claims requiring proof. If non-inferiority is claimed, identify the bounded baseline comparison needed; do not infer it from preservation checks.\n\n### Exact relocation\n> Move this unchanged approval condition next to its command and verify that it still applies.\n\nCompare source and destination clauses, including surrounding scope and exceptions, and check links and syntax. Record the relocation in the ledger. Finish with preservation evidence unless unresolved meaning or a claimed behavioral benefit requires further review.",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 112,
+        "candidate_end_line": 117
+      },
+      "rationale": "Candidate, ledger, map and size retained. Non-inferiority baseline becomes conditional on claiming it; preservation alone explicitly cannot establish it. Added exact-relocation example checks scope/exceptions."
+    },
+    {
+      "id": "rubric",
+      "source_start_line": 111,
+      "source_end_line": 119,
+      "source_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Preservation | Commands, modality, boundaries, order, outputs, exceptions, and fallbacks remain traceable |\n| Clarity | Actors, conditions, and actions are direct and scannable |\n| Honesty | Editorial quality is never reported as behavioral proof |\n| Ambiguity | Contradictions and missing intent are surfaced, not silently repaired |\n| Stack safety | Upstream artifacts remain intact and downstream handoff data is complete |\n| Routing | The skill triggers for instruction editing and avoids neighboring general editing or hardening asks |",
+      "source_excerpt_sha256": "d21b49acf563372d9b9aebadef502848f682644a756583dedc2e636e7a5c5c3a",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Preservation | Commands, modality, boundaries, order, outputs, exceptions, and fallbacks remain traceable |\n| Clarity | Actors, conditions, and actions are direct and scannable |\n| Honesty | Editorial quality is never reported as behavioral proof |\n| Ambiguity | Contradictions and missing intent are surfaced, not silently repaired |\n| Stack safety | Upstream artifacts remain intact and downstream handoff data is complete |\n| Routing | The skill triggers for instruction editing and avoids neighboring general editing or hardening asks |",
+      "destination": {
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "candidate_start_line": 119,
+        "candidate_end_line": 127
+      },
+      "rationale": "All six preservation, clarity, honesty, ambiguity, stack and routing checks retained."
+    }
+  ],
+  "limits": [
+    "Independent source-level semantic review; no behavioral promotion or measured benefit.",
+    "Validator checks bindings and coverage, not reviewer authenticity or semantic correctness.",
+    "No retirement, rename, new agent surface, merge, installation, or expanded runtime authority approved.",
+    "Author-prepared mappings viewed only after initial source assessment; this independently authored record replaces rather than countersigns them."
+  ]
+}

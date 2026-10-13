@@ -1,0 +1,124 @@
+{
+  "schema": "ProgramFoundationLocalValidation.v1",
+  "status": "passed_with_documented_derived_artifact_recovery",
+  "productSHA256": "8359a5895c8b37a9b41495a271183003c75dc75555fb9807a8d3f151e943ba9a",
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "skills": 36,
+  "packages": 180,
+  "namedAgentSurfaces": 0,
+  "checks": [
+    {
+      "name": "installer-runtime",
+      "exitCode": 0,
+      "seconds": 0.138,
+      "summary": null,
+      "logSHA256": "073cb208fa060bbfb8f523669cc40a6c8e015669f36f882695b1e18e05896dd1"
+    },
+    {
+      "name": "legacy-catalog",
+      "exitCode": 0,
+      "seconds": 8.328,
+      "summary": null,
+      "logSHA256": "5c8e7329f92d4cae7898526e11080a66fcfa8d8afda28dfafad08139e06635f5"
+    },
+    {
+      "name": "resources-uac",
+      "exitCode": 0,
+      "seconds": 112.085,
+      "summary": "480 passed in 111.48s (0:01:51)",
+      "logSHA256": "7eb83cff50ba1924ec7b66514310d75c5972cc7ea13785a3abe4edbb882d8433"
+    },
+    {
+      "name": "shaping",
+      "exitCode": 0,
+      "seconds": 75.655,
+      "summary": "480 passed, 1 skipped in 74.91s (0:01:14)",
+      "logSHA256": "5a2daafdd6f230dede51f14106062d044dc2dcd303d8d533dd0a288f9254c9de"
+    },
+    {
+      "name": "presentation",
+      "exitCode": 0,
+      "seconds": 76.068,
+      "summary": "19 passed in 74.12s (0:01:14)",
+      "logSHA256": "de560dc8a69e437fdbaa20896fc62e839eb2d37b313ce1a1516c06285c686cc6"
+    },
+    {
+      "name": "routing",
+      "exitCode": 0,
+      "seconds": 1.215,
+      "summary": "58 passed in 0.52s",
+      "logSHA256": "1c1e853f0a9d000ee5acb00ca998d7ef9cc4243f7469b13a4934c2293f016e4b"
+    },
+    {
+      "name": "apply-bootstrap",
+      "exitCode": 0,
+      "seconds": 37.384,
+      "summary": "5 passed, 25 deselected in 36.84s",
+      "logSHA256": "858327125a2944cac72d97bd34bfcd5f95bd1dd14b5e8625c7dc8bac3cd78c2a"
+    },
+    {
+      "name": "smoke",
+      "exitCode": 0,
+      "seconds": 11.952,
+      "summary": null,
+      "logSHA256": "d55872cd3c9b711d2f8406c63b46f43570dcfd830f7b7997fe59ec2a8cf4078d"
+    },
+    {
+      "name": "compile-contracts",
+      "exitCode": 0,
+      "seconds": 0.818,
+      "summary": null,
+      "logSHA256": "4bbb81241703eb5fa7f4bf438227fede5b905df214d7d6b676f422af1eadf1ba"
+    },
+    {
+      "name": "calibrate-static",
+      "exitCode": 0,
+      "seconds": 0.562,
+      "summary": null,
+      "logSHA256": "40185376e1ca8255c3597080ff4b17e12b076729513db4edd51a900604a05a97"
+    },
+    {
+      "name": "strict-surfaces",
+      "exitCode": 0,
+      "seconds": 3.888,
+      "summary": null,
+      "logSHA256": "106e677b000001c5a60c3986f89ca28887f88835a0da76bd415d0b191da5d1af"
+    },
+    {
+      "name": "distribution-build",
+      "exitCode": 0,
+      "seconds": 9.854,
+      "summary": null,
+      "logSHA256": "2223faedf36b045ee694307d119cbfb52b7e7589af84fd7d8d50cf34eb9e43fa"
+    },
+    {
+      "name": "packaging-profiles",
+      "exitCode": 0,
+      "seconds": 335.237,
+      "summary": "255 passed, 16 subtests passed in 334.39s (0:05:34)",
+      "logSHA256": "f866b250b6f10f4bfac921ad4ffe8145e33d1d1e9708783b64c0527e6c1f4f22"
+    }
+  ],
+  "localSequenceRecovery": {
+    "reusedFirstEight": true,
+    "cause": "Only derived architecture topology required refresh; no executable or authored-source changes after these checks.",
+    "priorReceipt": "reports/program-foundation/local-ci/round-2/receipt.json",
+    "newCheckScope": "Architecture source/topology focused checks then original last five commands. Exact-head hosted CI must rerun complete unadapted suite."
+  },
+  "initialDefects": [
+    "Exact 33 versus 36 count test/public documentation",
+    "Generated architecture topology missing four actual source modes"
+  ],
+  "focusedTopologyChecks": "4 passed in 0.20s",
+  "focusedSkillsOnlyCheck": "1 passed in 0.81s",
+  "totals": {
+    "passed": 1297,
+    "skipped": 1,
+    "subtestsPassed": 16
+  },
+  "limits": [
+    "Source/package and local process checks, not comparative model quality or native-provider behavioral acceptance",
+    "First eight unchanged-source stages reused after solely derived architecture topology refresh; hosted CI must run entire exact-head sequence",
+    "No main landing, release or live installation yet"
+  ]
+}

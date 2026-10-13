@@ -1,0 +1,21 @@
+{
+  "schema_version": "D2S2IndependentMetadataReview.v1",
+  "reviewer": "/root/d2_s2_review_astra",
+  "finding": {
+    "id": "D2S2-META-003",
+    "severity": "high",
+    "status": "closed",
+    "origin": "Controller post-build readback, independently confirmed in code and UAC preview",
+    "locations": [
+      "scripts/build-surfaces.py:resolve_descriptor",
+      "scripts/uac-import.py:_merge_existing_descriptor_for_apply"
+    ],
+    "problem": "Introducing a resource map replaces curated architecture modes with extracted resource modes. The imported JSON schema has no mode headings, so both paths can reduce four existing product modes to an empty list. Generator-only preservation cannot recover modes already erased by UAC.",
+    "observed": "Restored source descriptor had four original modes; successful recovery apply preview had zero, and controller reported descriptor erased again. Direct source inspection confirms quality-bound UAC resource-map branch assigns extract_capability_modes unconditionally.",
+    "required_repair": "Preserve exact existing entry_kind=mode curation in both generator and quality-bound UAC same-slug merge; refresh extracted modules and remove stale resource module rows; avoid duplicate (entry_kind,mode_slug). Verify generator and actual UAC same-slug path, then final real regenerated metadata readback.",
+    "authority": "No approval to retire existing architecture modes or expand surfaces.",
+    "resolution": "Shared refresh_resource_mode_entries preserves curated product mode dictionaries and refreshes source-derived modules in builder, actual UAC merge and preview. Actual successful final apply plus regenerated descriptor/manifest/five bundles each preserve all four original dictionaries exactly; dedicated regressions and surrounding UAC tests pass."
+  },
+  "status": "closed_by_independent_final_readback",
+  "final_evidence": "reports/d2-shared-artifacts/review-final-source-package.json"
+}

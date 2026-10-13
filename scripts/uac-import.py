@@ -54,7 +54,7 @@ from intent_pipeline.uac_baselines import (
 from intent_pipeline.uac_templates import load_capability_template
 from intent_pipeline.uac_agent_review import agent_surface_review, agent_providers, declaration_normalization
 from intent_pipeline.capability_resources import effective_capability_text
-from intent_pipeline.uac_modes import extract_capability_modes
+from intent_pipeline.uac_modes import extract_capability_modes, resolve_mode_entries
 from intent_pipeline.uac_repomix import collect_repomix_candidates, materialize_repomix_candidate, repomix_available
 from intent_pipeline.uac_sources import (
     UacSourceCandidate,
@@ -830,6 +830,9 @@ def _build_descriptor_preview(
     existing_descriptor = load_descriptor(ROOT, slug)
     candidate_text = _canonicalize_same_slug_ssot(slug, _preferred_ssot_text(slug, payload, quality_result=quality_result))
     candidate_text += '' if candidate_text.endswith('\n') else '\n'
+    if existing_descriptor and (ROOT / 'sources' / 'capability-resources' / slug / 'resource-map.json').is_file():
+        descriptor['modes'] = resolve_mode_entries(
+            extract_capability_modes(ROOT, slug, candidate_text), existing_descriptor.get('modes') or [], slug)
     descriptor['job_contract'] = _routing_job_for_text(slug, candidate_text, existing_descriptor)
     return descriptor, _compact_descriptor_delta(existing_descriptor, descriptor)
 
@@ -1415,7 +1418,9 @@ def _merge_existing_descriptor_for_apply(
     if quality_bound:
         source_fields, _ = parse_ssot_frontmatter_and_body(ssot_text)
         if (ROOT / 'sources' / 'capability-resources' / slug / 'resource-map.json').is_file():
-            merged['modes'] = extract_capability_modes(ROOT, slug, ssot_text)
+            merged['modes'] = resolve_mode_entries(
+                extract_capability_modes(ROOT, slug, ssot_text), existing.get('modes') or [], slug
+            )
         if (
             'description' in source_fields
             and candidate.get('shared_summary') == source_fields['description']

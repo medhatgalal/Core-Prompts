@@ -689,6 +689,26 @@ def write_validation_report(args, validation_errors: list[str], validation_warni
     return payload
 
 
+def validate_shared_resource_delivery():
+    from intent_pipeline.capability_resources import (
+        ResourceContractError, load_capability_bundle, load_resource_bundle,
+        validate_shared_resource_imports,
+    )
+    errors = []
+    try:
+        consumers = validate_shared_resource_imports(ROOT)
+        for slug in consumers:
+            entry = (ROOT / "ssot" / f"{slug}.md").read_text(encoding="utf-8")
+            canonical = load_capability_bundle(ROOT, slug, entry)
+            for provider in ("codex", "gemini", "claude", "kiro", "grok"):
+                target = ROOT / f".{provider}/skills/{slug}/resources"
+                if load_resource_bundle(target) != canonical:
+                    errors.append(f"{target}: canonical shared resource delivery drift")
+    except (ResourceContractError, OSError) as error:
+        errors.append(f"Shared resource validation failed: {error}")
+    return errors
+
+
 def main():
     args = parse_args()
     args.strict = args.strict or parse_bool_env('SURFACE_VALIDATE_STRICT', False)
@@ -716,7 +736,7 @@ def main():
     manifest = json.loads(META.read_text(encoding='utf-8'))
     manifest_entries = manifest.get('ssot_sources', [])
 
-    errors: list[str] = preflight_agent_emission(ROOT)
+    errors: list[str] = preflight_agent_emission(ROOT) + validate_shared_resource_delivery()
     warnings: list[str] = []
 
     for rule in rules:

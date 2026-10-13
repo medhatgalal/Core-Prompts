@@ -1,0 +1,18 @@
+{
+  "schema": "D2S2LocalValidation.v1",
+  "status": "passed",
+  "productSeal": "1f620ca5432b8520cde1e7b065cc84851ff8bb94f2ce4386240c4c32e66498c5",
+  "steps": 13,
+  "passed": 1207,
+  "skipped": 1,
+  "subtests": 16,
+  "pytestGroups": 6,
+  "doubleCountedFocusedReruns": false,
+  "commandsAndLogs": "local-ci/receipt.json",
+  "behavioralPromotion": "not measured",
+  "limitations": [
+    "Unadapted current GitLab verification commands, macOS Python3.14.8 plus declared dependencies; hosted Linux scope is recorded separately.",
+    "Focused repair reruns and interrupted concurrent-generation checks are not included in these totals.",
+    "Static calibration makes no model calls. Package consistency and source review do not establish measured skill efficacy."
+  ]
+}

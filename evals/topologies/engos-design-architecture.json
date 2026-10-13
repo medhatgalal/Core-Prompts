@@ -1,14 +1,83 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-architecture",
-  "ssot_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "ssot_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
   "auto_routes": [],
   "nodes": {
     "commands": [],
-    "modes_modules": [],
+    "modes_modules": [
+      {
+        "mode_slug": "design-api",
+        "display_name": "Design API",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 146,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "design-database",
+        "display_name": "Design Database",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 149,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "design-patterns",
+        "display_name": "Design Patterns",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 152,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      },
+      {
+        "mode_slug": "system-design",
+        "display_name": "System Design",
+        "entry_kind": "mode",
+        "invocations": [],
+        "source_refs": [
+          "ssot/engos-design-architecture.md"
+        ],
+        "source_line": 155,
+        "mode_summary": "Explicitly declared mode in the canonical skill.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Composition and state rules belong to CapabilityTopology.v1."
+        ]
+      }
+    ],
     "controls": [],
     "modifiers": []
   },
@@ -488,6 +557,96 @@
       "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while findings are open, while a required human answer is pending, or while review is incomplete. A writer's score or checklist cannot satisfy this exit. This inner issue count does not decide any wider workflow's acceptance.",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L33:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 33,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L80:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 80,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L123:f7be59ed3810",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 123,
+      "sha256": "f7be59ed38106f9ecfdca0b2c05873fe5359c07db24fffb27880ff610d29d918",
+      "text": "\"must\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L146:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 146,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L184:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 184,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L210:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 210,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L246:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 246,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-architecture:sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json:L251:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "source_line": 251,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -498,7 +657,15 @@
   "source_references": [
     {
       "path": "ssot/engos-design-architecture.md",
-      "sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d"
+      "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-architecture/resource-map.json",
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
     }
   ],
   "known_ambiguities": [],
@@ -511,10 +678,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 41,
+    "total": 50,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "0b0f9d5a3e5abe3f1e3c1ea8b37c061158ee12902ea5d11dc2c0ac07611babca"
 }

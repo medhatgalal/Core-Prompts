@@ -1,0 +1,464 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-debug-diagnose-failure",
+  "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [
+    "- Cause status (`identified` or `unknown`), conclusion, scope and remaining uncertainty.",
+    "- Current, expected and unchanged behavior bound to the subject revision.",
+    "- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.",
+    "- Hypotheses with predictions, discriminators, actual results and supported/rejected/unresolved status.",
+    "- Explicit repair scope/authority, next owner, and any missing evidence or blocked diagnostic action."
+  ],
+  "authority_boundaries": [
+    "engos-debug-diagnose-failure:L36:6d3246498aef",
+    "engos-debug-diagnose-failure:L48:8953194adc00",
+    "engos-debug-diagnose-failure:L56:fc06d7da0e88",
+    "engos-debug-diagnose-failure:L64:013607a36580",
+    "engos-debug-diagnose-failure:L84:83a21464017c",
+    "engos-debug-diagnose-failure:L123:cb6cd3c1f744",
+    "engos-debug-diagnose-failure:L134:e140802699fb",
+    "engos-debug-diagnose-failure:L140:1a2cc1687a11",
+    "engos-debug-diagnose-failure:L142:699fd04be467",
+    "engos-debug-diagnose-failure:L143:4cd0a318fbad",
+    "engos-debug-diagnose-failure:L146:632b0eeb7d34",
+    "engos-debug-diagnose-failure:L162:06296867a75c",
+    "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L16:16b2976ca97a",
+    "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L21:f81d27e7f3d8",
+    "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json:L15:e67eb3ab1062"
+  ],
+  "resources": [
+    "- Existing access, permitted diagnostic actions and any time, attempt or resource limit.",
+    "- For a structured handoff, use `resources/templates/reproduction-receipt.json` and",
+    "- For several competing hypotheses, use `resources/templates/hypothesis-evidence.md`.",
+    "- Observations with redacted commands/steps, exit statuses, sanitized environment and evidence references.",
+    "- `resources/resource-map.json` declares the `hypotheses` and `receipt` resource routes."
+  ],
+  "handoffs": [
+    "\"description\": \"Structural handoff contract. Human or semantic review must verify actual causal discrimination and redaction; schema validity is not causal proof. Empty observations/hypotheses are permitted only for explicit unknown outcomes.\",",
+    "- Evidence-backed handoff with preserved behavior and explicit repair authority.",
+    "- For a structured handoff, use `resources/templates/reproduction-receipt.json` and",
+    "- Keep small diagnoses readable. A structured receipt is optional evidence for handoff",
+    "`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence",
+    "environment, result or uncertainty fields so the handoff is self-contained.",
+    "launch an unrelated reproduction campaign. For incident meeting coordination, route to IC.",
+    "| Useful handoff | Current/expected/unchanged behavior, limitations and the next owner's bounded action are clear. |"
+  ],
+  "protected_invariants": [
+    {
+      "id": "engos-debug-diagnose-failure:L20:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 28,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L25:06396ecbbf80",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 33,
+      "sha256": "06396ecbbf805d5d3227351f79222ce4e13b0dd5153600424bdd5f01df8d766a",
+      "text": "- Behavior that must remain unchanged; derive it from supplied requirements or ask only when material.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L36:6d3246498aef",
+      "heading": "1. Bound the investigation",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 44,
+      "sha256": "6d3246498aeff00b660d233fa1f9542639cc14d6714d7002ad876209687f47c1",
+      "text": "configuration before selecting commands; do not guess a universal test command.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L48:8953194adc00",
+      "heading": "2. Reproduce and localize",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 56,
+      "sha256": "8953194adc007f3b26175fa2630756f5de3062b24a0c9a4abf64db8c111db216",
+      "text": "not run, say so; never supply a fabricated exit status. For a UI or other non-command",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L56:fc06d7da0e88",
+      "heading": "2. Reproduce and localize",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 64,
+      "sha256": "fc06d7da0e887d842488bc7b2d9565ad9f201a4c604418c5ddcafabdb47d8b52",
+      "text": "Use read-only history/diff analysis to narrow regression candidates. Do not run mutating",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L58:9c5e89a4fecd",
+      "heading": "2. Reproduce and localize",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 66,
+      "sha256": "9c5e89a4fecdbf4dea1dc5d871ed3dafcca7cf596611e82a13bd976941be7019",
+      "text": "under diagnosis-only authority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L64:013607a36580",
+      "heading": "3. Minimize without changing the subject",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 72,
+      "sha256": "013607a36580b611c2e66279e1c84534c5074b893a7ff1ce1cb03af884b62ff7",
+      "text": "scratch reproduction when writes are needed; never reduce by deleting or editing the",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L77:0d8ed14cd163",
+      "heading": "4. Discriminate hypotheses",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 85,
+      "sha256": "0d8ed14cd163a0a4e76476b396ad0701626854df2b2a68ad8e54d068f58e3cf6",
+      "text": "references and must say what remains unknown. A discriminator may be a decisive",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L84:83a21464017c",
+      "heading": "4. Discriminate hypotheses",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 92,
+      "sha256": "83a21464017c7a241bf890f2ac6b54e5069b2d4175ce9c93a2a3a175889f4dcd",
+      "text": "Do not infer an architecture defect from a fixed number of failed fixes, or enter a guess-fix loop.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L88:81bb28b6874b",
+      "heading": "5. Decide and hand off",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 96,
+      "sha256": "81bb28b6874b3ac8fa1f914966ea5633a9a8d92e06451b8bfe4a6664db89c8fc",
+      "text": "Use `identified` only when the recorded discriminator supports a causal explanation and",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L98:980d9ed250c4",
+      "heading": "5. Decide and hand off",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 106,
+      "sha256": "980d9ed250c4675e255125551f7737ee8276f54d59861f01e4973fb1c7d2a4ec",
+      "text": "judgment belongs to `engos-quality-code-review`. No candidate diff is required for diagnosis.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L102:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 110,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L111:816e4a3969ca",
+      "heading": "Required Output",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 119,
+      "sha256": "816e4a3969ca91d4bf0f48c36ca2707adc9a4de1c00676bd150e8ccc997a5f31",
+      "text": "`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L116:6c4c153196e4",
+      "heading": "Resources and Progressive Loading",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 124,
+      "sha256": "6c4c153196e47981d2092a6eec3f6300f1ea7739bdfa85009cd7d7823f98ea0c",
+      "text": "Read resources relative to this skill's installed directory. Select only what is needed:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L123:cb6cd3c1f744",
+      "heading": "Resources and Progressive Loading",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 131,
+      "sha256": "cb6cd3c1f744e5e7bd290ef663bbe06782faa3b188b18c5807492407203a14f4",
+      "text": "Put actual references in each hypothesis's `evidence_refs`; never invent references",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L134:e140802699fb",
+      "heading": "Rules",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 142,
+      "sha256": "e140802699fb6360d443ecd4a1d377997c62733ea08e35c5631736facdaaadff",
+      "text": "execution evidence; do not promote a plausible explanation into an observed fact.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L140:1a2cc1687a11",
+      "heading": "Constraints",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 148,
+      "sha256": "1a2cc1687a11a22af2e41ed1b8285a373a1a0817fc2df85fcbf0d4adec5851d2",
+      "text": "- Do not edit production or working code, install dependencies, add instrumentation,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L142:699fd04be467",
+      "heading": "Constraints",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 150,
+      "sha256": "699fd04be4674bb2969c89900b2fd63caff60041399853f81b267bec9cf25381",
+      "text": "- Do not expose secrets in commands, logs, receipts or summaries; retain useful redacted provenance.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L143:4cd0a318fbad",
+      "heading": "Constraints",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 151,
+      "sha256": "4cd0a318fbad974d449a369b5357744077f57646dca44ed17bcbffce7ee78d5b",
+      "text": "- Do not interpret a successful rerun as causal proof, silently weaken an oracle, skip a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L145:d76de20cdcae",
+      "heading": "Constraints",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 153,
+      "sha256": "d76de20cdcaee725603f6c4e13078a2a88074fe01d9b895dc8d173472aa4e1a4",
+      "text": "- Preserve active processes, user data and unrelated work. Stop only your own bounded",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L146:632b0eeb7d34",
+      "heading": "Constraints",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 154,
+      "sha256": "632b0eeb7d3427ed5c5d271f3de69ff4f3314705c378c2c53faf1aa396423f32",
+      "text": "diagnostic run through its known cancellation mechanism when needed; do not kill shared processes.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L150:8134d43ab7c8",
+      "heading": "Invocation Hints",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 158,
+      "sha256": "8134d43ab7c8ee8e96a8b70bbcc2c915d720fad1a4cf75caf2c972a93708fd5f",
+      "text": "Use `engos-debug-diagnose-failure` for \u201cwhy does this fail?\u201d and diagnosis-only requests.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L156:f8dc52d7bf92",
+      "heading": "Examples",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 164,
+      "sha256": "f8dc52d7bf929bb30174bc786f88e193391becefc3a24d7b94067e3356793a19",
+      "text": "- **Build fails only in CI:** compare the recorded runner environment and dependency",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L162:06296867a75c",
+      "heading": "Examples",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 170,
+      "sha256": "06296867a75c6adeff4ba939b1e2fe0b983fa9c26409c1beef969b7fa50ec2cc",
+      "text": "- **Only a patch review is requested:** route candidate judgment to code review; do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L175:d9fd9679ede2",
+      "heading": "Evaluation Rubric",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 183,
+      "sha256": "d9fd9679ede2d9c8def556d6a8870c21ad31961aaa16f7c8f34f149caa425cfa",
+      "text": "Structural resource/schema checks establish format and closure only. Behavioral acceptance",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L3:ccd35323a109",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+      "source_line": 3,
+      "sha256": "ccd35323a109002b79be6e94a571b5f9cfe894ab2a97c86a17338bb04ffd7537",
+      "text": "Use only when competing explanations need a durable comparison.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L16:16b2976ca97a",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+      "source_line": 16,
+      "sha256": "16b2976ca97ab5f42c4279928a76b08a28d48fafc5016f4b949b3dd4c9c42c72",
+      "text": "Do not include raw environment dumps, credentials or sensitive payloads.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L21:f81d27e7f3d8",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+      "source_line": 21,
+      "sha256": "f81d27e7f3d8d33aa54e4801e937366dc5351dd6a846fc53948b44a483c53e5f",
+      "text": "retain unknown and name the next observation; do not fill a result from expectation.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json:L53:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "source_line": 53,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json:L98:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "source_line": 98,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json:L117:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "source_line": 117,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json:L159:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "source_line": 159,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json:L177:4e665da6559c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "source_line": 177,
+      "sha256": "4e665da6559cd2c9dc6490837ecf3090ac2c4a7a6aebc3939a65ce9646485d17",
+      "text": "\"description\": \"Structural handoff contract. Human or semantic review must verify actual causal discrimination and redaction; schema validity is not causal proof. Empty observations/hypotheses are permitted only for explicit unknown outcomes.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json:L200:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "source_line": 200,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json:L15:e67eb3ab1062",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+      "source_line": 15,
+      "sha256": "e67eb3ab106208519adb8ab8e625daa918435338128a508d1459097868fc3286",
+      "text": "\"remaining_uncertainty\": \"REPLACE: missing evidence, unexecuted work, exposure and confounders; do not invent references\"",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-debug-diagnose-failure.md",
+      "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json",
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 35,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "5c9fea8c94be1645650d2a7887730cfd8bb1e287478caaca2f01e7627c802350"
+}

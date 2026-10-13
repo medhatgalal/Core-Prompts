@@ -1,0 +1,210 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "DiagnosisReceipt.v1"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "current_behavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expected_behavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unchanged_behavior": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "command_redacted": {
+            "type": "string",
+            "minLength": 1
+          },
+          "exit_status": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "environment": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "command_redacted",
+          "exit_status",
+          "environment",
+          "evidence_ref"
+        ]
+      }
+    },
+    "hypotheses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prediction": {
+            "type": "string",
+            "minLength": 1
+          },
+          "discriminator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "supported",
+              "rejected",
+              "unresolved"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "prediction",
+          "discriminator",
+          "result",
+          "status",
+          "evidence_refs"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "supported",
+                    "rejected"
+                  ]
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "evidence_refs": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "cause_status": {
+      "enum": [
+        "identified",
+        "unknown"
+      ]
+    },
+    "repair_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "next_owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conclusion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "investigated_scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "remaining_uncertainty": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "subject_revision",
+    "current_behavior",
+    "expected_behavior",
+    "unchanged_behavior",
+    "observations",
+    "hypotheses",
+    "cause_status",
+    "repair_scope",
+    "next_owner",
+    "conclusion",
+    "investigated_scope",
+    "remaining_uncertainty"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DiagnosisReceipt.v1",
+  "description": "Structural handoff contract. Human or semantic review must verify actual causal discrimination and redaction; schema validity is not causal proof. Empty observations/hypotheses are permitted only for explicit unknown outcomes.",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "cause_status": {
+            "const": "identified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "observations": {
+            "minItems": 1
+          },
+          "hypotheses": {
+            "minItems": 1,
+            "contains": {
+              "properties": {
+                "status": {
+                  "const": "supported"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "minContains": 1
+          }
+        }
+      }
+    }
+  ]
+}

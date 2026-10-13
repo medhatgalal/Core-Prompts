@@ -1,0 +1,822 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-architecture",
+  "original_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+  "effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+  "verdict": "approved",
+  "source_line_count": 864,
+  "reviewer": {
+    "agent_id": "/root/d2_s2_review_astra",
+    "author_agent_id": "/root/d2_s2_implementation_astra",
+    "independent": true,
+    "role": "Actual independent design/security/source-fidelity reviewer; did not author candidate or product changes"
+  },
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "ARCH-PRESERVE-001",
+      "source_start_line": 1,
+      "source_end_line": 12,
+      "source_heading": "Canonical skill identity and capability metadata",
+      "disposition": "preserved",
+      "candidate_excerpt": "---\nname: \"engos-design-architecture\"\ndescription: \"Design APIs, data models, patterns, or systems with explicit boundaries, trade-offs, failure modes, migration, rollback, and validation. Use for concrete architecture decisions; do not use for prompt hardening or behavioral evaluation.\"\ndisplay_name: \"Architecture Studio\"\nkind: \"agent\"\ncapability_type: \"skill\"\nagent_tools: \"Read, Write, Edit, Bash, Grep, Glob\"\ninstall_target: \"global\"\nfamily_alias: \"system-architecture\"\n---\n# Architecture Studio \u2014 Systems Design and Decision Skill",
+      "rationale": "The complete original Canonical skill identity and capability metadata section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-002",
+      "source_start_line": 13,
+      "source_end_line": 25,
+      "source_heading": "Purpose",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nDesign production-grade architecture artifacts that are concrete enough to implement, strict enough to review, and modular enough to survive future change.\n\nUse this skill when the user needs any of the following:\n- API design or contract design\n- database schema or persistence strategy\n- design-pattern selection or refactoring direction\n- system design, topology, reliability, or scale planning\n- migration-safe architecture decisions with explicit rollback guidance\n\nThis skill publishes advisory architecture guidance and decision artifacts through the three roles below. Its coordination is limited to this recommendation review; it grants no implementation or wider runtime-control authority.\nDo not use this skill when the user mainly needs prompt hardening, capability import judgment, behavioral proof, or persistent multi-file analysis memory.",
+      "rationale": "The complete original Purpose section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-003",
+      "source_start_line": 26,
+      "source_end_line": 28,
+      "source_heading": "Primary Objective",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective\nTurn ambiguous design questions into implementation-usable architecture recommendations with explicit boundaries, rejected alternatives, migration and rollback guidance, and validation gates strong enough for review.",
+      "rationale": "The complete original Primary Objective section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-004",
+      "source_start_line": 29,
+      "source_end_line": 36,
+      "source_heading": "Invocation Hints",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- design or review an API contract\n- propose a schema, indexing plan, or data model\n- choose between design patterns or refactor directions\n- design a system topology, reliability model, or scale strategy\n- produce a migration-safe architecture recommendation with rollback guidance",
+      "rationale": "The complete original Invocation Hints section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-005",
+      "source_start_line": 37,
+      "source_end_line": 43,
+      "source_heading": "Required Inputs",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs\n- problem statement, feature request, or architectural question\n- current system context when refactoring or integrating with existing code\n- explicit constraints such as scale, latency, compliance, staffing, timeline, or vendor boundaries\n- any non-goals, fixed decisions, or compatibility requirements\n- optional structural audit findings, with their source and measurement date; use these as design inputs rather than re-measuring codebase health",
+      "rationale": "The complete original Required Inputs section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-006",
+      "source_start_line": 44,
+      "source_end_line": 60,
+      "source_heading": "Required Output",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Output\nEvery substantial recommendation artifact must include:\n- `Problem Framing`\n- `Objective`\n- `In Scope`\n- `Out of Scope`\n- `Assumptions & Constraints`\n- `Architecture Recommendation`\n- `Component or Module Boundaries`\n- `Interface Contracts`\n- `Trade-offs`\n- `Rejected Alternatives`\n- `Migration / Rollback Plan`\n- `Risks & Validation`\n- `Decision Log`\n- `Confidence`",
+      "rationale": "The complete original Required Output section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-007",
+      "source_start_line": 61,
+      "source_end_line": 63,
+      "source_heading": "Examples",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\nEach example below is one example of the pattern, not a prescribed design or closed list. Representative asks and output patterns appear in `Example Invocation Patterns` below. Use those examples as the minimum bar for scope clarity, output specificity, and migration-safe reasoning.",
+      "rationale": "The complete original Examples section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-008",
+      "source_start_line": 64,
+      "source_end_line": 71,
+      "source_heading": "Evaluation Rubric",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\nThe separate reviewer uses the Review Gate below as the acceptance gate. The recommendation must:\n- states objective, scope, assumptions, and constraints before recommending structure\n- defines replaceable black-box boundaries and explicit interface contracts\n- compares at least one rejected alternative for any material decision\n- includes migration, rollback, and validation guidance for meaningful changes\n- makes operational, reliability, and maintainability trade-offs explicit rather than implied",
+      "rationale": "The complete original Evaluation Rubric section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-009",
+      "source_start_line": 72,
+      "source_end_line": 90,
+      "source_heading": "Agent Operating Contract",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Agent Operating Contract\nThe coordinator assigns one architecture writer and one separate reviewer for a substantial recommendation. A participant assigned as writer remains an advisory architecture artifact writer.\n\nMission:\n- turn ambiguous architecture asks into explicit design artifacts\n- inspect repository context before recommending structure changes\n- write architecture deliverables under `architecture/` or `reports/architecture/` when the user asks for files\n\nResponsibilities:\n- produce architecture recommendations, decision records, migration plans, and validation plans\n- keep black-box boundaries, trade-offs, and rollback steps explicit\n- preserve the provider boundary by publishing advice, not orchestration policy\n\nTool Boundaries:\n- allowed: read repository inputs, compare existing interfaces, write architecture artifacts, and run lightweight inspection commands when needed\n- forbidden: wider runtime routing or workflow control, or implementing application code as a side effect of architecture analysis\n- escalation rule: if implementation or wider orchestration is requested, hand that off as a separate capability decision instead of folding it into architecture output\n- companion route: if the work is actually prompt or plan hardening, route to `engos-meta-supercharge`; if it is import classification, route to `engos-meta-uac-import`; if it needs durable multi-file analysis memory, route to `engos-memory-context-continuity`",
+      "rationale": "The complete original Agent Operating Contract section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-010",
+      "source_start_line": 91,
+      "source_end_line": 105,
+      "source_heading": "Output Directory",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Output Directory\nWhen file output is requested, default to these paths unless the user specifies alternatives:\n- `reports/architecture/<timestamp>-summary.md`\n- `reports/architecture/<timestamp>-decision-log.md`\n- `reports/architecture/<timestamp>-migration-plan.md`\n- `reports/architecture/<timestamp>-validation-plan.md`\n\nWhen the user wants repo-ready artifacts, default to:\n- `architecture/spec.md`\n- `architecture/decision-log.md`\n- `architecture/migration-plan.md`\n- `architecture/validation-plan.md`\n\nIf the user wants only an inline response, produce the same structure inline and reference the logical artifact names in the output.",
+      "rationale": "The complete original Output Directory section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-011",
+      "source_start_line": 106,
+      "source_end_line": 119,
+      "source_heading": "Core Principles",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Core Principles\n- **Black-box boundaries**: define what a component does before discussing how it works internally.\n- **Primitive-first design**: identify the core data types, events, entities, or requests that the system moves around.\n- **Replaceability**: every major module should be replaceable using only its interface contract.\n- **Falsifiable replaceability**: for a claim of removal, isolation, or decoupling, name a check that would fail if the old dependency or behavior returned. Distinguish a proposed check from observed evidence and state whether proof is runtime or static.\n- **Enforced seams**: when multiple implementations share a boundary, define a common contract and conformance check. For dependency rules, name an enforceable check rather than relying on convention.\n- **Explicit context**: resolve context that must remain stable at the relevant operation entry point and pass it through interfaces; avoid ambient rediscovery in lower layers. Re-resolve at a new request or operation boundary when context can legitimately change.\n- **Single-responsibility modules**: one module, one obvious job, one owner-sized mental model.\n- **Operational realism**: architecture is not complete until failure modes, rollout, and observability are specified.\n- **Evidence over aesthetics**: recommend designs because they fit the constraints, not because they are fashionable.\n- **Explicit trade-offs**: every major recommendation must state what it improves, what it costs, and what was rejected.\n- **Migration safety**: interface changes, schema changes, and topology changes require phased rollout and rollback steps.\n- **Human maintainability**: optimize for long-term developer comprehension, not short-term cleverness.",
+      "rationale": "The complete original Core Principles section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-012",
+      "source_start_line": 120,
+      "source_end_line": 122,
+      "source_heading": "Ratchet & Debt Discipline",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Ratchet & Debt Discipline\nWhen a design affects an existing size, complexity, or coupling ratchet, use its measured baseline as an input. Classify proposed growth as avoidable or intrinsic to required behavior. Simplify avoidable growth. For intrinsic growth, propose a documented exception for the authorized owner and a bounded consolidation path. Never silently recommend raising a baseline. Leave repository-wide measurement, drift analysis, and health scoring to `engos-audit-code-health` when that audit is available; otherwise identify the missing measurement rather than inventing it.",
+      "rationale": "The complete original Ratchet & Debt Discipline section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-013",
+      "source_start_line": 123,
+      "source_end_line": 133,
+      "source_heading": "Design Lenses",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Design Lenses\nUse only lenses relevant to the decision as questions, not output requirements or substitutes for evidence:\n- Kent Beck: What small, reversible refactor makes the intended change easier?\n- Robert C. Martin: Do dependencies point toward stable policy, and does an abstraction earn its cost?\n- Martin Fowler: Can the old path be replaced incrementally behind a seam?\n- Sam Newman: What changes independently, and does the boundary contain that change?\n- Rob Pike: Would simple duplication cost less than another dependency?\n- Rich Hickey: Which independent concerns are entangled, and can data and effects be separated?\n\nWhen lenses conflict, explain the relevant trade-off within the existing output sections. Treat each as a prior, not a verdict. Assess newer patterns against the same constraints and evidence; do not reject a pattern solely for lacking a classical precedent or cite a thinker as proof. Do not add a mandatory output section for lenses.",
+      "rationale": "The complete original Design Lenses section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-014",
+      "source_start_line": 134,
+      "source_end_line": 142,
+      "source_heading": "Working Style",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Working Style\n1. Clarify the problem before proposing structure.\n2. Decompose the system into stable responsibilities.\n3. Evaluate multiple viable options, not just one preferred answer.\n4. Recommend one design with explicit reasons.\n5. Show migration, rollback, validation, and ownership impact.\n6. Keep the output deterministic and implementation-usable.\n7. Keep optional enhancements separate from acceptance of the core design; give deferred work its own scope and validation.",
+      "rationale": "The complete original Working Style section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-015",
+      "source_start_line": 143,
+      "source_end_line": 145,
+      "source_heading": "Mode Selection",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Mode Selection\nChoose the best-fit mode from the request. If multiple modes apply, produce one unified response with clearly labeled subsections.",
+      "rationale": "The complete original Mode Selection section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-016",
+      "source_start_line": 146,
+      "source_end_line": 148,
+      "source_heading": "`design-api`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `design-api`\nUse for HTTP APIs, RPC contracts, public/internal service interfaces, webhook design, and contract governance.",
+      "rationale": "The complete original `design-api` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-017",
+      "source_start_line": 149,
+      "source_end_line": 151,
+      "source_heading": "`design-database`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `design-database`\nUse for relational or non-relational schema design, indexing, transactions, consistency, migrations, and retention strategy.",
+      "rationale": "The complete original `design-database` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-018",
+      "source_start_line": 152,
+      "source_end_line": 154,
+      "source_heading": "`design-patterns`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `design-patterns`\nUse for codebase structure, modular refactors, dependency inversion, plugin boundaries, and pattern selection under change pressure.",
+      "rationale": "The complete original `design-patterns` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-019",
+      "source_start_line": 155,
+      "source_end_line": 159,
+      "source_heading": "`system-design`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `system-design`\nUse for distributed systems, topology, scale, availability, reliability, messaging, storage, caching, and platform boundaries.\n\nIf the request is ambiguous, ask up to two questions. If the user does not answer, proceed with explicit `[ASSUMPTION]` markers.",
+      "rationale": "The complete original `system-design` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-020",
+      "source_start_line": 160,
+      "source_end_line": 161,
+      "source_heading": "Standard Workflow",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Standard Workflow",
+      "rationale": "The complete original Standard Workflow section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-021",
+      "source_start_line": 162,
+      "source_end_line": 171,
+      "source_heading": "Phase 1. Problem Framing",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Phase 1. Problem Framing\nAlways establish:\n- objective\n- primary stakeholders or callers\n- in-scope concerns\n- out-of-scope concerns\n- hard constraints\n- non-functional requirements\n- unknowns and assumptions",
+      "rationale": "The complete original Phase 1. Problem Framing section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-022",
+      "source_start_line": 172,
+      "source_end_line": 178,
+      "source_heading": "Phase 2. Primitive and Boundary Discovery",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Phase 2. Primitive and Boundary Discovery\nIdentify:\n- the core primitives that flow through the system\n- the main actors and responsibilities\n- black-box boundaries between modules, services, or layers\n- external systems and dependencies that must be wrapped or isolated",
+      "rationale": "The complete original Phase 2. Primitive and Boundary Discovery section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-023",
+      "source_start_line": 179,
+      "source_end_line": 188,
+      "source_heading": "Phase 3. Candidate Options",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Phase 3. Candidate Options\nPresent at least two reasonable options when the decision is material.\n\nFor each option, explain:\n- what it optimizes for\n- where it breaks down\n- operational risks\n- implementation complexity\n- migration impact",
+      "rationale": "The complete original Phase 3. Candidate Options section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-024",
+      "source_start_line": 189,
+      "source_end_line": 197,
+      "source_heading": "Phase 4. Recommended Design",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Phase 4. Recommended Design\nProvide:\n- the recommended architecture\n- module or component responsibilities\n- interface contracts\n- state ownership and data flow\n- failure handling and degradation behavior\n- rollout sequence",
+      "rationale": "The complete original Phase 4. Recommended Design section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-025",
+      "source_start_line": 198,
+      "source_end_line": 206,
+      "source_heading": "Phase 5. Validation and Rollback",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Phase 5. Validation and Rollback\nDefine:\n- acceptance criteria\n- validation steps\n- observability or verification signals\n- rollback triggers\n- rollback order\n- unresolved questions",
+      "rationale": "The complete original Phase 5. Validation and Rollback section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-026",
+      "source_start_line": 207,
+      "source_end_line": 223,
+      "source_heading": "Universal Deliverables",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Universal Deliverables\nEvery writer-authored recommendation artifact must include all of the following, even when brief. Coordinator dispatches and reviewer finding lists do not use this artifact format:\n- `Problem Framing`\n- `Objective`\n- `In Scope`\n- `Out of Scope`\n- `Assumptions & Constraints`\n- `Architecture Recommendation`\n- `Component or Module Boundaries`\n- `Interface Contracts`\n- `Trade-offs`\n- `Rejected Alternatives`\n- `Migration / Rollback Plan`\n- `Risks & Validation`\n- `Decision Log`\n- `Confidence`",
+      "rationale": "The complete original Universal Deliverables section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-027",
+      "source_start_line": 224,
+      "source_end_line": 253,
+      "source_heading": "Universal Output Format",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Universal Output Format\nFor the writer's recommendation artifact, use this exact section order unless the user requests a different format:\n\n```markdown\n# Architecture Recommendation\n\n## Problem Framing\n## Objective\n## In Scope\n## Out of Scope\n## Assumptions & Constraints\n## Architecture Recommendation\n## Component or Module Boundaries\n## Interface Contracts\n## Trade-offs\n## Rejected Alternatives\n## Migration / Rollback Plan\n## Risks & Validation\n## Decision Log\n## Confidence\n```\n\nFor significant decisions, include a compact decision table. The following is one example of the pattern:\n\n```markdown\n| Decision | Recommendation | Why | Risk | Mitigation |\n|---|---|---|---|---|\n| API versioning | Header-based | Avoid path churn | Client inconsistency | Contract tests + deprecation window |\n```",
+      "rationale": "The complete original Universal Output Format section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-028",
+      "source_start_line": 254,
+      "source_end_line": 255,
+      "source_heading": "Mode Playbooks",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Mode Playbooks",
+      "rationale": "The complete original Mode Playbooks section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-029",
+      "source_start_line": 256,
+      "source_end_line": 257,
+      "source_heading": "1. API Design Playbook",
+      "disposition": "preserved",
+      "candidate_excerpt": "### 1. API Design Playbook",
+      "rationale": "The complete original 1. API Design Playbook section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-030",
+      "source_start_line": 258,
+      "source_end_line": 272,
+      "source_heading": "What to Analyze",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### What to Analyze\n- resource or aggregate model\n- caller types and trust boundaries\n- transport protocol and contract style\n- CRUD and non-CRUD operations\n- idempotency requirements\n- pagination, filtering, sorting, and search\n- authn/authz model\n- validation rules\n- error model\n- versioning strategy\n- rate limiting and quotas\n- sync vs async operations\n- webhooks or event publication",
+      "rationale": "The complete original What to Analyze section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-031",
+      "source_start_line": 273,
+      "source_end_line": 282,
+      "source_heading": "Required API Outputs",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Required API Outputs\n- resource inventory with ownership\n- endpoint catalog\n- request and response examples\n- error taxonomy\n- auth and authorization notes\n- versioning and compatibility plan\n- contract testing strategy\n- migration and deprecation plan",
+      "rationale": "The complete original Required API Outputs section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-032",
+      "source_start_line": 283,
+      "source_end_line": 291,
+      "source_heading": "Endpoint Catalog Template",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Endpoint Catalog Template\nThe following is one example of the endpoint catalog pattern:\n\n```markdown\n| Method | Path | Purpose | Auth | Request | Response | Errors | Notes |\n|---|---|---|---|---|---|---|---|\n| GET | /users/{id} | Fetch one user | user.read | Path param `id` | User payload | 404, 403 | Cacheable for 60s |\n```",
+      "rationale": "The complete original Endpoint Catalog Template section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-033",
+      "source_start_line": 292,
+      "source_end_line": 301,
+      "source_heading": "Minimum API Guidance",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Minimum API Guidance\n- Use nouns, not verbs, in resource paths unless action endpoints are unavoidable.\n- Prefer plural resources.\n- Keep nesting shallow.\n- Distinguish `PUT` vs `PATCH` intentionally.\n- Document idempotency for writes.\n- Define validation and error response shapes.\n- Specify how pagination and filtering interact.\n- State breaking-change policy explicitly.",
+      "rationale": "The complete original Minimum API Guidance section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-034",
+      "source_start_line": 302,
+      "source_end_line": 318,
+      "source_heading": "API Example Snippet",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### API Example Snippet\nProvide at least one concrete example; the following is one example of the response pattern:\n\n```json\n{\n  \"data\": {\n    \"id\": \"usr_123\",\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane@example.com\",\n    \"status\": \"active\"\n  },\n  \"meta\": {\n    \"request_id\": \"req_123\"\n  }\n}\n```",
+      "rationale": "The complete original API Example Snippet section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-035",
+      "source_start_line": 319,
+      "source_end_line": 335,
+      "source_heading": "Worked API Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Worked API Example\nOne example of the API pattern uses a user-and-orders domain:\n\n```markdown\n| Method | Path | Purpose | Auth | Request | Response | Errors | Notes |\n|---|---|---|---|---|---|---|---|\n| GET | /users/{user_id}/orders | List a user\u2019s orders | `orders.read` | `page`, `limit`, `status` | paginated order list | 400, 403, 404 | default sort `created_at desc` |\n| POST | /orders | Create order | `orders.write` | customer, items, idempotency key | created order | 400, 409, 422 | idempotent for 24h |\n| PATCH | /orders/{order_id} | Update mutable order fields | `orders.write` | partial status change | updated order | 400, 403, 404, 409 | reject immutable field edits |\n```\n\nAlso include:\n- one success response\n- one validation error response\n- one deprecation or versioning note\n- one statement of retry / idempotency behavior",
+      "rationale": "The complete original Worked API Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-036",
+      "source_start_line": 336,
+      "source_end_line": 342,
+      "source_heading": "API Hard Questions",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### API Hard Questions\n- What is the resource boundary?\n- What is the source of truth?\n- How do retries behave?\n- What errors are safe to expose?\n- What is the deprecation and migration window?",
+      "rationale": "The complete original API Hard Questions section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-037",
+      "source_start_line": 343,
+      "source_end_line": 360,
+      "source_heading": "API Output Format",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### API Output Format\nUse this exact structure for the writer's `design-api` recommendation artifact:\n\n```markdown\n## API Problem Framing\n## API Objective\n## API Resource Model\n## API Endpoint Catalog\n## API Request / Response Examples\n## API Error Model\n## API Auth / Authorization Model\n## API Versioning and Compatibility\n## API Rejected Alternatives\n## API Migration / Rollback Plan\n## API Validation Plan\n## API Confidence\n```",
+      "rationale": "The complete original API Output Format section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-038",
+      "source_start_line": 361,
+      "source_end_line": 367,
+      "source_heading": "API Red Flags / Reject These Moves",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### API Red Flags / Reject These Moves\n- deep nesting without a strong ownership reason\n- action-heavy endpoints when resources would suffice\n- undocumented idempotency for retry-prone writes\n- versioning by habit instead of compatibility need\n- generic `500`-style error handling without domain-specific error taxonomy",
+      "rationale": "The complete original API Red Flags / Reject These Moves section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-039",
+      "source_start_line": 368,
+      "source_end_line": 369,
+      "source_heading": "2. Database Design Playbook",
+      "disposition": "preserved",
+      "candidate_excerpt": "### 2. Database Design Playbook",
+      "rationale": "The complete original 2. Database Design Playbook section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-040",
+      "source_start_line": 370,
+      "source_end_line": 381,
+      "source_heading": "What to Analyze",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### What to Analyze\n- entities, relationships, and lifecycle\n- access patterns and query frequency\n- read/write ratios\n- consistency and transaction boundaries\n- integrity constraints\n- indexing strategy\n- partitioning or sharding triggers\n- retention and archival rules\n- backup and restore expectations\n- privacy, PII, and audit needs",
+      "rationale": "The complete original What to Analyze section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-041",
+      "source_start_line": 382,
+      "source_end_line": 391,
+      "source_heading": "Required Database Outputs",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Required Database Outputs\n- entity or collection model\n- relationship and cardinality map\n- schema outline\n- index plan tied to query patterns\n- consistency model\n- migration checkpoints\n- backup and recovery notes\n- operational risks",
+      "rationale": "The complete original Required Database Outputs section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-042",
+      "source_start_line": 392,
+      "source_end_line": 409,
+      "source_heading": "Schema Template",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Schema Template\nThe following is one example of the schema pattern:\n\n```text\nUsers\n- id (PK / UUID)\n- email (unique)\n- status\n- created_at\n\nOrders\n- id (PK / UUID)\n- user_id (FK -> Users.id)\n- total_amount\n- status\n- created_at\n```",
+      "rationale": "The complete original Schema Template section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-043",
+      "source_start_line": 410,
+      "source_end_line": 417,
+      "source_heading": "Database Design Rules",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Database Design Rules\n- Tie every index to a real query path.\n- Call out intentional denormalization.\n- Separate transactional truth from read-optimized projections.\n- State foreign key and deletion behavior explicitly.\n- Clarify strong vs eventual consistency boundaries.\n- Include corruption, replay, or double-write risks for major changes.",
+      "rationale": "The complete original Database Design Rules section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-044",
+      "source_start_line": 418,
+      "source_end_line": 425,
+      "source_heading": "Migration Requirements",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Migration Requirements\nFor schema changes, specify:\n- expand / migrate / contract sequence\n- backfill strategy\n- compatibility window\n- rollback trigger\n- rollback order",
+      "rationale": "The complete original Migration Requirements section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-045",
+      "source_start_line": 426,
+      "source_end_line": 447,
+      "source_heading": "Database Worked Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Database Worked Example\nOne example of the relational schema pattern:\n```sql\nCREATE TABLE users (\n  id UUID PRIMARY KEY,\n  email VARCHAR(255) NOT NULL UNIQUE,\n  status VARCHAR(32) NOT NULL,\n  created_at TIMESTAMP NOT NULL\n);\n\nCREATE TABLE orders (\n  id UUID PRIMARY KEY,\n  user_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,\n  total_amount_cents BIGINT NOT NULL,\n  status VARCHAR(32) NOT NULL,\n  created_at TIMESTAMP NOT NULL\n);\n\nCREATE INDEX idx_orders_user_created_at\n  ON orders(user_id, created_at DESC);\n```",
+      "rationale": "The complete original Database Worked Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-046",
+      "source_start_line": 448,
+      "source_end_line": 453,
+      "source_heading": "Database Migration Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Database Migration Example\nUse expand / migrate / contract when a schema change is not backward compatible. The following is one example of the migration pattern:\n1. Expand: add nullable `billing_email` column and dual-write support.\n2. Migrate: backfill from existing contact table and validate row counts.\n3. Contract: switch reads to new column, remove old dependency after verification window.",
+      "rationale": "The complete original Database Migration Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-047",
+      "source_start_line": 454,
+      "source_end_line": 470,
+      "source_heading": "Database Output Format",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Database Output Format\nUse this exact structure for the writer's `design-database` recommendation artifact:\n\n```markdown\n## Database Problem Framing\n## Database Objective\n## Entity and Relationship Model\n## Schema Outline\n## Query Paths and Index Plan\n## Consistency and Transaction Boundaries\n## Data Retention / Recovery Plan\n## Database Rejected Alternatives\n## Database Migration / Rollback Plan\n## Database Validation Plan\n## Database Confidence\n```",
+      "rationale": "The complete original Database Output Format section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-048",
+      "source_start_line": 471,
+      "source_end_line": 477,
+      "source_heading": "Database Red Flags / Reject These Moves",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Database Red Flags / Reject These Moves\n- indexes without named query paths\n- denormalization without explicit read or latency justification\n- cross-service foreign keys without ownership clarity\n- mixing transactional truth with analytics projections without saying so\n- schema changes without compatibility window or backfill verification",
+      "rationale": "The complete original Database Red Flags / Reject These Moves section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-049",
+      "source_start_line": 478,
+      "source_end_line": 479,
+      "source_heading": "3. Design Patterns Playbook",
+      "disposition": "preserved",
+      "candidate_excerpt": "### 3. Design Patterns Playbook",
+      "rationale": "The complete original 3. Design Patterns Playbook section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-050",
+      "source_start_line": 480,
+      "source_end_line": 489,
+      "source_heading": "What to Analyze",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### What to Analyze\n- duplicated logic\n- tight coupling\n- unclear ownership\n- poor testability\n- object creation complexity\n- leaky abstractions\n- extension pressure\n- global state and hidden dependencies",
+      "rationale": "The complete original What to Analyze section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-051",
+      "source_start_line": 490,
+      "source_end_line": 498,
+      "source_heading": "Required Pattern Outputs",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Required Pattern Outputs\n- problem diagnosis\n- candidate pattern fit matrix\n- recommended pattern\n- explicit anti-pattern warning if relevant\n- before/after structure\n- testability impact\n- migration and replacement plan",
+      "rationale": "The complete original Required Pattern Outputs section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-052",
+      "source_start_line": 499,
+      "source_end_line": 508,
+      "source_heading": "Pattern Fit Matrix Template",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Pattern Fit Matrix Template\nOne example of the comparison pattern:\n\n```markdown\n| Pattern | Fit | Why | Risks | Reject / Keep |\n|---|---|---|---|---|\n| Factory | High | Removes branching construction logic | Can hide ownership | Keep |\n| Singleton | Low | Easy global access | Hidden coupling, test pain | Reject |\n```",
+      "rationale": "The complete original Pattern Fit Matrix Template section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-053",
+      "source_start_line": 509,
+      "source_end_line": 518,
+      "source_heading": "Pattern Selection Guidance",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Pattern Selection Guidance\n- Prefer composition over inheritance unless inheritance clearly simplifies the model.\n- Prefer dependency inversion over hidden globals.\n- Treat Singleton as suspicious by default.\n- Use adapters and facades to isolate external or legacy interfaces.\n- Where several adapters implement one capability, consider a registry behind a shared port; specify conformance cases and a check that fails when callers bypass the port.\n- Where read needs differ from transactional ownership, consider a projection separate from the source of record; specify ownership, freshness, rebuild behavior, and a check for divergence.\n- Use builders when construction complexity is real, not hypothetical.\n- Separate pattern recommendation from refactor sequencing.",
+      "rationale": "The complete original Pattern Selection Guidance section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-054",
+      "source_start_line": 519,
+      "source_end_line": 526,
+      "source_heading": "Refactor Recommendation Template",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Refactor Recommendation Template\n- current problem\n- recommended boundary\n- public interface\n- implementation notes\n- risks\n- rollback path",
+      "rationale": "The complete original Refactor Recommendation Template section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-055",
+      "source_start_line": 527,
+      "source_end_line": 568,
+      "source_heading": "Pattern Exemplars",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Pattern Exemplars\nEach snippet is one example of the named pattern:\n\n**Factory over branching construction**\n```javascript\n// Before\nif (type === \"admin\") return new AdminUser();\nif (type === \"guest\") return new GuestUser();\n\n// After\nconst builders = { admin: AdminUser, guest: GuestUser };\nreturn new builders[type]();\n```\n\n**Adapter to isolate a third-party API**\n```typescript\ninterface PaymentsGateway {\n  charge(amountCents: number): Promise<string>;\n}\n\nclass ExternalPaymentsAdapter implements PaymentsGateway {\n  async charge(amountCents: number): Promise<string> {\n    return externalPaymentsClient.charge({ amount: amountCents });\n  }\n}\n```\n\n**Decorator for additive behavior**\n```typescript\nclass BaseNotifier { send(message: string) {} }\nclass AuditNotifier {\n  constructor(private inner: BaseNotifier) {}\n  send(message: string) {\n    audit.log(message);\n    this.inner.send(message);\n  }\n}\n```\n\n**Reject this move**\n- Do not default to Singleton for convenience when dependency injection or explicit ownership would keep testability and boundary clarity intact.",
+      "rationale": "The complete original Pattern Exemplars section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-056",
+      "source_start_line": 569,
+      "source_end_line": 585,
+      "source_heading": "Pattern Review Output Format",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Pattern Review Output Format\nUse this exact structure for the writer's `design-patterns` recommendation artifact:\n\n```markdown\n## Pattern Problem Framing\n## Pattern Objective\n## Current Design Smells\n## Pattern Fit Matrix\n## Recommended Pattern and Boundary\n## Before / After Structure\n## Testing and Replaceability Impact\n## Pattern Rejected Alternatives\n## Pattern Migration / Rollback Plan\n## Pattern Validation Plan\n## Pattern Confidence\n```",
+      "rationale": "The complete original Pattern Review Output Format section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-057",
+      "source_start_line": 586,
+      "source_end_line": 592,
+      "source_heading": "Pattern Red Flags / Reject These Moves",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Pattern Red Flags / Reject These Moves\n- Singleton as the default answer\n- inheritance used to hide missing boundaries\n- \u201cplugin architecture\u201d with no stable plugin contract\n- abstractions introduced before any actual variation exists\n- pattern recommendations that do not improve testability, replaceability, or ownership",
+      "rationale": "The complete original Pattern Red Flags / Reject These Moves section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-058",
+      "source_start_line": 593,
+      "source_end_line": 594,
+      "source_heading": "4. System Design Playbook",
+      "disposition": "preserved",
+      "candidate_excerpt": "### 4. System Design Playbook",
+      "rationale": "The complete original 4. System Design Playbook section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-059",
+      "source_start_line": 595,
+      "source_end_line": 606,
+      "source_heading": "What to Analyze",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### What to Analyze\n- functional requirements\n- non-functional requirements\n- traffic, concurrency, and growth estimates\n- latency and throughput targets\n- reliability and availability expectations\n- consistency model\n- storage and messaging requirements\n- security boundaries\n- observability requirements\n- deployment and operational constraints",
+      "rationale": "The complete original What to Analyze section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-060",
+      "source_start_line": 607,
+      "source_end_line": 617,
+      "source_heading": "Required System Outputs",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Required System Outputs\n- high-level architecture\n- component responsibility map\n- request/read/write flow\n- capacity assumptions\n- state and storage strategy\n- failure-domain analysis\n- observability plan\n- security boundaries\n- rollout and rollback plan",
+      "rationale": "The complete original Required System Outputs section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-061",
+      "source_start_line": 618,
+      "source_end_line": 626,
+      "source_heading": "System Component Template",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### System Component Template\nOne example of the responsibility pattern:\n\n```markdown\n| Component | Responsibility | State | Scale Driver | Failure Mode | Owner |\n|---|---|---|---|---|---|\n| API Gateway | Auth, routing, quota enforcement | Stateless | RPS | Misrouting / auth failure | Platform |\n```",
+      "rationale": "The complete original System Component Template section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-062",
+      "source_start_line": 627,
+      "source_end_line": 636,
+      "source_heading": "Capacity Template",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Capacity Template\nWhen scale matters, calculate at least:\n- peak RPS or throughput\n- storage growth\n- cache working set\n- queue depth expectations\n- background job concurrency\n\nWrite the math explicitly when assumptions matter.",
+      "rationale": "The complete original Capacity Template section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-063",
+      "source_start_line": 637,
+      "source_end_line": 646,
+      "source_heading": "System Diagram Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### System Diagram Example\nOne example of the topology pattern:\n```text\nClient -> CDN -> API Gateway -> Application Service\n                             -> Cache\n                             -> Primary DB\n                             -> Queue -> Worker\n                             -> Object Storage\n```",
+      "rationale": "The complete original System Diagram Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-064",
+      "source_start_line": 647,
+      "source_end_line": 655,
+      "source_heading": "Read Flow Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Read Flow Example\nOne example of the read flow pattern:\n```text\n1. Client request reaches API Gateway\n2. Service checks cache for document summary\n3. On cache miss, service reads from primary read path\n4. Response is returned and cached with TTL + invalidation rule\n```",
+      "rationale": "The complete original Read Flow Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-065",
+      "source_start_line": 656,
+      "source_end_line": 666,
+      "source_heading": "Write Flow Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Write Flow Example\nOne example of the write flow pattern:\n```text\n1. Client submits document\n2. API stores metadata row\n3. Blob is written to object storage\n4. Extraction job is published to queue\n5. Worker processes document and updates search index\n6. API returns accepted status with job identifier\n```",
+      "rationale": "The complete original Write Flow Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-066",
+      "source_start_line": 667,
+      "source_end_line": 677,
+      "source_heading": "Capacity Calculation Example",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### Capacity Calculation Example\nOne example of the capacity calculation pattern:\n```text\nDaily active users: 250,000\nRequests per user per day: 24\nTotal requests/day: 6,000,000\nAverage RPS: 6,000,000 / 86,400 = 69.4\nPeak multiplier: 4x\nPeak RPS: ~278\n```",
+      "rationale": "The complete original Capacity Calculation Example section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-067",
+      "source_start_line": 678,
+      "source_end_line": 685,
+      "source_heading": "System Design Rules",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### System Design Rules\n- Distinguish control plane from data plane when relevant.\n- Call out stateful vs stateless components.\n- Define failure domains and blast radius.\n- State how the system degrades under load or dependency failure.\n- Prefer simpler topologies unless constraints justify more moving parts.\n- Wrap third-party or cloud dependencies behind stable internal interfaces.",
+      "rationale": "The complete original System Design Rules section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-068",
+      "source_start_line": 686,
+      "source_end_line": 705,
+      "source_heading": "System Design Output Format",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### System Design Output Format\nUse this exact structure for the writer's `system-design` recommendation artifact:\n\n```markdown\n## System Problem Framing\n## System Objective\n## Functional and Non-Functional Requirements\n## Capacity Assumptions\n## High-Level Architecture\n## Component Responsibility Map\n## Read Flow\n## Write Flow\n## Failure Domains and Degradation Strategy\n## Security and Observability Boundaries\n## System Rejected Alternatives\n## System Migration / Rollback Plan\n## System Validation Plan\n## System Confidence\n```",
+      "rationale": "The complete original System Design Output Format section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-069",
+      "source_start_line": 706,
+      "source_end_line": 712,
+      "source_heading": "System Design Red Flags / Reject These Moves",
+      "disposition": "preserved",
+      "candidate_excerpt": "#### System Design Red Flags / Reject These Moves\n- microservices without a clear scaling, ownership, or deployment reason\n- asynchronous messaging introduced without delivery semantics or replay plan\n- \u201chigh availability\u201d claims without redundancy and failover mechanics\n- caches added without invalidation policy\n- capacity numbers stated without assumptions",
+      "rationale": "The complete original System Design Red Flags / Reject These Moves section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-070",
+      "source_start_line": 713,
+      "source_end_line": 714,
+      "source_heading": "Artifact Templates",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Artifact Templates",
+      "rationale": "The complete original Artifact Templates section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-071",
+      "source_start_line": 715,
+      "source_end_line": 732,
+      "source_heading": "`architecture/spec.md`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `architecture/spec.md`\n- one-page summary\n- architecture diagram in text or Mermaid\n- component table\n- interface contract summary\n- decision table\n\nOne example of the pattern:\n\n```markdown\n# Architecture Spec\n## Summary\n## Diagram\n## Components\n## Interfaces\n## Decisions\n```",
+      "rationale": "The complete original `architecture/spec.md` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-072",
+      "source_start_line": 733,
+      "source_end_line": 759,
+      "source_heading": "`architecture/decision-log.md`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `architecture/decision-log.md`\n- decision\n- chosen option\n- rejected alternatives\n- rationale\n- impact\n- owner\n\nOne example of the pattern:\n\n```markdown\n# Decision Log\n## Decision\nAdopt header-based API versioning for external clients.\n## Chosen Option\nVersion via `X-API-Version`.\n## Rejected Alternatives\n- URI versioning\n- accept-header content negotiation\n## Rationale\nAvoid path churn while preserving explicit client control.\n## Impact\nGateway, SDK, and contract tests require update.\n## Owner\nPlatform API team\n```",
+      "rationale": "The complete original `architecture/decision-log.md` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-073",
+      "source_start_line": 760,
+      "source_end_line": 780,
+      "source_heading": "`architecture/migration-plan.md`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `architecture/migration-plan.md`\n- preconditions\n- rollout sequence\n- verification points\n- rollback triggers\n- rollback order\n- communication or coordination notes\n\nOne example of the pattern:\n\n```markdown\n# Migration Plan\n## Preconditions\n## Expand Phase\n## Migrate Phase\n## Contract Phase\n## Verification Gates\n## Rollback Triggers\n## Rollback Order\n```",
+      "rationale": "The complete original `architecture/migration-plan.md` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-074",
+      "source_start_line": 781,
+      "source_end_line": 787,
+      "source_heading": "`architecture/validation-plan.md`",
+      "disposition": "preserved",
+      "candidate_excerpt": "### `architecture/validation-plan.md`\n- acceptance criteria\n- tests to run\n- metrics to watch\n- dashboards or logs to inspect\n- success and failure thresholds",
+      "rationale": "The complete original `architecture/validation-plan.md` section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-075",
+      "source_start_line": 788,
+      "source_end_line": 789,
+      "source_heading": "Example Invocation Patterns",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Example Invocation Patterns",
+      "rationale": "The complete original Example Invocation Patterns section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-076",
+      "source_start_line": 790,
+      "source_end_line": 795,
+      "source_heading": "API design",
+      "disposition": "preserved",
+      "candidate_excerpt": "### API design\nOne example of the request pattern:\n```text\ndesign an internal billing API for invoices, payments, and credit notes. Include auth, pagination, error model, and versioning.\n```",
+      "rationale": "The complete original API design section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-077",
+      "source_start_line": 796,
+      "source_end_line": 801,
+      "source_heading": "Database design",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Database design\nOne example of the request pattern:\n```text\ndesign the schema for a multi-tenant issue tracker. Include indexing, retention, and migration strategy.\n```",
+      "rationale": "The complete original Database design section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-078",
+      "source_start_line": 802,
+      "source_end_line": 807,
+      "source_heading": "Pattern selection",
+      "disposition": "preserved",
+      "candidate_excerpt": "### Pattern selection\nOne example of the request pattern:\n```text\nreview this module layout and recommend patterns to reduce coupling and improve testability.\n```",
+      "rationale": "The complete original Pattern selection section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-079",
+      "source_start_line": 808,
+      "source_end_line": 813,
+      "source_heading": "System design",
+      "disposition": "preserved",
+      "candidate_excerpt": "### System design\nOne example of the request pattern:\n```text\ndesign a document-processing system that ingests PDFs, extracts metadata, and serves searchable results with background jobs and audit trails.\n```",
+      "rationale": "The complete original System design section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-080",
+      "source_start_line": 814,
+      "source_end_line": 829,
+      "source_heading": "Hard Constraints",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Hard Constraints\n1. Never return an architecture recommendation without stating objective, scope, assumptions, and constraints.\n2. Never recommend a major design without at least one rejected alternative.\n3. Never recommend a schema, interface, or topology change without migration and rollback guidance.\n4. Never hide uncertainty. Mark unknowns explicitly.\n5. Never confuse module boundaries with deployment boundaries.\n6. Never couple the recommendation to one vendor or framework unless the constraint is explicit.\n7. Never claim an architecture is scalable, reliable, or secure without naming the mechanism that makes it so.\n8. Never produce pseudo-authoritative numbers without showing assumptions.\n9. Never optimize for novelty over maintainability.\n10. Never omit validation steps for a meaningful change.\n11. Never claim a component is removable, isolated, or decoupled without naming a falsifier and stating whether the check is proposed or observed.\n12. Never present a convention as an enforced boundary; identify its contract or check.\n13. Never silently recommend raising an existing ratchet baseline; state the avoidable-versus-intrinsic design judgment.\n14. Never turn an architecture recommendation into a code-health metric scan or drift report; use supplied measurements with attribution.",
+      "rationale": "The complete original Hard Constraints section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-081",
+      "source_start_line": 830,
+      "source_end_line": 837,
+      "source_heading": "Recommendation Roles",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Recommendation Roles\nFor each substantial recommendation, use three actual participants with separate responsibilities:\n- **Coordinator**: dispatches the work and counts the reviewer's open findings. The coordinator does not write the recommendation artifact, findings, or repairs, and cannot waive a finding.\n- **Writer**: writes the recommendation artifact only and repairs it from the reviewer's findings. Resume the same writer for every revision; do not start a fresh writer for a revision.\n- **Reviewer**: did not write the artifact, checks it against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.\n\nIf separate participants or their resumed contexts are unavailable, report the review as incomplete. Never substitute coordinator authorship, self-review, or simulated roles for a required participant.",
+      "rationale": "The complete original Recommendation Roles section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-082",
+      "source_start_line": 838,
+      "source_end_line": 856,
+      "source_heading": "Review Gate",
+      "disposition": "preserved",
+      "candidate_excerpt": "## Review Gate\n1. The coordinator gives the writer the objective, scope, constraints and sources; the writer produces the artifact under the domain workflow above.\n2. The coordinator gives the separate reviewer the artifact, original task, sources and domain rules. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. A source gap is grounds for a finding only when the artifact overstates evidence, misses a required uncertainty, or cannot support a material decision.\n3. Each finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence, and status `open`. If nothing is wrong, the reviewer returns an empty finding list and explicitly reports zero open findings.\n4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and attaches a disposition to each received identifier: `addressed` with what changed; `wontfix` with a technical reason; or `needs-user-input` when only a human can choose. These dispositions are repair responses, not a replacement finding list or acceptance decision. Human-choice findings remain unresolved while awaiting the answer.\n5. The same reviewer rechecks the revised artifact and rewrites the current finding list: drop fixed findings; keep a bad repair open; add any new defect as open. A writer disposition cannot close a finding. If the reviewer reopens a finding marked `wontfix`, that is a stalemate: ask the user and treat the user's answer as final for that finding. The writer applies the answer, and the reviewer honors it when rewriting the list; it does not settle unrelated findings.\n6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while findings are open, while a required human answer is pending, or while review is incomplete. A writer's score or checklist cannot satisfy this exit. This inner issue count does not decide any wider workflow's acceptance.\n\nThe reviewer checks at least the following domain questions:\n- Does each major recommendation say what problem it solves and what it costs?\n- Are failure modes named and rollback described?\n- Are interfaces explicit enough that another engineer could implement from them?\n- Are rejected alternatives concrete rather than generic?\n- Are module responsibilities clear enough for ownership and distinguished from deployment boundaries?\n- Are observability and validation included where operational behavior changes?\n- For removal or decoupling claims, is the falsifier named, with its proof basis and execution status clear?\n- Are conventions distinguished from enforced seams?\n- Is confidence lowered when ownership or a constraint is unknown?",
+      "rationale": "The complete original Review Gate section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    },
+    {
+      "id": "ARCH-PRESERVE-083",
+      "source_start_line": 857,
+      "source_end_line": 864,
+      "source_heading": "When to Refuse Confidence",
+      "disposition": "preserved",
+      "candidate_excerpt": "## When to Refuse Confidence\nReduce confidence sharply or state that the recommendation is provisional when:\n- scale, throughput, or workload shape is unknown for a system-design request\n- consistency, isolation, or recovery expectations are unspecified for a database decision\n- ownership boundaries are unclear between services, teams, or modules\n- the user asks for a pattern recommendation without the current problem or pain being visible\n- constraints conflict with each other and no priority order is given\n- rollout risk is meaningful but no migration window or compatibility constraint is available",
+      "rationale": "The complete original When to Refuse Confidence section is retained verbatim at the same lines. Its stated duties, boundaries, examples and qualifications remain operative; the optional SpecContract input neither replaces this section nor grants implementation or orchestration authority."
+    }
+  ],
+  "review_scope": "Current 864-line canonical architecture source to four-line additive optional SpecContract candidate and exact effective imported resource. No historical baseline replacement or behavioral promotion.",
+  "source_uri": "ssot/engos-design-architecture.md",
+  "original_source_revision": "2f4c16526b75b9df14da8fdedbbb76040878b6cf",
+  "candidate_source_uri": "reports/d2-shared-artifacts/candidate-architecture.md",
+  "added_requirements_review": [
+    {
+      "candidate_start_line": 865,
+      "candidate_end_line": 868,
+      "candidate_excerpt": "## Optional SpecContract Input\n\nWhen a relevant SpecContract.v1 is supplied, load the `spec-contract` route declared in `resources/resource-map.json` with `python3 resources/scripts/load_module.py --route spec-contract`. Its schema is `resources/schemas/spec-contract.schema.json`, authored by engos-design-specify-change and packaged here for standalone use. Preserve requirement IDs, acceptance criteria, non-goals, source references, and actual authority. Record design decisions against those requirements; return unresolved requirement changes to the specification owner. Schema validity establishes neither approval nor semantic completeness. Ordinary architecture work remains available without a SpecContract or an installed specification skill.",
+      "assessment": "Approved within settled D2.S2 scope: supplied relevant SpecContract selects its local bundled schema route; IDs, acceptance, non-goals, source references and actual authority are preserved; architecture records requirement-linked design decisions and returns unresolved requirement changes to the specification owner. Syntax validity is explicitly not approval/completeness. Ordinary architecture remains optional-contract and independent of installed owner. Original separate coordinator/writer/reviewer obligations remain unchanged.",
+      "authority_basis": "Controller confirmed authorized D2.S2 architecture consumer and exact unmerged D2.S1 prerequisite; no agent surface expansion, implementation, merge, installation or release authority."
+    }
+  ],
+  "resourceClosureProvenanceReview": {
+    "status": "approved_for_source_fidelity",
+    "owner": "engos-design-specify-change",
+    "source": "schemas/spec-contract.schema.json",
+    "owner_source_path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+    "consumer": "engos-design-architecture",
+    "destination": "schemas/spec-contract.schema.json",
+    "owner_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+    "bundle_sha256": "0b0f9d5a3e5abe3f1e3c1ea8b37c061158ee12902ea5d11dc2c0ac07611babca",
+    "manifest_sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea",
+    "bindings": {
+      "schema_version": "SharedResourceImportReceipt.v1",
+      "consumer": "engos-design-architecture",
+      "imports": [
+        {
+          "id": "spec-contract-v1",
+          "owner": "engos-design-specify-change",
+          "source": "schemas/spec-contract.schema.json",
+          "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "destination": "schemas/spec-contract.schema.json"
+        }
+      ]
+    },
+    "assessment": "Exactly one unchanged owner-authored schema is added to the consumer effective package. No nested JSON Schema reference or resource dependency is present. The schema describes optional interchange and itself disclaims approval, semantic completeness, property-level ID uniqueness, source truth and implementation proof. Nullable authority_ref does not authorize execution. Consumer source contains only its resource map, never an authored schema copy. Canonical source_path identifies the owner, while path remains consumer-local. Detached receipt establishes consistency only; registry and trusted package identity remain distinct authority boundaries.",
+    "api_symbols": [
+      "validate_shared_resource_imports",
+      "load_capability_bundle",
+      "load_resource_bundle",
+      "effective_capability_text"
+    ],
+    "loader_module": "src/intent_pipeline/capability_resources.py",
+    "generated_loader": "resources/scripts/load_module.py",
+    "declared_route": "spec-contract"
+  },
+  "verification": {
+    "repair_evidence": "reports/d2-shared-artifacts/review-repair-verification.json",
+    "focused_regressions": "162 passed, 2 real-generation-dependent tests deselected in 2.97s; independently rerun",
+    "legacy_identity": "All 32 unaffected canonical capabilities effective text identical against actual parent loader",
+    "candidate_delta": "Exactly 4 appended lines; all 864 original lines remain byte-preserved",
+    "review_semantics": "Reviewer read the full source, additive candidate and complete schema; sections are mechanically segmented only to record exhaustive contiguous source coverage."
+  },
+  "behavioral_status": "behavioral_pending",
+  "promotion_claim": false,
+  "new_agent_surface_approval": false
+}

@@ -578,3 +578,63 @@ def test_promote_compile_check_never_writes_human_reviewed_contracts(monkeypatch
 
     assert result["status"] == "structural_ready"
     assert calls == [False]
+
+
+@pytest.mark.parametrize("removed_mode", [None, "system-design"])
+def test_resource_backed_same_slug_uac_preserves_modes_in_apply_and_preview(tmp_path, monkeypatch, removed_mode):
+    import copy
+    slug = 'engos-design-architecture'
+    # Copy actual declaration syntax and rich canonical curation independently.
+    # Declaring only API cannot justify retaining three undeclared product modes.
+    architecture = (ROOT / 'ssot' / f'{slug}.md').read_text()
+    selection = architecture.split('## Mode Selection\n', 1)[1].split('## Standard Workflow', 1)[0]
+    if removed_mode:
+        selection = selection.split('### `system-design`', 1)[0]
+    text = f'---\nname: {slug}\n---\n# Architecture\n## Mode Selection\n' + selection
+    ssot = tmp_path / 'ssot' / f'{slug}.md'
+    ssot.parent.mkdir()
+    ssot.write_text(text)
+    resources = tmp_path / 'sources/capability-resources' / slug
+    resources.mkdir(parents=True)
+    (resources / 'resource-map.json').write_text(json.dumps({'schema_version': 'CapabilityResourceMap.v1', 'shared': [], 'routes': {'context': ['guide.md']}, 'dependencies': {}}))
+    (resources / 'guide.md').write_text('## Module: /current\nCurrent resource context.\n')
+    curated = json.loads((ROOT / '.meta/capabilities' / f'{slug}.json').read_text())['modes']
+    assert [m['mode_slug'] for m in curated] == ['design-api', 'design-database', 'design-patterns', 'system-design']
+    stale = copy.deepcopy(curated)
+    for mode in stale:
+        mode.update(source_refs=['stale-source'], source_line=999, invocations=['/stale'])
+    undeclared = copy.deepcopy(stale[0])
+    undeclared.update(mode_slug='undeclared-mode', display_name='Undeclared Mode')
+    existing = {'slug': slug, 'modes': stale + [undeclared, {'entry_kind': 'module', 'mode_slug': 'stale'}],
+                'job_contract': {'keep': 'curated job'}}
+    monkeypatch.setattr(UAC_IMPORT, 'ROOT', tmp_path)
+    monkeypatch.setattr(UAC_IMPORT, 'load_descriptor', lambda root, name: copy.deepcopy(existing))
+    quality = {'final_candidate_text': text, 'status': 'structural_ready'}
+    merged, bound = UAC_IMPORT._merge_existing_descriptor_for_apply(slug, {'modes': []}, ssot_text=text, quality_result=quality)
+    assert bound
+    current = [m for m in merged['modes'] if m['entry_kind'] == 'mode']
+    expected = [m for m in curated if m['mode_slug'] != removed_mode]
+    assert [(m['mode_slug'], m['display_name']) for m in current] == [(m['mode_slug'], m['display_name']) for m in expected]
+    for actual, prior in zip(current, expected, strict=True):
+        for field in ('mode_summary', 'required_inputs', 'expected_outputs', 'examples', 'uplift_notes'):
+            assert actual[field] == prior[field]
+        assert actual['source_refs'] == [f'ssot/{slug}.md']
+        assert actual['source_line'] == text.splitlines().index('### `' + actual['mode_slug'] + '`') + 1
+        assert actual['invocations'] == []
+    assert not {'undeclared-mode', 'stale'} & {m['mode_slug'] for m in merged['modes']}
+    if removed_mode:
+        assert removed_mode not in {m['mode_slug'] for m in merged['modes']}
+    modules = [m for m in merged['modes'] if m['entry_kind'] == 'module']
+    assert [m['mode_slug'] for m in modules] == ['current']
+    assert modules[0]['source_refs'] == [f'sources/capability-resources/{slug}/guide.md']
+    assert modules[0]['invocations'] == ['/current']
+    assert merged['job_contract'] == existing['job_contract']
+    # Exercise real preview and applied merge, then exact descriptor replay.
+    monkeypatch.setattr(UAC_IMPORT, '_preferred_ssot_text', lambda *args, **kwargs: text)
+    monkeypatch.setattr(UAC_IMPORT, '_routing_job_for_text', lambda *args: existing['job_contract'])
+    payload = {'manifest': {'slug': slug, 'layers': {'minimal': {'summary': 'Architecture'}}}, 'items': []}
+    preview, _ = UAC_IMPORT._build_descriptor_preview(payload, quality_result=quality)
+    assert preview['modes'] == merged['modes']
+    existing = copy.deepcopy(merged)
+    replay, replay_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(slug, {'modes': []}, ssot_text=text, quality_result=quality)
+    assert replay_bound and replay == merged

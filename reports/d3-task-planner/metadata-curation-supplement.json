@@ -1,0 +1,63 @@
+{
+  "schema_version": "D3MetadataCurationSupplement.v1",
+  "finding": {
+    "id": "D3-FINAL-01",
+    "priority": "P2",
+    "initial_observation": "requires_human_confirmation=true propagated to canonical descriptor, five bundles and handoff; ORCHESTRATOR-CONTRACT.md interprets this as a human gate before automated action, contradicting existing authorized planning."
+  },
+  "author": "/root/d3_implementation_astra",
+  "source_entry_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "descriptor": ".meta/capabilities/engos-design-plan-implementation.json",
+  "before_sha256": "6959185464cf763c47b45fc7c146800cd3314e10a07057524459bef2caae4577",
+  "after_sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce",
+  "changes": [
+    {
+      "path": "/consumption_hints/requires_human_confirmation",
+      "before": true,
+      "after": false
+    },
+    {
+      "path": "/consumption_hints/invocation_style",
+      "before": "assistant_first_but_scriptable",
+      "after": "artifact_generation_and_validation"
+    }
+  ],
+  "rationale": "The source Workflow preserves existing authorization without another approval turn and owns planning artifacts only. False removes a blanket duplicate confirmation gate; it grants no execution, acceptance or mutation authority. artifact_generation_and_validation is an existing canonical hint describing plan artifacts and permitted local shape/resource checks, not task verification or a runnable planner.",
+  "precedent": ".meta/capabilities/engos-content-dynamic-html-presentations.json",
+  "source_sections": [
+    "Workflow step 1",
+    "Required Output",
+    "Constraints"
+  ],
+  "test_repair": {
+    "category": "test",
+    "path": "tests/test_uac_ssot.py",
+    "before_sha256": "fcecf9f049ddc89b9aa9a68825a64a287626043ab770caaa366565acf32f2789",
+    "after_sha256": "160a8823519764cf78b5b949c57f6da621779c4daba8ff5098553a6b1a878d65",
+    "change": "Expected 32 -> 33 after authorized new skill. All skill-only/surface assertions retained; no new test.",
+    "failure_evidence": "reports/d3-task-planner/local-ci/resources-uac.log",
+    "failure_tail": "tests/test_uac_ssot.py:27: AssertionError: assert 33 == 32; 1 failed, 296 passed in 51.50s",
+    "initial_root_wrong_selector": "exit 5, no tests selected; not a pass"
+  },
+  "status": "Written; root regeneration and independent final review pending. No build/stage/Git mutation performed.",
+  "focused_checks": [
+    {
+      "command": "PYTHONPATH=src python3.14 -m pytest -q tests/test_capability_resources.py -k planner",
+      "result": "9 passed, 40 deselected in 0.38s",
+      "exit_code": 0,
+      "log": "reports/d3-task-planner/final-repair-planner-tests.log"
+    },
+    {
+      "command": "PYTHONPATH=src python3.14 -m pytest -q tests/test_uac_ssot.py::test_shipped_capabilities_are_skills_only",
+      "result": "1 passed in 0.77s",
+      "exit_code": 0,
+      "log": "reports/d3-task-planner/final-repair-count-test.log"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed",
+      "exit_code": 0
+    }
+  ]
+}

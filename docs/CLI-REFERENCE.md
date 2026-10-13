@@ -12,9 +12,66 @@ Preferred wrappers:
 
 If local `python3` resolves to an older interpreter, set `PYTHON_BIN=python3.11` or `PYTHON_BIN=python3.14` before using the wrappers.
 
+## Bounded implementation skill
+
+Ask for `engos-delivery-implement-slice` with the accepted outcome, target and stop
+condition. Codex can select `$engos-delivery-implement-slice`; Grok exposes
+`/engos-delivery-implement-slice`. The generated entry is
+`.<provider>/skills/engos-delivery-implement-slice/SKILL.md` for Codex, Gemini,
+Claude, Kiro and Grok. This capability adds no execution CLI or agent registration.
+
+The optional receipt route in the skill's `resources/resource-map.json` resolves
+`resources/templates/slice-receipt.json` and
+`resources/schemas/slice-receipt.schema.json`. Canonical resources live under
+`sources/capability-resources/engos-delivery-implement-slice/`. The generator also
+bundles the existing generic `resources/scripts/load_module.py` resource loader;
+that helper assembles resource context, not implementation or test execution.
+No receipt is needed for an ordinary small request. See the
+[bounded implementation example](EXAMPLES.md#engos-delivery-implement-slice).
+
 ## Engineering report CLI
 
 The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.
+
+## Test-design resources
+
+`engos-quality-testing-review` owns resources under `sources/capability-resources/engos-quality-testing-review/`: `references/test-oracles.md`, `templates/test-design.md`, `schemas/test-design.schema.json` and `resource-map.json`. The existing loader routes are `unit`, `e2e`, `edge-cases` and `coverage`. The resources use the existing loader with no additional runtime dependency. TestDesign.v1 is optional interchange with `execution_status=not_run`; schema validation checks shape only.
+
+## Code review targets and output
+
+Ask `engos-quality-code-review` to review `HEAD` (the default), staged changes,
+a declared working-tree snapshot, a commit, a branch/range, or a supplied diff.
+These are review request forms, not new shell collector commands. Staged and
+working-tree requests bind their exact bytes separately from the checkout commit.
+
+The skill bundles `resources/references/review-targets.md` and
+`resources/schemas/findings.schema.json`; the existing
+`resources/scripts/load_module.py --route review` assembles their complete content
+from an installed skill root. The manifest is `resources/resource-map.json`.
+Canonical resources live under
+`sources/capability-resources/engos-quality-code-review/`. No committed-range
+collector is introduced by this contract change.
+
+Requested JSON output uses `Findings.v1`, alongside the six normal narrative
+sections. Schema validation checks shape and status consistency; actual source
+reads, evidence truth and consumer impact still require review. Missing evidence
+is incomplete/unverifiable. Ready remains advisory and grants no merge authority.
+
+## Failure diagnosis skill
+
+Select `$engos-debug-diagnose-failure` in Codex or `/engos-debug-diagnose-failure`
+in Grok; use the full skill name in other supported hosts. Each provider bundle
+places it at `.<provider>/skills/engos-debug-diagnose-failure/SKILL.md`, with
+`resources/resource-map.json`, `resources/templates/hypothesis-evidence.md`,
+`resources/templates/reproduction-receipt.json` and
+`resources/schemas/diagnosis-receipt.schema.json`. The resource routes are
+`hypotheses` and `receipt`; the receipt route includes the schema dependency.
+
+There is no universal diagnosis command or new runner. The skill uses the target
+repository’s actual diagnostics after checking side effects. `DiagnosisReceipt.v1`
+is an optional handoff format with conclusion, investigated scope, remaining uncertainty
+and per-hypothesis evidence references; ordinary small diagnoses may remain readable prose.
+See the [worked request](EXAMPLES.md#engos-debug-diagnose-failure).
 
 ## Common Commands
 
@@ -50,6 +107,94 @@ Profiles are `static`, `native`, `routing-canary`, `canary`, `promotion`, `cross
 | `bin/uac apply <source...> --promotion-verdict <path> --promotion-trust-root <path> --approved-trust-policy-sha256 <sha256> --approved-trust-policy-revision <commit> --finalize-existing-candidate --yes` | finalize an already-canonical candidate only after current independent evidence and a pre-candidate approved trust policy pass every gate | yes |
 
 ## Task-Oriented Examples
+
+### Specification Resources
+
+From the installed `engos-design-specify-change` skill directory, load the chosen
+entry route with the existing package-local loader:
+
+```bash
+python3 resources/scripts/load_module.py --route requirements_first --format text
+python3 resources/scripts/load_module.py --route design_first --format text
+python3 resources/scripts/load_module.py --route bugfix --format text
+```
+
+Use `--route contract` only for machine interchange or `--route trace_ledger` for
+supplied-link recording. These commands emit resources; they neither execute the
+workflow nor validate a user's specification. The canonical schema is
+`sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json`;
+each generated skill carries it at `resources/schemas/spec-contract.schema.json`.
+Keep the repository's existing spec format and add a sidecar only when needed.
+JSON Schema checks field shape and bugfix triad presence, while property-level ID
+uniqueness, reference existence, decisions and semantics need separate review.
+There is no bundled trace-check command. The architecture handoff below uses an
+explicit shared-resource import.
+
+### Architecture Specification Input
+
+When a supplied `SpecContract.v1` is relevant, run from the generated or installed
+`engos-design-architecture` skill directory:
+
+```bash
+python3 resources/scripts/load_module.py --route spec-contract --format text
+```
+
+The command emits the selected schema; it does not validate a user specification
+or execute architecture work. Architecture preserves the supplied requirement
+IDs, acceptance, non-goals, sources and authority, then links design decisions to
+them. Unresolved requirement changes return to the specification owner. Ordinary
+architecture work does not require this route or a SpecContract.
+
+### Source-Owned Shared Resources
+
+The finite `SharedResourceImports.v1` registry at
+`.meta/shared-resource-imports.json` names each import ID, authored owner/source,
+SHA256 and allowed consumer/destination. An importing `CapabilityResourceMap.v1`
+explicitly selects IDs through optional `shared_imports`; registry presence alone
+does not activate a consumer. The destination must also be declared in its normal
+resource routes or dependency closure.
+
+The first binding is `spec-contract-v1`: `engos-design-specify-change` owns
+`schemas/spec-contract.schema.json`; `engos-design-architecture` consumes those
+unchanged bytes through its optional `spec-contract` route. Do not author another
+schema at the consumer destination. Each of the five generated architecture
+packages contains `resources/schemas/spec-contract.schema.json` and a derived
+`resources/shared-resource-imports.json` (`SharedResourceImportReceipt.v1`).
+The receipt records ownership and byte provenance; it is not an approval.
+
+The package-local loader resolves only its bundled files and receipt. It needs
+neither a source checkout nor the owner's installed skill. Receipt/byte consistency
+alone does not authenticate a package; use the trusted package or installation
+identity. Repository validation also compares the generated package against the
+canonical registry and owner. Missing resources or receipts, digest drift,
+unauthorized bindings, collisions, local or infrastructure shadows, cycles and
+symlink escapes fail closed. Dependencies require explicit consumer bindings.
+Shared JSON does not support JSON Reference dependency resolution in v1: decoded
+`$ref` and `$dynamicRef` directives are rejected recursively, including escaped
+spellings of those keys. Declare supported resource dependencies explicitly;
+do not assume the loader resolves JSON Reference targets.
+
+Existing maps without imports retain their compatibility and bundle identity.
+Older loaders reject the new field. Upgrade an importing package as a complete
+bundle containing its map, loader, schema and receipt; do not copy a new map onto
+an old loader or remove the receipt to simulate a legacy package. This packaging
+change does not expand an installation profile or install another skill.
+
+For an intentional source update:
+
+1. Edit the sole owner's canonical resource and review the intended contract change.
+2. Deliberately update its registry SHA256; stale digests must fail before build.
+3. Regenerate with `python3 scripts/build-surfaces.py`, then validate with
+   `python3 scripts/validate-surfaces.py` and the focused resource checks.
+4. Renew affected requirement reviews and evaluation bindings. Effective identity
+   includes the import ID, owner, source, destination and digest, so a binding
+   change invalidates old evidence even when the bytes or entrypoint are unchanged.
+   Preserve detached historical snapshots rather than hydrating them from today's
+   owner files.
+
+Roll back the route, its import selection, registry binding and architecture
+instructions together, then regenerate and renew the affected evidence. Keep
+intentional generated copies; they are portable delivery outputs.
 
 ### Validate Or Render An OpEx Digest Snapshot
 
@@ -150,6 +295,23 @@ python3 "$STATE_HELPER" write --cwd "$(pwd)" --task-id <safe-task-id> \
 ```
 
 The helper derives a readable project slug plus a deterministic hash from the normalized Git common directory, so linked worktrees share one project ID while unrelated same-name repositories do not. Task IDs accept only 1–80 lowercase letters, digits, hyphens, or underscores and must start and end alphanumeric. State stays under `${ANALYZE_CONTEXT_STATE_HOME:-$HOME/.analyze-context}`, outside Git worktrees, with `0700` directories, `0600` files, one-writer locking, path-containment checks, and atomic replacement writes.
+
+### Plan Implementation And Load Optional Task Contracts
+
+The `engos-design-plan-implementation` skill plans accepted requirements in the
+existing project format. Optional interchange resources use the existing loader;
+from that installed skill directory:
+
+```bash
+python3 resources/scripts/load_module.py --route task_contract --format text
+python3 resources/scripts/load_module.py --route task_plan --format text
+python3 resources/scripts/load_module.py --route dependency_map --format text
+```
+
+`task_plan` includes its sibling `task-contract.schema.json` dependency. Narrative
+planning needs no JSON sidecar. The map template records manually inspected
+relationships; no graph checker or ready-frontier command is shipped. Loader output
+proves assembly only, and schema shape does not prove task quality or authorization.
 
 ### Lint, Seal, And Check A Plan To Goal Packet
 
@@ -285,7 +447,7 @@ These generated views are derived from canonical metadata and reports. They are 
 
 ## Generated Surfaces
 
-The current inventory emits 29 skills across all five CLIs and no named agents.
+The current inventory emits 36 skills across all five CLIs and no named agents.
 The table documents supported output formats, not a list of installed or shipped
 agents. Agent columns apply only to future explicitly user-approved native
 adapters. UAC improvement within an existing surface does not authorize adding
@@ -304,6 +466,17 @@ approval. See [agent admission](UAC-CAPABILITY-MODEL.md#skill-first-classificati
 ## Direct Surface Standard
 
 Direct exposure is standardized on `skills/<slug>/SKILL.md` for every supported CLI. This repo does not deploy direct exposure into vendor `commands/` or `prompts/` directories.
+
+### Vendoring A Generated Skill
+
+When copying a reviewed skill into another repository, copy its complete generated
+`skills/<slug>/` directory, including `SKILL.md` and `resources/`. For an importing
+consumer, keep the map, import-aware loader, imported bytes and provenance receipt
+from the same reviewed bundle. Do not copy only the entrypoint or reconstruct its
+resources from separately installed siblings. The consumer package runs without
+the canonical owner's package; author changes at the canonical owner and regenerate
+instead of treating the generated copy as a new source of truth. See the
+[shared-resource package boundary](RELEASE-PACKAGING.md#shared-resource-consumer-packages).
 
 ## Deploy Contract
 
@@ -360,6 +533,17 @@ python3 resources/scripts/load_module.py --route "/adversarial /debate /deep" --
 The helper is read-only and uses the standard library. It emits the selected dependency closure and bound content identifiers; output can be large because required text is not summarized. On agent surfaces, locate the helper relative to the directory containing the bundled `capability.json`.
 
 For reviewed semantic intake, `bin/uac judge <candidate> --requirement-review <review.json>` and `bin/uac apply <candidate> --requirement-review <review.json> --yes` accept independently reviewed, hash-bound requirement dispositions. They do not imply behavioral promotion. See [UAC usage](UAC-USAGE.md#resource-aware-and-reviewed-modernization).
+
+## Prepare a same-owner authoring candidate
+
+The authoring decision and clause records use the existing CLI; no creator router or new evaluation command is added:
+
+```bash
+bin/uac plan reports/<run>/<slug>.md --benchmark-search off
+bin/uac judge reports/<run>/<slug>.md --requirement-review reports/<run>/<review>.json --emit-impact-plan
+```
+
+The candidate starts from current `ssot/<slug>.md`. Its authoring resources are owned by `sources/capability-resources/engos-meta-uac-import/`; the editor's ledger lives under `sources/capability-resources/engos-meta-instruction-editor/`. Their `resource-map.json` files declare conditional closure, and generated packages expose the selected resources under `resources/`. Templates are authoring records, not CLI flags or independent review attestations. [Decision and evidence guidance](UAC-USAGE.md#choose-an-authoring-change).
 
 ## Advisory routing metadata
 

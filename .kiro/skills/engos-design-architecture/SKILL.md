@@ -857,5 +857,9 @@ Reduce confidence sharply or state that the recommendation is provisional when:
 - constraints conflict with each other and no priority order is given
 - rollout risk is meaningful but no migration window or compatibility constraint is available
 
+## Optional SpecContract Input
+
+When a relevant SpecContract.v1 is supplied, load the `spec-contract` route declared in `resources/resource-map.json` with `python3 resources/scripts/load_module.py --route spec-contract`. Its schema is `resources/schemas/spec-contract.schema.json`, authored by engos-design-specify-change and packaged here for standalone use. Preserve requirement IDs, acceptance criteria, non-goals, source references, and actual authority. Record design decisions against those requirements; return unresolved requirement changes to the specification owner. Schema validity establishes neither approval nor semantic completeness. Ordinary architecture work remains available without a SpecContract or an installed specification skill.
+
 
 Capability resource: `resources/capability.json`

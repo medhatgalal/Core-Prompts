@@ -1,0 +1,51 @@
+[
+  {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1"
+    ],
+    "exit_code": 0,
+    "stdout": " M unrelated.txt\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_code": 0,
+    "stdout": "77d2848621bf17a14ae1c9e800ff527b4333bf40\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "branch",
+      "--show-current"
+    ],
+    "exit_code": 0,
+    "stdout": "main\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "ls-files"
+    ],
+    "exit_code": 0,
+    "stdout": "GUIDE.md\nchecks_wrapper.py\nconfig/settings.toml\nunrelated.txt\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--"
+    ],
+    "exit_code": 0,
+    "stdout": "diff --git a/unrelated.txt b/unrelated.txt\nindex a1af782..aa7b1cf 100644\n--- a/unrelated.txt\n+++ b/unrelated.txt\n@@ -1 +1 @@\n-Initial user notes\n+Preserve these separate notes.\n",
+    "stderr": ""
+  }
+]

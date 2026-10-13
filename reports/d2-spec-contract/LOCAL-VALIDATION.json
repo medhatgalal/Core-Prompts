@@ -1,0 +1,53 @@
+{
+  "schema_version": "D2LocalValidation.v1",
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "productSha256": "425b33d42f7b4244134ac0d867d522f14bfa6865adbdf4080fbbd2721ac6ebff",
+  "productPaths": 77,
+  "candidateSha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+  "effectiveSha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+  "python": "3.14.8",
+  "passed": true,
+  "testsPassed": 1133,
+  "testsSkipped": 1,
+  "subtestsPassed": 16,
+  "groups": {
+    "resources-uac": 316,
+    "shaping": 480,
+    "presentation": 19,
+    "routing": 58,
+    "apply-bootstrap": 5,
+    "packaging-profiles": 255
+  },
+  "ciReceipt": "local-ci/receipt.json",
+  "ciStrategy": "13 declared checks; after assertion-only archive count repair, complete affected packaging group replayed and12earlier passes retained with explicit retry lineage. Hosted exact-head CI is separate.",
+  "nativeSmoke": {
+    "failures": 0,
+    "warnings": 0,
+    "discovery": {
+      "codex": "skipped",
+      "gemini": "ok",
+      "claude": "skipped",
+      "kiro": "skipped",
+      "grok": "skipped"
+    }
+  },
+  "limitationsText": "Local macOS execution of declared GitLab check sequence uses Python3.14.8 and declared CI dependencies; apt/pip setup is not replayed. One test is skipped. Four native discovery probes are skipped; Gemini discovery passes. After the archive assertion-only repair, the complete packaging group was rerun; the other12passed checks were retained, not rerun. Hosted exact-head CI remains a separate delivery gate.",
+  "preservation": {
+    "priorCapabilities": 32,
+    "priorSSOTControlFiles": 3,
+    "allPriorSSOTBytesUnchanged": true,
+    "priorProviderPackagesUnchanged": true,
+    "agentsAdded": 0,
+    "historicalBaselineCreated": false
+  },
+  "behavioralStatus": "behavioral_pending",
+  "completedAt": "2026-10-11T18:31:27.080819+00:00",
+  "evidenceLogNotation": "Public logs omit temporary fixture absolute paths and normalize trailing whitespace; exact raw controller logs are retained privately.",
+  "compileLog": {
+    "public": "local-ci/compile-contracts.log",
+    "kind": "head/tail excerpt of complete successful output",
+    "rawSha256": "69df7c6c0477ea35f167ecb56dead85f3761307007b78e5737fe05206a5a3d62",
+    "rawLineCount": 39406,
+    "rawRetention": "Complete stdout remains in task-local private evidence; generated contract bodies already exist in canonical evaluation outputs"
+  }
+}

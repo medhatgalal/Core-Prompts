@@ -1,0 +1,2638 @@
+{
+  "schema": "FoundationProductPayload.v1",
+  "base": "5a6503b65fa28586437965ea6a01540b955fd953",
+  "sourceHead": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+  "productSHA256": "8359a5895c8b37a9b41495a271183003c75dc75555fb9807a8d3f151e943ba9a",
+  "fileCount": 438,
+  "files": [
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0fcb335a46e62f8d7d5a73bb27456e61802ca1a075ed15db4fff938e6c4488e8"
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9"
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-artifact-embed/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/schemas/slice-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/templates/slice-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": ".claude/skills/engos-design-architecture/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee"
+    },
+    {
+      "path": ".claude/skills/engos-design-architecture/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "47aa1531885d03e7bfb4d35047d57b336c00f6e43c86d585f85e175e551f2f61"
+    },
+    {
+      "path": ".claude/skills/engos-design-architecture/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
+    },
+    {
+      "path": ".claude/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".claude/skills/engos-design-architecture/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4f8cf812a8d3d98cfe3549a2e0d8819e75a21a4a29f91fef9434246b743be727"
+    },
+    {
+      "path": ".claude/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+    },
+    {
+      "path": ".claude/skills/engos-design-shaping/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1627c51b7ac19a29a3993a2ec17263a4af6483bc6e03d5988a862d45d4cd81b4"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/references/bugfix.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/references/design-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/templates/requirements.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": ".claude/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    },
+    {
+      "path": ".claude/skills/engos-meta-instruction-editor/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "d98fcfe5d1199b32eeb1aa016a84031637d04cfb50df334d76c3546da43de323"
+    },
+    {
+      "path": ".claude/skills/engos-meta-instruction-editor/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676"
+    },
+    {
+      "path": ".claude/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955"
+    },
+    {
+      "path": ".claude/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+    },
+    {
+      "path": ".claude/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-meta-uac-import/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "57bad278d02afa2a9fef6a26d3b427676bf5899d88be3657652fd2c9dbc08135"
+    },
+    {
+      "path": ".claude/skills/engos-meta-uac-import/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
+    },
+    {
+      "path": ".claude/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+    },
+    {
+      "path": ".claude/skills/engos-meta-uac-import/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1"
+    },
+    {
+      "path": ".claude/skills/engos-meta-uac-import/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+    },
+    {
+      "path": ".claude/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c3fba59f1eaf897d89351f541a457833c644187ceb87bc4ffc2147b6bdda71df"
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d"
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/references/review-targets.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "6dc1d3204094578d351a6f142d574f4704df63a2104942fda37bc1d91f649730"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/schemas/test-design.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/templates/test-design.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0fcb335a46e62f8d7d5a73bb27456e61802ca1a075ed15db4fff938e6c4488e8"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-artifact-embed/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/schemas/slice-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/templates/slice-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": ".codex/skills/engos-design-architecture/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee"
+    },
+    {
+      "path": ".codex/skills/engos-design-architecture/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "47aa1531885d03e7bfb4d35047d57b336c00f6e43c86d585f85e175e551f2f61"
+    },
+    {
+      "path": ".codex/skills/engos-design-architecture/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
+    },
+    {
+      "path": ".codex/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".codex/skills/engos-design-architecture/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4f8cf812a8d3d98cfe3549a2e0d8819e75a21a4a29f91fef9434246b743be727"
+    },
+    {
+      "path": ".codex/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+    },
+    {
+      "path": ".codex/skills/engos-design-shaping/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1627c51b7ac19a29a3993a2ec17263a4af6483bc6e03d5988a862d45d4cd81b4"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/references/bugfix.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/references/design-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/templates/requirements.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": ".codex/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    },
+    {
+      "path": ".codex/skills/engos-meta-instruction-editor/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "d98fcfe5d1199b32eeb1aa016a84031637d04cfb50df334d76c3546da43de323"
+    },
+    {
+      "path": ".codex/skills/engos-meta-instruction-editor/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676"
+    },
+    {
+      "path": ".codex/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955"
+    },
+    {
+      "path": ".codex/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+    },
+    {
+      "path": ".codex/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-meta-uac-import/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "57bad278d02afa2a9fef6a26d3b427676bf5899d88be3657652fd2c9dbc08135"
+    },
+    {
+      "path": ".codex/skills/engos-meta-uac-import/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
+    },
+    {
+      "path": ".codex/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+    },
+    {
+      "path": ".codex/skills/engos-meta-uac-import/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1"
+    },
+    {
+      "path": ".codex/skills/engos-meta-uac-import/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+    },
+    {
+      "path": ".codex/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c3fba59f1eaf897d89351f541a457833c644187ceb87bc4ffc2147b6bdda71df"
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d"
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/references/review-targets.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "6dc1d3204094578d351a6f142d574f4704df63a2104942fda37bc1d91f649730"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/schemas/test-design.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/templates/test-design.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0fcb335a46e62f8d7d5a73bb27456e61802ca1a075ed15db4fff938e6c4488e8"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-artifact-embed/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/schemas/slice-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/templates/slice-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": ".gemini/skills/engos-design-architecture/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee"
+    },
+    {
+      "path": ".gemini/skills/engos-design-architecture/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "47aa1531885d03e7bfb4d35047d57b336c00f6e43c86d585f85e175e551f2f61"
+    },
+    {
+      "path": ".gemini/skills/engos-design-architecture/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
+    },
+    {
+      "path": ".gemini/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".gemini/skills/engos-design-architecture/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4f8cf812a8d3d98cfe3549a2e0d8819e75a21a4a29f91fef9434246b743be727"
+    },
+    {
+      "path": ".gemini/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+    },
+    {
+      "path": ".gemini/skills/engos-design-shaping/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1627c51b7ac19a29a3993a2ec17263a4af6483bc6e03d5988a862d45d4cd81b4"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/references/bugfix.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/references/design-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/templates/requirements.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": ".gemini/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-instruction-editor/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "d98fcfe5d1199b32eeb1aa016a84031637d04cfb50df334d76c3546da43de323"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-instruction-editor/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-uac-import/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "57bad278d02afa2a9fef6a26d3b427676bf5899d88be3657652fd2c9dbc08135"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-uac-import/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-uac-import/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-uac-import/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+    },
+    {
+      "path": ".gemini/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c3fba59f1eaf897d89351f541a457833c644187ceb87bc4ffc2147b6bdda71df"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/references/review-targets.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "6dc1d3204094578d351a6f142d574f4704df63a2104942fda37bc1d91f649730"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/schemas/test-design.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/templates/test-design.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": ".github/workflows/cli-surfaces-validate.yml",
+      "present": true,
+      "mode": 420,
+      "sha256": "c804438cce12267323001e0dca70207fe5a2518ee6502932c17405685bc49517"
+    },
+    {
+      "path": ".gitlab-ci.yml",
+      "present": true,
+      "mode": 420,
+      "sha256": "a948fd07629285840955902f691d0cf88f4a424985cb348ef215edf09643a51f"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0fcb335a46e62f8d7d5a73bb27456e61802ca1a075ed15db4fff938e6c4488e8"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-artifact-embed/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/schemas/slice-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/templates/slice-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": ".grok/skills/engos-design-architecture/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee"
+    },
+    {
+      "path": ".grok/skills/engos-design-architecture/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "47aa1531885d03e7bfb4d35047d57b336c00f6e43c86d585f85e175e551f2f61"
+    },
+    {
+      "path": ".grok/skills/engos-design-architecture/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
+    },
+    {
+      "path": ".grok/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".grok/skills/engos-design-architecture/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4f8cf812a8d3d98cfe3549a2e0d8819e75a21a4a29f91fef9434246b743be727"
+    },
+    {
+      "path": ".grok/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+    },
+    {
+      "path": ".grok/skills/engos-design-shaping/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1627c51b7ac19a29a3993a2ec17263a4af6483bc6e03d5988a862d45d4cd81b4"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/references/bugfix.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/references/design-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/templates/requirements.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": ".grok/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    },
+    {
+      "path": ".grok/skills/engos-meta-instruction-editor/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "d98fcfe5d1199b32eeb1aa016a84031637d04cfb50df334d76c3546da43de323"
+    },
+    {
+      "path": ".grok/skills/engos-meta-instruction-editor/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676"
+    },
+    {
+      "path": ".grok/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955"
+    },
+    {
+      "path": ".grok/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+    },
+    {
+      "path": ".grok/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-meta-uac-import/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "57bad278d02afa2a9fef6a26d3b427676bf5899d88be3657652fd2c9dbc08135"
+    },
+    {
+      "path": ".grok/skills/engos-meta-uac-import/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
+    },
+    {
+      "path": ".grok/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+    },
+    {
+      "path": ".grok/skills/engos-meta-uac-import/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1"
+    },
+    {
+      "path": ".grok/skills/engos-meta-uac-import/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+    },
+    {
+      "path": ".grok/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c3fba59f1eaf897d89351f541a457833c644187ceb87bc4ffc2147b6bdda71df"
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d"
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/references/review-targets.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "6dc1d3204094578d351a6f142d574f4704df63a2104942fda37bc1d91f649730"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/schemas/test-design.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/templates/test-design.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0fcb335a46e62f8d7d5a73bb27456e61802ca1a075ed15db4fff938e6c4488e8"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/schemas/diagnosis-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/templates/hypothesis-evidence.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/templates/reproduction-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-artifact-embed/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-diagram-contract-artifacts/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e3243dc461da94c6adb3f39b055a6608500ee06d1735a7a7d6cfc1083186f5b8"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/schemas/slice-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/templates/slice-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": ".kiro/skills/engos-design-architecture/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "40792c30b470df09ee9de11d4b8d41dcf9ab84fa4357935d17c58848bff9c5ee"
+    },
+    {
+      "path": ".kiro/skills/engos-design-architecture/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "47aa1531885d03e7bfb4d35047d57b336c00f6e43c86d585f85e175e551f2f61"
+    },
+    {
+      "path": ".kiro/skills/engos-design-architecture/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
+    },
+    {
+      "path": ".kiro/skills/engos-design-architecture/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".kiro/skills/engos-design-architecture/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-design-architecture/resources/shared-resource-imports.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4f8cf812a8d3d98cfe3549a2e0d8819e75a21a4a29f91fef9434246b743be727"
+    },
+    {
+      "path": ".kiro/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "2ba5aa4002defdeeaaccafbf2f74f6c6ac2fc7df66fdd7abecec74ae021dc0dd"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+    },
+    {
+      "path": ".kiro/skills/engos-design-shaping/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1627c51b7ac19a29a3993a2ec17263a4af6483bc6e03d5988a862d45d4cd81b4"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/references/bugfix.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/references/design-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/references/requirements-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/templates/requirements.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": ".kiro/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-instruction-editor/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "d98fcfe5d1199b32eeb1aa016a84031637d04cfb50df334d76c3546da43de323"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-instruction-editor/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-instruction-editor/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-instruction-editor/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-instruction-editor/resources/templates/semantic-change-ledger.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-supercharge/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-uac-import/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "57bad278d02afa2a9fef6a26d3b427676bf5899d88be3657652fd2c9dbc08135"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-uac-import/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-uac-import/resources/references/authoring-decisions.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-uac-import/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-uac-import/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-meta-uac-import/resources/templates/preservation-displacement.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+    },
+    {
+      "path": ".kiro/skills/engos-optimization-auto-research/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c3fba59f1eaf897d89351f541a457833c644187ceb87bc4ffc2147b6bdda71df"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/references/review-targets.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-shaping-gate/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/SKILL.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "6dc1d3204094578d351a6f142d574f4704df63a2104942fda37bc1d91f649730"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/capability.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/schemas/test-design.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/scripts/load_module.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/templates/test-design.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": ".meta/capabilities/engos-debug-diagnose-failure.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "144f7e10718e485783c43b73a8a16e898f50133c21ca9799822af90403c7eda9"
+    },
+    {
+      "path": ".meta/capabilities/engos-delivery-implement-slice.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8c2117c50b1e12698a947f881875c8cecce89b23501398519601bc32117f07dc"
+    },
+    {
+      "path": ".meta/capabilities/engos-design-architecture.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "47aa1531885d03e7bfb4d35047d57b336c00f6e43c86d585f85e175e551f2f61"
+    },
+    {
+      "path": ".meta/capabilities/engos-design-plan-implementation.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6208c062b123784cd9847597da1397798ce8dec4e27af0d0846706f964bed6ce"
+    },
+    {
+      "path": ".meta/capabilities/engos-design-specify-change.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "985f98c1f0d9b7b44c7ce6cda3861f12e2ad08cc2627ce2f73dfc505b7fc8a5e"
+    },
+    {
+      "path": ".meta/capabilities/engos-meta-instruction-editor.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "fc600af6f8ccf63d15ae7594f13019770f1b662c01950f0678b5e57da7dca676"
+    },
+    {
+      "path": ".meta/capabilities/engos-meta-uac-import.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
+    },
+    {
+      "path": ".meta/capabilities/engos-quality-code-review.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "372db684943f9f1a13e550cc0672dc545bc701736710e27be2c772de1cdb705d"
+    },
+    {
+      "path": ".meta/capabilities/engos-quality-testing-review.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7ec6a4d98167dc85f1e532a051778555ac77a15f19d8e7a85c44c622ae130cb1"
+    },
+    {
+      "path": ".meta/capability-handoff.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "d769e7c7a282617f40716bba7463f530202094db5797ce02e92208e1c9b8db90"
+    },
+    {
+      "path": ".meta/install-bundle.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7538ecb494b057aadd75c26042ea108b6f91b5b20d2b8060fc40b4e014fe28c2"
+    },
+    {
+      "path": ".meta/manifest.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "13dad51bc7cf07e9d314d9afaba8848137b2a6fb7510f0b25305ea038aeb5800"
+    },
+    {
+      "path": ".meta/shared-resource-imports.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c632163cfd647f24b1b9c10f2eb6b4727c3b133d0ec9c429d61b2a0298d0ac3b"
+    },
+    {
+      "path": ".meta/skill-job-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "b48335f3e25d4f672dbea8bc9c5e7cb57b866e97b62d0f2e2a64ba2183586d0f"
+    },
+    {
+      "path": ".meta/surface-rules.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "bc804cd16bd077ec3e98e594a33a23fc91425d5a6b2c2c8c1c5493f2fbe39e81"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "58f7b3e1158cf8717c3a1e74a82d603f89bc2a1ea14a0f1e85b59a698ba58b5d"
+    },
+    {
+      "path": "README.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "78192cdb66204f65fa750fe7288f3543d672f6d999ad69c5a8ee1b2816d03a8c"
+    },
+    {
+      "path": "docs/CAPABILITY-CATALOG.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "59ed93038a956318d56b23b508612dcb8181ae6a595920783bbe3e1b694c4e20"
+    },
+    {
+      "path": "docs/CLI-REFERENCE.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "50ebbcf69302a0d450a72db49f4f89bb797d0ae4a0701e4f7951d7dad72ac835"
+    },
+    {
+      "path": "docs/EXAMPLES.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "b0f843bbecab6e3cfb6bbeb2b150b34df01535bdcea1655f57939a0246337112"
+    },
+    {
+      "path": "docs/GETTING-STARTED.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f0fd9362a659e0680416197e873bc1bcc1f63a5fe34e7f59e8b837296829fef"
+    },
+    {
+      "path": "docs/RELEASE-DELTA.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "26fe70fd28434e7f35d680eb25f41717f92f55060e4c34f23288b75125bd7140"
+    },
+    {
+      "path": "docs/RELEASE-PACKAGING.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "826e9d9c48f1838c13bfcea9301b67661c22d900adefeb91c78768d00f90b21e"
+    },
+    {
+      "path": "docs/SKILL-JOB-MAP.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "bf161f0dc1dcf2cfcb802b6fbc14d699522e5aecfeff202e908319e4236875c2"
+    },
+    {
+      "path": "docs/STATUS.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "118dac44b798a2a8024fd057b55731359eba989daac0eaeb25bfc3a184adb6f8"
+    },
+    {
+      "path": "docs/UAC-USAGE.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "acc00a75b23dd1d9b72ec0f85f79ddaae39bb5fac5c7f79c9e201f70e026c39d"
+    },
+    {
+      "path": "evals/contracts/engos-debug-diagnose-failure.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "20f07065c63b70b70771e5198e2f833973f7b3d7c566740b646e0eedc1d4ac48"
+    },
+    {
+      "path": "evals/contracts/engos-delivery-implement-slice.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "44f9d5638ea22938bc6868119f09b964b323a0ab7ad99ed92bcff3e42bc4a6b9"
+    },
+    {
+      "path": "evals/contracts/engos-design-architecture.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "6b6236901be941f9091748dee33d2deeda69646b96752e9ac24606695d8a371d"
+    },
+    {
+      "path": "evals/contracts/engos-design-plan-implementation.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "81101191248f071c37a989cfb5dca285265fa031d3d4745550e87c635cc2c820"
+    },
+    {
+      "path": "evals/contracts/engos-design-specify-change.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e5b81729fcb5d3f5a64c9b0fcc36d6e37f25b2139d5e3fbff60cea94e16e9878"
+    },
+    {
+      "path": "evals/contracts/engos-meta-instruction-editor.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "2068676f18e5d38c38e70a5373a07cb599357b5f41a190b11a34f1b4c2c23557"
+    },
+    {
+      "path": "evals/contracts/engos-meta-uac-import.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a0d64fdbe76c1a945a84dce970761273cdba89060952e03210d0ca45d981bdaf"
+    },
+    {
+      "path": "evals/contracts/engos-quality-code-review.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "18c204172bd98f7136ca33beb9f90f2669275c26cbae652722586291c253c475"
+    },
+    {
+      "path": "evals/contracts/engos-quality-testing-review.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "3ab125ce17c14b113f6e35801fc40467b1eb465cf43fc8364d682b3e40fa3330"
+    },
+    {
+      "path": "evals/topologies/engos-debug-diagnose-failure.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "edee0181c390d9d5b1aa514ab5709e780edbdf38c3ac981e3b094d6c243f5574"
+    },
+    {
+      "path": "evals/topologies/engos-delivery-implement-slice.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cb01076a77671c5220c9cad773bb9ad01a5a7ff2854a2c7e75cdedab80da357f"
+    },
+    {
+      "path": "evals/topologies/engos-design-architecture.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "718a05bfdbd96443948c31a820c047bbaf3627619c1578481d1763077170c3ea"
+    },
+    {
+      "path": "evals/topologies/engos-design-plan-implementation.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "eb64bca36f47d5bee6f5f0aab33a771a2c6649889cfc8434ceb9fd12209148e5"
+    },
+    {
+      "path": "evals/topologies/engos-design-specify-change.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87e44ba5a34dc4facacfc9cd84406c52e0057a732122976d67f4fbc73ef9ae46"
+    },
+    {
+      "path": "evals/topologies/engos-meta-instruction-editor.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "d3969ddcdf966ff09dd5dfeb7d502e6a1f11d5a698414edbebc9f12ca3f2745f"
+    },
+    {
+      "path": "evals/topologies/engos-meta-uac-import.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "5ded755d6b6e90cf2d4d01b9bfcf02673e42e73dfd1370e45b9529a0194fbca2"
+    },
+    {
+      "path": "evals/topologies/engos-quality-code-review.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "84aa4b75d7477966a3d0af86f068ece886ea4331faf0cbf77cee205fd2e05640"
+    },
+    {
+      "path": "evals/topologies/engos-quality-testing-review.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "eb95164a23042808b3345e83fe39fb1fa8bc29f7fff806f2496fba2612b9ee16"
+    },
+    {
+      "path": "scripts/build-surfaces.py",
+      "present": true,
+      "mode": 493,
+      "sha256": "b4d39218b8e0e275800ada2946a9a3882946783a5eb89626556db174c48ef31c"
+    },
+    {
+      "path": "scripts/uac-import.py",
+      "present": true,
+      "mode": 493,
+      "sha256": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+    },
+    {
+      "path": "scripts/validate-surfaces.py",
+      "present": true,
+      "mode": 493,
+      "sha256": "9ce79520ebadfed6ef9690634110e82d20fb366d573742a4c4ff4b7cabd1589e"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "85587916d62db7e2628115cdb6898eaeb9df557ef58e202f7ccb01ef0509bcdc"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-architecture/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/references/bugfix.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/references/design-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/references/requirements-first.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/templates/trace-matrix.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-instruction-editor/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "c09688a119849cb424c4964fe2f4e7dd32d1f9009912981b547eadc52d92f955"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-instruction-editor/templates/semantic-change-ledger.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "7245861fd59d51c22701553d8d0fb6bb59a605957796b45c3cf4eb44607980ee"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-uac-import/references/authoring-decisions.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "0e44336959369d47570a46f2b06b8640826ef0afea945fd572eaf245d7e12735"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-uac-import/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "87eb7294ff1b6e68b2586099a7df820849f292826a89276cbf14b427172fd7b1"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-uac-import/templates/preservation-displacement.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "27fae0a2011cf89b008cc62c13d2f5a02b37a9b43ddb01fdf36dcdd1b20368a1"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "89f82ba7f5332c508acd0566d42229b24a1e1d4c3f1d7e6a29b663f2fe62976b"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/resource-map.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "present": true,
+      "mode": 420,
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": "src/core_prompts_eval/runner.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "1edf93af1ecc897329274dabec74214fd830474a89ec419218c45d9dfbca65e7"
+    },
+    {
+      "path": "src/core_prompts_eval/topology.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "9144ccc0516eaa1c3e4602ac64f2f4d9adac57b9be83737050197fc933ab204a"
+    },
+    {
+      "path": "src/intent_pipeline/capability_resources.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb"
+    },
+    {
+      "path": "src/intent_pipeline/skill_jobs.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "810a7d65338c971942e402feec0e5a2a87987d0fee50799677cc1deb0b8f14a9"
+    },
+    {
+      "path": "src/intent_pipeline/uac_modes.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+    },
+    {
+      "path": "src/intent_pipeline/uac_quality.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "288f966bfb7852a24cbc251a6ffd8486c92c3de59c442c3bfc4fb02b3141c504"
+    },
+    {
+      "path": "ssot/engos-debug-diagnose-failure.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+    },
+    {
+      "path": "ssot/engos-delivery-implement-slice.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "d1db1a98bfa9459c5b80676251e156b56495587be63ef4308f39dbb5c4524e8a"
+    },
+    {
+      "path": "ssot/engos-design-architecture.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2"
+    },
+    {
+      "path": "ssot/engos-design-plan-implementation.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+    },
+    {
+      "path": "ssot/engos-design-specify-change.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+    },
+    {
+      "path": "ssot/engos-meta-instruction-editor.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86"
+    },
+    {
+      "path": "ssot/engos-meta-uac-import.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00"
+    },
+    {
+      "path": "ssot/engos-quality-code-review.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+    },
+    {
+      "path": "ssot/engos-quality-testing-review.md",
+      "present": true,
+      "mode": 420,
+      "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+    },
+    {
+      "path": "tests/test_capability_resources.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "b614668be5bb2963f7ed0f151acd544e680bd30c786414fb6fc22dab6bf6ee72"
+    },
+    {
+      "path": "tests/test_manifest_stability.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "cadeb2df21f967f21c5b38038a003f4d83f7fb5b284e456b0f13f7fb768a6ed6"
+    },
+    {
+      "path": "tests/test_package_surfaces.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "226d1fc7fc0ceab21f51ca8f2c18981b522464dee933e102fc82a001d8ca543b"
+    },
+    {
+      "path": "tests/test_resource_backed_skill_surfaces.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "7de52519c03177b5df96317230415074d1c3f609d34701d52b0341913185781e"
+    },
+    {
+      "path": "tests/test_resource_delivery.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "b9b72cf3b499e2f9fd5f6ada47bafb80862de739510af0e5ca03a06f88d6ee48"
+    },
+    {
+      "path": "tests/test_resource_source_integrity.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "a15326f26cfd096f5b3fae50a4cda1fb9d4597f64cb4f3397d7570cfd5244a68"
+    },
+    {
+      "path": "tests/test_uac_promotion_apply.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "c309c71fb8becff34102338a285ad08483fe9ce0c55afa95eb4c0e2a6466df37"
+    },
+    {
+      "path": "tests/test_uac_ssot.py",
+      "present": true,
+      "mode": 420,
+      "sha256": "9b0de49dd3a01e157d3f0f6bfea818fcdf2438e243a5c934565f910ab80a1c4c"
+    }
+  ],
+  "claims": "Exact product-byte binding; excludes reports evidence. No behavioral acceptance implied."
+}

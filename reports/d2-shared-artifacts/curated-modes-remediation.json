@@ -1,0 +1,21 @@
+{
+  "author": "d2_s2_implementation_astra",
+  "category": "code",
+  "defect": "Resource-backed descriptor branch replaced curated product modes with minimal source extraction.",
+  "fix": "Preserve prior entry_kind=mode dictionaries; refresh other entries from current extraction and deduplicate new entries by entry_kind/mode_slug. No existing non-resource branch behavior change.",
+  "files": [
+    "scripts/build-surfaces.py",
+    "tests/test_resource_backed_skill_surfaces.py"
+  ],
+  "red": "curated-modes-red.log: 1 failed, 6 deselected",
+  "green": "curated-modes-green.log: 1 passed, 6 deselected",
+  "focused": "curated-modes-focused.log: 5 passed, 2 generation-dependent checks deselected",
+  "assertions": [
+    "Four architecture product modes retained with exact curated field values",
+    "Minimal extractor output cannot overwrite curated Design API fields",
+    "Same-slug mode and module remain distinct",
+    "Stale context module removed; current resource modules carry source refs",
+    "Resolver replay returns identical descriptor"
+  ],
+  "authority": "Controller restores original descriptor modes and owns final generation. No canonical metadata, generated surfaces, SSOT, UAC or Git mutations by author."
+}

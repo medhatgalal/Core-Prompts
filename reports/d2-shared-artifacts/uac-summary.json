@@ -1,0 +1,138 @@
+{
+  "schema": "D2S2UACSummary.v1",
+  "scope": "Exact raw intake records retained privately; this condensed receipt removes repeated full source/descriptor payloads. Current-source independent review accepted; historical-baseline nested attestation remains separately unbound.",
+  "stages": {
+    "plan": {
+      "raw_sha256": "2cc9ba9d8b82ed4f64db4a069e697eed3556d36397a47b94706ad356d56e62d1",
+      "status": "accepted",
+      "detail": null,
+      "mode": null,
+      "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "requirement_review_files": [],
+      "behavioral_status": null,
+      "quality_status": "structural_ready",
+      "effective_sha256": null,
+      "build": null,
+      "validate": null
+    },
+    "judge": {
+      "raw_sha256": "24078eb7fc65eda89e6589b11981e08d1b3e909421d99f71eee1b172e136745c",
+      "status": "accepted",
+      "detail": null,
+      "mode": "judge",
+      "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "requirement_review_files": [
+        {
+          "path": "reports/d2-shared-artifacts/requirement-review.json",
+          "sha256": "f760dff8f788a1a576e7ed87f7ec2980727548ecc2d9f4ea0b24c61e94ba6ad4"
+        }
+      ],
+      "behavioral_status": "behavioral_pending",
+      "quality_status": "structural_ready",
+      "effective_sha256": null,
+      "build": null,
+      "validate": null
+    },
+    "apply": {
+      "raw_sha256": "c0459ff28dbceb57b8a2b5cbea02ace6d88e4dcd805b22308fa61e406f5d741c",
+      "status": "applied",
+      "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+      "mode": "apply",
+      "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "requirement_review_files": [
+        {
+          "path": "reports/d2-shared-artifacts/requirement-review.json",
+          "sha256": "f760dff8f788a1a576e7ed87f7ec2980727548ecc2d9f4ea0b24c61e94ba6ad4"
+        }
+      ],
+      "behavioral_status": "behavioral_pending",
+      "quality_status": "structural_ready",
+      "effective_sha256": null,
+      "build": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "installer capsule: generated\nGenerated 33 ssot entries"
+      },
+      "validate": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Validation passed.\nSSOT files: 33"
+      }
+    },
+    "apply-initial-failed": {
+      "raw_sha256": "570a7d4d988dce333a4a6867f03432c6d15c0a37f2fee350285e08350bca7a20",
+      "status": "apply_failed_validation",
+      "detail": "Repo changes were written, but build or validation failed. Review the recorded outputs before deploy.",
+      "mode": "apply",
+      "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "requirement_review_files": [
+        {
+          "path": "reports/d2-shared-artifacts/requirement-review.json",
+          "sha256": "f760dff8f788a1a576e7ed87f7ec2980727548ecc2d9f4ea0b24c61e94ba6ad4"
+        }
+      ],
+      "behavioral_status": "behavioral_pending",
+      "quality_status": "structural_ready",
+      "effective_sha256": null,
+      "build": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "installer capsule: generated\nGenerated 33 ssot entries"
+      },
+      "validate": {
+        "returncode": 2,
+        "stderr": "",
+        "stdout": "Validation failed:\n- missing schema cache entry for https://geminicli.com/docs/cli/skills\n- missing schema cache entry for https://geminicli.com/docs/core/subagents\n- missing schema cache entry for https://docs.anthropic.com/en/docs/claude-code/skills\n- missing schema cache entry for https://docs.anthropic.com/en/docs/claude-code/sub-agents\n- missing schema cache entry for https://kiro.dev/docs/skills/\n- missing schema cache entry for https://kiro.dev/docs/custom-agents/configuration-reference/\n- missing schema cache entry for https://kiro.dev/docs/cli/2x-reference/"
+      }
+    },
+    "apply-retry-stale-review": {
+      "raw_sha256": "929f2d5df3bd842bfd72d7800883325e37dd5a16bc49ab9d464d356fa299f3b6",
+      "status": "manual_review",
+      "detail": "Quality gate refused landing. Review the persisted quality reports and revise before apply.",
+      "mode": "apply",
+      "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "requirement_review_files": [
+        {
+          "path": "reports/d2-shared-artifacts/requirement-review.json",
+          "sha256": "f760dff8f788a1a576e7ed87f7ec2980727548ecc2d9f4ea0b24c61e94ba6ad4"
+        }
+      ],
+      "behavioral_status": "behavioral_pending",
+      "quality_status": "manual_review",
+      "effective_sha256": null,
+      "build": null,
+      "validate": null
+    },
+    "apply-before-mode-repair": {
+      "raw_sha256": "50c725a58c607336dc92f6ecea992ba3a6b35986aefada2149fc82b837e53213",
+      "status": "applied",
+      "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+      "mode": "apply",
+      "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+      "requirement_review_files": [
+        {
+          "path": "reports/d2-shared-artifacts/requirement-review.json",
+          "sha256": "f760dff8f788a1a576e7ed87f7ec2980727548ecc2d9f4ea0b24c61e94ba6ad4"
+        }
+      ],
+      "behavioral_status": "behavioral_pending",
+      "quality_status": "structural_ready",
+      "effective_sha256": null,
+      "build": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "installer capsule: generated\nGenerated 33 ssot entries"
+      },
+      "validate": {
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "Validation passed.\nSSOT files: 33"
+      }
+    }
+  },
+  "source_review_sha256": "f760dff8f788a1a576e7ed87f7ec2980727548ecc2d9f4ea0b24c61e94ba6ad4",
+  "source": "ssot/engos-design-architecture.md",
+  "source_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+  "behavioral_claim": "none",
+  "installation_performed": false
+}

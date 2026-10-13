@@ -1,0 +1,69 @@
+{
+  "schema_version": "D2S1SourceAdmission.v1",
+  "date": "2026-10-11",
+  "receiving_owner": "engos-design-specify-change",
+  "reuse": "independently expressed attributed pattern synthesis; no donor resource or Kiro template copied",
+  "new_job": true,
+  "historical_baseline": null,
+  "original_intake": "reports/d2-spec-contract/original-intake.md",
+  "frozen_plan_sha256": "cefe8224ece3dc09f48268dca3fe68de2e5e621e7343cc94162e9a05c378581c",
+  "sources": [
+    {
+      "id": "D2-addy",
+      "origin": "https://github.com/addyosmani/agent-skills",
+      "revision": "1be8e34187e34647bb83adc3a1323b26ae6f6abe",
+      "source_path": "skills/spec-driven-development/SKILL.md",
+      "sha256": "c4b97ce3d7f24be0e67fd612c7595f65504872e3a9f8d338d098b2363fdb66ef",
+      "verified": "full pinned local source and license read; hash matches frozen intake",
+      "source_url": "https://github.com/addyosmani/agent-skills/blob/1be8e34187e34647bb83adc3a1323b26ae6f6abe/skills/spec-driven-development/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "license_notice": "MIT License\n\nCopyright (c) 2025 Addy Osmani\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "retained_patterns": [
+        "independently testable capability decomposition when useful",
+        "explicit assumptions and observable success criteria",
+        "existing specification formats"
+      ],
+      "not_adopted": [
+        "mandatory later-turn stop regardless of existing authorization",
+        "every dependency cycle implies one module",
+        "task planning and implementation inside the spec skill",
+        "unprovided numerical targets and technology choices"
+      ],
+      "resource_closure": "No upstream resources copied or runtime references retained; all new resource bytes are local to this owner."
+    },
+    {
+      "id": "D2-kiro-frozen",
+      "artifact": "kiro-source-assessment.json in private frozen research evidence",
+      "sha256": "956b16850fa0a88ab52b406e7e00b78b5ef15a6844e1672c7a01c46bc2ca586a",
+      "license": "Redistribution clearance unknown; no literal reuse",
+      "evidence_class": "October 9 source assessment, not live runtime verification"
+    },
+    {
+      "id": "D2-kiro-live",
+      "accessed": "2026-10-11",
+      "urls": [
+        "https://kiro.dev/docs/specs/feature-specs/",
+        "https://kiro.dev/docs/specs/feature-specs/requirements-first/",
+        "https://kiro.dev/docs/specs/feature-specs/tech-design-first/",
+        "https://kiro.dev/docs/specs/bugfix-specs/"
+      ],
+      "verified": "Official public documentation read via web tool on October 11, separate from frozen October 9 assessment",
+      "retained_patterns": [
+        "requirements-first and design-first entry orders",
+        "current/expected/unchanged bugfix behavior"
+      ],
+      "not_adopted": [
+        "guaranteed feasibility from design-derived requirements",
+        "native workflow equivalence",
+        "hidden/native prompts",
+        "native task execution"
+      ],
+      "license": "Unknown redistribution clearance; independently expressed guidance only",
+      "behavioral_evidence": "none; native Kiro session not run"
+    }
+  ],
+  "scope": "D2.S1 only; no shared-resource import, trace checker, new planner/test consumer, shaping change, installation or release",
+  "source_truth_limit": "Hash and admission bind inspected bytes; they do not establish behavior or licensing beyond the recorded source notice."
+}

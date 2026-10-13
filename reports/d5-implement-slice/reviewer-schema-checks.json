@@ -1,0 +1,111 @@
+{
+  "reviewer": "/root/d5_requirement_review_astra",
+  "reviewed_at": "2026-10-12T18:51:40.394961+00:00",
+  "runtime": "python3.14",
+  "schema_sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507",
+  "cases": [
+    {
+      "case": "Unpopulated template openly remains unresolved",
+      "expected_valid": true,
+      "observed_valid": true,
+      "errors": []
+    },
+    {
+      "case": "passed, exit=0, evidence=evidence.log, reason=None",
+      "expected_valid": true,
+      "observed_valid": true,
+      "errors": []
+    },
+    {
+      "case": "passed, exit=None, evidence=evidence.log, reason=None",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "0 was expected"
+      ]
+    },
+    {
+      "case": "passed, exit=0, evidence=None, reason=None",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "None is not of type 'string'"
+      ]
+    },
+    {
+      "case": "failed, exit=0, evidence=evidence.log, reason=None",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "0 should not be valid under {'const': 0}"
+      ]
+    },
+    {
+      "case": "failed, exit=1, evidence=evidence.log, reason=None",
+      "expected_valid": true,
+      "observed_valid": true,
+      "errors": []
+    },
+    {
+      "case": "not_run, exit=None, evidence=None, reason=Not executed",
+      "expected_valid": true,
+      "observed_valid": true,
+      "errors": []
+    },
+    {
+      "case": "not_run, exit=0, evidence=None, reason=Not executed",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "0 is not of type 'null'"
+      ]
+    },
+    {
+      "case": "unavailable, exit=None, evidence=None, reason=None",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "None is not of type 'string'"
+      ]
+    },
+    {
+      "case": "Dirty candidate missing manifest evidence and method",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "None is not of type 'string'",
+        "None is not of type 'string'"
+      ]
+    },
+    {
+      "case": "Dirty candidate includes manifest binding",
+      "expected_valid": true,
+      "observed_valid": true,
+      "errors": []
+    },
+    {
+      "case": "Commit hash identity shape",
+      "expected_valid": true,
+      "observed_valid": true,
+      "errors": []
+    },
+    {
+      "case": "Commit cannot claim dirty method",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "'pretend' is not of type 'null'"
+      ]
+    },
+    {
+      "case": "Null metadata requires explanation",
+      "expected_valid": false,
+      "observed_valid": false,
+      "errors": [
+        "[] should be non-empty"
+      ]
+    }
+  ],
+  "claim": "Executed JSON Schema consistency probes only. Illustrative command fields were not executed. No model behavior or implementation completion established.",
+  "runtime_note": "Initial python3 invocation lacked jsonschema and stopped before writing outputs; existing python3.14 installation supplied it. No dependencies installed."
+}

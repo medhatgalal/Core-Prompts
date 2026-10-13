@@ -1,0 +1,318 @@
+{
+  "schema_version": "LocalCIReceipt.v1",
+  "alignment": "Current GitLab sequence, original unadapted verification commands; Python 3.14.8 plus declared dependencies. macOS setup differs from Linux apt; dependency imports verified. Read-only Git uses GIT_OPTIONAL_LOCKS=0.",
+  "gitlab_config_sha256": "069f4e67e272f7903af642b76152d035208f9067394f851e25ce09631e07ef83",
+  "startedAt": "2026-10-12T19:05:08.332746+00:00",
+  "steps": [
+    {
+      "name": "installer-runtime",
+      "sourceCommand": "python3 scripts/build-install-runtime.py --check",
+      "command": [
+        "<validation-python>",
+        "scripts/build-install-runtime.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.135,
+      "log": "reports/d5-implement-slice/local-ci/installer-runtime.log",
+      "log_sha256": "073cb208fa060bbfb8f523669cc40a6c8e015669f36f882695b1e18e05896dd1",
+      "tail": [
+        "installer capsule: verified"
+      ]
+    },
+    {
+      "name": "legacy-catalog",
+      "sourceCommand": "python3 scripts/build-legacy-catalog.py --check",
+      "command": [
+        "<validation-python>",
+        "scripts/build-legacy-catalog.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 7.769,
+      "log": "reports/d5-implement-slice/local-ci/legacy-catalog.log",
+      "log_sha256": "5c8e7329f92d4cae7898526e11080a66fcfa8d8afda28dfafad08139e06635f5",
+      "tail": [
+        "legacy catalog: 55 releases, 1627 package versions, 1514 unique identities"
+      ]
+    },
+    {
+      "name": "resources-uac",
+      "sourceCommand": "python3 -m pytest -q tests/test_capability_resources.py tests/test_manifest_stability.py tests/test_resource_delivery.py tests/test_frontier_eval_integration.py tests/test_uac_assessment.py tests/test_uac_ssot.py tests/test_agent_execution_need.py tests/test_agent_approval_lifecycle.py tests/test_agent_surface_preservation.py tests/test_namespace_registration.py tests/test_uac_semantic_uplift.py tests/test_uac_quality.py tests/test_uac_source_integrity.py tests/test_uac_promotion_apply.py tests/test_supercharge_preservation.py tests/test_supercharge_debate.py tests/test_frontier_skill_contracts.py tests/test_resource_backed_skill_surfaces.py",
+      "command": [
+        "<validation-python>",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_capability_resources.py",
+        "tests/test_manifest_stability.py",
+        "tests/test_resource_delivery.py",
+        "tests/test_frontier_eval_integration.py",
+        "tests/test_uac_assessment.py",
+        "tests/test_uac_ssot.py",
+        "tests/test_agent_execution_need.py",
+        "tests/test_agent_approval_lifecycle.py",
+        "tests/test_agent_surface_preservation.py",
+        "tests/test_namespace_registration.py",
+        "tests/test_uac_semantic_uplift.py",
+        "tests/test_uac_quality.py",
+        "tests/test_uac_source_integrity.py",
+        "tests/test_uac_promotion_apply.py",
+        "tests/test_supercharge_preservation.py",
+        "tests/test_supercharge_debate.py",
+        "tests/test_frontier_skill_contracts.py",
+        "tests/test_resource_backed_skill_surfaces.py"
+      ],
+      "exitCode": 0,
+      "seconds": 78.853,
+      "log": "reports/d5-implement-slice/local-ci/resources-uac.log",
+      "log_sha256": "ff092c8461b8b686a537bb8f7ae4bcc0a781812166ba14eaf14327aa2fdd4ec2",
+      "tail": [
+        "........................................................................ [ 23%]",
+        "........................................................................ [ 46%]",
+        "........................................................................ [ 69%]",
+        "........................................................................ [ 92%]",
+        ".......................                                                  [100%]",
+        "311 passed in 76.61s (0:01:16)"
+      ],
+      "pytestSummary": "311 passed in 76.61s (0:01:16)"
+    },
+    {
+      "name": "shaping",
+      "sourceCommand": "python3 -m pytest -q tests/test_shaping_runtime.py tests/test_shaping_review_evidence.py tests/test_shaping_handover_outputs.py tests/test_shaping_loop.py tests/test_shaping_policy_recovery.py tests/test_shaping_repository_fit.py tests/test_shaping_progress.py tests/test_shaping_progress_view.py tests/test_shaping_export.py tests/test_shaping_export_docx.py tests/test_shaping_presentation.py",
+      "command": [
+        "<validation-python>",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_shaping_runtime.py",
+        "tests/test_shaping_review_evidence.py",
+        "tests/test_shaping_handover_outputs.py",
+        "tests/test_shaping_loop.py",
+        "tests/test_shaping_policy_recovery.py",
+        "tests/test_shaping_repository_fit.py",
+        "tests/test_shaping_progress.py",
+        "tests/test_shaping_progress_view.py",
+        "tests/test_shaping_export.py",
+        "tests/test_shaping_export_docx.py",
+        "tests/test_shaping_presentation.py"
+      ],
+      "exitCode": 0,
+      "seconds": 69.704,
+      "log": "reports/d5-implement-slice/local-ci/shaping.log",
+      "log_sha256": "a5edb7e5c9088aa55b2082b47ffe821697090b4d4c2d7619546894e021372bb9",
+      "tail": [
+        "........................................................................ [ 14%]",
+        "........................................................................ [ 29%]",
+        "........................................................................ [ 44%]",
+        "........................................................................ [ 59%]",
+        "........................................................................ [ 74%]",
+        "........................................................................ [ 89%]",
+        ".............................................s...                        [100%]",
+        "480 passed, 1 skipped in 67.42s (0:01:07)"
+      ],
+      "pytestSummary": "480 passed, 1 skipped in 67.42s (0:01:07)"
+    },
+    {
+      "name": "presentation",
+      "sourceCommand": "python3 -m pytest -q tests/test_presentation_cache.py tests/test_presentation_exporter.py",
+      "command": [
+        "<validation-python>",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_presentation_cache.py",
+        "tests/test_presentation_exporter.py"
+      ],
+      "exitCode": 0,
+      "seconds": 80.165,
+      "log": "reports/d5-implement-slice/local-ci/presentation.log",
+      "log_sha256": "5f4c447c9ddc7ccdb0423eb6fb54bcee2fba6859e01b813c0275608b0fe64fb0",
+      "tail": [
+        "...................                                                      [100%]",
+        "19 passed in 77.85s (0:01:17)"
+      ],
+      "pytestSummary": "19 passed in 77.85s (0:01:17)"
+    },
+    {
+      "name": "routing",
+      "sourceCommand": "python3 -m pytest -q tests/test_skill_job_map.py tests/test_uac_routing_fitness.py tests/test_route_only_battery.py",
+      "command": [
+        "<validation-python>",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_skill_job_map.py",
+        "tests/test_uac_routing_fitness.py",
+        "tests/test_route_only_battery.py"
+      ],
+      "exitCode": 0,
+      "seconds": 5.713,
+      "log": "reports/d5-implement-slice/local-ci/routing.log",
+      "log_sha256": "f4b60bf3312b99527473bed494f3e1d73966d9fbe3b12dd8ea11ec601b5dcb98",
+      "tail": [
+        "..........................................................               [100%]",
+        "58 passed in 0.50s"
+      ],
+      "pytestSummary": "58 passed in 0.50s"
+    },
+    {
+      "name": "apply-bootstrap",
+      "sourceCommand": "python3 -m pytest -q tests/test_uac_import.py -k 'bootstrap or writes_ssot_and_descriptor_in_workspace_copy'",
+      "command": [
+        "<validation-python>",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_uac_import.py",
+        "-k",
+        "bootstrap or writes_ssot_and_descriptor_in_workspace_copy"
+      ],
+      "exitCode": 0,
+      "seconds": 28.245,
+      "log": "reports/d5-implement-slice/local-ci/apply-bootstrap.log",
+      "log_sha256": "482da2f921fcad461289d2e8a40ca121e179d9943acfeefc8f008c6e06392efe",
+      "tail": [
+        ".....                                                                    [100%]",
+        "5 passed, 25 deselected in 24.29s"
+      ],
+      "pytestSummary": "5 passed, 25 deselected in 24.29s"
+    },
+    {
+      "name": "smoke",
+      "sourceCommand": "python3 scripts/smoke-clis.py",
+      "command": [
+        "<validation-python>",
+        "scripts/smoke-clis.py"
+      ],
+      "exitCode": 0,
+      "seconds": 11.841,
+      "log": "reports/d5-implement-slice/local-ci/smoke.log",
+      "log_sha256": "d55872cd3c9b711d2f8406c63b46f43570dcfd830f7b7997fe59ec2a8cf4078d",
+      "tail": [
+        "Smoke checks complete."
+      ]
+    },
+    {
+      "name": "compile-contracts",
+      "sourceCommand": "bin/capability-eval compile --all --check",
+      "command": [
+        "bin/capability-eval",
+        "compile",
+        "--all",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.483,
+      "log": "reports/d5-implement-slice/local-ci/compile-contracts.log",
+      "log_sha256": "7d805949d808ba7655fd7b61525affdf42aa6cffd0af5d3d31ccd97af963a303",
+      "tail": [
+        "        \"advisory_only\": true,",
+        "        \"behavioral_claim\": \"none\"",
+        "      },",
+        "      \"status\": \"structural_ready\"",
+        "    }",
+        "  ],",
+        "  \"behavioral_claim\": \"none\",",
+        "  \"check_result\": \"pass\",",
+        "  \"drift\": []",
+        "}"
+      ]
+    },
+    {
+      "name": "calibrate-static",
+      "sourceCommand": "bin/capability-eval calibrate --static-only",
+      "command": [
+        "bin/capability-eval",
+        "calibrate",
+        "--static-only"
+      ],
+      "exitCode": 0,
+      "seconds": 0.399,
+      "log": "reports/d5-implement-slice/local-ci/calibrate-static.log",
+      "log_sha256": "40185376e1ca8255c3597080ff4b17e12b076729513db4edd51a900604a05a97",
+      "tail": [
+        "    \"errors\": [],",
+        "    \"experiment_count\": 4,",
+        "    \"case_count\": 60,",
+        "    \"model_calls\": 0,",
+        "    \"behavioral_claim\": \"none\"",
+        "  },",
+        "  \"judge_qualified\": false,",
+        "  \"judge_note\": \"Semantic judges remain unqualified until gold-label agreement and bias checks are run.\",",
+        "  \"model_calls\": 0",
+        "}"
+      ]
+    },
+    {
+      "name": "strict-surfaces",
+      "sourceCommand": "python3 scripts/validate-surfaces.py --strict",
+      "command": [
+        "<validation-python>",
+        "scripts/validate-surfaces.py",
+        "--strict"
+      ],
+      "exitCode": 0,
+      "seconds": 2.856,
+      "log": "reports/d5-implement-slice/local-ci/strict-surfaces.log",
+      "log_sha256": "9b434be5007edd51c79a84319f4d32a6d83cc6f67ab1750399a1076a1464807b",
+      "tail": [
+        "Validation passed.",
+        "SSOT files: 33"
+      ]
+    },
+    {
+      "name": "distribution-build",
+      "sourceCommand": "bin/capability-fabric build",
+      "command": [
+        "bin/capability-fabric",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 6.735,
+      "log": "reports/d5-implement-slice/local-ci/distribution-build.log",
+      "log_sha256": "c49df8fb6e7f9c8cf1b9c14ed92642ac60868e5721c5c94af93969e1cf878957",
+      "tail": [
+        "installer capsule: generated",
+        "Generated 33 ssot entries"
+      ]
+    },
+    {
+      "name": "packaging-profiles",
+      "sourceCommand": "python3 -m pytest -q tests/test_package_surfaces.py tests/test_package_local_config.py tests/test_deploy_profile.py tests/test_update_core_prompts.py tests/test_deploy_surfaces.py tests/test_agent_retirement.py tests/test_install_catalog.py tests/test_install_transaction.py tests/test_install_capsule.py tests/test_installation.py tests/test_installation_history.py tests/test_install_bootstrap.py",
+      "command": [
+        "<validation-python>",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_package_surfaces.py",
+        "tests/test_package_local_config.py",
+        "tests/test_deploy_profile.py",
+        "tests/test_update_core_prompts.py",
+        "tests/test_deploy_surfaces.py",
+        "tests/test_agent_retirement.py",
+        "tests/test_install_catalog.py",
+        "tests/test_install_transaction.py",
+        "tests/test_install_capsule.py",
+        "tests/test_installation.py",
+        "tests/test_installation_history.py",
+        "tests/test_install_bootstrap.py"
+      ],
+      "exitCode": 0,
+      "seconds": 241.171,
+      "log": "reports/d5-implement-slice/local-ci/packaging-profiles.log",
+      "log_sha256": "0a36a31bde64152a03377238c7d402a73d34050a7d26ad81e822d7d2a79420c5",
+      "tail": [
+        "........................................................ [ 21%]",
+        "........................................................................ [ 50%]",
+        "........................................................................ [ 78%]",
+        ".......................................................                  [100%]",
+        "255 passed, 16 subtests passed in 240.48s (0:04:00)"
+      ],
+      "pytestSummary": "255 passed, 16 subtests passed in 240.48s (0:04:00)"
+    }
+  ],
+  "updatedAt": "2026-10-12T19:14:02.388627+00:00",
+  "completedAt": "2026-10-12T19:14:02.390069+00:00",
+  "status": "passed"
+}

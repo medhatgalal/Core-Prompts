@@ -1,0 +1,36 @@
+{
+  "source_original_path": "reports/d2-shared-artifacts/review-original-architecture.md",
+  "source_original_sha256": "06bf47e888736c91852027b584e3ac31ec12039f54f59df428efcb0035d18e9d",
+  "candidate_path": "reports/d2-shared-artifacts/candidate-architecture.md",
+  "candidate_sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+  "candidate_effective_sha256": "548aacba58e5f4aeecc000be063865380f92d909d6f3876498511de7582e7179",
+  "resource_bundle": {
+    "schema_version": "CapabilityResourceBundle.v1",
+    "route": "all",
+    "manifest_sha256": "f585ab3e888cb46df740d17f6aa5a3341335f38602faa47c31a334cf0df73bea",
+    "resources": [
+      {
+        "path": "schemas/spec-contract.schema.json",
+        "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+        "source_path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json"
+      }
+    ],
+    "sha256": "0b0f9d5a3e5abe3f1e3c1ea8b37c061158ee12902ea5d11dc2c0ac07611babca",
+    "delivery_claim": "assembled_not_proof_of_consumption",
+    "shared_imports": {
+      "schema_version": "SharedResourceImportReceipt.v1",
+      "consumer": "engos-design-architecture",
+      "imports": [
+        {
+          "id": "spec-contract-v1",
+          "owner": "engos-design-specify-change",
+          "source": "schemas/spec-contract.schema.json",
+          "sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "destination": "schemas/spec-contract.schema.json"
+        }
+      ]
+    }
+  },
+  "current_loader_sha256": "21c80a7b1855d1baae8d26a66815ae7bef4404624ae3940ea79dadacb7b4dc5f",
+  "authority": "bindings only; not approved UAC attestation; implementation findings remain open"
+}

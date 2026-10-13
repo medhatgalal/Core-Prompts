@@ -1,0 +1,46 @@
+[
+  {
+    "command": [
+      "python3",
+      "verify-guide.py"
+    ],
+    "cwd": "<acceptance-fixtures>/case-2",
+    "exit_code": 0,
+    "stdout": "PASS: guide names existing config/settings.toml; old path absent; candidate manifest matches; settings, wrapper, and initial dirty notes retain bytes and modes.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "<acceptance-fixtures>/case-2/repo",
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--",
+      "GUIDE.md"
+    ],
+    "cwd": "<acceptance-fixtures>/case-2/repo",
+    "exit_code": 0,
+    "stdout": "diff --git a/GUIDE.md b/GUIDE.md\nindex 2153398..440f077 100644\n--- a/GUIDE.md\n+++ b/GUIDE.md\n@@ -1 +1 @@\n-Settings live at config/old-settings.toml.\n+Settings live at config/settings.toml.\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--porcelain=v1"
+    ],
+    "cwd": "<acceptance-fixtures>/case-2/repo",
+    "exit_code": 0,
+    "stdout": " M GUIDE.md\n M unrelated.txt\n",
+    "stderr": ""
+  }
+]

@@ -1,0 +1,76 @@
+{
+  "schema_version": "D3MetadataCurationProposal.v1",
+  "status": "proposed_for_renewed_independent_review_not_applied",
+  "target": ".meta/capabilities/engos-design-plan-implementation.json",
+  "entry_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/layers/org_graph/work_graph_impact",
+      "value": "Produces or reconciles bounded implementation task outcomes for the existing plan and tracker; does not dispatch workers, create goals or change execution authority.",
+      "rationale": "Describe the actual planning contribution rather than generic package registration.",
+      "source_sections": [
+        "Workflow",
+        "Constraints"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/preferred_use_cases",
+      "value": [
+        "Plan multi-step implementation from accepted requirements and optional architecture.",
+        "Reconcile accepted changes with an unfinished plan while preserving existing tracker IDs and evidence.",
+        "Prepare optional task/plan interchange or a manual dependency map for a separately authorized consumer."
+      ],
+      "rationale": "Replace capability-selection and prompt-uplift use cases with ordinary planning/reconciliation.",
+      "source_sections": [
+        "Invocation Hints",
+        "Required Output"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/consumption_hints/artifact_conventions",
+      "value": [
+        "Existing project plan and tracker format; chat when no file write is requested or authorized.",
+        "Optional TaskContract.v1 and TaskPlan.v1 sidecars beside their authoritative plan.",
+        "Manual dependency-map projection referencing its authoritative plan; no competing completion ledger."
+      ],
+      "rationale": "Use source-owned destination rules without imposing fixed paths or a new tracker.",
+      "source_sections": [
+        "Output Directory",
+        "Rules",
+        "Required Output"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/layers/expanded/adjustment_recommendations",
+      "value": [],
+      "rationale": "The source has explicit Primary Objective, In Scope and Constraints. These three missing-section recommendations result from empty uplift_payload passed by uac-import.py:522 and uac_ssot.py:_assess_entry, not actual absent content. Clear only these unsupported recommendations in this new descriptor; other semantic/source review remains required.",
+      "source_sections": [
+        "Primary Objective",
+        "In Scope",
+        "Constraints"
+      ]
+    }
+  ],
+  "preserve": [
+    "All unlisted descriptor fields",
+    "Intake-only tool_policy and its runtime_authority separation",
+    "Source-derived minimal inputs/outputs/role/tags and source-derived dependency list"
+  ],
+  "resolved_in_source": [
+    "Required Inputs/Required Output bullets now extract exact task-planning fields",
+    "In Scope explicitly names planning/reconciliation outcomes",
+    "Negative shared-resource import boundary rephrased as no automatic resource sharing or ingestion; workflow retains no cross-skill import dependency",
+    "UAC plan has workflow role, planning/context collaboration, no import tag, no packaging dependency"
+  ],
+  "remaining_verification": [
+    "Controller must apply exact final source and the four persistent descriptor edits, regenerate, and confirm actual final canonical/generated readback.",
+    "Read-only intake and pure SSOT projection agree on workflow role, five skill surfaces, accurate inputs/outputs and global installation advice; neither installs anything.",
+    "Pure SSOT projection yields Plan Implementation display name; UAC descriptor preview still uses the slug before canonical regeneration.",
+    "No source preservation or approval attestation is issued by this author."
+  ]
+}

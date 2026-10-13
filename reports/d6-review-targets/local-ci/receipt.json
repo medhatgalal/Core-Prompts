@@ -1,0 +1,274 @@
+{
+  "schema_version": "LocalCIReceipt.v1",
+  "alignment": "Current GitLab declared check sequence under Python3.14.8 with all declared dependencies and verified Git/zip/pgrep; macOS host preparation differs from apt/pip container steps.",
+  "startedAt": "2026-10-11T13:34:47.506317+00:00",
+  "steps": [
+    {
+      "name": "installer-runtime",
+      "command": [
+        "python3.14",
+        "scripts/build-install-runtime.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.13,
+      "log": "reports/d6-review-targets/local-ci/installer-runtime.log",
+      "tail": [
+        "installer capsule: verified"
+      ]
+    },
+    {
+      "name": "legacy-catalog",
+      "command": [
+        "python3.14",
+        "scripts/build-legacy-catalog.py",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 7.598,
+      "log": "reports/d6-review-targets/local-ci/legacy-catalog.log",
+      "tail": [
+        "legacy catalog: 55 releases, 1627 package versions, 1514 unique identities"
+      ]
+    },
+    {
+      "name": "resources-uac",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_capability_resources.py",
+        "tests/test_resource_delivery.py",
+        "tests/test_frontier_eval_integration.py",
+        "tests/test_uac_assessment.py",
+        "tests/test_uac_ssot.py",
+        "tests/test_agent_execution_need.py",
+        "tests/test_agent_approval_lifecycle.py",
+        "tests/test_agent_surface_preservation.py",
+        "tests/test_namespace_registration.py",
+        "tests/test_uac_semantic_uplift.py",
+        "tests/test_uac_quality.py",
+        "tests/test_uac_source_integrity.py",
+        "tests/test_uac_promotion_apply.py",
+        "tests/test_supercharge_preservation.py",
+        "tests/test_supercharge_debate.py",
+        "tests/test_frontier_skill_contracts.py",
+        "tests/test_resource_backed_skill_surfaces.py"
+      ],
+      "exitCode": 0,
+      "seconds": 58.554,
+      "log": "reports/d6-review-targets/local-ci/resources-uac.log",
+      "tail": [
+        "........................................................................ [ 23%]",
+        "........................................................................ [ 46%]",
+        "........................................................................ [ 69%]",
+        "........................................................................ [ 92%]",
+        ".........................                                                [100%]",
+        "313 passed in 57.86s"
+      ]
+    },
+    {
+      "name": "shaping",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_shaping_runtime.py",
+        "tests/test_shaping_review_evidence.py",
+        "tests/test_shaping_handover_outputs.py",
+        "tests/test_shaping_loop.py",
+        "tests/test_shaping_policy_recovery.py",
+        "tests/test_shaping_repository_fit.py",
+        "tests/test_shaping_progress.py",
+        "tests/test_shaping_progress_view.py",
+        "tests/test_shaping_export.py",
+        "tests/test_shaping_export_docx.py",
+        "tests/test_shaping_presentation.py"
+      ],
+      "exitCode": 0,
+      "seconds": 85.758,
+      "log": "reports/d6-review-targets/local-ci/shaping.log",
+      "tail": [
+        "........................................................................ [ 44%]",
+        "........................................................................ [ 59%]",
+        "........................................................................ [ 74%]",
+        "........................................................................ [ 89%]",
+        ".............................................s...                        [100%]",
+        "480 passed, 1 skipped in 85.16s (0:01:25)"
+      ]
+    },
+    {
+      "name": "presentation",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_presentation_cache.py",
+        "tests/test_presentation_exporter.py"
+      ],
+      "exitCode": 0,
+      "seconds": 76.572,
+      "log": "reports/d6-review-targets/local-ci/presentation.log",
+      "tail": [
+        "...................                                                      [100%]",
+        "19 passed in 76.00s (0:01:15)"
+      ]
+    },
+    {
+      "name": "routing",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_skill_job_map.py",
+        "tests/test_uac_routing_fitness.py",
+        "tests/test_route_only_battery.py"
+      ],
+      "exitCode": 0,
+      "seconds": 3.815,
+      "log": "reports/d6-review-targets/local-ci/routing.log",
+      "tail": [
+        "..........................................................               [100%]",
+        "58 passed in 0.46s"
+      ]
+    },
+    {
+      "name": "apply-bootstrap",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_uac_import.py",
+        "-k",
+        "bootstrap or writes_ssot_and_descriptor_in_workspace_copy"
+      ],
+      "exitCode": 0,
+      "seconds": 29.73,
+      "log": "reports/d6-review-targets/local-ci/apply-bootstrap.log",
+      "tail": [
+        ".....                                                                    [100%]",
+        "5 passed, 25 deselected in 25.13s"
+      ]
+    },
+    {
+      "name": "smoke",
+      "command": [
+        "python3.14",
+        "scripts/smoke-clis.py"
+      ],
+      "exitCode": 0,
+      "seconds": 13.224,
+      "log": "reports/d6-review-targets/local-ci/smoke.log",
+      "tail": [
+        "Smoke checks complete."
+      ]
+    },
+    {
+      "name": "compile-contracts",
+      "command": [
+        "bin/capability-eval",
+        "compile",
+        "--all",
+        "--check"
+      ],
+      "exitCode": 0,
+      "seconds": 0.506,
+      "log": "reports/d6-review-targets/local-ci/compile-contracts.log",
+      "tail": [
+        "    }",
+        "  ],",
+        "  \"behavioral_claim\": \"none\",",
+        "  \"check_result\": \"pass\",",
+        "  \"drift\": []",
+        "}"
+      ]
+    },
+    {
+      "name": "calibrate-static",
+      "command": [
+        "bin/capability-eval",
+        "calibrate",
+        "--static-only"
+      ],
+      "exitCode": 0,
+      "seconds": 0.421,
+      "log": "reports/d6-review-targets/local-ci/calibrate-static.log",
+      "tail": [
+        "    \"behavioral_claim\": \"none\"",
+        "  },",
+        "  \"judge_qualified\": false,",
+        "  \"judge_note\": \"Semantic judges remain unqualified until gold-label agreement and bias checks are run.\",",
+        "  \"model_calls\": 0",
+        "}"
+      ]
+    },
+    {
+      "name": "strict-surfaces",
+      "command": [
+        "python3.14",
+        "scripts/validate-surfaces.py",
+        "--strict"
+      ],
+      "exitCode": 0,
+      "seconds": 2.963,
+      "log": "reports/d6-review-targets/local-ci/strict-surfaces.log",
+      "tail": [
+        "Validation passed.",
+        "SSOT files: 32"
+      ]
+    },
+    {
+      "name": "distribution-build",
+      "command": [
+        "bin/capability-fabric",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 7.29,
+      "log": "reports/d6-review-targets/local-ci/distribution-build.log",
+      "tail": [
+        "installer capsule: generated",
+        "Generated 32 ssot entries"
+      ]
+    },
+    {
+      "name": "packaging-profiles",
+      "command": [
+        "python3.14",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_package_surfaces.py",
+        "tests/test_package_local_config.py",
+        "tests/test_deploy_profile.py",
+        "tests/test_update_core_prompts.py",
+        "tests/test_deploy_surfaces.py",
+        "tests/test_agent_retirement.py",
+        "tests/test_install_catalog.py",
+        "tests/test_install_transaction.py",
+        "tests/test_install_capsule.py",
+        "tests/test_installation.py",
+        "tests/test_installation_history.py",
+        "tests/test_install_bootstrap.py"
+      ],
+      "exitCode": 0,
+      "seconds": 309.148,
+      "log": "reports/d6-review-targets/local-ci/packaging-profiles.log",
+      "tail": [
+        "........................................................ [ 21%]",
+        "........................................................................ [ 50%]",
+        "........................................................................ [ 78%]",
+        ".......................................................                  [100%]",
+        "255 passed, 16 subtests passed in 308.31s (0:05:08)"
+      ]
+    }
+  ],
+  "complete": true,
+  "passed": true,
+  "finishedAt": "2026-10-11T13:44:43.222497+00:00"
+}

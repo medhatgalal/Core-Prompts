@@ -1,0 +1,129 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-quality-testing-review",
+  "original_sha256": "7acc2fa2ece3dfaca073942f37dd8d8ff31aad1996ad58e8dd2be484db1122f1",
+  "candidate_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+  "source_line_count": 127,
+  "verdict": "approved",
+  "reviewer": {
+    "agent_id": "/root/d7_requirement_review_astra",
+    "author_agent_id": "/root/d7_implementation_astra",
+    "independent": true
+  },
+  "agent_execution_needs": [],
+  "requirements": [
+    {
+      "id": "historical-01-identity",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "reformulated",
+      "candidate_excerpt": "---\nname: \"engos-quality-testing-review\"\ndescription: \"Design or generate tests, edge cases, and coverage-gap analysis for a defined behavior without claiming tests were run. Use when test design is the primary deliverable; use GitOps review for release readiness.\"\ndisplay_name: \"Testing Studio — Test Design and Coverage Analysis\"\ncapability_type: \"skill\"\ninstall_target: \"global\"\n---\n\n# Testing Studio — Test Design and Coverage Analysis",
+      "rationale": "The historical testing identity and description were already modernized in current canonical source before D7.S1. Candidate preserves that current same-slug name/display/description and the historical testing purpose, skill-only surface and global install target; no new rename or agent is authorized."
+    },
+    {
+      "id": "historical-02-purpose",
+      "source_start_line": 11,
+      "source_end_line": 13,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Purpose\nUse this capability to design tests, identify missing coverage, and turn vague quality concerns into concrete test work without silently running the test suite.",
+      "rationale": "Design, coverage identification and concrete test work remain the job; silent suite execution remains excluded."
+    },
+    {
+      "id": "historical-03-primary-objective",
+      "source_start_line": 14,
+      "source_end_line": 16,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Primary Objective\nProduce deterministic, framework-aware testing recommendations or test artifacts that improve confidence while making assumptions, risk, and remaining gaps explicit.",
+      "rationale": "Framework-aware deterministic recommendations or test artifacts still expose assumptions, risks and remaining gaps."
+    },
+    {
+      "id": "historical-04-output-directory",
+      "source_start_line": 17,
+      "source_end_line": 24,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Output Directory\nWhen the user wants analysis artifacts instead of direct test files, default to:\n- `reports/testing/<timestamp>-plan.md`\n- `reports/testing/<timestamp>-coverage-gap.md`\n- `reports/testing/<timestamp>-edge-cases.md`\n\nWhen the user asks for concrete test outputs, place them under the repository's existing test layout. If the repo has no established layout, propose one before writing files.",
+      "rationale": "All three analysis artifact paths and the established test-layout/propose-first rule remain intact."
+    },
+    {
+      "id": "historical-05-workflow",
+      "source_start_line": 25,
+      "source_end_line": 31,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Workflow\n1. Determine whether the task is unit tests, E2E design, edge-case discovery, or coverage analysis.\n2. Inspect the current repository testing stack and existing tests before recommending changes. Record proposed commands with their source and prerequisites; mark unknown runners or provenance explicitly instead of guessing.\n3. Produce the minimum useful test set or gap analysis for the requested mode. Link proposed tests to source requirements, expected observable outcomes, plausible faulty behavior and discriminating assertions, fixtures, negative cases and boundaries; mark unresolved evidence as gaps.\n4. Separate what can be generated now from what still needs repo-specific validation or execution.\n5. End with explicit priorities, risks, and follow-up work.",
+      "rationale": "All five original steps and their original sentences are retained. Steps 2 and 3 add provenance, source links, observable expectations, discriminating fault oracles, fixtures and cases without requiring execution or fabricated evidence."
+    },
+    {
+      "id": "historical-06-tool-boundaries",
+      "source_start_line": 32,
+      "source_end_line": 36,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Tool Boundaries\n- allowed: inspect source code and existing tests, design test cases, and write test artifacts when asked\n- forbidden: silently executing tests, inventing framework choices that contradict the repo, or claiming coverage numbers without evidence\n- escalation: if the request is actually a release gate or CI readiness question, recommend `engos-quality-gitops-review`",
+      "rationale": "The historical GitOps companion spelling was already canonicalized to engos-quality-gitops-review. All allowed/forbidden boundaries and the release escalation meaning are retained; D7.S1 makes no further change."
+    },
+    {
+      "id": "historical-07-invocation-hints",
+      "source_start_line": 37,
+      "source_end_line": 44,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- generate unit tests\n- design end-to-end tests\n- find edge cases we are missing\n- show me coverage gaps\n- tell me what to test first for this change",
+      "rationale": "All five original invocations remain available."
+    },
+    {
+      "id": "historical-08-required-inputs",
+      "source_start_line": 45,
+      "source_end_line": 50,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Required Inputs\n- source code, feature description, or failing scenario\n- repository testing stack when known\n- risk areas or priority workflows\n- existing tests or coverage report when available",
+      "rationale": "All four original input classes and their when-known/when-available qualifications remain intact."
+    },
+    {
+      "id": "historical-09-required-output",
+      "source_start_line": 51,
+      "source_end_line": 59,
+      "disposition": "reformulated",
+      "candidate_excerpt": "## Required Output\nEvery substantial writer-authored artifact must include:\n- `Scope`\n- `Assumptions`\n- `Recommended Tests or Gaps`\n- `Priority or Risk`\n- `Framework Notes`\n- `Follow-up Work`",
+      "rationale": "All six historical sections remain mandatory for substantial writer-authored artifacts. Existing current three-role protocol clarifies that coordinator dispatches and reviewer findings are not writer artifacts; this is already-current scoped wording, retained by D7.S1, not retirement of artifact output obligations."
+    },
+    {
+      "id": "historical-10-rules",
+      "source_start_line": 60,
+      "source_end_line": 66,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Rules\n- Respect the existing test framework and project conventions.\n- Separate generation of tests from execution of tests.\n- Prefer readable test names and explicit assertions.\n- Include failure cases and boundary cases, not only happy path.\n- Call out when a repository needs integration or E2E coverage instead of more unit tests.",
+      "rationale": "All five original testing rules remain intact; added oracle guidance distinguishes contractual instrumentation from unsupported private choreography."
+    },
+    {
+      "id": "historical-11-modes",
+      "source_start_line": 67,
+      "source_end_line": 104,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Modes\n### Generate Unit Tests\nUse when the job is creating or improving isolated tests around functions, classes, or modules.\n\nProduce:\n- framework-aware test file\n- happy-path, error-path, and boundary tests\n- mocks or fixtures only where needed\n- clear assertions and setup notes\n\n### Generate E2E Tests\nUse when the job is validating a real workflow across interfaces or services.\n\nProduce:\n- critical user journeys\n- setup and teardown strategy\n- waiting and synchronization guidance\n- environment and test-data notes\n- failure capture or diagnostics expectations\n\n### Edge Cases\nUse when the job is finding what the current design or tests are likely missing.\n\nProduce:\n- categorized edge cases\n- risk level\n- likely impact\n- suggested tests to add first\n\n### Coverage Analysis\nUse when the job is deciding where coverage is weak.\n\nProduce:\n- current coverage summary if data exists\n- specific untested branches, functions, or scenarios\n- risk-based prioritization\n- recommended next tests",
+      "rationale": "All four original modes and every mode-specific output are retained verbatim. Coverage-only work may state evidenced gaps with no invented tests."
+    },
+    {
+      "id": "historical-12-examples",
+      "source_start_line": 105,
+      "source_end_line": 114,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Examples\n### Example Request\n> Review this change and tell me which tests to add first, including edge cases we are currently missing.\n\n### Example Output Shape\n- scope and assumptions\n- recommended tests by priority\n- unresolved risks\n- framework-specific notes",
+      "rationale": "Original example request and four example output categories remain intact."
+    },
+    {
+      "id": "historical-13-evaluation-rubric",
+      "source_start_line": 115,
+      "source_end_line": 123,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Mode selection | The response chooses the correct testing mode for the task |\n| Framework fit | Recommendations respect the repo’s existing testing stack |\n| Risk coverage | Happy path, failures, and boundary cases are all considered |\n| Actionability | A developer can implement the proposed tests directly |\n| Boundary clarity | The response does not pretend tests were run when they were not |",
+      "rationale": "All five original criteria remain intact. New structure and trace links are explicitly not semantic or executed-test evidence."
+    },
+    {
+      "id": "historical-14-constraints",
+      "source_start_line": 124,
+      "source_end_line": 127,
+      "disposition": "preserved",
+      "candidate_excerpt": "## Constraints\n- Do not execute tests automatically.\n- Do not replace project-specific framework decisions when the repository already has a clear testing stack.\n- Do not claim coverage metrics without a coverage artifact or direct evidence.",
+      "rationale": "Automatic execution, framework replacement and unsupported coverage claims remain forbidden."
+    }
+  ]
+}

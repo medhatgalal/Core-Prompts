@@ -1,0 +1,34 @@
+Compilation output excerpt; complete generated-contract stdout retained privately.
+Raw stdout SHA-256: 69df7c6c0477ea35f167ecb56dead85f3761307007b78e5737fe05206a5a3d62
+Original line count: 39406
+
+{
+  "schema_version": "CorpusTopologyAudit.v1",
+  "generated_at": "2026-10-11T18:18:11.343583+00:00",
+  "skill_count": 33,
+  "blocked_contract": [],
+  "draft_contracts": [
+    "engos-audit-code-health",
+    "engos-audit-engineering-progress",
+    "engos-audit-feature-status",
+    "engos-audit-opex-incident-review",
+    "engos-audit-pitch-review",
+    "engos-audit-weekly-intel",
+
+[Generated contract bodies omitted from public log excerpt]
+
+      },
+      "clarity": {
+        "policy": "instruction_clarity.v1",
+        "finding_count": 0,
+        "findings": [],
+        "advisory_only": true,
+        "behavioral_claim": "none"
+      },
+      "status": "structural_ready"
+    }
+  ],
+  "behavioral_claim": "none",
+  "check_result": "pass",
+  "drift": []
+}

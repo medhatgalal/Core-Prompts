@@ -88,6 +88,35 @@ The package should not include:
 
 Both archive formats and standalone runtime inventories/copies exclude local Codex registration configuration. A runtime inventory claiming this local file is rejected; agent registration still generates configuration at the installation target. ZIP creation uses a fresh temporary archive before replacing the output, so excluded or retired members cannot survive from an earlier package with the same filename.
 
+## Shared-resource consumer packages
+
+An importing skill ships as one complete generated package: its `SKILL.md`,
+resource map, import-aware loader, imported resource bytes and
+`resources/shared-resource-imports.json` provenance receipt travel together.
+For `engos-design-architecture`, this includes the unchanged SpecContract schema
+owned by `engos-design-specify-change`. The consumer is self-contained at runtime;
+it does not search a source checkout, download the schema or require the owner
+skill to be installed. Generated consumer copies are intentional delivery outputs,
+not authored duplicates to remove.
+
+Keep the loader, `shared_imports` declaration and `SharedResourceImportReceipt.v1`
+in the same package replacement. An older loader rejects the new map field;
+a missing or inconsistent receipt fails closed. Do not assemble a release from a
+new map and an older loader, or omit imported bytes from either archive format.
+Existing no-import packages retain their compatibility. A local receipt proves
+consistency with bundled bytes; trusted package identity and canonical validation
+provide the separate provenance checks.
+
+When the owner changes, deliberately update the registry digest, regenerate the
+consumer bundles and renew affected review/evaluation bindings before packaging.
+Rollback restores the matching route, import declaration, registry binding and
+instructions together, then regenerates and renews evidence. Follow the exact
+[source-update and rollback procedure](CLI-REFERENCE.md#source-owned-shared-resources).
+Keep whole-package replacement and recovery within the existing
+[installation transaction](INSTALL-PROFILES.md#preview-and-apply); this contract
+adds no installation selection or runtime sibling dependency. Documentation of
+this package boundary is not evidence of a release or home installation.
+
 ## Installation runtime verification
 
 The editable installation engine is `scripts/core_install/`.
@@ -179,3 +208,8 @@ Journals remain retained, with advisory `retention_candidates` beyond the latest
 two and no automatic pruning. `--snapshot-retention` applies only to older
 snapshot compatibility paths. See [installation and recovery](INSTALL-PROFILES.md)
 for reviewed repair and rollback commands.
+
+
+### Resource-backed mode contracts
+
+When adding capability resources, compare canonical and bundled per-mode descriptions, inputs, outputs and examples against the reviewed prior descriptor. The shared apply/build resolver retains matching curation over heading defaults while refreshing source identity, locations and invocations. Package byte equality alone cannot reveal a contract lost in every copy; review the before/after contract as well. See [UAC mode metadata](UAC-USAGE.md#mode-metadata-when-adding-resources).
