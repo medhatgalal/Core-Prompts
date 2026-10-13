@@ -216,3 +216,100 @@ def test_real_source_drift_then_explicit_fresh_collection(bound,tmp_path):
     stdout.write_bytes(collection.stdout); expected['collection_result_sha256']=hash_bytes(collection.stdout)
     expected['manifest_sha256']=json.loads(collection.stdout)['manifest_sha256']; write_json(expectation,expected)
     result=verify(); assert result.returncode==0,result.stdout
+
+
+@pytest.mark.parametrize('driver',['clean','process'])
+def test_filter_driver_never_executes_or_masks_dirty(bound,tmp_path,driver):
+    repo,git,package,stdout,expectation,expected,verify=bound
+    # Commit attribute before collection and independently renew exact candidate.
+    (repo/'.gitattributes').write_text('a filter=probe\n'); git('add','.gitattributes'); git('commit','-qm','filter attribute')
+    expected['head']=git('rev-parse','HEAD').decode().strip()
+    fresh=tmp_path/'filter-package'
+    collection=invoke(repo,expected['base'],expected['head'],fresh); assert collection.returncode==0
+    # bound's verifier closure retains original leaf, replace only its complete inert evidence.
+    import shutil
+    for path in package.iterdir():
+        if path.is_dir(): shutil.rmtree(path)
+        else: path.unlink()
+    shutil.copytree(fresh,package,dirs_exist_ok=True)
+    stdout.write_bytes(collection.stdout); expected.update(collection_result_sha256=hash_bytes(collection.stdout),
+        manifest_sha256=json.loads(collection.stdout)['manifest_sha256']); write_json(expectation,expected)
+    assert verify().returncode==0
+    marker=tmp_path/'driver-ran'; script=tmp_path/'filter.py'
+    if driver=='clean':
+        text='from pathlib import Path\nimport sys\nPath('+repr(str(marker))+').write_text("executed\\n")\nsys.stdin.buffer.read()\nsys.stdout.buffer.write(b"second\\n")\n'
+    else:
+        text='''from pathlib import Path
+import sys
+marker=Path(MARKER)
+def packet():
+    size=int(sys.stdin.buffer.read(4),16)
+    return None if size==0 else sys.stdin.buffer.read(size-4)
+def group():
+    values=[]
+    while True:
+        value=packet()
+        if value is None: return values
+        values.append(value)
+def send(values):
+    for value in values:
+        sys.stdout.buffer.write(('%04x'%(len(value)+4)).encode()+value)
+    sys.stdout.buffer.write(b'0000'); sys.stdout.buffer.flush()
+group(); send([b'git-filter-server\\n',b'version=2\\n'])
+group(); send([b'capability=clean\\n'])
+while True:
+    headers=group(); content=group()
+    marker.write_text('executed\\n')
+    send([b'status=success\\n']); send([b'second\\n']); send([])
+'''.replace('MARKER',repr(str(marker)))
+    script.write_text(text); git('config','filter.probe.'+driver,sys.executable+' '+str(script))
+    (repo/'a').write_text('TAMPER\n')
+    assert not marker.exists()
+    result=verify()
+    print(json.dumps({'driver':driver,'marker_exists_after':marker.exists(),
+        'marker_text':marker.read_text() if marker.exists() else None,'worktree_after':(repo/'a').read_text(),
+        'verifier_exit':result.returncode,'verifier_stdout':result.stdout.decode()}))
+    assert result.returncode==2,result.stdout+result.stderr
+    assert not marker.exists(),'verifier executed configured '+driver+' driver'
+    assert (repo/'a').read_text()=='TAMPER\n'
+    assert 'filter' in json.loads(result.stdout)['errors'][0]['message']
+
+
+@pytest.mark.parametrize('arguments',[[],['--unknown'],['--repo'],['--help']])
+def test_verifier_cli_syntax_exit_contract(arguments):
+    result=subprocess.run([sys.executable,'-I',str(VERIFY),*arguments],capture_output=True)
+    assert result.returncode==(0 if arguments==['--help'] else 3)
+    if arguments!=['--help']: assert result.stdout==b''
+
+
+@pytest.mark.parametrize('value',['unused-command',' '])
+def test_configured_filter_denied_even_without_selected_attribute(bound,value):
+    _,git,_,_,_,_,verify=bound
+    git('config','filter.unused.clean',value)
+    result=verify(); assert result.returncode==2
+    assert git('config','--get','filter.unused.clean').decode().rstrip('\n')==value
+    assert 'filter' in json.loads(result.stdout)['errors'][0]['message']
+
+
+def test_empty_filter_config_has_no_driver(bound):
+    _,git,_,_,_,_,verify=bound
+    git('config','filter.unused.clean',''); git('config','filter.unused.process','')
+    result=verify(); assert result.returncode==0,result.stdout
+
+
+def test_local_fsmonitor_external_diff_not_executed(bound,tmp_path):
+    _,git,_,_,_,_,verify=bound
+    marker=tmp_path/'external-command-ran';script=tmp_path/'external.py'
+    script.write_text('from pathlib import Path\nPath('+repr(str(marker))+').write_text("executed")\n')
+    command=sys.executable+' '+str(script)
+    git('config','core.fsmonitor',command);git('config','diff.external',command)
+    result=verify();assert result.returncode==0,result.stdout
+    assert not marker.exists()
+
+
+def test_unknown_flag_with_complete_invocation_is_exit_three(bound):
+    repo,_,package,stdout,expectation,_,_=bound
+    result=subprocess.run([sys.executable,'-I',str(VERIFY),'--repo',str(repo),'--package',str(package),
+        '--result',str(stdout),'--expect',str(expectation),'--expect-sha256',hash_bytes(expectation.read_bytes()),
+        '--unknown'],capture_output=True)
+    assert result.returncode==3 and result.stdout==b''

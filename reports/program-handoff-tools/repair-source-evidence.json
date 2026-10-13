@@ -1,0 +1,76 @@
+{
+  "schema_version": "HandoffSourceRepairEvidence.v1",
+  "baseline": "0e96918d1320b81bb338284b835271691416fc6d",
+  "review_ref": "reports/program-handoff-tools/independent-source-review.json",
+  "original_evidence_ref": "reports/program-handoff-tools/source-evidence.json",
+  "scope": "Author repair only; actual original16 acceptance and all independent judgments remain separately accounted. No UAC/generation/push/main/install.",
+  "findings": [
+    {
+      "id": "HANDOFF-SRC-001",
+      "selection": "accepted",
+      "author_outcome": "addressed_pending_independent_recheck",
+      "repair": "Reject every nonempty effective clean/process driver config before any working-tree comparison. Preserve local config and dirty bytes. Existing Git fsmonitor/hooks/externaldiff sanitization remains unchanged.",
+      "red": "Both actual clean and Git process-protocol filter drivers wrote external markers, returned committed bytes, and verifier matched while TAMPER remained.",
+      "green": "Both deny exit2 with no marker and TAMPER preserved; unused nonempty drivers also deny, empty configuration matches. Actual fsmonitor/externaldiff configured markers remain absent.",
+      "evidence": [
+        "repair-red-observed-tests-raw.json",
+        "repair-green-tests-raw.json",
+        "repair-handoff-final-tests.txt"
+      ]
+    },
+    {
+      "id": "HANDOFF-SRC-002",
+      "selection": "accepted",
+      "author_outcome": "addressed_pending_independent_recheck",
+      "repair": "Argparse syntax errors exit3; help0; rejected evidence stays2.",
+      "red": "Three invalid syntax cases exit2 before repair.",
+      "green": "Missing/unknown/missing-value syntax and unknown flag with complete invocation exit3; help remains0.",
+      "evidence": [
+        "repair-red-observed-tests-raw.json",
+        "repair-green-tests-raw.json",
+        "repair-handoff-final-tests.txt"
+      ]
+    }
+  ],
+  "current_sources": [
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-quality-code-review.candidate.md",
+      "sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a"
+    },
+    {
+      "path": "reports/program-handoff-tools/integration-doc-fragments.md",
+      "sha256": "8e176ed2b590a4b97c54c5f7f7b19c3c8d33f63cd0ed16773dacc3185e5869f0"
+    },
+    {
+      "path": "tests/test_handoff_contracts.py",
+      "sha256": "780d8fff7288f73e309633d36e004646611f2a9c7abee348515112e144b0d299"
+    }
+  ],
+  "reviewer_state": "Original independent review retained untouched; no author-approved verdict.",
+  "checks": [
+    {
+      "command": "python -m pytest -q tests/test_handoff_contracts.py",
+      "exit": 0,
+      "result": "46 passed in 54.46s",
+      "evidence": "repair-handoff-final-tests.txt"
+    },
+    {
+      "command": "python -m pytest -q tests/test_review_package.py -k 'output_faults or artifact_hardlink or drift_during_partial_write or actual_main_manifest_windows or manifest_descriptor_failure or environment_no_mutation or replacements_and_hooks or progressive_route_closure'",
+      "exit": 0,
+      "result": "24 passed, 67 deselected in 13.85s",
+      "evidence": "repair-publication-tests.txt"
+    }
+  ]
+}

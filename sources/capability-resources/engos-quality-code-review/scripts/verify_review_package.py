@@ -96,7 +96,30 @@ class DigestSink:
         return ref
 
 
+class Parser(argparse.ArgumentParser):
+    def error(self, message):
+        self.print_usage(sys.stderr)
+        self.exit(3, 'verify-review-package: invalid invocation: ' + message + '\n')
+
+
 def current(git, expected, length):
+    # Git status can run a clean/process driver and trust its transformed bytes.
+    # Reject effective configured drivers before any worktree comparison; merely
+    # clearing the driver would silently change repository comparison semantics.
+    # Git.command already disables fsmonitor, hooks, external diffs and global/
+    # system config, and excludes inherited GIT_* config overrides.
+    filters = git.execute(['config', '--null', '--get-regexp', r'^filter\..*\.(clean|process)$'])
+    if filters.returncode not in (0, 1) or (filters.returncode == 1 and filters.stdout):
+        raise ValueError('filter configuration unavailable')
+    if filters.returncode == 0:
+        if not filters.stdout or not filters.stdout.endswith(b'\0'):
+            raise ValueError('filter configuration malformed')
+        for record in filters.stdout[:-1].split(b'\0'):
+            name, separator, value = record.partition(b'\n')
+            if not separator or not re.fullmatch(rb'filter\..*\.(clean|process)', name):
+                raise ValueError('filter configuration malformed')
+            if value:
+                raise ValueError('configured clean/process filters unsupported for read-only current candidate')
     ref = expected['candidate_ref']
     if ref != 'HEAD':
         git.read(['check-ref-format', ref], 'candidate_ref')
@@ -117,7 +140,7 @@ def current(git, expected, length):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(allow_abbrev=False)
+    parser = Parser(allow_abbrev=False)
     for name in ('repo', 'package', 'result', 'expect', 'expect-sha256'):
         parser.add_argument('--' + name, required=True)
     args = parser.parse_args(argv)
