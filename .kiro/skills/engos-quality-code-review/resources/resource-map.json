@@ -7,6 +7,9 @@
     ],
     "collect": [
       "scripts/review_package.py"
+    ],
+    "verify-package": [
+      "references/review-package-consumption.md"
     ]
   },
   "dependencies": {
@@ -15,6 +18,13 @@
     ],
     "scripts/review_package.py": [
       "schemas/review-package.schema.json"
+    ],
+    "references/review-package-consumption.md": [
+      "scripts/verify_review_package.py"
+    ],
+    "scripts/verify_review_package.py": [
+      "scripts/review_package.py",
+      "schemas/review-package-expectation.schema.json"
     ]
   }
 }

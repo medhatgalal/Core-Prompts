@@ -206,6 +206,19 @@ Keep these outcomes separate:
 - UAC `structural_ready` permits structural landing; it does not mean behavioral promotion
 - cleanup is complete only after durable evidence is preserved and authorized run-scoped branches, worktrees, and scratch are removed; unknown or failed cleanup is reported, never rewritten as success
 
+### Diagnose, repair, and address review feedback
+
+When a bug's cause is unclear, start with `engos-debug-diagnose-failure` and keep
+its diagnosis as evidence. Repair is a separate authorization: provide the
+reviewed diagnosis and a bounded request to `engos-delivery-implement-slice`.
+For existing PR/MR comments, use `engos-delivery-address-code-review` to select
+feedback and preserve its IDs and decisions through the repair. Choose Batman
+only when you explicitly want its controller protocol. The test-oracle guidance
+is bundled with implement-slice; no separately installed testing skill is
+required. `TestDesign.v1` stays `not_run`; actual checks belong in a separate
+`SliceReceipt.v1` or other execution evidence. A wrapper exit code of zero alone
+does not establish that an underlying check ran. See [worked handoffs](EXAMPLES.md#bounded-repair-and-review-handoffs).
+
 ## Step 2: Use UAC When You Are Landing New Capability Source
 
 Use UAC, the capability intake and uplift workflow, only when you are bringing in a new prompt-like source or intentionally changing canonical capability state.

@@ -132,11 +132,17 @@ def test_actual_oracle_import_detached_and_freshness(tmp_path):
     from intent_pipeline.capability_resources import load_capability_bundle, load_resource_bundle, ResourceContractError
     source_root = SOURCE.parents[2]
     repo = tmp_path/'canonical'; (repo/'ssot').mkdir(parents=True)
-    slugs=('engos-delivery-implement-slice','engos-quality-testing-review','engos-design-specify-change','engos-design-architecture')
+    slugs=('engos-delivery-implement-slice','engos-quality-testing-review')
     for slug in slugs:
         (repo/'ssot'/f'{slug}.md').write_bytes((source_root/'ssot'/f'{slug}.md').read_bytes())
         shutil.copytree(source_root/'sources/capability-resources'/slug,repo/'sources/capability-resources'/slug)
-    (repo/'.meta').mkdir(); (repo/'.meta/shared-resource-imports.json').write_bytes((source_root/'.meta/shared-resource-imports.json').read_bytes())
+    # This fixture exercises the actual oracle owner/consumer pair. Unrelated
+    # registry entries require their own source trees and belong to the full
+    # canonical registry checks, rather than an incomplete copied repository.
+    registry=json.loads((source_root/'.meta/shared-resource-imports.json').read_text())
+    registry['imports']=[row for row in registry['imports'] if row['id']=='test-oracles-v1']
+    assert len(registry['imports'])==1
+    (repo/'.meta').mkdir(); (repo/'.meta/shared-resource-imports.json').write_text(json.dumps(registry))
     slug=slugs[0]; bundle=load_capability_bundle(repo,slug,'','verification')
     assert len(bundle['resources'])==1
     reference=bundle['resources'][0]

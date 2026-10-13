@@ -4,11 +4,17 @@
   "routes": {
     "receipt": [
       "templates/slice-receipt.json"
+    ],
+    "verification": [
+      "references/test-oracles.md"
     ]
   },
   "dependencies": {
     "templates/slice-receipt.json": [
       "schemas/slice-receipt.schema.json"
     ]
-  }
+  },
+  "shared_imports": [
+    "test-oracles-v1"
+  ]
 }

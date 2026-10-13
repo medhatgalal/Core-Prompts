@@ -183,6 +183,13 @@ These are the current source capabilities with a concrete starter ask for each o
 
 `engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. Adding routed resources preserves matching curated per-mode contracts; current source identities and locations remain authoritative. See [the test-design example](docs/EXAMPLES.md#engos-quality-testing-review).
 
+For a bounded repair, ask `engos-debug-diagnose-failure` to establish the cause
+when it is unclear, then separately authorize `engos-delivery-implement-slice`
+with the reviewed diagnosis and evidence. For existing review comments, use
+`engos-delivery-address-code-review`; it preserves each selected comment ID and
+disposition while reporting the repair outcome. Invoke Batman only when you
+explicitly want its controller flow. See [bounded repair and handoff examples](docs/EXAMPLES.md#bounded-repair-and-review-handoffs).
+
 
 Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting preparation, including linked fixes, verified recurrence, customer counts, and coaching for every confirmed selected incident. OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.
 

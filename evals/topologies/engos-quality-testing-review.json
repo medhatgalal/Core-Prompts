@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-testing-review",
-  "ssot_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
+  "ssot_sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -116,7 +116,7 @@
     "engos-quality-testing-review:L149:ee18a182fff0",
     "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L9:29c4180fc9a5",
     "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L23:d2bc69ed3c22",
-    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L29:9e3a8ac6aa1b"
+    "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L29:1b7e50933465"
   ],
   "resources": [],
   "handoffs": [],
@@ -372,12 +372,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L29:9e3a8ac6aa1b",
+      "id": "engos-quality-testing-review:sources/capability-resources/engos-quality-testing-review/references/test-oracles.md:L29:1b7e50933465",
       "heading": "Optional interchange",
       "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
       "source_line": 29,
-      "sha256": "9e3a8ac6aa1b0d424f3420fbe31c0f65073698a3f99595f5689097f5224329cf",
-      "text": "When machine interchange is requested, use TestDesign.v1 with the accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination.",
+      "sha256": "1b7e509334655668ee5099bfa797f64fb886b0feeae23a30763f694a718fe9ee",
+      "text": "This reference alone supplies oracle criteria; it does not supply the test-design schema/template or require an installed testing sibling. Consumers retain their own receipt and do not auto-invoke test design. When using the owner capability and machine interchange is requested, use TestDesign.v1 with its accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -420,11 +420,11 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-testing-review.md",
-      "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+      "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b"
     },
     {
       "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
-      "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978"
     },
     {
       "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
@@ -455,5 +455,5 @@
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "78a6acd852574d95965af4833786cf55dacbfbb734d67fc7405f4b4135d81c6c"
+  "resource_bundle_sha256": "715827dffadb65c82a2c8a60e0e104ec844745c46e502d2985df2971b8a985eb"
 }

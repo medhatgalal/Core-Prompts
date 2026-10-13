@@ -92,6 +92,37 @@ judgment. Independent expected-binding verification and actual source/consumer
 review remain separate. See the bundled review-target reference for the full
 coverage and trust contract.
 
+
+### Optional committed-package binding verifier
+
+Use the verified installed code-review owner's `verify-package` resource only
+when a controller has independently retained the task, owner, generation,
+repository, base, head and source bindings. Preserve the collector's exact stdout
+and exit status, its complete result and manifest digests, and the expectation
+file's digest outside the package. The verifier requires `ReviewPackageExpectation.v1`;
+its expectation schema rejects extra fields and requires the externally pinned
+producer and verifier source hashes. Never derive trust from a manifest.
+
+```sh
+python3 -I <code-review-skill>/resources/scripts/verify_review_package.py --repo <task-worktree> --package <frozen-leaf> --result <exact-collector-stdout-file> --expect <controller-expectation.json> --expect-sha256 <externally-retained-digest>
+```
+
+Stdout is one `ReviewPackageBinding.v1` JSON line. Exit 0 means the committed
+package binding matched and `review_status` is `not_assessed`; it does not mean
+review passed. Exit 2 means evidence or target was rejected. Exit 3 means invalid
+invocation/expectation or unavailable context. Missing owner/helper/runtime makes
+this optional binding unavailable; ordinary HEAD, staged and dirty-snapshot review
+remain available. The collector command, format and exit meanings above are
+unchanged. Binary bytes may be collected but remain unreviewed; changed gitlinks
+remain incomplete without nested traversal.
+
+The verifier accepts only a clean committed candidate. Sparse checkouts, hidden
+index entries and nonempty effective Git clean/process filters reject before
+worktree status or comparison. Filters can execute or mask dirty bytes, so do not
+clear local configuration to manufacture clean evidence. Keep outputs outside the
+candidate worktree. A matched binding supports review intake only; the reviewer
+must inspect the source and consumers. It grants no merge or release authority.
+
 ## Optional planning link checkers
 
 From the selected skill's bundle directory:

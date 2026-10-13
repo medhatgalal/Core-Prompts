@@ -31,6 +31,8 @@
     "f8dc52d7bf929bb30174bc786f88e193391becefc3a24d7b94067e3356793a19",
     "06296867a75c6adeff4ba939b1e2fe0b983fa9c26409c1beef969b7fa50ec2cc",
     "d9fd9679ede2d9c8def556d6a8870c21ad31961aaa16f7c8f34f149caa425cfa",
+    "3e4346ebe2810fdedc275218879d3ea413ec73830951eb6a09097404d1a3ccab",
+    "0f292f22651540e1491f4437bf8f201be499874188bdd5d2f660fbf885f3541c",
     "ccd35323a109002b79be6e94a571b5f9cfe894ab2a97c86a17338bb04ffd7537",
     "16b2976ca97ab5f42c4279928a76b08a28d48fafc5016f4b949b3dd4c9c42c72",
     "f81d27e7f3d8d33aa54e4801e937366dc5351dd6a846fc53948b44a483c53e5f",
@@ -40,7 +42,17 @@
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
     "4e665da6559cd2c9dc6490837ecf3090ac2c4a7a6aebc3939a65ce9646485d17",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
-    "e67eb3ab106208519adb8ab8e625daa918435338128a508d1459097868fc3286"
+    "e67eb3ab106208519adb8ab8e625daa918435338128a508d1459097868fc3286",
+    "d4f2f0e00bf34fd8ecc1c266d6be8605d997bc7d506062b163b98abeb6c2036c",
+    "baea4483dee056e1bc5aa4cdec53e1e9c55d207c939ed86dd28b5096e253c82e",
+    "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+    "973f2d699477c4dd8e2f16a5234c181597b597e49abaa4137e4be4604446debe",
+    "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+    "83924e782e5534075164ab227648ddc5a70a4f5d5ae1de7e063f9a7a9426000b",
+    "a4fa9ed28d3e698577cc43f7b14a95e01b340328665cbddac3b197a5a0a2d74a",
+    "2a4802f1ce68c5f03e30867b6da3038d6b0ffc9e6db08a8f727768aa5698ca3d",
+    "21e2246c9bc295bc7093a792bd0d219d0f055d5a263d354155b0579ccb2e0271",
+    "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -198,6 +210,16 @@
       "text": "Structural resource/schema checks establish format and closure only. Behavioral acceptance"
     },
     {
+      "sha256": "3e4346ebe2810fdedc275218879d3ea413ec73830951eb6a09097404d1a3ccab",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "text": "For explicit worked-example or acceptance use, select the `examples` route in `resources/resource-map.json`: `resources/evals/diagnosis-cases.json`. These are inert frozen synthetic definitions, never claimed actual observations or automatic reproduction commands. Keep hypotheses and receipt routes intact. Actual observation evidence and genuinely separate causal review belong in reports; schema validity cannot establish cause. Intermittent all-pass exposures remain unknown, not fixed. Missing inputs do not justify invented exits or live mutating/secret reproduction."
+    },
+    {
+      "sha256": "0f292f22651540e1491f4437bf8f201be499874188bdd5d2f660fbf885f3541c",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "text": "Keep DiagnosisReceipt.v1 unchanged. Express qualitative hypothesis confidence and limits in existing hypothesis.result/conclusion. Preserve unchanged_behavior verbatim in repair handoff; next_owner identifies an implementer only under separately authorized repair scope. TaskContract.consumes binds exact receipt/log bytes, constraints preserve uncertainty/unchanged behavior/boundary, verification retains reviewed oracle and authority_ref cites separate permission. A plain request may supply the same context. Unknown cause preserves alternatives and next safe discriminator without speculative fix."
+    },
+    {
       "sha256": "ccd35323a109002b79be6e94a571b5f9cfe894ab2a97c86a17338bb04ffd7537",
       "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
       "text": "Use only when competing explanations need a durable comparison."
@@ -246,6 +268,56 @@
       "sha256": "e67eb3ab106208519adb8ab8e625daa918435338128a508d1459097868fc3286",
       "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
       "text": "\"remaining_uncertainty\": \"REPLACE: missing evidence, unexecuted work, exposure and confounders; do not invent references\""
+    },
+    {
+      "sha256": "d4f2f0e00bf34fd8ecc1c266d6be8605d997bc7d506062b163b98abeb6c2036c",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"acceptable_causal_status\": \"identified only with actual discriminator and separate causal review\","
+    },
+    {
+      "sha256": "baea4483dee056e1bc5aa4cdec53e1e9c55d207c939ed86dd28b5096e253c82e",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"repair_boundary\": \"Diagnosis advises only. Separate bounded authorization required to repair comparison.\","
+    },
+    {
+      "sha256": "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"disclosure_limits\": \"Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports.\""
+    },
+    {
+      "sha256": "973f2d699477c4dd8e2f16a5234c181597b597e49abaa4137e4be4604446debe",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"unchanged_behavior\": \"Source and state unchanged; successes are exposure only, never repair proof.\","
+    },
+    {
+      "sha256": "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"disclosure_limits\": \"Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports.\""
+    },
+    {
+      "sha256": "83924e782e5534075164ab227648ddc5a70a4f5d5ae1de7e063f9a7a9426000b",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"report\": \"reported failure only\""
+    },
+    {
+      "sha256": "a4fa9ed28d3e698577cc43f7b14a95e01b340328665cbddac3b197a5a0a2d74a",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"required input unavailable; no reproduction exit invented\""
+    },
+    {
+      "sha256": "2a4802f1ce68c5f03e30867b6da3038d6b0ffc9e6db08a8f727768aa5698ca3d",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"repair_boundary\": \"Read-only diagnosis; no live reset, secret dump, repair or incident takeover.\","
+    },
+    {
+      "sha256": "21e2246c9bc295bc7093a792bd0d219d0f055d5a263d354155b0579ccb2e0271",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"regression_oracle\": \"Obtain redacted exact input and safe read-only discriminator before proposing repair.\","
+    },
+    {
+      "sha256": "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "text": "\"disclosure_limits\": \"Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports.\""
     }
   ],
   "review_status": "draft"

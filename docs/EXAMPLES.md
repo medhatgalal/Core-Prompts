@@ -1592,6 +1592,38 @@ Good response:
 - Use `engos-quality-gitops-review` next when the rewrites are complete and you need a PR or release gate
 ```
 
+## Bounded repair and review handoffs
+
+For a clear, bounded task, call `engos-delivery-implement-slice` directly. When
+the cause is unclear, diagnose first with `engos-debug-diagnose-failure`, then
+separately authorize repair with the reviewed `DiagnosisReceipt.v1` and its
+supporting evidence. The diagnosis does not itself authorize edits. Use Batman
+only when explicitly requested; the direct skill route does not start a
+controller.
+
+For existing PR/MR feedback, let `engos-delivery-address-code-review` select the
+requested comments and preserve each original decision separately from the
+repair outcome. The worker returns the outcome for each selected ID with its
+evidence. For example, keep comment A as accepted and addressed with
+observed evidence, B rejected with its reason, C deferred, and D unselected.
+An accepted but unfinished comment remains unresolved or deferred. Do not turn
+unselected or rejected feedback into implementation scope.
+
+Use `engos-quality-testing-review` when test design is useful, not as a required
+sibling. Its source oracle is bundled into implement-slice through the reviewed
+shared-resource route, with D7 (`engos-quality-testing-review`) as the sole
+canonical owner. `TestDesign.v1` records `not_run`; `SliceReceipt.v1` or other
+execution evidence records checks that actually ran. A wrapper returning zero
+without an underlying test result remains unverified.
+
+Keep the evidence honest: a deterministic boundary result identifies a cause
+only after parser and clock alternatives are checked and causal review is
+independent. Three synthetic intermittent successes remain unknown, not fixed.
+Missing input remains reported as nonreproduced; do not invent an exit status or
+reset state without authorization. Collected findings remain unreviewed until a
+reviewer reads them. A dirty candidate needs its separately hashed snapshot;
+a valid task receipt does not waive final integration review or GitOps.
+
 ## Repo Tooling Examples
 
 ### Rebuild And Verify Current Repo State

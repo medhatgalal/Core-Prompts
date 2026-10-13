@@ -1,5 +1,13 @@
 ## Unreleased
 
+- Add an externally pinned, read-only committed review-package binding verifier
+  while preserving the collector's command and output contract. Document direct
+  diagnosis followed by separately authorized repair, selected-comment IDs and
+  dispositions, and explicit Batman invocation. Bundle D7's test-oracle reference
+  in standalone D5 through the sole-owner import route; TestDesign remains
+  `not_run`, and execution evidence remains separate. No new native command or
+  alias, publication, installation or release is claimed.
+
 - Clarify how to choose between hardening, reconciliation, baseline experiments,
   shaping, standalone pitch review, ordinary plans and bounded goal packets.
   Add optional planner/specification graph and trace check examples, including

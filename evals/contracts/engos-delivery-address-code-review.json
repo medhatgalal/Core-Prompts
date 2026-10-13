@@ -13,13 +13,20 @@
     "4baa80f8e32d10e7f7df9823720e5768d545895892edb660c944963cfcf1d93c",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "5ccfaccf6623522117dd7a5c591b47d76070c375081f4daec534e738d35dac24",
     "42dae89208821e64edd7232105cbe3a8cb9e1e38176bd750bcc858f37f048234",
     "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
+    "d4d0154a49595cc2f13abd365e758f0fb797799d77cf7df61a9ffc6ad9a0500f",
     "5c7c9bcf16a03d74f317314b929b29ac5eaefd02f3babd88e910e31dc61e1da2",
     "30599702f4ce404fa450bf87f112729f5368c50cea10a060fcea29071834de4e",
     "c44f4bd04d475f33d8d4d33498cc63f9be6625305353e620a1275e54b6559ee4",
     "37bebf8446cbc7d01a5e11ad77c6ac8b3c4bf40a3d2eb3bcf2bcc41dd674ecc7",
-    "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9"
+    "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9",
+    "38eb49942c75ddee893ffe3367749182b61a7c1b58b54949433d12e688da1e9c",
+    "4f88682c94684e9d8ee8a1309645aa2f69ca5db45386d225c702298b1976ac92",
+    "a6db3e59b368ef595c3c859372f476704e37f730c83657fc714358ac2df0c6cb",
+    "a7ae8134858398653daceb607ec9f71f2cc36ace75decc7224884fc90f40f1b3",
+    "cb21a552498b1d75aba0165b046dacd7dc2bb6bcfb0ac3cc9d62e2e1b31984a8"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -87,6 +94,11 @@
       "text": "## Required Output"
     },
     {
+      "sha256": "5ccfaccf6623522117dd7a5c591b47d76070c375081f4daec534e738d35dac24",
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "text": "Honor an already explicit authorized selection (all or specific IDs). Ask only if selection is materially ambiguous."
+    },
+    {
       "sha256": "42dae89208821e64edd7232105cbe3a8cb9e1e38176bd750bcc858f37f048234",
       "source": "ssot/engos-delivery-address-code-review.md",
       "text": "Do not edit files until the selected comment set is clear."
@@ -95,6 +107,11 @@
       "sha256": "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
       "source": "ssot/engos-delivery-address-code-review.md",
       "text": "- Stage only the files that were modified to address comments."
+    },
+    {
+      "sha256": "d4d0154a49595cc2f13abd365e758f0fb797799d77cf7df61a9ffc6ad9a0500f",
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "text": "- Push to the existing remote branch only when the supplied task authorizes that step; otherwise stop with the requested patch or commit guidance."
     },
     {
       "sha256": "5c7c9bcf16a03d74f317314b929b29ac5eaefd02f3babd88e910e31dc61e1da2",
@@ -120,6 +137,31 @@
       "sha256": "0dbf8968a8e960224693f6b5979c94146310e35c490cd213a6745b7878bda6e9",
       "source": "ssot/engos-delivery-address-code-review.md",
       "text": "| Commit hygiene | Fix commit contains only the review-related changes |"
+    },
+    {
+      "sha256": "38eb49942c75ddee893ffe3367749182b61a7c1b58b54949433d12e688da1e9c",
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "text": "When delegating or returning selected feedback, load the `handoff` route in `resources/resource-map.json`: `resources/references/feedback-handoff.md`. Preserve immutable original IDs, source references/digests, selection accepted|rejected|deferred|unselected, authority reasons and actual outcomes separately. Already clear selection requires no second confirmation. Accepted but unfinished remains unresolved/deferred, never addressed without repair evidence. Direct bounded D5 worker needs no Batman. Only explicit Batman uses its controller envelope and independent gates. Optional committed packages resolve the verified code-review owner; no copied collector or guessed sibling. Preserve separately hashed dirty snapshot identity. Task receipts do not waive final integration review or GitOps; no automatic hosted thread closure."
+    },
+    {
+      "sha256": "4f88682c94684e9d8ee8a1309645aa2f69ca5db45386d225c702298b1976ac92",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "text": "The review-fix owner keeps the original selection ledger: comment_id, source_ref, source_digest when captured, decision accepted|rejected|deferred|unselected, decision reason/authority_ref, bounded task link, current outcome and actual repair evidence. IDs are immutable; later comments need an explicit selection decision. Honor an already clear selection; clarify only material ambiguity."
+    },
+    {
+      "sha256": "a6db3e59b368ef595c3c859372f476704e37f730c83657fc714358ac2df0c6cb",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "text": "Dispatch the bounded request or exact TaskContract bytes directly to an ordinary implementation worker. The worker needs no Batman/planner/testing sibling. Return every supplied relevant ID. Accepted A becomes addressed only with observed scoped repair evidence; accepted-but-unfinished remains unresolved/deferred with reason while the owner's decision stays accepted. Rejected B stays rejected, deferred C stays deferred, unselected D stays unselected and none grants implementation permission. Keep selection, SliceReceipt outcome, Findings disposition, accepted-risk authority and hosted thread resolution distinct. Do not post or close threads automatically."
+    },
+    {
+      "sha256": "a7ae8134858398653daceb607ec9f71f2cc36ace75decc7224884fc90f40f1b3",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "text": "Explicit Batman may dispatch the same TaskContract with its separate task_id/owner_id/plan_generation/read-write/authority/evidence/stop envelope. Controller does not implement, author failing tests/fixes or self-review. All existing independent review, attacker, milestone and landing gates remain required. Stale/missing worker or reviewer results cannot satisfy a current node."
+    },
+    {
+      "sha256": "cb21a552498b1d75aba0165b046dacd7dc2bb6bcfb0ac3cc9d62e2e1b31984a8",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "text": "An optional committed handoff resolves the verified installed engos-quality-code-review owner, selects its collect/verify-package routes and validates externally retained subject/target/source/result bindings before findings consumption. Do not copy collector/schema into this owner or guess missing sibling paths. Missing owner makes that option unavailable; a normal dirty snapshot remains separate and truthful. A task receipt never waives final full-branch review/GitOps."
     }
   ],
   "review_status": "draft"

@@ -117,6 +117,17 @@ Keep whole-package replacement and recovery within the existing
 adds no installation selection or runtime sibling dependency. Documentation of
 this package boundary is not evidence of a release or home installation.
 
+
+The test-oracle reference has one canonical owner: D7,
+`engos-quality-testing-review`. Its physical bytes enter the standalone D5
+`engos-delivery-implement-slice` bundle through `test-oracles-v1`; D5 contains no
+authored shadow copy and does not fetch a sibling at runtime. Detached D5 checks
+its pinned snapshot, not the newest owner version. A changed D7 owner hash makes
+the import stale until reviewed registry regeneration. The collector and optional
+verifier remain owned by `engos-quality-code-review` and are used only for an
+explicit committed-package request. These source changes do not claim publication,
+main installation or release.
+
 The trace package imports exact TaskPlan, TaskContract and TestDesign bytes
 through a finite reviewed registry. Its narrow TaskPlan sibling-reference
 exception requires explicit same-owner paired bindings, identical placement,

@@ -190,5 +190,10 @@ resources are bundled. Reproduction, localization and explicit hypothesis predic
 adapted as ideas; repair execution, secret-printing examples and fixed failure-count
 architecture judgments are excluded.
 
+## Worked Acceptance and Repair Handoff
+For explicit worked-example or acceptance use, select the `examples` route in `resources/resource-map.json`: `resources/evals/diagnosis-cases.json`. These are inert frozen synthetic definitions, never claimed actual observations or automatic reproduction commands. Keep hypotheses and receipt routes intact. Actual observation evidence and genuinely separate causal review belong in reports; schema validity cannot establish cause. Intermittent all-pass exposures remain unknown, not fixed. Missing inputs do not justify invented exits or live mutating/secret reproduction.
+
+Keep DiagnosisReceipt.v1 unchanged. Express qualitative hypothesis confidence and limits in existing hypothesis.result/conclusion. Preserve unchanged_behavior verbatim in repair handoff; next_owner identifies an implementer only under separately authorized repair scope. TaskContract.consumes binds exact receipt/log bytes, constraints preserve uncertainty/unchanged behavior/boundary, verification retains reviewed oracle and authority_ref cites separate permission. A plain request may supply the same context. Unknown cause preserves alternatives and next safe discriminator without speculative fix.
+
 
 Capability resource: `resources/capability.json`

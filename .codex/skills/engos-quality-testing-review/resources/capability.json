@@ -360,7 +360,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
+          "classification": "additive",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -372,7 +372,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -434,7 +434,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+      "effective_sha256": "2ce191d545f67172041b75c0bbfdb2609af49798bcff75d9313c4f1f01d8410d",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -547,7 +547,7 @@
               "path": "ssot/engos-quality-testing-review.md",
               "start_line": 26,
               "end_line": 30,
-              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+              "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b"
             }
           }
         ]
@@ -566,7 +566,7 @@
               "path": "ssot/engos-quality-testing-review.md",
               "start_line": 33,
               "end_line": 35,
-              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+              "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b"
             }
           },
           {
@@ -576,7 +576,7 @@
               "path": "ssot/engos-quality-testing-review.md",
               "start_line": 133,
               "end_line": 135,
-              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+              "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b"
             }
           }
         ]
@@ -591,7 +591,7 @@
               "path": "ssot/engos-quality-testing-review.md",
               "start_line": 133,
               "end_line": 135,
-              "sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a"
+              "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b"
             }
           }
         ]
@@ -604,12 +604,12 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-testing-review.md",
-        "ssot_sha256": "10c8c23ea06fd358d8bcefcd08d4f6f6b625b7ac67477e8033618c86addfa74a",
-        "effective_sha256": "fda56648c638406be64f028ad6a2dd74b2aa2d8758a18c2e15f4fafec2561d1c",
+        "ssot_sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b",
+        "effective_sha256": "2ce191d545f67172041b75c0bbfdb2609af49798bcff75d9313c4f1f01d8410d",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
-            "sha256": "1df8da690b6a18e84813172bca47b4f76413c597febafaf1aaa2329c8b1c14ae"
+            "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978"
           },
           {
             "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
@@ -637,7 +637,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "389eb8f101daa7c2b28d69dd389f5afc67bfa1c2e854ecfbf5b27212f64073d3"
+        "mapping_sha256": "aacb9f4c621948dbfdb719ef9adb14d8b624f5ac36c4f46f14ae68f82ad963d9"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

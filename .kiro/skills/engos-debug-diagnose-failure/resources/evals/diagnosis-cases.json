@@ -1,0 +1,105 @@
+{
+  "schema_version": "DiagnosisCases.v1",
+  "cases": [
+    {
+      "id": "H-D1",
+      "category": "deterministic",
+      "source_contract": "Synthetic bounded acceptance fixture, not receiving-repository fact",
+      "fixture_inputs": {
+        "expiry": 10,
+        "now": [
+          9,
+          10,
+          11
+        ],
+        "parse": "integer decimal"
+      },
+      "competing_hypotheses": [
+        "comparison > versus >=",
+        "parser/clock-input discrepancy"
+      ],
+      "planned_observations": [
+        "Inspect parsed integer inputs and faulty > source",
+        "Observe one tick before/equal/after"
+      ],
+      "frozen_expected_observations": [
+        {
+          "now": 9,
+          "faulty_accepts": true,
+          "contract_accepts": true
+        },
+        {
+          "now": 10,
+          "faulty_accepts": true,
+          "contract_accepts": false
+        },
+        {
+          "now": 11,
+          "faulty_accepts": false,
+          "contract_accepts": false
+        }
+      ],
+      "acceptable_causal_status": "identified only with actual discriminator and separate causal review",
+      "unchanged_behavior": "Before expiry accepts; equal/after reject; parsing and return shape remain unchanged",
+      "repair_boundary": "Diagnosis advises only. Separate bounded authorization required to repair comparison.",
+      "regression_oracle": "Before/equal/after assertions distinguish > defect and always-reject.",
+      "disclosure_limits": "Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports."
+    },
+    {
+      "id": "H-D2",
+      "category": "intermittent",
+      "source_contract": "Synthetic bounded acceptance fixture, not receiving-repository fact",
+      "fixture_inputs": {
+        "synthetic_failure_schedule": [
+          false,
+          false,
+          false
+        ],
+        "reported_trace": "failure lacks ordering discriminator"
+      },
+      "competing_hypotheses": [
+        "timing order",
+        "shared-state interference"
+      ],
+      "planned_observations": [
+        "Run exactly three controlled exposures; retain stdout/exit/hash",
+        "Inspect absence of discriminating ordering trace"
+      ],
+      "frozen_expected_observations": [
+        "pass",
+        "pass",
+        "pass"
+      ],
+      "acceptable_causal_status": "unknown",
+      "unchanged_behavior": "Source and state unchanged; successes are exposure only, never repair proof.",
+      "repair_boundary": "No speculative fix; next safe observation captures causal ordering.",
+      "regression_oracle": "No regression oracle established until discriminator exists.",
+      "disclosure_limits": "Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports."
+    },
+    {
+      "id": "H-D3",
+      "category": "not_reproducible",
+      "source_contract": "Synthetic bounded acceptance fixture, not receiving-repository fact",
+      "fixture_inputs": {
+        "required_input": null,
+        "report": "reported failure only"
+      },
+      "competing_hypotheses": [
+        "input-dependent failure",
+        "external runtime difference"
+      ],
+      "planned_observations": [
+        "Read accessible fixture evidence",
+        "Record missing prerequisite; decline unauthorized reset/secret dump"
+      ],
+      "frozen_expected_observations": [
+        "required input unavailable; no reproduction exit invented"
+      ],
+      "acceptable_causal_status": "unknown",
+      "unchanged_behavior": "Preserve source and active-state sentinels.",
+      "repair_boundary": "Read-only diagnosis; no live reset, secret dump, repair or incident takeover.",
+      "regression_oracle": "Obtain redacted exact input and safe read-only discriminator before proposing repair.",
+      "disclosure_limits": "Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports."
+    }
+  ]
+}

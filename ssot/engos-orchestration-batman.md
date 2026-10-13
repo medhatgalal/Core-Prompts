@@ -66,6 +66,7 @@ Named companions:
 - `engos-reconciliation-converge` for conflicts and one coherent recommendation
 - `engos-quality-testing-review` for test and edge-case analysis when the implementer needs a specialist
 - `engos-quality-code-review` for independent task and branch review
+- `engos-delivery-implement-slice` for authorized bounded implementation by the independent worker, retaining this controller's stronger gates
 - `engos-delivery-address-code-review` only for selected comments on an existing PR or MR
 - `engos-quality-docs-review` for documentation drift and discoverability
 - `engos-quality-gitops-review` for branch, commit, PR or MR, CI, merge, and cleanup gates
@@ -363,3 +364,8 @@ Gate: every finding is fixed or has an explicit, evidence-backed disposition aut
 | Portability | The body resolves named companion capabilities to a usable registered agent, an installed-skill fallback on a fresh default subagent, or a fail-closed stop |
 | Identity integrity | Only Batman invokes this body; no duplicate public identity or surface exists |
 | Boundary integrity | SuperCharge remains a called lens and does not own Batman orchestration |
+
+## Optional Bounded Implementation and Package Handoff
+Only explicit Batman invocation activates this controller. Dispatch unchanged supplied TaskContract bytes to the actual implementation worker with the existing separate task_id/owner_id/plan_generation/read-write/authority/evidence/stop envelope. Preserve all stronger TDD, independent reviewer, attacker, milestone and landing gates. The controller never authors implementation, failing tests or fixes and cannot self-review. Direct D5 work otherwise needs no Batman.
+
+For optional committed package evidence, independently retain task/subject implementation owner/current positive generation/repository/base/spec/plan and trusted code-review owner source hashes before dispatch; resolve candidate head from Git before collection. Resolve the installed code-review owner using existing companion rules and select collect/verify-package; capture exact collector process exit/stdout and externally retain expectation/result/manifest digests. Never copy collector/schema into consumers, renew trusted bindings from returned package, coerce missing generation or guess sibling paths. Owner/runtime missing means unavailable optional binding. Subject implementation node and current independent reviewer node are distinct identities. Reject stale/wrong owner/generation/range/source before findings consumption. Committed range Findings kind is branch/range with exact endpoints/null snapshot/committed only; dirty/staged reviews retain separate snapshot hashes. Matched is review not_assessed. Real reviewer reads needed source/unchanged callers; missing result or unread material is incomplete. Clean task review cannot waive full final branch integration review, hosted CI or GitOps.
