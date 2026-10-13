@@ -1,0 +1,44 @@
+{
+  "schema_version": "DiagnosisReceipt.v1",
+  "id": "H-D1-author",
+  "subject_revision": "Synthetic fixed fixture source SHA256 d074653a4a3e61da88f1d4b4631848ca38eb4e2d3fc4733883749046a95618e3",
+  "current_behavior": "[{\"input\": \"9\", \"parsed\": 9, \"expiry\": 10, \"actual_accepts\": true, \"contract_accepts\": true}, {\"input\": \"10\", \"parsed\": 10, \"expiry\": 10, \"actual_accepts\": true, \"contract_accepts\": false}, {\"input\": \"11\", \"parsed\": 11, \"expiry\": 10, \"actual_accepts\": false, \"contract_accepts\": false}]",
+  "expected_behavior": "[{\"now\": 9, \"faulty_accepts\": true, \"contract_accepts\": true}, {\"now\": 10, \"faulty_accepts\": true, \"contract_accepts\": false}, {\"now\": 11, \"faulty_accepts\": false, \"contract_accepts\": false}]",
+  "unchanged_behavior": "Before expiry accepts; equal/after reject; parsing and return shape remain unchanged",
+  "observations": [
+    {
+      "command_redacted": "python reports/program-handoff-tools/run_diagnosis_observations.py",
+      "exit_status": 0,
+      "environment": "Python 3.14; synthetic disposable inputs; no production reproduction",
+      "evidence_ref": "reports/program-handoff-tools/diagnosis-observations.json#H-D1"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-D1-hypothesis-1",
+      "prediction": "comparison > versus >=",
+      "discriminator": "Fixed parsed values plus before/equal/after source comparison",
+      "result": "Supported comparison discrepancy at equality",
+      "status": "supported",
+      "evidence_refs": [
+        "reports/program-handoff-tools/diagnosis-observations.json#H-D1"
+      ]
+    },
+    {
+      "id": "H-D1-hypothesis-2",
+      "prediction": "parser/clock-input discrepancy",
+      "discriminator": "Fixed parsed values plus before/equal/after source comparison",
+      "result": "Parser mismatch rejected within these exact parsed integer inputs",
+      "status": "rejected",
+      "evidence_refs": [
+        "reports/program-handoff-tools/diagnosis-observations.json#H-D1"
+      ]
+    }
+  ],
+  "cause_status": "identified",
+  "repair_scope": "Diagnosis advises only. Separate bounded authorization required to repair comparison.",
+  "next_owner": "Independent causal reviewer; separately authorized implementer only after review and repair authority",
+  "conclusion": "High confidence within fixed fixture: equality alone differs with matching inspected parsed integer values; comparison > causes contract violation.",
+  "investigated_scope": "Frozen synthetic case H-D1 only; not live system or natural failure-rate evidence",
+  "remaining_uncertainty": "Independent causal assessment remains pending; no production generalization or repair performed."
+}

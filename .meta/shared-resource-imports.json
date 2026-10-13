@@ -12,6 +12,18 @@
           "destination": "schemas/spec-contract.schema.json"
         }
       ]
+    },
+    {
+      "id": "test-oracles-v1",
+      "owner": "engos-quality-testing-review",
+      "source": "references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "consumers": [
+        {
+          "slug": "engos-delivery-implement-slice",
+          "destination": "references/test-oracles.md"
+        }
+      ]
     }
   ]
 }

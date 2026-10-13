@@ -1,0 +1,63 @@
+........................................................................ [ 21%]
+.................s...................................................... [ 42%]
+........................................................................ [ 63%]
+..........................F............................................. [ 85%]
+..................................................                       [100%]
+=================================== FAILURES ===================================
+________________ test_slice_receipt_optional_route_and_template ________________
+
+root = PosixPath('/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice')
+relative = 'references/test-oracles.md'
+
+    def _file(root: Path, relative: str) -> Path:
+        try:
+>           resolved = (root / _relative_path(relative)).resolve(strict=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+src/intent_pipeline/capability_resources.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice/references/test-oracles.md')
+strict = True
+
+    def resolve(self, strict=False):
+        """
+        Make the path absolute, resolving all symlinks on the way and also
+        normalizing it.
+        """
+    
+>       return self.with_segments(os.path.realpath(self, strict=strict))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice/references'
+
+/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py:938: FileNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+    def test_slice_receipt_optional_route_and_template():
+>       bundle = load_resource_bundle(SLICE_RESOURCES, "receipt")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_capability_resources.py:655: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/intent_pipeline/capability_resources.py:327: in load_resource_bundle
+    root, manifest, declared, manifest_sha256 = _manifest(resource_root)
+                                                ^^^^^^^^^^^^^^^^^^^^^^^^
+src/intent_pipeline/capability_resources.py:92: in _manifest
+    _file(root, relative)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+root = PosixPath('/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice')
+relative = 'references/test-oracles.md'
+
+    def _file(root: Path, relative: str) -> Path:
+        try:
+            resolved = (root / _relative_path(relative)).resolve(strict=True)
+        except (OSError, RuntimeError) as error:
+>           raise ResourceContractError(f"Missing or invalid resource file: {relative}") from error
+E           intent_pipeline.capability_resources.ResourceContractError: Missing or invalid resource file: references/test-oracles.md
+
+src/intent_pipeline/capability_resources.py:41: ResourceContractError
+=========================== short test summary info ============================
+FAILED tests/test_capability_resources.py::test_slice_receipt_optional_route_and_template
+1 failed, 336 passed, 1 skipped in 85.18s (0:01:25)
