@@ -49,13 +49,48 @@ The skill bundles `resources/references/review-targets.md` and
 `resources/scripts/load_module.py --route review` assembles their complete content
 from an installed skill root. The manifest is `resources/resource-map.json`.
 Canonical resources live under
-`sources/capability-resources/engos-quality-code-review/`. No committed-range
-collector is introduced by this contract change.
+`sources/capability-resources/engos-quality-code-review/`. Explicit committed-range collection adds the `collect` route and the standalone
+`resources/scripts/review_package.py` helper; ordinary review keeps its defaults.
 
 Requested JSON output uses `Findings.v1`, alongside the six normal narrative
 sections. Schema validation checks shape and status consistency; actual source
 reads, evidence truth and consumer impact still require review. Missing evidence
 is incomplete/unverifiable. Ready remains advisory and grants no merge authority.
+
+
+### Committed-range package
+
+```text
+python3 <owner-skill>/resources/scripts/review_package.py \
+  --repo <repository> --base <full-recorded-baseline-commit> \
+  --head <full-exact-candidate-commit> --out <new-task-owned-leaf> \
+  --task-id <id> --owner <owner> --generation <positive-integer> \
+  --repository-id <controller-repository-id> \
+  [--spec-sha256 <64-lowercase-hex>] [--plan-sha256 <64-lowercase-hex>]
+```
+
+Requires Python 3.11+, Git with `--no-lazy-fetch`/`--attr-source`, and POSIX
+nofollow directory descriptors and no-replace hard links. Supply exact lowercase
+full commit IDs with an ancestor base. Output must be a new absent leaf under an
+existing nonsymlink parent, with no dot/dotdot components; no overwrite or resume.
+Exit 0 is complete collection, 2 incomplete/freeze failure, 3 invalid/unsupported/
+unsafe input. A frozen package emits one JSON `ReviewPackageResult.v1` receipt with
+relative `manifest.json`, status and SHA-256; retain that digest independently.
+Freeze verifies the created manifest inode and exact bytes before linking, after
+linking and after cleanup; mismatches emit no receipt. These observations do not
+lock out arbitrary same-UID changes racing subsequent syscalls or after the receipt.
+Independent retained-digest verification remains required. Preserve partial leaves for separately authorized
+cleanup; retry into a new leaf.
+
+The `ReviewPackage.v1` manifest references all range raw commits, net endpoint
+patch/raw/numstat and both-side raw changed blobs. Binary bytes are collected;
+changed gitlinks retain IDs but make collection incomplete without reading nested
+content. Staged/dirty changes, intermediate patches and unchanged consumers are
+excluded. Task/repository/spec/plan identities are caller assertions; source hashes
+and receipt support integrity, not authentication, review or correctness/security
+judgment. Independent expected-binding verification and actual source/consumer
+review remain separate. See the bundled review-target reference for the full
+coverage and trust contract.
 
 ## Failure diagnosis skill
 

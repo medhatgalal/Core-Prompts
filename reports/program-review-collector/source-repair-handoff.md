@@ -1,0 +1,11 @@
+# D6.S2 author repair handoff
+
+Repair base: 31b6635c1ec2712918093e54779e5392d17a4659. D6SRC-001 and D6SRC-002 remain independent findings until the same reviewer resolves them. Original review bytes and original source-evidence snapshot are retained as round1 artifacts; repair red/focused raw bytes are retained separately.
+
+D6SRC-001: ordinary review references no unselected collector script/schema; it gives only optional route and honest input/coverage guidance. Full collection command/trust detail lives in the selected collect resource. Actual strict-loader review and collect closures pass without changing the map or loader, so progressive disclosure stays intact.
+
+D6SRC-002: preserve the manifest's created fd/dev/inode before returning from write. Compare actual retained bytes and SHA-256 to the canonical expected manifest, verify regular inode/link properties and each relevant path before link, after link before cleanup, and after unlink/fsync before receipt. Mismatch preserves output and returns 2 without receipt, using bounded operation/code diagnostics. Never unlink a detected foreign partial replacement. No replacement publication or rewriting of tampered markers.
+
+Actual main regressions positively inject same-length same-inode mutations before link, after real link and after cleanup; same-byte foreign replacements before link, during link and after link; and descriptor duplication failure. Old source returned false complete for the discriminating windows, recorded in independent-repair-red.txt. Repaired full producer renewal passes in repair-final-source-tests.txt / repair-source-fixtures.xml. NonUTF8 filesystem coverage retains its explicit unsupported-host skip. Exact accepted manifest schema, existing review route/dependency, Findings.v1 and canonical SSOT remain byte-identical.
+
+These checks are observations through freeze, not a lock against arbitrary same-UID syscall races or later output mutation. Consumer retained-receipt verification and independent expected identities remain mandatory; S3 is unimplemented. Generated provider copies, UAC, final hosted CI/main parity and integration acceptance remain controller-owned. The writer makes no finding-closure, security verdict, release or installation claim.

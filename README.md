@@ -83,6 +83,11 @@ If you are already using Core-Prompts in a CLI, start there. If you are importin
 
 The current generated surfaces contain `36` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
+`engos-quality-code-review` can also collect immutable committed-range evidence
+from exact baseline/candidate IDs into a new task-owned output leaf. The manifest
+and digest receipt bind raw commits, endpoint changes and blobs; collection is
+separate from review judgment. See [the collection command and limits](docs/CLI-REFERENCE.md#committed-range-package).
+
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` includes a budget of up to ten real, independently graded candidate trials unless you say `skip grade`; it never executes the target prompt. `/ult` prints the improved prompt and runs it within your authorized scope, while `/ult /full` reviews it without execution. `/stop-ult` still exits persistent ULT mode; the legacy global `/stop` command is retired. Detailed module instructions are loaded from bundled resources before use. See [modernization and evidence boundaries](docs/FRONTIER-MODERNIZATION.md).
