@@ -11,6 +11,7 @@ import pytest
 from intent_pipeline.capability_resources import (
     ResourceContractError,
     effective_capability_text,
+    load_capability_bundle,
     load_resource_bundle,
 )
 
@@ -339,16 +340,21 @@ def test_spec_schema_does_not_claim_id_uniqueness_or_semantic_approval() -> None
     ("trace_ledger", "templates/trace-matrix.json"),
 ])
 def test_spec_routes_have_bounded_self_contained_resource_closure(route: str, selected: str) -> None:
-    bundle = load_resource_bundle(SPEC_RESOURCE_ROOT, route)
+    # Canonical imports are assembled from their declared owners; they are not
+    # duplicate files inside the consumer's source directory.
+    bundle = load_capability_bundle(SPEC_RESOURCE_ROOT.parents[2], "engos-design-specify-change", "", route)
     assert set(paths(bundle)) == {"templates/requirements.md", selected}
     assert bundle["delivery_claim"] == "assembled_not_proof_of_consumption"
 
 
 def test_spec_resources_load_from_a_relocated_package(tmp_path: Path) -> None:
     package = tmp_path / "independent-install" / "resources"
-    shutil.copytree(SPEC_RESOURCE_ROOT, package)
+    # Relocate the actual generated package, including its pinned imports and
+    # receipt, rather than an incomplete source-only consumer directory.
+    emitted = SPEC_RESOURCE_ROOT.parents[2] / ".codex/skills/engos-design-specify-change/resources"
+    shutil.copytree(emitted, package)
     helper = package / "scripts" / "load_module.py"
-    helper.parent.mkdir()
+    helper.parent.mkdir(exist_ok=True)
     shutil.copy2(Path(__file__).resolve().parents[1] / "src/intent_pipeline/capability_resources.py", helper)
     result = subprocess.run(
         [sys.executable, str(helper), "--route", "design_first", "--format", "json"],
@@ -356,7 +362,10 @@ def test_spec_resources_load_from_a_relocated_package(tmp_path: Path) -> None:
     )
     bundle = json.loads(result.stdout)
     assert set(paths(bundle)) == {"templates/requirements.md", "references/design-first.md"}
-    assert bundle["sha256"] == load_resource_bundle(SPEC_RESOURCE_ROOT, "design_first")["sha256"]
+    canonical = load_capability_bundle(SPEC_RESOURCE_ROOT.parents[2], "engos-design-specify-change", "", "design_first")
+    assert bundle["sha256"] == canonical["sha256"]
+    assert bundle["shared_imports"] == canonical["shared_imports"]
+    assert bundle["shared_imports"]["consumer"] == "engos-design-specify-change"
 
 
 def test_spec_trace_template_is_blank_and_makes_no_coverage_claim() -> None:
@@ -366,8 +375,8 @@ def test_spec_trace_template_is_blank_and_makes_no_coverage_claim() -> None:
         "link_validation": "not_assessed", "test_coverage": "not_assessed",
         "semantic_correctness": "not_assessed", "behavioral_verification": "not_assessed",
     }
-    assert not (SPEC_RESOURCE_ROOT / "scripts/trace_check.py").exists()
-    assert not (SPEC_RESOURCE_ROOT / "schemas/trace-result.schema.json").exists()
+    assert (SPEC_RESOURCE_ROOT / "scripts/trace_check.py").is_file()
+    assert (SPEC_RESOURCE_ROOT / "schemas/trace-result.schema.json").is_file()
 
 
 # D2.S2: source authority and detached-package consistency are distinct checks.
@@ -882,6 +891,7 @@ def test_planner_resource_routes_include_local_schema_closure():
     assert paths(load_resource_bundle(root, 'dependency_map')) == ['templates/dependency-map.json']
     assert set(paths(load_resource_bundle(root))) == {
         'schemas/task-contract.schema.json', 'schemas/task-plan.schema.json', 'templates/dependency-map.json',
+        'schemas/graph-result.schema.json', 'scripts/graph_check.py',
     }
 
 
@@ -1022,3 +1032,106 @@ def test_diagnosis_receipt_requires_nonempty_summary_fields(field: str) -> None:
     receipt[field] = ""
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.validate(receipt, schema)
+
+
+def sibling_task_schema_fixture(repo):
+    import hashlib
+    planner = 'engos-design-plan-implementation'; consumer = 'engos-design-specify-change'
+    resources = repo / 'sources/capability-resources'
+    registry = {'schema_version':'SharedResourceImports.v1','imports':[]}
+    for slug in (planner,consumer):
+        (repo/'ssot').mkdir(parents=True,exist_ok=True)
+        (repo/'ssot'/f'{slug}.md').write_text(f'---\nname: {slug}\n---\n# Contract\n')
+        root=resources/slug; root.mkdir(parents=True)
+        manifest={'schema_version':'CapabilityResourceMap.v1','shared':[],'routes':{'contract':['schemas/task-plan.schema.json']},'dependencies':{'schemas/task-plan.schema.json':['schemas/task-contract.schema.json']}}
+        if slug==consumer: manifest['shared_imports']=['task-plan-v1','task-contract-v1']
+        save_manifest(root,manifest)
+    for name in ('task-plan','task-contract'):
+        source=Path(__file__).parents[1]/'sources/capability-resources'/planner/'schemas'/f'{name}.schema.json'
+        dst=resources/planner/'schemas'/source.name; dst.parent.mkdir(exist_ok=True); dst.write_bytes(source.read_bytes())
+        registry['imports'].append({'id':name+'-v1','owner':planner,'source':'schemas/'+source.name,'sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'consumers':[{'slug':consumer,'destination':'schemas/'+source.name}]})
+    (repo/'.meta').mkdir(); (repo/'.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    return registry
+
+
+def sibling_task_load(repo):
+    from intent_pipeline.capability_resources import load_capability_bundle
+    return load_capability_bundle(repo,'engos-design-specify-change','Read resources/schemas/task-plan.schema.json.')
+
+
+def sibling_detach(repo,target):
+    bundle=sibling_task_load(repo); target.mkdir()
+    source=repo/'sources/capability-resources/engos-design-specify-change/resource-map.json'
+    (target/'resource-map.json').write_bytes(source.read_bytes())
+    for item in bundle['resources']:
+        p=target/item['path']; p.parent.mkdir(parents=True,exist_ok=True); p.write_text(item['content'])
+    (target/'shared-resource-imports.json').write_text(json.dumps(bundle['shared_imports']))
+    return bundle
+
+
+def test_explicit_taskplan_sibling_admission_and_detached_consistency(tmp_path):
+    sibling_task_schema_fixture(tmp_path); package=tmp_path/'detached'
+    original=sibling_detach(tmp_path,package)
+    assert load_resource_bundle(package)['sha256']==original['sha256']
+    # Owner-map admission is independent of detached consumer consistency.
+    owner=tmp_path/'sources/capability-resources/engos-design-plan-implementation'
+    m=json.loads((owner/'resource-map.json').read_text()); m['dependencies']={}; save_manifest(owner,m)
+    with pytest.raises(ResourceContractError): sibling_task_load(tmp_path)
+    assert load_resource_bundle(package)['sha256']==original['sha256']
+    m=json.loads((package/'resource-map.json').read_text()); m['dependencies']={}; save_manifest(package,m)
+    with pytest.raises(ResourceContractError): load_resource_bundle(package)
+
+
+@pytest.mark.parametrize('ref', ['https://example.test/schema','../task-contract.schema.json','task-contract.schema.json#/$defs/task','task-contract.schema.json?x=1','task%2dcontract.schema.json','other.schema.json',' task-contract.schema.json'])
+def test_task_sibling_forbidden_refs_fail_even_with_rebound_digest(tmp_path,ref):
+    import hashlib
+    registry=sibling_task_schema_fixture(tmp_path)
+    source=tmp_path/'sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json'
+    content=json.loads(source.read_text()); content['properties']['tasks']['items']['$ref']=ref; source.write_text(json.dumps(content))
+    registry['imports'][0]['sha256']=hashlib.sha256(source.read_bytes()).hexdigest()
+    (tmp_path/'.meta/shared-resource-imports.json').write_text(json.dumps(registry))
+    with pytest.raises(ResourceContractError): sibling_task_load(tmp_path)
+
+
+@pytest.mark.parametrize('failure',['target_tamper','pair_owner','target_missing','source_cycle','decoded_dynamic','decoded_ref_cycle'])
+def test_detached_task_sibling_closure_failures(tmp_path,failure):
+    import hashlib
+    sibling_task_schema_fixture(tmp_path); package=tmp_path/'detached'; sibling_detach(tmp_path,package)
+    receipt=json.loads((package/'shared-resource-imports.json').read_text())
+    target=package/'schemas/task-contract.schema.json'; source=package/'schemas/task-plan.schema.json'
+    if failure=='target_tamper': target.write_text('{}')
+    elif failure=='target_missing': target.unlink()
+    elif failure=='pair_owner': next(b for b in receipt['imports'] if b['source'].endswith('task-contract.schema.json'))['owner']='other'
+    elif failure=='source_cycle':
+        m=json.loads((package/'resource-map.json').read_text()); m['dependencies']['schemas/task-contract.schema.json']=['schemas/task-plan.schema.json']; save_manifest(package,m)
+    else:
+        if failure=='decoded_dynamic': source.write_text('{"\\u0024dynamicRef":"task-contract.schema.json"}')
+        else: target.write_text('{"\\u0024ref":"task-plan.schema.json"}')
+        for b in receipt['imports']: b['sha256']=hashlib.sha256((package/b['destination']).read_bytes()).hexdigest()
+    (package/'shared-resource-imports.json').write_text(json.dumps(receipt))
+    with pytest.raises(ResourceContractError): load_resource_bundle(package)
+
+
+def test_detached_receipt_is_consistency_not_authenticity(tmp_path):
+    import hashlib
+    sibling_task_schema_fixture(tmp_path); package=tmp_path/'detached'; original=sibling_detach(tmp_path,package)
+    path=package/'schemas/task-contract.schema.json'; value=json.loads(path.read_text()); value['description']='Self-consistent local replacement'; path.write_text(json.dumps(value))
+    receipt=json.loads((package/'shared-resource-imports.json').read_text())
+    next(b for b in receipt['imports'] if b['destination']=='schemas/task-contract.schema.json')['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
+    (package/'shared-resource-imports.json').write_text(json.dumps(receipt))
+    changed=load_resource_bundle(package)
+    assert changed['sha256'] != original['sha256']
+    assert changed['delivery_claim']=='assembled_not_proof_of_consumption'
+
+
+def test_allowed_sibling_ref_decodes_json_keys_and_rejects_base_keywords(tmp_path):
+    import hashlib
+    registry=sibling_task_schema_fixture(tmp_path)
+    source=tmp_path/'sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json'
+    source.write_text(source.read_text().replace('"$ref"','"\\u0024ref"'))
+    registry['imports'][0]['sha256']=hashlib.sha256(source.read_bytes()).hexdigest()
+    registry_path=tmp_path/'.meta/shared-resource-imports.json'; registry_path.write_text(json.dumps(registry))
+    assert 'schemas/task-plan.schema.json' in paths(sibling_task_load(tmp_path))
+    for key in ['$id','$anchor','$dynamicAnchor','$recursiveRef','$recursiveAnchor']:
+        source.write_text(json.dumps({key:'forbidden'})); registry['imports'][0]['sha256']=hashlib.sha256(source.read_bytes()).hexdigest(); registry_path.write_text(json.dumps(registry))
+        with pytest.raises(ResourceContractError): sibling_task_load(tmp_path)

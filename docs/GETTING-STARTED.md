@@ -27,6 +27,23 @@ bugfix. The result is a draft with source and authority status; a schema pass do
 not approve it. Material design and task planning remain separate jobs.
 [See all three specification routes](EXAMPLES.md#engos-design-specify-change).
 
+Start from the deliverable you need. Harden a plan with `engos-meta-supercharge`;
+reconcile dated conflicting proposals with `engos-reconciliation-converge`; ask
+for a baseline comparison with `engos-optimization-auto-research` only when
+measured outcomes are needed. Explicit SuperCharge module choices remain valid.
+
+A finished pitch can go straight to `engos-audit-pitch-review`: missing Intake,
+Framed and Research evidence is reported as unassessed. Actual workshop
+transitions require the current gate owner and receipts; a favorable review does
+not record human acceptance. Use `engos-design-plan-implementation` for an
+ordinary plan or `engos-design-plan-to-goal` for a separately requested bounded
+packet. Neither starts runtime work or Batman automatically.
+
+For optional mechanical checks on supplied planning artifacts, ask the planner
+for dependency-ready tasks or the specification skill for actual requirement to
+task links. These checks do not establish semantic correctness, authority or
+implemented behavior; see the [link-check examples](EXAMPLES.md#optional-planning-link-checks).
+
 For an optional structured handoff, supply the accepted revision and ask:
 “Use `engos-design-architecture` with this `SpecContract.v1`; preserve requirement
 IDs, acceptance and authority, and return requirement changes to the specification
@@ -36,6 +53,13 @@ schema pass checks shape; it grants no approval. Ordinary architecture work can
 still start from prose. [Example and expected output](EXAMPLES.md#engos-design-architecture).
 
 For a failing test or build, select `engos-debug-diagnose-failure` and supply the failure, expected behavior, repository/revision and any known reproduction. For example: “Find why this test fails; preserve the code and active sessions.” The skill discovers the repository’s real diagnostics, checks their side effects and returns causal evidence or an explicit unknown. A short readable diagnosis is sufficient; a structured receipt is optional for handoff. See the [diagnosis example](EXAMPLES.md#engos-debug-diagnose-failure).
+
+For immutable committed-range review evidence, ordinary code review still
+defaults to `HEAD` and emits six narrative sections. To collect the range first,
+provide exact full recorded baseline and candidate IDs, task/owner/generation/
+repository identity, and a new absent task-owned output leaf. Collection emits a
+manifest/digest receipt, not review judgment. See the [collection command and
+limits](CLI-REFERENCE.md#committed-range-package).
 
 For a product/engineering shaping workshop, use `engos-design-shaping` with the
 documents you already have. It should summarize the problem and ask a few useful
@@ -368,3 +392,9 @@ including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
 
 When importing a new skill, inspect the `job_contract` delta in UAC plan/judge: the mapping should describe the actual job and exclusions, with source references and explicit unknowns. The generated map does not make the host consume it. See [source-backed routing fitness](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Optional documentation recipes
+
+For a bounded first draft, ask: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” Expect that single Markdown draft. For all four coordinated artifacts, name `docs-bundle`. Ordinary review keeps its seven sections and loads no recipe. See [the complete recipe list and exact outputs](EXAMPLES.md#optional-documentation-recipes) and the [retained original prompts](prompt-pack/README.md).
+
+`docs-release-readiness` in GitOps Review supplies candidate-bound evidence under existing authority. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review; findings-only work stays advisory.

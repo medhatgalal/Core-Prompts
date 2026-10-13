@@ -1,0 +1,375 @@
+{
+  "scope": "isolated original-source lineage plan/judge; no canonical apply",
+  "results": [
+    {
+      "slug": "engos-audit-pitch-review",
+      "command": [
+        "python3.14",
+        "scripts/uac-import.py",
+        "--mode",
+        "judge",
+        "--source",
+        "reports/program-instruction-seams/engos-audit-pitch-review-candidate.md",
+        "--benchmark-search",
+        "off",
+        "--output",
+        "json"
+      ],
+      "exit": 0,
+      "payload_status": "accepted",
+      "quality_status": "structural_ready",
+      "stop_reason": "thresholds_met",
+      "behavioral_status": "behavioral_pending",
+      "source_fidelity_reports": [
+        {
+          "baseline_commit": "c6b3203b",
+          "baseline_slug": "engos-audit-pitch-review",
+          "blockers": [],
+          "classification": "preserved",
+          "judge": "source_fidelity",
+          "requirement_review": {
+            "behavioral_status": "behavioral_pending",
+            "identity_authenticated": false,
+            "status": "not_supplied_or_invalid"
+          },
+          "reviewed_deltas": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "missing_markers": [],
+              "passed": true
+            }
+          ],
+          "score": 10,
+          "scorecard": {
+            "baseline_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 5,
+            "candidate_operational_score": 2,
+            "candidate_richness": 5
+          },
+          "title": "Source Fidelity and Uplift"
+        }
+      ],
+      "raw_output_sha256": "4ca8d0e80c018443c7387524daf290f5a5084c905124bfbf124eaf9486100265"
+    },
+    {
+      "slug": "engos-design-plan-to-goal",
+      "command": [
+        "python3.14",
+        "scripts/uac-import.py",
+        "--mode",
+        "judge",
+        "--source",
+        "reports/program-instruction-seams/engos-design-plan-to-goal-candidate.md",
+        "--benchmark-search",
+        "off",
+        "--output",
+        "json"
+      ],
+      "exit": 0,
+      "payload_status": "accepted",
+      "quality_status": "structural_ready",
+      "stop_reason": "thresholds_met",
+      "behavioral_status": "behavioral_pending",
+      "source_fidelity_reports": [
+        {
+          "baseline_commit": null,
+          "baseline_slug": "engos-design-plan-to-goal",
+          "blockers": [],
+          "classification": "preserved",
+          "judge": "source_fidelity",
+          "requirement_review": {
+            "behavioral_status": "behavioral_pending",
+            "identity_authenticated": false,
+            "status": "not_supplied_or_invalid"
+          },
+          "reviewed_deltas": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "missing_markers": [],
+              "passed": true
+            }
+          ],
+          "score": 10,
+          "scorecard": {
+            "baseline_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 5,
+            "candidate_operational_score": 2,
+            "candidate_richness": 5
+          },
+          "title": "Source Fidelity and Uplift"
+        }
+      ],
+      "raw_output_sha256": "18b43eb7e51175b30cc98554cab3c6cc0751535ecc658d6925dc07d6aef36517"
+    },
+    {
+      "slug": "engos-design-shaping",
+      "command": [
+        "python3.14",
+        "scripts/uac-import.py",
+        "--mode",
+        "judge",
+        "--source",
+        "reports/program-instruction-seams/engos-design-shaping-candidate.md",
+        "--benchmark-search",
+        "off",
+        "--output",
+        "json"
+      ],
+      "exit": 0,
+      "payload_status": "accepted",
+      "quality_status": "structural_ready",
+      "stop_reason": "thresholds_met",
+      "behavioral_status": "behavioral_pending",
+      "source_fidelity_reports": [
+        {
+          "baseline_commit": null,
+          "baseline_slug": "engos-design-shaping",
+          "blockers": [],
+          "classification": "additive",
+          "judge": "source_fidelity",
+          "requirement_review": {
+            "behavioral_status": "behavioral_pending",
+            "identity_authenticated": false,
+            "status": "not_supplied_or_invalid"
+          },
+          "reviewed_deltas": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "missing_markers": [],
+              "passed": true
+            }
+          ],
+          "score": 10,
+          "scorecard": {
+            "baseline_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 5,
+            "candidate_operational_score": 2,
+            "candidate_richness": 7
+          },
+          "title": "Source Fidelity and Uplift"
+        }
+      ],
+      "raw_output_sha256": "cc56100a9a47aeac99b5c5e72f84f1df0e211966b644bf059b59e615b638977d"
+    },
+    {
+      "slug": "engos-meta-supercharge",
+      "command": [
+        "python3.14",
+        "scripts/uac-import.py",
+        "--mode",
+        "judge",
+        "--source",
+        "reports/program-instruction-seams/engos-meta-supercharge-candidate.md",
+        "--benchmark-search",
+        "off",
+        "--output",
+        "json"
+      ],
+      "exit": 0,
+      "payload_status": "accepted",
+      "quality_status": "manual_review",
+      "stop_reason": "candidate_unchanged",
+      "behavioral_status": "behavioral_pending",
+      "source_fidelity_reports": [
+        {
+          "baseline_commit": "3bc88b43",
+          "baseline_slug": "engos-meta-supercharge",
+          "blockers": [
+            "baseline scenario failed: agentic_overlay missing ### Agentic Orchestration (Core Principle, Not a Module)"
+          ],
+          "classification": "flattened",
+          "judge": "source_fidelity",
+          "requirement_review": {
+            "behavioral_status": "behavioral_pending",
+            "identity_authenticated": false,
+            "status": "not_supplied_or_invalid"
+          },
+          "reviewed_deltas": [],
+          "scenario_results": [
+            {
+              "id": "individual_ult",
+              "kind": "individual_module",
+              "label": "/ult module contract",
+              "missing_markers": [],
+              "passed": true
+            },
+            {
+              "id": "individual_catchup",
+              "kind": "individual_module",
+              "label": "/catchup forensic contract",
+              "missing_markers": [],
+              "passed": true
+            },
+            {
+              "id": "stacked_and_full",
+              "kind": "stacked_or_full",
+              "label": "stacked modules and /full coverage",
+              "missing_markers": [],
+              "passed": true
+            },
+            {
+              "id": "agentic_overlay",
+              "kind": "agentic",
+              "label": "agentic orchestration guidance",
+              "missing_markers": [
+                "### Agentic Orchestration (Core Principle, Not a Module)"
+              ],
+              "passed": false
+            },
+            {
+              "id": "help_output_contract",
+              "kind": "operational_contract",
+              "label": "help output contract",
+              "missing_markers": [],
+              "passed": true
+            }
+          ],
+          "score": 7,
+          "scorecard": {
+            "baseline_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 19,
+            "candidate_operational_score": 4,
+            "candidate_richness": 24
+          },
+          "title": "Source Fidelity and Uplift"
+        }
+      ],
+      "raw_output_sha256": "357fb45183d54e34d835da5bc764d554097d96dde5bceb773291aad24cf15f5d"
+    },
+    {
+      "slug": "engos-orchestration-batman",
+      "command": [
+        "python3.14",
+        "scripts/uac-import.py",
+        "--mode",
+        "judge",
+        "--source",
+        "reports/program-instruction-seams/engos-orchestration-batman-candidate.md",
+        "--benchmark-search",
+        "off",
+        "--output",
+        "json"
+      ],
+      "exit": 0,
+      "payload_status": "accepted",
+      "quality_status": "structural_ready",
+      "stop_reason": "thresholds_met",
+      "behavioral_status": "behavioral_pending",
+      "source_fidelity_reports": [
+        {
+          "baseline_commit": null,
+          "baseline_slug": "engos-orchestration-batman",
+          "blockers": [],
+          "classification": "preserved",
+          "judge": "source_fidelity",
+          "requirement_review": {
+            "behavioral_status": "behavioral_pending",
+            "identity_authenticated": false,
+            "status": "not_supplied_or_invalid"
+          },
+          "reviewed_deltas": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "missing_markers": [],
+              "passed": true
+            },
+            {
+              "id": "operator_invariants",
+              "kind": "hybrid_invariants",
+              "label": "historical operator invariants",
+              "missing_markers": [],
+              "passed": true
+            }
+          ],
+          "score": 10,
+          "scorecard": {
+            "baseline_operational_score": 3,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 5,
+            "candidate_operational_score": 3,
+            "candidate_richness": 5
+          },
+          "title": "Source Fidelity and Uplift"
+        }
+      ],
+      "raw_output_sha256": "929327ff908757cb605e87e9027a3f7714bd6400c89c8a673c11167f6bd4c0cc"
+    },
+    {
+      "slug": "engos-reconciliation-converge",
+      "command": [
+        "python3.14",
+        "scripts/uac-import.py",
+        "--mode",
+        "judge",
+        "--source",
+        "reports/program-instruction-seams/engos-reconciliation-converge-candidate.md",
+        "--benchmark-search",
+        "off",
+        "--output",
+        "json"
+      ],
+      "exit": 0,
+      "payload_status": "accepted",
+      "quality_status": "structural_ready",
+      "stop_reason": "thresholds_met",
+      "behavioral_status": "behavioral_pending",
+      "source_fidelity_reports": [
+        {
+          "baseline_commit": "3bc88b43",
+          "baseline_slug": "engos-reconciliation-converge",
+          "blockers": [],
+          "classification": "additive",
+          "judge": "source_fidelity",
+          "requirement_review": {
+            "behavioral_status": "behavioral_pending",
+            "identity_authenticated": false,
+            "status": "not_supplied_or_invalid"
+          },
+          "reviewed_deltas": [],
+          "scenario_results": [
+            {
+              "id": "portable_prompt_body",
+              "kind": "individual_module",
+              "label": "portable prompt block",
+              "missing_markers": [],
+              "passed": true
+            },
+            {
+              "id": "controls_and_tradeoffs",
+              "kind": "stacked_or_full",
+              "label": "controls and conflict handling",
+              "missing_markers": [],
+              "passed": true
+            }
+          ],
+          "score": 10,
+          "scorecard": {
+            "baseline_operational_score": 0,
+            "baseline_preserved_in_resource": false,
+            "baseline_richness": 5,
+            "candidate_operational_score": 2,
+            "candidate_richness": 10
+          },
+          "title": "Source Fidelity and Uplift"
+        }
+      ],
+      "raw_output_sha256": "12b179a9ad3c4d646d03ab9ce5b43e91c4204b7297b39edf802ef936dc6daa63"
+    }
+  ]
+}

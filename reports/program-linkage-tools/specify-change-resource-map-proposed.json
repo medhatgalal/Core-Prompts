@@ -1,0 +1,47 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [
+    "templates/requirements.md"
+  ],
+  "routes": {
+    "requirements_first": [
+      "references/requirements-first.md"
+    ],
+    "design_first": [
+      "references/design-first.md"
+    ],
+    "bugfix": [
+      "references/bugfix.md"
+    ],
+    "contract": [
+      "schemas/spec-contract.schema.json"
+    ],
+    "trace_ledger": [
+      "templates/trace-matrix.json"
+    ],
+    "trace_check": [
+      "scripts/trace_check.py"
+    ],
+    "trace_tests": [
+      "schemas/test-design.schema.json"
+    ],
+    "trace_examples": [
+      "evals/positive-and-near-miss.json"
+    ]
+  },
+  "dependencies": {
+    "scripts/trace_check.py": [
+      "schemas/spec-contract.schema.json",
+      "schemas/task-plan.schema.json",
+      "schemas/trace-result.schema.json"
+    ],
+    "schemas/task-plan.schema.json": [
+      "schemas/task-contract.schema.json"
+    ]
+  },
+  "shared_imports": [
+    "task-plan-v1",
+    "task-contract-v1",
+    "test-design-v1"
+  ]
+}

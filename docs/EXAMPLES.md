@@ -63,6 +63,35 @@ For an independent review of work already discussed in the main session:
 
 These are conversational requests, not provider-native commands. The second requires a real worker and verified resource delivery. If that is unavailable, report the limitation; a second answer in the same session does not establish independent review. Neither request authorizes edits or invokes Batman's delivery workflow.
 
+## Optional planning link checks
+
+Ask the planner: “Check `PLAN.json` and show the dependency-ready tasks.” For
+independent roots T1/T2 it returns both IDs, sorted. If T3 depends on both, it
+remains blocked until both appear in the supplied completed-task list. Null
+digest and authority observations remain visible even when `unresolved` is empty;
+the frontier grants no execution permission.
+
+Ask the specification skill: “Check the actual requirement-to-task links in
+`SPEC.json` and `PLAN.json`; select `TESTS.json` only if supplied.” Every `must`
+requirement needs an actual task link and, when selected, an actual test-row link.
+Missing R2, unknown R9 and duplicate T1 fail. A test inventory alone is
+insufficient. Omitted tests say `not_supplied`; selected designed tests say
+`not_run`.
+
+Use `--design-links` only to check task design IDs against supplied specification
+design refs. It does not inspect design files or verify their hashes. A task
+saying “export every row” can link to a requirement saying “export only permitted
+rows”: mechanical linkage passes while semantic correctness remains unassessed.
+An independent reviewer must inspect that contradiction.
+
+| Ask | Expected result |
+| --- | --- |
+| `supercharge /simple /invert harden this rollout plan while preserving approvals` | Improved artifact with the existing independent review and explicit module contracts. |
+| Reconcile these two dated proposals and attribute retained and rejected claims. | Converge recommendation with source-linked conflicts and unresolved choices. |
+| Compare these prompts against this frozen baseline within this budget. | Auto-Research observed results, or explicit blocked/inconclusive status. |
+| Review this finished pitch; earlier workshop receipts are unavailable. | Standalone pitch assessment with prior stages unassessed; no invented gate receipts or betting acceptance. |
+| Compile this approved plan into a bounded packet without starting it. | Current-name plan-to-goal specification/verifier packet under its trust, drift and rollback contracts; no running goal. |
+
 For the full plan-hardening stack:
 
 > Supercharge /full /basis /invert /adversarial /grade this plan: delete every named agent whose name matches a skill because I have never selected agents myself.
@@ -660,6 +689,20 @@ Follow with:
 > Now route any unproven behavioral claims to `engos-optimization-auto-research` with a bounded scorecard.
 
 ### `engos-quality-code-review`
+
+For committed-range evidence:
+
+> Collect an immutable review package for my recorded baseline and exact candidate
+> commit using task D6.S2, owner implementation-worker, generation 1 and my recorded
+> repository identity. Use a new task-owned output leaf; return the manifest receipt.
+
+Expect `ReviewPackage.v1` evidence plus a SHA-256 receipt, with no review verdict.
+The helper requires full commit IDs and excludes staged/dirty edits. Binary bytes
+remain unreviewed; changed gitlinks make collection incomplete. Follow with actual
+review and unchanged-consumer reads at the exact target. An empty net patch can
+still have multiple range commits. Required flags and output constraints are in
+[CLI reference](CLI-REFERENCE.md#committed-range-package).
+
 
 Use when:
 
@@ -1704,3 +1747,21 @@ runs the loop nor changes its execution stop conditions.
 These are source-contract comparisons, not measured behavioral improvement claims.
 Per-skill source hashes, preserved requirements and illustrative repair cases remain
 in the task's review evidence; packaging or independent textual review proves no measured benefit.
+
+## Optional documentation recipes
+
+Use `engos-quality-docs-review` for ordinary placement, drift and navigation review; its default response retains seven sections. Name a recipe when you need a particular artifact. For example: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” This produces the README draft only. “Use the `docs-bundle` recipe” instead produces README_vNext.md, docs/README_TECHNICAL.md, visuals_plan.md and the legacy array factual_audit.json, in that order.
+
+| Recipe | Use it for | Expected output |
+| --- | --- | --- |
+| `docs-bundle` | Four coordinated documentation drafts | README, technical README, visuals plan, master array audit |
+| `readme-authoring` | README narrative and verified claims | README_vNext.md ending in Claim Notes |
+| `ai-onboarding` | A short first-run path with recovery guidance | README “Use this with AI” snippet, then full Getting Started draft |
+| `information-relocation` | Preserving facts while proposing better placement | Technical README, architecture, FAQ, then relocation table |
+| `document-visuals` | Source-grounded visual planning | Hero concept, complete Mermaid with node/edge explanations, optional screenshot slots (max 3), accessibility notes |
+| `factual-audit` | Checking supplied candidate drafts | Original E summary/items JSON, edits by file, content PASS/FAIL, minimum fixes on FAIL |
+| `adversarial-doc-review` | Inversion and five-area ship assessment | Inversion, findings, scorecard, Ship Verdict, conditional fixes or proposed commands |
+
+The original [prompt pack](prompt-pack/README.md) and all seven donor prompts remain callable. Named recipes draft artifacts and propose commands; they do not authorize overwrite, install, commit, merge or release. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review. Findings-only E/F routes stay advisory.
+
+For candidate-bound Git, hosted-check and package evidence, request `docs-release-readiness` from `engos-quality-gitops-review`. It embeds a DocsShipHandoff.v1 response inside its existing seven-section report. E content PASS does not establish hosted readiness. F defaults to full release scope; explicit commit-only or merge-only scope must be labeled. Unknown evidence yields FAIL. Merge/release readiness requires independently reproduced committed documentation bytes and exact-head hosted checks; dirty snapshot bytes with green HEAD CI cannot pass. Commands remain proposals under actual authority.

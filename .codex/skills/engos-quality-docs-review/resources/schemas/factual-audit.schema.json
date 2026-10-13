@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "master-array": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim",
+          "source_paths",
+          "status",
+          "rewrite_if_needed"
+        ],
+        "properties": {
+          "claim": {
+            "type": "string"
+          },
+          "source_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "needs_revision",
+              "unclear"
+            ]
+          },
+          "rewrite_if_needed": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "prompt-e-object": {
+      "type": "object",
+      "required": [
+        "summary",
+        "items"
+      ],
+      "properties": {
+        "summary": {
+          "type": "object",
+          "required": [
+            "total_claims",
+            "verified",
+            "needs_revision",
+            "unclear"
+          ],
+          "properties": {
+            "total_claims": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "verified": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "needs_revision": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unclear": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": true
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "claim",
+              "file",
+              "status",
+              "source_paths",
+              "issue",
+              "safe_rewrite"
+            ],
+            "properties": {
+              "claim": {
+                "type": "string"
+              },
+              "file": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "verified",
+                  "needs_revision",
+                  "unclear"
+                ]
+              },
+              "source_paths": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "issue": {
+                "type": "string"
+              },
+              "safe_rewrite": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/master-array"
+    },
+    {
+      "$ref": "#/$defs/prompt-e-object"
+    }
+  ]
+}

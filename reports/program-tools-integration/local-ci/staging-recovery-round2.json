@@ -1,0 +1,20 @@
+{
+  "schema": "ProgramCIRecovery.v1",
+  "classification": "process: original intended new members were unstaged; first recovery failed staging due protected stale index lock",
+  "product_bytes_changed": false,
+  "product_sha256": "ebb3a2e8dc869a9afc18245b4008cd75cf6670873203ce1f280f3eba38f6441d",
+  "original_run": "reports/program-tools-integration/local-ci/receipt.json",
+  "original_step13": "253 passed,2 failed,16 subtests",
+  "recovery": "two failing cases after verified sealed staging in fresh managed worktree; other observations retained, not a single all-pass run",
+  "exitCode": 1,
+  "seconds": 2.751,
+  "log_sha256": "3e031eadf9da58e0a32f9eff3b37ea9b37e3fdced77324d1ab2302e4d87d75ec",
+  "tail": [
+    "E               subprocess.CalledProcessError: Command '['/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-506/test_packaged_profile_updates_0/finalized-release-fixture/scripts/package-surfaces.sh', '--version', 'v1.16.5', '--output-dir', '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-506/test_packaged_profile_updates_0/artifacts']' returned non-zero exit status 1.",
+    "",
+    "/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/lib/python3.14/subprocess.py:578: CalledProcessError",
+    "=========================== short test summary info ============================",
+    "FAILED tests/test_package_surfaces.py::test_packaged_profile_updates_verified_release_and_rolls_back",
+    "1 failed, 1 passed in 2.08s"
+  ]
+}

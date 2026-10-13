@@ -29,6 +29,29 @@ Default to `engos-quality-code-review` for pre-commit or pre-push checks. Switch
 When file output is requested, default to:
 - `reports/code-reviews/<timestamp>-<commit>.md`
 
+## Committed-range Collection (Explicit Only)
+When the user requests an immutable committed-range package, read the collection
+request guidance in `resources/references/review-targets.md`, then load the additive
+`collect` route in `resources/resource-map.json`: `resources/scripts/review_package.py`
+and its `resources/schemas/review-package.schema.json` dependency. Read the selected
+collector context for the exact command and trust limits, then invoke the helper
+with exact recorded base/head commit IDs, task/owner/generation/repository bindings,
+and a new absent output leaf under an existing nonsymlink parent. Optional spec and
+plan SHA-256 values are caller assertions. Use Python 3.11+ and supported Git/POSIX
+primitives; the standalone helper requires only stdlib and Git.
+
+The helper emits `ReviewPackage.v1` committed-range evidence and a manifest-digest
+receipt. Exit 0 means complete collection only; exit 2 means incomplete/freeze
+failure; exit 3 means invalid/unsupported/unsafe input. Preserve partial output and
+use a new leaf rather than overwriting it. Binary evidence remains unreviewed;
+changed gitlinks make collection incomplete without traversing submodules.
+Collection captures endpoint net changes plus all range commit objects, excluding
+staged/dirty edits, intermediate patches and unchanged consumers. Keep the ordinary
+`review` route, default `HEAD`, six narrative sections and `Findings.v1` unchanged.
+Independently bound consumer verification and actual review remain separate;
+collection success cannot produce a review/security/correctness verdict or merge
+permission. Read needed unchanged consumers at the exact target before findings.
+
 ## Core Principles
 - **Scope discipline**: changes must match what the commit message describes
 - **Simplicity first**: flag over-engineered solutions and unnecessary spread

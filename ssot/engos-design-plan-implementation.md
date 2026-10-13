@@ -224,3 +224,36 @@ for independently reviewable outcomes and interface contracts. Both sources are
 MIT licensed. No donor body, template, executor or code is included; fixed file
 counts, mandatory delegation and blanket TDD are not adopted. These design choices
 have not established measured benefit or native workflow equivalence.
+
+## Optional mechanical graph check
+
+For a supplied TaskPlan.v1, load the `graph_check` resource route and run
+`python3 resources/scripts/graph_check.py --plan PLAN.json`. The self-contained
+helper reads only bundled TaskPlan/TaskContract schema bytes and supplied input.
+It checks duplicate task/local verification IDs, known dependencies/completions,
+self dependencies and cycles across the entire graph, including completed tasks.
+Use its sorted `ready_task_ids` only as dependency readiness: it grants no write
+or execution authority and does not assess requirement or implementation quality.
+
+Completed tasks are caller claims. A completed child with an uncompleted parent
+appears in `completion_inconsistencies` without fabricated completion. Preserve
+`readiness_holds` from the exact unresolved array; separate pointer observations
+expose null spec/consumed hashes and task authority even when that array is empty.
+Do not suppress an otherwise dependency-ready node because these observations
+exist, or interpret a nonnull value as verified authority.
+
+Output is GraphCheckResult.v1 JSON. Exit 0 means selected mechanical checks pass;
+1 means schema/graph failure; 2 means input, CLI or package inability to assess.
+Any error leaves the ready frontier empty. Semantic correctness, behavior,
+authority, requirement linkage and implementation correctness remain unassessed.
+
+Example: two independent roots T1/T2 return both, sorted. A task T3 depending on
+both remains blocked until both IDs occur in the supplied completed list. A
+cycle involving even completed nodes fails. Evaluate both examples and missing
+or duplicate IDs before trusting the helper; inspect actual task outcomes and
+execution authority separately. The blank dependency-map template stays manual.
+
+CLI input rejects unpaired Unicode surrogates in object keys or values with
+structured `invalid_json` output and exit 2. Valid non-ASCII and paired Unicode
+remain exact, without normalization. The serializer defensively escapes lone
+surrogates if a direct Python API caller bypasses input decoding.

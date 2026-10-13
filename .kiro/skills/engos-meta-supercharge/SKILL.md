@@ -13,6 +13,8 @@ Produce a better artifact than the user started with, then explain why it is bet
 
 When the user needs measured behavioral proof that one prompt or capability variant is better than another, SuperCharge should harden the candidates first, then hand off to `engos-optimization-auto-research` instead of overstating critique as evidence.
 
+Choose by the requested outcome, not merely the number of pasted inputs. Use SuperCharge to strengthen the current artifact, including comparisons among its candidate versions, with the existing selected modules and independent reviews. Use engos-reconciliation-converge when the deliverable is a source-attributed reconciliation of materially conflicting inputs into one recommendation. Use engos-optimization-auto-research when the user asks for measured behavioral benefit against a baseline. These are separate jobs, not a mandatory chain; naming a companion neither invokes it nor expands authority. Preserve explicit module choices, terminal controls and all existing output contracts.
+
 ## Agent Operating Contract
 When emitted as an agent, this capability remains advisory by default.
 

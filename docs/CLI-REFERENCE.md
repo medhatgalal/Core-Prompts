@@ -49,13 +49,78 @@ The skill bundles `resources/references/review-targets.md` and
 `resources/scripts/load_module.py --route review` assembles their complete content
 from an installed skill root. The manifest is `resources/resource-map.json`.
 Canonical resources live under
-`sources/capability-resources/engos-quality-code-review/`. No committed-range
-collector is introduced by this contract change.
+`sources/capability-resources/engos-quality-code-review/`. Explicit committed-range collection adds the `collect` route and the standalone
+`resources/scripts/review_package.py` helper; ordinary review keeps its defaults.
 
 Requested JSON output uses `Findings.v1`, alongside the six normal narrative
 sections. Schema validation checks shape and status consistency; actual source
 reads, evidence truth and consumer impact still require review. Missing evidence
 is incomplete/unverifiable. Ready remains advisory and grants no merge authority.
+
+
+### Committed-range package
+
+```text
+python3 <owner-skill>/resources/scripts/review_package.py \
+  --repo <repository> --base <full-recorded-baseline-commit> \
+  --head <full-exact-candidate-commit> --out <new-task-owned-leaf> \
+  --task-id <id> --owner <owner> --generation <positive-integer> \
+  --repository-id <controller-repository-id> \
+  [--spec-sha256 <64-lowercase-hex>] [--plan-sha256 <64-lowercase-hex>]
+```
+
+Requires Python 3.11+, Git with `--no-lazy-fetch`/`--attr-source`, and POSIX
+nofollow directory descriptors and no-replace hard links. Supply exact lowercase
+full commit IDs with an ancestor base. Output must be a new absent leaf under an
+existing nonsymlink parent, with no dot/dotdot components; no overwrite or resume.
+Exit 0 is complete collection, 2 incomplete/freeze failure, 3 invalid/unsupported/
+unsafe input. A frozen package emits one JSON `ReviewPackageResult.v1` receipt with
+relative `manifest.json`, status and SHA-256; retain that digest independently.
+Freeze verifies the created manifest inode and exact bytes before linking, after
+linking and after cleanup; mismatches emit no receipt. These observations do not
+lock out arbitrary same-UID changes racing subsequent syscalls or after the receipt.
+Independent retained-digest verification remains required. Preserve partial leaves for separately authorized
+cleanup; retry into a new leaf.
+
+The `ReviewPackage.v1` manifest references all range raw commits, net endpoint
+patch/raw/numstat and both-side raw changed blobs. Binary bytes are collected;
+changed gitlinks retain IDs but make collection incomplete without reading nested
+content. Staged/dirty changes, intermediate patches and unchanged consumers are
+excluded. Task/repository/spec/plan identities are caller assertions; source hashes
+and receipt support integrity, not authentication, review or correctness/security
+judgment. Independent expected-binding verification and actual source/consumer
+review remain separate. See the bundled review-target reference for the full
+coverage and trust contract.
+
+## Optional planning link checkers
+
+From the selected skill's bundle directory:
+
+```sh
+python3 resources/scripts/graph_check.py --plan PLAN.json
+python3 resources/scripts/trace_check.py --spec SPEC.json --plan PLAN.json
+python3 resources/scripts/trace_check.py --spec SPEC.json --plan PLAN.json --tests TESTS.json --design-links
+```
+
+Load planner `graph_check`, or specification `trace_check` and, for selected
+tests, `trace_tests`. `trace_examples` provides positive and contradictory
+fixtures. These commands use standard-library Python and explicit bundled schema
+bytes, with no repository or sibling-install discovery. Each emits one
+deterministic JSON object. Exit 0 means selected mechanical checks passed; 1
+means schema, ID, graph or selected-linkage/coverage failure; 2 means CLI, input
+or package inability to assess. Errors leave the frontier or matrix empty.
+Semantic correctness, behavior and authority remain `not_assessed`. A nonnull
+plan spec digest is compared to the exact supplied specification bytes, and spec
+references are opaque.
+
+Optional retrieval selectors use the existing resource loader: Converge
+`source-conflict` reads `resources/examples/source-conflict.md`; pitch review
+`standalone-pitch` reads `resources/examples/standalone-pitch.md`; shaping
+`stage-policy` reads `resources/references/stage-policy-dependencies.md`. These
+are resource routes, not native commands. The dependency map points to the
+existing gate owner; it does not bundle gate policy into the conductor. The
+compiler keeps the `engos-design-plan-to-goal` name; rename and aliases remain
+deferred.
 
 ## Failure diagnosis skill
 
@@ -310,8 +375,9 @@ python3 resources/scripts/load_module.py --route dependency_map --format text
 
 `task_plan` includes its sibling `task-contract.schema.json` dependency. Narrative
 planning needs no JSON sidecar. The map template records manually inspected
-relationships; no graph checker or ready-frontier command is shipped. Loader output
-proves assembly only, and schema shape does not prove task quality or authorization.
+relationships; the optional graph checker reports a mechanical ready frontier.
+Loader output proves assembly only, and graph or schema results do not prove task
+quality, semantic correctness or authorization.
 
 ### Lint, Seal, And Check A Plan To Goal Packet
 
@@ -548,3 +614,18 @@ The candidate starts from current `ssot/<slug>.md`. Its authoring resources are 
 ## Advisory routing metadata
 
 UAC plan/judge exposes `preview.descriptor_preview.job_contract` and lists job-contract changes in its descriptor delta. `job_contract.routing_fitness` uses `RoutingFitness.v1`; generated `.meta/skill-job-map.json` uses `SkillJobMap.v2` with a `SkillJobMapReceipt.v1` content receipt. Generation and validation share the source compiler. The metadata is not a runtime consumer or permission grant. [Contract and limits](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Optional documentation recipes
+
+Docs Review recipe names and exact outputs are listed in [the recipe examples](EXAMPLES.md#optional-documentation-recipes). Generic Docs and GitOps reviews retain their seven sections. The [original prompt pack](prompt-pack/README.md) remains callable. GitOps `docs-release-readiness` embeds a DocsShipHandoff.v1 response in Recommended Commands or Actions; it grants no execution authority. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness.
+
+The Docs skill bundles a read-only factual audit helper. Replace `<skill>` and `<file.json>` with the actual skill directory and supplied input:
+
+```bash
+python3 <skill>/resources/scripts/factual_audit.py validate --format master-array --input <file.json>
+python3 <skill>/resources/scripts/factual_audit.py roundtrip --format prompt-e-object --input <file.json>
+```
+
+Select `master-array` or `prompt-e-object` explicitly for either command. Validation returns format, valid and issues; roundtrip emits the same original-format payload only on success. Exit codes are 0 valid, 2 invalid JSON/shape/counts, and 3 CLI/input failure. Roundtrip preserves extensions and item/key order, never recomputes counts or writes the input. No cross-format conversion or DocsFactualAudit.v1 envelope is implemented.
+
+Successful factual roundtrip emits the validated original UTF-8 JSON wire text unchanged, including numeric tokens and escaped Unicode. Decimal validation preserves finite JSON values beyond binary-float range. Summary counts use JSON Schema integer semantics (0.0 is integral); booleans and fractional counts fail. This establishes format preservation, not factual truth.

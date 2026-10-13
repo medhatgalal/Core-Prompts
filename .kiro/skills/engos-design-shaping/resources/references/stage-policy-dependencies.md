@@ -1,0 +1,7 @@
+# Shaping job and policy dependencies
+
+The conductor owns workshop progression, work orders, human questions and acceptance recording. The pitch reviewer owns direct assessment of a supplied pitch using its standalone contract. The gate skill owns G0–G4 predicates, rubric calibration, review-evidence contracts and its mechanical helper. This is a dependency map, not another gate policy.
+
+For an actual transition resolve engos-quality-shaping-gate through the existing host/candidate binding and read its SKILL plus the selected route: intake, frame or research includes gates.md; shaped includes gates.md, rubrics.md and review-evidence.md; delivery includes gates.md and review-evidence.md. Runtime use additionally needs runtime and applicable runtime-tools resources and current helper help. Preserve the current policy binding and historical receipts. The conductor's ways-of-working/handover resources own how actual human choices and accepted scope are recorded; gate resources judge their evidence.
+
+Missing required owner or route coverage holds the dependent transition; this package does not silently install a sibling, copy policy, create receipts or invent a new gate. A direct finished-pitch review may report earlier stages unassessed without running the workshop. Standalone scoring cannot stand in for full-shaping acceptance. Human acceptance and source/saved-target delivery remain distinct; a separate authorized build starts at specification for the accepted handover scope.

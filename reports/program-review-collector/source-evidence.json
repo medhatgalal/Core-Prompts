@@ -1,0 +1,227 @@
+{
+  "schema": "D6S2SourcePreparationEvidence.v1",
+  "status": "author_repairs_tested_pending_same_independent_reviewer",
+  "entry_head": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+  "accepted_contract_sha256": {
+    "json": "d63794fd008b872b8318b3d9f9b1447709b91d80604ebccb9861b78f3aa1bc88",
+    "md": "43946a1b3e289dee753a9a89c83b50c1a02e0d9eecd2562e8eb466b04c8c4809"
+  },
+  "source_hashes": {
+    "sources/capability-resources/engos-quality-code-review/resource-map.json": "1be20a064844c2fadbe2cba16f218d463b5eb44a05155813f4aece611724cf77",
+    "sources/capability-resources/engos-quality-code-review/references/review-targets.md": "7a09a4de93723b417790b3c91975b28012567011278506e98672a54a92a51b10",
+    "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f",
+    "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c",
+    "sources/capability-resources/engos-quality-code-review/scripts/review_package.py": "bbb604a13fb587eeaccd005fb69dadd16ea2ef91925c7e0b1df5c4963ce02aef",
+    "tests/test_review_package.py": "4b5bf642c09660a2bf1ae4884f2bb29bc69f4509a498ac446b9f99ec784f189f",
+    "reports/program-review-collector/candidate.md": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85",
+    "ssot/engos-quality-code-review.md": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+  },
+  "runtime": {
+    "python": "3.14.8",
+    "git": "2.56.0",
+    "platform": "macOS POSIX; APFS rejects tested nonUTF8 pathname bytes"
+  },
+  "commands": [
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q",
+      "evidence": "red.txt",
+      "result": "failed against absent collector; exact endpoint receipt assertion discriminated required behavior"
+    },
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q --junitxml=reports/program-review-collector/source-fixtures.xml",
+      "evidence": "final-source-tests.txt",
+      "result": "passed with explicit unsupported-filesystem raw-path skip"
+    },
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q -k raw_length",
+      "evidence": "deterministic-fault-check.txt",
+      "result": "passed after making missing-OID-length injection independent of random commit ID bytes"
+    },
+    {
+      "command": "git diff --check",
+      "result": "passed"
+    },
+    {
+      "command": "<validation-python> -I <canonical-helper> --help",
+      "result": "passed; exact flags read back"
+    },
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q -k d6src",
+      "evidence": "independent-repair-red.txt",
+      "result": "actual default-loader failure and false-complete manifest fault windows reproduced before repair; exact raw bytes retained in repair-raw-execution-logs.json"
+    },
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q --junitxml=reports/program-review-collector/repair-source-fixtures.xml",
+      "evidence": "repair-final-source-tests.txt",
+      "result": "final repaired source assertions passed, explicit unsupported-filesystem raw-path skip retained; new same-length mutation and descriptor failure checks included"
+    }
+  ],
+  "fixture_accounting": {
+    "RP-01": {
+      "source_test_functions": [
+        "test_rp01_exact_endpoints"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-02": {
+      "source_test_functions": [
+        "test_rp02_merge_dag"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-03": {
+      "source_test_functions": [
+        "test_rp03_divergent_range",
+        "test_rp03_invalid_args",
+        "test_rp03_invalid_object_and_reverse"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-04": {
+      "source_test_functions": [
+        "test_rp04_empty_and_canceling"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-05": {
+      "source_test_functions": [
+        "test_rp05_binary_attributes"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-06": {
+      "source_test_functions": [
+        "test_rp06_nonutf8_posix",
+        "test_rp06_paths_modes_rename_delete",
+        "test_rp06_type_change"
+      ],
+      "result": "assertions_passed",
+      "skips": [
+        "host filesystem rejects non-UTF8 pathname bytes (EILSEQ)"
+      ]
+    },
+    "RP-07": {
+      "source_test_functions": [
+        "test_rp07_missing_actual_endpoint",
+        "test_rp07_protocol_faults",
+        "test_rp07_rename_score_framing"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-08": {
+      "source_test_functions": [
+        "test_rp08_unsafe_outputs"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-09": {
+      "source_test_functions": [
+        "test_rp09_artifact_hardlink",
+        "test_rp09_output_faults"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-10": {
+      "source_test_functions": [
+        "test_rp10_actual_producer_drift",
+        "test_rp10_bindings_and_source_drift",
+        "test_rp10_drift_during_partial_write",
+        "test_rp10_invalid_adjacent_sources"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-11": {
+      "source_test_functions": [
+        "test_rp11_environment_no_mutation",
+        "test_rp11_replacements_and_hooks"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-12": {
+      "source_test_functions": [
+        "test_rp12_unsupported_preflight"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-13": {
+      "source_test_functions": [
+        "test_rp13_determinism_closed_schema"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-14": {
+      "source_test_functions": [
+        "test_rp14_canonical_standalone_runtime"
+      ],
+      "result": "assertions_passed",
+      "skips": [],
+      "limit": "Canonical copied owner runtime only; five generated provider copies are controller-owned and unverified in this source lane."
+    },
+    "RP-16": {
+      "source_test_functions": [
+        "test_rp16_hostile_initialized_submodule"
+      ],
+      "result": "assertions_passed",
+      "skips": []
+    },
+    "RP-15": {
+      "result": "hosted_not_run",
+      "source_prerequisite": "git_repo asserts real Git exists; absence cannot vacuously skip. Fault shims are explicit and fixture-scoped.",
+      "limit": "Hosted shared CI selected-list admission and Git/Python observations belong to controller."
+    }
+  },
+  "failure_history": [
+    {
+      "evidence": "green-attempt1.txt",
+      "classification": "test/platform",
+      "disposition": "APFS invalid pathname split into separate explicit skip; preserve other special-path assertions. Isolated os/sys proxies stop fixture mutation from leaking into pytest teardown; preserve capability checks."
+    },
+    {
+      "evidence": "green-attempt2.txt",
+      "classification": "test",
+      "disposition": "Trace assertion initially confused --no-lazy-fetch with actual fetch command. Inspect command tokens and positive start/child events; actual submodule instrumentation remains mandatory."
+    }
+  ],
+  "limits": [
+    "No review verdict or correctness/security judgment from collection.",
+    "Canonical SSOT unchanged; candidate awaits same-slug UAC.",
+    "No generated/.meta/shared pipeline change, build, UAC, push, merge, release or home install by worker.",
+    "RP-14 generated copy evidence, RP-15 hosted gates, D6.S3 consumer verification are deferred to controller.",
+    "Collection source checks do not prove actual model reading, unchanged-consumer coverage, final integration safety or mainline acceptance."
+  ],
+  "independent_findings": {
+    "reviewed_head": "31b6635c1ec2712918093e54779e5392d17a4659",
+    "retained_review": {
+      "reports/program-review-collector/independent-source-review-round1.json": "b00858e648c544644d64a162d22c91a99efa94ba50019d79766506fd2e7d4639",
+      "reports/program-review-collector/independent-source-review-round1.md": "69c09aef7f7b9f67b52986d7214c493f1cf1ea3614c473e4b4426109730f0437"
+    },
+    "D6SRC-001": "author repair proposed; strict default review and collect route assembly now exercised",
+    "D6SRC-002": "author repair proposed; retained created manifest fd/identity/exact bytes checked across publication boundaries; actual-main positive fault probes reject prelink/link-swap/postlink/postcleanup tamper without receipt",
+    "closure_authority": "Only same independent reviewer may resolve findings; writer has not self-closed them."
+  },
+  "repair_scope": {
+    "changed": "collector resource/context, review reference, candidate, CLI trust detail, focused tests and evidence only",
+    "unchanged": [
+      "accepted ReviewPackage schema bytes",
+      "resource-map routes/dependencies",
+      "Findings.v1 schema bytes",
+      "canonical SSOT body",
+      "loader and shared source",
+      "generated/.meta surfaces"
+    ],
+    "manifest_limit": "Checks detect observed freeze-boundary faults; no arbitrary same-UID race immunity or protection after last observation/receipt is claimed. Retained independent receipt verification remains required.",
+    "failure_protocol": "Manifest mismatch/freeze failure exits 2 with bounded operation/code stderr and no stdout receipt; unsafe marker/partial is preserved rather than rewritten into a fabricated incomplete result."
+  }
+}

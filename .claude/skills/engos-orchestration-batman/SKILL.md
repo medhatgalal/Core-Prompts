@@ -67,6 +67,8 @@ Named companions:
 
 Call only the companions required by the current stage and resolve them through the companion resolution rule above. Never instruct the host to use every available capability. SuperCharge supplies lenses; it does not own or execute Batman's flow.
 
+Ordinary planning and goal-packet compilation do not activate Batman. engos-design-plan-implementation owns ordinary plans; engos-design-plan-to-goal may compile a separately requested bounded packet and verifier. Neither is a Batman alias or a direct-worker replacement for this controller. When this protocol is explicitly requested, retain every stage, gate, companion-resolution rule, independent role, current plan_generation, task/owner identity and controller-owned evidence/landing check below. A compiled packet neither satisfies those gates nor grants runtime or landing authority.
+
 ## Tool Boundaries
 - allowed: inspect task and repository state, use the host's subagent dispatch mechanism, maintain controller artifacts, run controller-owned validation and Git checks, and perform authorized landing actions
 - forbidden: hidden routing, undeclared delegation, production code, failing tests, or implementation fixes by the controller, reviewer self-approval, unauthorized live writes, or destructive actions without approval

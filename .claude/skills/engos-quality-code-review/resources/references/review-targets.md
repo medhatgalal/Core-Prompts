@@ -107,3 +107,14 @@ truth, consumer applicability, severity or acceptance authority. The reviewer an
 consuming operator must check those semantics against actual evidence before
 using the verdict. A successful capture or collection is not review completion.
 No verdict grants repair, posting, approval, merge, installation or release rights.
+
+## Optional collection request
+
+Ordinary review loads only the review route and keeps the default HEAD target.
+When immutable committed-range evidence is explicitly requested, select the
+separate collect route. Supply exact full recorded ancestor base/candidate IDs,
+task ID, owner, positive generation, repository identity and a new task-owned
+output leaf; optional spec/plan digests remain caller assertions. The selected
+collect context contains the command and full coverage/trust limits. Collection
+completion remains separate from actual review, unchanged-consumer reads and
+Findings.v1 judgment. Staged/dirty requests retain the review snapshot contract.

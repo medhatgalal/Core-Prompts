@@ -1,0 +1,1342 @@
+[
+  {
+    "slug": "engos-reconciliation-converge",
+    "node_identities_preserved": true,
+    "aliases_shortcuts": [],
+    "original_protected_invariants": [
+      {
+        "id": "engos-reconciliation-converge:L24:8b97e9494f3e",
+        "heading": "Tool Boundaries",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 32,
+        "sha256": "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
+        "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L25:62f01eb43cca",
+        "heading": "Tool Boundaries",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 33,
+        "sha256": "62f01eb43cca94f1e72732bf7ece66d4ab2f266909bc60437d925b43f1f372a6",
+        "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L44:77357dbdaba3",
+        "heading": "Required Inputs",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 52,
+        "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+        "text": "## Required Inputs",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L50:3d4b9f171064",
+        "heading": "Required Output",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 58,
+        "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+        "text": "## Required Output",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L51:a9de7942a85e",
+        "heading": "Required Output",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 59,
+        "sha256": "a9de7942a85ee986371c35aaf2d5b38051cc9e94d43c66eb841c2cb00a8d3047",
+        "text": "Every substantial writer-authored proposal must include:",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L59:076d33a2406e",
+        "heading": "Required Output",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 67,
+        "sha256": "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
+        "text": "- `Open Questions` when user steering is still required",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L62:baded02bbe49",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 70,
+        "sha256": "baded02bbe493e82786498d86b54aac14d7520773c0bca46f91194022153d29a",
+        "text": "- Do not create a Frankenstein merge.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L63:59e7c12bd462",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 71,
+        "sha256": "59e7c12bd4626c63fd05944ad8f25781248cd018b9f91b150d671ce43ef193c9",
+        "text": "- Do not invent missing preferences.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L64:409db19b8d64",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 72,
+        "sha256": "409db19b8d6428eb22a2cdcd4173c811dd4a77a6483126ca68f43f28bfa8a22f",
+        "text": "- Do not hide major conflicts behind bland synthesis language.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L65:00d8595edbcf",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 73,
+        "sha256": "00d8595edbcfe6a6680d0eb0867e752edbaf1e4d8aa2a6fafb34b6aca9770fb8",
+        "text": "- Do not skip the rationale for rejected ideas.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L66:57e6b1d178f1",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 74,
+        "sha256": "57e6b1d178f18cd57b54e0c07fe1c2f6f38e50b577feefc0671ec11f87245426",
+        "text": "- Do not claim execution authority beyond synthesis and recommendation.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L97:8196306b3005",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 105,
+        "sha256": "8196306b3005ff113b62a447d8bdfc6249f968c15a3bc5b7a28f8eadbe266301",
+        "text": "Hard constraint: Do NOT create a \u201cFrankenstein\u201d merge. If elements do not fit cleanly, surface the conflict and ask the user to choose.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L136:9175f6ed1836",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 144,
+        "sha256": "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
+        "text": "11) Ask the user for a choice when taste/judgment is required.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L137:b08323849156",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 145,
+        "sha256": "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
+        "text": "- Do not assume preferences.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L140:05772d0999a4",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 148,
+        "sha256": "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
+        "text": "PAUSE when user input is required.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L144:a3db8fcf819c",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 152,
+        "sha256": "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
+        "text": "- Keeps only the strongest elements",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L198:fac7308fc753",
+        "heading": "Recommendation Artifact Review",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 206,
+        "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+        "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L202:283e7be539f4",
+        "heading": "Three Roles",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 210,
+        "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+        "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L203:dea1be25a70c",
+        "heading": "Three Roles",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 211,
+        "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+        "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L205:32659bf6e33c",
+        "heading": "Three Roles",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 213,
+        "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+        "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L209:420f35be46a1",
+        "heading": "Finding and Repair Cycle",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 217,
+        "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+        "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L211:ddb7354cd7f7",
+        "heading": "Finding and Repair Cycle",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 219,
+        "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+        "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L213:ee18a182fff0",
+        "heading": "Finding and Repair Cycle",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 221,
+        "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+        "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+        "kind": "invariant",
+        "mapped_to": []
+      }
+    ],
+    "generated_protected_invariants": [
+      {
+        "id": "engos-reconciliation-converge:L24:8b97e9494f3e",
+        "heading": "Tool Boundaries",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 32,
+        "sha256": "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
+        "text": "- allowed: inspect source material, compare options, produce synthesis artifacts, and ask for user steering when taste or judgment is required",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L25:62f01eb43cca",
+        "heading": "Tool Boundaries",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 33,
+        "sha256": "62f01eb43cca94f1e72732bf7ece66d4ab2f266909bc60437d925b43f1f372a6",
+        "text": "- forbidden: pretending incompatible ideas fit together cleanly, inventing missing user preferences, or claiming wider orchestration or runtime-control authority",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L44:77357dbdaba3",
+        "heading": "Required Inputs",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 52,
+        "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+        "text": "## Required Inputs",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L50:3d4b9f171064",
+        "heading": "Required Output",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 58,
+        "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+        "text": "## Required Output",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L51:a9de7942a85e",
+        "heading": "Required Output",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 59,
+        "sha256": "a9de7942a85ee986371c35aaf2d5b38051cc9e94d43c66eb841c2cb00a8d3047",
+        "text": "Every substantial writer-authored proposal must include:",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L59:076d33a2406e",
+        "heading": "Required Output",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 67,
+        "sha256": "076d33a2406edf0097c3c99b351d408dfb7169bc20633b3333e2a8da6b8ee3f1",
+        "text": "- `Open Questions` when user steering is still required",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L62:baded02bbe49",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 70,
+        "sha256": "baded02bbe493e82786498d86b54aac14d7520773c0bca46f91194022153d29a",
+        "text": "- Do not create a Frankenstein merge.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L63:59e7c12bd462",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 71,
+        "sha256": "59e7c12bd4626c63fd05944ad8f25781248cd018b9f91b150d671ce43ef193c9",
+        "text": "- Do not invent missing preferences.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L64:409db19b8d64",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 72,
+        "sha256": "409db19b8d6428eb22a2cdcd4173c811dd4a77a6483126ca68f43f28bfa8a22f",
+        "text": "- Do not hide major conflicts behind bland synthesis language.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L65:00d8595edbcf",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 73,
+        "sha256": "00d8595edbcfe6a6680d0eb0867e752edbaf1e4d8aa2a6fafb34b6aca9770fb8",
+        "text": "- Do not skip the rationale for rejected ideas.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L66:57e6b1d178f1",
+        "heading": "Constraints",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 74,
+        "sha256": "57e6b1d178f18cd57b54e0c07fe1c2f6f38e50b577feefc0671ec11f87245426",
+        "text": "- Do not claim execution authority beyond synthesis and recommendation.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L97:8196306b3005",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 105,
+        "sha256": "8196306b3005ff113b62a447d8bdfc6249f968c15a3bc5b7a28f8eadbe266301",
+        "text": "Hard constraint: Do NOT create a \u201cFrankenstein\u201d merge. If elements do not fit cleanly, surface the conflict and ask the user to choose.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L136:9175f6ed1836",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 144,
+        "sha256": "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
+        "text": "11) Ask the user for a choice when taste/judgment is required.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L137:b08323849156",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 145,
+        "sha256": "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
+        "text": "- Do not assume preferences.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L140:05772d0999a4",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 148,
+        "sha256": "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
+        "text": "PAUSE when user input is required.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L144:a3db8fcf819c",
+        "heading": "The Prompt (paste into the target AI)",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 152,
+        "sha256": "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
+        "text": "- Keeps only the strongest elements",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L198:fac7308fc753",
+        "heading": "Recommendation Artifact Review",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 206,
+        "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
+        "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L202:283e7be539f4",
+        "heading": "Three Roles",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 210,
+        "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
+        "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L203:dea1be25a70c",
+        "heading": "Three Roles",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 211,
+        "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
+        "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L205:32659bf6e33c",
+        "heading": "Three Roles",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 213,
+        "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
+        "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L209:420f35be46a1",
+        "heading": "Finding and Repair Cycle",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 217,
+        "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
+        "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L211:ddb7354cd7f7",
+        "heading": "Finding and Repair Cycle",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 219,
+        "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
+        "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-reconciliation-converge:L213:ee18a182fff0",
+        "heading": "Finding and Repair Cycle",
+        "source": "ssot/engos-reconciliation-converge.md",
+        "source_line": 221,
+        "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+        "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+        "kind": "invariant",
+        "mapped_to": []
+      }
+    ],
+    "evidence_class": "actual isolated builder readback; source-line binding changes are expected"
+  },
+  {
+    "slug": "engos-audit-pitch-review",
+    "node_identities_preserved": true,
+    "aliases_shortcuts": [],
+    "original_protected_invariants": [
+      {
+        "id": "engos-audit-pitch-review:L82:1f12a8ae4884",
+        "heading": "Pitch Template Structure",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 91,
+        "sha256": "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
+        "text": "- [Required when crossing seams. Strongly recommended otherwise.]",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L99:4fa5085199bb",
+        "heading": "Delivery Context",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 108,
+        "sha256": "4fa5085199bb9580ec4aba8e344c9156fc25c08c3f0ad6032d23ad1ba34e1606",
+        "text": "- **Appetite/cycle:** Read the supplied pitch or accepted framing decision; never",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L101:c2c14fd10fb0",
+        "heading": "Delivery Context",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 110,
+        "sha256": "c2c14fd10fb03bebaa1fa20aaabc15e3bcfcca7872a830c64d8d985dc927f709",
+        "text": "- **Team and target product:** Use only supplied project context. Unknown ownership",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L105:e08acdebc7f1",
+        "heading": "Delivery Context",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 114,
+        "sha256": "e08acdebc7f11f78dea95f2fa66ead9a670a764fd23feb2e27f04d00307521e8",
+        "text": "- **Shaping exit criteria:** Apply the selected rubric at shaping depth; do not",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L111:9c1655933ac1",
+        "heading": "Goal Alignment",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 120,
+        "sha256": "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
+        "text": "- **Below the line (stretch):** Only if committed work finishes early",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L122:ded09ee944d3",
+        "heading": "Component Extraction",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 131,
+        "sha256": "ded09ee944d3bd722a516ab22ad28d33af9831a4e2f1a70b12b06dbd97ddcfd6",
+        "text": "The skill does NOT maintain an external registry or assume mappings. It only reports what the pitch itself states. If a pitch doesn't name its components, that's a gap flagged in the Architecture dimension.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L127:01082470313d",
+        "heading": "`engos-audit-pitch-review components <source>`",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 136,
+        "sha256": "01082470313d9a12f3baf5e6bee8af0e1bc27d93accd00d7a3bcd6b7db9b7ea8",
+        "text": "- Note team ownership only if stated in the pitch",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L227:3a5a23592da7",
+        "heading": "`engos-audit-pitch-review integration-proof <source>`",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 236,
+        "sha256": "3a5a23592da7eec9d3b6961b2c1e52e8cf72be4551f38b94615823d485de7f2c",
+        "text": "- If no seams are crossed: state \"no integration proof required\" with score guidance",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L239:f2e69c214033",
+        "heading": "Prerequisites (only if architecture is missing)",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 248,
+        "sha256": "f2e69c2140334091118b73ffb88b54015313f5fcdab805e2f67d494a2f75f31a",
+        "text": "### Prerequisites (only if architecture is missing)",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L251:2cb8c82423bb",
+        "heading": "What You Do NOT Need to Prove",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 260,
+        "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+        "text": "### What You Do NOT Need to Prove",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L264:5d312dddd77f",
+        "heading": "Gap to Close",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 273,
+        "sha256": "5d312dddd77f581696db13628a6747490fd04c06b79b147ef15c1a75b0f495ef",
+        "text": "- No seams \u2192 \"Integration proof not required for single-team, single-component work. Score: 8-10 automatic.\"",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L287:d0ce23f12ddf",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 296,
+        "sha256": "d0ce23f12ddf39af7c942e3fce33d27837b0e6a6323a8feab2ecf23036b8682e",
+        "text": "When a pitch names or crosses an architectural seam, the review must inspect an",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L289:bf29230fb128",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 298,
+        "sha256": "bf29230fb1285818a6a6f9176a97e5603c07c846c6e41f538bd3ddfe050d8d9a",
+        "text": "be `yes` or \"Ready to bet\". The required bundle is:",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L291:ead573a8bd88",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 300,
+        "sha256": "ead573a8bd8834a0b9557b7828a8848e616f25ccbbd3d39cdea078979c702efc",
+        "text": "| Artifact | Required evidence |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L296:64a09cb1082c",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 305,
+        "sha256": "64a09cb1082cd95762164d6b3968d7d96ff36a643672d4e58fbbc12978ea7dd3",
+        "text": "| API / contracts table | Provided and required interfaces, contract state, owner/action, evidence |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L300:8e4345164baf",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 309,
+        "sha256": "8e4345164baf9b101241bdf02c37059c54c4adc7ae14759a79cef5b3db83da12",
+        "text": "The gate fails closed when a required artifact is absent, unsupported, fabricated,",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L301:687d65ce6dd9",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 310,
+        "sha256": "687d65ce6dd902141e7025fa0729599f2ef285aa0f620515b61323b814fa7bf1",
+        "text": "or marked only as an unverified assumption. A `blocked` placement can remain a",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L302:79c1cd99a428",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 311,
+        "sha256": "79c1cd99a42834618c9b2dea2d0cc6ba8ae4edb9cf3e005f0f52af17c6da6fc1",
+        "text": "named rabbit hole only when the review records the exact human/platform step,",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L304:6be5aa23d8cf",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 313,
+        "sha256": "6be5aa23d8cfc0a7eb5036a58230ebf77eca269ad92aebf4db4a6135ec00ec01",
+        "text": "that does not cross an architectural seam may omit the bundle only if the",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L308:7d7152ffce5d",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 317,
+        "sha256": "7d7152ffce5d7a21a2e0b80f49631cd126a7d85241a90755088b96ac0fdc1005",
+        "text": "prerequisite, not a new weighted score. The review output must report:",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L311:7ed7ec38d6ca",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 320,
+        "sha256": "7ed7ec38d6ca94a53202def3053b7ec90ca2e7ebb8398214e5583bb72a802e30",
+        "text": "- each required artifact's authoring, render, and placement status",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L321:71b7e2d10948",
+        "heading": "Integration Proof Graduated Scale",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 330,
+        "sha256": "71b7e2d1094852a967b41a82ffe668f3b91de49a2929a0ec73e321bec4fd2eed",
+        "text": "| Contract State | What It Means | What the Pitch Must Show |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L325:cdbe1dcbd0f8",
+        "heading": "Integration Proof Graduated Scale",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 334,
+        "sha256": "cdbe1dcbd0f8607242a7abb2652ce32cb7ed7069a9b0db9becc21abd57d6015f",
+        "text": "| **Does not exist** | No contract/API defined between these areas | Must work with owning team to define contract BEFORE betting. Spike proving the seam works. Score depends on progress. |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L341:1c74a6e1a201",
+        "heading": "Scoring Thresholds",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 350,
+        "sha256": "1c74a6e1a201be8668c0ea714dd6b8c83e862ced48c1f66400cfd47a3007f9b8",
+        "text": "- **1-2:** Title only or one-liner.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L347:8122b0b659dc",
+        "heading": "Shaped Status Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 356,
+        "sha256": "8122b0b659dc140ffca0b213f06e07af2646032a4b0e300ff07dbc519bae9e59",
+        "text": "- **no** = Empty, title-only, or just a problem statement with no shaping.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L349:a24e26f1e6ab",
+        "heading": "Shaped Status Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 358,
+        "sha256": "a24e26f1e6ab71b90d217e56d01503aea468125d80688a3c7b2e066a3621641e",
+        "text": "**Key rule:** If rabbit holes are listed but not resolved (no answers, no owners, no evidence of investigation), the pitch is `partial` regardless of other scores. Rabbit hole resolution is a shaping exit criterion \u2014 they must be addressed DURING shaping, not deferred to build.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L352:d67872156327",
+        "heading": "Verdict Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 361,
+        "sha256": "d678721563279d04b01868241f2a4d964146a93a98196428c393480d8fa4ea6c",
+        "text": "- Verdict must match shaped status. A `partial` pitch CANNOT have a \"ready to bet\" verdict.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L359:fe96762105ac",
+        "heading": "Shaping Contributors",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 368,
+        "sha256": "fe96762105acda5e852f2bfb890230dab147ba94771de1b405f27452e4f5cc7f",
+        "text": "- **Acceptable** only when the pitch explicitly explains why Product participation",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L360:ad96b6efc4f2",
+        "heading": "Shaping Contributors",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 369,
+        "sha256": "ad96b6efc4f26c8510e5ec676d05bc1c6ee5cc3bdf4131216833f56d88b3b8da",
+        "text": "is not required and identifies the person or role with authority over the problem,",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L365:5772c336924c",
+        "heading": "Review Output Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 374,
+        "sha256": "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
+        "text": "- **Next actions must be specific to THIS pitch.** Not generic template advice. If the advice could apply to any pitch without modification, it doesn't belong in the review.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L366:bbfde09aa596",
+        "heading": "Review Output Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 375,
+        "sha256": "bbfde09aa596af6b19a1188bf1ea48ba4adf45e24c055af1dae3fce8ce893743",
+        "text": "- **Scores must be consistent.** The same pitch reviewed twice must produce the same score. If appetite-scaling changes the score, note why.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L447:77357dbdaba3",
+        "heading": "Required Inputs",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 456,
+        "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+        "text": "## Required Inputs",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L454:3d4b9f171064",
+        "heading": "Required Output",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 463,
+        "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+        "text": "## Required Output",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L472:e65ea8fc2cdb",
+        "heading": "Required Output",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 481,
+        "sha256": "e65ea8fc2cdb5df64f038f8b02ccce37374a4aad3ffca08cd953aa1ee10f07ba",
+        "text": "- What you do NOT need to prove",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L532:940e8b557bbd",
+        "heading": "Seam 1: Auth + Transport Swap (local tool host \u2192 target application)",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 541,
+        "sha256": "940e8b557bbd00643abfbdf3ac5e0fcfe0473c8df94372f26bed0c1a672659b8",
+        "text": "- **Current evidence:** None (code-level research only)",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L535:2cb8c82423bb",
+        "heading": "What You Do NOT Need to Prove",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 544,
+        "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+        "text": "### What You Do NOT Need to Prove",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L556:3f409f81bf49",
+        "heading": "Evaluation Rubric",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 565,
+        "sha256": "3f409f81bf498a3744f2f94a21c81d8972f254564b5b010e550d0e3b03e1f203",
+        "text": "| Verdict matches shaped status | `partial` never says \"ready to bet\" | Mismatch |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L559:d267c1f0186b",
+        "heading": "Evaluation Rubric",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 568,
+        "sha256": "d267c1f0186bb6e7a2decf8b4e1917b3d52c43d984f5d5666b7966f16f7045b1",
+        "text": "| Component extraction accurate | Only reports what the pitch states | Invents or assumes mappings |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L565:8862702a682e",
+        "heading": "Tool Boundaries",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 574,
+        "sha256": "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb",
+        "text": "- **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call).",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L588:7c1abbd4f7b2",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 597,
+        "sha256": "7c1abbd4f7b26cd9e35f9516a7f552784c20e9973bbad8138ba72805958bbe68",
+        "text": "for that mode only. The actual human appetite and current evidence override the",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L589:95f76c66d454",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 598,
+        "sha256": "95f76c66d454e7435eee0d91799935db050d0b1c6c57c0f462b43535949d7913",
+        "text": "historical four-week/team assumptions in examples and context. Required three",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L591:2fa57cd93caf",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 600,
+        "sha256": "2fa57cd93caf9c46329210af42fd6a35952cab6a209ee527aff49d778a356880",
+        "text": "Rabbit holes require sourced mitigations; do not demand a finished implementation",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L599:99b3fadaa7eb",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 608,
+        "sha256": "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506",
+        "text": "missing owner, unresolved material question or required artifact.",
+        "kind": "invariant",
+        "mapped_to": []
+      }
+    ],
+    "generated_protected_invariants": [
+      {
+        "id": "engos-audit-pitch-review:L82:1f12a8ae4884",
+        "heading": "Pitch Template Structure",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 91,
+        "sha256": "1f12a8ae4884f5bb77c4e17af2dbed2798f851275d9c97062df43f211a50cee4",
+        "text": "- [Required when crossing seams. Strongly recommended otherwise.]",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L99:4fa5085199bb",
+        "heading": "Delivery Context",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 108,
+        "sha256": "4fa5085199bb9580ec4aba8e344c9156fc25c08c3f0ad6032d23ad1ba34e1606",
+        "text": "- **Appetite/cycle:** Read the supplied pitch or accepted framing decision; never",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L101:c2c14fd10fb0",
+        "heading": "Delivery Context",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 110,
+        "sha256": "c2c14fd10fb03bebaa1fa20aaabc15e3bcfcca7872a830c64d8d985dc927f709",
+        "text": "- **Team and target product:** Use only supplied project context. Unknown ownership",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L105:e08acdebc7f1",
+        "heading": "Delivery Context",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 114,
+        "sha256": "e08acdebc7f11f78dea95f2fa66ead9a670a764fd23feb2e27f04d00307521e8",
+        "text": "- **Shaping exit criteria:** Apply the selected rubric at shaping depth; do not",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L111:9c1655933ac1",
+        "heading": "Goal Alignment",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 120,
+        "sha256": "9c1655933ac1952f2c40c6f8d15f790558497fa2073641e829f78cc65c8f8006",
+        "text": "- **Below the line (stretch):** Only if committed work finishes early",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L122:ded09ee944d3",
+        "heading": "Component Extraction",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 131,
+        "sha256": "ded09ee944d3bd722a516ab22ad28d33af9831a4e2f1a70b12b06dbd97ddcfd6",
+        "text": "The skill does NOT maintain an external registry or assume mappings. It only reports what the pitch itself states. If a pitch doesn't name its components, that's a gap flagged in the Architecture dimension.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L127:01082470313d",
+        "heading": "`engos-audit-pitch-review components <source>`",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 136,
+        "sha256": "01082470313d9a12f3baf5e6bee8af0e1bc27d93accd00d7a3bcd6b7db9b7ea8",
+        "text": "- Note team ownership only if stated in the pitch",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L227:3a5a23592da7",
+        "heading": "`engos-audit-pitch-review integration-proof <source>`",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 236,
+        "sha256": "3a5a23592da7eec9d3b6961b2c1e52e8cf72be4551f38b94615823d485de7f2c",
+        "text": "- If no seams are crossed: state \"no integration proof required\" with score guidance",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L239:f2e69c214033",
+        "heading": "Prerequisites (only if architecture is missing)",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 248,
+        "sha256": "f2e69c2140334091118b73ffb88b54015313f5fcdab805e2f67d494a2f75f31a",
+        "text": "### Prerequisites (only if architecture is missing)",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L251:2cb8c82423bb",
+        "heading": "What You Do NOT Need to Prove",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 260,
+        "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+        "text": "### What You Do NOT Need to Prove",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L264:5d312dddd77f",
+        "heading": "Gap to Close",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 273,
+        "sha256": "5d312dddd77f581696db13628a6747490fd04c06b79b147ef15c1a75b0f495ef",
+        "text": "- No seams \u2192 \"Integration proof not required for single-team, single-component work. Score: 8-10 automatic.\"",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L287:d0ce23f12ddf",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 296,
+        "sha256": "d0ce23f12ddf39af7c942e3fce33d27837b0e6a6323a8feab2ecf23036b8682e",
+        "text": "When a pitch names or crosses an architectural seam, the review must inspect an",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L289:bf29230fb128",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 298,
+        "sha256": "bf29230fb1285818a6a6f9176a97e5603c07c846c6e41f538bd3ddfe050d8d9a",
+        "text": "be `yes` or \"Ready to bet\". The required bundle is:",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L291:ead573a8bd88",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 300,
+        "sha256": "ead573a8bd8834a0b9557b7828a8848e616f25ccbbd3d39cdea078979c702efc",
+        "text": "| Artifact | Required evidence |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L296:64a09cb1082c",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 305,
+        "sha256": "64a09cb1082cd95762164d6b3968d7d96ff36a643672d4e58fbbc12978ea7dd3",
+        "text": "| API / contracts table | Provided and required interfaces, contract state, owner/action, evidence |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L300:8e4345164baf",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 309,
+        "sha256": "8e4345164baf9b101241bdf02c37059c54c4adc7ae14759a79cef5b3db83da12",
+        "text": "The gate fails closed when a required artifact is absent, unsupported, fabricated,",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L301:687d65ce6dd9",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 310,
+        "sha256": "687d65ce6dd902141e7025fa0729599f2ef285aa0f620515b61323b814fa7bf1",
+        "text": "or marked only as an unverified assumption. A `blocked` placement can remain a",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L302:79c1cd99a428",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 311,
+        "sha256": "79c1cd99a42834618c9b2dea2d0cc6ba8ae4edb9cf3e005f0f52af17c6da6fc1",
+        "text": "named rabbit hole only when the review records the exact human/platform step,",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L304:6be5aa23d8cf",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 313,
+        "sha256": "6be5aa23d8cfc0a7eb5036a58230ebf77eca269ad92aebf4db4a6135ec00ec01",
+        "text": "that does not cross an architectural seam may omit the bundle only if the",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L308:7d7152ffce5d",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 317,
+        "sha256": "7d7152ffce5d7a21a2e0b80f49631cd126a7d85241a90755088b96ac0fdc1005",
+        "text": "prerequisite, not a new weighted score. The review output must report:",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L311:7ed7ec38d6ca",
+        "heading": "Shaping Artifact Completeness Gate",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 320,
+        "sha256": "7ed7ec38d6ca94a53202def3053b7ec90ca2e7ebb8398214e5583bb72a802e30",
+        "text": "- each required artifact's authoring, render, and placement status",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L321:71b7e2d10948",
+        "heading": "Integration Proof Graduated Scale",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 330,
+        "sha256": "71b7e2d1094852a967b41a82ffe668f3b91de49a2929a0ec73e321bec4fd2eed",
+        "text": "| Contract State | What It Means | What the Pitch Must Show |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L325:cdbe1dcbd0f8",
+        "heading": "Integration Proof Graduated Scale",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 334,
+        "sha256": "cdbe1dcbd0f8607242a7abb2652ce32cb7ed7069a9b0db9becc21abd57d6015f",
+        "text": "| **Does not exist** | No contract/API defined between these areas | Must work with owning team to define contract BEFORE betting. Spike proving the seam works. Score depends on progress. |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L341:1c74a6e1a201",
+        "heading": "Scoring Thresholds",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 350,
+        "sha256": "1c74a6e1a201be8668c0ea714dd6b8c83e862ced48c1f66400cfd47a3007f9b8",
+        "text": "- **1-2:** Title only or one-liner.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L347:8122b0b659dc",
+        "heading": "Shaped Status Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 356,
+        "sha256": "8122b0b659dc140ffca0b213f06e07af2646032a4b0e300ff07dbc519bae9e59",
+        "text": "- **no** = Empty, title-only, or just a problem statement with no shaping.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L349:a24e26f1e6ab",
+        "heading": "Shaped Status Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 358,
+        "sha256": "a24e26f1e6ab71b90d217e56d01503aea468125d80688a3c7b2e066a3621641e",
+        "text": "**Key rule:** If rabbit holes are listed but not resolved (no answers, no owners, no evidence of investigation), the pitch is `partial` regardless of other scores. Rabbit hole resolution is a shaping exit criterion \u2014 they must be addressed DURING shaping, not deferred to build.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L352:d67872156327",
+        "heading": "Verdict Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 361,
+        "sha256": "d678721563279d04b01868241f2a4d964146a93a98196428c393480d8fa4ea6c",
+        "text": "- Verdict must match shaped status. A `partial` pitch CANNOT have a \"ready to bet\" verdict.",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L359:fe96762105ac",
+        "heading": "Shaping Contributors",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 368,
+        "sha256": "fe96762105acda5e852f2bfb890230dab147ba94771de1b405f27452e4f5cc7f",
+        "text": "- **Acceptable** only when the pitch explicitly explains why Product participation",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L360:ad96b6efc4f2",
+        "heading": "Shaping Contributors",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 369,
+        "sha256": "ad96b6efc4f26c8510e5ec676d05bc1c6ee5cc3bdf4131216833f56d88b3b8da",
+        "text": "is not required and identifies the person or role with authority over the problem,",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L365:5772c336924c",
+        "heading": "Review Output Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 374,
+        "sha256": "5772c336924c3a9029d790c9f4d2ef7e9fa41c7fbe0fd94464aad016842034e3",
+        "text": "- **Next actions must be specific to THIS pitch.** Not generic template advice. If the advice could apply to any pitch without modification, it doesn't belong in the review.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L366:bbfde09aa596",
+        "heading": "Review Output Rules",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 375,
+        "sha256": "bbfde09aa596af6b19a1188bf1ea48ba4adf45e24c055af1dae3fce8ce893743",
+        "text": "- **Scores must be consistent.** The same pitch reviewed twice must produce the same score. If appetite-scaling changes the score, note why.",
+        "kind": "guarded_invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L447:77357dbdaba3",
+        "heading": "Required Inputs",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 456,
+        "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+        "text": "## Required Inputs",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L454:3d4b9f171064",
+        "heading": "Required Output",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 463,
+        "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+        "text": "## Required Output",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L472:e65ea8fc2cdb",
+        "heading": "Required Output",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 481,
+        "sha256": "e65ea8fc2cdb5df64f038f8b02ccce37374a4aad3ffca08cd953aa1ee10f07ba",
+        "text": "- What you do NOT need to prove",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L532:940e8b557bbd",
+        "heading": "Seam 1: Auth + Transport Swap (local tool host \u2192 target application)",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 541,
+        "sha256": "940e8b557bbd00643abfbdf3ac5e0fcfe0473c8df94372f26bed0c1a672659b8",
+        "text": "- **Current evidence:** None (code-level research only)",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L535:2cb8c82423bb",
+        "heading": "What You Do NOT Need to Prove",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 544,
+        "sha256": "2cb8c82423bbf65482a53508075b2648530c4be27392436d40b3417e48399932",
+        "text": "### What You Do NOT Need to Prove",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L556:3f409f81bf49",
+        "heading": "Evaluation Rubric",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 565,
+        "sha256": "3f409f81bf498a3744f2f94a21c81d8972f254564b5b010e550d0e3b03e1f203",
+        "text": "| Verdict matches shaped status | `partial` never says \"ready to bet\" | Mismatch |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L559:d267c1f0186b",
+        "heading": "Evaluation Rubric",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 568,
+        "sha256": "d267c1f0186bb6e7a2decf8b4e1917b3d52c43d984f5d5666b7966f16f7045b1",
+        "text": "| Component extraction accurate | Only reports what the pitch states | Invents or assumes mappings |",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L565:8862702a682e",
+        "heading": "Tool Boundaries",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 574,
+        "sha256": "8862702a682ef182057d03212b0f4a8b9914bae7c26beb903bbc3a43c7bf02bb",
+        "text": "- **Forbidden:** Write directly to the delivery tracker spreadsheet. Change pitch priority or goal mapping without user approval. Approve pitches for betting (that's leadership's call).",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L588:7c1abbd4f7b2",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 597,
+        "sha256": "7c1abbd4f7b26cd9e35f9516a7f552784c20e9973bbad8138ba72805958bbe68",
+        "text": "for that mode only. The actual human appetite and current evidence override the",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L589:95f76c66d454",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 598,
+        "sha256": "95f76c66d454e7435eee0d91799935db050d0b1c6c57c0f462b43535949d7913",
+        "text": "historical four-week/team assumptions in examples and context. Required three",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L591:2fa57cd93caf",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 600,
+        "sha256": "2fa57cd93caf9c46329210af42fd6a35952cab6a209ee527aff49d778a356880",
+        "text": "Rabbit holes require sourced mitigations; do not demand a finished implementation",
+        "kind": "invariant",
+        "mapped_to": []
+      },
+      {
+        "id": "engos-audit-pitch-review:L599:99b3fadaa7eb",
+        "heading": "Guided Shaping Entry and Review Precedence",
+        "source": "ssot/engos-audit-pitch-review.md",
+        "source_line": 608,
+        "sha256": "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506",
+        "text": "missing owner, unresolved material question or required artifact.",
+        "kind": "invariant",
+        "mapped_to": []
+      }
+    ],
+    "evidence_class": "actual isolated builder readback; source-line binding changes are expected"
+  }
+]

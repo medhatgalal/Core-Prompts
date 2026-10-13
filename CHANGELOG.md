@@ -1,5 +1,33 @@
 ## Unreleased
 
+- Clarify how to choose between hardening, reconciliation, baseline experiments,
+  shaping, standalone pitch review, ordinary plans and bounded goal packets.
+  Add optional planner/specification graph and trace check examples, including
+  explicit mechanical versus semantic, authority and behavior limits. Document
+  committed-range package collection and its resource and platform requirements
+  without implying implementation review, release or installation. Correct the
+  current Converge descriptive pseudo-mode to zero modes and the nine stale pitch
+  metadata identities to the existing full-name command declarations; add no
+  command, alias, gate-policy change, variation module or shaping-policy removal.
+  Preserve all seven prompt donors and prior changelog entries.
+
+- Add explicit committed-range collection to `engos-quality-code-review`: a
+  standalone stdlib/Git helper, closed `ReviewPackage.v1` schema, exact endpoint
+  and source bindings, raw path/blob evidence, and exclusive atomic manifest
+  publication. Preserve ordinary review defaults and `Findings.v1`. Binary data
+  stays unreviewed; changed gitlinks remain incomplete without nested traversal.
+  Collection completeness is separate from correctness/security judgment,
+  consumer verification, merge, release and installation.
+
+- Add optional documentation recipes under the existing Docs Review and GitOps
+  Review skills. Preserve all seven prompt-pack donors, default seven-section
+  reviews, the execution-only substantial rewrite review trigger and advisory
+  command boundaries. Preserve the two original factual audit formats with a
+  read-only validator and same-format roundtrip; add candidate-bound handoff
+  schema and committed-tree versus snapshot evidence requirements. Active ship
+  proposals follow current package-before-tag and dual-remote order. This is
+  contract/resource evidence, not behavioral promotion, release or installation.
+
 - Add explicit source-owned resource imports with a finite registry, consumer
   declarations, generated provenance receipts and portable standalone loading.
   `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`

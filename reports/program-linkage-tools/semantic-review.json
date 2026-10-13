@@ -1,0 +1,62 @@
+{
+  "schema": "IndependentLinkageSemanticReview.v1",
+  "reviewer": "program_strategy_reviewer_astra",
+  "reviewedAt": "2026-10-13T00:22:09.050214+00:00",
+  "independence": "Reviewer did not author fixture or production checker. Judgment formed by reading actual requirement/task/test content, separately from mechanical linkage run.",
+  "candidate_head": "e627bd1c9c83fb8507f77bd57fee78d61bb6cb72",
+  "fixture": {
+    "path": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+    "sha256": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7"
+  },
+  "near_miss": {
+    "name": "semantically_wrong_but_linked",
+    "verdict": "rejected",
+    "required_behavior": {
+      "pointer": "/semantically_wrong_but_linked/spec/requirements/0",
+      "id": "R1",
+      "priority": "must",
+      "condition": "When export is requested",
+      "behavior": "Export only permitted rows",
+      "acceptance": [
+        "Export only permitted rows"
+      ]
+    },
+    "contradicting_task": {
+      "pointer": "/semantically_wrong_but_linked/plan/tasks/0/outcome",
+      "id": "T1",
+      "requirement_ids": [
+        "R1"
+      ],
+      "text": "Export every row, including forbidden rows"
+    },
+    "contradicting_test": {
+      "pointer": "/semantically_wrong_but_linked/tests/tests/0",
+      "id": "TEST1",
+      "requirements": [
+        "R1"
+      ],
+      "expected": "Every row appears, including forbidden rows",
+      "oracle": "Every row appears",
+      "fixture": "Rows with mixed permissions"
+    },
+    "reason": "For the explicitly mixed-permission fixture, exporting every row includes forbidden rows. That contradicts R1 exclusion even though T1 and TEST1 carry the correct requirement identifier. TEST1 would reward the forbidden behavior instead of discriminating it. The task verification text still saying only permitted rows adds an internal contradiction; it does not repair the requested outcome or test oracle.",
+    "mechanical_observation": {
+      "actual_run": true,
+      "mechanical_passed": true,
+      "semantic_correctness": "not_assessed",
+      "behavioral_verification": "not_assessed",
+      "test_execution": "not_run"
+    },
+    "acceptance_meaning": "The required independent semantic rejection of a mechanically linked wrong fixture is established for these exact fixture bytes; no real exporter implementation or empirical prompt/model comparison was run."
+  },
+  "positive_control": {
+    "name": "positive",
+    "actual_mechanical_passed": true,
+    "semantic_scope": "R1 task/expected/oracle align with only permitted rows; R2 specification and TEST2 require row-order preservation. T2 outcome and its local oracle restate permitted-row filtering rather than explicitly describing ordering; do not treat this minimal mechanical positive fixture as proof of a complete executable plan or implemented behavior.",
+    "verdict": "mechanical_positive_only_no_full_implementation_approval"
+  },
+  "limits": [
+    "Reviewer judgment is source-semantic evidence, not external tool enforcement or measured behavioral superiority.",
+    "No test execution or model/native evaluation was inferred from a TestDesign artifact."
+  ]
+}

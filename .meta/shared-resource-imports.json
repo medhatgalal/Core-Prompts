@@ -12,6 +12,54 @@
           "destination": "schemas/spec-contract.schema.json"
         }
       ]
+    },
+    {
+      "id": "task-plan-v1",
+      "owner": "engos-design-plan-implementation",
+      "source": "schemas/task-plan.schema.json",
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+      "consumers": [
+        {
+          "slug": "engos-design-specify-change",
+          "destination": "schemas/task-plan.schema.json"
+        }
+      ]
+    },
+    {
+      "id": "task-contract-v1",
+      "owner": "engos-design-plan-implementation",
+      "source": "schemas/task-contract.schema.json",
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+      "consumers": [
+        {
+          "slug": "engos-design-specify-change",
+          "destination": "schemas/task-contract.schema.json"
+        }
+      ]
+    },
+    {
+      "id": "test-design-v1",
+      "owner": "engos-quality-testing-review",
+      "source": "schemas/test-design.schema.json",
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2",
+      "consumers": [
+        {
+          "slug": "engos-design-specify-change",
+          "destination": "schemas/test-design.schema.json"
+        }
+      ]
+    },
+    {
+      "id": "docs-ship-handoff-v1",
+      "owner": "engos-quality-docs-review",
+      "source": "schemas/docs-ship-handoff.schema.json",
+      "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df",
+      "consumers": [
+        {
+          "slug": "engos-quality-gitops-review",
+          "destination": "schemas/docs-ship-handoff.schema.json"
+        }
+      ]
     }
   ]
 }

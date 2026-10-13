@@ -196,24 +196,7 @@
     "Do not infer behavior from docs alone when code or scripts are available to verify it.",
     "Do not leave the caller with generic advice that lacks file placement or evidence."
   ],
-  "modes": [
-    {
-      "mode_slug": "failure-mode-to-avoid",
-      "display_name": "Failure Mode To Avoid",
-      "source_refs": [
-        "ssot/engos-quality-docs-review.md"
-      ],
-      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    }
-  ],
+  "modes": [],
   "benchmark_sources": [
     {
       "label": "Architecture benchmark",
@@ -270,7 +253,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
+          "classification": "additive",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -282,13 +265,13 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
           "scorecard": {
             "baseline_richness": 2,
-            "candidate_richness": 5,
+            "candidate_richness": 7,
             "baseline_operational_score": 2,
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
@@ -328,7 +311,7 @@
       "scorecard": {
         "source_fidelity": 10,
         "baseline_richness": 2,
-        "candidate_richness": 5,
+        "candidate_richness": 7,
         "baseline_operational_score": 2,
         "candidate_operational_score": 2,
         "baseline_preserved_in_resource": false,
@@ -344,7 +327,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+      "effective_sha256": "bbca36db404ffd5b91e12f8f4352a1b435cbc451e54af6063966dbec32095abc",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -464,7 +447,7 @@
               "path": "ssot/engos-quality-docs-review.md",
               "start_line": 32,
               "end_line": 34,
-              "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+              "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a"
             }
           },
           {
@@ -474,7 +457,7 @@
               "path": "ssot/engos-quality-docs-review.md",
               "start_line": 89,
               "end_line": 93,
-              "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+              "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a"
             }
           }
         ]
@@ -489,7 +472,7 @@
               "path": "ssot/engos-quality-docs-review.md",
               "start_line": 89,
               "end_line": 93,
-              "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+              "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a"
             }
           }
         ]
@@ -502,9 +485,58 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-docs-review.md",
-        "ssot_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
-        "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
-        "resources": [],
+        "ssot_sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a",
+        "effective_sha256": "bbca36db404ffd5b91e12f8f4352a1b435cbc451e54af6063966dbec32095abc",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/schemas/factual-audit.schema.json",
+            "sha256": "77bc55f5f0a6ed445654ae08e2b34d4fa06e9620fd790e96a1ae6ebe7874f5dd"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-master.json",
+            "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-prompt-e.json",
+            "sha256": "9b12fd2475ee7237db2a5c6418c28fd5864749587a3b47e0cb6bba23b5924fd0"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/scripts/factual_audit.py",
+            "sha256": "651512372e59f8e57b3c0cb4d0b3a39a20dd47c493aec904543244504c0f0187"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/factual-audit.md",
+            "sha256": "0d0513029aafca8eed8b72a142da5abd9cd69e75342aabb1d9a188bd68fc8ff1"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/docs-bundle.md",
+            "sha256": "005a5cfeb3b25790f97e7ba75c8447323e3c6a23fbf5f09c493be390de972d52"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/readme-authoring.md",
+            "sha256": "4038cd955a84c49808e0de424e27894e6ae99d387b5cd43f5d726cfabe19aa8c"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/ai-onboarding.md",
+            "sha256": "04d3afb80093f3641f39a085a308c604b33ee42f2df36c2673bd05943b284f58"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/information-relocation.md",
+            "sha256": "75b56d74736bab883fb39d3c1f1ed0dd7843d86a1e23eaa887a943ca212ade78"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/document-visuals.md",
+            "sha256": "f1161e46a889c60481a64b242f432802d7d9cdc3524b9229b4a3c79a73d29bc4"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+            "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/references/adversarial-doc-review.md",
+            "sha256": "7cc727a9df14e03731d479f806b1bb598467354b0715ee6638ef36d37bfdf88e"
+          }
+        ],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {},
@@ -522,7 +554,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "3b877b24a321236406c769c3ce8ae994f0fa2e7faed57814d0b876249f93202d"
+        "mapping_sha256": "30f917d94915ff963bcfee15bbb1bf757252a884e53c3dd4fc32b4dbeffb7bf0"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

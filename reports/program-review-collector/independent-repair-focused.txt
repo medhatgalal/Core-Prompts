@@ -1,0 +1,18 @@
+...............F......                                                   [100%]
+=================================== FAILURES ===================================
+___________________ test_d6src001_progressive_route_closure ____________________
+
+    def test_d6src001_progressive_route_closure():
+        from intent_pipeline.capability_resources import load_resource_bundle
+        review = load_resource_bundle(SOURCE, 'review')
+        collect = load_resource_bundle(SOURCE, 'collect')
+>       assert [r['path'] for r in review['resources']] == ['references/review-targets.md', 'schemas/findings.schema.json']
+E       AssertionError: assert ['schemas/fin...w-targets.md'] == ['references/....schema.json']
+E
+E         At index 0 diff: 'schemas/findings.schema.json' != 'references/review-targets.md'
+E         Use -v to get more diff
+
+tests/test_review_package.py:543: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_package.py::test_d6src001_progressive_route_closure
+1 failed, 21 passed, 68 deselected in 14.69s

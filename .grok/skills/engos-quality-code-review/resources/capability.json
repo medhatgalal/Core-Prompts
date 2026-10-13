@@ -240,7 +240,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
+          "classification": "additive",
           "scenario_results": [
             {
               "id": "commit_review_procedure",
@@ -259,7 +259,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -321,7 +321,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+      "effective_sha256": "41d58ef8ec1e02dc3916751277c56192560f7fc6187c428acfb755e37d39dc2b",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -453,7 +453,7 @@
               "path": "ssot/engos-quality-code-review.md",
               "start_line": 11,
               "end_line": 11,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           },
           {
@@ -463,7 +463,7 @@
               "path": "ssot/engos-quality-code-review.md",
               "start_line": 13,
               "end_line": 13,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           },
           {
@@ -471,9 +471,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 43,
-              "end_line": 48,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "start_line": 66,
+              "end_line": 71,
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           },
           {
@@ -481,9 +481,9 @@
             "heading": "Invocation Hints",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 74,
-              "end_line": 80,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "start_line": 97,
+              "end_line": 103,
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           }
         ]
@@ -500,9 +500,9 @@
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 57,
-              "end_line": 59,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "start_line": 80,
+              "end_line": 82,
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           },
           {
@@ -510,9 +510,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 350,
-              "end_line": 355,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "start_line": 373,
+              "end_line": 378,
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           }
         ]
@@ -527,7 +527,7 @@
               "path": "ssot/engos-quality-code-review.md",
               "start_line": 13,
               "end_line": 13,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           },
           {
@@ -535,9 +535,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-quality-code-review.md",
-              "start_line": 350,
-              "end_line": 355,
-              "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+              "start_line": 373,
+              "end_line": 378,
+              "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
             }
           }
         ]
@@ -548,9 +548,9 @@
           "condition_and_handoff": "| release readiness, changelog, CI, packaging, or merge gates matter | `engos-quality-gitops-review` | commit quality alone is not enough for release or branch health |",
           "source": {
             "path": "ssot/engos-quality-code-review.md",
-            "start_line": 66,
-            "end_line": 66,
-            "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+            "start_line": 89,
+            "end_line": 89,
+            "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -559,9 +559,9 @@
           "condition_and_handoff": "| behavior changed and test confidence is weak | `engos-quality-testing-review` | test coverage and edge-case discovery need a dedicated pass |",
           "source": {
             "path": "ssot/engos-quality-code-review.md",
-            "start_line": 67,
-            "end_line": 67,
-            "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+            "start_line": 90,
+            "end_line": 90,
+            "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -570,9 +570,9 @@
           "condition_and_handoff": "| interface, architecture, or migration risk is material | `engos-design-architecture` | structural risk needs architectural judgment, not just commit review |",
           "source": {
             "path": "ssot/engos-quality-code-review.md",
-            "start_line": 68,
-            "end_line": 68,
-            "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+            "start_line": 91,
+            "end_line": 91,
+            "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -581,9 +581,9 @@
           "condition_and_handoff": "| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |",
           "source": {
             "path": "ssot/engos-quality-code-review.md",
-            "start_line": 69,
-            "end_line": 69,
-            "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+            "start_line": 92,
+            "end_line": 92,
+            "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -592,9 +592,9 @@
           "condition_and_handoff": "| doc drift or example drift is part of the commit | `engos-quality-docs-review` | keep documentation review explicit and separate |",
           "source": {
             "path": "ssot/engos-quality-code-review.md",
-            "start_line": 70,
-            "end_line": 70,
-            "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+            "start_line": 93,
+            "end_line": 93,
+            "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -603,9 +603,9 @@
           "condition_and_handoff": "| reviewer comments need to be implemented | `engos-delivery-address-code-review` | this review gate should not mutate files |",
           "source": {
             "path": "ssot/engos-quality-code-review.md",
-            "start_line": 71,
-            "end_line": 71,
-            "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+            "start_line": 94,
+            "end_line": 94,
+            "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
           },
           "interpretation": "source_clause_requires_stage_review"
         }
@@ -617,8 +617,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-code-review.md",
-        "ssot_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
-        "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+        "ssot_sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85",
+        "effective_sha256": "41d58ef8ec1e02dc3916751277c56192560f7fc6187c428acfb755e37d39dc2b",
         "resources": [
           {
             "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
@@ -626,7 +626,15 @@
           },
           {
             "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
-            "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+            "sha256": "7a09a4de93723b417790b3c91975b28012567011278506e98672a54a92a51b10"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json",
+            "sha256": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+            "sha256": "bbb604a13fb587eeaccd005fb69dadd16ea2ef91925c7e0b1df5c4963ce02aef"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -646,7 +654,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "b5f978ed47c53b90104938791cd9ce4596888849845f64ece40b42aa0c448d32"
+        "mapping_sha256": "af88d85eadad12ce6ac7fea00ad8ff903c105ebc861dbcc4e0b1d424c9929940"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

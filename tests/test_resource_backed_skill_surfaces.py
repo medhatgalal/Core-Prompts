@@ -320,3 +320,85 @@ def test_actual_architecture_declarations_preserve_exact_curated_identity():
         assert mode['invocations'] == []
         for field in ('mode_summary', 'required_inputs', 'expected_outputs', 'examples', 'uplift_notes'):
             assert mode[field] == prior[field]
+
+
+def test_instruction_seams_exact_source_metadata_conversion(tmp_path, monkeypatch):
+    """Exercise the approved one-time normalization using actual source and fabric paths."""
+    import copy
+    import importlib.util
+    from types import SimpleNamespace
+    modules = []
+    for name, script in [('seams_builder', 'build-surfaces.py'), ('seams_uac', 'uac-import.py')]:
+        spec = importlib.util.spec_from_file_location(name, ROOT / 'scripts' / script)
+        module = importlib.util.module_from_spec(spec)
+        monkeypatch.setitem(sys.modules, name, module)
+        spec.loader.exec_module(module)
+        monkeypatch.setattr(module, 'ROOT', tmp_path)
+        modules.append(module)
+    builder, uac = modules
+    monkeypatch.setattr(builder, 'CAPABILITY_RESOURCE_SOURCE_DIR', tmp_path / 'sources/capability-resources')
+    # Real baseline resolver and descriptor persistence operate in the isolated fixture.
+    shutil.copytree(ROOT / 'sources/ssot-baselines', tmp_path / 'sources/ssot-baselines')
+    (tmp_path / 'ssot').mkdir()
+    (tmp_path / '.meta/capabilities').mkdir(parents=True)
+    manifest_rows = json.loads((ROOT / '.meta/manifest.json').read_text())
+    if isinstance(manifest_rows, dict):
+        manifest_rows = manifest_rows['ssot_sources']
+    for slug, route, expected_count in [('engos-reconciliation-converge', 'source-conflict', 0),
+                                         ('engos-audit-pitch-review', 'standalone-pitch', 9)]:
+        candidate = ROOT / 'reports/program-instruction-seams' / f'{slug}-candidate.md'
+        text = candidate.read_text() if candidate.exists() else (ROOT / 'ssot' / f'{slug}.md').read_text()
+        path = tmp_path / 'ssot' / f'{slug}.md'
+        path.write_text(text)
+        resource_root = tmp_path / 'sources/capability-resources' / slug
+        shutil.copytree(ROOT / 'sources/capability-resources' / slug, resource_root)
+        stored_path = tmp_path / '.meta/capabilities' / f'{slug}.json'
+        prior = json.loads((ROOT / '.meta/capabilities' / f'{slug}.json').read_text())
+        frozen = json.loads((ROOT / 'tests/fixtures/instruction-seams-metadata.json').read_text())[slug]
+        prior['modes'] = frozen['original_modes']
+        stored_path.write_text(json.dumps(prior))
+        manifest = next(row for row in manifest_rows if row['slug'] == slug)
+        entry = SimpleNamespace(slug=slug, display_name=manifest.get('display_name', slug), path=path, body=text)
+        quality = {'final_candidate_text': text}
+        preview, _ = uac._build_descriptor_preview({'manifest': manifest, 'items': []}, quality_result=quality)
+        applied, bound = uac._merge_existing_descriptor_for_apply(slug, preview, ssot_text=text, quality_result=quality)
+        assert bound
+        for field in ('historical_baseline', 'quality_validation_matrix', 'job_contract'):
+            assert applied[field] == prior[field]
+        stored_path.write_text(json.dumps(applied))
+        built = builder.resolve_descriptor(entry, manifest, prior['job_contract'])
+        assert built['modes'] == applied['modes'] == preview['modes']
+        assert len(built['modes']) == expected_count
+        assert [[m['entry_kind'], m['mode_slug'], m['display_name']] for m in built['modes']] == frozen['expected_identities']
+        assert all(m['entry_kind'] == 'command' and m['mode_slug'].startswith(slug + '-')
+                   and m['invocations'] == [] for m in built['modes'])
+        readback = json.loads(stored_path.read_text())
+        assert readback == built
+        for field in ('historical_baseline', 'quality_validation_matrix'):
+            assert readback[field] == prior[field]
+        assert builder.resolve_descriptor(entry, manifest, prior['job_contract']) == built
+        repeated, bound = uac._merge_existing_descriptor_for_apply(slug, built, ssot_text=text, quality_result=quality)
+        assert bound and repeated['modes'] == built['modes']
+        # Detached resource closure: no sibling/repository access is needed for this route.
+        detached = tmp_path / ('detached-' + slug)
+        shutil.copytree(resource_root, detached)
+        selected = load_resource_bundle(detached, route)
+        assert [row['path'] for row in selected['resources']] == [f'examples/{route}.md']
+        assert selected['resources'][0]['content'] == (detached / f'examples/{route}.md').read_text()
+        if expected_count:
+            assert '### `engos-audit-pitch-review components <source>`' in text
+            # Source-matched curation survives; stale identity cannot inherit it.
+            current = copy.deepcopy(built)
+            current['modes'][0]['mode_summary'] = 'Reviewed source-grounded creation guidance'
+            current['modes'].append(dict(current['modes'][0], mode_slug='pitch-stale', mode_summary='Unmatched curation'))
+            stored_path.write_text(json.dumps(current))
+            refreshed, _ = uac._build_descriptor_preview({'manifest': manifest, 'items': []}, quality_result=quality)
+            assert refreshed['modes'][0]['mode_summary'] == current['modes'][0]['mode_summary']
+            assert not any(m['mode_slug'] == 'pitch-stale' for m in refreshed['modes'])
+            merged, bound = uac._merge_existing_descriptor_for_apply(slug, refreshed, ssot_text=text, quality_result=quality)
+            assert bound and merged['modes'] == refreshed['modes']
+            stored_path.write_text(json.dumps(merged))
+            assert builder.resolve_descriptor(entry, manifest, prior['job_contract'])['modes'] == refreshed['modes']
+        else:
+            for control in ['/swot', '/mcda', '/scenarios', '/montecarlo', '/conflicts', '/lean', '/explore', '/help']:
+                assert control in text

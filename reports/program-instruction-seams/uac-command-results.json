@@ -1,0 +1,230 @@
+[
+  {
+    "slug": "engos-meta-supercharge",
+    "mode": "plan",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "manual_review",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "plan",
+      "--source",
+      "reports/program-instruction-seams/engos-meta-supercharge-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-meta-supercharge",
+    "mode": "judge",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "manual_review",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "judge",
+      "--source",
+      "reports/program-instruction-seams/engos-meta-supercharge-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-reconciliation-converge",
+    "mode": "plan",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "plan",
+      "--source",
+      "reports/program-instruction-seams/engos-reconciliation-converge-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-reconciliation-converge",
+    "mode": "judge",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "judge",
+      "--source",
+      "reports/program-instruction-seams/engos-reconciliation-converge-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-design-shaping",
+    "mode": "plan",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "plan",
+      "--source",
+      "reports/program-instruction-seams/engos-design-shaping-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-design-shaping",
+    "mode": "judge",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "judge",
+      "--source",
+      "reports/program-instruction-seams/engos-design-shaping-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-audit-pitch-review",
+    "mode": "plan",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "plan",
+      "--source",
+      "reports/program-instruction-seams/engos-audit-pitch-review-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-audit-pitch-review",
+    "mode": "judge",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "judge",
+      "--source",
+      "reports/program-instruction-seams/engos-audit-pitch-review-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-design-plan-to-goal",
+    "mode": "plan",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "plan",
+      "--source",
+      "reports/program-instruction-seams/engos-design-plan-to-goal-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-design-plan-to-goal",
+    "mode": "judge",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "judge",
+      "--source",
+      "reports/program-instruction-seams/engos-design-plan-to-goal-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-orchestration-batman",
+    "mode": "plan",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "plan",
+      "--source",
+      "reports/program-instruction-seams/engos-orchestration-batman-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  },
+  {
+    "slug": "engos-orchestration-batman",
+    "mode": "judge",
+    "exit": 0,
+    "status": "accepted",
+    "quality_status": "structural_ready",
+    "command": [
+      "python3.14",
+      "scripts/uac-import.py",
+      "--mode",
+      "judge",
+      "--source",
+      "reports/program-instruction-seams/engos-orchestration-batman-candidate.md",
+      "--benchmark-search",
+      "off",
+      "--output",
+      "json"
+    ]
+  }
+]

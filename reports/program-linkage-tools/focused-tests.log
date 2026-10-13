@@ -1,0 +1,79 @@
+........................................................................ [ 25%]
+........................................................................ [ 50%]
+........................................................................ [ 75%]
+............................................................FF.......    [100%]
+=================================== FAILURES ===================================
+__ test_resource_backed_skill_bundles_are_complete_and_installed_in_manifest ___
+
+    def test_resource_backed_skill_bundles_are_complete_and_installed_in_manifest():
+        install_files = json.loads((ROOT / ".meta" / "install-bundle.json").read_text(encoding="utf-8"))["files"]
+        canonical_roots = sorted(
+            path.parent for path in (ROOT / "sources" / "capability-resources").glob("*/resource-map.json")
+        )
+
+        assert canonical_roots
+        for canonical_root in canonical_roots:
+            slug = canonical_root.name
+            canonical_files = distributable_files(canonical_root)
+            bundle = load_capability_bundle(ROOT, slug, (ROOT / "ssot" / f"{slug}.md").read_text())
+            assert (ROOT / "ssot" / f"{slug}.md").is_file()
+
+            for surface in SURFACES:
+                generated_root = ROOT / f".{surface}" / "skills" / slug / "resources"
+                if bundle and "shared_imports" in bundle:
+                    assert load_resource_bundle(generated_root) == bundle
+                    for relative in [i["path"] for i in bundle["resources"]] + ["shared-resource-imports.json"]:
+                        data = (generated_root / relative).read_bytes()
+                        assert install_files[f".{surface}/skills/{slug}/resources/{relative}"]["sha256"] == hashlib.sha256(data).hexdigest()
+                for canonical in canonical_files:
+                    relative = canonical.relative_to(canonical_root)
+                    generated = generated_root / relative
+                    assert generated.is_file(), generated
+                    assert generated.read_bytes() == canonical.read_bytes(), generated
+
+                    manifest_entry = install_files.get(
+                        f".{surface}/skills/{slug}/resources/{relative.as_posix()}"
+                    )
+>                   assert manifest_entry, f"missing install entry for {generated}"
+E                   AssertionError: missing install entry for /Users/medhat.galal/.codex/worktrees/program-linkage-tools/Core-Prompts/.codex/skills/engos-debug-diagnose-failure/resources/resource-map.json
+E                   assert None
+
+tests/test_resource_backed_skill_surfaces.py:62: AssertionError
+_________ test_generated_resource_loaders_deliver_every_declared_route _________
+
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-408/test_generated_resource_loader0')
+
+    def test_generated_resource_loaders_deliver_every_declared_route(tmp_path: Path):
+        canonical_roots = sorted(
+            path.parent for path in (ROOT / "sources" / "capability-resources").glob("*/resource-map.json")
+        )
+
+        for canonical_root in canonical_roots:
+            slug = canonical_root.name
+            routes = json.loads((canonical_root / "resource-map.json").read_text(encoding="utf-8"))["routes"]
+            for surface in SURFACES:
+                generated_root = ROOT / f".{surface}" / "skills" / slug / "resources"
+                loader = generated_root / "scripts" / "load_module.py"
+                assert loader.is_file(), loader
+                for route in routes:
+                    result = subprocess.run(
+                        [sys.executable, str(loader), "--route", route, "--format", "json"],
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                    )
+                    assert result.returncode == 0, result.stderr
+>                   assert json.loads(result.stdout) == load_capability_bundle(ROOT, slug, (ROOT / "ssot" / f"{slug}.md").read_text(), route)
+E                   AssertionError: assert {'delivery_cl...ontract', ...} == {'delivery_cl...ontract', ...}
+E
+E                     Omitting 4 identical items, use -vv to show
+E                     Differing items:
+E                     {'manifest_sha256': '4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302'} != {'manifest_sha256': 'c3acbaf9f82807c84b35165a369bc650d7eaa97ebedd3308a39d613e03b35a06'}
+E                     {'sha256': '2433645ebdabcad45129722161d01b415ce9e9d08fd5380153d8c1dd91ae4e93'} != {'sha256': 'a8fb79f40f0a8fad1311423a2a01b9d3ea26bbc19b94cf8e84d90033c112535c'}
+E                     Use -v to get more diff
+
+tests/test_resource_backed_skill_surfaces.py:86: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_resource_backed_skill_surfaces.py::test_resource_backed_skill_bundles_are_complete_and_installed_in_manifest
+FAILED tests/test_resource_backed_skill_surfaces.py::test_generated_resource_loaders_deliver_every_declared_route
+2 failed, 283 passed in 12.83s

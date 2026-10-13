@@ -117,6 +117,16 @@ Keep whole-package replacement and recovery within the existing
 adds no installation selection or runtime sibling dependency. Documentation of
 this package boundary is not evidence of a release or home installation.
 
+The trace package imports exact TaskPlan, TaskContract and TestDesign bytes
+through a finite reviewed registry. Its narrow TaskPlan sibling-reference
+exception requires explicit same-owner paired bindings, identical placement,
+and direct owner and consumer dependency edges at canonical admission. Detached
+validation checks its local receipt, bytes and consumer closure without looking
+up the absent owner map. This establishes consistency; externally trusted package
+identity is required to detect a self-consistent receipt and byte replacement.
+Remote, traversal, dynamic, fragment and base-changing references remain
+forbidden.
+
 ## Installation runtime verification
 
 The editable installation engine is `scripts/core_install/`.

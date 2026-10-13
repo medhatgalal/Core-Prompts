@@ -10,11 +10,18 @@
     ],
     "dependency_map": [
       "templates/dependency-map.json"
+    ],
+    "graph_check": [
+      "scripts/graph_check.py"
     ]
   },
   "dependencies": {
     "schemas/task-plan.schema.json": [
       "schemas/task-contract.schema.json"
+    ],
+    "scripts/graph_check.py": [
+      "schemas/task-plan.schema.json",
+      "schemas/graph-result.schema.json"
     ]
   }
 }

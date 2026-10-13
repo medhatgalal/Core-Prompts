@@ -212,5 +212,50 @@ Any material pending item holds only the dependent handoff; a score cannot waive
 | Ownership | Architecture, planning, implementation and shaping acceptance keep their own decisions |
 | Evidence honesty | No schema, digest, ID link, ledger row or package delivery is reported as semantic or behavioral proof |
 
+## Optional mechanical trace check
+
+For actual SpecContract.v1 and TaskPlan.v1 artifacts, load `trace_check` and run
+`python3 resources/scripts/trace_check.py --spec SPEC.json --plan PLAN.json`.
+Select supplied TestDesign.v1 using `--tests TESTS.json` and load `trace_tests`;
+select membership of task design IDs in spec design refs using `--design-links`.
+No invented artifact order or mandatory spec/design/plan/test workflow follows.
+The helper reads fixed bundled schema bytes, never a repository, sibling skill,
+URLs, commands or artifact paths embedded in these inputs. Unknown schema
+keywords fail closed rather than weakening production shape validation.
+
+Every must requirement needs an actual task link and, when tests are selected,
+an actual test-row link. Test inventory alone is not coverage. Nonmust and
+undecided requirements remain explicit; missing links do not promote priority.
+Duplicate IDs fail within their actual namespaces; unknown requirement,
+dependency, completion, selected design or test-inventory links fail. Graph
+cycles/frontier remain the planner helper's responsibility. Empty tests or
+unlinked test rows cannot establish required test linkage.
+
+Output is TraceCheckResult.v1 JSON with a sorted per-requirement matrix. Omitted
+tests report `not_supplied`; selected tests remain `not_run`. Unselected design
+checks report `not_selected` and skipped link count. Neither mode verifies files,
+design hashes, test oracles, source truth or authorization. The CLI compares a
+nonnull plan spec hash to exact supplied spec bytes; `spec_ref` stays opaque.
+Null means binding not supplied, while the Python dict API leaves it unassessed.
+Exit 0 means only selected mechanical checks pass, 1 means shape/link/coverage
+failure, and 2 means input, CLI or package inability to assess. Errors leave the
+matrix empty. Semantic correctness and behavioral/authority verification always
+remain `not_assessed`. The blank trace-matrix template is a separate manual ledger.
+
+Example: R1/R2 linked to T1/T2 pass; missing R2, unknown R9 or duplicate T1 fail.
+A task promising to export every row can correctly link an R1 that requires only
+permitted rows: mechanical linkage passes while the prose contradicts scope.
+Inspect the `trace_examples` positive-and-near-miss fixture and obtain independent
+semantic review. Its seeded expectation is not a reviewer result.
+
+CLI input rejects unpaired Unicode surrogates in object keys or values with
+structured `invalid_json` output and exit 2. Valid non-ASCII and paired Unicode
+remain exact, without normalization. The serializer defensively escapes lone
+surrogates if a direct Python API caller bypasses input decoding.
+
+Selecting `--tests FILE` always selects TestDesign shape validation, including
+JSON null or other invalid top-level types. These fail shape with supplied test
+status and exit 1; only absence of the CLI option means `not_supplied`.
+
 
 Capability resource: `resources/capability.json`

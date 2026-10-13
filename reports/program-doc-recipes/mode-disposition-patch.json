@@ -1,0 +1,58 @@
+[
+  {
+    "path": ".meta/capabilities/engos-quality-docs-review.json",
+    "canonical_sha256": "fc5973871e180215dcf819a8a2d8c637d2b0433e7fe4c4123326a5c406abd29f",
+    "json_pointer": "/modes",
+    "before": [
+      {
+        "mode_slug": "failure-mode-to-avoid",
+        "display_name": "Failure Mode To Avoid",
+        "source_refs": [
+          "ssot/engos-quality-docs-review.md"
+        ],
+        "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+        ],
+        "entry_kind": "mode",
+        "invocations": []
+      }
+    ],
+    "after": [],
+    "disposition": "remove_false_positive_heading_metadata",
+    "independent_review": "reports/d8-docs-recipes/independent-source-review.json#/modeConversionReview",
+    "retained_source_negative_example": "Failure Mode To Avoid",
+    "reason": "No declared operating modes; source negative example remains unchanged. Controller applies through UAC/readback, not a descriptor hand edit."
+  },
+  {
+    "path": ".meta/capabilities/engos-quality-gitops-review.json",
+    "canonical_sha256": "bc764ce93d3bb02f683ac023b374a946e12411b7dafc4f53f076f560443cf691",
+    "json_pointer": "/modes",
+    "before": [
+      {
+        "mode_slug": "failure-mode-to-avoid",
+        "display_name": "Failure Mode To Avoid",
+        "source_refs": [
+          "ssot/engos-quality-gitops-review.md"
+        ],
+        "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+        "required_inputs": [],
+        "expected_outputs": [],
+        "examples": [],
+        "uplift_notes": [
+          "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+        ],
+        "entry_kind": "mode",
+        "invocations": []
+      }
+    ],
+    "after": [],
+    "disposition": "remove_false_positive_heading_metadata",
+    "independent_review": "reports/d8-docs-recipes/independent-source-review.json#/modeConversionReview",
+    "retained_source_negative_example": "Failure Mode To Avoid",
+    "reason": "No declared operating modes; source negative example remains unchanged. Controller applies through UAC/readback, not a descriptor hand edit."
+  }
+]

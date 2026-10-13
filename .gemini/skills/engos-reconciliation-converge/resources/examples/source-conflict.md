@@ -1,0 +1,5 @@
+# Source conflict example
+
+Illustrative inputs: proposal A at revision a1 requires immediate erasure; proposal B at revision b1 requires retaining the same records for 30 days. Preserve both supplied locators and mark the policy decision owner unknown. The overlap is the same data lifecycle; the conflict is incompatible retention. Do not promise both. Present consequences, request the unresolved policy choice, and record which proposal or claim is rejected under the chosen criterion. A recommendation can remain conditional without inventing the owner or acceptance. This is a constructed routing example, not legal guidance or observed source evidence.
+
+Hardening the wording of proposal A alone can use SuperCharge. Showing that one prompt handles this conflict more reliably requires an Auto-Research comparison with frozen cases and independent evaluation; source counts or fewer calls do not establish benefit. The existing Converge writer/reviewer/coordinator contract still applies to substantial outputs.

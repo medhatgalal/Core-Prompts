@@ -1,0 +1,24 @@
+{
+  "schema": "ProgramBuildOutputRecovery.v1",
+  "source": "actual successful unchanged sealed source Fabric step12 in original worktree",
+  "build_receipt": "reports/program-tools-integration/local-ci/receipt.json",
+  "build_step": 12,
+  "generated_distribution_files": [
+    {
+      "path": "dist/consumer-shell/capability-catalog.json",
+      "sha256": "76b4deaffee624da9ef329c078c3e0274bb31238cadb422bf7537ef12faf182e",
+      "bytes": 142943
+    },
+    {
+      "path": "dist/consumer-shell/release-delta.json",
+      "sha256": "643b3190b0a299f648caa1fb2684c5a1773730e7d18d3e4713f9bb43894e264d",
+      "bytes": 88379
+    },
+    {
+      "path": "dist/consumer-shell/status.json",
+      "sha256": "d48db78190396885cf3538146f62a0f610372fb66859b628e6c98829710644f6",
+      "bytes": 23549
+    }
+  ],
+  "claim": "exact copied outputs; no recompile or release/installclaim"
+}

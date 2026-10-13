@@ -105,7 +105,23 @@
         "reserved infrastructure or package collision",
         "source digest drift",
         "undeclared source or dependency"
-      ]
+      ],
+      "json_reference_policy": {
+        "default": "Reject shared JSON references and base-changing keywords after decoding keys; duplicate keys fail.",
+        "exception": {
+          "owner": "engos-design-plan-implementation",
+          "source": "schemas/task-plan.schema.json",
+          "target": "schemas/task-contract.schema.json",
+          "ref": "task-contract.schema.json"
+        },
+        "canonical": "Explicit same-owner paired bindings with identical source/destination layout, owner and consumer direct dependency edges and complete closure; no implicit hydration.",
+        "detached": "Receipt/layout, local hashes and consumer direct edge/closure only; absent owner map admission is build evidence, not locally authenticated. Compare externally trusted package identity to detect self-consistent receipt and byte replacement.",
+        "reject": [
+          "remote, fragment, query, encoded, traversal or non-basename references",
+          "$dynamicRef, $id, $anchor, $dynamicAnchor, $recursiveRef, $recursiveAnchor",
+          "cross-owner target, reexport, missing paired binding, collision, cycle or symlink"
+        ]
+      }
     }
   },
   "tooling": [

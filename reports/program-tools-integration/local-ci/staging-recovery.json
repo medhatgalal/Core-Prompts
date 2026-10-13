@@ -1,0 +1,19 @@
+{
+  "schema": "ProgramCIRecovery.v1",
+  "classification": "process: intended new generated artifacts were unstaged before git-index-aware archive fixtures",
+  "product_bytes_changed": false,
+  "original_run": "reports/program-tools-integration/local-ci/receipt.json",
+  "original_step13": "253 passed,2 failed,16 subtests",
+  "recovery": "two failing cases after staging exact sealed paths; other original observations retained, not one all-pass run",
+  "exitCode": 1,
+  "seconds": 16.868,
+  "log_sha256": "e948dd3f8aa222ea59287dac2af0123775aa6ca8705feb7ab75c634068812ab1",
+  "tail": [
+    "",
+    "tests/test_package_surfaces.py:266: AssertionError",
+    "=========================== short test summary info ============================",
+    "FAILED tests/test_package_surfaces.py::test_packaged_profile_updates_verified_release_and_rolls_back",
+    "FAILED tests/test_package_surfaces.py::test_runtime_inventory_is_available_in_a_tagged_git_mirror",
+    "2 failed in 14.50s"
+  ]
+}

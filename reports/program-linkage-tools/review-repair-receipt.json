@@ -1,0 +1,56 @@
+{
+  "schema_version": "ProgramLinkageReviewRepairReceipt.v1",
+  "reviewed_head": "e627bd1c9c83fb8507f77bd57fee78d61bb6cb72",
+  "writer_dispositions": [
+    {
+      "id": "LNK-SRC-001",
+      "status": "implemented_pending_independent_recheck",
+      "change": "CLI test selection is independent of JSON payload; private assessment path preserves public dict API and never downgrades selected null."
+    },
+    {
+      "id": "LNK-SRC-002",
+      "status": "implemented_pending_independent_recheck",
+      "change": "Both input decoders reject unpaired surrogates with existing invalid_json exit 2; valid Unicode preserved. Defensive emitter escaping preserves direct API string values."
+    }
+  ],
+  "original_review_dispositions": "open; unchanged; same independent reviewer owns closure",
+  "original_history_sha256": {
+    "reports/program-linkage-tools/independent-source-review.json": "5ae233a5cb0987da0b19595558f8e42fe938cb60f5d0a401cfffe5010a046003",
+    "reports/program-linkage-tools/independent-source-review.md": "87bd395e926eb37584c29d8e25f8b8effcf4c6972146610d4e0f4c1794da3f31",
+    "reports/program-linkage-tools/semantic-review.json": "ded79709a47e3e788ae8756c68b1e29dd976d4e34191728eb6e2122d105d3f0d",
+    "reports/program-linkage-tools/source-receipt.json": "5da360cb5c829932574d82411ca84839b7cdae3e9918a023ff80c29d11cf3a5a"
+  },
+  "fixture_sha256": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7",
+  "semantic_evidence": "Original independent rejection preserved against unchanged fixture bytes; actual renewed CLI near-miss mechanical pass recorded without writer semantic grading",
+  "source_sha256": {
+    "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py": "868db891c87d96c68a30d9403fa47ac00bf957ede1a5c59a2c9c8083cf6f2d51",
+    "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py": "2f1d0e5f230216bd742753283d2e3c5a4ef39f396089b701885336ee70856968",
+    "tests/test_task_graph_check.py": "0a273ccb1438e6834a8b9658abb67d7c6244d7f358cbcbd2bce9f735e6632c0d",
+    "tests/test_trace_check.py": "7cc377ddffbb50940d8a868ceacb19f42072f224d13f5ec9305a65d0f3ff7b33"
+  },
+  "verification": {
+    "red": "11 failed, 6 passed; actual pre-repair CLI regression results",
+    "green": "17 new CLI cases passed; two additional direct API emission regressions pass in source renewal",
+    "source_focus": "294 passed",
+    "full_focus": "302 passed, 2 pending generated-state failures unchanged",
+    "full_focus_pending": [
+      "D6 install-bundle manifest missing resource entry",
+      "Planner generated loader/manifest differs from source graph map"
+    ],
+    "diff_check": "passed"
+  },
+  "serialization_policy": "Normal valid-Unicode output remains ensure_ascii=False. CLI lone surrogates reject before membership/output; direct API-only lone surrogates use safe ensure_ascii=True serialization without normalization.",
+  "limits": [
+    "No production schema, finite-ref policy, shared registry, generated bundle, descriptors or CI wiring changed",
+    "No Core build/UAC/push/merge/release/live installation",
+    "No independent finding closed by writer",
+    "Foundation integration/rebase and final regenerated/hosted bindings remain controller owned"
+  ],
+  "evidence_sha256": {
+    "reports/program-linkage-tools/review-repair-cli-cases.json": "1382de2ae336727a82dd417f7f110ee00e74b17bb52f4bb4cc0d19597acbc9ea",
+    "reports/program-linkage-tools/review-repair-source-tests.log": "aa94236e8b2af023de3ac12f90cf3aa1cfc3bacf5ba4ce59ac90f1db4989fc0d",
+    "reports/program-linkage-tools/review-repair-red.log": "bfa0ba8673e9694964f02866a6dd933ce090472dde5530e0d08126f5097a2473",
+    "reports/program-linkage-tools/review-repair-green.log": "13b9a97cd57b5ca7c989cea38267c73d14e80f074b79abdf63e7de00ff284724",
+    "reports/program-linkage-tools/review-repair-full-focus.log": "e5f54f4b5759ad299844f240336e3e160aa043ceb182fefff117b5c573cfbc65"
+  }
+}

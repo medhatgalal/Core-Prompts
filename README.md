@@ -83,6 +83,11 @@ If you are already using Core-Prompts in a CLI, start there. If you are importin
 
 The current generated surfaces contain `36` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
+`engos-quality-code-review` can also collect immutable committed-range evidence
+from exact baseline/candidate IDs into a new task-owned output leaf. The manifest
+and digest receipt bind raw commits, endpoint changes and blobs; collection is
+separate from review judgment. See [the collection command and limits](docs/CLI-REFERENCE.md#committed-range-package).
+
 First-party skills use the `engos-<category>-<skill-name>` namespace so Core-Prompts capabilities stay together in CLI and app autocomplete. The upstream-pinned Loopy package retains the single name `loopy`, without an alias package. The category identifies the primary job; the final segment identifies the capability. For example, use `engos-memory-context-continuity` for durable investigation state, `engos-quality-code-review` for diff review, and `engos-triage-my-inbox-chat-pulse` for Gmail and Chat triage.
 
 Conversational `Supercharge /full` and stacked forms such as `supercharge /simple /invert /contract <task>` remain supported by `engos-meta-supercharge`. Use the full namespaced name for native skill selection; no separate short-name package or native menu alias is emitted. Ask `supercharge help` or `supercharge /help examples` for the bundled terminal guide; help does not execute examples. `/full` includes a budget of up to ten real, independently graded candidate trials unless you say `skip grade`; it never executes the target prompt. `/ult` prints the improved prompt and runs it within your authorized scope, while `/ult /full` reviews it without execution. `/stop-ult` still exits persistent ULT mode; the legacy global `/stop` command is retired. Detailed module instructions are loaded from bundled resources before use. See [modernization and evidence boundaries](docs/FRONTIER-MODERNIZATION.md).
@@ -96,6 +101,23 @@ For review work, pick the capability by intent:
 For a rough product or engineering idea, use [guided Shape Up](#guided-shape-up-start-with-your-notes).
 For an already written pitch, use `engos-audit-pitch-review` for assessment without
 claiming the earlier shaping stages ran.
+
+Choose the job by its outcome: `engos-meta-supercharge` hardens an artifact
+(including its candidate versions), `engos-reconciliation-converge` reconciles
+conflicting sources with attribution, and `engos-optimization-auto-research`
+measures outcomes against a baseline. These jobs do not form an automatic chain.
+
+For shaping, use `engos-design-shaping` to conduct the workshop,
+`engos-audit-pitch-review` to assess a finished pitch directly, and
+`engos-quality-shaping-gate` for actual transition policy. Ordinary plans belong
+to `engos-design-plan-implementation`; a separately requested bounded packet
+belongs to the current `engos-design-plan-to-goal` compiler. Compiling a packet
+does not start a goal or activate `engos-orchestration-batman`.
+
+When a supplied plan or specification is difficult to inspect by hand, its
+planner and specification skills also offer optional mechanical link checks.
+They check graph/link consistency; inspect source truth, semantic correctness,
+approval and implemented behavior separately. Manual artifacts stay optional.
 
 | Intent | Use | Boundary |
 | --- | --- | --- |
@@ -501,3 +523,9 @@ including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
 
 UAC also prepares source-backed advisory routing metadata during intake. It preserves curated job boundaries and reports unresolved phase and authority interpretation. This does not enable automatic native routing; see [routing fitness](docs/UAC-USAGE.md#source-backed-routing-fitness).
+
+## Optional documentation recipes
+
+Name a recipe with `engos-quality-docs-review` when you need a particular artifact: `readme-authoring` produces only README_vNext.md ending in Claim Notes; `docs-bundle` produces README, technical README, visuals plan and the original array audit. Ordinary review retains its seven sections. See [all recipe examples and outputs](docs/EXAMPLES.md#optional-documentation-recipes). The [seven original prompts](docs/prompt-pack/README.md) remain callable.
+
+Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bound ship evidence. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Recipe selection grants no mutation or release authority.

@@ -77,3 +77,7 @@ Use docs/prompt-pack/prompts/master-orchestrator.md.
 Keep tone as balanced warmth, visuals as mixed strategy, and enforce factual claims from local files only.
 Output README_vNext.md, docs/README_TECHNICAL.md, visuals_plan.md, and factual_audit.json.
 ```
+
+## Optional installed-skill recipes
+
+The seven prompt files above remain unchanged and callable. For the same bounded artifact jobs through existing skills, see [documentation recipe examples](../EXAMPLES.md#optional-documentation-recipes). Docs Review provides docs-bundle, readme-authoring, ai-onboarding, information-relocation, document-visuals, factual-audit and adversarial-doc-review. GitOps Review supplies the candidate-bound docs-release-readiness companion. The historical Prompt F tag-before-package/origin-only command text is retained as source history; the additive F recipe uses current verified package-before-tag and dual-remote ordering. No release or installation is performed by selecting a recipe.

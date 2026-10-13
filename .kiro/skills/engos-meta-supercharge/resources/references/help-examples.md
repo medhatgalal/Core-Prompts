@@ -25,3 +25,6 @@ Use this output when the user asks `engos-meta-supercharge /help examples`. Do n
 - `engos-meta-supercharge /ult /contract create the prompt, execute it, then evaluate the contract: <paste>`
 - `engos-meta-supercharge /full skip grade compare these three candidate prompts without executing them: <paste>`
 
+### Job Selection Examples
+
+One artifact: "supercharge /simple /invert harden this rollout plan while preserving its approval boundaries" returns an improved plan and independent findings. Conflicting sources: "Use engos-reconciliation-converge to compare these two dated proposals, attribute the conflicts and recommend one" returns a source-linked decision with rejected ideas. Measured benefit: "Use engos-optimization-auto-research to compare these prompts against this frozen baseline and regression set within this budget" returns observed results or an explicit blocked/inconclusive state. These examples select separate jobs; do not execute them or chain the capabilities when listing examples.
