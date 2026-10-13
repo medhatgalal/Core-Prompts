@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-delivery-address-code-review",
-  "ssot_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
+  "ssot_sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -37,14 +37,21 @@
     "engos-delivery-address-code-review:L82:42dae8920882",
     "engos-delivery-address-code-review:L98:5c7c9bcf16a0",
     "engos-delivery-address-code-review:L100:30599702f4ce",
-    "engos-delivery-address-code-review:L101:c44f4bd04d47"
+    "engos-delivery-address-code-review:L101:c44f4bd04d47",
+    "engos-delivery-address-code-review:L133:38eb49942c75",
+    "engos-delivery-address-code-review:sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md:L5:a6db3e59b368",
+    "engos-delivery-address-code-review:sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md:L9:cb21a552498b"
   ],
   "resources": [
     "- File and line reference",
     "- list of open comments with file references"
   ],
   "handoffs": [
+    "# Selected feedback handoff",
     "## Companion Capability Matrix",
+    "## Selected Feedback Handoff",
+    "An optional committed handoff resolves the verified installed engos-quality-code-review owner, selects its collect/verify-package routes and validates externally retained subject/target/source/result bindings before findings consumption. Do not copy collector/schema into this owner or guess missing sibling paths. Missing owner makes that option unavailable; a normal dirty snapshot remains separate and truthful. A task receipt never waives final full-branch review/GitOps.",
+    "When delegating or returning selected feedback, load the `handoff` route in `resources/resource-map.json`: `resources/references/feedback-handoff.md`. Preserve immutable original IDs, source references/digests, selection accepted|rejected|deferred|unselected, authority reasons and actual outcomes separately. Already clear selection requires no second confirmation. Accepted but unfinished remains unresolved/deferred, never addressed without repair evidence. Direct bounded D5 worker needs no Batman. Only explicit Batman uses its controller envelope and independent gates. Optional committed packages resolve the verified code-review owner; no copied collector or guessed sibling. Preserve separately hashed dirty snapshot identity. Task receipts do not waive final integration review or GitOps; no automatic hosted thread closure.",
     "| Situation | Companion Capability | Why |"
   ],
   "protected_invariants": [
@@ -119,6 +126,16 @@
       "mapped_to": []
     },
     {
+      "id": "engos-delivery-address-code-review:L81:5ccfaccf6623",
+      "heading": "3. Present the comments",
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 88,
+      "sha256": "5ccfaccf6623522117dd7a5c591b47d76070c375081f4daec534e738d35dac24",
+      "text": "Honor an already explicit authorized selection (all or specific IDs). Ask only if selection is materially ambiguous.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-delivery-address-code-review:L82:42dae8920882",
       "heading": "3. Present the comments",
       "source": "ssot/engos-delivery-address-code-review.md",
@@ -136,6 +153,16 @@
       "sha256": "61d7bc98cdc3e63cbd2be5f622dc9a78102fbc75d7c60f92cac7fb4e61a8b495",
       "text": "- Stage only the files that were modified to address comments.",
       "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-address-code-review:L94:d4d0154a4959",
+      "heading": "5. Commit and push",
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 101,
+      "sha256": "d4d0154a49595cc2f13abd365e758f0fb797799d77cf7df61a9ffc6ad9a0500f",
+      "text": "- Push to the existing remote branch only when the supplied task authorizes that step; otherwise stop with the requested patch or commit guidance.",
+      "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
@@ -187,6 +214,56 @@
       "text": "| Commit hygiene | Fix commit contains only the review-related changes |",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-address-code-review:L133:38eb49942c75",
+      "heading": "Selected Feedback Handoff",
+      "source": "ssot/engos-delivery-address-code-review.md",
+      "source_line": 140,
+      "sha256": "38eb49942c75ddee893ffe3367749182b61a7c1b58b54949433d12e688da1e9c",
+      "text": "When delegating or returning selected feedback, load the `handoff` route in `resources/resource-map.json`: `resources/references/feedback-handoff.md`. Preserve immutable original IDs, source references/digests, selection accepted|rejected|deferred|unselected, authority reasons and actual outcomes separately. Already clear selection requires no second confirmation. Accepted but unfinished remains unresolved/deferred, never addressed without repair evidence. Direct bounded D5 worker needs no Batman. Only explicit Batman uses its controller envelope and independent gates. Optional committed packages resolve the verified code-review owner; no copied collector or guessed sibling. Preserve separately hashed dirty snapshot identity. Task receipts do not waive final integration review or GitOps; no automatic hosted thread closure.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-address-code-review:sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md:L3:4f88682c9468",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "source_line": 3,
+      "sha256": "4f88682c94684e9d8ee8a1309645aa2f69ca5db45386d225c702298b1976ac92",
+      "text": "The review-fix owner keeps the original selection ledger: comment_id, source_ref, source_digest when captured, decision accepted|rejected|deferred|unselected, decision reason/authority_ref, bounded task link, current outcome and actual repair evidence. IDs are immutable; later comments need an explicit selection decision. Honor an already clear selection; clarify only material ambiguity.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-address-code-review:sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md:L5:a6db3e59b368",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "source_line": 5,
+      "sha256": "a6db3e59b368ef595c3c859372f476704e37f730c83657fc714358ac2df0c6cb",
+      "text": "Dispatch the bounded request or exact TaskContract bytes directly to an ordinary implementation worker. The worker needs no Batman/planner/testing sibling. Return every supplied relevant ID. Accepted A becomes addressed only with observed scoped repair evidence; accepted-but-unfinished remains unresolved/deferred with reason while the owner's decision stays accepted. Rejected B stays rejected, deferred C stays deferred, unselected D stays unselected and none grants implementation permission. Keep selection, SliceReceipt outcome, Findings disposition, accepted-risk authority and hosted thread resolution distinct. Do not post or close threads automatically.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-address-code-review:sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md:L7:a7ae81348583",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "source_line": 7,
+      "sha256": "a7ae8134858398653daceb607ec9f71f2cc36ace75decc7224884fc90f40f1b3",
+      "text": "Explicit Batman may dispatch the same TaskContract with its separate task_id/owner_id/plan_generation/read-write/authority/evidence/stop envelope. Controller does not implement, author failing tests/fixes or self-review. All existing independent review, attacker, milestone and landing gates remain required. Stale/missing worker or reviewer results cannot satisfy a current node.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-delivery-address-code-review:sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md:L9:cb21a552498b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "source_line": 9,
+      "sha256": "cb21a552498b1d75aba0165b046dacd7dc2bb6bcfb0ac3cc9d62e2e1b31984a8",
+      "text": "An optional committed handoff resolves the verified installed engos-quality-code-review owner, selects its collect/verify-package routes and validates externally retained subject/target/source/result bindings before findings consumption. Do not copy collector/schema into this owner or guess missing sibling paths. Missing owner makes that option unavailable; a normal dirty snapshot remains separate and truthful. A task receipt never waives final full-branch review/GitOps.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -197,7 +274,15 @@
   "source_references": [
     {
       "path": "ssot/engos-delivery-address-code-review.md",
-      "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+      "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-address-code-review/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df"
     }
   ],
   "known_ambiguities": [],
@@ -210,10 +295,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 14,
+    "total": 21,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "1e99683044cb5a66ab88803b62424de0c35a615bf4b6210c1baef6787e936703"
 }

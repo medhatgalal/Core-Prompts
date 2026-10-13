@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-debug-diagnose-failure",
-  "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
+  "ssot_sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -44,9 +44,11 @@
     "engos-debug-diagnose-failure:L143:4cd0a318fbad",
     "engos-debug-diagnose-failure:L146:632b0eeb7d34",
     "engos-debug-diagnose-failure:L162:06296867a75c",
+    "engos-debug-diagnose-failure:L190:3e4346ebe281",
     "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L16:16b2976ca97a",
     "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L21:f81d27e7f3d8",
-    "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json:L15:e67eb3ab1062"
+    "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json:L15:e67eb3ab1062",
+    "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L74:973f2d699477"
   ],
   "resources": [
     "- Existing access, permitted diagnostic actions and any time, attempt or resource limit.",
@@ -57,9 +59,11 @@
   ],
   "handoffs": [
     "\"description\": \"Structural handoff contract. Human or semantic review must verify actual causal discrimination and redaction; schema validity is not causal proof. Empty observations/hypotheses are permitted only for explicit unknown outcomes.\",",
+    "## Worked Acceptance and Repair Handoff",
     "- Evidence-backed handoff with preserved behavior and explicit repair authority.",
     "- For a structured handoff, use `resources/templates/reproduction-receipt.json` and",
     "- Keep small diagnoses readable. A structured receipt is optional evidence for handoff",
+    "Keep DiagnosisReceipt.v1 unchanged. Express qualitative hypothesis confidence and limits in existing hypothesis.result/conclusion. Preserve unchanged_behavior verbatim in repair handoff; next_owner identifies an implementer only under separately authorized repair scope. TaskContract.consumes binds exact receipt/log bytes, constraints preserve uncertainty/unchanged behavior/boundary, verification retains reviewed oracle and authority_ref cites separate permission. A plain request may supply the same context. Unknown cause preserves alternatives and next safe discriminator without speculative fix.",
     "`DiagnosisReceipt.v1` only when requested or useful for durable handoff. It is evidence",
     "environment, result or uncertainty fields so the handoff is self-contained.",
     "launch an unrelated reproduction campaign. For incident meeting coordination, route to IC.",
@@ -317,6 +321,26 @@
       "mapped_to": []
     },
     {
+      "id": "engos-debug-diagnose-failure:L190:3e4346ebe281",
+      "heading": "Worked Acceptance and Repair Handoff",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 198,
+      "sha256": "3e4346ebe2810fdedc275218879d3ea413ec73830951eb6a09097404d1a3ccab",
+      "text": "For explicit worked-example or acceptance use, select the `examples` route in `resources/resource-map.json`: `resources/evals/diagnosis-cases.json`. These are inert frozen synthetic definitions, never claimed actual observations or automatic reproduction commands. Keep hypotheses and receipt routes intact. Actual observation evidence and genuinely separate causal review belong in reports; schema validity cannot establish cause. Intermittent all-pass exposures remain unknown, not fixed. Missing inputs do not justify invented exits or live mutating/secret reproduction.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:L192:0f292f226515",
+      "heading": "Worked Acceptance and Repair Handoff",
+      "source": "ssot/engos-debug-diagnose-failure.md",
+      "source_line": 200,
+      "sha256": "0f292f22651540e1491f4437bf8f201be499874188bdd5d2f660fbf885f3541c",
+      "text": "Keep DiagnosisReceipt.v1 unchanged. Express qualitative hypothesis confidence and limits in existing hypothesis.result/conclusion. Preserve unchanged_behavior verbatim in repair handoff; next_owner identifies an implementer only under separately authorized repair scope. TaskContract.consumes binds exact receipt/log bytes, constraints preserve uncertainty/unchanged behavior/boundary, verification retains reviewed oracle and authority_ref cites separate permission. A plain request may supply the same context. Unknown cause preserves alternatives and next safe discriminator without speculative fix.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md:L3:ccd35323a109",
       "heading": "root",
       "source": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
@@ -415,6 +439,106 @@
       "text": "\"remaining_uncertainty\": \"REPLACE: missing evidence, unexecuted work, exposure and confounders; do not invent references\"",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L42:d4f2f0e00bf3",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 42,
+      "sha256": "d4f2f0e00bf34fd8ecc1c266d6be8605d997bc7d506062b163b98abeb6c2036c",
+      "text": "\"acceptable_causal_status\": \"identified only with actual discriminator and separate causal review\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L44:baea4483dee0",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 44,
+      "sha256": "baea4483dee056e1bc5aa4cdec53e1e9c55d207c939ed86dd28b5096e253c82e",
+      "text": "\"repair_boundary\": \"Diagnosis advises only. Separate bounded authorization required to repair comparison.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L46:eff0c3c27324",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 46,
+      "sha256": "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+      "text": "\"disclosure_limits\": \"Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports.\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L74:973f2d699477",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 74,
+      "sha256": "973f2d699477c4dd8e2f16a5234c181597b597e49abaa4137e4be4604446debe",
+      "text": "\"unchanged_behavior\": \"Source and state unchanged; successes are exposure only, never repair proof.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L77:eff0c3c27324",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 77,
+      "sha256": "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+      "text": "\"disclosure_limits\": \"Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports.\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L85:83924e782e55",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 85,
+      "sha256": "83924e782e5534075164ab227648ddc5a70a4f5d5ae1de7e063f9a7a9426000b",
+      "text": "\"report\": \"reported failure only\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L96:a4fa9ed28d3e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 96,
+      "sha256": "a4fa9ed28d3e698577cc43f7b14a95e01b340328665cbddac3b197a5a0a2d74a",
+      "text": "\"required input unavailable; no reproduction exit invented\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L100:2a4802f1ce68",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 100,
+      "sha256": "2a4802f1ce68c5f03e30867b6da3038d6b0ffc9e6db08a8f727768aa5698ca3d",
+      "text": "\"repair_boundary\": \"Read-only diagnosis; no live reset, secret dump, repair or incident takeover.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L101:21e2246c9bc2",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 101,
+      "sha256": "21e2246c9bc295bc7093a792bd0d219d0f055d5a263d354155b0579ccb2e0271",
+      "text": "\"regression_oracle\": \"Obtain redacted exact input and safe read-only discriminator before proposing repair.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-debug-diagnose-failure:sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json:L102:eff0c3c27324",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "source_line": 102,
+      "sha256": "eff0c3c27324052f8ade59011277b3a9c9e4c55798f1855847d59e04ab407e8e",
+      "text": "\"disclosure_limits\": \"Disposable synthetic fixture only; no credentials or live state. Actual evidence and independent receipts belong in reports.\"",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -425,7 +549,7 @@
   "source_references": [
     {
       "path": "ssot/engos-debug-diagnose-failure.md",
-      "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+      "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
     },
     {
       "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
@@ -440,8 +564,12 @@
       "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
     },
     {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716"
+    },
+    {
       "path": "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json",
-      "sha256": "a4a61047afb098b13c3f9dd259a5b716035f5c22e04834671d21bd70499feed6"
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66"
     }
   ],
   "known_ambiguities": [],
@@ -454,11 +582,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 35,
+    "total": 47,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "5c9fea8c94be1645650d2a7887730cfd8bb1e287478caaca2f01e7627c802350"
+  "resource_bundle_sha256": "da4606f54b2a2fe3e4472d4321e1c3755eec3aea1b1deecb9cf309e0558ed2b7"
 }

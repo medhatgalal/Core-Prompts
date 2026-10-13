@@ -37,6 +37,7 @@
     "8a29f76adcda574a7b675c9b83366f7e77713cceecf1bbd91f92c7eb0cdb4bb6",
     "39749905ad533aa83fe2dd42cc12a5a23f2c959c6d3af474b055fe556c94402c",
     "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
+    "f5a9554ab89df322d1a8f49d52c27b223930ef7338124836ce375fdcdac95d56",
     "5f9d2b89c7225f84ced43565a71f0c3a6686fdab44cf0f404c0e37a455154998",
     "abb51aef21290a0c9264d19062480d60765576702740adb96b2489602df3aaf8",
     "35169204eac8c9d56a571355244906667e842157967140216cb754e4648aada3",
@@ -136,7 +137,28 @@
     "386c63d33ffb8b40bda80e9875d11bb673459112b1432cf595faa26859d3a6f3",
     "c4d2004d991fe38787361e0d71c7605435daa477873a53d30c9b9c8c904aa9d6",
     "f874601786ba14d95fe527dc29d4824ffa3276c44bea9728fc097b749fc4c7a3",
-    "f874601786ba14d95fe527dc29d4824ffa3276c44bea9728fc097b749fc4c7a3"
+    "f874601786ba14d95fe527dc29d4824ffa3276c44bea9728fc097b749fc4c7a3",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "0685f709e915d69ff60766947c54379f93e02b7c1266af464a1b77b537027877",
+    "f473aed23cd903862257ce3123f23ab1b3ad3a5e0d0c56f3ba88296a88dc95ee",
+    "6a3674e16d519a9cfe59335c0998e1db2f21d5599637cae33550ea77a89d8bb5",
+    "5f47a0b62bea3fbb00ec800087b805ad786e589bc4ea60fc586505c11c3b91bc",
+    "09634c482498b00b512866fceae5c76779e0ce1ea245c9a8203db179cab709d0",
+    "7fcb8c9184c58d2e328eec328d2b160eb0122874a42405067e2e9550525b07da",
+    "4d46a90d025b97d17c7ab4272c18e989accfb02f2bd70dbbfc5db2274bd687b9",
+    "65689bfc990349aedcfe0e0d877684677513e1aa59370fcc741688f989667337",
+    "780aa06c18bc9c9f55eea14c65530b45b6a21b01bc13bced87156efe0783e799",
+    "baf6028fe32b316acda928310f7c295339cb79f603a50c4bc36a1fb58ddf6f4a",
+    "6c4c45fa5cc9e4244895e16bab99f268d143816a7a25476a3e3e5af687c0d004",
+    "e7e5b2cb816b1666fdbb7d9bf564031e8a14e1a6e0c8175f90a5a73028bdc515",
+    "231520ce2b3d310019e2375f149e509753218126315b2cbe4edc5d5e18016c61",
+    "210b1a10557f1fed9604c5ed18d100760621b8ffc4ccaf1241cb15917432a8cf",
+    "904ffc98ce14b91e093ceadd6ef14ed0754301153ef71d8517ad838e9cfb28a9",
+    "7319e1088653c2c147bff64b31cfa1d7436944ccd70bf0281026e50471597ace"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -324,6 +346,11 @@
       "sha256": "6ec4931c2502f4903591cdd096bd5452dc3b51bc580428b092157d46e17c6ba7",
       "source": "ssot/engos-quality-code-review.md",
       "text": "- Do not rubber-stamp a commit just because tests pass."
+    },
+    {
+      "sha256": "f5a9554ab89df322d1a8f49d52c27b223930ef7338124836ce375fdcdac95d56",
+      "source": "ssot/engos-quality-code-review.md",
+      "text": "Select the `verify-package` route in `resources/resource-map.json` only for an externally bound current committed-candidate handoff. Read its complete selected consumption context before invocation; it describes independently retained task/subject-owner/generation/repository/base/head/source bindings and exact collector stdout/exit. Binding matched means review not_assessed, never ready. Nonempty effective repository clean/process filter configuration rejects before worktree comparison; never clear filters or reset user configuration to manufacture clean evidence. Do not eagerly load collect/verifier resources for ordinary HEAD or staged review. Range Findings uses kind branch, comparison range, exact endpoints, null snapshot and committed only. Actual independent review must read bound material and needed unchanged callers. Missing findings or unread material stays incomplete; final branch integration and GitOps remain separate gates."
     },
     {
       "sha256": "5f9d2b89c7225f84ced43565a71f0c3a6686fdab44cf0f404c0e37a455154998",
@@ -824,6 +851,111 @@
       "sha256": "f874601786ba14d95fe527dc29d4824ffa3276c44bea9728fc097b749fc4c7a3",
       "source": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
       "text": "raise Invalid('base must be an ancestor of head')"
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "source": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "text": "\"required\": ["
+    },
+    {
+      "sha256": "0685f709e915d69ff60766947c54379f93e02b7c1266af464a1b77b537027877",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "\"\"\"Read-only, externally pinned current committed-candidate binding. Not a review.\"\"\""
+    },
+    {
+      "sha256": "f473aed23cd903862257ce3123f23ab1b3ad3a5e0d0c56f3ba88296a88dc95ee",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "raise ValueError('regular single-link file required')"
+    },
+    {
+      "sha256": "6a3674e16d519a9cfe59335c0998e1db2f21d5599637cae33550ea77a89d8bb5",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "raise ValueError('configured clean/process filters unsupported for read-only current candidate')"
+    },
+    {
+      "sha256": "5f47a0b62bea3fbb00ec800087b805ad786e589bc4ea60fc586505c11c3b91bc",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "parser.add_argument('--' + name, required=True)"
+    },
+    {
+      "sha256": "09634c482498b00b512866fceae5c76779e0ce1ea245c9a8203db179cab709d0",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "raise ValueError('external expectation digest required')"
+    },
+    {
+      "sha256": "7fcb8c9184c58d2e328eec328d2b160eb0122874a42405067e2e9550525b07da",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "raise ValueError('expectation/result must be outside package')"
+    },
+    {
+      "sha256": "4d46a90d025b97d17c7ab4272c18e989accfb02f2bd70dbbfc5db2274bd687b9",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "# Load exact already checked bytes, never caller cwd, package code or sibling lookup."
+    },
+    {
+      "sha256": "65689bfc990349aedcfe0e0d877684677513e1aa59370fcc741688f989667337",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "raise ValueError('collector exit must be actual integer zero')"
+    },
+    {
+      "sha256": "780aa06c18bc9c9f55eea14c65530b45b6a21b01bc13bced87156efe0783e799",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "'errors':[{'code':code,'message':('Required evidence could not be safely read.' if isinstance(error, OSError) else str(error))}]}"
+    },
+    {
+      "sha256": "baf6028fe32b316acda928310f7c295339cb79f603a50c4bc36a1fb58ddf6f4a",
+      "source": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "text": "'errors':[{'code':'context_unavailable','message':'Required trusted runtime or repository context unavailable.'}]}))"
+    },
+    {
+      "sha256": "6c4c45fa5cc9e4244895e16bab99f268d143816a7a25476a3e3e5af687c0d004",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "text": "This route verifies binding, never review quality or authority. Select `verify-package` explicitly; ordinary review remains HEAD/staged/snapshot as requested."
+    },
+    {
+      "sha256": "e7e5b2cb816b1666fdbb7d9bf564031e8a14e1a6e0c8175f90a5a73028bdc515",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "text": "Before dispatch, the controller or authorized direct caller retains task ID, subject implementation owner, actual positive generation, repository identity, exact base, spec/plan hashes and trusted owner source hashes in its own task record. TaskContract has no generation field. Resolve the current candidate independently after implementation; never learn these values from a worker package. Capture actual collector exit and exact stdout, strictly parse its successful receipt and retain result/manifest digests outside the package. Complete ReviewPackageExpectation.v1 outside the package and retain its exact SHA-256 externally. No null identity wildcard or coerced generation is accepted."
+    },
+    {
+      "sha256": "231520ce2b3d310019e2375f149e509753218126315b2cbe4edc5d5e18016c61",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "text": "The selected dependencies include `scripts/verify_review_package.py`, the fixed adjacent producer `scripts/review_package.py`, `schemas/review-package-expectation.schema.json` and the producer schema. Python 3.11+, Git and POSIX nofollow descriptors are required; no pip runtime dependency. No network, output writes, package code, staging, checkout, reset or submodule worktree traversal occurs. Missing owner/helper/runtime means unavailable committed binding; do not guess a sibling path. Direct D5 can still use its normal truthful receipt path."
+    },
+    {
+      "sha256": "210b1a10557f1fed9604c5ed18d100760621b8ffc4ccaf1241cb15917432a8cf",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "text": "Stdout is one ReviewPackageBinding.v1 JSON line. Exit 0 means matched and `review_status:not_assessed`; exit 2 means rejected evidence or target; exit 3 means invalid expectation/invocation or unavailable context. Absent, malformed or nonzero output is unusable. Never translate matched into ready, approved or clean. Source changes require independently accepted new expected hashes and fresh collection, never renewal from a returned manifest."
+    },
+    {
+      "sha256": "904ffc98ce14b91e093ceadd6ef14ed0754301153ef71d8517ad838e9cfb28a9",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "text": "Only current clean committed candidates qualify: no staged/unstaged tracked changes or nonignored untracked files; sparse, skip-worktree and assume-unchanged states reject. Nonempty effective repository clean/process filter configuration rejects before any working-tree comparison, even if no current file selects that driver; Git status could execute it and mask dirty bytes. Do not clear filters, reset configuration or relabel that state clean. Existing command sanitization disables fsmonitor, hooks and external diffs. Keep evidence outputs outside the worktree. Dirty unrelated content stays intact; use a separately hashed dirty snapshot or isolated worktree. Ignored files, submodule worktrees and external state are outside this scope."
+    },
+    {
+      "sha256": "7319e1088653c2c147bff64b31cfa1d7436944ccd70bf0281026e50471597ace",
+      "source": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "text": "After matching, the actual independent reviewer reads the bound diff/source and needed unchanged consumers. Findings.v1 uses target.kind=branch, comparison=range, exact base/head, snapshot_digest=null and included_change_classes=[committed]. The subject owner differs from the reviewer actor/node. Recheck binding before consumption when source, target or evidence changes. Missing findings, unread material or interrupted review remains incomplete/unverifiable. Preserve stable findings and dispositions. Task review never waives final full-branch integration review, hosted CI or GitOps."
     }
   ],
   "review_status": "draft"

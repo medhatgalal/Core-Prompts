@@ -1,0 +1,1212 @@
+{
+  "schema": "ProgramProductSeal.v1",
+  "base": "fb79929ca7855d0efbf241d50d4a24c4aea75e2e",
+  "createdAt": "2026-10-13T03:56:12.768902+00:00",
+  "algorithm": "sha256 canonical sorted row JSON",
+  "product_sha256": "81d2f99864da5c1d2b9d2171699e8fa17202b2361ba1e4e3cca42ea4e4f82fdb",
+  "files": [
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/SKILL.md",
+      "sha256": "d4104ed897a1033ca65fbf1bb3accb93f16e82d2e50dc697e2f24e27c928b329",
+      "mode": "0o644",
+      "bytes": 12850
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "sha256": "43178750a6a7dcdf3ebcc4821e3c1dd1ccfd74aaa910a0f53894face8efa5e17",
+      "mode": "0o644",
+      "bytes": 25058
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+      "mode": "0o644",
+      "bytes": 4018
+    },
+    {
+      "path": ".claude/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66",
+      "mode": "0o644",
+      "bytes": 403
+    },
+    {
+      "path": ".claude/skills/engos-delivery-address-code-review/SKILL.md",
+      "sha256": "bd4481be0108b0e2bdd8305697edce6d76afc552eb226a2a1619cb3f825bb780",
+      "mode": "0o644",
+      "bytes": 8283
+    },
+    {
+      "path": ".claude/skills/engos-delivery-address-code-review/resources/capability.json",
+      "sha256": "3edac916ea792ef0ccd99d6b93a39c5af7ce14d2830d5a206fd382c958affd2d",
+      "mode": "0o644",
+      "bytes": 24201
+    },
+    {
+      "path": ".claude/skills/engos-delivery-address-code-review/resources/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586",
+      "mode": "0o644",
+      "bytes": 1944
+    },
+    {
+      "path": ".claude/skills/engos-delivery-address-code-review/resources/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df",
+      "mode": "0o644",
+      "bytes": 170
+    },
+    {
+      "path": ".claude/skills/engos-delivery-address-code-review/resources/scripts/load_module.py",
+      "sha256": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "mode": "0o644",
+      "bytes": 24548
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/SKILL.md",
+      "sha256": "ecc18a834fda7ec9969bd6b078d92283a6f4c68f5ca9cf6ec1d000a82eb3bdda",
+      "mode": "0o644",
+      "bytes": 16752
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/capability.json",
+      "sha256": "1cbd0e07ab879f4182b0f87642a21a98ae440ee6830c17f2bb96d844eb1b13d2",
+      "mode": "0o644",
+      "bytes": 33829
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282",
+      "mode": "0o644",
+      "bytes": 370
+    },
+    {
+      "path": ".claude/skills/engos-delivery-implement-slice/resources/shared-resource-imports.json",
+      "sha256": "13aa03c0999e114c6e6960169ecccd792edc4c4b509d107d3261fe051b0ce5ca",
+      "mode": "0o644",
+      "bytes": 395
+    },
+    {
+      "path": ".claude/skills/engos-orchestration-batman/SKILL.md",
+      "sha256": "ac1bc1cdd6871b60e3703cdbc62f2a517d5adb5fd3612d65c772f0d24d637798",
+      "mode": "0o644",
+      "bytes": 37922
+    },
+    {
+      "path": ".claude/skills/engos-orchestration-batman/resources/capability.json",
+      "sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749",
+      "mode": "0o644",
+      "bytes": 54371
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/SKILL.md",
+      "sha256": "48bfd3ad4f89b1c0a77e9ce081b8136c645d5c5234afc0421963396cd35e8c5d",
+      "mode": "0o644",
+      "bytes": 22841
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/capability.json",
+      "sha256": "16b9af52598a58f947f5c44bea5154055342dde41628e3a412bb8cb3d3336637",
+      "mode": "0o644",
+      "bytes": 28002
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c",
+      "mode": "0o644",
+      "bytes": 3835
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022",
+      "mode": "0o644",
+      "bytes": 711
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee",
+      "mode": "0o644",
+      "bytes": 3781
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "mode": "0o644",
+      "bytes": 41213
+    },
+    {
+      "path": ".claude/skills/engos-quality-code-review/resources/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "mode": "0o644",
+      "bytes": 13020
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/SKILL.md",
+      "sha256": "1f7a0c63a8a1500b37d60b91d54740a25712deeb1331049e0f0bbbe2d602942d",
+      "mode": "0o644",
+      "bytes": 11477
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/capability.json",
+      "sha256": "25a6222c960262e7cb6e792eb03f9d7fb0cf6a594f6499d04756de434fcd52f0",
+      "mode": "0o644",
+      "bytes": 23519
+    },
+    {
+      "path": ".claude/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/SKILL.md",
+      "sha256": "d4104ed897a1033ca65fbf1bb3accb93f16e82d2e50dc697e2f24e27c928b329",
+      "mode": "0o644",
+      "bytes": 12850
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "sha256": "43178750a6a7dcdf3ebcc4821e3c1dd1ccfd74aaa910a0f53894face8efa5e17",
+      "mode": "0o644",
+      "bytes": 25058
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+      "mode": "0o644",
+      "bytes": 4018
+    },
+    {
+      "path": ".codex/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66",
+      "mode": "0o644",
+      "bytes": 403
+    },
+    {
+      "path": ".codex/skills/engos-delivery-address-code-review/SKILL.md",
+      "sha256": "bd4481be0108b0e2bdd8305697edce6d76afc552eb226a2a1619cb3f825bb780",
+      "mode": "0o644",
+      "bytes": 8283
+    },
+    {
+      "path": ".codex/skills/engos-delivery-address-code-review/resources/capability.json",
+      "sha256": "3edac916ea792ef0ccd99d6b93a39c5af7ce14d2830d5a206fd382c958affd2d",
+      "mode": "0o644",
+      "bytes": 24201
+    },
+    {
+      "path": ".codex/skills/engos-delivery-address-code-review/resources/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586",
+      "mode": "0o644",
+      "bytes": 1944
+    },
+    {
+      "path": ".codex/skills/engos-delivery-address-code-review/resources/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df",
+      "mode": "0o644",
+      "bytes": 170
+    },
+    {
+      "path": ".codex/skills/engos-delivery-address-code-review/resources/scripts/load_module.py",
+      "sha256": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "mode": "0o644",
+      "bytes": 24548
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/SKILL.md",
+      "sha256": "ecc18a834fda7ec9969bd6b078d92283a6f4c68f5ca9cf6ec1d000a82eb3bdda",
+      "mode": "0o644",
+      "bytes": 16752
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/capability.json",
+      "sha256": "1cbd0e07ab879f4182b0f87642a21a98ae440ee6830c17f2bb96d844eb1b13d2",
+      "mode": "0o644",
+      "bytes": 33829
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282",
+      "mode": "0o644",
+      "bytes": 370
+    },
+    {
+      "path": ".codex/skills/engos-delivery-implement-slice/resources/shared-resource-imports.json",
+      "sha256": "13aa03c0999e114c6e6960169ecccd792edc4c4b509d107d3261fe051b0ce5ca",
+      "mode": "0o644",
+      "bytes": 395
+    },
+    {
+      "path": ".codex/skills/engos-orchestration-batman/SKILL.md",
+      "sha256": "ac1bc1cdd6871b60e3703cdbc62f2a517d5adb5fd3612d65c772f0d24d637798",
+      "mode": "0o644",
+      "bytes": 37922
+    },
+    {
+      "path": ".codex/skills/engos-orchestration-batman/resources/capability.json",
+      "sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749",
+      "mode": "0o644",
+      "bytes": 54371
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/SKILL.md",
+      "sha256": "48bfd3ad4f89b1c0a77e9ce081b8136c645d5c5234afc0421963396cd35e8c5d",
+      "mode": "0o644",
+      "bytes": 22841
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/capability.json",
+      "sha256": "16b9af52598a58f947f5c44bea5154055342dde41628e3a412bb8cb3d3336637",
+      "mode": "0o644",
+      "bytes": 28002
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c",
+      "mode": "0o644",
+      "bytes": 3835
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022",
+      "mode": "0o644",
+      "bytes": 711
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee",
+      "mode": "0o644",
+      "bytes": 3781
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "mode": "0o644",
+      "bytes": 41213
+    },
+    {
+      "path": ".codex/skills/engos-quality-code-review/resources/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "mode": "0o644",
+      "bytes": 13020
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/SKILL.md",
+      "sha256": "1f7a0c63a8a1500b37d60b91d54740a25712deeb1331049e0f0bbbe2d602942d",
+      "mode": "0o644",
+      "bytes": 11477
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/capability.json",
+      "sha256": "25a6222c960262e7cb6e792eb03f9d7fb0cf6a594f6499d04756de434fcd52f0",
+      "mode": "0o644",
+      "bytes": 23519
+    },
+    {
+      "path": ".codex/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/SKILL.md",
+      "sha256": "d4104ed897a1033ca65fbf1bb3accb93f16e82d2e50dc697e2f24e27c928b329",
+      "mode": "0o644",
+      "bytes": 12850
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "sha256": "43178750a6a7dcdf3ebcc4821e3c1dd1ccfd74aaa910a0f53894face8efa5e17",
+      "mode": "0o644",
+      "bytes": 25058
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+      "mode": "0o644",
+      "bytes": 4018
+    },
+    {
+      "path": ".gemini/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66",
+      "mode": "0o644",
+      "bytes": 403
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-address-code-review/SKILL.md",
+      "sha256": "bd4481be0108b0e2bdd8305697edce6d76afc552eb226a2a1619cb3f825bb780",
+      "mode": "0o644",
+      "bytes": 8283
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-address-code-review/resources/capability.json",
+      "sha256": "3edac916ea792ef0ccd99d6b93a39c5af7ce14d2830d5a206fd382c958affd2d",
+      "mode": "0o644",
+      "bytes": 24201
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-address-code-review/resources/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586",
+      "mode": "0o644",
+      "bytes": 1944
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-address-code-review/resources/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df",
+      "mode": "0o644",
+      "bytes": 170
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-address-code-review/resources/scripts/load_module.py",
+      "sha256": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "mode": "0o644",
+      "bytes": 24548
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/SKILL.md",
+      "sha256": "ecc18a834fda7ec9969bd6b078d92283a6f4c68f5ca9cf6ec1d000a82eb3bdda",
+      "mode": "0o644",
+      "bytes": 16752
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/capability.json",
+      "sha256": "1cbd0e07ab879f4182b0f87642a21a98ae440ee6830c17f2bb96d844eb1b13d2",
+      "mode": "0o644",
+      "bytes": 33829
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282",
+      "mode": "0o644",
+      "bytes": 370
+    },
+    {
+      "path": ".gemini/skills/engos-delivery-implement-slice/resources/shared-resource-imports.json",
+      "sha256": "13aa03c0999e114c6e6960169ecccd792edc4c4b509d107d3261fe051b0ce5ca",
+      "mode": "0o644",
+      "bytes": 395
+    },
+    {
+      "path": ".gemini/skills/engos-orchestration-batman/SKILL.md",
+      "sha256": "ac1bc1cdd6871b60e3703cdbc62f2a517d5adb5fd3612d65c772f0d24d637798",
+      "mode": "0o644",
+      "bytes": 37922
+    },
+    {
+      "path": ".gemini/skills/engos-orchestration-batman/resources/capability.json",
+      "sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749",
+      "mode": "0o644",
+      "bytes": 54371
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/SKILL.md",
+      "sha256": "48bfd3ad4f89b1c0a77e9ce081b8136c645d5c5234afc0421963396cd35e8c5d",
+      "mode": "0o644",
+      "bytes": 22841
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/capability.json",
+      "sha256": "16b9af52598a58f947f5c44bea5154055342dde41628e3a412bb8cb3d3336637",
+      "mode": "0o644",
+      "bytes": 28002
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c",
+      "mode": "0o644",
+      "bytes": 3835
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022",
+      "mode": "0o644",
+      "bytes": 711
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee",
+      "mode": "0o644",
+      "bytes": 3781
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "mode": "0o644",
+      "bytes": 41213
+    },
+    {
+      "path": ".gemini/skills/engos-quality-code-review/resources/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "mode": "0o644",
+      "bytes": 13020
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/SKILL.md",
+      "sha256": "1f7a0c63a8a1500b37d60b91d54740a25712deeb1331049e0f0bbbe2d602942d",
+      "mode": "0o644",
+      "bytes": 11477
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/capability.json",
+      "sha256": "25a6222c960262e7cb6e792eb03f9d7fb0cf6a594f6499d04756de434fcd52f0",
+      "mode": "0o644",
+      "bytes": 23519
+    },
+    {
+      "path": ".gemini/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".github/workflows/cli-surfaces-validate.yml",
+      "sha256": "0ba1edd50389086f5b628f2fbd7e9fa1646840c0fda121de34bb814e333abc75",
+      "mode": "0o644",
+      "bytes": 4052
+    },
+    {
+      "path": ".gitlab-ci.yml",
+      "sha256": "6f3529638c0003c3c501bd3acf17523a8a4d0e2b79755c06b8c1c2d94cf09f41",
+      "mode": "0o644",
+      "bytes": 2943
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/SKILL.md",
+      "sha256": "d4104ed897a1033ca65fbf1bb3accb93f16e82d2e50dc697e2f24e27c928b329",
+      "mode": "0o644",
+      "bytes": 12850
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "sha256": "43178750a6a7dcdf3ebcc4821e3c1dd1ccfd74aaa910a0f53894face8efa5e17",
+      "mode": "0o644",
+      "bytes": 25058
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+      "mode": "0o644",
+      "bytes": 4018
+    },
+    {
+      "path": ".grok/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66",
+      "mode": "0o644",
+      "bytes": 403
+    },
+    {
+      "path": ".grok/skills/engos-delivery-address-code-review/SKILL.md",
+      "sha256": "bd4481be0108b0e2bdd8305697edce6d76afc552eb226a2a1619cb3f825bb780",
+      "mode": "0o644",
+      "bytes": 8283
+    },
+    {
+      "path": ".grok/skills/engos-delivery-address-code-review/resources/capability.json",
+      "sha256": "3edac916ea792ef0ccd99d6b93a39c5af7ce14d2830d5a206fd382c958affd2d",
+      "mode": "0o644",
+      "bytes": 24201
+    },
+    {
+      "path": ".grok/skills/engos-delivery-address-code-review/resources/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586",
+      "mode": "0o644",
+      "bytes": 1944
+    },
+    {
+      "path": ".grok/skills/engos-delivery-address-code-review/resources/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df",
+      "mode": "0o644",
+      "bytes": 170
+    },
+    {
+      "path": ".grok/skills/engos-delivery-address-code-review/resources/scripts/load_module.py",
+      "sha256": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "mode": "0o644",
+      "bytes": 24548
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/SKILL.md",
+      "sha256": "ecc18a834fda7ec9969bd6b078d92283a6f4c68f5ca9cf6ec1d000a82eb3bdda",
+      "mode": "0o644",
+      "bytes": 16752
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/capability.json",
+      "sha256": "1cbd0e07ab879f4182b0f87642a21a98ae440ee6830c17f2bb96d844eb1b13d2",
+      "mode": "0o644",
+      "bytes": 33829
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282",
+      "mode": "0o644",
+      "bytes": 370
+    },
+    {
+      "path": ".grok/skills/engos-delivery-implement-slice/resources/shared-resource-imports.json",
+      "sha256": "13aa03c0999e114c6e6960169ecccd792edc4c4b509d107d3261fe051b0ce5ca",
+      "mode": "0o644",
+      "bytes": 395
+    },
+    {
+      "path": ".grok/skills/engos-orchestration-batman/SKILL.md",
+      "sha256": "ac1bc1cdd6871b60e3703cdbc62f2a517d5adb5fd3612d65c772f0d24d637798",
+      "mode": "0o644",
+      "bytes": 37922
+    },
+    {
+      "path": ".grok/skills/engos-orchestration-batman/resources/capability.json",
+      "sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749",
+      "mode": "0o644",
+      "bytes": 54371
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/SKILL.md",
+      "sha256": "48bfd3ad4f89b1c0a77e9ce081b8136c645d5c5234afc0421963396cd35e8c5d",
+      "mode": "0o644",
+      "bytes": 22841
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/capability.json",
+      "sha256": "16b9af52598a58f947f5c44bea5154055342dde41628e3a412bb8cb3d3336637",
+      "mode": "0o644",
+      "bytes": 28002
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c",
+      "mode": "0o644",
+      "bytes": 3835
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022",
+      "mode": "0o644",
+      "bytes": 711
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee",
+      "mode": "0o644",
+      "bytes": 3781
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "mode": "0o644",
+      "bytes": 41213
+    },
+    {
+      "path": ".grok/skills/engos-quality-code-review/resources/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "mode": "0o644",
+      "bytes": 13020
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/SKILL.md",
+      "sha256": "1f7a0c63a8a1500b37d60b91d54740a25712deeb1331049e0f0bbbe2d602942d",
+      "mode": "0o644",
+      "bytes": 11477
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/capability.json",
+      "sha256": "25a6222c960262e7cb6e792eb03f9d7fb0cf6a594f6499d04756de434fcd52f0",
+      "mode": "0o644",
+      "bytes": 23519
+    },
+    {
+      "path": ".grok/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/SKILL.md",
+      "sha256": "d4104ed897a1033ca65fbf1bb3accb93f16e82d2e50dc697e2f24e27c928b329",
+      "mode": "0o644",
+      "bytes": 12850
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/capability.json",
+      "sha256": "43178750a6a7dcdf3ebcc4821e3c1dd1ccfd74aaa910a0f53894face8efa5e17",
+      "mode": "0o644",
+      "bytes": 25058
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+      "mode": "0o644",
+      "bytes": 4018
+    },
+    {
+      "path": ".kiro/skills/engos-debug-diagnose-failure/resources/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66",
+      "mode": "0o644",
+      "bytes": 403
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-address-code-review/SKILL.md",
+      "sha256": "bd4481be0108b0e2bdd8305697edce6d76afc552eb226a2a1619cb3f825bb780",
+      "mode": "0o644",
+      "bytes": 8283
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-address-code-review/resources/capability.json",
+      "sha256": "3edac916ea792ef0ccd99d6b93a39c5af7ce14d2830d5a206fd382c958affd2d",
+      "mode": "0o644",
+      "bytes": 24201
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-address-code-review/resources/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586",
+      "mode": "0o644",
+      "bytes": 1944
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-address-code-review/resources/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df",
+      "mode": "0o644",
+      "bytes": 170
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-address-code-review/resources/scripts/load_module.py",
+      "sha256": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "mode": "0o644",
+      "bytes": 24548
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/SKILL.md",
+      "sha256": "ecc18a834fda7ec9969bd6b078d92283a6f4c68f5ca9cf6ec1d000a82eb3bdda",
+      "mode": "0o644",
+      "bytes": 16752
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/capability.json",
+      "sha256": "1cbd0e07ab879f4182b0f87642a21a98ae440ee6830c17f2bb96d844eb1b13d2",
+      "mode": "0o644",
+      "bytes": 33829
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282",
+      "mode": "0o644",
+      "bytes": 370
+    },
+    {
+      "path": ".kiro/skills/engos-delivery-implement-slice/resources/shared-resource-imports.json",
+      "sha256": "13aa03c0999e114c6e6960169ecccd792edc4c4b509d107d3261fe051b0ce5ca",
+      "mode": "0o644",
+      "bytes": 395
+    },
+    {
+      "path": ".kiro/skills/engos-orchestration-batman/SKILL.md",
+      "sha256": "ac1bc1cdd6871b60e3703cdbc62f2a517d5adb5fd3612d65c772f0d24d637798",
+      "mode": "0o644",
+      "bytes": 37922
+    },
+    {
+      "path": ".kiro/skills/engos-orchestration-batman/resources/capability.json",
+      "sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749",
+      "mode": "0o644",
+      "bytes": 54371
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/SKILL.md",
+      "sha256": "48bfd3ad4f89b1c0a77e9ce081b8136c645d5c5234afc0421963396cd35e8c5d",
+      "mode": "0o644",
+      "bytes": 22841
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/capability.json",
+      "sha256": "16b9af52598a58f947f5c44bea5154055342dde41628e3a412bb8cb3d3336637",
+      "mode": "0o644",
+      "bytes": 28002
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c",
+      "mode": "0o644",
+      "bytes": 3835
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022",
+      "mode": "0o644",
+      "bytes": 711
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee",
+      "mode": "0o644",
+      "bytes": 3781
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "mode": "0o644",
+      "bytes": 41213
+    },
+    {
+      "path": ".kiro/skills/engos-quality-code-review/resources/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "mode": "0o644",
+      "bytes": 13020
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/SKILL.md",
+      "sha256": "1f7a0c63a8a1500b37d60b91d54740a25712deeb1331049e0f0bbbe2d602942d",
+      "mode": "0o644",
+      "bytes": 11477
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/capability.json",
+      "sha256": "25a6222c960262e7cb6e792eb03f9d7fb0cf6a594f6499d04756de434fcd52f0",
+      "mode": "0o644",
+      "bytes": 23519
+    },
+    {
+      "path": ".kiro/skills/engos-quality-testing-review/resources/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": ".meta/capabilities/engos-debug-diagnose-failure.json",
+      "sha256": "43178750a6a7dcdf3ebcc4821e3c1dd1ccfd74aaa910a0f53894face8efa5e17",
+      "mode": "0o644",
+      "bytes": 25058
+    },
+    {
+      "path": ".meta/capabilities/engos-delivery-address-code-review.json",
+      "sha256": "3edac916ea792ef0ccd99d6b93a39c5af7ce14d2830d5a206fd382c958affd2d",
+      "mode": "0o644",
+      "bytes": 24201
+    },
+    {
+      "path": ".meta/capabilities/engos-delivery-implement-slice.json",
+      "sha256": "1cbd0e07ab879f4182b0f87642a21a98ae440ee6830c17f2bb96d844eb1b13d2",
+      "mode": "0o644",
+      "bytes": 33829
+    },
+    {
+      "path": ".meta/capabilities/engos-orchestration-batman.json",
+      "sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749",
+      "mode": "0o644",
+      "bytes": 54371
+    },
+    {
+      "path": ".meta/capabilities/engos-quality-code-review.json",
+      "sha256": "16b9af52598a58f947f5c44bea5154055342dde41628e3a412bb8cb3d3336637",
+      "mode": "0o644",
+      "bytes": 28002
+    },
+    {
+      "path": ".meta/capabilities/engos-quality-testing-review.json",
+      "sha256": "25a6222c960262e7cb6e792eb03f9d7fb0cf6a594f6499d04756de434fcd52f0",
+      "mode": "0o644",
+      "bytes": 23519
+    },
+    {
+      "path": ".meta/install-bundle.json",
+      "sha256": "5c272a6864389d0de77f2b0c4b378a0405b235fc0ada5b53fdaa709eef733326",
+      "mode": "0o644",
+      "bytes": 272930
+    },
+    {
+      "path": ".meta/install-profiles/legacy-installations.json",
+      "sha256": "87c7df7d61431a136a9af1bffc9fb5dae57a6a0ae85b7de4fe3744ad95943c53",
+      "mode": "0o644",
+      "bytes": 1372533
+    },
+    {
+      "path": ".meta/install-profiles/legacy-release-refs.json",
+      "sha256": "7efbe2984e6085607a31380ec1e94349033117daa8041edb95844a262d11b414",
+      "mode": "0o644",
+      "bytes": 8305
+    },
+    {
+      "path": ".meta/manifest.json",
+      "sha256": "2a498f971df463d85177a5438dbb9890693465e5c6e592d2f56133194e2a757d",
+      "mode": "0o644",
+      "bytes": 1096522
+    },
+    {
+      "path": ".meta/shared-resource-imports.json",
+      "sha256": "f512d3e7c2374ef4d5204538aada9ca833728a9671cb1ef5233aa38d0dd68c6c",
+      "mode": "0o644",
+      "bytes": 2382
+    },
+    {
+      "path": ".meta/skill-job-map.json",
+      "sha256": "6c5d8345071fb057d5faf1dfcecb21af033df657519276669f2925bb4850edc5",
+      "mode": "0o644",
+      "bytes": 441054
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "6496f04fedeeaf37d722720dd7b9d521b3ac375d410dd7be1f39ee2f6951c420",
+      "mode": "0o644",
+      "bytes": 77716
+    },
+    {
+      "path": "README.md",
+      "sha256": "7b8fe493bed71451d10423056fcf351d70914a156698c31b628cc115f74f00a4",
+      "mode": "0o644",
+      "bytes": 47351
+    },
+    {
+      "path": "docs/CLI-REFERENCE.md",
+      "sha256": "187496dbce59e6a749174aeabadee7067c790b8da96370b20ebc77cb1bb81402",
+      "mode": "0o644",
+      "bytes": 40545
+    },
+    {
+      "path": "docs/EXAMPLES.md",
+      "sha256": "503e828b6d83479acc2cd0a1fa56d68c0bb6f42e5c7c27235f673b635d6239f2",
+      "mode": "0o644",
+      "bytes": 94204
+    },
+    {
+      "path": "docs/GETTING-STARTED.md",
+      "sha256": "600c848a5daffce11ed8599afe6169bfb74922e8838c9db84b307cc5c611732a",
+      "mode": "0o644",
+      "bytes": 33730
+    },
+    {
+      "path": "docs/INSTALL-PROFILES.md",
+      "sha256": "838316122f8ef997783d0a0079bcd9706cfd28546b552ec9542e1add536ea29c",
+      "mode": "0o644",
+      "bytes": 23762
+    },
+    {
+      "path": "docs/RELEASE-PACKAGING.md",
+      "sha256": "baa2c2f79a15400e8cf32b66c462b7bffacb8270a4de04bad5f5146a09660c57",
+      "mode": "0o644",
+      "bytes": 15703
+    },
+    {
+      "path": "docs/STATUS.md",
+      "sha256": "de6838dbadede8802924abaea5e95970f5e962713dc4b1d6d50fd9e9f2988ac9",
+      "mode": "0o644",
+      "bytes": 454
+    },
+    {
+      "path": "docs/UAC-USAGE.md",
+      "sha256": "20eb5a119a175130a351c8cc36a4710ab23d67d8d82020fe32e378a5d5e43be6",
+      "mode": "0o644",
+      "bytes": 27911
+    },
+    {
+      "path": "evals/contracts/engos-debug-diagnose-failure.json",
+      "sha256": "cb77dc552f7ff7c67a0c24324e5ee91d094af13a89b6e07a3991213bc07abeff",
+      "mode": "0o644",
+      "bytes": 18651
+    },
+    {
+      "path": "evals/contracts/engos-delivery-address-code-review.json",
+      "sha256": "987e5751bd8d5d31337815124c625388902ab832f5a720afa7b77e6f3190fcee",
+      "mode": "0o644",
+      "bytes": 11229
+    },
+    {
+      "path": "evals/contracts/engos-delivery-implement-slice.json",
+      "sha256": "d381d128fa67171ab926261c1b1e91f93c5671824731c0b2fc1c76669e3dad14",
+      "mode": "0o644",
+      "bytes": 25524
+    },
+    {
+      "path": "evals/contracts/engos-orchestration-batman.json",
+      "sha256": "5f79723e5d037bc588ae9321f8a10d9f5077e2afde3382ed449ad9ac6abac2a9",
+      "mode": "0o644",
+      "bytes": 36811
+    },
+    {
+      "path": "evals/contracts/engos-quality-code-review.json",
+      "sha256": "f2561adf6743eda8ebcf1cf6d87382f6f22448cf3113001711f897e5775a696c",
+      "mode": "0o644",
+      "bytes": 60137
+    },
+    {
+      "path": "evals/contracts/engos-quality-testing-review.json",
+      "sha256": "c999ef585e186e8c971bb9538cb6a74544a999927ff4f64572f62e61b8659449",
+      "mode": "0o644",
+      "bytes": 16972
+    },
+    {
+      "path": "evals/topologies/engos-debug-diagnose-failure.json",
+      "sha256": "e7ffe41f10bc9e5f181818a3b92bdae072fff0c168f3fb1ebde6b3c551a6398b",
+      "mode": "0o644",
+      "bytes": 30423
+    },
+    {
+      "path": "evals/topologies/engos-delivery-address-code-review.json",
+      "sha256": "9b42d7a2d0742606343bed16acf45ab2efc71a16fb0d5b20aef2a14816bd1e45",
+      "mode": "0o644",
+      "bytes": 17497
+    },
+    {
+      "path": "evals/topologies/engos-delivery-implement-slice.json",
+      "sha256": "48577ac52ffcd4250e663e9861b377f17a8221f1f163b0cb50654d2d64326072",
+      "mode": "0o644",
+      "bytes": 35240
+    },
+    {
+      "path": "evals/topologies/engos-orchestration-batman.json",
+      "sha256": "35377ae075ecf4c1cf5fae1cdfe38e77b99f07feeddf72914421ae4b3f9269ec",
+      "mode": "0o644",
+      "bytes": 48785
+    },
+    {
+      "path": "evals/topologies/engos-quality-code-review.json",
+      "sha256": "003f1b363183f69d00e3b6b2f559e6ee59c11fe3737c6dc07f72494d3d7fd68a",
+      "mode": "0o644",
+      "bytes": 93999
+    },
+    {
+      "path": "evals/topologies/engos-quality-testing-review.json",
+      "sha256": "0143ff73aff37ae3a4b5529480eef6c2ffaae630065c6584dbdfa9ba0ed17869",
+      "mode": "0o644",
+      "bytes": 25403
+    },
+    {
+      "path": "scripts/build-legacy-catalog.py",
+      "sha256": "a0b9f2dc81cfb1d83b2a7149be76c1cdccd35e63b8e1e97a2d5c4c534c809613",
+      "mode": "0o644",
+      "bytes": 9951
+    },
+    {
+      "path": "scripts/core_install/catalog.py",
+      "sha256": "85db2899aa0fee1e62fe11fb43a2a47d92659cf4f71b3bb7413ae4a5743762ee",
+      "mode": "0o644",
+      "bytes": 9058
+    },
+    {
+      "path": "scripts/core_install/cli.py",
+      "sha256": "b62a2d4288f607290f07918e4375c5abec616b935346ecee8e15a6052d928049",
+      "mode": "0o644",
+      "bytes": 7915
+    },
+    {
+      "path": "scripts/core_install/planner.py",
+      "sha256": "2d88fe461b9af243d3410c0221f67b652f8e7c51175114308f51bb446dfc1459",
+      "mode": "0o644",
+      "bytes": 41676
+    },
+    {
+      "path": "scripts/core_install/selection_policy.py",
+      "sha256": "3a89f2e5479a5cb5fc5ecc11c1c03c3a584cba08a4c1376d61804fd6788d1d00",
+      "mode": "0o644",
+      "bytes": 5127
+    },
+    {
+      "path": "scripts/deploy-profile.py",
+      "sha256": "91ab54fafe8d1b30ba325f3892ea9cde7ff09c7f01c11bf798326a621fb2b006",
+      "mode": "0o644",
+      "bytes": 45320
+    },
+    {
+      "path": "scripts/deploy-surfaces.sh",
+      "sha256": "99dd62848a8ddc15b615320f48edc9000c3cfff10543ec29ab0c9c63359cd5c0",
+      "mode": "0o755",
+      "bytes": 27271
+    },
+    {
+      "path": "scripts/install-local.sh",
+      "sha256": "db6f039aea67f344b303604182e81e9d00c4d822347a88ae0cdd73cfe99f26d2",
+      "mode": "0o755",
+      "bytes": 2600
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+      "mode": "0o644",
+      "bytes": 4018
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66",
+      "mode": "0o644",
+      "bytes": 403
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586",
+      "mode": "0o644",
+      "bytes": 1944
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-address-code-review/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df",
+      "mode": "0o644",
+      "bytes": 170
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282",
+      "mode": "0o644",
+      "bytes": 370
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "sha256": "9a503e081a1fd20ff84b305aa2fa1ab5cf18888771c059a1eb94c13b6778008c",
+      "mode": "0o644",
+      "bytes": 3835
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022",
+      "mode": "0o644",
+      "bytes": 711
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee",
+      "mode": "0o644",
+      "bytes": 3781
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "mode": "0o644",
+      "bytes": 41213
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "sha256": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "mode": "0o644",
+      "bytes": 13020
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978",
+      "mode": "0o644",
+      "bytes": 5441
+    },
+    {
+      "path": "ssot/engos-debug-diagnose-failure.md",
+      "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa",
+      "mode": "0o644",
+      "bytes": 12889
+    },
+    {
+      "path": "ssot/engos-delivery-address-code-review.md",
+      "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8",
+      "mode": "0o644",
+      "bytes": 8337
+    },
+    {
+      "path": "ssot/engos-delivery-implement-slice.md",
+      "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d",
+      "mode": "0o644",
+      "bytes": 16810
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "sha256": "e13d65cbb432fa793105578a93257ab3bcce8f971f40b532cebbb54a61fa7eb3",
+      "mode": "0o644",
+      "bytes": 38052
+    },
+    {
+      "path": "ssot/engos-quality-code-review.md",
+      "sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a",
+      "mode": "0o644",
+      "bytes": 22887
+    },
+    {
+      "path": "ssot/engos-quality-testing-review.md",
+      "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b",
+      "mode": "0o644",
+      "bytes": 11546
+    },
+    {
+      "path": "tests/fixtures/program-adoption/fixture-request.md",
+      "sha256": "ac9384025c00911a0477213eec7017f43cecac8c137f2eb1b5eb6210b44cf923",
+      "mode": "0o644",
+      "bytes": 243
+    },
+    {
+      "path": "tests/fixtures/program-adoption/native-cases.json",
+      "sha256": "a3b3216c757534d877e46eca3d2497ae92681b6ecb8bc4107a35c384c9b2d196",
+      "mode": "0o644",
+      "bytes": 2380
+    },
+    {
+      "path": "tests/fixtures/program-adoption/spec-contract.invalid.json",
+      "sha256": "80e4ac4b68c354f87d24ed3af29891b8fe68216ea6f75d43c5b622aa998bdc4d",
+      "mode": "0o644",
+      "bytes": 1026
+    },
+    {
+      "path": "tests/fixtures/program-adoption/spec-contract.valid.json",
+      "sha256": "97547dcf8b49d82e107fe3612bbbae3eea6fe1912e63fa4a24833524a34bb053",
+      "mode": "0o644",
+      "bytes": 1021
+    },
+    {
+      "path": "tests/test_capability_resources.py",
+      "sha256": "c363379cb21cb3411ae559749d14fdbe7be3ff57cbf4bac1db371332453563f1",
+      "mode": "0o644",
+      "bytes": 61652
+    },
+    {
+      "path": "tests/test_handoff_contracts.py",
+      "sha256": "9e9d8c196d720661fc14f7bf35356d654ff57f0f0bd38c3c9f9f432aad13f4df",
+      "mode": "0o644",
+      "bytes": 18503
+    },
+    {
+      "path": "tests/test_install_bootstrap.py",
+      "sha256": "5add619ecaf2d2a317de7ffaacf17014d1a315dbd426c62fba814e970b5991b9",
+      "mode": "0o644",
+      "bytes": 13954
+    },
+    {
+      "path": "tests/test_install_catalog.py",
+      "sha256": "5760bd9c837012630a54422cb879ae97aa1e0ea9bfca7ebf9e5582442be5805e",
+      "mode": "0o644",
+      "bytes": 8562
+    },
+    {
+      "path": "tests/test_program_adoption.py",
+      "sha256": "ac04c5eda09081f84c07daf4a056c963d569029111b735dfa1d275218379ecbf",
+      "mode": "0o644",
+      "bytes": 24882
+    }
+  ],
+  "status": "final-source-candidate; hosted/native/userinstallationseparate",
+  "source_gate_dependencies": [
+    "handoffab4f076independent0open",
+    "adoptiondec7sealindependent0open",
+    "sixUACall sourceexact",
+    "docsmergeandCItestparity"
+  ],
+  "supersedes_product_sha256": "3766db61a2ba82c2100f4c09855f1233339ee416cb152a364fc2f5301a07ceaa",
+  "seal_repair": "actual last Fabric step12 regenerated STATUS timestamp; allother198unchanged"
+}

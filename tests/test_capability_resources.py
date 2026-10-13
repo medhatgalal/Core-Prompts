@@ -661,7 +661,9 @@ def slice_receipt_template():
 
 
 def test_slice_receipt_optional_route_and_template():
-    bundle = load_resource_bundle(SLICE_RESOURCES, "receipt")
+    from intent_pipeline.capability_resources import load_capability_bundle
+    bundle = load_capability_bundle(Path(__file__).resolve().parents[1],
+                                    "engos-delivery-implement-slice", "", "receipt")
     assert paths(bundle) == ["schemas/slice-receipt.schema.json", "templates/slice-receipt.json"]
     receipt = slice_receipt_template()
     slice_receipt_validator().validate(receipt)

@@ -1,5 +1,13 @@
 ## Unreleased
 
+- Add an externally pinned, read-only committed review-package binding verifier
+  while preserving the collector's command and output contract. Document direct
+  diagnosis followed by separately authorized repair, selected-comment IDs and
+  dispositions, and explicit Batman invocation. Bundle D7's test-oracle reference
+  in standalone D5 through the sole-owner import route; TestDesign remains
+  `not_run`, and execution evidence remains separate. No new native command or
+  alias, publication, installation or release is claimed.
+
 - Clarify how to choose between hardening, reconciliation, baseline experiments,
   shaping, standalone pitch review, ordinary plans and bounded goal packets.
   Add optional planner/specification graph and trace check examples, including
@@ -28,6 +36,15 @@
   proposals follow current package-before-tag and dual-remote order. This is
   contract/resource evidence, not behavioral promotion, release or installation.
 
+- Add explicit full-catalog or curated future skill membership to the transactional
+  installer. Persist state3 only after explicit adoption, preserve undecided
+  state2 scope, prove saved empty profile membership from historical receipts,
+  and block mixed Codex/Gemini shared-root expansion until an exact joint choice.
+  Plans disclose policy and shared-owner effects. Protect empty curated shared
+  readers, retain the actual v1.16.3 Gemini portable-source mapping, and reject
+  receipt-only catalog promotion or duplicate inventory records. Existing
+  journals and receipts keep their versions; release, native acceptance and home
+  installation remain separate.
 - Add explicit source-owned resource imports with a finite registry, consumer
   declarations, generated provenance receipts and portable standalone loading.
   `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`

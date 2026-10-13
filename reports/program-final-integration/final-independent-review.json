@@ -1,0 +1,229 @@
+{
+  "schema_version": "Findings.v1",
+  "target": {
+    "kind": "diff",
+    "base": "fb79929ca7855d0efbf241d50d4a24c4aea75e2e",
+    "head": "a4b16b7738d3bc762b38c59747c306dd73fe9032",
+    "snapshot_digest": "81d2f99864da5c1d2b9d2171699e8fa17202b2361ba1e4e3cca42ea4e4f82fdb",
+    "comparison": "supplied_diff",
+    "included_change_classes": [
+      "supplied"
+    ]
+  },
+  "review_status": "complete",
+  "evidence": [
+    {
+      "id": "E-diff",
+      "path": "git diff --binary fb79929ca7855d0efbf241d50d4a24c4aea75e2e -- [199 product-payload.json paths]",
+      "kind": "diff",
+      "side": "snapshot",
+      "identity": "b0d09857c940f36df7e1257923fddd3a35fe13384aecc9cdd7194007360657ba",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-seal",
+      "path": "reports/program-final-integration/product-payload.json",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "82a20d3b1c4427f3e75af77c289b13ca110b013aa25456fa560f01669a45a850",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-old-seal",
+      "path": "reports/program-final-integration/product-payload-pre-final-status.json",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "a987f6351711a4b2a423ddf2ac01f75a2bcc33def54d164257da822995b5bfd7",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-probes",
+      "path": "reports/program-final-integration/independent-probes.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "afa56f994bce89c8acb2ae6988f2a9e78973f50348281eb73affcd6912df45ee",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-probe-log",
+      "path": "reports/program-final-integration/independent-probes.log",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "025bfa41366b404b689a4d45cfe3dc371dfc58454eeffde8e6a93847d53c7769",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-composition",
+      "path": "reports/program-final-integration/candidate-composition.json",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "92e97348252baa469a9033802d7f2d53aaf5420a8a0251d7a15b618e47255eee",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-selection",
+      "path": "scripts/core_install/selection_policy.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "3a89f2e5479a5cb5fc5ecc11c1c03c3a584cba08a4c1376d61804fd6788d1d00",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-planner",
+      "path": "scripts/core_install/planner.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "2d88fe461b9af243d3410c0221f67b652f8e7c51175114308f51bb446dfc1459",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-cli",
+      "path": "scripts/core_install/cli.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "b62a2d4288f607290f07918e4375c5abec616b935346ecee8e15a6052d928049",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-catalog",
+      "path": "scripts/core_install/catalog.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "85db2899aa0fee1e62fe11fb43a2a47d92659cf4f71b3bb7413ae4a5743762ee",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-capsule",
+      "path": "scripts/deploy-profile.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "91ab54fafe8d1b30ba325f3892ea9cde7ff09c7f01c11bf798326a621fb2b006",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-verifier",
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "468ac5ede03397f0b0a9aa6240e45360d556a949e130e2bd83497a4eb69ad491",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-collector",
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-handoff-tests",
+      "path": "tests/test_handoff_contracts.py",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "9e9d8c196d720661fc14f7bf35356d654ff57f0f0bd38c3c9f9f432aad13f4df",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-adoption-tests",
+      "path": "tests/test_program_adoption.py",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "ac04c5eda09081f84c07daf4a056c963d569029111b735dfa1d275218379ecbf",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-profiles",
+      "path": "docs/INSTALL-PROFILES.md",
+      "kind": "consumer",
+      "side": "snapshot",
+      "identity": "838316122f8ef997783d0a0079bcd9706cfd28546b552ec9542e1add536ea29c",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-examples",
+      "path": "docs/EXAMPLES.md",
+      "kind": "consumer",
+      "side": "snapshot",
+      "identity": "503e828b6d83479acc2cd0a1fa56d68c0bb6f42e5c7c27235f673b635d6239f2",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-cli-docs",
+      "path": "docs/CLI-REFERENCE.md",
+      "kind": "consumer",
+      "side": "snapshot",
+      "identity": "187496dbce59e6a749174aeabadee7067c790b8da96370b20ebc77cb1bb81402",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-gitlab",
+      "path": ".gitlab-ci.yml",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "6f3529638c0003c3c501bd3acf17523a8a4d0e2b79755c06b8c1c2d94cf09f41",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-github",
+      "path": ".github/workflows/cli-surfaces-validate.yml",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "0ba1edd50389086f5b628f2fbd7e9fa1646840c0fda121de34bb814e333abc75",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-local-ci12",
+      "path": "reports/program-final-integration/local-ci/12.log",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "2223faedf36b045ee694307d119cbfb52b7e7589af84fd7d8d50cf34eb9e43fa",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    }
+  ],
+  "findings": [],
+  "unreviewed": [],
+  "verdict": "ready"
+}

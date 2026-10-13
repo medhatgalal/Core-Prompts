@@ -172,7 +172,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-delivery-address-code-review",
-  "shared_summary": "[Chema] Address PR/MR review comments automatically. Use when the user wants to fix review feedback, address code review comments, or resolve MR/PR discussions from teammates.",
+  "shared_summary": "Apply selected pull request or merge request feedback with tightly scoped edits, then prepare the fix for re-review. Use only when actionable reviewer comments already exist; use code review for pre-commit or pre-push judgment.",
   "shared_constraints": [
     "**Only modify code that has an associated review comment.** Do not touch other changed lines in the diff that have no comments.",
     "If you believe an uncommented change also needs fixing, explain why and ask the user before making any modification.",
@@ -186,22 +186,37 @@
   "judge_reports": [
     {
       "pass_number": 1,
-      "status": "revise",
+      "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-delivery-address-code-review",
-        "strategy": "candidate_seed",
-        "group": "new_or_untracked",
-        "baseline_path": null,
-        "selected_commit": null,
+        "strategy": "source_library",
+        "group": "applied_baseline",
+        "baseline_path": "sources/ssot-baselines/engos-delivery-address-code-review/baseline.md",
+        "selected_commit": "e4f32a18",
         "richness_score": 5,
         "line_count": 109,
-        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
-        "scenario_matrix": [],
-        "historical_proof": {},
-        "source": "candidate_seed",
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "materialized_from_commit": "e4f32a18",
+          "materialized_from_source_kind": "current_ssot",
+          "materialized_from_path": "ssot/engos-delivery-address-code-review.md",
+          "materialized_from_sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d",
+          "last_materialized_at": "2026-06-02T18:41:30.995407+00:00"
+        },
+        "source": "source_library",
         "verified_by_git_history": false,
         "has_baseline_text": true
       },
@@ -212,23 +227,36 @@
           "score": 10,
           "blockers": [],
           "classification": "preserved",
-          "scenario_results": [],
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
             "baseline_operational_score": 2,
-            "candidate_operational_score": 2
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "e4f32a18",
           "baseline_slug": "engos-delivery-address-code-review"
         },
         {
           "judge": "operational_richness",
           "title": "Operational Richness",
-          "score": 7,
-          "blockers": [
-            "missing operational marker: ## Rules"
-          ]
+          "score": 10,
+          "blockers": []
         },
         {
           "judge": "metadata_integrity",
@@ -240,103 +268,12 @@
           "judge": "benchmark_readiness",
           "title": "Benchmark Readiness and Template Fit",
           "score": 9,
-          "blockers": [
-            "missing template heading: ## Rules"
-          ],
-          "scorecard": {
-            "title_clarity": 10,
-            "description_richness": 10,
-            "intent_coverage": 8,
-            "boundary_clarity": 10,
-            "output_specificity": 10,
-            "metadata_completeness": 8,
-            "surface_usability": 10
-          }
-        }
-      ],
-      "blockers": [
-        "missing operational marker: ## Rules",
-        "missing template heading: ## Rules"
-      ],
-      "scorecard": {
-        "source_fidelity": 10,
-        "baseline_richness": 5,
-        "candidate_richness": 5,
-        "baseline_operational_score": 2,
-        "candidate_operational_score": 2,
-        "operational_richness": 7,
-        "metadata_integrity": 10,
-        "benchmark_readiness": 9,
-        "title_clarity": 10,
-        "description_richness": 10,
-        "intent_coverage": 8,
-        "boundary_clarity": 10,
-        "output_specificity": 10,
-        "metadata_completeness": 8,
-        "surface_usability": 10
-      },
-      "template_name": "skill"
-    },
-    {
-      "pass_number": 2,
-      "status": "ship",
-      "historical_baseline": {
-        "slug": "engos-delivery-address-code-review",
-        "strategy": "candidate_seed",
-        "group": "new_or_untracked",
-        "baseline_path": null,
-        "selected_commit": null,
-        "richness_score": 5,
-        "line_count": 109,
-        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
-        "equivalent_commits": [],
-        "expected_companions": [],
-        "operator_invariants": [],
-        "scenario_matrix": [],
-        "historical_proof": {},
-        "source": "candidate_seed",
-        "verified_by_git_history": false,
-        "has_baseline_text": true
-      },
-      "judge_reports": [
-        {
-          "judge": "source_fidelity",
-          "title": "Source Fidelity and Uplift",
-          "score": 10,
-          "blockers": [],
-          "classification": "preserved",
-          "scenario_results": [],
-          "scorecard": {
-            "baseline_richness": 5,
-            "candidate_richness": 5,
-            "baseline_operational_score": 2,
-            "candidate_operational_score": 2
-          },
-          "baseline_commit": null,
-          "baseline_slug": "engos-delivery-address-code-review"
-        },
-        {
-          "judge": "operational_richness",
-          "title": "Operational Richness",
-          "score": 10,
-          "blockers": []
-        },
-        {
-          "judge": "metadata_integrity",
-          "title": "Metadata and Handoff Integrity",
-          "score": 10,
-          "blockers": []
-        },
-        {
-          "judge": "benchmark_readiness",
-          "title": "Benchmark Readiness and Template Fit",
-          "score": 10,
           "blockers": [],
           "scorecard": {
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
@@ -350,18 +287,52 @@
         "candidate_richness": 5,
         "baseline_operational_score": 2,
         "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,
-        "benchmark_readiness": 10,
+        "benchmark_readiness": 9,
         "title_clarity": 10,
         "description_richness": 10,
         "intent_coverage": 10,
-        "boundary_clarity": 10,
+        "boundary_clarity": 8,
         "output_specificity": 10,
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "skill"
+      "template_name": "skill",
+      "effective_sha256": "ab2a566102bc3686a7c3d978eb3d175281e806682e55192649e6bf5553b390c0",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {
@@ -377,7 +348,7 @@
     "invocation_style": "assistant_first_but_scriptable",
     "requires_human_confirmation": true
   },
-  "quality_pass_count": 2,
+  "quality_pass_count": 1,
   "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-delivery-address-code-review",
@@ -424,7 +395,7 @@
     "portfolio_action": "keep_and_clarify_boundary",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -435,17 +406,17 @@
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 13,
               "end_line": 13,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           },
           {
-            "text": "Ask the user which comments to address (all or specific ones).\nDo not edit files until the selected comment set is clear.",
+            "text": "Honor an already explicit authorized selection (all or specific IDs). Ask only if selection is materially ambiguous.\nDo not edit files until the selected comment set is clear.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 88,
               "end_line": 89,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           },
           {
@@ -455,17 +426,17 @@
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 92,
               "end_line": 96,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           },
           {
-            "text": "- Stage only the files that were modified to address comments.\n- Suggest a commit message like: `Address review comments` (with ticket prefix if the branch name contains one).\n- Push to the existing remote branch.\n- After the fix is ready, recommend `engos-quality-code-review` on the fix commit before asking reviewers to re-check.",
+            "text": "- Stage only the files that were modified to address comments.\n- Suggest a commit message like: `Address review comments` (with ticket prefix if the branch name contains one).\n- Push to the existing remote branch only when the supplied task authorizes that step; otherwise stop with the requested patch or commit guidance.\n- After the fix is ready, recommend `engos-quality-code-review` on the fix commit before asking reviewers to re-check.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 99,
               "end_line": 102,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           },
           {
@@ -475,7 +446,7 @@
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 135,
               "end_line": 137,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           }
         ]
@@ -494,7 +465,7 @@
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 32,
               "end_line": 34,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           },
           {
@@ -504,7 +475,7 @@
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 105,
               "end_line": 108,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           }
         ]
@@ -519,7 +490,7 @@
               "path": "ssot/engos-delivery-address-code-review.md",
               "start_line": 105,
               "end_line": 108,
-              "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+              "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
             }
           }
         ]
@@ -532,7 +503,7 @@
             "path": "ssot/engos-delivery-address-code-review.md",
             "start_line": 40,
             "end_line": 40,
-            "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+            "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -543,7 +514,7 @@
             "path": "ssot/engos-delivery-address-code-review.md",
             "start_line": 41,
             "end_line": 41,
-            "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+            "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -554,7 +525,7 @@
             "path": "ssot/engos-delivery-address-code-review.md",
             "start_line": 42,
             "end_line": 42,
-            "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+            "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -565,7 +536,7 @@
             "path": "ssot/engos-delivery-address-code-review.md",
             "start_line": 43,
             "end_line": 43,
-            "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+            "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -576,7 +547,7 @@
             "path": "ssot/engos-delivery-address-code-review.md",
             "start_line": 44,
             "end_line": 44,
-            "sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935"
+            "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
           },
           "interpretation": "source_clause_requires_stage_review"
         }
@@ -588,9 +559,14 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-delivery-address-code-review.md",
-        "ssot_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
-        "effective_sha256": "9c59f7627f761033362ee41eecf733ea866240cde82c06adc88916c53f715935",
-        "resources": [],
+        "ssot_sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8",
+        "effective_sha256": "ab2a566102bc3686a7c3d978eb3d175281e806682e55192649e6bf5553b390c0",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+            "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586"
+          }
+        ],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {},
@@ -608,7 +584,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "3d494097518437715c21ac9b8ff22213e60ebb73f35d5c18dd43888bde205c0c"
+        "mapping_sha256": "c2e55fe80883c3c6db53d005d69afbdf808f964f72dd37e89f3782825e40aea1"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

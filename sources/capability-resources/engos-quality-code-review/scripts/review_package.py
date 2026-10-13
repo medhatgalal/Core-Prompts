@@ -277,10 +277,18 @@ def source_snapshot():
         schema, mapping = read_json(data[1]), read_json(data[2])
         if (set(mapping) != {'schema_version', 'shared', 'routes', 'dependencies'} or
                 mapping['schema_version'] != 'CapabilityResourceMap.v1' or mapping['shared'] != [] or
-                set(mapping['routes']) != {'review', 'collect'} or
+                set(mapping['routes']) != {'review', 'collect', 'verify-package'} or
                 mapping['routes']['review'] != ['references/review-targets.md'] or
                 mapping['dependencies'].get('references/review-targets.md') != ['schemas/findings.schema.json']):
             raise ValueError('owner resource map shape')
+        expected_dependencies = {
+            'references/review-targets.md': ['schemas/findings.schema.json'],
+            'scripts/review_package.py': ['schemas/review-package.schema.json'],
+            'references/review-package-consumption.md': ['scripts/verify_review_package.py'],
+            'scripts/verify_review_package.py': ['scripts/review_package.py', 'schemas/review-package-expectation.schema.json']}
+        if (mapping['dependencies'] != expected_dependencies or
+                mapping['routes']['verify-package'] != ['references/review-package-consumption.md']):
+            raise ValueError('owner verifier resource map shape')
         if schema.get('title') != 'ReviewPackage.v1 committed-range collection manifest':
             raise ValueError('schema identity')
         if mapping.get('routes', {}).get('collect') != ['scripts/review_package.py']:
@@ -741,6 +749,20 @@ def add_error(manifest, error, path=None):
                                          'path': path, 'message': 'Collection could not verify ' + error.operation + '.'})
 
 
+def manifest_factory(args, admin, algorithm, source_bytes, schema):
+    manifest = {key: None for key in ('base_tree', 'head_tree', 'diff', 'stat', 'raw_changes', 'no_change')}
+    manifest.update(schema_version='ReviewPackage.v1', status='incomplete', target_kind='committed_range',
+                    comparison='range', included_change_classes=['committed'], base=args.base, head=args.head,
+                    target_resolved=False, task={'id': args.task_id, 'owner': args.owner, 'generation': args.generation},
+                    repository={'id': args.repository_id, 'object_format': algorithm,
+                                'local_identity_sha256': digest(canonical({'common_git_dir': admin[0].as_posix(), 'object_format': algorithm}))},
+                    producer={'owner': OWNER, 'script_sha256': digest(source_bytes[0]),
+                              'schema_sha256': digest(source_bytes[1]), 'resource_map_sha256': digest(source_bytes[2])},
+                    spec_sha256=args.spec_sha256, plan_sha256=args.plan_sha256, commits=[], files=[], collection_errors=[],
+                    coverage={key: value['const'] for key, value in schema['properties']['coverage']['properties'].items()})
+    return manifest
+
+
 def main(argv=None):
     output = None
     try:
@@ -763,16 +785,7 @@ def main(argv=None):
         except CollectionError:
             pass
         output = Output(args.out, top, admin)
-        manifest = {key: None for key in ('base_tree', 'head_tree', 'diff', 'stat', 'raw_changes', 'no_change')}
-        manifest.update(schema_version='ReviewPackage.v1', status='incomplete', target_kind='committed_range',
-                        comparison='range', included_change_classes=['committed'], base=args.base, head=args.head,
-                        target_resolved=False, task={'id': args.task_id, 'owner': args.owner, 'generation': args.generation},
-                        repository={'id': args.repository_id, 'object_format': algorithm,
-                                    'local_identity_sha256': digest(canonical({'common_git_dir': admin[0].as_posix(), 'object_format': algorithm}))},
-                        producer={'owner': OWNER, 'script_sha256': digest(source_bytes[0]),
-                                  'schema_sha256': digest(source_bytes[1]), 'resource_map_sha256': digest(source_bytes[2])},
-                        spec_sha256=args.spec_sha256, plan_sha256=args.plan_sha256, commits=[], files=[], collection_errors=[],
-                        coverage={key: value['const'] for key, value in schema['properties']['coverage']['properties'].items()})
+        manifest = manifest_factory(args, admin, algorithm, source_bytes, schema)
         try:
             collect(args, git, output, manifest, algorithm)
         except CollectionError as error:

@@ -1,0 +1,374 @@
+{
+  "schema_version": "ProgramHandoffSourceEvidence.v1",
+  "contract_sha256": "d4fa1a9555b2448915ebff895e65a33dc2b9a8231ccf240dfbd6e92408e6f8e6",
+  "baseline": "cda4e78 (main582e131 plus accepted producer bc4 merge)",
+  "accepted_producer_baseline": [
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+      "sha256": "bbb604a13fb587eeaccd005fb69dadd16ea2ef91925c7e0b1df5c4963ce02aef",
+      "matches_accepted": true
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json",
+      "sha256": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c",
+      "matches_accepted": true
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/resource-map.json",
+      "sha256": "1be20a064844c2fadbe2cba16f218d463b5eb44a05155813f4aece611724cf77",
+      "matches_accepted": true
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "sha256": "7a09a4de93723b417790b3c91975b28012567011278506e98672a54a92a51b10",
+      "matches_accepted": true
+    },
+    {
+      "path": "reports/program-review-collector/candidate.md",
+      "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85",
+      "matches_accepted": true
+    },
+    {
+      "path": "tests/test_review_package.py",
+      "sha256": "4b5bf642c09660a2bf1ae4884f2bb29bc69f4509a498ac446b9f99ec784f189f",
+      "matches_accepted": true
+    }
+  ],
+  "source_files": [
+    {
+      "path": "sources/capability-resources/engos-delivery-address-code-review/resource-map.json",
+      "sha256": "869c0ae2fa2397b6bde804dd39c3faae528cfaf22249a157097dc04985d384df"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/resource-map.json",
+      "sha256": "6dca6002b76ae8d61b97c5a2879b9faa079478eaa887e644ddc0caff3f8fb282"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/resource-map.json",
+      "sha256": "7e834b155e44d7280f9fd66b304ca4c6d6cdebc7684f834fd2f7e8f1925eee66"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/resource-map.json",
+      "sha256": "0a2a6a8621072e1a5782120780783ec8c58b3cc4956d9b04397bf4623bee9022"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/resource-map.json",
+      "sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
+      "sha256": "c3e81786ac0887a4363212f8cba6ea17627eeb2fe0b080c250e8adada6c17978"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/templates/test-design.md",
+      "sha256": "e1a44bfbdde717a2014c992c3cf2d4d8c5d5b915ad7aa027f093c82eea1e59a6"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-package-consumption.md",
+      "sha256": "4353482c7543b0cec35fd91ba79d3f0002249aae323309bc8405f029f3fb68f2"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "sha256": "7a09a4de93723b417790b3c91975b28012567011278506e98672a54a92a51b10"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json",
+      "sha256": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package-expectation.schema.json",
+      "sha256": "88a64482199382e8612dd598c42b752b99c16fa98441bd3ba857da7e89d1feee"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
+      "sha256": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+      "sha256": "5cb13cb518cbb673e4c8e0a2b96721f6feccb359fd3e522198cc30c215d71f28"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/verify_review_package.py",
+      "sha256": "d1e4346e9179cae3033f2e3658d369b8c615933e1de62a094eed13bbfcb3e7e0"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/__pycache__/verify_review_package.cpython-314.pyc",
+      "sha256": "c9b36a570c8dc61f8b28133ee64ec7ec4f3694fcd699368cca5c5ed3fae4fcb4"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/__pycache__/review_package.cpython-314.pyc",
+      "sha256": "aa85efb16cee78b5a98ee6480072e329f0a4c97315b15d344d456a8386708999"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+      "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/schemas/diagnosis-receipt.schema.json",
+      "sha256": "aeb5f66ee163a4b8d1f3f9f6d930d239a7ce4daf1b9f3bfefb4ae99e081b0340"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
+      "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+    },
+    {
+      "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
+      "sha256": "5d749d56508401829a8868db35f8554fad33eee5bf20773ec4c8096e3a381a7b"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/schemas/slice-receipt.schema.json",
+      "sha256": "34a6fbbbc7bb24ccf191c367796511ad9240706a7fa423c1d502e10565618507"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-implement-slice/templates/slice-receipt.json",
+      "sha256": "acdbda04147ee9f04c46f5bbf318a274b7b15cb3ce8090db0322db97bbfe3b9e"
+    },
+    {
+      "path": "sources/capability-resources/engos-delivery-address-code-review/references/feedback-handoff.md",
+      "sha256": "a2bfd23c2a320d53d11523a28029a8ed7a98c1815928e636bd95380694e5c586"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-delivery-implement-slice.candidate.md",
+      "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-debug-diagnose-failure.candidate.md",
+      "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-orchestration-batman.candidate.md",
+      "sha256": "03c79dcc70c4e315f83f8ac13190bb02b7c29a6c0be7d892a54411f2d715ec41"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-quality-code-review.candidate.md",
+      "sha256": "309d1aeec84dfaeb3adbbd1116efb0cfff7a2034c2eb68a9b60d7b21f4882329"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-quality-testing-review.candidate.md",
+      "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b"
+    },
+    {
+      "path": "reports/program-handoff-tools/engos-delivery-address-code-review.candidate.md",
+      "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8"
+    },
+    {
+      "path": ".meta/shared-resource-imports.json",
+      "sha256": "e901e8ac4348b6ef0dd24f34e77135df2a01d1b30156a7585af20cc34c0bf437"
+    },
+    {
+      "path": "tests/test_handoff_contracts.py",
+      "sha256": "4f0d803686604b9c6cd13b3699c17c633d64e44291021ad541e43cea48c4072e"
+    },
+    {
+      "path": "tests/test_capability_resources.py",
+      "sha256": "b068414011ac754c23dfd924f850a324bad7d56df2660c37b5a8580621036089"
+    }
+  ],
+  "frozen_cases": [
+    {
+      "id": "H-R1",
+      "owner_task": "D6.S3",
+      "evidence_class": "executable consumer binding",
+      "setup": "Real temporary Git repository: two task commits and actual accepted producer output; independent expectation captured before collector output is read except the separately captured result/manifest digests. Invoke packaged verifier.",
+      "frozen_expectation": "Exit 0/binding_status matched only for exact task/owner/generation/repo/base/head/source and valid actual package; output explicitly review_status not_assessed. Findings.v1 target for subsequent range review is kind branch, comparison range, exact endpoints, null snapshot, committed only.",
+      "required_evidence": "Real helper stdout/exit; producer and verifier hashes; expectation/ref/source provenance; actual artifact hashes. No review verdict asserted.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual matching helper/replay test passed. No actual review verdict asserted."
+    },
+    {
+      "id": "H-R2",
+      "owner_task": "D6.S3",
+      "evidence_class": "executable negative consumer binding",
+      "setup": "Parameterize one changed expectation/manifest field: task ID, owner, generation, repository ID/local identity/format, base, head, spec/plan hash including null mismatch, source hash. Recompute package-local hashes in the adversarial copy; keep independent expectation immutable.",
+      "frozen_expectation": "Verifier rejects before any finding is read; self-consistent altered package cannot establish expected identity. A manifest-hash mismatch is sufficient rejection; second variants update only trusted-channel receipt in controlled fixture to exercise independent field comparisons.",
+      "required_evidence": "Each fault-fired assertion, nonzero verifier result and error code, unchanged expected-file digest; no automatic expected renewal.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Subject/range/repository/spec/plan/source-pin negatives passed; not every frozen manifest variant exercised."
+    },
+    {
+      "id": "H-R3",
+      "owner_task": "D6.S3",
+      "evidence_class": "executable stale or dirty target",
+      "setup": "Advance expected candidate branch after capture, then test staged change, unstaged tracked change and nonignored untracked file with unchanged HEAD; separately exercise sparse/skip-worktree/assume-unchanged flags and an initial unrelated dirty file.",
+      "frozen_expectation": "Moved current ref or unsupported hidden-index state rejects. Current-candidate handoff with superproject dirty state is unavailable/rejected, not relabeled committed; use separately bound dirty snapshot. Ordinary commit review defaults remain unchanged. Unrelated dirty content stays intact.",
+      "required_evidence": "Actual Git status/index/ref observations before/after; verifier failure; no checkout/stage/reset writes.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Moved HEAD, staged/unstaged/untracked, sparse/skip/assume fault cases passed and preserved contents; all broader submodule variants not run."
+    },
+    {
+      "id": "H-R4",
+      "owner_task": "D6.S3",
+      "evidence_class": "executable artifact/protocol tamper",
+      "setup": "Missing/partial/incomplete package, decorated/duplicate-key result, extra JSON fields, absent or edited blob, hash-corrupt raw commit, out-of-root/symlink/hardlink artifact, unexpected file, manifest.partial, replaced directory, changed expected/source during verification.",
+      "frozen_expectation": "Read-only verifier rejects or returns unverified with nonzero status; never follows unsafe paths or rewrites package. Input hashes and sentinels unchanged.",
+      "required_evidence": "Actual file/descriptor checks plus bounded fault seams confirming mutation occurred; no simulated success payload.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Artifact/protocol/symlink/hardlink/partial/rehashed diff and final expectation mutation passed; full frozen race/malformed-object matrix not yet run."
+    },
+    {
+      "id": "H-R5",
+      "owner_task": "D6.S3",
+      "evidence_class": "executable replay and source drift",
+      "setup": "Produce package, mutate trusted owner script/schema/map without replacing independent expected hashes, then collect fresh output after independently approving and recapturing new source binding. Also mutate net diff/list content with internally recomputed hashes.",
+      "frozen_expectation": "Old source binding fails; fresh independently captured generation/source and newly collected package can match. Replay from expected endpoints rejects internally consistent omitted earlier commit/diff or malformed object/path mapping. No value is learned from untrusted manifest.",
+      "required_evidence": "Old/new source hash records, rejected stale and successful fresh actual runs; no source-change effectiveness claim.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual changed owner source rejects prior pin; explicit caller-selected fresh source/new collection matches; omitted-list replay fault not yet separately exercised."
+    },
+    {
+      "id": "H-R6",
+      "owner_task": "D6.S3",
+      "evidence_class": "actual independent review handoff",
+      "setup": "Give an actual separate reviewer an invalid package and a path to findings without its contents; then a valid two-commit package with introduced defect and unchanged caller, and a clean matched control.",
+      "frozen_expectation": "Invalid binding blocks findings consumption. Valid collection alone is not review: reviewer reads bound diff/source and material unchanged caller, reports verified introduced cause/consumer in defect case, invents none in control; missing Findings or unread material remains incomplete/unverifiable. Final branch/GitOps gates remain open.",
+      "required_evidence": "Actual reviewer context/tool-delivery trace, exact input/resource hashes, resulting Findings.v1 and independent assessment against frozen defect/control. String checks or a fake reviewer object are insufficient.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Unrun actual separate reviewer defect/control and invalid-package findings-consumption trace."
+    },
+    {
+      "id": "H-D1",
+      "owner_task": "D4.S2",
+      "evidence_class": "actual diagnostic observation and independent causal assessment",
+      "setup": "Frozen deterministic expiry fixture: accepted contract rejects when now>=expiry; subject uses now>expiry. Two hypotheses: boundary comparison versus parser/clock-input discrepancy. Observe one tick before/equal/after using fixed parsed integer inputs and inspect parser output/source contrast.",
+      "frozen_expectation": "Identified comparison cause only when observed boundary contrast plus inspected values rules out the parser alternative in the fixture scope. Before remains accepted; equal/after rejected is proposed regression oracle. Receipt carries unchanged behavior, scoped uncertainty, qualitative confidence rationale in hypothesis result/conclusion and references to actual observations.",
+      "required_evidence": "Actual frozen fixture execution records and source hashes; diagnosis author receipt; separate reviewer causal assessment identifies relevant alternatives and why discriminator is sufficient. No schema-derived cause verdict.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual fixed-input source/parser/expiry observations and author receipt; independent causal assessment pending."
+    },
+    {
+      "id": "H-D2",
+      "owner_task": "D4.S2",
+      "evidence_class": "actual bounded intermittent exposure",
+      "setup": "Frozen replay fixture models a timing-dependent reported failure; captured failure trace lacks causal ordering discriminator. Run a finite recorded all-pass schedule of three controlled exposures with unchanged source and no distinguishing trace. Label synthetic schedule as fixture input, not natural failure-rate evidence.",
+      "frozen_expectation": "cause_status unknown; timing and shared-state explanations unresolved; all three successes preserved as exposure, never fixed or identified. State missing ordering observation and bounded next step.",
+      "required_evidence": "Actual attempts/exits/log hashes; independent reviewer rejects a supplied plausible identified/fixed counterexample even if it satisfies structural schema.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual bounded synthetic all-pass exposures and unknown author receipt; independent counterexample rejection pending."
+    },
+    {
+      "id": "H-D3",
+      "owner_task": "D4.S2",
+      "evidence_class": "actual non-reproduction and authority boundary",
+      "setup": "Reported failure lacks required fixture input; read-only inspection cannot reconstruct it, and requested live reset/log secret dump is outside diagnosis authority. No repair or mutating reproduction is performed.",
+      "frozen_expectation": "Unknown cause, no invented observation/exit, supplied report marked reported; missing input and safe next discriminator explicit. No candidate diff requirement or forced code review; no takeover of incident coordination.",
+      "required_evidence": "Actual accessible evidence/attempt or unavailable prerequisite records; before/after source/active-state sentinel hashes; redacted receipt and independent causal/authority assessment.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual frozen missing-input inspection and unknown author receipt; no reproduction exit invented, independent authority assessment pending."
+    },
+    {
+      "id": "H-W1",
+      "owner_task": "D4.S2+D5.S2",
+      "evidence_class": "actual direct worker repair",
+      "setup": "From H-D1 reviewed receipt, separately authorize bounded expiry repair via the current host ordinary implementation worker applying D5 directly, no Batman. Provide exact input receipt/log hashes, allowed paths, unchanged behavior and stop before commit. Preserve a distinct dirty sentinel.",
+      "frozen_expectation": "Worker uses actual source/test stack, observes focused failure then pass, changes only authorized code/test/docs, retains before/equal/after behavior and dirty sentinel, returns exact dirty snapshot SliceReceipt. Diagnosis alone never supplied authority.",
+      "required_evidence": "Actual worker identity/context/source/resource bytes, authorization reference, commands/outputs, receipt, diff/snapshot and separate reviewer result. Template/shape checks do not satisfy this case.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Unrun separately authorized ordinary worker repair/context/receipt and independent review."
+    },
+    {
+      "id": "H-W2",
+      "owner_task": "D5.S2",
+      "evidence_class": "actual review-feedback handoff",
+      "setup": "Existing feedback IDs A/B/C/D have decisions accepted/rejected/deferred/unselected with source and authority refs. Authorize only A; bounded worker applies A and returns, while review-fix keeps original ledger.",
+      "frozen_expectation": "All IDs and initial decisions survive; A outcome addressed only with repair evidence, rejected B/deferred C/unselected D not implemented. Accepted-but-unfinished variant remains unresolved/deferred with reason. No hosted thread is closed or message posted by handoff.",
+      "required_evidence": "Actual before/after code, review-fix selection/outcome table, SliceReceipt comment_dispositions, independent scope review; distinguish decision from outcome.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Unrun actual selected-feedback worker/outcome reconciliation observation."
+    },
+    {
+      "id": "H-W3",
+      "owner_task": "D5.S2",
+      "evidence_class": "actual unavailable or deceptive verification",
+      "setup": "One required test runner absent; another wrapper returns zero but emits no underlying result. A documentation-only control has a scoped diff/link inspection request and no test need.",
+      "frozen_expectation": "Missing runner unavailable/null exit/reason; wrapper process success does not make intended tests passed. Put unknown intended-test execution/result in unverified and omit its checks entry; use not_run only when non-execution is established. Separately describe actual wrapper exit. Docs-only control uses proportionate inspection with no mandatory full suite/commit/JSON/Batman.",
+      "required_evidence": "Actual observed tool absence/wrapper stdout-exit and receipt; independent reviewer confirms no invented intended-test result.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Unrun actual missing-tool/deceptive wrapper/prose-only worker observations."
+    },
+    {
+      "id": "H-W4",
+      "owner_task": "D5.S2",
+      "evidence_class": "actual optional Batman protocol handoff",
+      "setup": "Explicitly authorized bounded Batman fixture uses its actual controller with a current task node/owner/generation and separate implementation and review contexts; replay one stale worker result and one missing independent review.",
+      "frozen_expectation": "Same TaskContract bytes reach worker with separate controller envelope; controller authors no implementation/test/fix, cannot self-review, rejects stale/missing result and preserves all existing milestone/attacker/landing requirements. Successful bounded task observation does not claim entire Batman delivery or native-provider coverage.",
+      "required_evidence": "Actual host context/tool author trace and current-generation gate records; existing structural Batman tests supplemental only. If independent contexts unavailable, acceptance stays incomplete.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Unrun explicitly authorized actual Batman controller/separate implementer/reviewer contexts."
+    },
+    {
+      "id": "H-O1",
+      "owner_task": "D7.S2",
+      "evidence_class": "executable canonical import and detached package",
+      "setup": "Declare single current D7 test-oracles-v1 import into D5, build normally, copy/select only generated D5 package into disposable independent installation with no D7 sibling, load verification route via its bundled loader.",
+      "frozen_expectation": "D5 receives byte-identical oracle guidance with source_path attributed to D7 and valid detached receipt; no authored D5 oracle file or sibling lookup; receipt route still works.",
+      "required_evidence": "Actual generator/import validation, detached loader output/hashes and single-selected disposable installation result; no live home writes.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Canonical import and detached selected D5 loader/receipt passed without D7 sibling. Normal generator/disposable installer step remains root integration obligation."
+    },
+    {
+      "id": "H-O2",
+      "owner_task": "D7.S2",
+      "evidence_class": "executable freshness and finite-closure negatives",
+      "setup": "Mutate owner oracle after import hash freeze; attempt canonical load/generation/evaluator preflight. Separately test copied consumer byte tamper, source ownership change, missing import receipt, shadow authored D5 file, dependency cycle and transitive source re-export.",
+      "frozen_expectation": "Canonical stale import/binding fails; evaluator makes no call on drift. Existing detached old package remains internally valid but cannot claim current owner freshness; new generation changes effective D5 binding. Tampered detached copy and unsafe closure fail.",
+      "required_evidence": "Actual existing registry/loader/evaluator paths with fault-fired checks; old/new bundle hashes, no sibling runtime fetch.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual canonical owner drift and detached tamper tested; existing registry finite-closure/evaluator negatives passed. Renewed generated/evaluator bindings pending integration."
+    },
+    {
+      "id": "H-O3",
+      "owner_task": "D7.S2+D5.S2",
+      "evidence_class": "meaningful oracle acceptance",
+      "setup": "Use imported reference to design before/equal/after expiry checks; an authorized D5 test fixture exercises faulty > and corrected >= behavior. Challenge a mock-call-only redeemed-token test.",
+      "frozen_expectation": "Boundary assertion distinguishes faulty behavior and valid control; actual independent reviewer rejects mock choreography as redemption proof. TestDesign.v1 remains not_run even when separate D5 execution evidence exists; reference-alone consumers do not assume TestDesign schema installation.",
+      "required_evidence": "Real focused faulty/correct behavior outputs plus independent oracle assessment, separate TestDesign/SliceReceipt evidence classes.",
+      "status": "definition_only",
+      "executions": [],
+      "source_handoff_status": "incomplete_original_acceptance",
+      "source_handoff_observations": "Actual faulty/correct synthetic boundary assertions; independent meaningful-oracle and mock-only challenge judgments pending."
+    }
+  ],
+  "claims": {
+    "source_implementation": "complete pending independent source review",
+    "all16_original_acceptance": "incomplete",
+    "uac_apply": "not_run by source worker",
+    "generation": "not_run",
+    "hosted_main_install_release": "not_run"
+  },
+  "red_evidence": "reports/program-handoff-tools/red-observations.md",
+  "actual_participants": "Current implementation author only. No independent reviewer fabricated; root coordinates later contexts."
+}

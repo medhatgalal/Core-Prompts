@@ -1592,6 +1592,38 @@ Good response:
 - Use `engos-quality-gitops-review` next when the rewrites are complete and you need a PR or release gate
 ```
 
+## Bounded repair and review handoffs
+
+For a clear, bounded task, call `engos-delivery-implement-slice` directly. When
+the cause is unclear, diagnose first with `engos-debug-diagnose-failure`, then
+separately authorize repair with the reviewed `DiagnosisReceipt.v1` and its
+supporting evidence. The diagnosis does not itself authorize edits. Use Batman
+only when explicitly requested; the direct skill route does not start a
+controller.
+
+For existing PR/MR feedback, let `engos-delivery-address-code-review` select the
+requested comments and preserve each original decision separately from the
+repair outcome. The worker returns the outcome for each selected ID with its
+evidence. For example, keep comment A as accepted and addressed with
+observed evidence, B rejected with its reason, C deferred, and D unselected.
+An accepted but unfinished comment remains unresolved or deferred. Do not turn
+unselected or rejected feedback into implementation scope.
+
+Use `engos-quality-testing-review` when test design is useful, not as a required
+sibling. Its source oracle is bundled into implement-slice through the reviewed
+shared-resource route, with D7 (`engos-quality-testing-review`) as the sole
+canonical owner. `TestDesign.v1` records `not_run`; `SliceReceipt.v1` or other
+execution evidence records checks that actually ran. A wrapper returning zero
+without an underlying test result remains unverified.
+
+Keep the evidence honest: a deterministic boundary result identifies a cause
+only after parser and clock alternatives are checked and causal review is
+independent. Three synthetic intermittent successes remain unknown, not fixed.
+Missing input remains reported as nonreproduced; do not invent an exit status or
+reset state without authorization. Collected findings remain unreviewed until a
+reviewer reads them. A dirty candidate needs its separately hashed snapshot;
+a valid task receipt does not waive final integration review or GitOps.
+
 ## Repo Tooling Examples
 
 ### Rebuild And Verify Current Repo State
@@ -1765,3 +1797,75 @@ Use `engos-quality-docs-review` for ordinary placement, drift and navigation rev
 The original [prompt pack](prompt-pack/README.md) and all seven donor prompts remain callable. Named recipes draft artifacts and propose commands; they do not authorize overwrite, install, commit, merge or release. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review. Findings-only E/F routes stay advisory.
 
 For candidate-bound Git, hosted-check and package evidence, request `docs-release-readiness` from `engos-quality-gitops-review`. It embeds a DocsShipHandoff.v1 response inside its existing seven-section report. E content PASS does not establish hosted readiness. F defaults to full release scope; explicit commit-only or merge-only scope must be labeled. Unknown evidence yields FAIL. Merge/release readiness requires independently reproduced committed documentation bytes and exact-head hosted checks; dirty snapshot bytes with green HEAD CI cannot pass. Commands remain proposals under actual authority.
+
+## Program adoption and retained boundaries
+
+Four new software jobs are available as separate source packages:
+`engos-design-specify-change`, `engos-design-plan-implementation`,
+`engos-debug-diagnose-failure`, and `engos-delivery-implement-slice`. A user may
+specify acceptance, add architecture only when a material decision needs it,
+plan bounded tasks, implement an accepted task, and request review. Diagnosis
+and shaping remain independently callable. A receipt, specification or task
+graph does not grant execution approval, and a clean rerun alone does not prove
+a reported bug is fixed. Package availability is source evidence; native use and
+helper effectiveness require separate evidence.
+
+The catalog update takes a prior 32-skill selection to the current 36-skill
+catalog. Ordinary sync preserves a concrete saved selection. Explicit full
+catalog adopts all current and future skills; curated policy adds named skills.
+Use [the install-profile commands and shared-root consent rules](INSTALL-PROFILES.md#choose-future-skill-membership).
+A refreshed helper inside one of the 36 packages is a resource update, not a new
+catalog addition. Customized and third-party packages remain protected. The v1.16.3
+Gemini mapping relies on archived byte-equivalence evidence for canonical `.codex/skills`
+source identities before a receipt can cover the shared `.agents/skills` layout; see
+[historical recognition and preservation](INSTALL-PROFILES.md#historical-recognition-and-preservation).
+
+### Current names and retained owners
+
+| Requested row | Current capability or artifact | Preserved decision |
+| --- | --- | --- |
+| DOC-engos-meta-curate-skills | `engos-meta-uac-import` | Keep the current name; a rename is not approved. One curation decision and preservation map reaches UAC. |
+| DOC-engos-meta-edit-instructions | `engos-meta-instruction-editor` | Keep the current name; a rename is not approved. One curation decision and preservation map reaches UAC. |
+| DOC-engos-design-specify-change | `engos-design-specify-change` | New source package; acceptance contract feeds architecture only when needed and tasks when ready. |
+| DOC-engos-quality-design-tests | `engos-quality-testing-review` | Keep the current name; retain one design owner and shared oracle resource. Do not claim tests ran. |
+| DOC-engos-design-plan-implementation | `engos-design-plan-implementation` | New source package; the task plan supports direct implementation or explicitly chosen Batman. A goal packet is optional. |
+| DOC-engos-design-compile-goal-packet | `engos-design-plan-to-goal` | Keep the current name; goal-packet compilation remains optional. |
+| DOC-engos-debug-diagnose-failure | `engos-debug-diagnose-failure` | New source package; provide a cause or bounded unknown with reproduction evidence, not a guessed fix. |
+| DOC-engos-delivery-implement-slice | `engos-delivery-implement-slice` | New source package; one worker can finish a small change without a mandatory workshop or orchestration route. |
+| DOC-EXISTING-1 | `engos-quality-code-review` | Retain exact-target judgment separately from complete collection. |
+| DOC-EXISTING-docs-review | `engos-quality-docs-review` | Retain content truth separately from hosted release readiness. |
+| DOC-EXISTING-gitops-review | `engos-quality-gitops-review` | Retain hosted release readiness separately from content truth. |
+| DOC-EXISTING-3 | `engos-meta-supercharge` | Strengthen one artifact; variation-gap work stays optional. |
+| DOC-EXISTING-4 | `engos-reconciliation-converge` | Reconcile conflicting sources with provenance; no compulsory extra hop. |
+| DOC-EXISTING-5 | `engos-design-shaping` | Keep workshop conduct distinct from standalone pitch review. |
+| DOC-EXISTING-6 | `engos-audit-pitch-review` | Review a finished pitch without fabricating workshop history. |
+| DOC-EXISTING-7 | `engos-quality-shaping-gate` | Keep canonical stage policy separate from independent gate judgment. |
+| DOC-BOUNDARY-engos-orchestration-batman | `engos-orchestration-batman` | Explicit controller consumes accepted contracts and independent reviews; it does not directly implement. |
+| DOC-BOUNDARY-engos-delivery-address-code-review | `engos-delivery-address-code-review` | Preserve comment IDs and dispositions; repair stays distinct from review judgment. |
+| DOC-BOUNDARY-engos-operations-ic-assistant | `engos-operations-ic-assistant` | Keep incident coordination separate from causal diagnosis. |
+| DOC-BOUNDARY-engos-design-architecture | `engos-design-architecture` | Consume a supplied SpecContract only for a material architecture decision; no mandatory architecture hop. |
+
+### Seven retained prompt donors
+
+The original public prompts remain available at their existing paths. Consumer
+compatibility and exact retirement are separate decisions; matching recipes do
+not publish prompts automatically.
+
+| Donor row | Retained prompt |
+| --- | --- |
+| DOC-MIG-D8-1 | `docs/prompt-pack/prompts/master-orchestrator.md` |
+| DOC-MIG-D8-2 | `docs/prompt-pack/prompts/prompt-a-readme-story.md` |
+| DOC-MIG-D8-3 | `docs/prompt-pack/prompts/prompt-b-ai-install-flow.md` |
+| DOC-MIG-D8-4 | `docs/prompt-pack/prompts/prompt-c-technical-extraction.md` |
+| DOC-MIG-D8-5 | `docs/prompt-pack/prompts/prompt-d-visuals.md` |
+| DOC-MIG-D8-6 | `docs/prompt-pack/prompts/prompt-e-factual-gate.md` |
+| DOC-MIG-D8-7 | `docs/prompt-pack/prompts/prompt-f-evaluate-and-ship-gate.md` |
+
+The current names above remain authoritative for the proposed renames. Docs
+Review owns content truth, GitOps Review owns hosted readiness, Code Review
+judges an exact target, and Address Code Review applies actual comments. Batman
+is an explicitly selected controller. Incident coordination remains separate
+from diagnosis. Shaping runs a workshop, Pitch Review assesses a finished pitch,
+and Shaping Gate judges a stage. Supercharge strengthens one artifact, while
+Converge reconciles competing sources. Retained owners are not merged, and the
+table does not imply new registration or retirement.

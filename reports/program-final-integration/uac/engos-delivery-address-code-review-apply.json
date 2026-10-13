@@ -1,0 +1,302 @@
+{
+  "schema": "ProgramUACCompactReceipt.v1",
+  "phase": "apply",
+  "original_git_commit": "8b9f71a",
+  "original_git_path": "reports/program-final-integration/uac/engos-delivery-address-code-review-apply.json",
+  "original_raw_sha256": "f5448b6b52202935698026981c0a6eb63e662f5031fa1a5e9310a46b79529718",
+  "original_bytes": 111565,
+  "preserved_raw_evidence": "initiative/evidence/program-final-uac-raw/engos-delivery-address-code-review-apply.json",
+  "status": "applied",
+  "behavioral_status": "behavioral_pending",
+  "source_text_sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8",
+  "quality_result_sha256": "66777657ff06dd9c531eed560a1cdf4b6be899e7a6aeb3a6a70fbab6c1358524",
+  "quality_result": {
+    "assessment_scope": "mechanical_structure_and_bound_external_review_attestations",
+    "behavioral_status": "behavioral_pending",
+    "consumption_hints": {
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "requires_human_confirmation": true
+    },
+    "final_candidate_text": "---\nname: \"engos-delivery-address-code-review\"\ndescription: \"Apply selected pull request or merge request feedback with tightly scoped edits, then prepare the fix for re-review. Use only when actionable reviewer comments already exist; use code review for pre-commit or pre-push judgment.\"\ndisplay_name: \"Address Code Review \u2014 PR/MR Feedback Resolution\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# Address Code Review \u2014 PR/MR Feedback Resolution\n\n## Purpose\nUse this capability when the user wants to address, fix, or resolve actionable review comments left on a pull request or merge request. This is the action counterpart to `engos-quality-code-review`: `engos-quality-code-review` evaluates staged changes, diffs, or commits; `engos-delivery-address-code-review` implements selected reviewer-requested fixes and prepares the branch for re-review.\n\nUse this only after there is an existing PR/MR review thread, inline comment, requested-change discussion, or explicit reviewer note to address. If the user has not received review feedback yet and wants a quality gate before committing or pushing, use `engos-quality-code-review` instead.\n\n## Primary Objective\nRead open review comments from a PR/MR, present them to the user, apply the requested changes with minimal scope, and prepare a commit with only the reviewer-requested fixes.\n\n## Choose the Right Review Capability\nUse `engos-delivery-address-code-review` when the job is action.\n\n| User Intent | Use | Why |\n| --- | --- | --- |\n| \"Review my staged changes before I commit\" | `engos-quality-code-review` | review gate; no mutation |\n| \"Review this commit for scope and risk\" | `engos-quality-code-review` | findings, message quality, and readiness |\n| \"Read the open MR comments and fix them\" | `engos-delivery-address-code-review` | action workflow tied to reviewer feedback |\n| \"Address only comments 2 and 4\" | `engos-delivery-address-code-review` | selected-comment implementation with narrow scope |\n| \"Check the fix commit after you address comments\" | `engos-quality-code-review` | verifies the response stayed scoped |\n\nDo not use `engos-delivery-address-code-review` to proactively improve code, clean up adjacent issues, or review a diff before a reviewer has commented. It should only mutate files that are tied to selected review feedback.\n\n## Tool Boundaries\n- allowed: read MR/PR discussions, read source files, apply targeted edits, run git commands for commit and push\n- forbidden: modifying code that has no associated review comment, silent bulk refactors, resolving comments without applying the fix\n- escalation: if a review comment requests architectural changes or new test coverage, recommend `engos-design-architecture` or `engos-quality-testing-review`\n\n## Companion Capability Matrix\n\n| Situation | Companion Capability | Why |\n| --- | --- | --- |\n| reviewer requests architectural rework | `engos-design-architecture` | structural decisions need dedicated judgment |\n| reviewer requests new tests or coverage | `engos-quality-testing-review` | test design needs a dedicated pass |\n| commit readiness after fixes are applied | `engos-quality-code-review` | verify the fix commit is scoped and clean |\n| merge/push readiness after addressing feedback | `engos-quality-gitops-review` | branch health and CI checks before merge |\n| no reviewer comments exist yet | `engos-quality-code-review` | run the pre-commit or pre-push review gate first |\n\n## Invocation Hints\n- address the review comments\n- fix the MR feedback\n- resolve PR comments\n- apply the requested changes from reviewers\n- address code review\n- address selected reviewer comments\n- implement requested changes from MR discussions\n\n## Required Inputs\n- an open PR/MR on the current branch (auto-detected) or an explicit PR/MR link\n- platform context: GitLab project ID or GitHub owner/repo (detected from git remote)\n- which comments to address (all open, or user-selected subset)\n- confirmation before editing when comments are ambiguous, broad, or architectural\n\n## Required Output\n- `Comments Found` \u2014 numbered list of open review comments with author, file, line, and summary\n- `User Selection` \u2014 which comments the user chose to address\n- `Changes Applied` \u2014 per-comment summary of what was modified\n- `Commit Guidance` \u2014 suggested commit message and push instructions\n- `Follow-up Review` \u2014 whether to run `engos-quality-code-review`, `engos-quality-testing-review`, `engos-design-architecture`, or `engos-quality-gitops-review`\n\n## Workflow\n\n### 1. Find the MR/PR\n- Detect platform from `git remote -v` (GitLab vs GitHub).\n- **GitLab**: find the project ID, then list open MRs filtered by current branch.\n- **GitHub**: find open PRs for the current branch.\n- If exactly one open MR/PR is found, use it automatically.\n- If none or multiple found, ask the user for the MR/PR link.\n\n### 2. Fetch review comments\n- **GitLab**: read MR discussions.\n- **GitHub**: read PR review comments.\n- Filter out resolved and outdated comments. Focus on open, actionable feedback.\n\n### 3. Present the comments\nShow the user a numbered list of open comments with:\n- Author\n- File and line reference\n- The requested change (summarized)\n\nHonor an already explicit authorized selection (all or specific IDs). Ask only if selection is materially ambiguous.\nDo not edit files until the selected comment set is clear.\n\n### 4. Apply changes\nFor each selected comment:\n1. Read the referenced file.\n2. Understand the context and the requested change.\n3. Apply the fix.\n4. If the change is ambiguous or risky, ask the user for clarification before applying.\n\n### 5. Commit and push\n- Stage only the files that were modified to address comments.\n- Suggest a commit message like: `Address review comments` (with ticket prefix if the branch name contains one).\n- Push to the existing remote branch only when the supplied task authorizes that step; otherwise stop with the requested patch or commit guidance.\n- After the fix is ready, recommend `engos-quality-code-review` on the fix commit before asking reviewers to re-check.\n\n## Constraints\n- **Only modify code that has an associated review comment.** Do not touch other changed lines in the diff that have no comments.\n- If you believe an uncommented change also needs fixing, explain why and ask the user before making any modification.\n- Do not resolve/close review threads programmatically \u2014 let the reviewer verify.\n- Do not mix unrelated changes into the fix commit.\n\n## Examples\n### Example Request\n> Address the review comments on my current MR.\n\n### Example Non-Goal\n> Review my staged changes before I commit.\n\nUse `engos-quality-code-review` for this instead; no reviewer feedback exists yet.\n\n### Example Output Shape\n- list of open comments with file references\n- user confirmation of which to address\n- applied changes per comment\n- commit message and push result\n- follow-up review recommendation\n\n## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Comment coverage | All selected comments are addressed with targeted fixes |\n| Scope discipline | Only reviewer-requested changes are made, nothing else |\n| User confirmation | Ambiguous changes are confirmed before applying |\n| Commit hygiene | Fix commit contains only the review-related changes |\n\n## Review Timing\n- commit: when the fix commit is ready for re-review\n- pull request: when all comments are addressed and push is complete\n- merge: reviewer verifies fixes before approving\n\n## Selected Feedback Handoff\nWhen delegating or returning selected feedback, load the `handoff` route in `resources/resource-map.json`: `resources/references/feedback-handoff.md`. Preserve immutable original IDs, source references/digests, selection accepted|rejected|deferred|unselected, authority reasons and actual outcomes separately. Already clear selection requires no second confirmation. Accepted but unfinished remains unresolved/deferred, never addressed without repair evidence. Direct bounded D5 worker needs no Batman. Only explicit Batman uses its controller envelope and independent gates. Optional committed packages resolve the verified code-review owner; no copied collector or guessed sibling. Preserve separately hashed dirty snapshot identity. Task receipts do not waive final integration review or GitOps; no automatic hosted thread closure.\n",
+    "historical_baseline": {
+      "baseline_path": "sources/ssot-baselines/engos-delivery-address-code-review/baseline.md",
+      "equivalent_commits": [],
+      "expected_companions": [],
+      "group": "applied_baseline",
+      "has_baseline_text": true,
+      "historical_proof": {
+        "last_materialized_at": "2026-06-02T18:41:30.995407+00:00",
+        "materialized_from_commit": "e4f32a18",
+        "materialized_from_path": "ssot/engos-delivery-address-code-review.md",
+        "materialized_from_sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d",
+        "materialized_from_source_kind": "current_ssot"
+      },
+      "line_count": 109,
+      "operator_invariants": [],
+      "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+      "richness_score": 5,
+      "scenario_matrix": [
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ],
+      "selected_commit": "e4f32a18",
+      "slug": "engos-delivery-address-code-review",
+      "source": "source_library",
+      "strategy": "source_library",
+      "verified_by_git_history": false
+    },
+    "judge_reports": [
+      {
+        "agent_surface_review": {
+          "added_providers": [],
+          "behavioral_status": "behavioral_pending",
+          "blockers": [],
+          "identity_authenticated": false,
+          "review_attestations": [],
+          "source_fidelity": "not_required",
+          "status": "unchanged"
+        },
+        "blockers": [],
+        "dimension_inventory": [
+          {
+            "dimension": "source_fidelity",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "operational_richness",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "metadata_integrity",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "benchmark_readiness",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "semantic_consistency",
+            "status": "no_detected_conflict_not_semantic_proof"
+          }
+        ],
+        "effective_sha256": "ab2a566102bc3686a7c3d978eb3d175281e806682e55192649e6bf5553b390c0",
+        "historical_baseline": {
+          "baseline_path": "sources/ssot-baselines/engos-delivery-address-code-review/baseline.md",
+          "equivalent_commits": [],
+          "expected_companions": [],
+          "group": "applied_baseline",
+          "has_baseline_text": true,
+          "historical_proof": {
+            "last_materialized_at": "2026-06-02T18:41:30.995407+00:00",
+            "materialized_from_commit": "e4f32a18",
+            "materialized_from_path": "ssot/engos-delivery-address-code-review.md",
+            "materialized_from_sha256": "1b98697ba26198c8a9fa5f6e751917b91e8dcce8d87262277667688312020c5d",
+            "materialized_from_source_kind": "current_ssot"
+          },
+          "line_count": 109,
+          "operator_invariants": [],
+          "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+          "richness_score": 5,
+          "scenario_matrix": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "must_contain": [
+                "## Invocation"
+              ]
+            }
+          ],
+          "selected_commit": "e4f32a18",
+          "slug": "engos-delivery-address-code-review",
+          "source": "source_library",
+          "strategy": "source_library",
+          "verified_by_git_history": false
+        },
+        "judge_reports": [
+          {
+            "baseline_commit": "e4f32a18",
+            "baseline_slug": "engos-delivery-address-code-review",
+            "blockers": [],
+            "classification": "preserved",
+            "judge": "source_fidelity",
+            "requirement_review": {
+              "behavioral_status": "behavioral_pending",
+              "identity_authenticated": false,
+              "status": "not_supplied_or_invalid"
+            },
+            "reviewed_deltas": [],
+            "scenario_results": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "missing_markers": [],
+                "passed": true
+              }
+            ],
+            "score": 10,
+            "scorecard": {
+              "baseline_operational_score": 2,
+              "baseline_preserved_in_resource": false,
+              "baseline_richness": 5,
+              "candidate_operational_score": 2,
+              "candidate_richness": 5
+            },
+            "title": "Source Fidelity and Uplift"
+          },
+          {
+            "blockers": [],
+            "judge": "operational_richness",
+            "score": 10,
+            "title": "Operational Richness"
+          },
+          {
+            "blockers": [],
+            "judge": "metadata_integrity",
+            "score": 10,
+            "title": "Metadata and Handoff Integrity"
+          },
+          {
+            "blockers": [],
+            "judge": "benchmark_readiness",
+            "score": 9,
+            "scorecard": {
+              "boundary_clarity": 8,
+              "description_richness": 10,
+              "intent_coverage": 10,
+              "metadata_completeness": 8,
+              "output_specificity": 10,
+              "surface_usability": 10,
+              "title_clarity": 10
+            },
+            "title": "Benchmark Readiness and Template Fit"
+          }
+        ],
+        "pass_number": 1,
+        "repair_requests": [],
+        "scorecard": {
+          "baseline_operational_score": 2,
+          "baseline_preserved_in_resource": false,
+          "baseline_richness": 5,
+          "benchmark_readiness": 9,
+          "boundary_clarity": 8,
+          "candidate_operational_score": 2,
+          "candidate_richness": 5,
+          "description_richness": 10,
+          "intent_coverage": 10,
+          "metadata_completeness": 8,
+          "metadata_integrity": 10,
+          "operational_richness": 10,
+          "output_specificity": 10,
+          "source_fidelity": 10,
+          "surface_usability": 10,
+          "title_clarity": 10
+        },
+        "semantic_findings": [],
+        "status": "structural_ready",
+        "template_name": "skill"
+      }
+    ],
+    "pass_count": 1,
+    "quality_profile": "default",
+    "repair_requests": [],
+    "scorecard": {
+      "baseline_operational_score": 2,
+      "baseline_preserved_in_resource": false,
+      "baseline_richness": 5,
+      "benchmark_readiness": 9,
+      "boundary_clarity": 8,
+      "candidate_operational_score": 2,
+      "candidate_richness": 5,
+      "description_richness": 10,
+      "intent_coverage": 10,
+      "metadata_completeness": 8,
+      "metadata_integrity": 10,
+      "operational_richness": 10,
+      "output_specificity": 10,
+      "source_fidelity": 10,
+      "surface_usability": 10,
+      "title_clarity": 10
+    },
+    "status": "structural_ready",
+    "stop_reason": "thresholds_met"
+  },
+  "apply_result": {
+    "behavioral_evidence": {
+      "apply_mode": null,
+      "enforcement": "advisory",
+      "run_id": null,
+      "status": "behavioral_pending"
+    },
+    "build": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "installer capsule: generated\nGenerated 36 ssot entries"
+    },
+    "changed_paths": [
+      ".claude/skills/engos-delivery-address-code-review/SKILL.md",
+      ".claude/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".codex/skills/engos-delivery-address-code-review/SKILL.md",
+      ".codex/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".gemini/skills/engos-delivery-address-code-review/SKILL.md",
+      ".gemini/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".kiro/skills/engos-delivery-address-code-review/SKILL.md",
+      ".kiro/skills/engos-delivery-address-code-review/resources/capability.json",
+      ".meta/capabilities/engos-delivery-address-code-review.json",
+      ".meta/manifest.json",
+      ".meta/skill-job-map.json",
+      "dist/consumer-shell/status.json",
+      "docs/STATUS.md",
+      "evals/contracts/engos-delivery-address-code-review.json",
+      "evals/topologies/engos-delivery-address-code-review.json",
+      "reports/quality-reviews/engos-delivery-address-code-review/20261013-025949-pass-1.json",
+      "reports/quality-reviews/engos-delivery-address-code-review/LATEST.md",
+      "ssot/engos-delivery-address-code-review.md"
+    ],
+    "compile": {
+      "behavioral_claim": "none",
+      "goal_contract": "evals/contracts/engos-delivery-address-code-review.json",
+      "status": "structural_ready",
+      "topology": "evals/topologies/engos-delivery-address-code-review.json"
+    },
+    "deploy_next_step": "Run bin/capability-fabric deploy or scripts/deploy-surfaces.sh after reviewing repo changes.",
+    "quality": {
+      "pass_count": 1,
+      "profile": "default",
+      "status": "structural_ready",
+      "stop_reason": "thresholds_met"
+    },
+    "validate": {
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Validation passed.\nSSOT files: 36"
+    }
+  },
+  "agent_surface_review": {
+    "added_providers": [],
+    "behavioral_status": "behavioral_pending",
+    "blockers": [],
+    "identity_authenticated": false,
+    "review_attestations": [],
+    "source_fidelity": "not_required",
+    "status": "unchanged"
+  },
+  "detail": "SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.",
+  "evidence_boundary": "Original complete JSON remains in preserved private evidence and preceding Git commit; this receipt removes repeated source, preview and manifests from displayed diff. Source READY and behavioral_pending remain distinct."
+}

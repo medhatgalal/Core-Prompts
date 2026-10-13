@@ -374,5 +374,8 @@ positive notes without weakening an open blocker. `Merge Readiness` states
 - If something cannot be verified, say so explicitly.
 - Do not rubber-stamp a commit just because tests pass.
 
+## Optional Current Committed Package Binding
+Select the `verify-package` route in `resources/resource-map.json` only for an externally bound current committed-candidate handoff. Read its complete selected consumption context before invocation; it describes independently retained task/subject-owner/generation/repository/base/head/source bindings and exact collector stdout/exit. Binding matched means review not_assessed, never ready. Nonempty effective repository clean/process filter configuration rejects before worktree comparison; never clear filters or reset user configuration to manufacture clean evidence. Do not eagerly load collect/verifier resources for ordinary HEAD or staged review. Range Findings uses kind branch, comparison range, exact endpoints, null snapshot and committed only. Actual independent review must read bound material and needed unchanged callers. Missing findings or unread material stays incomplete; final branch integration and GitOps remain separate gates.
+
 
 Capability resource: `resources/capability.json`

@@ -92,6 +92,37 @@ judgment. Independent expected-binding verification and actual source/consumer
 review remain separate. See the bundled review-target reference for the full
 coverage and trust contract.
 
+
+### Optional committed-package binding verifier
+
+Use the verified installed code-review owner's `verify-package` resource only
+when a controller has independently retained the task, owner, generation,
+repository, base, head and source bindings. Preserve the collector's exact stdout
+and exit status, its complete result and manifest digests, and the expectation
+file's digest outside the package. The verifier requires `ReviewPackageExpectation.v1`;
+its expectation schema rejects extra fields and requires the externally pinned
+producer and verifier source hashes. Never derive trust from a manifest.
+
+```sh
+python3 -I <code-review-skill>/resources/scripts/verify_review_package.py --repo <task-worktree> --package <frozen-leaf> --result <exact-collector-stdout-file> --expect <controller-expectation.json> --expect-sha256 <externally-retained-digest>
+```
+
+Stdout is one `ReviewPackageBinding.v1` JSON line. Exit 0 means the committed
+package binding matched and `review_status` is `not_assessed`; it does not mean
+review passed. Exit 2 means evidence or target was rejected. Exit 3 means invalid
+invocation/expectation or unavailable context. Missing owner/helper/runtime makes
+this optional binding unavailable; ordinary HEAD, staged and dirty-snapshot review
+remain available. The collector command, format and exit meanings above are
+unchanged. Binary bytes may be collected but remain unreviewed; changed gitlinks
+remain incomplete without nested traversal.
+
+The verifier accepts only a clean committed candidate. Sparse checkouts, hidden
+index entries and nonempty effective Git clean/process filters reject before
+worktree status or comparison. Filters can execute or mask dirty bytes, so do not
+clear local configuration to manufacture clean evidence. Keep outputs outside the
+candidate worktree. A matched binding supports review intake only; the reviewer
+must inspect the source and consumers. It grants no merge or release authority.
+
 ## Optional planning link checkers
 
 From the selected skill's bundle directory:
@@ -629,3 +660,19 @@ python3 <skill>/resources/scripts/factual_audit.py roundtrip --format prompt-e-o
 Select `master-array` or `prompt-e-object` explicitly for either command. Validation returns format, valid and issues; roundtrip emits the same original-format payload only on success. Exit codes are 0 valid, 2 invalid JSON/shape/counts, and 3 CLI/input failure. Roundtrip preserves extensions and item/key order, never recomputes counts or writes the input. No cross-format conversion or DocsFactualAudit.v1 envelope is implemented.
 
 Successful factual roundtrip emits the validated original UTF-8 JSON wire text unchanged, including numeric tokens and escaped Unicode. Decimal validation preserves finite JSON values beyond binary-float range. Summary counts use JSON Schema integer semantics (0.0 is integral); booleans and fractional counts fail. This establishes format preservation, not factual truth.
+
+## Future skill selection on external targets
+
+`--selection-policy full-catalog|curated` is accepted by `install-local.sh`,
+`deploy-surfaces.sh` and `deploy-profile.py --install`. Give exactly one explicit
+`--cli` or a schema1 skills `--profile`; profiles reject `--cli` and `--slug`.
+The flag rejects `--repair`, `--with-agents`, `--surface-only`, and transaction
+controls. Full catalog rejects slug limits; fresh curated requires concrete
+skills. `--apply-plan` uses the saved request without repeating the flag.
+Repository-root deployment rejects this installation-only option.
+
+The complete whole-package import and update guidance is in [install profiles](INSTALL-PROFILES.md#choose-future-skill-membership),
+including state3 versus plan2/journal1/receipt2 and saved legacy membership
+proof. Legacy `docs/adoption/IMPORT_PROMPTS.md` guidance resolves there. Copy
+entire packages, including loader, resource map and owner-bound import receipt;
+a copied entrypoint alone cannot establish resource closure or native acceptance.

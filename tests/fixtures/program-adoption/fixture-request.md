@@ -1,0 +1,1 @@
+Synthetic read-only fixture: plan a tiny square-input change. R1: input 3 returns 9. R2: abc returns invalid input. Preserve plain-integer output format; do not edit files or invoke deployment. Draft artifacts are not implementation approval.

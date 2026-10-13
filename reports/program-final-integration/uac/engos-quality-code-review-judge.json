@@ -1,0 +1,283 @@
+{
+  "schema": "ProgramUACCompactReceipt.v1",
+  "phase": "judge",
+  "original_git_commit": "8b9f71a",
+  "original_git_path": "reports/program-final-integration/uac/engos-quality-code-review-judge.json",
+  "original_raw_sha256": "da7fb2b649def84e0115f369ef138fc12caabe8b17f2c42c87764912ce173658",
+  "original_bytes": 165720,
+  "preserved_raw_evidence": "initiative/evidence/program-final-uac-raw/engos-quality-code-review-judge.json",
+  "status": "accepted",
+  "behavioral_status": "behavioral_pending",
+  "source_text_sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a",
+  "quality_result_sha256": "22a0892168583449a6d921771e22a95d95583be98e23422dacce3b44eb25d602",
+  "quality_result": {
+    "assessment_scope": "mechanical_structure_and_bound_external_review_attestations",
+    "behavioral_status": "behavioral_pending",
+    "consumption_hints": {
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "requires_human_confirmation": true
+    },
+    "final_candidate_text": "---\nname: \"engos-quality-code-review\"\ndescription: \"Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.\"\ndisplay_name: \"Commit Review \u2014 Git Commit Quality Gate\"\nkind: \"skill\"\ncapability_type: \"skill\"\n---\n# Commit Review \u2014 Git Commit Quality Gate\n\n## Purpose\nUse this capability to review staged changes, working-tree diffs, or git commits before commit, push, merge, or release. It is a review gate: it reads the actual diff, finds correctness and scope risks, checks commit-message quality, flags over-engineering, and gives a clear readiness decision.\n\nUse this before you create a commit, before you push a branch, before an MR/PR is merged, or after a fix commit has been prepared. Do not use this capability to modify files or apply reviewer feedback; use `engos-delivery-address-code-review` when the user wants selected PR/MR review comments implemented.\n\n## Primary Objective\nDetermine whether the diff under review is ready to move forward, blocked by correctness or scope issues, or should be split into smaller focused changes before review continues.\n\n## Choose the Right Review Capability\nUse `engos-quality-code-review` when the job is judgment.\n\n| User Intent | Use | Why |\n| --- | --- | --- |\n| \"Review my staged changes before I commit\" | `engos-quality-code-review` | pre-commit quality gate; no mutation |\n| \"Review the latest commit\" | `engos-quality-code-review` | commit scope, message quality, and merge readiness |\n| \"Tell me if this MR is too broad\" | `engos-quality-code-review` with `engos-quality-gitops-review` if branch/CI state matters | commit/diff findings first, branch gate second |\n| \"Fix the comments reviewers left on my MR\" | `engos-delivery-address-code-review` | action workflow that reads comments and edits files |\n| \"After fixes, check the fix commit\" | `engos-quality-code-review` | verifies the response commit stayed scoped |\n\nDefault to `engos-quality-code-review` for pre-commit or pre-push checks. Switch to `engos-delivery-address-code-review` only when the user explicitly wants to inspect and implement existing PR/MR review comments.\n\n## Output Directory\nWhen file output is requested, default to:\n- `reports/code-reviews/<timestamp>-<commit>.md`\n\n## Committed-range Collection (Explicit Only)\nWhen the user requests an immutable committed-range package, read the collection\nrequest guidance in `resources/references/review-targets.md`, then load the additive\n`collect` route in `resources/resource-map.json`: `resources/scripts/review_package.py`\nand its `resources/schemas/review-package.schema.json` dependency. Read the selected\ncollector context for the exact command and trust limits, then invoke the helper\nwith exact recorded base/head commit IDs, task/owner/generation/repository bindings,\nand a new absent output leaf under an existing nonsymlink parent. Optional spec and\nplan SHA-256 values are caller assertions. Use Python 3.11+ and supported Git/POSIX\nprimitives; the standalone helper requires only stdlib and Git.\n\nThe helper emits `ReviewPackage.v1` committed-range evidence and a manifest-digest\nreceipt. Exit 0 means complete collection only; exit 2 means incomplete/freeze\nfailure; exit 3 means invalid/unsupported/unsafe input. Preserve partial output and\nuse a new leaf rather than overwriting it. Binary evidence remains unreviewed;\nchanged gitlinks make collection incomplete without traversing submodules.\nCollection captures endpoint net changes plus all range commit objects, excluding\nstaged/dirty edits, intermediate patches and unchanged consumers. Keep the ordinary\n`review` route, default `HEAD`, six narrative sections and `Findings.v1` unchanged.\nIndependently bound consumer verification and actual review remain separate;\ncollection success cannot produce a review/security/correctness verdict or merge\npermission. Read needed unchanged consumers at the exact target before findings.\n\n## Core Principles\n- **Scope discipline**: changes must match what the commit message describes\n- **Simplicity first**: flag over-engineered solutions and unnecessary spread\n- **Evidence-based**: review the actual diff, not assumptions about intent\n- **AI-aware**: assume AI-assisted changes can drift outside the requested scope unless proven otherwise\n- **Actionable output**: every finding should give the reviewer a concrete next move\n\n## Workflow\n1. Read the complete `review` route in `resources/resource-map.json`: `resources/references/review-targets.md` and its findings schema. Use the existing bundled `resources/scripts/load_module.py --route review` when available, or read both files directly. Missing or unread required resources make the review incomplete.\n2. Capture the exact staged diff, working-tree diff, commit, or branch diff under review; bind it and relevant source/consumer reads to the target as specified in that reference.\n3. Read the commit message and the actual diff before making any judgment.\n4. Check message quality, scope alignment, and implementation complexity.\n5. Record findings with stable IDs, severity, precise location, changed-cause evidence, verified consumer evidence for introduced breakage, impact, repair, and disposition.\n6. End with ready, blocked, or split required for a complete review; use unverifiable when evidence or review coverage is incomplete. Review judgment grants no repair, publication, merge, or release authority.\n\n## Rules\n- Preserve the default target of `HEAD`. An explicit staged request reviews the index; an empty index does not silently change the target.\n- Record target kind, resolved base/head where applicable, included change classes, and snapshot digest for mutable or supplied diffs. Recheck bindings before issuing the verdict; drift invalidates affected evidence.\n- Read relevant source and actual consumers beyond the diff when the change can break them. Tie each introduced-breakage finding to the changed cause and a verified affected consumer; distinguish unrelated pre-existing defects.\n- Missing, malformed, stale, or unread review evidence is incomplete, never a clean result. Collection success, schema validity, or a self-reported read receipt cannot prove actual reading, truthful findings, or permission to merge.\n\n## Tool Boundaries\n- allowed: inspect git history, inspect staged, unstaged, branch, or committed diffs, and write review artifacts when asked\n- forbidden: applying fixes, modifying files, staging changes, silent approval, hidden execution, or claiming code quality is fine without reading the diff\n- escalation: if the change crosses into release risk, test gaps, or architecture risk, recommend `engos-quality-gitops-review`, `engos-quality-testing-review`, or `engos-design-architecture`\n\n## Companion Capability Matrix\nUse companion capabilities deliberately instead of flattening every review into one generic answer.\n\n| Situation | Companion Capability | Why |\n| --- | --- | --- |\n| release readiness, changelog, CI, packaging, or merge gates matter | `engos-quality-gitops-review` | commit quality alone is not enough for release or branch health |\n| behavior changed and test confidence is weak | `engos-quality-testing-review` | test coverage and edge-case discovery need a dedicated pass |\n| interface, architecture, or migration risk is material | `engos-design-architecture` | structural risk needs architectural judgment, not just commit review |\n| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |\n| doc drift or example drift is part of the commit | `engos-quality-docs-review` | keep documentation review explicit and separate |\n| reviewer comments need to be implemented | `engos-delivery-address-code-review` | this review gate should not mutate files |\n\n## Invocation Hints\nUse this capability when the user asks for any of the following, even without naming the skill:\n- review the latest commit\n- review my staged changes before I commit\n- review this diff before I push\n- check whether this diff is too broad\n- judge whether AI-generated changes are over-engineered\n- tell me if this commit message and change scope are strong enough to merge\n\n## Required Inputs\n- commit hash, staged diff, working-tree diff, branch diff, or the default target of `HEAD`\n- repository context when the commit depends on surrounding conventions\n- any specific review focus such as scope, message quality, or simplicity\n\n## Required Output\nEvery substantial response must include:\n- `Commit Under Review`\n- `Findings`\n- `Scope Assessment`\n- `Message Assessment`\n- `Recommended Fixes`\n- `Merge Readiness`\n\nKeep these six sections. In `Commit Under Review`, include the bound target and coverage. In `Findings`, use the fields and evidence links in `resources/schemas/findings.schema.json`; an empty findings list supports a clean verdict only after the declared target is fully reviewed. Include `review_status`, `unreviewed`, and the verdict in `Merge Readiness`. Render these fields inline for chat; when a machine-readable review artifact is requested, write a `Findings.v1` JSON record alongside any requested narrative. Do not write files solely because the schema exists.\n\n## Review Process\n### 1. Capture the Commit\nDefault to the most recent commit (`HEAD`), even if the checkout is dirty. Resolve\nits full commit ID and the selected parent, or declare a root commit. Inspect the\nactual patch and message, then relevant files at that revision. For merge commits,\nstate the selected parent/comparison; do not silently substitute a combined diff.\n\nResolve the requested ref once and keep that full ID for all subsequent reads:\n\n```bash\nREVIEW_HEAD=$(git rev-parse --verify 'HEAD^{commit}') || exit 1\ngit show --no-patch --format=fuller \"$REVIEW_HEAD\"\ngit rev-list --parents -n 1 \"$REVIEW_HEAD\"\n```\n\nFor a non-merge commit, including a root commit, inspect its patch:\n\n```bash\ngit show --no-ext-diff --no-textconv --format=fuller --no-color \"$REVIEW_HEAD\"\n```\n\nFor a merge commit, set `REVIEW_PARENT` to the explicitly selected full parent ID\nfrom the parent list above and record that choice. Inspect that parent's patch:\n\n```bash\ngit diff --no-ext-diff --no-textconv --no-color \"$REVIEW_PARENT\" \"$REVIEW_HEAD\"\n```\n\nRecheck the requested ref and snapshot bindings before the verdict. Disclose any\ndrift and renew affected review if the requested target changed; never silently\nreplace `REVIEW_HEAD` or read a newer checkout as the captured commit.\n\nFor an explicit pre-commit staged review, inspect the index first:\n\n```bash\ngit diff --staged --no-ext-diff --no-textconv --no-color\n```\n\nIf nothing is staged, say that there is no staged target. Inspect the working-tree\ndiff only after saying that the review is not a commit-ready staged review; label\nthat fallback with its own working-tree target and digest. Never stage changes.\n\nUse the target rules in `resources/references/review-targets.md` for working-tree,\nbranch, root/merge commit, and supplied-diff requests. Bind mutable snapshots to\nthe exact reviewed bytes, not just to the current `HEAD`. A branch review includes\nthe declared full range, not only its last commit. If file output was requested,\nsave the captured material under `reports/code-reviews/` and read it before findings;\nan unread capture or failed capture is incomplete. Without a file request, inspect\nand report inline. Do not turn artifact capture into permission to change source.\n\n### 2. Check the Commit Message\nLook for:\n- clear summary of what changed\n- enough context to explain why the change exists\n- note of breaking change or migration risk when relevant\n- related issue or ticket context when that exists\n\n### 3. Commit Message Quality Checklist\nCheck:\n- [ ] title describes **what** changed rather than implementation mechanics\n- [ ] body explains **why** the change exists\n- [ ] body mentions constraints, follow-up work, or migration notes when relevant\n- [ ] breaking changes are called out explicitly\n- [ ] commit message does not promise more than the diff actually delivers\n\n### 4. Check Scope and Complexity\nLook for:\n- strict alignment between message and diff\n- no unrelated refactors mixed with the stated change\n- no unnecessary abstractions, patterns, or file spread\n- a diff size proportionate to the stated task\n\n**Scope Alignment Checklist**\n- [ ] changes are strictly limited to what the commit message describes\n- [ ] no \"while I'm here\" changes or opportunistic cleanup\n- [ ] a bug fix commit fixes the named bug rather than adjacent problems too\n- [ ] unrelated improvements are split into separate commits\n\n**Over-Engineering Checklist**\n- [ ] solution is as simple as possible for the stated problem\n- [ ] no unnecessary abstractions or premature optimization\n- [ ] no new patterns or frameworks without clear justification\n- [ ] changes stay localized unless there is a defensible reason to spread\n\n**Size vs Scope Checks**\n- [ ] large diffs correspond to genuinely large features\n- [ ] small bug fixes remain small and targeted\n- [ ] if the diff is large but the commit message is simple, treat that as a review risk\n- [ ] ask whether the work could have been split into smaller focused commits\n\n**Red Flags**\n- commit says \"fix typo\" but touches many files\n- commit says \"add validation\" but also refactors the module\n- new abstractions or helper layers appear for a simple change\n- files change that are not implied by the commit description\n- refactoring is mixed with behavior changes\n- resources are created without cleanup, eviction, retention, or capacity bounds\n- runtime configuration is frozen during initialization without an explicit immutability contract\n- shared mutable state or non-atomic writes appear in concurrent execution paths\n- critical warnings have no machine-consumable monitoring or escalation path\n- failure modes are silent, unrecoverable, or diagnosable only after redeployment\n- parameters or schema changes appear without downstream compatibility analysis\n\n**When to Reject**\nIf the change is over-engineered or out of scope, recommend one or more of:\n1. revert to a simpler approach\n2. split into smaller focused commits\n3. remove unrelated changes before merge\n\n### 5. Check Code Risk\nLook for:\n- correctness issues, missing edge cases, or unsafe assumptions\n- missing or stale tests when behavior changed\n- security or secrets handling problems\n- debug residue, dead code, or inconsistent conventions\n\n**Correctness Checklist**\n- [ ] no syntax errors, typos, or incorrect imports\n- [ ] logic is sound and edge cases are handled\n- [ ] error handling is explicit enough to debug failures\n- [ ] exceptions are not silently swallowed\n- [ ] tests were updated if behavior changed\n\n**Security Checklist**\n- [ ] no hardcoded secrets or credentials\n- [ ] inputs are validated where appropriate\n- [ ] sensitive data handling matches repo expectations\n\n**Style and Cleanliness Checklist**\n- [ ] naming is clear and consistent\n- [ ] project conventions are followed\n- [ ] no commented-out code or stray debug statements\n- [ ] new dependencies are justified and noted\n\n### 6. Check Resource & Lifecycle\nLook for resource accumulation, initialization-order hazards, concurrency defects, operational blind spots, and downstream contract changes that can make an otherwise correct diff unsafe in production.\n\n**Resource Management Checklist**\n- [ ] files, directories, caches, queues, buffers, connections, tasks, subprocesses, and other resources have explicit growth bounds\n- [ ] every newly created resource has a clear owner and lifecycle\n- [ ] cleanup runs on success, error, timeout, and cancellation paths\n- [ ] accumulation is bounded by TTL, eviction, rotation, quotas, size caps, backpressure, or another explicit mechanism\n- [ ] temporary artifacts do not persist without a cleanup mechanism\n- [ ] disk writes include retention, capacity, and failure handling\n- [ ] early returns and partial failures do not leak resources\n\n**Concurrency and Initialization-Time Checklist**\n- [ ] environment, configuration, feature flags, clocks, clients, and mutable dependencies are not frozen during initialization when runtime evaluation is required\n- [ ] initialization order cannot leave state stale unless startup-time immutability is an explicit contract\n- [ ] shared mutable dictionaries, caches, registries, files, and singleton state have documented ownership and synchronization\n- [ ] async and multi-worker paths avoid lost updates, duplicate work, partial writes, and read-modify-write races\n- [ ] file replacement and state publication are atomic where inconsistent reads are possible\n- [ ] concurrent operations handle cleanup and cancellation safely\n\n**Operational Readiness Checklist**\n- [ ] warnings and errors are actionable rather than repetitive noise\n- [ ] critical failures produce machine-consumable metrics, traces, events, health signals, or alerts\n- [ ] operational signals include stable context for diagnosis and ownership\n- [ ] repeated warnings are aggregated or rate-limited when necessary\n- [ ] operators can inspect or safely change relevant runtime state without redeployment when the system requires it\n- [ ] timeouts, retries, fallbacks, circuit breaking, and partial failures degrade gracefully\n- [ ] failures remain observable instead of silently switching behavior\n\n**API Contract Checklist**\n- [ ] changes to parameters, return values, defaults, ordering, serialization, and error behavior preserve existing callers\n- [ ] defaults retain established behavior rather than merely preventing a syntax error\n- [ ] generated schemas, clients, descriptors, documentation, and reflection-based interfaces are reviewed for contract changes\n- [ ] optional parameters do not become visible to downstream consumers without compatibility analysis\n- [ ] tool-calling and schema-driven consumers can interpret the new contract safely\n- [ ] versioning, migration, deprecation, and compatibility tests are added when required\n\n### 7. Provide Feedback\nIf issues are found:\n- describe each problem clearly\n- identify the exact target-relative file, line, and side; for a deleted cause use the base side, and for a commit-message issue label the message location\n- provide a concrete fix or shape of fix\n- explain why the fix matters\n- retain a stable finding ID and disposition on re-review; mark resolved only after verifying the repair against the new bound target\n\nIf no issues are found and the declared target is fully reviewed:\n- report an empty findings list and the reviewed coverage\n- highlight especially strong patterns when useful\n- give a clear advisory readiness signal\n\nIf coverage, target binding, source reads, or requested output is missing or malformed, retain any confirmed findings, list what remains unreviewed, and report incomplete/unverifiable. Never translate a failed or empty review return into ready.\n\n## Examples\n### Example Request\n> Review the latest commit and tell me whether it is merge-ready or too broad.\n\n### Example Pre-Commit Request\n> Use `engos-quality-code-review` to review my staged changes before I commit.\n\n### Example Output Shape\n- commit under review\n- findings with file references\n- scope and message assessment\n- merge readiness decision\n\n### Usage Examples\n```text\n/engos-quality-code-review\n```\nReviews the most recent commit (`HEAD`).\n\n```text\n/engos-quality-code-review staged\n```\nReviews staged changes before commit.\n\n```text\n/engos-quality-code-review <commit-hash>\n```\nReviews a specific commit.\n\n```text\n/engos-quality-code-review /scope\n```\nBiases the review toward scope discipline and over-engineering detection.\n\n## Output Format\nUse the six required sections with a brief overall assessment, findings ordered by\nimpact, scope and message judgments, concrete repairs, and a final advisory verdict.\nA finding uses this shape; the complete machine contract and applicability rules\nare in `resources/schemas/findings.schema.json` and the review-target reference:\n\n```text\nFinding F-001 | high | introduced_breakage | open\nLocation: src/api.py:42 (head)\nChanged cause: removed the legacy keyword [E-diff]\nAffected consumer: jobs/nightly.py:18 still supplies that keyword [E-caller]\nImpact: the nightly job fails before processing records\nRepair: retain compatibility or update and verify the affected consumer\nDisposition reason: verified caller remains incompatible at the reviewed revision\n```\n\n`Recommended Fixes` may describe a patch without applying it. Include useful\npositive notes without weakening an open blocker. `Merge Readiness` states\n`review_status`, unreviewed items, and `ready`, `blocked`, `split_required`, or\n`unverifiable`; hosted CI and actual merge authorization remain separate gates.\n\n## Evaluation Rubric\n| Check | What Passing Looks Like |\n| --- | --- |\n| Commit message quality | The message explains what changed and why clearly enough to review |\n| Scope discipline | The diff stays tightly aligned to the stated goal |\n| Simplicity | The implementation avoids unnecessary abstraction or spread |\n| Evidence quality | Findings bind to the actual target and specific changed causes; introduced breakage includes a verified affected consumer |\n| Merge guidance | A complete review ends with ready / blocked / split; missing evidence stays incomplete and unverifiable |\n| Resource & lifecycle | No unbounded growth, no incorrectly frozen initialization state, and failure modes are observable and recoverable |\n\n## Constraints\n- Never skip reading the actual diff.\n- Base findings on evidence, not assumptions.\n- Flag scope creep immediately.\n- Prefer the simpler valid implementation when alternatives exist.\n- If something cannot be verified, say so explicitly.\n- Do not rubber-stamp a commit just because tests pass.\n\n## Optional Current Committed Package Binding\nSelect the `verify-package` route in `resources/resource-map.json` only for an externally bound current committed-candidate handoff. Read its complete selected consumption context before invocation; it describes independently retained task/subject-owner/generation/repository/base/head/source bindings and exact collector stdout/exit. Binding matched means review not_assessed, never ready. Nonempty effective repository clean/process filter configuration rejects before worktree comparison; never clear filters or reset user configuration to manufacture clean evidence. Do not eagerly load collect/verifier resources for ordinary HEAD or staged review. Range Findings uses kind branch, comparison range, exact endpoints, null snapshot and committed only. Actual independent review must read bound material and needed unchanged callers. Missing findings or unread material stays incomplete; final branch integration and GitOps remain separate gates.\n",
+    "historical_baseline": {
+      "baseline_path": "sources/ssot-baselines/engos-quality-code-review/baseline.md",
+      "equivalent_commits": [],
+      "expected_companions": [
+        "engos-quality-gitops-review",
+        "engos-quality-testing-review",
+        "engos-design-architecture",
+        "engos-quality-docs-review"
+      ],
+      "group": "additive_preserved",
+      "has_baseline_text": true,
+      "historical_proof": {
+        "current_head_commit": "a78c1c21",
+        "current_head_line_count": 237,
+        "current_head_richness_score": 4,
+        "materialized_from_commit": "a78c1c21"
+      },
+      "line_count": 236,
+      "operator_invariants": [],
+      "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+      "richness_score": 4,
+      "scenario_matrix": [
+        {
+          "id": "commit_review_procedure",
+          "kind": "individual_module",
+          "label": "commit review procedure and checklists",
+          "must_contain": [
+            "## Review Process",
+            "### 1. Capture the Commit",
+            "### 3. Commit Message Quality Checklist",
+            "### 4. Check Scope and Complexity",
+            "### 5. Check Code Risk"
+          ]
+        },
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ],
+      "selected_commit": "a78c1c21",
+      "slug": "engos-quality-code-review",
+      "source": "source_library",
+      "strategy": "head_snapshot",
+      "verified_by_git_history": false
+    },
+    "judge_reports": [
+      {
+        "agent_surface_review": {
+          "added_providers": [],
+          "behavioral_status": "behavioral_pending",
+          "blockers": [],
+          "identity_authenticated": false,
+          "review_attestations": [],
+          "source_fidelity": "not_required",
+          "status": "unchanged"
+        },
+        "blockers": [],
+        "dimension_inventory": [
+          {
+            "dimension": "source_fidelity",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "operational_richness",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "metadata_integrity",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "benchmark_readiness",
+            "status": "mechanical_checks_passed"
+          },
+          {
+            "dimension": "semantic_consistency",
+            "status": "no_detected_conflict_not_semantic_proof"
+          }
+        ],
+        "effective_sha256": "94cf5bd54bf52257f8f9f5543fdfe7f02d86f920bb6db3a3520c0b866a318ee1",
+        "historical_baseline": {
+          "baseline_path": "sources/ssot-baselines/engos-quality-code-review/baseline.md",
+          "equivalent_commits": [],
+          "expected_companions": [
+            "engos-quality-gitops-review",
+            "engos-quality-testing-review",
+            "engos-design-architecture",
+            "engos-quality-docs-review"
+          ],
+          "group": "additive_preserved",
+          "has_baseline_text": true,
+          "historical_proof": {
+            "current_head_commit": "a78c1c21",
+            "current_head_line_count": 237,
+            "current_head_richness_score": 4,
+            "materialized_from_commit": "a78c1c21"
+          },
+          "line_count": 236,
+          "operator_invariants": [],
+          "reason": "Latest additive version preserves the full commit-review procedure and sharpens boundaries plus companion routing.",
+          "richness_score": 4,
+          "scenario_matrix": [
+            {
+              "id": "commit_review_procedure",
+              "kind": "individual_module",
+              "label": "commit review procedure and checklists",
+              "must_contain": [
+                "## Review Process",
+                "### 1. Capture the Commit",
+                "### 3. Commit Message Quality Checklist",
+                "### 4. Check Scope and Complexity",
+                "### 5. Check Code Risk"
+              ]
+            },
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "must_contain": [
+                "## Invocation"
+              ]
+            }
+          ],
+          "selected_commit": "a78c1c21",
+          "slug": "engos-quality-code-review",
+          "source": "source_library",
+          "strategy": "head_snapshot",
+          "verified_by_git_history": false
+        },
+        "judge_reports": [
+          {
+            "baseline_commit": "a78c1c21",
+            "baseline_slug": "engos-quality-code-review",
+            "blockers": [],
+            "classification": "additive",
+            "judge": "source_fidelity",
+            "requirement_review": {
+              "behavioral_status": "behavioral_pending",
+              "identity_authenticated": false,
+              "status": "not_supplied_or_invalid"
+            },
+            "reviewed_deltas": [],
+            "scenario_results": [
+              {
+                "id": "commit_review_procedure",
+                "kind": "individual_module",
+                "label": "commit review procedure and checklists",
+                "missing_markers": [],
+                "passed": true
+              },
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "missing_markers": [],
+                "passed": true
+              }
+            ],
+            "score": 10,
+            "scorecard": {
+              "baseline_operational_score": 2,
+              "baseline_preserved_in_resource": false,
+              "baseline_richness": 4,
+              "candidate_operational_score": 2,
+              "candidate_richness": 7
+            },
+            "title": "Source Fidelity and Uplift"
+          },
+          {
+            "blockers": [],
+            "judge": "operational_richness",
+            "score": 10,
+            "title": "Operational Richness"
+          },
+          {
+            "blockers": [],
+            "judge": "metadata_integrity",
+            "score": 10,
+            "title": "Metadata and Handoff Integrity"
+          },
+          {
+            "blockers": [],
+            "judge": "benchmark_readiness",
+            "score": 9,
+            "scorecard": {
+              "boundary_clarity": 8,
+              "description_richness": 10,
+              "intent_coverage": 10,
+              "metadata_completeness": 8,
+              "output_specificity": 10,
+              "surface_usability": 10,
+              "title_clarity": 10
+            },
+            "title": "Benchmark Readiness and Template Fit"
+          }
+        ],
+        "pass_number": 1,
+        "repair_requests": [],
+        "scorecard": {
+          "baseline_operational_score": 2,
+          "baseline_preserved_in_resource": false,
+          "baseline_richness": 4,
+          "benchmark_readiness": 9,
+          "boundary_clarity": 8,
+          "candidate_operational_score": 2,
+          "candidate_richness": 7,
+          "description_richness": 10,
+          "intent_coverage": 10,
+          "metadata_completeness": 8,
+          "metadata_integrity": 10,
+          "operational_richness": 10,
+          "output_specificity": 10,
+          "source_fidelity": 10,
+          "surface_usability": 10,
+          "title_clarity": 10
+        },
+        "semantic_findings": [],
+        "status": "structural_ready",
+        "template_name": "skill"
+      }
+    ],
+    "pass_count": 1,
+    "quality_profile": "default",
+    "repair_requests": [],
+    "scorecard": {
+      "baseline_operational_score": 2,
+      "baseline_preserved_in_resource": false,
+      "baseline_richness": 4,
+      "benchmark_readiness": 9,
+      "boundary_clarity": 8,
+      "candidate_operational_score": 2,
+      "candidate_richness": 7,
+      "description_richness": 10,
+      "intent_coverage": 10,
+      "metadata_completeness": 8,
+      "metadata_integrity": 10,
+      "operational_richness": 10,
+      "output_specificity": 10,
+      "source_fidelity": 10,
+      "surface_usability": 10,
+      "title_clarity": 10
+    },
+    "status": "structural_ready",
+    "stop_reason": "thresholds_met"
+  },
+  "apply_result": null,
+  "agent_surface_review": null,
+  "detail": null,
+  "evidence_boundary": "Original complete JSON remains in preserved private evidence and preceding Git commit; this receipt removes repeated source, preview and manifests from displayed diff. Source READY and behavioral_pending remain distinct."
+}

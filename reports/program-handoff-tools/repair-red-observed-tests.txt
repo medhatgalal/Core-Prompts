@@ -1,0 +1,175 @@
+{"driver": "clean", "marker_exists_after": true, "marker_text": "executed\n", "worktree_after": "TAMPER\n", "verifier_exit": 0, "verifier_stdout": "{\"binding_status\":\"matched\",\"errors\":[],\"expectation_sha256\":\"3857b66c21be37b1c4998143f3d40b87902adf518987ab191718b59702fffdc9\",\"manifest_sha256\":\"18afc91373e8f47e6578ea301e8e62ebd7eb3ff9adbc6cc282d11b23f2369386\",\"review_status\":\"not_assessed\",\"schema_version\":\"ReviewPackageBinding.v1\"}\n"}
+F{"driver": "process", "marker_exists_after": true, "marker_text": "executed\n", "worktree_after": "TAMPER\n", "verifier_exit": 0, "verifier_stdout": "{\"binding_status\":\"matched\",\"errors\":[],\"expectation_sha256\":\"26a1a3b268f163471cc918322c5e39f879360de7a9f26f70985f8c02fcab0f17\",\"manifest_sha256\":\"71fd939d121c7656545257d9618022d162088a5347bd0c61bde7e7cfdfc3472d\",\"review_status\":\"not_assessed\",\"schema_version\":\"ReviewPackageBinding.v1\"}\n"}
+FFFF.
+=================================== FAILURES ===================================
+___________ test_filter_driver_never_executes_or_masks_dirty[clean] ____________
+
+bound = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-499/test_filter_dri...esult_sha256': '0b22fe15be79cf12aeb8f28ab63f70e522c7de74e35416c241fe1e37f91a1127', 'collector_exit_code': 0, ...}, ...)
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-499/test_filter_driver_never_execu0')
+driver = 'clean'
+
+    @pytest.mark.parametrize('driver',['clean','process'])
+    def test_filter_driver_never_executes_or_masks_dirty(bound,tmp_path,driver):
+        repo,git,package,stdout,expectation,expected,verify=bound
+        # Commit attribute before collection and independently renew exact candidate.
+        (repo/'.gitattributes').write_text('a filter=probe\n'); git('add','.gitattributes'); git('commit','-qm','filter attribute')
+        expected['head']=git('rev-parse','HEAD').decode().strip()
+        fresh=tmp_path/'filter-package'
+        collection=invoke(repo,expected['base'],expected['head'],fresh); assert collection.returncode==0
+        # bound's verifier closure retains original leaf, replace only its complete inert evidence.
+        import shutil
+        for path in package.iterdir():
+            if path.is_dir(): shutil.rmtree(path)
+            else: path.unlink()
+        shutil.copytree(fresh,package,dirs_exist_ok=True)
+        stdout.write_bytes(collection.stdout); expected.update(collection_result_sha256=hash_bytes(collection.stdout),
+            manifest_sha256=json.loads(collection.stdout)['manifest_sha256']); write_json(expectation,expected)
+        assert verify().returncode==0
+        marker=tmp_path/'driver-ran'; script=tmp_path/'filter.py'
+        if driver=='clean':
+            text='from pathlib import Path\nimport sys\nPath('+repr(str(marker))+').write_text("executed\\n")\nsys.stdin.buffer.read()\nsys.stdout.buffer.write(b"second\\n")\n'
+        else:
+            text='''from pathlib import Path
+    import sys
+    marker=Path(MARKER)
+    def packet():
+        size=int(sys.stdin.buffer.read(4),16)
+        return None if size==0 else sys.stdin.buffer.read(size-4)
+    def group():
+        values=[]
+        while True:
+            value=packet()
+            if value is None: return values
+            values.append(value)
+    def send(values):
+        for value in values:
+            sys.stdout.buffer.write(('%04x'%(len(value)+4)).encode()+value)
+        sys.stdout.buffer.write(b'0000'); sys.stdout.buffer.flush()
+    group(); send([b'git-filter-server\\n',b'version=2\\n'])
+    group(); send([b'capability=clean\\n'])
+    while True:
+        headers=group(); content=group()
+        marker.write_text('executed\\n')
+        send([b'status=success\\n']); send([b'second\\n']); send([])
+    '''.replace('MARKER',repr(str(marker)))
+        script.write_text(text); git('config','filter.probe.'+driver,sys.executable+' '+str(script))
+        (repo/'a').write_text('TAMPER\n')
+        assert not marker.exists()
+        result=verify()
+        print(json.dumps({'driver':driver,'marker_exists_after':marker.exists(),
+            'marker_text':marker.read_text() if marker.exists() else None,'worktree_after':(repo/'a').read_text(),
+            'verifier_exit':result.returncode,'verifier_stdout':result.stdout.decode()}))
+>       assert result.returncode==2,result.stdout+result.stderr
+E       AssertionError: b'{"binding_status":"matched","errors":[],"expectation_sha256":"3857b66c21be37b1c4998143f3d40b87902adf518987ab191718b5...1e8e62ebd7eb3ff9adbc6cc282d11b23f2369386","review_status":"not_assessed","schema_version":"ReviewPackageBinding.v1"}
+E         '
+E       assert 0 == 2
+E        +  where 0 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...ff9adbc6cc282d11b23f2369386","review_status":"not_assessed","schema_version":"ReviewPackageBinding.v1"}\n', stderr=b'').returncode
+
+tests/test_handoff_contracts.py:272: AssertionError
+__________ test_filter_driver_never_executes_or_masks_dirty[process] ___________
+
+bound = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-499/test_filter_dri...esult_sha256': '990350c2ae752e791c77af90716dd1334e17da37cba14c256089eb7d336d7576', 'collector_exit_code': 0, ...}, ...)
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-499/test_filter_driver_never_execu1')
+driver = 'process'
+
+    @pytest.mark.parametrize('driver',['clean','process'])
+    def test_filter_driver_never_executes_or_masks_dirty(bound,tmp_path,driver):
+        repo,git,package,stdout,expectation,expected,verify=bound
+        # Commit attribute before collection and independently renew exact candidate.
+        (repo/'.gitattributes').write_text('a filter=probe\n'); git('add','.gitattributes'); git('commit','-qm','filter attribute')
+        expected['head']=git('rev-parse','HEAD').decode().strip()
+        fresh=tmp_path/'filter-package'
+        collection=invoke(repo,expected['base'],expected['head'],fresh); assert collection.returncode==0
+        # bound's verifier closure retains original leaf, replace only its complete inert evidence.
+        import shutil
+        for path in package.iterdir():
+            if path.is_dir(): shutil.rmtree(path)
+            else: path.unlink()
+        shutil.copytree(fresh,package,dirs_exist_ok=True)
+        stdout.write_bytes(collection.stdout); expected.update(collection_result_sha256=hash_bytes(collection.stdout),
+            manifest_sha256=json.loads(collection.stdout)['manifest_sha256']); write_json(expectation,expected)
+        assert verify().returncode==0
+        marker=tmp_path/'driver-ran'; script=tmp_path/'filter.py'
+        if driver=='clean':
+            text='from pathlib import Path\nimport sys\nPath('+repr(str(marker))+').write_text("executed\\n")\nsys.stdin.buffer.read()\nsys.stdout.buffer.write(b"second\\n")\n'
+        else:
+            text='''from pathlib import Path
+    import sys
+    marker=Path(MARKER)
+    def packet():
+        size=int(sys.stdin.buffer.read(4),16)
+        return None if size==0 else sys.stdin.buffer.read(size-4)
+    def group():
+        values=[]
+        while True:
+            value=packet()
+            if value is None: return values
+            values.append(value)
+    def send(values):
+        for value in values:
+            sys.stdout.buffer.write(('%04x'%(len(value)+4)).encode()+value)
+        sys.stdout.buffer.write(b'0000'); sys.stdout.buffer.flush()
+    group(); send([b'git-filter-server\\n',b'version=2\\n'])
+    group(); send([b'capability=clean\\n'])
+    while True:
+        headers=group(); content=group()
+        marker.write_text('executed\\n')
+        send([b'status=success\\n']); send([b'second\\n']); send([])
+    '''.replace('MARKER',repr(str(marker)))
+        script.write_text(text); git('config','filter.probe.'+driver,sys.executable+' '+str(script))
+        (repo/'a').write_text('TAMPER\n')
+        assert not marker.exists()
+        result=verify()
+        print(json.dumps({'driver':driver,'marker_exists_after':marker.exists(),
+            'marker_text':marker.read_text() if marker.exists() else None,'worktree_after':(repo/'a').read_text(),
+            'verifier_exit':result.returncode,'verifier_stdout':result.stdout.decode()}))
+>       assert result.returncode==2,result.stdout+result.stderr
+E       AssertionError: b'{"binding_status":"matched","errors":[],"expectation_sha256":"26a1a3b268f163471cc918322c5e39f879360de7a9f26f70985f8c...618022d162088a5347bd0c61bde7e7cfdfc3472d","review_status":"not_assessed","schema_version":"ReviewPackageBinding.v1"}
+E         '
+E       assert 0 == 2
+E        +  where 0 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...a5347bd0c61bde7e7cfdfc3472d","review_status":"not_assessed","schema_version":"ReviewPackageBinding.v1"}\n', stderr=b'').returncode
+
+tests/test_handoff_contracts.py:272: AssertionError
+______________ test_verifier_cli_syntax_exit_contract[arguments0] ______________
+
+arguments = []
+
+    @pytest.mark.parametrize('arguments',[[],['--unknown'],['--repo'],['--help']])
+    def test_verifier_cli_syntax_exit_contract(arguments):
+        result=subprocess.run([sys.executable,'-I',str(VERIFY),*arguments],capture_output=True)
+>       assert result.returncode==(0 if arguments==['--help'] else 3)
+E       AssertionError: assert 2 == 3
+E        +  where 2 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...iew_package.py: error: the following arguments are required: --repo, --package, --result, --expect, --expect-sha256\n').returncode
+
+tests/test_handoff_contracts.py:281: AssertionError
+______________ test_verifier_cli_syntax_exit_contract[arguments1] ______________
+
+arguments = ['--unknown']
+
+    @pytest.mark.parametrize('arguments',[[],['--unknown'],['--repo'],['--help']])
+    def test_verifier_cli_syntax_exit_contract(arguments):
+        result=subprocess.run([sys.executable,'-I',str(VERIFY),*arguments],capture_output=True)
+>       assert result.returncode==(0 if arguments==['--help'] else 3)
+E       AssertionError: assert 2 == 3
+E        +  where 2 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...iew_package.py: error: the following arguments are required: --repo, --package, --result, --expect, --expect-sha256\n').returncode
+
+tests/test_handoff_contracts.py:281: AssertionError
+______________ test_verifier_cli_syntax_exit_contract[arguments2] ______________
+
+arguments = ['--repo']
+
+    @pytest.mark.parametrize('arguments',[[],['--unknown'],['--repo'],['--help']])
+    def test_verifier_cli_syntax_exit_contract(arguments):
+        result=subprocess.run([sys.executable,'-I',str(VERIFY),*arguments],capture_output=True)
+>       assert result.returncode==(0 if arguments==['--help'] else 3)
+E       AssertionError: assert 2 == 3
+E        +  where 2 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...             --expect-sha256 EXPECT_SHA256\nverify_review_package.py: error: argument --repo: expected one argument\n').returncode
+
+tests/test_handoff_contracts.py:281: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_handoff_contracts.py::test_filter_driver_never_executes_or_masks_dirty[clean]
+FAILED tests/test_handoff_contracts.py::test_filter_driver_never_executes_or_masks_dirty[process]
+FAILED tests/test_handoff_contracts.py::test_verifier_cli_syntax_exit_contract[arguments0]
+FAILED tests/test_handoff_contracts.py::test_verifier_cli_syntax_exit_contract[arguments1]
+FAILED tests/test_handoff_contracts.py::test_verifier_cli_syntax_exit_contract[arguments2]
+5 failed, 1 passed, 35 deselected in 7.86s

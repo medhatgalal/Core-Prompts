@@ -1,0 +1,193 @@
+{
+  "schema_version": "ProgramLocalCI.v1",
+  "alignment": "current GitLab product checks",
+  "gitlab_config_sha256": "6f3529638c0003c3c501bd3acf17523a8a4d0e2b79755c06b8c1c2d94cf09f41",
+  "startedAt": "2026-10-13T03:41:51.254992+00:00",
+  "steps": [
+    {
+      "index": 1,
+      "sourceCommand": "python3 scripts/build-install-runtime.py --check",
+      "exitCode": 0,
+      "seconds": 0.145,
+      "log": "reports/program-final-integration/local-ci/01.log",
+      "log_sha256": "073cb208fa060bbfb8f523669cc40a6c8e015669f36f882695b1e18e05896dd1",
+      "tail": [
+        "installer capsule: verified"
+      ]
+    },
+    {
+      "index": 2,
+      "sourceCommand": "python3 scripts/build-legacy-catalog.py --check",
+      "exitCode": 0,
+      "seconds": 7.138,
+      "log": "reports/program-final-integration/local-ci/02.log",
+      "log_sha256": "56525355c1ef0d8ed2fb5e56e51e8e57a60266c39371379254d12283ba0d0627",
+      "tail": [
+        "legacy catalog: 56 releases, 1642 package versions, 1527 unique identities"
+      ]
+    },
+    {
+      "index": 3,
+      "sourceCommand": "python3 -m pytest -q tests/test_capability_resources.py tests/test_manifest_stability.py tests/test_resource_delivery.py tests/test_resource_source_integrity.py tests/test_frontier_eval_integration.py tests/test_task_graph_check.py tests/test_trace_check.py tests/test_review_package.py tests/test_docs_recipe_resources.py tests/test_handoff_contracts.py tests/test_uac_assessment.py tests/test_uac_ssot.py tests/test_agent_execution_need.py tests/test_agent_approval_lifecycle.py tests/test_agent_surface_preservation.py tests/test_namespace_registration.py tests/test_uac_semantic_uplift.py tests/test_uac_quality.py tests/test_uac_source_integrity.py tests/test_uac_promotion_apply.py tests/test_supercharge_preservation.py tests/test_supercharge_debate.py tests/test_frontier_skill_contracts.py tests/test_resource_backed_skill_surfaces.py",
+      "exitCode": 0,
+      "seconds": 274.413,
+      "log": "reports/program-final-integration/local-ci/03.log",
+      "log_sha256": "161549ad1974225a21f97bef6b33f6b7cd46c3197f397c704d8c8586a46e2be5",
+      "tail": [
+        "........................................................................ [ 46%]",
+        "....................s................................................... [ 56%]",
+        "........................................................................ [ 65%]",
+        "........................................................................ [ 75%]",
+        "........................................................................ [ 84%]",
+        "........................................................................ [ 93%]",
+        "...............................................                          [100%]",
+        "766 passed, 1 skipped in 259.93s (0:04:19)"
+      ]
+    },
+    {
+      "index": 4,
+      "sourceCommand": "python3 -m pytest -q tests/test_shaping_runtime.py tests/test_shaping_review_evidence.py tests/test_shaping_handover_outputs.py tests/test_shaping_loop.py tests/test_shaping_policy_recovery.py tests/test_shaping_repository_fit.py tests/test_shaping_progress.py tests/test_shaping_progress_view.py tests/test_shaping_export.py tests/test_shaping_export_docx.py tests/test_shaping_presentation.py",
+      "exitCode": 0,
+      "seconds": 62.57,
+      "log": "reports/program-final-integration/local-ci/04.log",
+      "log_sha256": "bb5a7e84e880bbea634aa347344f28866bfdd566ad23e1960e3c3171a8b1bfbd",
+      "tail": [
+        "........................................................................ [ 14%]",
+        "........................................................................ [ 29%]",
+        "........................................................................ [ 44%]",
+        "........................................................................ [ 59%]",
+        "........................................................................ [ 74%]",
+        "........................................................................ [ 89%]",
+        ".............................................s...                        [100%]",
+        "480 passed, 1 skipped in 62.01s (0:01:02)"
+      ]
+    },
+    {
+      "index": 5,
+      "sourceCommand": "python3 -m pytest -q tests/test_presentation_cache.py tests/test_presentation_exporter.py",
+      "exitCode": 0,
+      "seconds": 67.315,
+      "log": "reports/program-final-integration/local-ci/05.log",
+      "log_sha256": "11e26ddb7da58e892ec124295abe2dcdc0523d9fec763702f4f8371a3df4abe6",
+      "tail": [
+        "...................                                                      [100%]",
+        "19 passed in 66.85s (0:01:06)"
+      ]
+    },
+    {
+      "index": 6,
+      "sourceCommand": "python3 -m pytest -q tests/test_skill_job_map.py tests/test_uac_routing_fitness.py tests/test_route_only_battery.py",
+      "exitCode": 0,
+      "seconds": 7.319,
+      "log": "reports/program-final-integration/local-ci/06.log",
+      "log_sha256": "7680d606ad8728d0d0b218d5e8cd4c7b080542810f5bfdc6ad63ae6dddb2fab1",
+      "tail": [
+        "..........................................................               [100%]",
+        "58 passed in 0.44s"
+      ]
+    },
+    {
+      "index": 7,
+      "sourceCommand": "python3 -m pytest -q tests/test_uac_import.py -k 'bootstrap or writes_ssot_and_descriptor_in_workspace_copy'",
+      "exitCode": 0,
+      "seconds": 57.575,
+      "log": "reports/program-final-integration/local-ci/07.log",
+      "log_sha256": "0fbf3aa040076fba01163435944edb1f7795634f25c482c39f67e2706c7b138d",
+      "tail": [
+        ".....                                                                    [100%]",
+        "5 passed, 25 deselected in 54.57s"
+      ]
+    },
+    {
+      "index": 8,
+      "sourceCommand": "python3 scripts/smoke-clis.py",
+      "exitCode": 0,
+      "seconds": 9.746,
+      "log": "reports/program-final-integration/local-ci/08.log",
+      "log_sha256": "d55872cd3c9b711d2f8406c63b46f43570dcfd830f7b7997fe59ec2a8cf4078d",
+      "tail": [
+        "Smoke checks complete."
+      ]
+    },
+    {
+      "index": 9,
+      "sourceCommand": "bin/capability-eval compile --all --check",
+      "exitCode": 0,
+      "seconds": 1.031,
+      "log": "reports/program-final-integration/local-ci/09.log",
+      "log_sha256": "e8c39a83eefffd6a9da18f3131d2c5a531b29677df46a1847c74addb2dae1e39",
+      "tail": [
+        "      },",
+        "      \"status\": \"structural_ready\"",
+        "    }",
+        "  ],",
+        "  \"behavioral_claim\": \"none\",",
+        "  \"check_result\": \"pass\",",
+        "  \"drift\": []",
+        "}"
+      ]
+    },
+    {
+      "index": 10,
+      "sourceCommand": "bin/capability-eval calibrate --static-only",
+      "exitCode": 0,
+      "seconds": 0.979,
+      "log": "reports/program-final-integration/local-ci/10.log",
+      "log_sha256": "40185376e1ca8255c3597080ff4b17e12b076729513db4edd51a900604a05a97",
+      "tail": [
+        "    \"case_count\": 60,",
+        "    \"model_calls\": 0,",
+        "    \"behavioral_claim\": \"none\"",
+        "  },",
+        "  \"judge_qualified\": false,",
+        "  \"judge_note\": \"Semantic judges remain unqualified until gold-label agreement and bias checks are run.\",",
+        "  \"model_calls\": 0",
+        "}"
+      ]
+    },
+    {
+      "index": 11,
+      "sourceCommand": "python3 scripts/validate-surfaces.py --strict",
+      "exitCode": 0,
+      "seconds": 4.476,
+      "log": "reports/program-final-integration/local-ci/11.log",
+      "log_sha256": "106e677b000001c5a60c3986f89ca28887f88835a0da76bd415d0b191da5d1af",
+      "tail": [
+        "Validation passed.",
+        "SSOT files: 36"
+      ]
+    },
+    {
+      "index": 12,
+      "sourceCommand": "bin/capability-fabric build",
+      "exitCode": 0,
+      "seconds": 14.994,
+      "log": "reports/program-final-integration/local-ci/12.log",
+      "log_sha256": "2223faedf36b045ee694307d119cbfb52b7e7589af84fd7d8d50cf34eb9e43fa",
+      "tail": [
+        "installer capsule: generated",
+        "Generated 36 ssot entries"
+      ]
+    },
+    {
+      "index": 13,
+      "sourceCommand": "python3 -m pytest -q tests/test_package_surfaces.py tests/test_package_local_config.py tests/test_deploy_profile.py tests/test_update_core_prompts.py tests/test_deploy_surfaces.py tests/test_agent_retirement.py tests/test_install_catalog.py tests/test_install_transaction.py tests/test_install_capsule.py tests/test_installation.py tests/test_installation_history.py tests/test_install_bootstrap.py tests/test_program_adoption.py",
+      "exitCode": 1,
+      "seconds": 550.638,
+      "log": "reports/program-final-integration/local-ci/13.log",
+      "log_sha256": "8ee134c05ba7c179581187add0641bd1bb6c5611c6f8d65de5dfab86f4da6c6e",
+      "tail": [
+        "E         ",
+        "E         ...Full output truncated (40 lines hidden), use '-vv' to show",
+        "",
+        "tests/test_package_surfaces.py:266: AssertionError",
+        "=========================== short test summary info ============================",
+        "FAILED tests/test_package_surfaces.py::test_packaged_profile_updates_verified_release_and_rolls_back",
+        "FAILED tests/test_package_surfaces.py::test_runtime_inventory_is_available_in_a_tagged_git_mirror",
+        "2 failed, 291 passed, 16 subtests passed in 550.15s (0:09:10)"
+      ]
+    }
+  ],
+  "status": "failed",
+  "updatedAt": "2026-10-13T03:59:29.639352+00:00"
+}

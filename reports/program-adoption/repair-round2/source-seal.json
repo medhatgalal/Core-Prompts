@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "base": "582e131c8a5293e6f86c61c4b45046a4f2e5097f",
+  "files": {
+    "scripts/core_install/selection_policy.py": {
+      "sha256": "3a89f2e5479a5cb5fc5ecc11c1c03c3a584cba08a4c1376d61804fd6788d1d00",
+      "mode": 420
+    },
+    "scripts/core_install/planner.py": {
+      "sha256": "2d88fe461b9af243d3410c0221f67b652f8e7c51175114308f51bb446dfc1459",
+      "mode": 420
+    },
+    "scripts/core_install/cli.py": {
+      "sha256": "b62a2d4288f607290f07918e4375c5abec616b935346ecee8e15a6052d928049",
+      "mode": 420
+    },
+    "scripts/core_install/catalog.py": {
+      "sha256": "85db2899aa0fee1e62fe11fb43a2a47d92659cf4f71b3bb7413ae4a5743762ee",
+      "mode": 420
+    },
+    "scripts/build-legacy-catalog.py": {
+      "sha256": "a0b9f2dc81cfb1d83b2a7149be76c1cdccd35e63b8e1e97a2d5c4c534c809613",
+      "mode": 420
+    },
+    "scripts/deploy-profile.py": {
+      "sha256": "91ab54fafe8d1b30ba325f3892ea9cde7ff09c7f01c11bf798326a621fb2b006",
+      "mode": 420
+    },
+    "scripts/install-local.sh": {
+      "sha256": "db6f039aea67f344b303604182e81e9d00c4d822347a88ae0cdd73cfe99f26d2",
+      "mode": 493
+    },
+    "scripts/deploy-surfaces.sh": {
+      "sha256": "99dd62848a8ddc15b615320f48edc9000c3cfff10543ec29ab0c9c63359cd5c0",
+      "mode": 493
+    },
+    ".meta/install-bundle.json": {
+      "sha256": "a0d33c568e44c6aa7b35ec702218f24019148daaba03c7a420c0374fe0d9e69b",
+      "mode": 420
+    },
+    ".meta/install-profiles/legacy-installations.json": {
+      "sha256": "87c7df7d61431a136a9af1bffc9fb5dae57a6a0ae85b7de4fe3744ad95943c53",
+      "mode": 420
+    },
+    ".meta/install-profiles/legacy-release-refs.json": {
+      "sha256": "7efbe2984e6085607a31380ec1e94349033117daa8041edb95844a262d11b414",
+      "mode": 420
+    },
+    "tests/test_program_adoption.py": {
+      "sha256": "ac04c5eda09081f84c07daf4a056c963d569029111b735dfa1d275218379ecbf",
+      "mode": 420
+    },
+    "tests/test_install_bootstrap.py": {
+      "sha256": "5add619ecaf2d2a317de7ffaacf17014d1a315dbd426c62fba814e970b5991b9",
+      "mode": 420
+    },
+    "tests/test_install_catalog.py": {
+      "sha256": "5760bd9c837012630a54422cb879ae97aa1e0ea9bfca7ebf9e5582442be5805e",
+      "mode": 420
+    },
+    "README.md": {
+      "sha256": "689867dad3e00493be80801e74bb10dbbab00c7f64abf5128c8b13690b5ab2f8",
+      "mode": 420
+    },
+    "CHANGELOG.md": {
+      "sha256": "7cfafe29c3160cfdaf8365c1156cf73c8f78dbd03d4d9e1981e864304ce10360",
+      "mode": 420
+    },
+    "docs/CLI-REFERENCE.md": {
+      "sha256": "f78d4fc699493265e25466942c73032761a9420079ae070bd67b82a28219a4da",
+      "mode": 420
+    },
+    "docs/GETTING-STARTED.md": {
+      "sha256": "6fde15beefecd0dae475041ee651f2f6e598f8b213c1d4c3f29f4a3205acc9d4",
+      "mode": 420
+    },
+    "docs/INSTALL-PROFILES.md": {
+      "sha256": "838316122f8ef997783d0a0079bcd9706cfd28546b552ec9542e1add536ea29c",
+      "mode": 420
+    },
+    "docs/EXAMPLES.md": {
+      "sha256": "9d5bbe27585847b9847f01d5304fbb5d2955b40e12d941fbf7f267d7803241a8",
+      "mode": 420
+    },
+    "docs/RELEASE-PACKAGING.md": {
+      "sha256": "968c4e93eeb8c312d3bf906fbb420a520a506ad44398db883eaa2bdcaf6facba",
+      "mode": 420
+    },
+    "docs/UAC-USAGE.md": {
+      "sha256": "20eb5a119a175130a351c8cc36a4710ab23d67d8d82020fe32e378a5d5e43be6",
+      "mode": 420
+    },
+    "tests/fixtures/program-adoption/spec-contract.invalid.json": {
+      "sha256": "80e4ac4b68c354f87d24ed3af29891b8fe68216ea6f75d43c5b622aa998bdc4d",
+      "mode": 420
+    },
+    "tests/fixtures/program-adoption/fixture-request.md": {
+      "sha256": "ac9384025c00911a0477213eec7017f43cecac8c137f2eb1b5eb6210b44cf923",
+      "mode": 420
+    },
+    "tests/fixtures/program-adoption/native-cases.json": {
+      "sha256": "a3b3216c757534d877e46eca3d2497ae92681b6ecb8bc4107a35c384c9b2d196",
+      "mode": 420
+    },
+    "tests/fixtures/program-adoption/spec-contract.valid.json": {
+      "sha256": "97547dcf8b49d82e107fe3612bbbae3eea6fe1912e63fa4a24833524a34bb053",
+      "mode": 420
+    }
+  },
+  "runtime": "Python3.14 isolated validation environment",
+  "native_acceptance": "HOLD; root-coordinated; no model/session/home changes by source worker",
+  "installation_release": "not performed",
+  "revision": 2,
+  "original_source_seal_sha256": "85a6a165a88189cac35e9a0d7a85d57e94d1973ee44600bdc8699477088806d0",
+  "review_status": "author repairs; independent recheck pending"
+}

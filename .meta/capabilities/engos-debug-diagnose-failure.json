@@ -173,13 +173,13 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-debug-diagnose-failure",
-        "strategy": "head_snapshot",
-        "group": "derived_current",
-        "baseline_path": "ssot/engos-debug-diagnose-failure.md",
-        "selected_commit": null,
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "18e77aaf",
         "richness_score": 8,
         "line_count": 195,
-        "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
@@ -202,8 +202,8 @@
           }
         ],
         "historical_proof": {},
-        "source": "current_ssot",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -242,7 +242,7 @@
             "candidate_operational_score": 4,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "18e77aaf",
           "baseline_slug": "engos-debug-diagnose-failure"
         },
         {
@@ -293,7 +293,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+      "effective_sha256": "b9443acc6dd182877f0c0dc5c44909799662e7a9b6cfd2b45600b766a5aae49b",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -404,7 +404,7 @@
               "path": "ssot/engos-debug-diagnose-failure.md",
               "start_line": 13,
               "end_line": 14,
-              "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
             }
           }
         ]
@@ -423,7 +423,7 @@
               "path": "ssot/engos-debug-diagnose-failure.md",
               "start_line": 148,
               "end_line": 154,
-              "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
             }
           }
         ]
@@ -438,7 +438,7 @@
               "path": "ssot/engos-debug-diagnose-failure.md",
               "start_line": 148,
               "end_line": 154,
-              "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+              "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
             }
           }
         ]
@@ -451,8 +451,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-debug-diagnose-failure.md",
-        "ssot_sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0",
-        "effective_sha256": "f33de9481195c3510f5687d4ce3f3d5f3cf4a58ca56649ef26687a8946368298",
+        "ssot_sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa",
+        "effective_sha256": "b9443acc6dd182877f0c0dc5c44909799662e7a9b6cfd2b45600b766a5aae49b",
         "resources": [
           {
             "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/hypothesis-evidence.md",
@@ -465,6 +465,10 @@
           {
             "path": "sources/capability-resources/engos-debug-diagnose-failure/templates/reproduction-receipt.json",
             "sha256": "92981cfa909ccb6a69eb3cf6513e2424281fb58e3d1c30a19edbe6b06c4db065"
+          },
+          {
+            "path": "sources/capability-resources/engos-debug-diagnose-failure/evals/diagnosis-cases.json",
+            "sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -478,7 +482,7 @@
                 "path": "ssot/engos-debug-diagnose-failure.md",
                 "start_line": 18,
                 "end_line": 20,
-                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
               }
             }
           ],
@@ -490,7 +494,7 @@
                 "path": "ssot/engos-debug-diagnose-failure.md",
                 "start_line": 158,
                 "end_line": 160,
-                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
               }
             }
           ],
@@ -502,7 +506,7 @@
                 "path": "ssot/engos-debug-diagnose-failure.md",
                 "start_line": 30,
                 "end_line": 33,
-                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
               }
             },
             {
@@ -512,7 +516,7 @@
                 "path": "ssot/engos-debug-diagnose-failure.md",
                 "start_line": 35,
                 "end_line": 36,
-                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
               }
             }
           ],
@@ -524,7 +528,7 @@
                 "path": "ssot/engos-debug-diagnose-failure.md",
                 "start_line": 112,
                 "end_line": 116,
-                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
               }
             },
             {
@@ -534,7 +538,7 @@
                 "path": "ssot/engos-debug-diagnose-failure.md",
                 "start_line": 118,
                 "end_line": 120,
-                "sha256": "f6026712fabc1b6278412b239ddb01ffaa9eea06ac6d9f14655303a8ba410fa0"
+                "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
               }
             }
           ]
@@ -549,7 +553,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "9a40d7c0895e607ab24db71f3ef49534ed2fd521d5546c5bc505d760fe582aea"
+        "mapping_sha256": "e5eb06e5e839b645b10bfb43076ea8980773c0cae9538d61f1fa313fd4412277"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

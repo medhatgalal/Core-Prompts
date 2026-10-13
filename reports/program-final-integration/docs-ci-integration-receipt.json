@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "source_fragment": "reports/program-handoff-tools/integration-doc-fragments.md",
+  "documentation_files": [
+    "README.md",
+    "docs/GETTING-STARTED.md",
+    "docs/EXAMPLES.md",
+    "docs/CLI-REFERENCE.md",
+    "docs/RELEASE-PACKAGING.md",
+    "CHANGELOG.md"
+  ],
+  "ci_files": [
+    ".github/workflows/cli-surfaces-validate.yml",
+    ".gitlab-ci.yml"
+  ],
+  "documented_contracts": {
+    "handoff": [
+      "diagnose unclear cause, then separately authorize direct implement-slice repair with DiagnosisReceipt.v1 and evidence",
+      "address-code-review preserves selected comment IDs and dispositions and reports repair outcomes",
+      "Batman is invoked only by explicit request",
+      "D5 standalone bundle imports D7 test-oracle bytes through the owner route; no sibling runtime dependency",
+      "TestDesign.v1 remains not_run and actual checks belong to SliceReceipt.v1 or execution evidence",
+      "wrapper zero without an underlying test result remains unverified",
+      "no new native commands or aliases"
+    ],
+    "review_package_verifier": [
+      "exact optional python3 -I verifier invocation and argument spellings retained from source",
+      "ReviewPackageExpectation.v1 and externally retained expectation/source/result digests",
+      "exit 0 matched with review_status not_assessed; exit 2 rejected; exit 3 invalid or unavailable",
+      "sparse/hidden-index/nonempty effective clean-process filters reject before worktree comparison; do not clear config",
+      "collector command/output contract retained; binary data remains unreviewed and changed gitlinks incomplete without nested traversal"
+    ]
+  },
+  "ci_additions": {
+    "resource_delivery_step": "tests/test_handoff_contracts.py",
+    "last_installer_step": "tests/test_program_adoption.py",
+    "jobs_or_other_checks_changed": false
+  },
+  "verification": {
+    "docs_diff_check": "passed",
+    "conflict_markers_in_scope": "none",
+    "ci_test_file_set_parity": "checked",
+    "tests_run": false
+  },
+  "evidence_limits": "This receipt records documentation and CI wiring only. It does not claim test execution, native behavior, publication, installation, or release."
+}

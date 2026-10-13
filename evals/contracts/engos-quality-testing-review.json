@@ -31,7 +31,7 @@
     "055de738566735737657fc24b7a10611c9f6e9a9a41370356d3101604ef0ef3e",
     "d2bc69ed3c2241c180f2b4de4e421bdee66f96fb77d5efc4ec8a8d6e44160fd8",
     "9ea5731120d9a92b24e3468871dc0cc642e7932758ed63baa8fed514d150affc",
-    "9e3a8ac6aa1b0d424f3420fbe31c0f65073698a3f99595f5689097f5224329cf",
+    "1b7e509334655668ee5099bfa797f64fb886b0feeae23a30763f694a718fe9ee",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
     "5643befff3e93fa07617e9e9920cde9ef3ec5321460d90905081c395628242b5"
@@ -192,9 +192,9 @@
       "text": "Coverage-only analysis may describe evidenced gaps without inventing tests or requirement IDs. Distinguish source-inspection gaps from measured coverage and cite any actual coverage artifact. Preserve existing tests and implementation; designing a stronger oracle is not a direction to delete code, execute TDD or invoke another skill automatically."
     },
     {
-      "sha256": "9e3a8ac6aa1b0d424f3420fbe31c0f65073698a3f99595f5689097f5224329cf",
+      "sha256": "1b7e509334655668ee5099bfa797f64fb886b0feeae23a30763f694a718fe9ee",
       "source": "sources/capability-resources/engos-quality-testing-review/references/test-oracles.md",
-      "text": "When machine interchange is requested, use TestDesign.v1 with the accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination."
+      "text": "This reference alone supplies oracle criteria; it does not supply the test-design schema/template or require an installed testing sibling. Consumers retain their own receipt and do not auto-invoke test design. When using the owner capability and machine interchange is requested, use TestDesign.v1 with its accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination."
     },
     {
       "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",

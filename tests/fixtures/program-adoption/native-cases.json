@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "authority": "synthetic read-only inputs; requires separately established native isolation and candidate resource binding",
+  "providers": [
+    "codex",
+    "claude",
+    "gemini",
+    "kiro",
+    "grok"
+  ],
+  "cases": [
+    {
+      "id": "N-SPEC",
+      "skill": "engos-design-specify-change",
+      "inputs": [
+        "fixture-request.md"
+      ],
+      "request": "Draft acceptance for R1 and R2 using supplied fixture; identify unchanged behavior and unresolved authority. No implementation."
+    },
+    {
+      "id": "N-PLAN",
+      "skill": "engos-design-plan-implementation",
+      "inputs": [
+        "fixture-request.md",
+        "spec-contract.valid.json"
+      ],
+      "request": "Inspect this supplied draft spec. Plan prerequisite task T1 for input parsing, independent task T2 for valid-square behavior and T3 for malformed-input rejection; both depend on T1. Separately report missing-reference negative fixture missing-spec.json as unresolved. Do not execute."
+    },
+    {
+      "id": "N-DIAGNOSE",
+      "skill": "engos-debug-diagnose-failure",
+      "inputs": [
+        "fixture-request.md"
+      ],
+      "request": "Diagnose this frozen log only: run1 input3 produced9; run2 input3 produced validation error; run3 input3 produced9. Possible causes: nondeterministic parser state or differing raw whitespace. Describe discriminating evidence and bounded unknown. No repair authorization; a no-failure rerun cannot prove fixed."
+    },
+    {
+      "id": "N-IMPLEMENT",
+      "skill": "engos-delivery-implement-slice",
+      "inputs": [
+        "fixture-request.md",
+        "spec-contract.valid.json"
+      ],
+      "request": "Read-only mode: inspect the bounded square-input request and supplied draft spec. Do not edit or run tests. Return an honest not-run/blocked SliceReceipt with source identity and unknown authority preserved."
+    },
+    {
+      "id": "N-IMPORT",
+      "skill": "engos-design-architecture",
+      "inputs": [
+        "fixture-request.md",
+        "spec-contract.valid.json",
+        "spec-contract.invalid.json"
+      ],
+      "request": "Inspect optional supplied SpecContract through the exact candidate architecture package local imported schema. Report valid structural shape separately from semantic approval; malformed schema_version must fail. No sibling installed lookup or implementation."
+    }
+  ]
+}

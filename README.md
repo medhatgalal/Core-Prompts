@@ -183,6 +183,13 @@ These are the current source capabilities with a concrete starter ask for each o
 
 `engos-quality-testing-review` designs source-linked expected outcomes, plausible faults and command provenance. Its optional TestDesign.v1 interchange records `not_run`; coverage-only gaps remain supported. Adding routed resources preserves matching curated per-mode contracts; current source identities and locations remain authoritative. See [the test-design example](docs/EXAMPLES.md#engos-quality-testing-review).
 
+For a bounded repair, ask `engos-debug-diagnose-failure` to establish the cause
+when it is unclear, then separately authorize `engos-delivery-implement-slice`
+with the reviewed diagnosis and evidence. For existing review comments, use
+`engos-delivery-address-code-review`; it preserves each selected comment ID and
+disposition while reporting the repair outcome. Invoke Batman only when you
+explicitly want its controller flow. See [bounded repair and handoff examples](docs/EXAMPLES.md#bounded-repair-and-review-handoffs).
+
 
 Use `engos-audit-opex-incident-review briefing <ticket...>` for complete meeting preparation, including linked fixes, verified recurrence, customer counts, and coaching for every confirmed selected incident. OpEx incident drill-downs supplied in the normalized snapshot appear in both HTML and Markdown. They retain facts, risk, Five Whys, preventive action, talking points, and follow-up questions.
 
@@ -529,3 +536,14 @@ UAC also prepares source-backed advisory routing metadata during intake. It pres
 Name a recipe with `engos-quality-docs-review` when you need a particular artifact: `readme-authoring` produces only README_vNext.md ending in Claim Notes; `docs-bundle` produces README, technical README, visuals plan and the original array audit. Ordinary review retains its seven sections. See [all recipe examples and outputs](docs/EXAMPLES.md#optional-documentation-recipes). The [seven original prompts](docs/prompt-pack/README.md) remain callable.
 
 Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bound ship evidence. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Recipe selection grants no mutation or release authority.
+
+## Choose future skill membership for an existing installation
+
+The current source catalog contains 36 skills. An installation that previously
+selected 32 keeps those concrete skills during ordinary sync. Choose
+`--selection-policy full-catalog` to adopt current and future skills, or choose
+`curated` and add only named skills. Codex and Gemini share a physical skill root,
+so expanding both requires an explicit joint choice. See [selection and recovery](docs/INSTALL-PROFILES.md#choose-future-skill-membership)
+for the exact commands, historical receipt proof and preserved-package limits.
+Package availability does not establish native discovery or resource delivery;
+release and home activation are separate evidence.

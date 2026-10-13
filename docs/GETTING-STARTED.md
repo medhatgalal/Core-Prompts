@@ -206,6 +206,19 @@ Keep these outcomes separate:
 - UAC `structural_ready` permits structural landing; it does not mean behavioral promotion
 - cleanup is complete only after durable evidence is preserved and authorized run-scoped branches, worktrees, and scratch are removed; unknown or failed cleanup is reported, never rewritten as success
 
+### Diagnose, repair, and address review feedback
+
+When a bug's cause is unclear, start with `engos-debug-diagnose-failure` and keep
+its diagnosis as evidence. Repair is a separate authorization: provide the
+reviewed diagnosis and a bounded request to `engos-delivery-implement-slice`.
+For existing PR/MR comments, use `engos-delivery-address-code-review` to select
+feedback and preserve its IDs and decisions through the repair. Choose Batman
+only when you explicitly want its controller protocol. The test-oracle guidance
+is bundled with implement-slice; no separately installed testing skill is
+required. `TestDesign.v1` stays `not_run`; actual checks belong in a separate
+`SliceReceipt.v1` or other execution evidence. A wrapper exit code of zero alone
+does not establish that an underlying check ran. See [worked handoffs](EXAMPLES.md#bounded-repair-and-review-handoffs).
+
 ## Step 2: Use UAC When You Are Landing New Capability Source
 
 Use UAC, the capability intake and uplift workflow, only when you are bringing in a new prompt-like source or intentionally changing canonical capability state.
@@ -398,3 +411,16 @@ When importing a new skill, inspect the `job_contract` delta in UAC plan/judge: 
 For a bounded first draft, ask: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” Expect that single Markdown draft. For all four coordinated artifacts, name `docs-bundle`. Ordinary review keeps its seven sections and loads no recipe. See [the complete recipe list and exact outputs](EXAMPLES.md#optional-documentation-recipes) and the [retained original prompts](prompt-pack/README.md).
 
 `docs-release-readiness` in GitOps Review supplies candidate-bound evidence under existing authority. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review; findings-only work stays advisory.
+
+## Updating an installation from the 32-skill catalog
+
+First preview ordinary sync to see the retained selection. The four new jobs do
+not join an undecided or curated selection automatically. For one provider, use
+`--cli kiro --selection-policy full-catalog --dry-run` with the external-target
+flags, then apply the saved plan. To retain a small set, choose `curated` and add
+`--slug engos-design-specify-change` only when needed. Review ownership, policy
+and shared physical exposure before applying. Follow the [complete commands and
+joint Codex/Gemini choice](INSTALL-PROFILES.md#choose-future-skill-membership).
+A new explicit empty profile selects today's catalog once; a saved empty profile
+needs its historical receipt proof. Source installation tests do not certify
+native invocation or a release.

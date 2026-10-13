@@ -26,7 +26,7 @@ Coverage-only analysis may describe evidenced gaps without inventing tests or re
 
 ## Optional interchange
 
-When machine interchange is requested, use TestDesign.v1 with the accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination.
+This reference alone supplies oracle criteria; it does not supply the test-design schema/template or require an installed testing sibling. Consumers retain their own receipt and do not auto-invoke test design. When using the owner capability and machine interchange is requested, use TestDesign.v1 with its accompanying schema. `execution_status` is always `not_run`; observed execution belongs in separate evidence. `tests` may be empty for coverage-only work, with useful `gaps`. Keep the six required human artifact sections even when JSON is supplied; no JSON sidecar is required for ordinary requests. Empty requirement links explicitly mean unresolved traceability, never verified coverage. The schema checks shape only; the independent reviewer challenges source links, fixtures and faulty-behavior discrimination.
 
 ## Source attribution
 

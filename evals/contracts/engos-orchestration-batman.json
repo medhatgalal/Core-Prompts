@@ -75,7 +75,9 @@
     "a5c1bf03116fafb8d42d2da55351aabf9aaf0443ac061cf4e272ee126d455670",
     "914d9dc40431896335ed656847679ee05827442eaf2e24184eef04436364ad06",
     "f6708a2ef7ca7fd274b2a54d8f7772eafb5a374a5a38c25b185e99793f49d8b1",
-    "a844dc17acfc2287d3369fc36aa8bb36415b3d88586016f6f3e7311cba0d08d7"
+    "a844dc17acfc2287d3369fc36aa8bb36415b3d88586016f6f3e7311cba0d08d7",
+    "52832bba4aba09432a27a1ea9fb710b148a1a8a583fe502e0397b1a466016f33",
+    "da1ed824f3727b04a09f880668164a670f9eb7f8237f09b8faa04c4bada9dfa9"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -456,6 +458,16 @@
       "sha256": "a844dc17acfc2287d3369fc36aa8bb36415b3d88586016f6f3e7311cba0d08d7",
       "source": "ssot/engos-orchestration-batman.md",
       "text": "| Identity integrity | Only Batman invokes this body; no duplicate public identity or surface exists |"
+    },
+    {
+      "sha256": "52832bba4aba09432a27a1ea9fb710b148a1a8a583fe502e0397b1a466016f33",
+      "source": "ssot/engos-orchestration-batman.md",
+      "text": "Only explicit Batman invocation activates this controller. Dispatch unchanged supplied TaskContract bytes to the actual implementation worker with the existing separate task_id/owner_id/plan_generation/read-write/authority/evidence/stop envelope. Preserve all stronger TDD, independent reviewer, attacker, milestone and landing gates. The controller never authors implementation, failing tests or fixes and cannot self-review. Direct D5 work otherwise needs no Batman."
+    },
+    {
+      "sha256": "da1ed824f3727b04a09f880668164a670f9eb7f8237f09b8faa04c4bada9dfa9",
+      "source": "ssot/engos-orchestration-batman.md",
+      "text": "For optional committed package evidence, independently retain task/subject implementation owner/current positive generation/repository/base/spec/plan and trusted code-review owner source hashes before dispatch; resolve candidate head from Git before collection. Resolve the installed code-review owner using existing companion rules and select collect/verify-package; capture exact collector process exit/stdout and externally retain expectation/result/manifest digests. Never copy collector/schema into consumers, renew trusted bindings from returned package, coerce missing generation or guess sibling paths. Owner/runtime missing means unavailable optional binding. Subject implementation node and current independent reviewer node are distinct identities. Reject stale/wrong owner/generation/range/source before findings consumption. Committed range Findings kind is branch/range with exact endpoints/null snapshot/committed only; dirty/staged reviews retain separate snapshot hashes. Matched is review not_assessed. Real reviewer reads needed source/unchanged callers; missing result or unread material is incomplete. Clean task review cannot waive full final branch integration review, hosted CI or GitOps."
     }
   ],
   "review_status": "draft"

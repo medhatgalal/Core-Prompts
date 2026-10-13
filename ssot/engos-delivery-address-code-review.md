@@ -85,7 +85,7 @@ Show the user a numbered list of open comments with:
 - File and line reference
 - The requested change (summarized)
 
-Ask the user which comments to address (all or specific ones).
+Honor an already explicit authorized selection (all or specific IDs). Ask only if selection is materially ambiguous.
 Do not edit files until the selected comment set is clear.
 
 ### 4. Apply changes
@@ -98,7 +98,7 @@ For each selected comment:
 ### 5. Commit and push
 - Stage only the files that were modified to address comments.
 - Suggest a commit message like: `Address review comments` (with ticket prefix if the branch name contains one).
-- Push to the existing remote branch.
+- Push to the existing remote branch only when the supplied task authorizes that step; otherwise stop with the requested patch or commit guidance.
 - After the fix is ready, recommend `engos-quality-code-review` on the fix commit before asking reviewers to re-check.
 
 ## Constraints
@@ -135,3 +135,6 @@ Use `engos-quality-code-review` for this instead; no reviewer feedback exists ye
 - commit: when the fix commit is ready for re-review
 - pull request: when all comments are addressed and push is complete
 - merge: reviewer verifies fixes before approving
+
+## Selected Feedback Handoff
+When delegating or returning selected feedback, load the `handoff` route in `resources/resource-map.json`: `resources/references/feedback-handoff.md`. Preserve immutable original IDs, source references/digests, selection accepted|rejected|deferred|unselected, authority reasons and actual outcomes separately. Already clear selection requires no second confirmation. Accepted but unfinished remains unresolved/deferred, never addressed without repair evidence. Direct bounded D5 worker needs no Batman. Only explicit Batman uses its controller envelope and independent gates. Optional committed packages resolve the verified code-review owner; no copied collector or guessed sibling. Preserve separately hashed dirty snapshot identity. Task receipts do not waive final integration review or GitOps; no automatic hosted thread closure.
