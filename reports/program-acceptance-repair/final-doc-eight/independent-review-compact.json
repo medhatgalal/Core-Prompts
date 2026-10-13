@@ -1,0 +1,721 @@
+{
+  "schema": "ProgramDocumentationFinalEightReview.v1",
+  "verdict": "SOURCE_READY",
+  "openFindings": [],
+  "openFindingCount": 0,
+  "documentationSummary": {
+    "MET": 27,
+    "UNMET": 0,
+    "UNKNOWN": 0
+  },
+  "reviewedHead": "50ee0b2b15e7ab4f7e9cf42446699a1f478fa957",
+  "candidateKind": "uncommitted exact 19-path snapshot on reviewed HEAD",
+  "sourceSealSHA256": "b8f1da881e9d3892e5b2866b5c96f9db8c110b8eaa3657546863be3d0de28e26",
+  "sourceSealMethod": "SHA256 of UTF-8 json.dumps(path_to_sha256, sort_keys=True, separators=(comma,colon))",
+  "sourceHashes": {
+    ".claude/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".claude/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".codex/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".codex/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".gemini/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".gemini/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".grok/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".grok/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".kiro/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".kiro/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".meta/capabilities/engos-design-plan-implementation.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".meta/install-bundle.json": "3c66f2c76365d04b90f26e322b575124de80b2a4f7a6181ad88565f867982bbb",
+    ".meta/manifest.json": "dfbd73aff39984bf328b0957b7c9bddbd63ee0260ded97c4d186f354bea30bc7",
+    ".meta/skill-job-map.json": "e7db2cb6973dd6ac1a932100d235b1a8b1161e3f434d29950b89abefe4e06c53",
+    "CHANGELOG.md": "154a4193906606751021a50e912dfe1476efb07b91d09dd412c3eb915c371e6d",
+    "docs/EXAMPLES.md": "4dba6ced1aa1ce107116e95474824c18d82de4fef88dde873f600d4f396f2304",
+    "docs/STATUS.md": "098413b1c5ade88b572824702c2e85db4ad27bbbca2aa7d52daf7fdaec51cd05",
+    "evals/topologies/engos-design-plan-implementation.json": "8eba2f902a60ab66302bab5976f26ba29b399f6bdd930eefa586886eedd041a9",
+    "ssot/engos-design-plan-implementation.md": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+  },
+  "contractSHA256": "5c120574b42ddccba241569e1269e3a06254628b099512e734b1a2b0488e54ac",
+  "closedFindings": [
+    {
+      "id": "F-D3",
+      "status": "closed",
+      "rowIds": [
+        "DOC-engos-design-plan-implementation"
+      ],
+      "currentEvidence": [
+        "ssot/engos-design-plan-implementation.md:77-87"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-1",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-1"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-2",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-2"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-3",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-3"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-4",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-4"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-5",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-5"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-6",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-6"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    },
+    {
+      "id": "F-D8-7",
+      "status": "closed",
+      "rowIds": [
+        "DOC-MIG-D8-7"
+      ],
+      "currentEvidence": [
+        "docs/EXAMPLES.md:1848-1864"
+      ],
+      "reason": "Repaired source meaning and retained contract rechecked against current text and actual owner resources; no open defect remains."
+    }
+  ],
+  "generatedReadback": {
+    "codex": {
+      "path": ".codex/skills/engos-design-plan-implementation/SKILL.md",
+      "SHA256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+      "repairedStep5Present": true
+    },
+    "gemini": {
+      "path": ".gemini/skills/engos-design-plan-implementation/SKILL.md",
+      "SHA256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+      "repairedStep5Present": true
+    },
+    "claude": {
+      "path": ".claude/skills/engos-design-plan-implementation/SKILL.md",
+      "SHA256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+      "repairedStep5Present": true
+    },
+    "kiro": {
+      "path": ".kiro/skills/engos-design-plan-implementation/SKILL.md",
+      "SHA256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+      "repairedStep5Present": true
+    },
+    "grok": {
+      "path": ".grok/skills/engos-design-plan-implementation/SKILL.md",
+      "SHA256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+      "repairedStep5Present": true
+    }
+  },
+  "validationEvidence": {
+    "recoveredInternalApplyStatus": "applied",
+    "recoveryReceiptSHA256": "8ce070a4f61a4ddbe3b7eda877a337bf0cdda3504b3d59f8877b2c199e383810",
+    "originalFailureRetained": "apply_failed_validation",
+    "focusedSuiteLogSHA256": "bdd9656046c3e42d3618cd7ed35ecbb911f15caeda9ed774e131ff6beab89183",
+    "focusedSuiteObservedLog": "129 passed in 9.45s",
+    "focusedSuiteRepeatedByReviewer": false,
+    "reviewerChecks": "Exact 19-path seal, all evidence quotes, source/generated Step 5 meaning, seven donor bytes and actual recipe outputs, actual baseline resolver and both reference evaluations. No broad test repetition.",
+    "strictValidationLogSHA256": "106e677b000001c5a60c3986f89ca28887f88835a0da76bd415d0b191da5d1af"
+  },
+  "limits": [
+    "27/27 applies to documentation assertions at the sealed source snapshot, not whole-program acceptance.",
+    "Migration A05/A06/A09/A12/A16/A18 and five-provider native acceptance remain separate owners/gates; this review does not update them.",
+    "No commit/push/merge/installation/tag/release/publication or provider-authentication action performed.",
+    "D2 schema/ledger limitation and D3 portable-contract/manual-map limitations remain scoped subjects, not independent contradictions.",
+    "No causal relationship to NPLAN native results is established.",
+    "The source-seal facts must be renewed if any reviewed file changes before commit."
+  ],
+  "fullIndependentReviewSHA256": "4a0c4b6d6de859c0db76214da5b8c320275b91529b13800c3716828f157a0109",
+  "rows": [
+    {
+      "id": "DOC-engos-meta-curate-skills",
+      "currentOwner": "engos-meta-uac-import",
+      "kind": "conditional_rename",
+      "status": "MET",
+      "assessment": "Authoring decision, preservation/displacement record, conditional authoring resources, ordinary-prose non-trigger and same-slug UAC steps are explicit. Current name is retained; generic complete-package/install guidance applies to that exact owner.",
+      "evidence": [
+        "docs/EXAMPLES.md:1827-1827",
+        "docs/EXAMPLES.md:1403-1429",
+        "docs/UAC-USAGE.md:84-106",
+        "docs/CLI-REFERENCE.md:638-647",
+        "CHANGELOG.md:93-98",
+        "README.md:134-136"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-meta-edit-instructions",
+      "currentOwner": "engos-meta-instruction-editor",
+      "kind": "conditional_rename",
+      "status": "MET",
+      "assessment": "Editing is independently callable. The relocation example, semantic-change ledger, ordinary-email non-trigger and independent review versus behavioral evidence distinction satisfy the positive/boundary requirement.",
+      "evidence": [
+        "docs/EXAMPLES.md:1828-1828",
+        "docs/EXAMPLES.md:1112-1146",
+        "docs/UAC-USAGE.md:84-106",
+        "docs/CLI-REFERENCE.md:638-647",
+        "CHANGELOG.md:93-98",
+        "README.md:134-136"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-design-specify-change",
+      "currentOwner": "engos-design-specify-change",
+      "kind": "new_skill",
+      "status": "MET",
+      "assessment": "Three entry routes, stable requirements, acceptance/authority status and typo boundary are explicit. The schema/ledger limitation applies to those artifacts; optional trace-check documentation is corrected on this candidate.",
+      "evidence": [
+        "docs/EXAMPLES.md:1829-1829",
+        "docs/EXAMPLES.md:327-354",
+        "docs/CLI-REFERENCE.md:207-231",
+        "docs/CLI-REFERENCE.md:126-145",
+        "CHANGELOG.md:65-71",
+        "docs/GETTING-STARTED.md:23-28"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-quality-design-tests",
+      "currentOwner": "engos-quality-testing-review",
+      "kind": "conditional_rename",
+      "status": "MET",
+      "assessment": "Test oracles and optional not_run interchange have one authored owner, with a documented import into implement-slice. Coverage-only and no-execution examples preserve the boundary; the name remains testing-review.",
+      "evidence": [
+        "docs/EXAMPLES.md:1830-1830",
+        "docs/EXAMPLES.md:1343-1375",
+        "docs/CLI-REFERENCE.md:36-38",
+        "docs/EXAMPLES.md:1612-1617",
+        "docs/RELEASE-PACKAGING.md:121-129",
+        "CHANGELOG.md:77-81"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-design-plan-implementation",
+      "currentOwner": "engos-design-plan-implementation",
+      "kind": "new_skill",
+      "status": "MET",
+      "assessment": "Operative Step 5 now points to the optional graph_check route for supplied TaskPlan input; manual maps remain manual. Semantic correctness, requirement linkage, execution authority and implemented behavior remain outside the checker. No mandatory JSON, runner or helper was introduced.",
+      "evidence": [
+        "docs/EXAMPLES.md:1831-1831",
+        "docs/EXAMPLES.md:400-415",
+        "docs/EXAMPLES.md:66-85",
+        "docs/CLI-REFERENCE.md:399-415",
+        "CHANGELOG.md:107-112",
+        "ssot/engos-design-plan-implementation.md:77-87",
+        "ssot/engos-design-plan-implementation.md:232-258"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-design-compile-goal-packet",
+      "currentOwner": "engos-design-plan-to-goal",
+      "kind": "conditional_rename",
+      "status": "MET",
+      "assessment": "Ordinary planning, optional compiler and explicit controller are separate; compiler packet inputs/outputs and real lint/seal/check commands remain documented under the current name. No native goal launch is inferred.",
+      "evidence": [
+        "docs/EXAMPLES.md:1832-1832",
+        "docs/EXAMPLES.md:417-442",
+        "docs/CLI-REFERENCE.md:417-440",
+        "docs/CLI-REFERENCE.md:147-154",
+        "README.md:110-115",
+        "CHANGELOG.md:18-27"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-debug-diagnose-failure",
+      "currentOwner": "engos-debug-diagnose-failure",
+      "kind": "new_skill",
+      "status": "MET",
+      "assessment": "Failure input, discriminating evidence, bounded unknown, optional receipt, causal limitations and separately authorized repair are concrete; no universal runner is promised.",
+      "evidence": [
+        "docs/EXAMPLES.md:1833-1833",
+        "docs/EXAMPLES.md:17-46",
+        "docs/CLI-REFERENCE.md:156-170",
+        "docs/GETTING-STARTED.md:55-55",
+        "CHANGELOG.md:114-118"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-engos-delivery-implement-slice",
+      "currentOwner": "engos-delivery-implement-slice",
+      "kind": "new_skill",
+      "status": "MET",
+      "assessment": "The token-expiry example and small-guide boundary explain usable patch/check/handoff versus optional receipt, sole oracle ownership, and no automatic controller/commit/install/release.",
+      "evidence": [
+        "docs/EXAMPLES.md:1834-1834",
+        "docs/EXAMPLES.md:777-799",
+        "docs/CLI-REFERENCE.md:15-30",
+        "docs/EXAMPLES.md:1612-1617",
+        "CHANGELOG.md:83-91"
+      ],
+      "commonEvidence": [
+        "README.md:84-84",
+        "docs/EXAMPLES.md:1801-1821",
+        "docs/INSTALL-PROFILES.md:72-127",
+        "docs/CLI-REFERENCE.md:549-580",
+        "docs/RELEASE-PACKAGING.md:238-248",
+        "docs/UAC-USAGE.md:453-461",
+        "CHANGELOG.md:1-8"
+      ]
+    },
+    {
+      "id": "DOC-EXISTING-1",
+      "currentOwner": "engos-quality-code-review",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Before: ordinary exact-target judgment. Additive after: explicit immutable collection and optional binding verification. Their examples, conditional routes and owning package are explicit; collection alone never passes review.",
+      "evidence": [
+        "docs/EXAMPLES.md:1835-1835",
+        "docs/EXAMPLES.md:691-744",
+        "docs/CLI-REFERENCE.md:40-58",
+        "docs/CLI-REFERENCE.md:96-124",
+        "CHANGELOG.md:29-35",
+        "CHANGELOG.md:100-105"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-docs-review",
+      "currentOwner": "engos-quality-docs-review",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Before: ordinary seven-section docs review. Additive after: expressly selected artifact recipes with exact output precedence; content truth and host readiness stay separate. Helper ownership and format-only limits are documented.",
+      "evidence": [
+        "docs/EXAMPLES.md:1836-1836",
+        "docs/EXAMPLES.md:923-949",
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/CLI-REFERENCE.md:653-666",
+        "README.md:534-538",
+        "CHANGELOG.md:37-44"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-gitops-review",
+      "currentOwner": "engos-quality-gitops-review",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Before: ordinary seven-section GitOps gate. Additive after: selected docs-release-readiness carries DocsShipHandoff.v1 without granting execution. Content PASS cannot substitute for candidate-bound hosted evidence.",
+      "evidence": [
+        "docs/EXAMPLES.md:1837-1837",
+        "docs/EXAMPLES.md:1056-1082",
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/CLI-REFERENCE.md:653-666",
+        "README.md:534-538",
+        "CHANGELOG.md:37-44"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-3",
+      "currentOwner": "engos-meta-supercharge",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Existing hardening modes remain; job-choice examples distinguish them from convergence and experiments. CHANGELOG explicitly records no variation module. This meets the bounded no-op documentation without requiring a new framework or a literal before/after heading.",
+      "evidence": [
+        "docs/EXAMPLES.md:1838-1838",
+        "docs/EXAMPLES.md:1302-1341",
+        "docs/EXAMPLES.md:87-99",
+        "README.md:93-108",
+        "docs/CLI-REFERENCE.md:625-636",
+        "CHANGELOG.md:18-27"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-4",
+      "currentOwner": "engos-reconciliation-converge",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Conflicting-source recommendation, attribution boundary and conditional source-conflict example are explicit. CHANGELOG records the descriptive pseudo-mode correction to zero modes; no new callable mode is claimed.",
+      "evidence": [
+        "docs/EXAMPLES.md:1839-1839",
+        "docs/EXAMPLES.md:831-856",
+        "docs/EXAMPLES.md:87-99",
+        "README.md:105-108",
+        "docs/CLI-REFERENCE.md:147-154",
+        "CHANGELOG.md:18-27"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-5",
+      "currentOwner": "engos-design-shaping",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Workshop conduct, direct pitch assessment and transition gate retain distinct owners. Dependency route points to gate policy rather than copying it. CHANGELOG explicitly records no shaping-policy removal; no source-dedup success is claimed.",
+      "evidence": [
+        "docs/EXAMPLES.md:1840-1840",
+        "docs/EXAMPLES.md:103-126",
+        "README.md:110-115",
+        "docs/GETTING-STARTED.md:35-40",
+        "docs/CLI-REFERENCE.md:147-154",
+        "CHANGELOG.md:18-27",
+        "sources/capability-resources/engos-design-shaping/references/stage-policy-dependencies.md:1-7"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-6",
+      "currentOwner": "engos-audit-pitch-review",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Finished-pitch example allows earlier stages to remain unassessed; conditional standalone-pitch retrieval is distinct from a native command. Existing identity is retained and CHANGELOG records no shaping-policy removal.",
+      "evidence": [
+        "docs/EXAMPLES.md:1841-1841",
+        "docs/EXAMPLES.md:1201-1222",
+        "docs/EXAMPLES.md:87-93",
+        "docs/GETTING-STARTED.md:35-40",
+        "docs/CLI-REFERENCE.md:147-154",
+        "CHANGELOG.md:18-27"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-EXISTING-7",
+      "currentOwner": "engos-quality-shaping-gate",
+      "kind": "existing_owner",
+      "status": "MET",
+      "assessment": "Actual transition needs source-bound independent gate evidence; the selected stage-policy dependency map names gate routes. Public no-removal wording accurately records retention, not a fabricated deduplication.",
+      "evidence": [
+        "docs/EXAMPLES.md:1842-1842",
+        "docs/EXAMPLES.md:258-275",
+        "README.md:110-115",
+        "docs/GETTING-STARTED.md:35-40",
+        "docs/CLI-REFERENCE.md:147-154",
+        "CHANGELOG.md:18-27",
+        "sources/capability-resources/engos-design-shaping/references/stage-policy-dependencies.md:1-7"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-1",
+      "currentOwner": "docs/prompt-pack/prompts/master-orchestrator.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-2",
+      "currentOwner": "docs/prompt-pack/prompts/prompt-a-readme-story.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-3",
+      "currentOwner": "docs/prompt-pack/prompts/prompt-b-ai-install-flow.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-4",
+      "currentOwner": "docs/prompt-pack/prompts/prompt-c-technical-extraction.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-5",
+      "currentOwner": "docs/prompt-pack/prompts/prompt-d-visuals.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-6",
+      "currentOwner": "docs/prompt-pack/prompts/prompt-e-factual-gate.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-MIG-D8-7",
+      "currentOwner": "docs/prompt-pack/prompts/prompt-f-evaluate-and-ship-gate.md",
+      "kind": "conditional_prompt_retirement",
+      "status": "MET",
+      "assessment": "The exact retained donor now maps known repository entrypoints to its selected receiving recipe and preserved output. The shared paragraph documents old invocation, optional new invocation, retained-path fallback, unverified external consumers and no removal approval. F also preserves the current command-order boundary and separate hosted-readiness handoff.",
+      "evidence": [
+        "docs/EXAMPLES.md:1783-1799",
+        "docs/EXAMPLES.md:1848-1864",
+        "docs/prompt-pack/README.md:10-18",
+        "docs/prompt-pack/README.md:28-55",
+        "docs/prompt-pack/README.md:70-83",
+        "docs/CLI-REFERENCE.md:653-666",
+        "docs/UAC-USAGE.md:453-461"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-BOUNDARY-engos-orchestration-batman",
+      "currentOwner": "engos-orchestration-batman",
+      "kind": "integration_neighbor",
+      "status": "MET",
+      "assessment": "Explicit Batman route and controller authority are clear; no direct implementation or implicit activation is claimed.",
+      "evidence": [
+        "docs/EXAMPLES.md:1843-1843",
+        "docs/EXAMPLES.md:1595-1625",
+        "README.md:110-126"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-BOUNDARY-engos-delivery-address-code-review",
+      "currentOwner": "engos-delivery-address-code-review",
+      "kind": "integration_neighbor",
+      "status": "MET",
+      "assessment": "Selected comments preserve IDs, original dispositions and repair evidence; judgment and repair are separate.",
+      "evidence": [
+        "docs/EXAMPLES.md:1844-1844",
+        "docs/EXAMPLES.md:1595-1625",
+        "docs/EXAMPLES.md:801-829"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-BOUNDARY-engos-operations-ic-assistant",
+      "currentOwner": "engos-operations-ic-assistant",
+      "kind": "integration_neighbor",
+      "status": "MET",
+      "assessment": "Diagnosis and incident coordination are separate callable jobs; causal findings authorize no repair.",
+      "evidence": [
+        "docs/EXAMPLES.md:1845-1845",
+        "docs/EXAMPLES.md:17-46",
+        "docs/EXAMPLES.md:1084-1110"
+      ],
+      "commonEvidence": []
+    },
+    {
+      "id": "DOC-BOUNDARY-engos-design-architecture",
+      "currentOwner": "engos-design-architecture",
+      "kind": "integration_neighbor",
+      "status": "MET",
+      "assessment": "Optional supplied SpecContract preserves specification ownership; architecture has its own generated schema and needs no installed sibling. The route and provenance are explicit.",
+      "evidence": [
+        "docs/EXAMPLES.md:1846-1846",
+        "docs/EXAMPLES.md:356-398",
+        "docs/CLI-REFERENCE.md:233-297",
+        "docs/RELEASE-PACKAGING.md:91-118"
+      ],
+      "commonEvidence": []
+    }
+  ],
+  "baselineAssessment": {
+    "verdict": "legitimate derived judge evidence; no canonical baseline correction required",
+    "changedJSONPath": "judge_reports[0].historical_baseline.selected_commit",
+    "before": "f5d8374b",
+    "after": "220e2ae8",
+    "topLevelPreservedFields": {
+      "historical_baseline": true,
+      "quality_validation_matrix": true,
+      "modes": true,
+      "declared_capability": true,
+      "inferred_capability": true,
+      "quality_status": true,
+      "quality_profile": true,
+      "benchmark_sources": true
+    },
+    "registryEntryExists": false,
+    "actualBodyComparison": {
+      "schema": "ComputedBaselineReferenceReadback.v1",
+      "references": [
+        {
+          "ref": "f5d8374b",
+          "commit": "f5d8374bd030ddcd2ad5d329f740bd40f0a47995",
+          "path": "ssot/engos-design-plan-implementation.md",
+          "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+          "lineCount": 226,
+          "optionalMechanicalGraphCheckPresent": false,
+          "oldStep5DenialPresent": true
+        },
+        {
+          "ref": "220e2ae8",
+          "commit": "220e2ae8ba96670a46f0ebdbcf014ac8afce7883",
+          "path": "ssot/engos-design-plan-implementation.md",
+          "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
+          "lineCount": 259,
+          "optionalMechanicalGraphCheckPresent": true,
+          "oldStep5DenialPresent": true
+        }
+      ],
+      "bodiesByteIdentical": false,
+      "description": "Old derived-history reference selects the earlier planner body without the optional mechanical graph checker section; new reference selects the later planner body containing that added route. Both retain the old Step5 denial. Metadata richness equivalence is not body identity or behavioral equivalence. Neither reference was rewritten and no physical promoted baseline file was created or changed."
+    },
+    "reason": "With no source-library registry entry, the resolver chooses the newest committed body at the strongest richness score. The later body contains the already-landed graph section; it is not the uncommitted repaired candidate. same-slug apply intentionally refreshes bound judge_reports while preserving top-level historical_baseline and existing quality_validation_matrix. Physical baseline and helper resources are unchanged.",
+    "gateEffect": "Same derived scenario and operational/richness thresholds; the larger baseline makes the half-length floor 129 instead of 113 lines. No weakened gate demonstrated.",
+    "equivalenceLimit": "equivalent_commits denotes equal richness-score grouping, not byte identity, semantic equivalence, or proven behavioral preservation. The evaluator classification preserved is likewise a structural result only.",
+    "sourceEvidence": [
+      "src/intent_pipeline/uac_baselines.py:359-406",
+      "src/intent_pipeline/uac_baselines.py:462-499",
+      "src/intent_pipeline/uac_baselines.py:530-553",
+      "scripts/uac-import.py:1403-1443",
+      "scripts/uac-import.py:2507-2532"
+    ],
+    "canonicalCorrectionNeeded": false
+  }
+}

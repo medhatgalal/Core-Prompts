@@ -1,0 +1,25 @@
+{
+  "schema": "ComputedBaselineReferenceReadback.v1",
+  "references": [
+    {
+      "ref": "f5d8374b",
+      "commit": "f5d8374bd030ddcd2ad5d329f740bd40f0a47995",
+      "path": "ssot/engos-design-plan-implementation.md",
+      "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+      "lineCount": 226,
+      "optionalMechanicalGraphCheckPresent": false,
+      "oldStep5DenialPresent": true
+    },
+    {
+      "ref": "220e2ae8",
+      "commit": "220e2ae8ba96670a46f0ebdbcf014ac8afce7883",
+      "path": "ssot/engos-design-plan-implementation.md",
+      "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
+      "lineCount": 259,
+      "optionalMechanicalGraphCheckPresent": true,
+      "oldStep5DenialPresent": true
+    }
+  ],
+  "bodiesByteIdentical": false,
+  "description": "Old derived-history reference selects the earlier planner body without the optional mechanical graph checker section; new reference selects the later planner body containing that added route. Both retain the old Step5 denial. Metadata richness equivalence is not body identity or behavioral equivalence. Neither reference was rewritten and no physical promoted baseline file was created or changed."
+}

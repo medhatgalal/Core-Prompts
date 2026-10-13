@@ -1,0 +1,53 @@
+{
+  "schema": "FinalEightReapplyRecovery.v1",
+  "previousReceipt": "final-eight-receipt.json",
+  "previousSourceSealSHA256": "dae034fc53f7074d5afbce854b01bac4ac8529d0238cb14ec3086b0dc71d56d1",
+  "originalFailureLog": "uac-apply.json",
+  "originalFailureStatus": "apply_failed_validation",
+  "commandProcessExit": 0,
+  "internalApplyStatus": "applied",
+  "qualityStatus": "structural_ready",
+  "buildExit": 0,
+  "validationExit": 0,
+  "sourceSealSHA256": "b8f1da881e9d3892e5b2866b5c96f9db8c110b8eaa3657546863be3d0de28e26",
+  "sourceHashes": {
+    ".claude/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".claude/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".codex/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".codex/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".gemini/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".gemini/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".grok/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".grok/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".kiro/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".kiro/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".meta/capabilities/engos-design-plan-implementation.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".meta/install-bundle.json": "3c66f2c76365d04b90f26e322b575124de80b2a4f7a6181ad88565f867982bbb",
+    ".meta/manifest.json": "dfbd73aff39984bf328b0957b7c9bddbd63ee0260ded97c4d186f354bea30bc7",
+    ".meta/skill-job-map.json": "e7db2cb6973dd6ac1a932100d235b1a8b1161e3f434d29950b89abefe4e06c53",
+    "CHANGELOG.md": "154a4193906606751021a50e912dfe1476efb07b91d09dd412c3eb915c371e6d",
+    "docs/EXAMPLES.md": "4dba6ced1aa1ce107116e95474824c18d82de4fef88dde873f600d4f396f2304",
+    "docs/STATUS.md": "098413b1c5ade88b572824702c2e85db4ad27bbbca2aa7d52daf7fdaec51cd05",
+    "evals/topologies/engos-design-plan-implementation.json": "8eba2f902a60ab66302bab5976f26ba29b399f6bdd930eefa586886eedd041a9",
+    "ssot/engos-design-plan-implementation.md": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+  },
+  "sourceDiffSHA256": "235b8044f50ee30f703e9699606f6478c4e0a68f3d1f1736fe49c644eed776d6",
+  "candidateSHA256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a",
+  "canonicalCandidateExact": true,
+  "generatedReadbackSHA256": {
+    "codex": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    "gemini": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    "claude": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    "kiro": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    "grok": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846"
+  },
+  "ownerResourcesAndPhysicalBaselinesUnchanged": true,
+  "sourceWriteSetUnchanged": true,
+  "pathCount": 19,
+  "changedSincePreviousSeal": [
+    "docs/STATUS.md"
+  ],
+  "baselineReferenceEvidence": "computed-baseline-body-refs.json",
+  "focusedSuiteRepeated": false,
+  "authority": "No commit/push/merge/install/tag; independent review and controller delivery pending."
+}
