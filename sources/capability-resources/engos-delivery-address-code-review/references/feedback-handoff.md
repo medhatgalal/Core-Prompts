@@ -1,0 +1,9 @@
+# Selected feedback handoff
+
+The review-fix owner keeps the original selection ledger: comment_id, source_ref, source_digest when captured, decision accepted|rejected|deferred|unselected, decision reason/authority_ref, bounded task link, current outcome and actual repair evidence. IDs are immutable; later comments need an explicit selection decision. Honor an already clear selection; clarify only material ambiguity.
+
+Dispatch the bounded request or exact TaskContract bytes directly to an ordinary implementation worker. The worker needs no Batman/planner/testing sibling. Return every supplied relevant ID. Accepted A becomes addressed only with observed scoped repair evidence; accepted-but-unfinished remains unresolved/deferred with reason while the owner's decision stays accepted. Rejected B stays rejected, deferred C stays deferred, unselected D stays unselected and none grants implementation permission. Keep selection, SliceReceipt outcome, Findings disposition, accepted-risk authority and hosted thread resolution distinct. Do not post or close threads automatically.
+
+Explicit Batman may dispatch the same TaskContract with its separate task_id/owner_id/plan_generation/read-write/authority/evidence/stop envelope. Controller does not implement, author failing tests/fixes or self-review. All existing independent review, attacker, milestone and landing gates remain required. Stale/missing worker or reviewer results cannot satisfy a current node.
+
+An optional committed handoff resolves the verified installed engos-quality-code-review owner, selects its collect/verify-package routes and validates externally retained subject/target/source/result bindings before findings consumption. Do not copy collector/schema into this owner or guess missing sibling paths. Missing owner makes that option unavailable; a normal dirty snapshot remains separate and truthful. A task receipt never waives final full-branch review/GitOps.

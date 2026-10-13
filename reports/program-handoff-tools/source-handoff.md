@@ -1,0 +1,11 @@
+# Program handoff source implementation
+
+Accepted contract JSON d4fa1a9555b2448915ebff895e65a33dc2b9a8231ccf240dfbd6e92408e6f8e6. Baseline cda4e78 combines verified main582e131 and accepted collector bc4. All six accepted producer baseline hashes were verified from immutable HEAD blobs against the contract.
+
+Source changes: code-review owner read-only externally pinned verifier and expectation/reference route; producer pure manifest factory and exact review/collect/verify-package map closure. Output.write/freeze/verify_manifest publication safeguards are untouched. Six complete same-slug candidates under this directory retain full source lineage; code-review starts from the accepted collector candidate. Root owns UAC apply, descriptors and generated outputs.
+
+Diagnosis has three frozen inert examples, actual synthetic observations and three schema-validated author receipts. Independent causal review is pending. Review-fix owns stable selections/IDs while worker outcomes stay separate; direct D5 remains independent of optional explicit Batman. D7 remains sole oracle author with one finite import into D5. No authored D5 shadow resource exists; actual canonical and detached loader/receipt/freshness/tamper tests pass.
+
+Read `source-evidence.json` for all 16 unchanged frozen definitions and explicit partial/unrun coverage. No structural helper or author receipt closes independent causal/oracle/review or actual native-worker/Batman cases. No preimplementation binding red was recorded; actual construction and canonical-loader red observations are preserved honestly in `red-observations.md` and `focused-tests.txt`.
+
+Root integration: independently review exact source/candidates; settle source-authoritative modes for new examples/handoff/verification/verify-package routes rather than retaining false headings; serially same-slug UAC plan/judge/apply and normal generation; renew resource/evaluator bindings; apply public doc fragments; include tests/test_handoff_contracts.py and tests/test_review_package.py in both hosted explicit test lists with Git/Python prerequisites; execute remaining frozen real-participant and normal detached generation/install cases; verify current source, CI/main/parity independently. Generation, hosted landing, home installation and release are separate and were not performed here.

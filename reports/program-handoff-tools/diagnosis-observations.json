@@ -1,0 +1,55 @@
+{
+  "schema_version": "SyntheticDiagnosisObservations.v1",
+  "fixture_definition_sha256": "b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+  "subject_source": "def accepts(raw_now, expiry):\n    now = int(raw_now)\n    return not (now > expiry)\n",
+  "subject_source_sha256": "d074653a4a3e61da88f1d4b4631848ca38eb4e2d3fc4733883749046a95618e3",
+  "H-D1": [
+    {
+      "input": "9",
+      "parsed": 9,
+      "expiry": 10,
+      "actual_accepts": true,
+      "contract_accepts": true
+    },
+    {
+      "input": "10",
+      "parsed": 10,
+      "expiry": 10,
+      "actual_accepts": true,
+      "contract_accepts": false
+    },
+    {
+      "input": "11",
+      "parsed": 11,
+      "expiry": 10,
+      "actual_accepts": false,
+      "contract_accepts": false
+    }
+  ],
+  "H-D2": [
+    {
+      "attempt": 1,
+      "synthetic_failure_input": false,
+      "observed_failure": false,
+      "exit": 0
+    },
+    {
+      "attempt": 2,
+      "synthetic_failure_input": false,
+      "observed_failure": false,
+      "exit": 0
+    },
+    {
+      "attempt": 3,
+      "synthetic_failure_input": false,
+      "observed_failure": false,
+      "exit": 0
+    }
+  ],
+  "H-D3": {
+    "required_input_available": false,
+    "reproduction": "not_run",
+    "exit": null,
+    "reason": "Frozen case has no required input; no live reset or secret dump authorized."
+  }
+}

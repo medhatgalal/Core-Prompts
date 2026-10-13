@@ -1,0 +1,44 @@
+{
+  "schema_version": "DiagnosisReceipt.v1",
+  "id": "H-D2-author",
+  "subject_revision": "Frozen synthetic fixture definition SHA256 b96b89ae284e43ee52b8ed33da9ebf916ad2189949af5431ce88313f586ee716",
+  "current_behavior": "[{\"attempt\": 1, \"synthetic_failure_input\": false, \"observed_failure\": false, \"exit\": 0}, {\"attempt\": 2, \"synthetic_failure_input\": false, \"observed_failure\": false, \"exit\": 0}, {\"attempt\": 3, \"synthetic_failure_input\": false, \"observed_failure\": false, \"exit\": 0}]",
+  "expected_behavior": "[\"pass\", \"pass\", \"pass\"]",
+  "unchanged_behavior": "Source and state unchanged; successes are exposure only, never repair proof.",
+  "observations": [
+    {
+      "command_redacted": "python reports/program-handoff-tools/run_diagnosis_observations.py",
+      "exit_status": 0,
+      "environment": "Python 3.14; synthetic disposable inputs; no production reproduction",
+      "evidence_ref": "reports/program-handoff-tools/diagnosis-observations.json#H-D2"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H-D2-hypothesis-1",
+      "prediction": "timing order",
+      "discriminator": "Missing ordering trace or exact input must be obtained read-only",
+      "result": "Unresolved: no distinguishing evidence",
+      "status": "unresolved",
+      "evidence_refs": [
+        "reports/program-handoff-tools/diagnosis-observations.json#H-D2"
+      ]
+    },
+    {
+      "id": "H-D2-hypothesis-2",
+      "prediction": "shared-state interference",
+      "discriminator": "Missing ordering trace or exact input must be obtained read-only",
+      "result": "Unresolved: no distinguishing evidence",
+      "status": "unresolved",
+      "evidence_refs": [
+        "reports/program-handoff-tools/diagnosis-observations.json#H-D2"
+      ]
+    }
+  ],
+  "cause_status": "unknown",
+  "repair_scope": "No speculative fix; next safe observation captures causal ordering.",
+  "next_owner": "Independent causal reviewer; separately authorized implementer only after review and repair authority",
+  "conclusion": "Unknown cause. All-pass synthetic exposure or missing input gives no causal ordering discriminator and no repair evidence.",
+  "investigated_scope": "Frozen synthetic case H-D2 only; not live system or natural failure-rate evidence",
+  "remaining_uncertainty": "Independent causal assessment remains pending; no production generalization or repair performed."
+}
