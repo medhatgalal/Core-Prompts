@@ -72,3 +72,10 @@ Added optional stdlib graph and trace checkers to the existing planner/specifica
 skills, with production-shape validation, deterministic dependency frontier,
 selected test/design membership, explicit unassessed states and bounded sibling
 schema closure. No input identity, agent surface, release or installation change.
+
+Selected test files containing JSON null or other invalid top-level types fail
+TestDesign shape with `tests_status: supplied`, empty matrix and exit 1. Only
+omission of `--tests` means `not_supplied`. Lone surrogate escapes in any input
+key/value produce structured `invalid_json` and exit 2. Valid non-ASCII/astral
+identifiers remain unchanged; direct Python API serialization defensively escapes
+lone surrogates without dropping or normalizing values.

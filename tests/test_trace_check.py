@@ -181,3 +181,72 @@ def test_namespace_collision_is_allowed_and_cycles_belong_to_graph(checker):
     c['plan']['tasks'][0]['depends_on']=['T2']; c['plan']['tasks'][1]['depends_on']=['T1']
     r=checker.check_trace(**c,design_links=True)
     assert r['mechanical_passed'] and r['graph_validation']=='not_assessed'
+
+
+@pytest.mark.parametrize('selected', [None,False,[], 'invalid', 7])
+def test_selected_invalid_tests_cannot_downgrade_to_omission(checker,tmp_path,selected):
+    import hashlib
+    import subprocess
+    import sys
+    from jsonschema import Draft202012Validator
+    c=case(); paths={name:tmp_path/f'{name}.json' for name in ('spec','plan','tests')}
+    for name in ('spec','plan'): paths[name].write_text(json.dumps(c[name]))
+    paths['tests'].write_text(json.dumps(selected))
+    result=subprocess.run([sys.executable,'-I','-S',checker.__file__,'--spec',str(paths['spec']),'--plan',str(paths['plan']),'--tests',str(paths['tests'])],capture_output=True,text=True)
+    assert result.returncode==1 and result.stderr==''
+    payload=json.loads(result.stdout)
+    assert payload['tests_status']=='supplied' and payload['test_link_validation']=='not_assessed'
+    assert payload['test_execution']=='not_run' and payload['matrix']==[]
+    assert not payload['mechanical_passed']
+    assert payload['errors']==[{'artifact':'tests','code':'schema_error','detail':'Wrong JSON type','ids':[],'pointer':''}]
+    assert payload['input_sha256']['tests']==hashlib.sha256(paths['tests'].read_bytes()).hexdigest()
+    assert 'test-design.schema.json' in payload['schema_sha256']
+    validator=Draft202012Validator(json.loads((OWNER/'schemas/trace-result.schema.json').read_text()))
+    assert validator.is_valid(payload)
+
+
+@pytest.mark.parametrize('artifact,location', [('spec','key'),('plan','id'),('tests','id')])
+@pytest.mark.parametrize('bad', ['\ud800','\udfff'])
+def test_trace_cli_rejects_lone_surrogate_keys_and_values(checker,tmp_path,artifact,location,bad):
+    import subprocess
+    import sys
+    c=case()
+    if location=='key': c[artifact][bad]=True
+    elif artifact=='plan': c[artifact]['tasks'][0]['id']='T'+bad
+    else: c[artifact]['tests'][0]['id']='TEST'+bad
+    paths={name:tmp_path/f'{name}.json' for name in c}
+    for name,path in paths.items(): path.write_text(json.dumps(c[name],ensure_ascii=True))
+    result=subprocess.run([sys.executable,'-I','-S',checker.__file__,'--spec',str(paths['spec']),'--plan',str(paths['plan']),'--tests',str(paths['tests'])],capture_output=True,text=True)
+    assert result.returncode==2 and result.stderr==''
+    payload=json.loads(result.stdout)
+    assert not payload['mechanical_passed'] and payload['matrix']==[]
+    assert payload['errors']==[{'artifact':artifact,'code':'invalid_json','detail':'Input contains an unpaired Unicode surrogate','ids':[],'pointer':''}]
+    assert payload['tests_status']=='supplied' and payload['test_link_validation']=='not_assessed'
+
+
+def test_trace_cli_preserves_valid_unicode_in_success_and_error_pointer(checker,tmp_path):
+    import subprocess
+    import sys
+    c=case(); ident='Ré漢😀'
+    c['spec']['requirements'][0]['id']=ident; c['plan']['tasks'][0]['requirement_ids']=[ident]
+    c['tests']['requirement_ids'][0]=ident; c['tests']['tests'][0]['requirements']=[ident]
+    paths={name:tmp_path/f'{name}.json' for name in c}
+    def run():
+        for name,path in paths.items(): path.write_text(json.dumps(c[name],ensure_ascii=True))
+        return subprocess.run([sys.executable,'-I','-S',checker.__file__,'--spec',str(paths['spec']),'--plan',str(paths['plan']),'--tests',str(paths['tests'])],capture_output=True,text=True)
+    result=run(); payload=json.loads(result.stdout)
+    assert result.returncode==0 and result.stderr==''
+    assert ident in [row['requirement_id'] for row in payload['matrix']]
+    c['spec']['extra/'+ident]=True
+    result=run(); payload=json.loads(result.stdout)
+    assert result.returncode==1 and result.stderr==''
+    assert payload['errors'][0]['pointer']=='/extra~1'+ident
+
+
+def test_trace_emitter_defensively_escapes_python_api_surrogates(checker,capsys):
+    c=case(); c['plan']['tasks'][0]['id']='T\ud800'
+    result=checker.check_trace(**c)
+    assert checker.emit(result)==0
+    text=capsys.readouterr().out
+    assert '\\ud800' in text and json.loads(text)['matrix'][0]['task_ids']==['T\ud800']
+    text.encode('utf-8')

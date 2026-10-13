@@ -1,0 +1,241 @@
+{
+  "schema_version": "Findings.v1",
+  "target": {
+    "kind": "branch",
+    "base": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+    "head": "e627bd1c9c83fb8507f77bd57fee78d61bb6cb72",
+    "snapshot_digest": null,
+    "comparison": "range",
+    "included_change_classes": [
+      "committed"
+    ]
+  },
+  "review_status": "complete",
+  "evidence": [
+    {
+      "id": "E-graph",
+      "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "kind": "source",
+      "side": "head",
+      "identity": "9cb6eadd265f18934af27af2c807b50f905f17fb17580ca75ec5aeea7b121d19",
+      "line_start": 1,
+      "line_end": 303,
+      "read_status": "read"
+    },
+    {
+      "id": "E-trace",
+      "path": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "kind": "source",
+      "side": "head",
+      "identity": "f61ea5f64cf63d71f94ce73bbfa111077d7517ac8325927d242a69c727cabb55",
+      "line_start": 1,
+      "line_end": 301,
+      "read_status": "read"
+    },
+    {
+      "id": "E-graph-tests",
+      "path": "tests/test_task_graph_check.py",
+      "kind": "test",
+      "side": "head",
+      "identity": "5a438a9a2a019d63fb8103819db662270e1788897ce7c05531b96e826662b058",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-trace-tests",
+      "path": "tests/test_trace_check.py",
+      "kind": "test",
+      "side": "head",
+      "identity": "2146dbb426efbeede6c413904cc38d2369cbb883c4d440410b93e79ff0bd704f",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-shared",
+      "path": "src/intent_pipeline/capability_resources.py",
+      "kind": "source",
+      "side": "head",
+      "identity": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-shared-tests",
+      "path": "tests/test_capability_resources.py",
+      "kind": "test",
+      "side": "head",
+      "identity": "ceb7eb75c2575e1047e82b34412f805f76f56f6bbd57b8445517fa1cf9f72453",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-policy",
+      "path": ".meta/surface-rules.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "28932c26694d4bb89f21071a0ad99c91869135312c56fe1468e1cd039520f15b",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-graph-schema",
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "96271294c25cb298a04d9febc34da22719fc4c5128193d31d2742bba77839b7d",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-trace-schema",
+      "path": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "2927ac79a1fedef2e77f78b05c88a386f0e1e45db88bfef1e94cfd9985b86162",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-test-schema",
+      "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-fixture",
+      "path": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-semantic",
+      "path": "reports/program-linkage-tools/semantic-review.json",
+      "kind": "decision",
+      "side": "snapshot",
+      "identity": "ded79709a47e3e788ae8756c68b1e29dd976d4e34191728eb6e2122d105d3f0d",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-probes",
+      "path": "reports/program-linkage-tools/independent-source-review.md",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "87bd395e926eb37584c29d8e25f8b8effcf4c6972146610d4e0f4c1794da3f31",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-source-receipt",
+      "path": "reports/program-linkage-tools/source-receipt.json",
+      "kind": "test",
+      "side": "head",
+      "identity": "5da360cb5c829932574d82411ca84839b7cdae3e9918a023ff80c29d11cf3a5a",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-diff",
+      "path": "3782da241e7c4fdb973d9f96f5592926c28e07a4..e627bd1c9c83fb8507f77bd57fee78d61bb6cb72",
+      "kind": "diff",
+      "side": "head",
+      "identity": "0fb4ce4d8826d6863ad41e28082e67290185a4bddba31ffc89818282fd60ed92",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    }
+  ],
+  "findings": [
+    {
+      "id": "LNK-SRC-001",
+      "severity": "high",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+        "line": 290,
+        "side": "head"
+      },
+      "changed_cause": {
+        "summary": "Decoded null supplied with --tests is passed as None and conflated with omission.",
+        "evidence_refs": [
+          "E-trace",
+          "E-diff"
+        ]
+      },
+      "evidence_refs": [
+        "E-trace",
+        "E-test-schema",
+        "E-probes"
+      ],
+      "affected_consumer": {
+        "path": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+        "line": 234,
+        "evidence_refs": [
+          "E-trace",
+          "E-probes"
+        ]
+      },
+      "impact": "CLI reports mechanical success while dropping selected test shape/coverage assessment and falsely labeling supplied input not_supplied.",
+      "repair": "Track option presence independently of payload. Explicit null must fail TestDesign shape with structured exit1, supplied/not-assessed state and empty matrix; omission alone is not_supplied. Add CLI invalid-top-level selected-test cases without coercion.",
+      "disposition": "open",
+      "disposition_reason": "Actual copied-standalone CLI returned exit0/mechanical_passed true/no errors/not_supplied for --tests null, while recording its hash.",
+      "disposition_evidence_refs": []
+    },
+    {
+      "id": "LNK-SRC-002",
+      "severity": "medium",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+        "line": 220,
+        "side": "head"
+      },
+      "changed_cause": {
+        "summary": "Decoder admits escaped unpaired Unicode surrogates; UTF-8 ensure_ascii=False emission is unguarded in both scripts.",
+        "evidence_refs": [
+          "E-graph",
+          "E-trace",
+          "E-diff"
+        ]
+      },
+      "evidence_refs": [
+        "E-graph",
+        "E-trace",
+        "E-probes"
+      ],
+      "affected_consumer": {
+        "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+        "line": 300,
+        "evidence_refs": [
+          "E-graph",
+          "E-probes"
+        ]
+      },
+      "impact": "Some parseable input produces empty stdout/traceback rather than a stable JSON assessment and declared error status; trace shares the same boundary defect.",
+      "repair": "Reject unsupported unpaired surrogate keys/values with structured input failure, or explicitly review a safe escaped serializer. Keep valid Unicode and exact IDs. Add both CLI success/error-path cases for high/low unpaired and valid paired/non-ASCII characters.",
+      "disposition": "open",
+      "disposition_reason": "Independent graph CLI with escaped U+D800 task ID exited1 with empty stdout and UnicodeEncodeError.",
+      "disposition_evidence_refs": []
+    }
+  ],
+  "unreviewed": [],
+  "verdict": "blocked"
+}

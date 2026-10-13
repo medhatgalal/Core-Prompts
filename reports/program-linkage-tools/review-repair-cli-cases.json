@@ -1,0 +1,749 @@
+{
+  "schema_version": "LinkageRepairCLIObservations.v1",
+  "scope": "Actual copied standalone -I -S invocations; no semantic writer grade",
+  "cases": [
+    {
+      "case": "selected_tests_NoneType",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+        "tests": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+      },
+      "exit_code": 1,
+      "stderr": "",
+      "output_sha256": "060342881d86d9654cfcddd82a217ef3343e5a96372c1410954421a327c5d637",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "tests",
+            "code": "schema_error",
+            "detail": "Wrong JSON type",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+          "tests": "38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "selected_tests_bool",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+        "tests": "2ed27c1421e6928dbe13dbfdb5c59e1045b30341fe7ebe05700006bc5ac572c0"
+      },
+      "exit_code": 1,
+      "stderr": "",
+      "output_sha256": "5977ff294cff3e2cbd0d8114eedd4ec5659d8bac2b82aeb15f7b7a960b6764c8",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "tests",
+            "code": "schema_error",
+            "detail": "Wrong JSON type",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+          "tests": "2ed27c1421e6928dbe13dbfdb5c59e1045b30341fe7ebe05700006bc5ac572c0"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "selected_tests_list",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+        "tests": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "exit_code": 1,
+      "stderr": "",
+      "output_sha256": "dcbe68fc0a9de32f468bb63f0dd4632df25667583fd4fb30c28b839a54a1c4cd",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "tests",
+            "code": "schema_error",
+            "detail": "Wrong JSON type",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+          "tests": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "selected_tests_str",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+        "tests": "768f4041015f815599cda770aa855651c6fd4270b310f46d5848b03eec40d3d7"
+      },
+      "exit_code": 1,
+      "stderr": "",
+      "output_sha256": "50e6cba24aed602b5c4afb236aecc5ded2a7e09613c923223381df3af420cb2b",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "tests",
+            "code": "schema_error",
+            "detail": "Wrong JSON type",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+          "tests": "768f4041015f815599cda770aa855651c6fd4270b310f46d5848b03eec40d3d7"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "selected_tests_int",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+        "tests": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58"
+      },
+      "exit_code": 1,
+      "stderr": "",
+      "output_sha256": "8277bd06f93d08b20ae278cd58eda9f40cdfe205466e48b661f7f46a0c16c40d",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "tests",
+            "code": "schema_error",
+            "detail": "Wrong JSON type",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+          "tests": "10159baf262b43a92d95db59dae1f72c645127301661e0a3ce4e38b295a97c58"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "graph_lone_0xd800_id",
+      "tool": "graph",
+      "input_sha256": {
+        "plan": "5fc7b902f44128a6489a5a5615734c4d7f0d177cbdae2329abfb31c7e89fc526"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "10bf6d0fcd5546768599ff97af438ea4227491010d643959def1782a41378d3b",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "blocked_tasks": [],
+        "completed_task_ids": [],
+        "completion_inconsistencies": [],
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "implementation_correctness": "not_assessed",
+        "input_sha256": {
+          "plan": "5fc7b902f44128a6489a5a5615734c4d7f0d177cbdae2329abfb31c7e89fc526"
+        },
+        "mechanical_passed": false,
+        "readiness_holds": [],
+        "readiness_observations": [],
+        "ready_task_ids": [],
+        "requirement_linkage": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "GraphCheckResult.v1",
+        "semantic_correctness": "not_assessed"
+      }
+    },
+    {
+      "case": "graph_lone_0xd800_key",
+      "tool": "graph",
+      "input_sha256": {
+        "plan": "1018de6c346656b5a24cac9b8bc5893dc886780d7a61515181a8d77e7bfe2c87"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "5c9458214ad2d5fa35483b2500e73962a89cd051bc96beb36049f341c555168c",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "blocked_tasks": [],
+        "completed_task_ids": [],
+        "completion_inconsistencies": [],
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "implementation_correctness": "not_assessed",
+        "input_sha256": {
+          "plan": "1018de6c346656b5a24cac9b8bc5893dc886780d7a61515181a8d77e7bfe2c87"
+        },
+        "mechanical_passed": false,
+        "readiness_holds": [],
+        "readiness_observations": [],
+        "ready_task_ids": [],
+        "requirement_linkage": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "GraphCheckResult.v1",
+        "semantic_correctness": "not_assessed"
+      }
+    },
+    {
+      "case": "trace_lone_0xd800_id",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "5fc7b902f44128a6489a5a5615734c4d7f0d177cbdae2329abfb31c7e89fc526",
+        "tests": "e7a0f1fa1c0373f3583e033343462cc5f63ab47c7e23e17071c3c8b2fd4471ab"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "f8df9cf11b1d6aa16139199f994455aaf8b5346a41e4a39e3fc956b9297d6be4",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "5fc7b902f44128a6489a5a5615734c4d7f0d177cbdae2329abfb31c7e89fc526",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "trace_lone_0xd800_key",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "1018de6c346656b5a24cac9b8bc5893dc886780d7a61515181a8d77e7bfe2c87",
+        "tests": "e7a0f1fa1c0373f3583e033343462cc5f63ab47c7e23e17071c3c8b2fd4471ab"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "fe3f055051d6d4ac3efb1bb0e80cacd9e300d06380680f051b93b0f613e7db8c",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "1018de6c346656b5a24cac9b8bc5893dc886780d7a61515181a8d77e7bfe2c87",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "graph_lone_0xdfff_id",
+      "tool": "graph",
+      "input_sha256": {
+        "plan": "d702c7a6392435294705554e0f0af47d825d66c77b7506f68e271f2ac80c00d5"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "3dc4c1c211363f6f8f6fcf1b2e63f6bb5094ea2a81b3593337d9a6b90385a5e7",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "blocked_tasks": [],
+        "completed_task_ids": [],
+        "completion_inconsistencies": [],
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "implementation_correctness": "not_assessed",
+        "input_sha256": {
+          "plan": "d702c7a6392435294705554e0f0af47d825d66c77b7506f68e271f2ac80c00d5"
+        },
+        "mechanical_passed": false,
+        "readiness_holds": [],
+        "readiness_observations": [],
+        "ready_task_ids": [],
+        "requirement_linkage": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "GraphCheckResult.v1",
+        "semantic_correctness": "not_assessed"
+      }
+    },
+    {
+      "case": "graph_lone_0xdfff_key",
+      "tool": "graph",
+      "input_sha256": {
+        "plan": "739d249296899596ae6bc4133d9e399efe14bc7d3fd49d4620bc5c30a21a2fd5"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "7156c13a825e658ab07b69696f09ae7f866388cfce85e13bbe979b1ab8dbb893",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "blocked_tasks": [],
+        "completed_task_ids": [],
+        "completion_inconsistencies": [],
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "implementation_correctness": "not_assessed",
+        "input_sha256": {
+          "plan": "739d249296899596ae6bc4133d9e399efe14bc7d3fd49d4620bc5c30a21a2fd5"
+        },
+        "mechanical_passed": false,
+        "readiness_holds": [],
+        "readiness_observations": [],
+        "ready_task_ids": [],
+        "requirement_linkage": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "GraphCheckResult.v1",
+        "semantic_correctness": "not_assessed"
+      }
+    },
+    {
+      "case": "trace_lone_0xdfff_id",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "d702c7a6392435294705554e0f0af47d825d66c77b7506f68e271f2ac80c00d5",
+        "tests": "e7a0f1fa1c0373f3583e033343462cc5f63ab47c7e23e17071c3c8b2fd4471ab"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "c117f9a54683ece59f7b9ed5272fe5b3aa00994d86807040e6726b6b8d0b450b",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "d702c7a6392435294705554e0f0af47d825d66c77b7506f68e271f2ac80c00d5",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "trace_lone_0xdfff_key",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "739d249296899596ae6bc4133d9e399efe14bc7d3fd49d4620bc5c30a21a2fd5",
+        "tests": "e7a0f1fa1c0373f3583e033343462cc5f63ab47c7e23e17071c3c8b2fd4471ab"
+      },
+      "exit_code": 2,
+      "stderr": "",
+      "output_sha256": "7d6124de0716c3c1797409baf3b798fe01d19d5b261193a883d8a730429a7a28",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [
+          {
+            "artifact": "plan",
+            "code": "invalid_json",
+            "detail": "Input contains an unpaired Unicode surrogate",
+            "ids": [],
+            "pointer": ""
+          }
+        ],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "739d249296899596ae6bc4133d9e399efe14bc7d3fd49d4620bc5c30a21a2fd5",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc"
+        },
+        "matrix": [],
+        "mechanical_passed": false,
+        "required_coverage": "not_assessed",
+        "requirement_link_validation": "not_assessed",
+        "schema_sha256": {},
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_assessed",
+        "test_execution": "not_run",
+        "test_link_validation": "not_assessed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "selected_near_miss_still_mechanical_pass",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "2add4f3758280a6193a3d565ddd3ec7454e6907ec3999cc3d1f4dab677e224a2",
+        "tests": "c77d9cc1a08909615568591956a20ec81fb410f0cb1f95ea95536b95c8df0712"
+      },
+      "exit_code": 0,
+      "stderr": "",
+      "output_sha256": "e5bfaf97ed0fb33a4925cd59d0c693a928d2859b62389031b8b0b6df142af330",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "2add4f3758280a6193a3d565ddd3ec7454e6907ec3999cc3d1f4dab677e224a2",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+          "tests": "c77d9cc1a08909615568591956a20ec81fb410f0cb1f95ea95536b95c8df0712"
+        },
+        "matrix": [
+          {
+            "design_ids": [],
+            "priority": "must",
+            "required": true,
+            "requirement_id": "R1",
+            "task_ids": [
+              "T1"
+            ],
+            "test_ids": [
+              "TEST1"
+            ]
+          },
+          {
+            "design_ids": [],
+            "priority": "must",
+            "required": true,
+            "requirement_id": "R2",
+            "task_ids": [
+              "T2"
+            ],
+            "test_ids": [
+              "TEST2"
+            ]
+          }
+        ],
+        "mechanical_passed": true,
+        "required_coverage": "passed",
+        "requirement_link_validation": "passed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+          "test-design.schema.json": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_supplied",
+        "test_execution": "not_run",
+        "test_link_validation": "passed",
+        "tests_status": "supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    },
+    {
+      "case": "omitted_tests_still_not_supplied",
+      "tool": "trace",
+      "input_sha256": {
+        "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc",
+        "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+        "tests": "e7a0f1fa1c0373f3583e033343462cc5f63ab47c7e23e17071c3c8b2fd4471ab"
+      },
+      "exit_code": 0,
+      "stderr": "",
+      "output_sha256": "4efdfb3767339135456adc7dd961837dbb206a0c721258e149de4f0b5dbf3cea",
+      "actual_output": {
+        "authority_verification": "not_assessed",
+        "behavioral_verification": "not_assessed",
+        "design_artifact_verification": "not_assessed",
+        "design_link_validation": "not_selected",
+        "errors": [],
+        "graph_validation": "not_assessed",
+        "input_sha256": {
+          "plan": "41acae7b45ed0a0f3c6500ec22ed6767acd3550b84df33982de40a8eef3dc2c1",
+          "spec": "d7893dc8e81d6651d0402686e7bee0815e0903233e6fd0e3d15b6bc35f6375dc"
+        },
+        "matrix": [
+          {
+            "design_ids": [],
+            "priority": "must",
+            "required": true,
+            "requirement_id": "R1",
+            "task_ids": [
+              "T1"
+            ],
+            "test_ids": []
+          },
+          {
+            "design_ids": [],
+            "priority": "must",
+            "required": true,
+            "requirement_id": "R2",
+            "task_ids": [
+              "T2"
+            ],
+            "test_ids": []
+          }
+        ],
+        "mechanical_passed": true,
+        "required_coverage": "passed",
+        "requirement_link_validation": "passed",
+        "schema_sha256": {
+          "spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+          "task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+          "task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+        },
+        "schema_version": "TraceCheckResult.v1",
+        "semantic_correctness": "not_assessed",
+        "skipped_design_link_count": 0,
+        "source_binding": "not_supplied",
+        "test_execution": "not_supplied",
+        "test_link_validation": "not_supplied",
+        "tests_status": "not_supplied",
+        "uncovered_nonrequired_requirement_ids": [],
+        "uncovered_test_inventory_ids": [],
+        "undecided_requirement_ids": []
+      }
+    }
+  ]
+}

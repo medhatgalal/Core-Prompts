@@ -99,3 +99,45 @@ def test_all_completed_and_duplicate_graph_arrays():
         r=module().check_graph(broken)
         assert not r['mechanical_passed'] and r['ready_task_ids']==[]
         assert {e['code'] for e in r['errors']}=={'schema_error'}
+
+
+@pytest.mark.parametrize('bad',['\ud800','\udfff'])
+@pytest.mark.parametrize('location',['id','key'])
+def test_graph_cli_rejects_lone_surrogate_keys_and_values(tmp_path,bad,location):
+    import subprocess
+    import sys
+    from jsonschema import Draft202012Validator
+    p=plan()
+    if location=='id': p['tasks'][0]['id']='T'+bad
+    else: p['unexpected'+bad]=True
+    path=tmp_path/'plan.json'; path.write_text(json.dumps(p,ensure_ascii=True))
+    process=subprocess.run([sys.executable,'-I','-S',str(OWNER/'scripts/graph_check.py'),'--plan',str(path)],capture_output=True,text=True)
+    assert process.returncode==2 and process.stderr==''
+    result=json.loads(process.stdout)
+    assert result['errors']==[{'artifact':'plan','code':'invalid_json','detail':'Input contains an unpaired Unicode surrogate','ids':[],'pointer':''}]
+    assert not result['mechanical_passed'] and result['ready_task_ids']==[]
+    assert Draft202012Validator(json.loads((OWNER/'schemas/graph-result.schema.json').read_text())).is_valid(result)
+
+
+def test_graph_cli_preserves_valid_unicode_in_success_and_error_pointer(tmp_path):
+    import subprocess
+    import sys
+    p=plan(); ident='Té漢😀'; p['tasks'][0]['id']=ident
+    path=tmp_path/'plan.json'
+    def run():
+        path.write_text(json.dumps(p,ensure_ascii=True))
+        return subprocess.run([sys.executable,'-I','-S',str(OWNER/'scripts/graph_check.py'),'--plan',str(path)],capture_output=True,text=True)
+    process=run(); result=json.loads(process.stdout)
+    assert process.returncode==0 and process.stderr=='' and ident in result['ready_task_ids']
+    p['extra/'+ident]=True
+    process=run(); result=json.loads(process.stdout)
+    assert process.returncode==1 and process.stderr==''
+    assert result['errors'][0]['pointer']=='/extra~1'+ident
+
+
+def test_graph_emitter_defensively_escapes_python_api_surrogates(capsys):
+    m=module(); p=plan(); p['tasks'][0]['id']='T\udfff'
+    assert m.emit(m.check_graph(p))==0
+    text=capsys.readouterr().out
+    assert '\\udfff' in text and 'T\udfff' in json.loads(text)['ready_task_ids']
+    text.encode('utf-8')

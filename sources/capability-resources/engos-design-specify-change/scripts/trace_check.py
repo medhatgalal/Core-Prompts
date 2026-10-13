@@ -36,7 +36,18 @@ def decode(raw, artifact):
     except UnicodeError:
         raise AssessmentError('invalid_utf8',artifact,'Input is not UTF-8') from None
     try:
-        return json.loads(text, object_pairs_hook=pairs, parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        value = json.loads(text, object_pairs_hook=pairs, parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        pending = [value]
+        while pending:
+            node = pending.pop()
+            if isinstance(node, str) and any(0xD800 <= ord(char) <= 0xDFFF for char in node):
+                raise AssessmentError('invalid_json', artifact, 'Input contains an unpaired Unicode surrogate')
+            if isinstance(node, dict):
+                pending.extend(node.keys())
+                pending.extend(node.values())
+            elif isinstance(node, list):
+                pending.extend(node)
+        return value
     except AssessmentError as exc:
         exc.record['artifact'] = artifact
         raise
@@ -217,7 +228,14 @@ class Parser(argparse.ArgumentParser):
 
 def emit(result):
     finish(result)
-    print(json.dumps(result,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False))
+    serialized = json.dumps(result,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False)
+    try:
+        serialized.encode('utf-8')
+    except UnicodeEncodeError:
+        # Defensive handling for a direct Python API caller bypassing decode.
+        # Escaping preserves string values; valid Unicode keeps normal output.
+        serialized = json.dumps(result,sort_keys=True,indent=2,ensure_ascii=True,allow_nan=False)
+    print(serialized)
     return 0 if result['mechanical_passed'] else (2 if any(e['code'] in {'usage_error','input_read_error','invalid_json','invalid_utf8','duplicate_json_key','package_error'} for e in result['errors']) else 1)
 
 
@@ -225,16 +243,16 @@ def empty_result(tests=False, design_links=False):
     return base('TraceCheckResult.v1') | dict(requirement_link_validation='not_assessed',required_coverage='not_assessed',tests_status='supplied' if tests else 'not_supplied',test_link_validation='not_assessed' if tests else 'not_supplied',test_execution='not_run' if tests else 'not_supplied',design_link_validation='not_assessed' if design_links else 'not_selected',design_artifact_verification='not_assessed',source_binding='not_assessed',graph_validation='not_assessed',matrix=[],uncovered_nonrequired_requirement_ids=[],undecided_requirement_ids=[],uncovered_test_inventory_ids=[],skipped_design_link_count=0)
 
 
-def check_trace(spec, plan, tests=None, *, design_links=False):
-    result=empty_result(tests is not None,design_links)
+def _check_trace(spec, plan, tests, *, design_links, tests_selected):
+    result=empty_result(tests_selected,design_links)
     try:
         inputs=[('spec',spec,'spec-contract.schema.json'),('plan',plan,'task-plan.schema.json')]
         names=['spec-contract.schema.json','task-plan.schema.json','task-contract.schema.json']
-        if tests is not None: inputs.append(('tests',tests,'test-design.schema.json')); names.append('test-design.schema.json')
+        if tests_selected: inputs.append(('tests',tests,'test-design.schema.json')); names.append('test-design.schema.json')
         if not validate_inputs(inputs,names,result): return finish(result)
         for ns in ('requirements','source_refs','assumptions','design_refs'): duplicates(spec[ns],'spec','/'+ns,result)
         plan_membership(plan,result)
-        if tests is not None: duplicates(tests['tests'],'tests','/tests',result)
+        if tests_selected: duplicates(tests['tests'],'tests','/tests',result)
         if result['errors']: return finish(result)
         requirements={r['id']:r for r in spec['requirements']}; designs={d['id'] for d in spec['design_refs']}
         task_links={r:[] for r in requirements}; design_ids={r:set() for r in requirements}; test_links={r:[] for r in requirements}
@@ -253,7 +271,7 @@ def check_trace(spec, plan, tests=None, *, design_links=False):
         for r,item in requirements.items():
             if item['priority']=='must' and not task_links[r]: coverage_errors.append(error('uncovered_requirement','spec','/requirements',[r],'Must requirement has no actual task link'))
         result['errors'].extend(coverage_errors); result['required_coverage']='failed' if coverage_errors else 'passed'
-        if tests is not None:
+        if tests_selected:
             inventory=set(tests['requirement_ids']); exercised=set()
             for i,r in enumerate(tests['requirement_ids']):
                 if r not in requirements: result['errors'].append(error('unknown_requirement','tests',f'/requirement_ids/{i}',[r],'Test inventory requirement is unknown'))
@@ -268,13 +286,17 @@ def check_trace(spec, plan, tests=None, *, design_links=False):
                 if item['priority']=='must' and not test_links[r]: result['errors'].append(error('uncovered_test_requirement','tests','/tests',[r],'Must requirement has no actual test row link'))
             result['uncovered_test_inventory_ids']=sorted(inventory-exercised)
             result['test_link_validation']='failed' if any(e['artifact']=='tests' for e in result['errors']) else 'passed'
-        result['uncovered_nonrequired_requirement_ids']=sorted(r for r,item in requirements.items() if item['priority']!='must' and (not task_links[r] or (tests is not None and not test_links[r])))
+        result['uncovered_nonrequired_requirement_ids']=sorted(r for r,item in requirements.items() if item['priority']!='must' and (not task_links[r] or (tests_selected and not test_links[r])))
         result['undecided_requirement_ids']=sorted(r for r,item in requirements.items() if item['priority']=='undecided')
         if not result['errors']:
             result['matrix']=[dict(requirement_id=r,priority=requirements[r]['priority'],required=requirements[r]['priority']=='must',task_ids=sorted(task_links[r]),test_ids=sorted(test_links[r]),design_ids=sorted(design_ids[r])) for r in sorted(requirements)]
     except AssessmentError as exc: result['errors'].append(exc.record)
     except RecursionError: result['errors'].append(error('package_error','package',detail='Assessment exceeds supported nesting'))
     return finish(result)
+
+
+def check_trace(spec, plan, tests=None, *, design_links=False):
+    return _check_trace(spec, plan, tests, design_links=design_links, tests_selected=tests is not None)
 
 
 def main(argv=None):
@@ -287,7 +309,7 @@ def main(argv=None):
             path=getattr(args,label)
             if path is not None:
                 raw,artifacts[label]=read_input(path,label,identities)
-        result=check_trace(artifacts['spec'],artifacts['plan'],artifacts.get('tests'),design_links=args.design_links)
+        result=_check_trace(artifacts['spec'],artifacts['plan'],artifacts.get('tests'),design_links=args.design_links,tests_selected=args.tests is not None)
         if not any(e['code'] in {'schema_error','package_error'} for e in result['errors']):
             binding=artifacts['plan']['spec_sha256']
             result['source_binding']='not_supplied' if binding is None else ('matched' if binding==identities['spec'] else 'mismatch')

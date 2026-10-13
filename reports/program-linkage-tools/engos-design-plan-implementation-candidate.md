@@ -252,3 +252,8 @@ both remains blocked until both IDs occur in the supplied completed list. A
 cycle involving even completed nodes fails. Evaluate both examples and missing
 or duplicate IDs before trusting the helper; inspect actual task outcomes and
 execution authority separately. The blank dependency-map template stays manual.
+
+CLI input rejects unpaired Unicode surrogates in object keys or values with
+structured `invalid_json` output and exit 2. Valid non-ASCII and paired Unicode
+remain exact, without normalization. The serializer defensively escapes lone
+surrogates if a direct Python API caller bypasses input decoding.

@@ -36,7 +36,18 @@ def decode(raw, artifact):
     except UnicodeError:
         raise AssessmentError('invalid_utf8',artifact,'Input is not UTF-8') from None
     try:
-        return json.loads(text, object_pairs_hook=pairs, parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        value = json.loads(text, object_pairs_hook=pairs, parse_constant=lambda _: (_ for _ in ()).throw(ValueError()))
+        pending = [value]
+        while pending:
+            node = pending.pop()
+            if isinstance(node, str) and any(0xD800 <= ord(char) <= 0xDFFF for char in node):
+                raise AssessmentError('invalid_json', artifact, 'Input contains an unpaired Unicode surrogate')
+            if isinstance(node, dict):
+                pending.extend(node.keys())
+                pending.extend(node.values())
+            elif isinstance(node, list):
+                pending.extend(node)
+        return value
     except AssessmentError as exc:
         exc.record['artifact'] = artifact
         raise
@@ -217,7 +228,14 @@ class Parser(argparse.ArgumentParser):
 
 def emit(result):
     finish(result)
-    print(json.dumps(result,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False))
+    serialized = json.dumps(result,sort_keys=True,indent=2,ensure_ascii=False,allow_nan=False)
+    try:
+        serialized.encode('utf-8')
+    except UnicodeEncodeError:
+        # Defensive handling for a direct Python API caller bypassing decode.
+        # Escaping preserves string values; valid Unicode keeps normal output.
+        serialized = json.dumps(result,sort_keys=True,indent=2,ensure_ascii=True,allow_nan=False)
+    print(serialized)
     return 0 if result['mechanical_passed'] else (2 if any(e['code'] in {'usage_error','input_read_error','invalid_json','invalid_utf8','duplicate_json_key','package_error'} for e in result['errors']) else 1)
 
 

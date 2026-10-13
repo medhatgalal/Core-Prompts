@@ -250,3 +250,12 @@ A task promising to export every row can correctly link an R1 that requires only
 permitted rows: mechanical linkage passes while the prose contradicts scope.
 Inspect the `trace_examples` positive-and-near-miss fixture and obtain independent
 semantic review. Its seeded expectation is not a reviewer result.
+
+CLI input rejects unpaired Unicode surrogates in object keys or values with
+structured `invalid_json` output and exit 2. Valid non-ASCII and paired Unicode
+remain exact, without normalization. The serializer defensively escapes lone
+surrogates if a direct Python API caller bypasses input decoding.
+
+Selecting `--tests FILE` always selects TestDesign shape validation, including
+JSON null or other invalid top-level types. These fail shape with supplied test
+status and exit 1; only absence of the CLI option means `not_supplied`.
