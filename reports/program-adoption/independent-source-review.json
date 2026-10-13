@@ -1,0 +1,379 @@
+{
+  "schema_version": "Findings.v1",
+  "target": {
+    "kind": "working_tree",
+    "base": "582e131c8a5293e6f86c61c4b45046a4f2e5097f",
+    "head": "582e131c8a5293e6f86c61c4b45046a4f2e5097f",
+    "snapshot_digest": "dec7c8d3ed6fd50fb12281c42a386641d49fe5c095a35a9655a05e51a766f33f",
+    "comparison": "unstaged",
+    "included_change_classes": [
+      "unstaged",
+      "untracked"
+    ]
+  },
+  "review_status": "complete",
+  "evidence": [
+    {
+      "id": "R1_D",
+      "path": "reports/program-adoption/round1/independent-source.diff",
+      "kind": "diff",
+      "side": "snapshot",
+      "identity": "b0099dd9c992f562d25a1eb96639273b55c4f5bf574a2fb266ee851b0f89d808",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_S",
+      "path": "reports/program-adoption/source-seal.json",
+      "kind": "decision",
+      "side": "snapshot",
+      "identity": "85a6a165a88189cac35e9a0d7a85d57e94d1973ee44600bdc8699477088806d0",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_P",
+      "path": "reports/program-adoption/round1/reviewed-source/scripts/core_install/planner.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "f223ad5a5c69d40e10781d532ef7aaa5ac2362e6f96b38062c9c0f8f3d709afe",
+      "line_start": 340,
+      "line_end": 358,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_M",
+      "path": "reports/program-adoption/round1/reviewed-source/scripts/core_install/selection_policy.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "baf2cd0a115df7d4e5bbaae1e14e162b8f124ed487adc37edc2b9fb0def91935",
+      "line_start": 39,
+      "line_end": 75,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_C",
+      "path": "reports/program-adoption/round1/reviewed-source/scripts/core_install/catalog.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "83216038735ef201988f4e51fbcc1d8d986eb83b14cf08cccaa3eda6cc93e0fc",
+      "line_start": 110,
+      "line_end": 121,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_LAYOUT",
+      "path": "scripts/core_install/providers.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "c51819abb90c13b71aa220140802e723bb0b6654a17a07310292aa219748d656",
+      "line_start": 132,
+      "line_end": 141,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_E1",
+      "path": "reports/program-adoption/round1/independent-empty-shared-repro.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "cf784297182665e1192f473521407f9390e96575386c80e69b39bea3353f8988",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_E2",
+      "path": "reports/program-adoption/round1/independent-historical-provider-probes.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "db9002017e1414316b98491156c16887d7040ab93d724f53ed2226b4e3667c67",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_E3",
+      "path": "reports/program-adoption/round1/independent-bindings-and-catalog-probe.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "ecef966ac6dffc568efe88a135f5f70f8a042cdac8ae60567e905919fabe4741",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_TEST",
+      "path": "reports/program-adoption/round1/independent-focused.txt",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "27f5f2cba7c48c5de83d2aa63dc12d9b5ecef80772e35da919c26ddce0627484",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R1_R",
+      "path": "/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skill-landscape/initiative/evidence/program-adoption-contract.json",
+      "kind": "decision",
+      "side": "external",
+      "identity": "5c120574b42ddccba241569e1269e3a06254628b099512e734b1a2b0488e54ac",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_DIFF",
+      "path": "reports/program-adoption/independent-round2-source.diff",
+      "kind": "diff",
+      "side": "snapshot",
+      "identity": "537aeafef1bba9945d5f128a5f9c7d0c10194371730d18f1fb3ca0698e872571",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_SEAL",
+      "path": "reports/program-adoption/repair-round2/source-seal.json",
+      "kind": "decision",
+      "side": "snapshot",
+      "identity": "dec7c8d3ed6fd50fb12281c42a386641d49fe5c095a35a9655a05e51a766f33f",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_BIND",
+      "path": "reports/program-adoption/independent-round2-bindings.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "820527f4df5cf77832b68b59f88803962a1a7eaa6d4bffd9b257281c1e681d40",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_CONSENT_CATALOG",
+      "path": "reports/program-adoption/independent-round2-consent-catalog.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "e48eaad55351b8a8d8bf301150e65abb256f260ebaaf987d61008e9e5498d130",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_HISTORICAL",
+      "path": "reports/program-adoption/independent-round2-historical-probes.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "054f3106d3dbd003a0483eef9b670973cdd5d9ffc3531c37d0a90c9f87cd262e",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_TEST",
+      "path": "reports/program-adoption/independent-round2-focused.txt",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "ef8741ac4302d3a955f6e9779780e813058c1e0e7a732e2b6e3d46f454a2e03e",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_AUTHOR95",
+      "path": "reports/program-adoption/repair-round2/affected.txt",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "d8707ba4fea93bf186a16f2b69aeb068b13d7201d4fbbe38717a786c2793b50a",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_PLANNER",
+      "path": "scripts/core_install/planner.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "2d88fe461b9af243d3410c0221f67b652f8e7c51175114308f51bb446dfc1459",
+      "line_start": 340,
+      "line_end": 358,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_POLICY",
+      "path": "scripts/core_install/selection_policy.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "3a89f2e5479a5cb5fc5ecc11c1c03c3a584cba08a4c1376d61804fd6788d1d00",
+      "line_start": 55,
+      "line_end": 86,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_CATALOG",
+      "path": "scripts/core_install/catalog.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "85db2899aa0fee1e62fe11fb43a2a47d92659cf4f71b3bb7413ae4a5743762ee",
+      "line_start": 110,
+      "line_end": 127,
+      "read_status": "read"
+    },
+    {
+      "id": "R2_DOC",
+      "path": "docs/INSTALL-PROFILES.md",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "838316122f8ef997783d0a0079bcd9706cfd28546b552ec9542e1add536ea29c",
+      "line_start": 170,
+      "line_end": 184,
+      "read_status": "read"
+    }
+  ],
+  "findings": [
+    {
+      "id": "ADOPT-SRC-001",
+      "severity": "high",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "scripts/core_install/planner.py",
+        "line": 340,
+        "side": "snapshot"
+      },
+      "changed_cause": {
+        "summary": "Known shared readers omit saved policy participants whose concrete selection is empty.",
+        "evidence_refs": [
+          "R1_D",
+          "R1_P",
+          "R1_E1",
+          "R1_R"
+        ]
+      },
+      "evidence_refs": [
+        "R1_D",
+        "R1_P",
+        "R1_E1",
+        "R1_R"
+      ],
+      "affected_consumer": {
+        "path": "scripts/core_install/planner.py",
+        "line": 348,
+        "evidence_refs": [
+          "R1_D",
+          "R1_P",
+          "R1_E1",
+          "R1_R"
+        ]
+      },
+      "impact": "A valid schema3 state with selection=[], packages={}, runtime={}, selection_policy={gemini: curated} followed by an explicit Codex full_catalog request produces no blockers, reports only Codex as known, and proposes 36 new shared physical skills / 1452 actions while retaining Gemini curated. This bypasses the explicit joint-choice boundary and empty curated intent.",
+      "repair": "Include saved policy participants in known shared-reader scope, preserve empty selections as meaningful, and regress both provider directions plus exact joint consent. Assert the blocked preview and CLI apply leave the target unchanged.",
+      "disposition": "resolved",
+      "disposition_reason": "Both empty-curated reader directions now return shared-surface blockers. Actual generated capsule CLI returns 1 before any persistent target write; full target hashes/modes remain identical, including no new lock. Exact joint full choice is accepted.",
+      "disposition_evidence_refs": [
+        "R2_CONSENT_CATALOG",
+        "R2_PLANNER",
+        "R2_TEST",
+        "R2_SEAL"
+      ]
+    },
+    {
+      "id": "ADOPT-SRC-002",
+      "severity": "high",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "scripts/core_install/selection_policy.py",
+        "line": 58,
+        "side": "snapshot"
+      },
+      "changed_cause": {
+        "summary": "Historical receipt mapping supports shared layouts only through codex_layouts and derives source paths from the logical provider.",
+        "evidence_refs": [
+          "R1_D",
+          "R1_M",
+          "R1_LAYOUT",
+          "R1_E2",
+          "R1_R"
+        ]
+      },
+      "evidence_refs": [
+        "R1_D",
+        "R1_M",
+        "R1_LAYOUT",
+        "R1_E2",
+        "R1_R"
+      ],
+      "affected_consumer": {
+        "path": "scripts/core_install/planner.py",
+        "line": 194,
+        "evidence_refs": [
+          "R1_D",
+          "R1_M",
+          "R1_LAYOUT",
+          "R1_E2",
+          "R1_R"
+        ]
+      },
+      "impact": "Executing the unchanged archived v1.16.3 capsule successfully generates legitimate saved empty Gemini-only and Codex+Gemini profiles. Current routine sync rejects both with LEGACY_MEMBERSHIP_UNPROVEN; the same actual Codex-only fixture maps 32. Valid Gemini installations cannot take the promised bounded migration or either policy resolution.",
+      "repair": "Resolve logical historical Gemini membership through its actual trusted portable/shared source and layout mapping, with complete identity and receipt-source validation. Add actual immutable Gemini-only and joint donor cases for non-expanding conversion, curated/full choices, detached follow-up, and retained source/identity tamper rejection; do not enumerate incoming membership as fallback.",
+      "disposition": "resolved",
+      "disposition_reason": "Actual immutable Codex-only, Gemini-only and paired empty-profile donors map exactly32 per original provider; explicit full previews map36 without enrolling another provider. Twelve independent missing-source/wrong-source/identity/unmapped-scope tamper cases refuse without target changes. Re-run regressions pass actual curated/full apply and detached installed-capsule follow-up.",
+      "disposition_evidence_refs": [
+        "R2_HISTORICAL",
+        "R2_POLICY",
+        "R2_TEST",
+        "R2_SEAL"
+      ]
+    },
+    {
+      "id": "ADOPT-SRC-003",
+      "severity": "medium",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "scripts/core_install/catalog.py",
+        "line": 116,
+        "side": "snapshot"
+      },
+      "changed_cause": {
+        "summary": "Receipt-only authority is inferred using equality membership in the proof list, regardless of which registry contains the record.",
+        "evidence_refs": [
+          "R1_D",
+          "R1_C",
+          "R1_E3",
+          "R1_R"
+        ]
+      },
+      "evidence_refs": [
+        "R1_D",
+        "R1_C",
+        "R1_E3",
+        "R1_R"
+      ],
+      "affected_consumer": {
+        "path": "scripts/core_install/catalog.py",
+        "line": 155,
+        "evidence_refs": [
+          "R1_D",
+          "R1_C",
+          "R1_E3",
+          "R1_R"
+        ]
+      },
+      "impact": "Copying one receipt_membership_packages record into packages is accepted by validate_catalog. packages() then returns the receipt_membership_only record to the receiptless recognizer, contrary to the new registry authority boundary. The sealed catalog is correctly separated, but the new validator accepts this malformed source state.",
+      "repair": "Validate recognition and receipt-proof registries by their containers; reject proof-only names/authority in recognition packages and reject cross-registry duplicates. Keep ordinary historical identities and recognition behavior unchanged, and add the duplicate-promotion negative test.",
+      "disposition": "resolved",
+      "disposition_reason": "Promotion, duplicate proof, duplicate normal record, forbidden normal authority and malformed proof-field cases all reject. Registry container determines authority; original pinned catalog and identity inventories remain unchanged.",
+      "disposition_evidence_refs": [
+        "R2_CONSENT_CATALOG",
+        "R2_CATALOG",
+        "R2_TEST",
+        "R2_SEAL"
+      ]
+    }
+  ],
+  "unreviewed": [],
+  "verdict": "ready"
+}

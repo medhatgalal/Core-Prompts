@@ -9,7 +9,7 @@ import tomllib
 from pathlib import Path
 
 import install_bundle
-from . import catalog, providers
+from . import catalog, providers, selection_policy
 from .transaction import encoded, identity, inventory, safe
 
 STATE = '.core-prompts-state/installation.json'
@@ -40,12 +40,14 @@ def read_json(root, rel):
 
 def read_state(target):
     state = read_json(target, STATE)
-    if safe(target, STATE).exists() and (not isinstance(state, dict) or state.get('schema') != 2
+    if safe(target, STATE).exists() and (not isinstance(state, dict) or state.get('schema') not in (2, 3)
                               or state.get('owner') != 'Core-Prompts'
                               or not isinstance(state.get('selection'), list)
                               or not isinstance(state.get('packages'), dict)
                               or not isinstance(state.get('runtime'), dict)):
         raise ValueError('INVALID_STATE: unrecognized installation ownership')
+    if state is not None:
+        selection_policy.state_policies(state)
     return state
 
 
@@ -167,7 +169,7 @@ def plan(repo: Path, target: Path, request: dict):
             raise ValueError('INVALID_STATE: saved profile and ownership differ')
     clients = request['providers'] if 'providers' in request else (profile.get('targets') if profile else None)
     if clients is None:
-        clients = sorted({k.split(':')[0] for k in previous['selection']}) if state else list(providers.PROVIDERS)
+        clients = sorted({k.split(':')[0] for k in previous['selection']} | set(previous.get('selection_policy', {}))) if state else list(providers.PROVIDERS)
     if not isinstance(clients, list) or len(clients) != len(set(clients)) or set(clients) - set(providers.PROVIDERS):
         raise ValueError('INVALID_REQUEST: unknown or repeated provider')
     if 'agy' in clients and safe(target, '.gemini/antigravity-cli/skills').exists():
@@ -180,9 +182,35 @@ def plan(repo: Path, target: Path, request: dict):
         if request.get('slugs') and (slug or catalog.SUCCESSORS.get(old_slug, old_slug)) not in request['slugs']:
             return False
         return not request.get('kinds') or kind in request['kinds']
+    policy = selection_policy.validate_request(request, clients)
+    policies_before = selection_policy.state_policies(previous)
+    policies_after = dict(policies_before)
+    saved_origin = profile is not None and 'profile' not in request
+    if policy == 'curated' and 'profile' not in request and not request.get('slugs'):
+        mode = 'sync'
     selection = set(previous['selection'])
     profile_selection = _profile_selection(profile, current) if profile else None
-    if profile:
+    if saved_origin and not profile.get('slugs'):
+        profile_selection = selection_policy.saved_membership(
+            profile, old_receipt, catalog.membership_packages(trusted), current, encoded,
+            providers.key, providers.codex_layouts)
+    prior_selection = set(selection) | (profile_selection if saved_origin else set())
+    legacy_choices = [dict(provider=p, prior_skills=sorted(k.split(':', 2)[2] for k in prior_selection
+                         if k.startswith(p + ':skill:')), choices=['curated', 'full-catalog'])
+                      for p in clients if policies_before.get(p, 'legacy_unspecified') == 'legacy_unspecified']
+    if policy:
+        for p in clients:
+            policies_after[p] = policy
+        if policy == 'curated' and not state and not prior_selection and not request.get('slugs') and not request.get('profile', {}).get('slugs'):
+            raise ValueError('SELECTION_REQUIRED: fresh curated activation requires concrete skills')
+        if policy == 'curated' and saved_origin:
+            profile_selection = set(prior_selection)
+    if policy == 'full_catalog':
+        profile_selection = None
+    for p in clients:
+        if policies_after.get(p) == 'full_catalog':
+            selection |= {k for k, pkg in current.items() if pkg['provider'] == p and pkg['kind'] == 'skill'}
+    if profile_selection is not None:
         selection |= profile_selection
     missing_selected = {k for k in selection - set(current) if not catalog.retired_key(k)}
     # Explicitly retired identities disappear only under a catalog retirement.
@@ -300,13 +328,34 @@ def plan(repo: Path, target: Path, request: dict):
         if set(slugs) - {p['slug'] for p in current.values()}:
             raise ValueError('INVALID_REQUEST: unknown requested slug')
         selection |= {k for k,p in current.items() if p['provider'] in clients and p['kind'] in kinds
-                      and (not slugs or p['slug'] in slugs)}
+                      and (not slugs or p['slug'] in slugs)
+                      and (policy != 'curated' or bool(slugs) or k in prior_selection or k in (profile_selection or set()))}
     if not state and not profile and not present_keys and mode == 'repair':
         # Rerunning the installer is also the fresh-install entry point. Provider
         # availability is resolved by the CLI; callers must give fresh targets.
         if not request.get('providers'):
             raise ValueError('NO_INSTALLATION: select providers for a fresh installation')
-        selection |= {k for k,p in current.items() if p['provider'] in clients and p['kind'] in request.get('kinds',['skill'])}
+        selection |= {k for k,p in current.items() if p['provider'] in clients and p['kind'] in request.get('kinds',['skill'])
+                      and policy != 'curated'}
+    shared_readers = ({k.split(':')[0] for k in prior_selection} | set(policies_before) | set(clients)) & selection_policy.SHARED_READERS
+    physical_before, physical_error = _observe(target, ['.agents/skills'], observations)
+    if physical_error:
+        blockers.append('SHARED_SURFACE_POLICY_CONFLICT: ' + physical_error)
+    physical_before_slugs = {r.split('/')[2] for r in physical_before if len(r.split('/')) > 3}
+    physical_after_slugs = physical_before_slugs | {current[k]['slug'] for k in selection if k in current
+        and current[k]['kind'] == 'skill' and current[k]['roots'][0].startswith('.agents/skills/')}
+    shared_additions = physical_after_slugs - physical_before_slugs
+    for reader in sorted(shared_readers):
+        logical = {k.split(':', 2)[2] for k in selection if k.startswith(reader + ':skill:')}
+        if shared_additions and (policies_after.get(reader, 'legacy_unspecified') != 'full_catalog'
+                                 and not shared_additions <= logical):
+            blockers.append('SHARED_SURFACE_POLICY_CONFLICT: expansion exceeds ' + reader + ' concrete selection; review exact joint profile choice')
+    if policy == 'full_catalog' and len(shared_readers) > 1 and any(policies_before.get(p) != 'full_catalog' for p in shared_readers):
+        if ('profile' not in request or set(request['profile']['targets']) != shared_readers):
+            if shared_additions:
+                blockers.append('SHARED_SURFACE_POLICY_CONFLICT: full catalog requires exact joint shared-reader profile')
+    shared_exposure = dict(root='.agents/skills', known_readers=sorted(shared_readers),
+                           before_slugs=sorted(physical_before_slugs), after_slugs=sorted(physical_after_slugs))
     next_packages = dict(previous['packages'])
     package_actions, blocked_keys, to_retire = {}, set(), {}
     retirement_only = set()
@@ -575,9 +624,12 @@ def plan(repo: Path, target: Path, request: dict):
             except (OSError,ValueError) as exc:
                 preserved.append(dict(package=package,roots=[rel],reason=str(exc)))
     installation_preserved = [p for p in previous.get('preserved',[]) if p.get('package') not in assessed_keys] + preserved
-    prospective=dict(schema=2,owner='Core-Prompts',selection=sorted(selection),packages=next_packages,
+    prospective=dict(schema=3 if policy or previous['schema'] == 3 else 2,owner='Core-Prompts',selection=sorted(selection),packages=next_packages,
                      runtime=runtime,registrations=registrations,source_version=(repo/'VERSION').read_text().strip(),
                      catalog_sha256=identity(repo/catalog.CATALOG_PATH)['sha256'],preserved=installation_preserved)
+    if prospective['schema'] == 3:
+        readers = {k.split(':')[0] for k in selection} | set(policies_after)
+        prospective['selection_policy'] = {p: policies_after.get(p, 'legacy_unspecified') for p in sorted(readers)}
     if old_receipt or previous.get('schema1_origin'):
         prospective['schema1_origin'] = previous.get('schema1_origin') or {'profile_sha256':identity(target/V1_PROFILE)['sha256'],'receipt_sha256':identity(target/V1_RECEIPT)['sha256']}
     content=encoded(prospective); after=byte_identity(content)
@@ -600,7 +652,21 @@ def plan(repo: Path, target: Path, request: dict):
         if prior is not None and prior != action:
             blockers.append('ACTION_CONFLICT: '+action['path'])
         unique[action['path']]=action
-    return dict(schema=2,repo=str(repo),target=str(target),request=request,selection=sorted(selection),
+    shared_changes = []
+    for k, desired in sorted(current.items()):
+        if not package_actions.get(k) or k in blocked_keys or desired['provider'] not in ('codex', 'gemini') or desired['kind'] != 'skill':
+            continue
+        affected = sorted({p['provider'] for p in previous['packages'].values()
+                           if p['roots'] == desired['roots'] and p['provider'] != desired['provider']})
+        old_files = inventories.get(tuple(desired['roots']), {})
+        shared_changes.append(dict(root=desired['roots'][0], updated_provider=desired['provider'],
+            affected_existing_owners=affected, before_digest=selection_policy.digest(old_files),
+            after_digest=selection_policy.digest(desired['files'])))
+    return dict(schema=2,selection_before=sorted(prior_selection), policy_before=policies_before,
+                policy_after=prospective.get('selection_policy', policies_before), legacy_choices=legacy_choices,
+                shared_resource_changes=shared_changes, shared_exposure=shared_exposure,
+                membership_changes={p: dict(new=sorted(k for k in selection-prior_selection if k.startswith(p+':skill:')),
+                    retained=sorted(k for k in selection & prior_selection if k.startswith(p+':skill:'))) for p in clients},repo=str(repo),target=str(target),request=request,selection=sorted(selection),
                 source_files=bundle,observations=observations,agent_observations=agent_observations,
                 runtime_observations=runtime_observations,state_identity=identity(safe(target,STATE)),
                 schema1_profile_identity=identity(safe(target,V1_PROFILE)),schema1_receipt_identity=identity(safe(target,V1_RECEIPT)),

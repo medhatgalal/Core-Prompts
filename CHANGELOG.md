@@ -1,5 +1,14 @@
 ## Unreleased
 
+- Add explicit full-catalog or curated future skill membership to the transactional
+  installer. Persist state3 only after explicit adoption, preserve undecided
+  state2 scope, prove saved empty profile membership from historical receipts,
+  and block mixed Codex/Gemini shared-root expansion until exact joint choice.
+  Plans disclose policy and shared-owner effects. Protect empty curated shared
+  readers, retain the actual v1.16.3 Gemini portable-source mapping, and reject
+  receipt-only catalog promotion or duplicate inventory records. Existing journals/receipts keep
+  their versions; release, native acceptance and home installation remain separate.
+
 - Add explicit source-owned resource imports with a finite registry, consumer
   declarations, generated provenance receipts and portable standalone loading.
   `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`

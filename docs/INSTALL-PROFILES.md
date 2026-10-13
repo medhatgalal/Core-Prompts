@@ -60,10 +60,71 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
   > /tmp/core-prompts-profile-plan.json
 ```
 
-An empty profile `slugs` list selects current skills for those providers at
-activation. The resulting concrete selection is saved in
+A newly supplied explicit profile with empty `slugs` selects current skills
+once for its named providers. An automatically loaded saved empty profile uses
+only the historical membership proven by its profile-bound ownership receipt.
+Missing, tampered or unmappable proof blocks conversion before any writes; restore
+the original receipt or review an exact concrete selection rather than editing it
+to claim ownership. The resulting concrete selection is saved in
 `.core-prompts-state/installation.json`; later new catalog entries are not
 automatically added. Do not edit ownership receipts to grant ownership.
+
+## Choose future skill membership
+
+A complete saved list of 32 skills does not authorize the four additions in the
+36-skill catalog. Routine sync keeps the prior concrete membership. Choose a
+future policy explicitly when you want new skills to join later updates:
+
+```bash
+bash scripts/install-local.sh --target <fixture-target> --allow-nonlocal-target \
+  --cli kiro --selection-policy full-catalog --dry-run > /tmp/core-policy-plan.json
+bash scripts/install-local.sh --target <fixture-target> --allow-nonlocal-target \
+  --apply-plan /tmp/core-policy-plan.json
+```
+
+Replace `full-catalog` with `curated` to freeze the currently selected skills.
+A later `--cli kiro --selection-policy curated --slug engos-design-specify-change`
+adds only that named skill. A fresh curated activation requires concrete slugs.
+Switching full to curated retains existing selections; it does not uninstall.
+An empty saved curated selection stays empty. Neither policy selects agents,
+changes provider configuration or enrolls another provider.
+
+Review `selection_before`, `selection`, `policy_before`, `policy_after`,
+`membership_changes`, `legacy_choices`, `shared_exposure` and
+`shared_resource_changes` alongside actions and preservation reports.
+State schema3 records explicit intent; undecided installations retain schema2.
+The transaction plan remains schema2, persisted journal schema1 and transaction
+receipt schema2. Old schema2 engines reject state3 before writes. The policy flag
+cannot combine with repair, agents, surface-only or transaction controls; apply
+uses the policy embedded in the exact reviewed plan.
+
+Codex and Gemini share `.agents/skills`: logical ownership is not native exclusion.
+A mixed full/curated expansion blocks with `SHARED_SURFACE_POLICY_CONFLICT` if it
+would expose skills beyond an affected reader's approved selection. To choose
+full catalog jointly, supply a schema1 skills profile whose `targets` name exactly
+the known shared readers, `slugs` is empty, and pass
+`--profile <joint-profile.json> --selection-policy full-catalog`. Review the
+physical union and both logical policy changes together. `--cli all` is not a
+joint consent shortcut. Existing shared exposure is reported even when unchanged.
+A joint curated profile lists concrete skills. Profiles cannot combine with
+`--cli` or `--slug`.
+
+The four additions are `engos-design-specify-change`,
+`engos-design-plan-implementation`, `engos-debug-diagnose-failure`, and
+`engos-delivery-implement-slice`. Updating a later helper inside an existing one
+of the 36 packages is a resource refresh within saved scope, not another catalog
+addition. Customized and third-party packages remain protected. A successful
+runtime update or `applied-with-preserved` result does not prove their new bytes
+or native invocation are active.
+
+Use the current installer bridge when an archived engine refuses a changed
+standalone bundle scope. The v1.14.0 guard and addition-only migration remain
+unchanged; v1.16.3 capsule acceptance must be observed on the actual archived
+engine. No universal old-version self-upgrade is promised. The new runtime is
+written before schema3 state using the existing recoverable transaction. A failed
+multi-file update needs its retained journal and rollback; later user edits or
+invalid preimages block unsafe restoration. Installation, main landing, release
+publication and five-provider native acceptance are separate evidence.
 
 ## Activate a released skill update
 
@@ -104,8 +165,20 @@ The checked-in `.meta/install-profiles/legacy-installations.json` catalog binds
 complete historical package inventories to exact hashes and modes. Its source
 release refs are recorded in `legacy-release-refs.json`. Recognition uses this
 trusted catalog or an existing valid ownership receipt, not a target-authored
-manifest. The catalog covers 55 pinned release versions; the historical 24-skill
+manifest. The catalog covers 56 pinned release versions; the historical 24-skill
 population is one fixture, not a limit on supported current capabilities.
+
+The exact v1.16.3 donor adds receipt-only membership records for historical
+artifact-embed, frame-from-vague and Loopy packages. These records prove the scope
+of a bound saved profile; they never authorize receiptless adoption of matching
+copies. A saved v1.16.3 Gemini profile can own the shared `.agents/skills`
+layout with canonical `.codex/skills` source identities: the archived engine
+checked provider byte equivalence before creating that receipt. Migration maps
+those trusted identities only to providers actually named by the saved profile.
+Empty curated policy participants remain affected readers even with no selected
+skills; a second provider cannot expose new shared skills without joint consent.
+Malformed catalogs cannot promote receipt-only records into normal recognition
+or duplicate inventory records across registry containers. The previous historical pin set and ownership behavior remain intact.
 
 Each skill and agent is recognized independently. A recognized Kiro skill does
 not authorize installing an absent Kiro agent, and a package on one provider does

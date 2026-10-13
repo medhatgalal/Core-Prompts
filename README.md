@@ -501,3 +501,14 @@ including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
 
 UAC also prepares source-backed advisory routing metadata during intake. It preserves curated job boundaries and reports unresolved phase and authority interpretation. This does not enable automatic native routing; see [routing fitness](docs/UAC-USAGE.md#source-backed-routing-fitness).
+
+### Adding the four new software jobs to an existing installation
+
+The source catalog now contains 36 skills. A prior 32-skill installation keeps its
+concrete selection on ordinary sync. Preview `--cli kiro --selection-policy
+full-catalog` to include current and future skills, or choose `curated` and add
+only named jobs. Codex/Gemini share a physical skill root and mixed expansion
+requires an explicit joint choice. See [selection and recovery](docs/INSTALL-PROFILES.md#choose-future-skill-membership)
+for exact commands, historical receipt proof and preserved-package limits.
+Package availability alone does not prove native discovery or resource delivery
+on Codex, Gemini, Claude, Kiro or Grok; release and home activation remain separate.

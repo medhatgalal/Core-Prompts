@@ -368,3 +368,16 @@ including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
 
 When importing a new skill, inspect the `job_contract` delta in UAC plan/judge: the mapping should describe the actual job and exclusions, with source references and explicit unknowns. The generated map does not make the host consume it. See [source-backed routing fitness](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Updating from the 32-skill catalog
+
+First preview ordinary sync to see your retained selection. The four new jobs do
+not join an undecided or curated selection automatically. For one provider, use
+`--cli kiro --selection-policy full-catalog --dry-run` with the external target
+flags, then apply the saved plan. To retain a small set, choose `curated`; add only
+`--slug engos-design-specify-change` when needed. Review ownership, policy and
+physical shared exposure before apply. Follow the [complete commands and joint
+Codex/Gemini choice](INSTALL-PROFILES.md#choose-future-skill-membership).
+A new explicit empty profile selects today's catalog once; a saved empty profile
+needs its historical receipt proof. Source installation tests do not certify
+native invocation or a release.

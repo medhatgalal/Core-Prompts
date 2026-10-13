@@ -18,6 +18,7 @@ def main(argv=None):
     parser.add_argument('--cli',choices=(*providers.PROVIDERS,'all'),default='all')
     parser.add_argument('--slug',action='append',default=[])
     parser.add_argument('--profile',type=Path)
+    parser.add_argument('--selection-policy',choices=('full-catalog','curated'),help='Explicit future skill membership; requires one --cli or an exact --profile')
     parser.add_argument('--repair',action='store_true',help='Discover and adopt recognized installed packages, including agents on selected providers')
     parser.add_argument('--with-agents',action='store_true',help='Select current agent packages as well as skills for explicit installation')
     parser.add_argument('--surface-only',action='store_true',help='Manage selected surfaces without updater/launcher refresh (requires --slug)')
@@ -26,16 +27,24 @@ def main(argv=None):
     parser.add_argument('--apply-plan',type=Path)
     parser.add_argument('--rollback',help='Restore a transaction ID, preserving later edits')
     parser.add_argument('--list-transactions',action='store_true')
-    args=parser.parse_args(argv)
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    explicit_cli = any(a == '--cli' or a.startswith('--cli=') for a in arguments)
+    args=parser.parse_args(arguments)
     try:
         repo,target=args.repo.expanduser().absolute(),args.target.expanduser().absolute()
+        if args.selection_policy and (args.repair or args.with_agents or args.surface_only or args.apply_plan or args.rollback or args.list_transactions):
+            raise ValueError('INVALID_REQUEST: selection-policy cannot combine with repair/agents/surface-only/transaction controls')
+        if args.selection_policy and not args.profile and args.cli == 'all':
+            raise ValueError('INVALID_REQUEST: selection-policy requires one explicit --cli or --profile')
+        if args.selection_policy == 'full-catalog' and args.slug:
+            raise ValueError('INVALID_REQUEST: full-catalog cannot limit slugs')
         if args.cli == 'agy' and args.with_agents:
             raise ValueError('agy deployment supports skills; named-agent translation is not provided')
         if args.apply_plan and (args.dry_run or args.rollback):
             raise ValueError('INVALID_REQUEST: apply-plan cannot combine with dry-run or rollback')
         if args.surface_only and not args.slug:
             raise ValueError('INVALID_REQUEST: --surface-only requires --slug')
-        if args.profile and (args.cli!='all' or args.slug or args.surface_only):
+        if args.profile and (explicit_cli or args.slug or args.surface_only):
             raise ValueError('INVALID_REQUEST: profile cannot combine with CLI/slug/surface-only selection')
         if args.list_transactions:
             rows=[]
@@ -93,6 +102,10 @@ def main(argv=None):
                     request.update(mode='install',slugs=slugs,kinds=['skill','agent'])
             elif args.with_agents:
                 request.update(mode='install',kinds=['skill','agent'])
+            if args.selection_policy:
+                request.update(selection_policy=args.selection_policy.replace('-', '_'), kinds=['skill'])
+                if args.profile is None and not args.slug:
+                    request['mode']='sync'
             request['runtime']=not args.surface_only
             approved=planner.plan(repo,target,request)
         if args.dry_run:

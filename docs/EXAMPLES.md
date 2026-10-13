@@ -1704,3 +1704,75 @@ runs the loop nor changes its execution stop conditions.
 These are source-contract comparisons, not measured behavioral improvement claims.
 Per-skill source hashes, preserved requirements and illustrative repair cases remain
 in the task's review evidence; packaging or independent textual review proves no measured benefit.
+
+## Program adoption and retained boundaries
+
+Specify acceptance with `engos-design-specify-change`, plan bounded tasks with
+`engos-design-plan-implementation`, investigate causes with
+`engos-debug-diagnose-failure`, and carry out an accepted small task with
+`engos-delivery-implement-slice`. The optional route is specify → architecture
+when a material decision needs it → plan → implement → review. Diagnosis and
+shaping remain independently callable. A no-failure rerun is not a fixed bug;
+a specification, task graph or receipt is not execution approval.
+
+Before the 32→36 update, these four separate owners were unavailable in the
+baseline. Their source packages now give each job its own artifact and boundary;
+native invocation and later helper effectiveness still need separate evidence.
+For example, ask specify-change to accept valid input and reject malformed input;
+ask plan-implementation to arrange a prerequisite and two independent tasks;
+ask diagnose-failure for a discriminating reproduction without authorizing repair;
+ask implement-slice to inspect one accepted task and return an honest not-run
+receipt when edits are outside scope. Architecture can load a supplied optional
+SpecContract from its complete local package; malformed input must not be called
+valid. The generated loader/map/import receipt must accompany the entrypoint.
+
+The installation example is deliberately separate: keep ordinary saved selection,
+choose full catalog to add all four, or add just specify-change with curated policy.
+Follow [exact commands and shared-root consent](INSTALL-PROFILES.md#choose-future-skill-membership).
+Authored resources live under `sources/capability-resources/<slug>/`; emitted
+provider packages are copies. This installer change does not certify future
+same-catalog helper revisions.
+
+Current identities and recipe fallback remain explicit:
+
+| Requested program row | Current invocation or file | Use and boundary |
+| --- | --- | --- |
+| DOC-engos-meta-curate-skills | `engos-meta-uac-import` | retain current identity; rename not approved in this slice; One curation decision and preservation map reaches UAC; the user does not have to reconcile six creator methods. |
+| DOC-engos-meta-edit-instructions | `engos-meta-instruction-editor` | retain current identity; rename not approved in this slice; One curation decision and preservation map reaches UAC; the user does not have to reconcile six creator methods. |
+| DOC-engos-design-specify-change | `engos-design-specify-change` | source foundation package available; final helper/native/release/home acceptance separate; One reviewable acceptance contract feeds architecture only when needed and tasks when ready. |
+| DOC-engos-quality-design-tests | `engos-quality-testing-review` | retain current identity; rename not approved in this slice; One design owner and one shared oracle resource support implementation without claiming tests ran. |
+| DOC-engos-design-plan-implementation | `engos-design-plan-implementation` | source foundation package available; final helper/native/release/home acceptance separate; One task plan serves direct implementation or explicitly chosen Batman; a goal packet is an optional compilation output. |
+| DOC-engos-design-compile-goal-packet | `engos-design-plan-to-goal` | retain current identity; rename not approved in this slice; One task plan serves direct implementation or explicitly chosen Batman; a goal packet is an optional compilation output. |
+| DOC-engos-debug-diagnose-failure | `engos-debug-diagnose-failure` | source foundation package available; final helper/native/release/home acceptance separate; The implementer receives a cause or a bounded unknown with reproduction evidence, rather than an unverified fix guess. |
+| DOC-engos-delivery-implement-slice | `engos-delivery-implement-slice` | source foundation package available; final helper/native/release/home acceptance separate; One worker can complete and evidence a small change without a mandatory workshop or orchestration route. |
+| DOC-EXISTING-1 | `engos-quality-code-review` | existing owner retained; no installer-slice capability body change; Exact target judgment stays separate from complete collection. |
+| DOC-EXISTING-docs-review | `engos-quality-docs-review` | existing owner retained; no installer-slice capability body change; Two retained owners: factual/content truth and hosted release readiness. |
+| DOC-EXISTING-gitops-review | `engos-quality-gitops-review` | existing owner retained; no installer-slice capability body change; Two retained owners: factual/content truth and hosted release readiness. |
+| DOC-EXISTING-3 | `engos-meta-supercharge` | existing owner retained; no installer-slice capability body change; Strengthen one artifact; optional variation gap only. |
+| DOC-EXISTING-4 | `engos-reconciliation-converge` | existing owner retained; no installer-slice capability body change; Reconcile conflicting sources with provenance; no compulsory extra hop. |
+| DOC-EXISTING-5 | `engos-design-shaping` | existing owner retained; no installer-slice capability body change; Workshop conduct remains distinct from standalone pitch review. |
+| DOC-EXISTING-6 | `engos-audit-pitch-review` | existing owner retained; no installer-slice capability body change; Finished pitch review does not fabricate workshop history. |
+| DOC-EXISTING-7 | `engos-quality-shaping-gate` | existing owner retained; no installer-slice capability body change; Existing stage policy and independent gate judgment remain canonical. |
+| DOC-MIG-D8-1 | `docs/prompt-pack/prompts/master-orchestrator.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-MIG-D8-2 | `docs/prompt-pack/prompts/prompt-a-readme-story.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-MIG-D8-3 | `docs/prompt-pack/prompts/prompt-b-ai-install-flow.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-MIG-D8-4 | `docs/prompt-pack/prompts/prompt-c-technical-extraction.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-MIG-D8-5 | `docs/prompt-pack/prompts/prompt-d-visuals.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-MIG-D8-6 | `docs/prompt-pack/prompts/prompt-e-factual-gate.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-MIG-D8-7 | `docs/prompt-pack/prompts/prompt-f-evaluate-and-ship-gate.md` | retain original public prompt; consumer compatibility and exact retirement remain separate gates; Matching documentation recipe only; no automatic publication. |
+| DOC-BOUNDARY-engos-orchestration-batman | `engos-orchestration-batman` | existing owner retained; no installer-slice capability body change; Explicit controller consumes accepted contracts and independent reviews; remains prohibited from direct implementation. |
+| DOC-BOUNDARY-engos-delivery-address-code-review | `engos-delivery-address-code-review` | existing owner retained; no installer-slice capability body change; Preserve comment IDs and dispositions; repair remains distinct from review judgment. |
+| DOC-BOUNDARY-engos-operations-ic-assistant | `engos-operations-ic-assistant` | existing owner retained; no installer-slice capability body change; Incident coordination stays separate from causal diagnosis. |
+| DOC-BOUNDARY-engos-design-architecture | `engos-design-architecture` | existing owner retained; no installer-slice capability body change; Consume a supplied SpecContract only when relevant to a material architecture decision; specification owns acceptance. No mandatory architecture or full workflow hop. |
+
+The four proposed renames remain conditional; invoke the current names above.
+All seven public prompts remain available: their consuming documentation recipes,
+original output contracts and exact deletion authority are future decisions.
+Docs-review owns content truth, GitOps-review owns hosted readiness, code-review
+owns exact-target judgment, and address-code-review applies actual comments.
+Batman remains an explicitly selected controller; incident coordination remains
+separate from diagnosis. Shaping conducts the workshop, pitch-review assesses the
+finished pitch, and shaping-gate judges a stage. Retained owners are not merged.
+Strengthening one artifact through supercharge and reconciling competing sources
+through converge are also separate choices. No new registration or retirement is
+implied by this table.

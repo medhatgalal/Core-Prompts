@@ -213,3 +213,15 @@ for reviewed repair and rollback commands.
 ### Resource-backed mode contracts
 
 When adding capability resources, compare canonical and bundled per-mode descriptions, inputs, outputs and examples against the reviewed prior descriptor. The shared apply/build resolver retains matching curation over heading defaults while refreshing source identity, locations and invocations. Package byte equality alone cannot reveal a contract lost in every copy; review the before/after contract as well. See [UAC mode metadata](UAC-USAGE.md#mode-metadata-when-adding-resources).
+
+## Program adoption readiness
+
+The 32→36 source catalog adds four software jobs; future same-36 helper refreshes
+need their own exact-byte and behavior evidence. Existing selections do not expand
+without explicit [full/curated policy](INSTALL-PROFILES.md#choose-future-skill-membership).
+Build the capsule and install inventory together from canonical installer sources.
+State3 is accepted only by the new runtime; historical scope guards remain intact.
+Keep package, detached updater, rollback and five-provider native results distinct.
+Missing mandatory native cases leave the program release on HOLD. Source/main
+checks do not authorize publication, a tag, retirement, rename or home install.
+Historical `RELEASE.md` resolves to this document; no obsolete alias is recreated.

@@ -87,6 +87,9 @@ def _path(value: object) -> bool:
             and all(p not in ("", ".", "..") for p in value.split("/")))
 
 
+RECEIPT_PROOF_SLUGS = {'engos-delivery-artifact-embed', 'engos-design-frame-from-vague', 'loopy'}
+
+
 def validate_catalog(data: dict) -> dict:
     """Reject malformed paths and identities before any installation inspection."""
     _require(isinstance(data, dict) and type(data.get("schema")) is int and data["schema"] == 1, "schema")
@@ -104,11 +107,24 @@ def validate_catalog(data: dict) -> dict:
         _require(isinstance(key, str) and bool(key) and isinstance(item, dict), "identity")
         _require(isinstance(item.get("sha256"), str) and re.fullmatch(r"[0-9a-f]{64}", item["sha256"]) is not None, "sha256")
         _require(type(item.get("mode")) is int and item["mode"] in (0o644, 0o755), "mode")
-    for spec in data["packages"]:
+    proof = data.get('receipt_membership_packages', [])
+    _require(isinstance(proof, list), 'receipt membership packages')
+    seen = set()
+    records = [(False, spec) for spec in data['packages']] + [(True, spec) for spec in proof]
+    for receipt_only, spec in records:
         _require(isinstance(spec, dict), "package")
         provider, kind, slug = (spec.get(k) for k in ("provider", "kind", "slug"))
         _require(isinstance(provider, str) and provider in PROVIDERS, "provider")
-        _require(isinstance(slug, str) and slug in SUCCESSORS, "first-party slug")
+        # Authority belongs to the registry container, never dict equality.
+        if not receipt_only:
+            _require('authority' not in spec, 'normal package authority')
+        fingerprint = json.dumps({k:v for k,v in spec.items() if k != 'releases'}, sort_keys=True)
+        _require(fingerprint not in seen, 'duplicate package inventory')
+        seen.add(fingerprint)
+        _require(isinstance(slug, str) and (slug in RECEIPT_PROOF_SLUGS if receipt_only else slug in SUCCESSORS), "first-party slug")
+        if receipt_only:
+            _require(kind == 'skill' and spec.get('authority') == 'receipt_membership_only'
+                     and spec.get('releases') == ['v1.16.3'], 'receipt-only authority')
         _require(spec.get("successor") == successor(provider, kind, slug), "successor")
         roots = spec.get("roots")
         if kind == "skill":
@@ -147,6 +163,13 @@ def packages(catalog: dict) -> list[dict]:
     return [{**spec, "files": {name: dict(catalog["identities"][identity])
                               for name, identity in spec["files"].items()}}
             for spec in catalog["packages"]]
+
+
+def membership_packages(catalog: dict) -> list[dict]:
+    """Historical membership proof includes records that cannot grant adoption."""
+    return packages(catalog) + [{**spec, 'files': {name: dict(catalog['identities'][ident])
+                               for name, ident in spec['files'].items()}}
+                              for spec in catalog.get('receipt_membership_packages', [])]
 
 
 def runtime_identities(catalog: dict, rel: str) -> list[dict]:

@@ -548,3 +548,20 @@ The candidate starts from current `ssot/<slug>.md`. Its authoring resources are 
 ## Advisory routing metadata
 
 UAC plan/judge exposes `preview.descriptor_preview.job_contract` and lists job-contract changes in its descriptor delta. `job_contract.routing_fitness` uses `RoutingFitness.v1`; generated `.meta/skill-job-map.json` uses `SkillJobMap.v2` with a `SkillJobMapReceipt.v1` content receipt. Generation and validation share the source compiler. The metadata is not a runtime consumer or permission grant. [Contract and limits](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Future skill selection on external targets
+
+`--selection-policy full-catalog|curated` is accepted by `install-local.sh`,
+`deploy-surfaces.sh` and `deploy-profile.py --install`. Give exactly one explicit
+`--cli` or a schema1 skills `--profile`; profiles reject `--cli` and `--slug`.
+The flag rejects `--repair`, `--with-agents`, `--surface-only`, and transaction
+controls. Full catalog rejects slug limits; fresh curated requires concrete
+skills. `--apply-plan` uses the saved request without repeating the flag.
+Repository-root deployment rejects this installation-only option.
+
+The complete whole-package import/update guidance is
+[install profiles](INSTALL-PROFILES.md#choose-future-skill-membership), including
+state3 versus plan2/journal1/receipt2 and saved legacy membership proof.
+Legacy `docs/adoption/IMPORT_PROMPTS.md` guidance resolves here; copy entire
+packages including loader, resource map and owner-bound import receipt. A copied
+entrypoint alone cannot establish resource closure or native acceptance.

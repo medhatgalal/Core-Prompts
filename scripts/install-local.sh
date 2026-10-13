@@ -12,6 +12,7 @@ installed VERSION, RELEASE_SOURCE.env, and update_core_prompts.sh
 for later release checks.
 
 Options:
+  --selection-policy full-catalog|curated  Explicit future skills; one --cli or exact --profile
   --profile PATH                     Use a receipt-protected skills profile
   --apply-plan PATH                  Apply a reviewed JSON plan
   --rollback ID                      Restore an installation transaction
@@ -40,7 +41,7 @@ while [[ $# -gt 0 ]]; do
         exit 1
       fi
       ;;
-    --cli|--target|--profile|--apply-plan|--rollback|--slug)
+    --cli|--target|--profile|--apply-plan|--rollback|--slug|--selection-policy)
       flag="$1"
       shift
       value="${1:-}"

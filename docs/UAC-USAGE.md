@@ -449,3 +449,13 @@ Any runtime consumer or default-load change needs its own review and measured pr
 ### Mode metadata when adding resources
 
 For a resource-backed same-slug update, apply and generation share a resolver that preserves canonical mode summaries, inputs, outputs, examples and uplift notes when extraction supplies only heading defaults. Membership comes from current source: removed modes stay removed and new identities do not inherit another mode's contract. Current invocations and source locations replace old values. Explicit source-derived descriptive values override curation, including empty values marked authoritative by the caller. Matching identity preserves metadata; it does not establish semantic equivalence. Meaning changes still require independent source review under the [metadata policy](../.meta/surface-rules.json).
+
+## Authoring versus adoption
+
+Installer policy changes are source Python work and do not fabricate capability
+intake. Skill behavior updates still use their current canonical slug and UAC.
+The four software jobs have source packages, while existing names remain current
+unless a separately approved rename passes consumer migration evidence. Retain
+public documentation prompts until exact retirement is approved. Install whole
+generated packages; [explicit selection policy](INSTALL-PROFILES.md#choose-future-skill-membership)
+controls future membership without authorizing new agent surfaces.
