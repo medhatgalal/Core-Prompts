@@ -583,3 +583,18 @@ The candidate starts from current `ssot/<slug>.md`. Its authoring resources are 
 ## Advisory routing metadata
 
 UAC plan/judge exposes `preview.descriptor_preview.job_contract` and lists job-contract changes in its descriptor delta. `job_contract.routing_fitness` uses `RoutingFitness.v1`; generated `.meta/skill-job-map.json` uses `SkillJobMap.v2` with a `SkillJobMapReceipt.v1` content receipt. Generation and validation share the source compiler. The metadata is not a runtime consumer or permission grant. [Contract and limits](UAC-USAGE.md#source-backed-routing-fitness).
+
+## Optional documentation recipes
+
+Docs Review recipe names and exact outputs are listed in [the recipe examples](EXAMPLES.md#optional-documentation-recipes). Generic Docs and GitOps reviews retain their seven sections. The [original prompt pack](prompt-pack/README.md) remains callable. GitOps `docs-release-readiness` embeds a DocsShipHandoff.v1 response in Recommended Commands or Actions; it grants no execution authority. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness.
+
+The Docs skill bundles a read-only factual audit helper. Replace `<skill>` and `<file.json>` with the actual skill directory and supplied input:
+
+```bash
+python3 <skill>/resources/scripts/factual_audit.py validate --format master-array --input <file.json>
+python3 <skill>/resources/scripts/factual_audit.py roundtrip --format prompt-e-object --input <file.json>
+```
+
+Select `master-array` or `prompt-e-object` explicitly for either command. Validation returns format, valid and issues; roundtrip emits the same original-format payload only on success. Exit codes are 0 valid, 2 invalid JSON/shape/counts, and 3 CLI/input failure. Roundtrip preserves extensions and item/key order, never recomputes counts or writes the input. No cross-format conversion or DocsFactualAudit.v1 envelope is implemented.
+
+Successful factual roundtrip emits the validated original UTF-8 JSON wire text unchanged, including numeric tokens and escaped Unicode. Decimal validation preserves finite JSON values beyond binary-float range. Summary counts use JSON Schema integer semantics (0.0 is integral); booleans and fractional counts fail. This establishes format preservation, not factual truth.

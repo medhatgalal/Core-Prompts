@@ -8,6 +8,15 @@
   Collection completeness is separate from correctness/security judgment,
   consumer verification, merge, release and installation.
 
+- Add optional documentation recipes under the existing Docs Review and GitOps
+  Review skills. Preserve all seven prompt-pack donors, default seven-section
+  reviews, the execution-only substantial rewrite review trigger and advisory
+  command boundaries. Preserve the two original factual audit formats with a
+  read-only validator and same-format roundtrip; add candidate-bound handoff
+  schema and committed-tree versus snapshot evidence requirements. Active ship
+  proposals follow current package-before-tag and dual-remote order. This is
+  contract/resource evidence, not behavioral promotion, release or installation.
+
 - Add explicit source-owned resource imports with a finite registry, consumer
   declarations, generated provenance receipts and portable standalone loading.
   `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`

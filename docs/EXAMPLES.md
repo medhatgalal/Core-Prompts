@@ -1718,3 +1718,21 @@ runs the loop nor changes its execution stop conditions.
 These are source-contract comparisons, not measured behavioral improvement claims.
 Per-skill source hashes, preserved requirements and illustrative repair cases remain
 in the task's review evidence; packaging or independent textual review proves no measured benefit.
+
+## Optional documentation recipes
+
+Use `engos-quality-docs-review` for ordinary placement, drift and navigation review; its default response retains seven sections. Name a recipe when you need a particular artifact. For example: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” This produces the README draft only. “Use the `docs-bundle` recipe” instead produces README_vNext.md, docs/README_TECHNICAL.md, visuals_plan.md and the legacy array factual_audit.json, in that order.
+
+| Recipe | Use it for | Expected output |
+| --- | --- | --- |
+| `docs-bundle` | Four coordinated documentation drafts | README, technical README, visuals plan, master array audit |
+| `readme-authoring` | README narrative and verified claims | README_vNext.md ending in Claim Notes |
+| `ai-onboarding` | A short first-run path with recovery guidance | README “Use this with AI” snippet, then full Getting Started draft |
+| `information-relocation` | Preserving facts while proposing better placement | Technical README, architecture, FAQ, then relocation table |
+| `document-visuals` | Source-grounded visual planning | Hero concept, complete Mermaid with node/edge explanations, optional screenshot slots (max 3), accessibility notes |
+| `factual-audit` | Checking supplied candidate drafts | Original E summary/items JSON, edits by file, content PASS/FAIL, minimum fixes on FAIL |
+| `adversarial-doc-review` | Inversion and five-area ship assessment | Inversion, findings, scorecard, Ship Verdict, conditional fixes or proposed commands |
+
+The original [prompt pack](prompt-pack/README.md) and all seven donor prompts remain callable. Named recipes draft artifacts and propose commands; they do not authorize overwrite, install, commit, merge or release. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review. Findings-only E/F routes stay advisory.
+
+For candidate-bound Git, hosted-check and package evidence, request `docs-release-readiness` from `engos-quality-gitops-review`. It embeds a DocsShipHandoff.v1 response inside its existing seven-section report. E content PASS does not establish hosted readiness. F defaults to full release scope; explicit commit-only or merge-only scope must be labeled. Unknown evidence yields FAIL. Merge/release readiness requires independently reproduced committed documentation bytes and exact-head hosted checks; dirty snapshot bytes with green HEAD CI cannot pass. Commands remain proposals under actual authority.

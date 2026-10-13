@@ -1,0 +1,68 @@
+{
+  "schema": "D8SourceRepairEvidence.v1",
+  "reviewed_source_head": "22263f36bebc11c97662f114802ec33c88980323",
+  "review_ref": "reports/d8-docs-recipes/independent-source-review.json",
+  "review_sha256": "3c24e2e7a59e63cc9399a50c56b4d96b119edde3663d1364747725c5de800827",
+  "original_preparation_checkpoint": "reports/program-doc-recipes/source-preparation-evidence.json; retained as historical 22263f checkpoint, not fresh hashes",
+  "repair_dispositions": [
+    {
+      "id": "D8SRC-001",
+      "disposition": "addressed",
+      "repair": "Flattened Docs-owned schema without $ref; exact GitOps shared_imports declaration; renewed additive binding digest. Actual finite importer/loader fixture tests every route, preserved missing-declaration/ref-policy negatives, and old/new finite shape parity."
+    },
+    {
+      "id": "D8SRC-002",
+      "disposition": "addressed",
+      "repair": "Decimal parses JSON numbers; integer semantics accept nonnegative integral numeric values including 0.0, exclude bool/fractions. Validate before emitting original UTF-8 JSON wire text unchanged; no precision loss, underflow/overflow normalization or new envelope."
+    },
+    {
+      "id": "D8SRC-003",
+      "disposition": "addressed",
+      "repair": "Validated escaped-surrogate wire is emitted unchanged; required fields, extension values and extension keys covered. No JSON reserialization or surrogate stdout encoding traceback."
+    },
+    {
+      "id": "D8SRC-004",
+      "disposition": "addressed",
+      "repair": "Test-only proposal oracle requires gate-specific ordered nonempty phases, package before tag, same version/tag/object bound to both fixture remotes, preconditions/evidence references and unchanged authority. Positive full-plan/negative empty/reversed/single-remote/different-tag/object/authority fixtures. Explicit snapshot commit-only observation is never full F ready."
+    },
+    {
+      "id": "D8SRC-005",
+      "disposition": "addressed",
+      "repair": "D8-F-068 through 075 map rows retain historical literal hashes and mark D8-COMPAT-SHIP-ORDER with actual active Docs/GitOps section spans/hashes. Original seven donors unchanged and all 250 literal bindings preserved."
+    }
+  ],
+  "mode_disposition": "Exact before/after /modes proposal and canonical hashes in mode-disposition-patch.json; independently adjudicated false-positive heading metadata removal. Source negative examples/default bodies retained; no fake mode headings or retain-all.",
+  "red_evidence": "Before repairs: all 11 precision/underflow/negative-zero/big-exponent/three-surrogate/integral-count/empty-plan/reversed-plan/single-remote regressions failed. Original independent importer failures are retained as negative fixture cases. The former binary-float 1e999 extension rejection is superseded: a genuine finite JSON decimal is now accepted exactly; original failure history remains in the prior checkpoint.",
+  "green_evidence": "78 focused cases passed; meaningful renewed focused + actual importer/source-integrity suite: 290 passed in 6.16s. Final fixture Git dependency now checked explicitly.",
+  "current_hashes": {
+    "sources/capability-resources/engos-quality-docs-review/resource-map.json": "fc1834c2c393fc7df4998eae286bfaa34121ae8686713a6c83ef8a91455f6a95",
+    "sources/capability-resources/engos-quality-docs-review/references/ai-onboarding.md": "04d3afb80093f3641f39a085a308c604b33ee42f2df36c2673bd05943b284f58",
+    "sources/capability-resources/engos-quality-docs-review/references/document-visuals.md": "f1161e46a889c60481a64b242f432802d7d9cdc3524b9229b4a3c79a73d29bc4",
+    "sources/capability-resources/engos-quality-docs-review/references/factual-audit.md": "0d0513029aafca8eed8b72a142da5abd9cd69e75342aabb1d9a188bd68fc8ff1",
+    "sources/capability-resources/engos-quality-docs-review/references/docs-bundle.md": "005a5cfeb3b25790f97e7ba75c8447323e3c6a23fbf5f09c493be390de972d52",
+    "sources/capability-resources/engos-quality-docs-review/references/information-relocation.md": "75b56d74736bab883fb39d3c1f1ed0dd7843d86a1e23eaa887a943ca212ade78",
+    "sources/capability-resources/engos-quality-docs-review/references/adversarial-doc-review.md": "7cc727a9df14e03731d479f806b1bb598467354b0715ee6638ef36d37bfdf88e",
+    "sources/capability-resources/engos-quality-docs-review/references/readme-authoring.md": "4038cd955a84c49808e0de424e27894e6ae99d387b5cd43f5d726cfabe19aa8c",
+    "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df",
+    "sources/capability-resources/engos-quality-docs-review/schemas/factual-audit.schema.json": "77bc55f5f0a6ed445654ae08e2b34d4fa06e9620fd790e96a1ae6ebe7874f5dd",
+    "sources/capability-resources/engos-quality-docs-review/scripts/factual_audit.py": "651512372e59f8e57b3c0cb4d0b3a39a20dd47c493aec904543244504c0f0187",
+    "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-prompt-e.json": "9b12fd2475ee7237db2a5c6418c28fd5864749587a3b47e0cb6bba23b5924fd0",
+    "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-master.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "sources/capability-resources/engos-quality-gitops-review/resource-map.json": "5ab65c3690be07873203066aa894b16ce6dc3c6c9e6c90481e25b543f0d86aec",
+    "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md": "c93fdef9d96cba3d5283c4a234d73bc3d0e41c25f8ec97526a4a0ce5aab91f2c",
+    "tests/fixtures/docs-recipes/handoff-pre-flatten.schema.json": "b44de0ae65a20f90539c1a3bcd50afab949d1b82d9db5460ba984c6bcc142483",
+    "tests/test_docs_recipe_resources.py": "c67c8579203f10d260103509d5e458ca9d799f40422ff03faa36c5989a890199",
+    "docs/CLI-REFERENCE.md": "978e9c55dc56e896b521c163a871be033b474090ba720979283d14a8a2a25399",
+    "reports/d8-docs-recipes/clause-destination-map.json": "5990df7cc7b7e0813912328eb0d06cc79a978c922448e2b31d16b6088f5be2de",
+    "reports/program-doc-recipes/shared-resource-import-patch.json": "74d21f00a3dc286cbba4d2d5f7baa91556014db3aa145f909487cdfc937c275e",
+    "reports/program-doc-recipes/mode-disposition-patch.json": "7feb9d70cab9c00b06fe5a8eabfed64b1d8bb021c85a3aa99c49eda809e61eae",
+    "reports/program-doc-recipes/engos-quality-docs-review-candidate.md": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a",
+    "reports/program-doc-recipes/engos-quality-gitops-review-candidate.md": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
+  },
+  "boundaries": [
+    "Repair dispositions are writer assertions, not reviewer closure; independent findings remain open until reviewer rechecks.",
+    "Proposed registry and descriptor mode patches remain controller-owned; no canonical descriptor, resolver or registry mutation.",
+    "Static schema/fixture comparisons do not authenticate evidence, grant authority, establish actual hosted/head/main readiness or prove model behavior.",
+    "No UAC/generation/hosted CI/merge/release/install execution by this source writer."
+  ]
+}

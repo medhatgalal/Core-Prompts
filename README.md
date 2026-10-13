@@ -506,3 +506,9 @@ including locally modified copies, while retaining skills and third-party agents
 such as Kiro Crew. See [installation cleanup](docs/INSTALL-PROFILES.md#automatic-agent-cleanup-on-update).
 
 UAC also prepares source-backed advisory routing metadata during intake. It preserves curated job boundaries and reports unresolved phase and authority interpretation. This does not enable automatic native routing; see [routing fitness](docs/UAC-USAGE.md#source-backed-routing-fitness).
+
+## Optional documentation recipes
+
+Name a recipe with `engos-quality-docs-review` when you need a particular artifact: `readme-authoring` produces only README_vNext.md ending in Claim Notes; `docs-bundle` produces README, technical README, visuals plan and the original array audit. Ordinary review retains its seven sections. See [all recipe examples and outputs](docs/EXAMPLES.md#optional-documentation-recipes). The [seven original prompts](docs/prompt-pack/README.md) remain callable.
+
+Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bound ship evidence. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Recipe selection grants no mutation or release authority.
