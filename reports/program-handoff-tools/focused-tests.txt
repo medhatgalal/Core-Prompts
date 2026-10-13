@@ -14,8 +14,8 @@ relative = 'references/test-oracles.md'
 >           resolved = (root / _relative_path(relative)).resolve(strict=True)
                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-src/intent_pipeline/capability_resources.py:39: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/intent_pipeline/capability_resources.py:39:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 self = PosixPath('/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice/references/test-oracles.md')
 strict = True
@@ -25,7 +25,7 @@ strict = True
         Make the path absolute, resolving all symlinks on the way and also
         normalizing it.
         """
-    
+
 >       return self.with_segments(os.path.realpath(self, strict=strict))
                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       FileNotFoundError: [Errno 2] No such file or directory: '/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice/references'
@@ -38,14 +38,14 @@ The above exception was the direct cause of the following exception:
 >       bundle = load_resource_bundle(SLICE_RESOURCES, "receipt")
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-tests/test_capability_resources.py:655: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_capability_resources.py:655:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 src/intent_pipeline/capability_resources.py:327: in load_resource_bundle
     root, manifest, declared, manifest_sha256 = _manifest(resource_root)
                                                 ^^^^^^^^^^^^^^^^^^^^^^^^
 src/intent_pipeline/capability_resources.py:92: in _manifest
     _file(root, relative)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 root = PosixPath('/Users/medhat.galal/.codex/worktrees/program-handoff-tools/Core-Prompts/sources/capability-resources/engos-delivery-implement-slice')
 relative = 'references/test-oracles.md'
