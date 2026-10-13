@@ -34,9 +34,10 @@ When file output is requested, default to:
 
 ## Committed-range Collection (Explicit Only)
 When the user requests an immutable committed-range package, read the collection
-section in `resources/references/review-targets.md`, then load the additive
+request guidance in `resources/references/review-targets.md`, then load the additive
 `collect` route in `resources/resource-map.json`: `resources/scripts/review_package.py`
-and its `resources/schemas/review-package.schema.json` dependency. Invoke the helper
+and its `resources/schemas/review-package.schema.json` dependency. Read the selected
+collector context for the exact command and trust limits, then invoke the helper
 with exact recorded base/head commit IDs, task/owner/generation/repository bindings,
 and a new absent output leaf under an existing nonsymlink parent. Optional spec and
 plan SHA-256 values are caller assertions. Use Python 3.11+ and supported Git/POSIX

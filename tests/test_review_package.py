@@ -534,3 +534,77 @@ def test_rp10_drift_during_partial_write(git_repo, tmp_path, monkeypatch, capfd)
     monkeypatch.setattr(module.Output, 'write', write)
     out = tmp_path / 'package'; assert call_module(module, repo, base, base, out) == 2 and fired
     assert capfd.readouterr().out == '' and not (out / 'manifest.json').exists()
+
+
+def test_d6src001_progressive_route_closure():
+    from intent_pipeline.capability_resources import load_resource_bundle
+    review = load_resource_bundle(SOURCE, 'review')
+    collect = load_resource_bundle(SOURCE, 'collect')
+    assert [r['path'] for r in review['resources']] == ['schemas/findings.schema.json', 'references/review-targets.md']
+    assert {r['path'] for r in collect['resources']} == {'scripts/review_package.py', 'schemas/review-package.schema.json'}
+    assert 'review_package.py' not in ''.join(r['content'] for r in review['resources'])
+
+
+@pytest.mark.parametrize('window', ['prelink_bytes', 'prelink_replacement', 'link_swap', 'postlink_bytes', 'postlink_partial_replacement', 'postcleanup_bytes'])
+def test_d6src002_actual_main_manifest_windows(git_repo, tmp_path, monkeypatch, capfd, window):
+    repo, git, base = git_repo; module = load_collector()
+    module.os = types.SimpleNamespace(**vars(os)); fired = []; out = tmp_path / 'package'
+    def tamper_bytes(path):
+        before = path.read_bytes(); altered = b'X' + before[1:]
+        assert len(altered) == len(before) and altered != before
+        path.write_bytes(altered)  # size/identity alone cannot detect this fault
+    def replace_partial():
+        partial = out / 'manifest.partial'; saved = partial.read_bytes()
+        partial.rename(out / 'collector-owned-original')
+        partial.write_bytes(saved)  # identical bytes still have a foreign inode
+    if window.startswith('prelink'):
+        original = module.Output.write
+        def write(self, name, data):
+            result = original(self, name, data)
+            if name == 'manifest.partial':
+                fired.append(window)
+                if window == 'prelink_bytes': tamper_bytes(out / name)
+                else: replace_partial()
+            return result
+        monkeypatch.setattr(module.Output, 'write', write)
+    elif window == 'postcleanup_bytes':
+        original_freeze = module.Output.freeze
+        def freeze(self, *args):
+            original = module.os.unlink
+            def unlink(name, *a, **kw):
+                result = original(name, *a, **kw)
+                if name == 'manifest.partial': fired.append(window); tamper_bytes(out / 'manifest.json')
+                return result
+            monkeypatch.setattr(module.os, 'unlink', unlink)
+            return original_freeze(self, *args)
+        monkeypatch.setattr(module.Output, 'freeze', freeze)
+    else:
+        original_freeze = module.Output.freeze
+        def freeze(self, *args):
+            original = module.os.link
+            def link(*a, **kw):
+                if window == 'link_swap': fired.append(window); replace_partial()
+                result = original(*a, **kw)
+                if window == 'postlink_bytes': fired.append(window); tamper_bytes(out / 'manifest.partial')
+                if window == 'postlink_partial_replacement': fired.append(window); replace_partial()
+                return result
+            monkeypatch.setattr(module.os, 'link', link)
+            return original_freeze(self, *args)
+        monkeypatch.setattr(module.Output, 'freeze', freeze)
+    code = call_module(module, repo, base, base, out); captured = capfd.readouterr()
+    assert fired == [window]  # actual fault window positively observed
+    assert code == 2 and captured.out == '', 'tampered/replaced manifest must never yield complete receipt'
+    assert captured.err
+    if window.endswith('replacement') or window == 'link_swap':
+        assert (out / 'manifest.partial').exists(), 'foreign replacement must not be unlinked'
+
+
+def test_d6src002_manifest_descriptor_failure_closes_original(git_repo, tmp_path, monkeypatch, capfd):
+    repo, git, base = git_repo; module = load_collector(); module.os = types.SimpleNamespace(**vars(os))
+    original = module.os.dup; observed = []
+    def dup(fd):
+        observed.append(fd); raise OSError('fixture descriptor duplication failure')
+    monkeypatch.setattr(module.os, 'dup', dup)
+    out = tmp_path / 'package'; assert call_module(module, repo, base, base, out) == 2
+    assert observed and capfd.readouterr().out == '' and not (out / 'manifest.json').exists()
+    with pytest.raises(OSError): os.fstat(observed[0])

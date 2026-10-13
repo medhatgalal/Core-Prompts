@@ -1,6 +1,6 @@
 {
   "schema": "D6S2SourcePreparationEvidence.v1",
-  "status": "source_tested_pending_independent_integration_acceptance",
+  "status": "author_repairs_tested_pending_same_independent_reviewer",
   "entry_head": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
   "accepted_contract_sha256": {
     "json": "d63794fd008b872b8318b3d9f9b1447709b91d80604ebccb9861b78f3aa1bc88",
@@ -8,12 +8,12 @@
   },
   "source_hashes": {
     "sources/capability-resources/engos-quality-code-review/resource-map.json": "1be20a064844c2fadbe2cba16f218d463b5eb44a05155813f4aece611724cf77",
-    "sources/capability-resources/engos-quality-code-review/references/review-targets.md": "66326093771390b39425fe6f427964c94933735c751931925907bda706d0f254",
+    "sources/capability-resources/engos-quality-code-review/references/review-targets.md": "7a09a4de93723b417790b3c91975b28012567011278506e98672a54a92a51b10",
     "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json": "8861107a14eb417b93322fc77a1554c7f3051fe16b609d8201298b45b7dec94f",
     "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c",
-    "sources/capability-resources/engos-quality-code-review/scripts/review_package.py": "80cb5aa290d487fc7c636d4874dddc660ca6ae137b1d7e1d5ec6e8321da8b112",
-    "tests/test_review_package.py": "5065d5f9cef1b0907c683f2073b457383e9d41e7b2981cefa0d6671d65561cbb",
-    "reports/program-review-collector/candidate.md": "b194b255ed0dfe17d8f2f15891c24a5afafaa69bd7d4904347470a9d6ad01ce4",
+    "sources/capability-resources/engos-quality-code-review/scripts/review_package.py": "bbb604a13fb587eeaccd005fb69dadd16ea2ef91925c7e0b1df5c4963ce02aef",
+    "tests/test_review_package.py": "4b5bf642c09660a2bf1ae4884f2bb29bc69f4509a498ac446b9f99ec784f189f",
+    "reports/program-review-collector/candidate.md": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85",
     "ssot/engos-quality-code-review.md": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
   },
   "runtime": {
@@ -44,6 +44,16 @@
     {
       "command": "<validation-python> -I <canonical-helper> --help",
       "result": "passed; exact flags read back"
+    },
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q -k d6src",
+      "evidence": "independent-repair-red.txt",
+      "result": "actual default-loader failure and false-complete manifest fault windows reproduced before repair; exact raw bytes retained in repair-raw-execution-logs.json"
+    },
+    {
+      "command": "<validation-python> -m pytest tests/test_review_package.py -q --junitxml=reports/program-review-collector/repair-source-fixtures.xml",
+      "evidence": "repair-final-source-tests.txt",
+      "result": "final repaired source assertions passed, explicit unsupported-filesystem raw-path skip retained; new same-length mutation and descriptor failure checks included"
     }
   ],
   "fixture_accounting": {
@@ -190,5 +200,28 @@
     "No generated/.meta/shared pipeline change, build, UAC, push, merge, release or home install by worker.",
     "RP-14 generated copy evidence, RP-15 hosted gates, D6.S3 consumer verification are deferred to controller.",
     "Collection source checks do not prove actual model reading, unchanged-consumer coverage, final integration safety or mainline acceptance."
-  ]
+  ],
+  "independent_findings": {
+    "reviewed_head": "31b6635c1ec2712918093e54779e5392d17a4659",
+    "retained_review": {
+      "reports/program-review-collector/independent-source-review-round1.json": "b00858e648c544644d64a162d22c91a99efa94ba50019d79766506fd2e7d4639",
+      "reports/program-review-collector/independent-source-review-round1.md": "69c09aef7f7b9f67b52986d7214c493f1cf1ea3614c473e4b4426109730f0437"
+    },
+    "D6SRC-001": "author repair proposed; strict default review and collect route assembly now exercised",
+    "D6SRC-002": "author repair proposed; retained created manifest fd/identity/exact bytes checked across publication boundaries; actual-main positive fault probes reject prelink/link-swap/postlink/postcleanup tamper without receipt",
+    "closure_authority": "Only same independent reviewer may resolve findings; writer has not self-closed them."
+  },
+  "repair_scope": {
+    "changed": "collector resource/context, review reference, candidate, CLI trust detail, focused tests and evidence only",
+    "unchanged": [
+      "accepted ReviewPackage schema bytes",
+      "resource-map routes/dependencies",
+      "Findings.v1 schema bytes",
+      "canonical SSOT body",
+      "loader and shared source",
+      "generated/.meta surfaces"
+    ],
+    "manifest_limit": "Checks detect observed freeze-boundary faults; no arbitrary same-UID race immunity or protection after last observation/receipt is claimed. Retained independent receipt verification remains required.",
+    "failure_protocol": "Manifest mismatch/freeze failure exits 2 with bounded operation/code stderr and no stdout receipt; unsafe marker/partial is preserved rather than rewritten into a fabricated incomplete result."
+  }
 }

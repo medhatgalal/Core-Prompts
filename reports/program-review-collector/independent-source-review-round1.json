@@ -1,0 +1,202 @@
+{
+  "schema_version": "Findings.v1",
+  "target": {
+    "kind": "branch",
+    "base": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+    "head": "31b6635c1ec2712918093e54779e5392d17a4659",
+    "snapshot_digest": null,
+    "comparison": "range",
+    "included_change_classes": [
+      "committed"
+    ]
+  },
+  "review_status": "complete",
+  "evidence": [
+    {
+      "id": "E-script",
+      "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+      "kind": "source",
+      "side": "head",
+      "identity": "80cb5aa290d487fc7c636d4874dddc660ca6ae137b1d7e1d5ec6e8321da8b112",
+      "line_start": 1,
+      "line_end": 703,
+      "read_status": "read"
+    },
+    {
+      "id": "E-reference",
+      "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+      "kind": "source",
+      "side": "head",
+      "identity": "66326093771390b39425fe6f427964c94933735c751931925907bda706d0f254",
+      "line_start": 111,
+      "line_end": 166,
+      "read_status": "read"
+    },
+    {
+      "id": "E-map",
+      "path": "sources/capability-resources/engos-quality-code-review/resource-map.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "1be20a064844c2fadbe2cba16f218d463b5eb44a05155813f4aece611724cf77",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-schema",
+      "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-tests",
+      "path": "tests/test_review_package.py",
+      "kind": "source",
+      "side": "head",
+      "identity": "5065d5f9cef1b0907c683f2073b457383e9d41e7b2981cefa0d6671d65561cbb",
+      "line_start": 1,
+      "line_end": 536,
+      "read_status": "read"
+    },
+    {
+      "id": "E-candidate",
+      "path": "reports/program-review-collector/candidate.md",
+      "kind": "source",
+      "side": "head",
+      "identity": "b194b255ed0dfe17d8f2f15891c24a5afafaa69bd7d4904347470a9d6ad01ce4",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-evidence",
+      "path": "reports/program-review-collector/source-evidence.json",
+      "kind": "source",
+      "side": "head",
+      "identity": "9398047a4683c00359a6e2d8e2e7ed61781d84e927928b9b51fc52363a41a9ab",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-xml",
+      "path": "reports/program-review-collector/source-fixtures.xml",
+      "kind": "test",
+      "side": "head",
+      "identity": "487745b0900086e6c4b2d3d4f19de543fcd4d7ca1a843b26ce40e3a8e020a311",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-loader",
+      "path": "src/intent_pipeline/capability_resources.py",
+      "kind": "consumer",
+      "side": "head",
+      "identity": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-probes",
+      "path": "reports/program-review-collector/independent-source-review.md",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "69c09aef7f7b9f67b52986d7214c493f1cf1ea3614c473e4b4426109730f0437",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-diff",
+      "path": "3782da241e7c4fdb973d9f96f5592926c28e07a4..31b6635c1ec2712918093e54779e5392d17a4659",
+      "kind": "diff",
+      "side": "head",
+      "identity": "ebe5ca9467643c7f3b14d7cff61b62089834c81f35c16d2a89ed33f24a2c5fa3",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    }
+  ],
+  "findings": [
+    {
+      "id": "D6SRC-001",
+      "severity": "high",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
+        "line": 114,
+        "side": "head"
+      },
+      "changed_cause": {
+        "summary": "Collector references were added to an ordinary-review resource without being present in its selected closure.",
+        "evidence_refs": [
+          "E-reference",
+          "E-map",
+          "E-diff"
+        ]
+      },
+      "evidence_refs": [
+        "E-reference",
+        "E-map",
+        "E-loader",
+        "E-probes"
+      ],
+      "affected_consumer": {
+        "path": "src/intent_pipeline/capability_resources.py",
+        "line": 351,
+        "evidence_refs": [
+          "E-loader",
+          "E-probes"
+        ]
+      },
+      "impact": "Default review resource assembly fails before ordinary review, violating preserved review-route behavior.",
+      "repair": "Keep ordinary review closure unchanged and move collector-only references to an explicitly selected collect resource/entry guidance or supported conditional routing. Add actual review and collect route assembly tests; retain strict unloaded-reference validation and avoid loading collector code by default.",
+      "disposition": "open",
+      "disposition_reason": "Independent canonical review-route load reproduced ResourceContractError; collect route alone passes.",
+      "disposition_evidence_refs": []
+    },
+    {
+      "id": "D6SRC-002",
+      "severity": "high",
+      "category": "introduced_breakage",
+      "location": {
+        "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+        "line": 414,
+        "side": "head"
+      },
+      "changed_cause": {
+        "summary": "Atomic publication checks the two path names against each other but not the owned written manifest identity and actual canonical byte digest before returning complete.",
+        "evidence_refs": [
+          "E-script",
+          "E-diff"
+        ]
+      },
+      "evidence_refs": [
+        "E-script",
+        "E-tests",
+        "E-probes"
+      ],
+      "affected_consumer": {
+        "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+        "line": 687,
+        "evidence_refs": [
+          "E-script",
+          "E-probes"
+        ]
+      },
+      "impact": "The real main path can emit exit 0/complete and a manifest SHA-256 that disagrees with the published manifest after pre-publication tamper/replacement. It can also unlink a replaced partial name without binding it to the original created file.",
+      "repair": "Retain/verify created manifest identity and exact bytes through link publication and cleanup; before receipt verify final marker is expected owned regular inode with correct link count and exact expected bytes/digest. Never unlink an unverified replacement. Add same-inode tamper and path replacement probes before linking/cleanup and after publication; return 2 without receipt on mismatch. Preserve external digest-trust limitation for later changes.",
+      "disposition": "open",
+      "disposition_reason": "Independent isolated actual-main probe tampered manifest.partial after real write: returned exit0/status complete while published bytes were {\"injected\":true} and receipt digest comparison was false.",
+      "disposition_evidence_refs": []
+    }
+  ],
+  "unreviewed": [],
+  "verdict": "blocked"
+}

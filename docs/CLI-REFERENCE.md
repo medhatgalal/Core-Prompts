@@ -76,7 +76,10 @@ existing nonsymlink parent, with no dot/dotdot components; no overwrite or resum
 Exit 0 is complete collection, 2 incomplete/freeze failure, 3 invalid/unsupported/
 unsafe input. A frozen package emits one JSON `ReviewPackageResult.v1` receipt with
 relative `manifest.json`, status and SHA-256; retain that digest independently.
-Freeze failures emit no receipt. Preserve partial leaves for separately authorized
+Freeze verifies the created manifest inode and exact bytes before linking, after
+linking and after cleanup; mismatches emit no receipt. These observations do not
+lock out arbitrary same-UID changes racing subsequent syscalls or after the receipt.
+Independent retained-digest verification remains required. Preserve partial leaves for separately authorized
 cleanup; retry into a new leaf.
 
 The `ReviewPackage.v1` manifest references all range raw commits, net endpoint

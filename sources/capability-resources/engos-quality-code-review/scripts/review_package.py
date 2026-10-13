@@ -1,8 +1,66 @@
 #!/usr/bin/env python3
-"""Collect committed-range bytes; completion is collection, never review judgment.
+r"""Collect committed-range bytes; completion is collection, never review judgment.
 
-Runtime: Python 3.11+ stdlib, Git with --no-lazy-fetch/--attr-source, POSIX
-nofollow directory descriptors and no-replace hard links. No source-tree imports.
+## Explicit committed-range collection
+
+Only when an immutable committed-range package is requested, use the additive
+`collect` route: `resources/scripts/review_package.py` with its adjacent
+`resources/schemas/review-package.schema.json` and `resources/resource-map.json`.
+Ordinary review keeps the `review` route, `HEAD` default, six narrative sections
+and `Findings.v1`; staged, dirty, root-with-null-base and supplied patches are
+outside this collector. Read `--help` before invocation.
+
+```text
+python3 <owner-skill>/resources/scripts/review_package.py \
+  --repo <repository> --base <full-recorded-baseline-commit> \
+  --head <full-exact-candidate-commit> --out <new-task-owned-leaf> \
+  --task-id <task-id> --owner <task-owner> --generation <positive-integer> \
+  --repository-id <controller-repository-id> \
+  [--spec-sha256 <64-lowercase-hex>] [--plan-sha256 <64-lowercase-hex>]
+```
+
+Supply exact lowercase full commit IDs and an ancestor base. The new output leaf
+must be absent, its parent must already exist, and all ancestors must be real
+directories without symlinks or dot/dotdot components. Prefer a task-owned reports
+parent outside the repository. The helper never overwrites/resumes/removes output;
+preserve partial leaves for separately authorized cleanup and retry with a new
+leaf. Python 3.11+, Git supporting `--no-lazy-fetch` and `--attr-source`, and POSIX
+nofollow directory descriptors and no-replace hard links are required; unsupported
+runtime/preflight fails without a weaker fallback. No model, network or pip package
+is needed by the helper.
+
+Exit 0 means complete collection, 2 means incomplete collection or freeze failure,
+and 3 means invalid invocation, unsupported preflight or unsafe destination.
+A safely frozen package emits exactly one `ReviewPackageResult.v1` JSON stdout
+object containing relative `manifest.json`, its SHA-256 and collection status.
+Before freeze or on freeze failure stdout is empty; a marker left after a failed
+publication/cleanup/stdout operation is unconfirmed. Retain the receipt digest
+independently; do not accept partial files or multiply linked manifests.
+
+`ReviewPackage.v1` retains the complete parent-first base..head commit list and raw
+commit messages, endpoint net patch, NUL-framed raw/numstat records, and both-side
+raw blobs of net changed paths. Raw filenames are base64 data with escaped display
+strings; no repository filename or committed symlink target is materialized.
+Binary bytes are collected without claiming review. Changed gitlinks retain
+endpoint metadata and short-form patch IDs but make collection incomplete; no
+nested submodule history/content is read. Intermediate per-commit patches and
+unchanged consumers are not collected, even when a range's commits cancel.
+
+Caller task/owner/generation/repository and optional spec/plan hashes are assertions,
+not authenticated ownership or proof of a reviewed specification. Producer script,
+schema and map hashes bind bytes but need independent expected identities. Local
+repository identity binds the resolved common Git directory and object format;
+it is not a remote URL or portability claim. D6.S3 consumer verification is a
+separate step: reject untrusted, stale, mismatched, incomplete or tampered packages
+against independently recorded expectations. Collection completeness grants no
+correctness/security verdict, model-read proof, consumer coverage, merge, release
+or repair authority. Freeze observes the collector-created manifest inode and
+exact bytes at pre-link, post-link and post-cleanup boundaries. It does not exclude
+arbitrary same-UID writers racing later syscalls or modifying output after the
+last observation or receipt; independently retained digest verification remains
+required. Review still reads the material and relevant unchanged consumers at the
+exact target before producing findings.
+
 """
 import argparse
 import base64
@@ -113,7 +171,7 @@ class Parser(argparse.ArgumentParser):
 
 
 def arguments(argv):
-    parser = Parser(description=__doc__, allow_abbrev=False)
+    parser = Parser(description=__doc__, allow_abbrev=False, formatter_class=argparse.RawDescriptionHelpFormatter)
     for key in ('repo', 'base', 'head', 'out', 'task-id', 'owner', 'generation', 'repository-id'):
         parser.add_argument('--' + key, required=True)
     for key in ('spec-sha256', 'plan-sha256'):
@@ -308,6 +366,8 @@ class Output:
         self.fds = []
         self.chain = []
         self.refs = {}
+        self.manifest_fd = None
+        self.manifest_identity = None
         self.leaf = path.name
         if not self.leaf:
             raise Invalid('new output leaf required')
@@ -358,9 +418,15 @@ class Output:
             if self.refs[path] != ref:
                 raise CollectionError('artifact_write', 'artifact_collision')
             return ref
-        fd = os.open(name, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=parent)
+        access = os.O_RDWR if path == 'manifest.partial' else os.O_WRONLY
+        fd = os.open(name, access | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600, dir_fd=parent)
         try:
             with os.fdopen(fd, 'wb') as stream:
+                if path == 'manifest.partial':
+                    self.manifest_fd = os.dup(stream.fileno())
+                    self.fds.append(self.manifest_fd)
+                    info = os.fstat(stream.fileno())
+                    self.manifest_identity = (info.st_dev, info.st_ino)
                 stream.write(data)
                 stream.flush()
                 os.fsync(stream.fileno())
@@ -400,6 +466,34 @@ class Output:
                     raise CollectionError('artifact_validation', 'object_hash_mismatch')
         os.fsync(self.objects)
 
+    def verify_manifest(self, data, names, links):
+        """Check retained created inode, path links and actual bytes at freeze boundaries.
+
+        These observed boundaries detect accidental/fault-window changes. They do
+        not lock out an arbitrary same-UID writer racing syscalls or changing bytes
+        after the last observation; callers must retain and verify the receipt.
+        """
+        if self.manifest_fd is None or self.manifest_identity is None:
+            raise CollectionError('manifest_publication', 'manifest_identity_mismatch')
+        info = os.fstat(self.manifest_fd)
+        if (not stat.S_ISREG(info.st_mode) or info.st_nlink != links or
+                (info.st_dev, info.st_ino) != self.manifest_identity or info.st_size != len(data)):
+            raise CollectionError('manifest_publication', 'manifest_identity_mismatch')
+        for name in names:
+            path_info = os.stat(name, dir_fd=self.fd, follow_symlinks=False)
+            if (not stat.S_ISREG(path_info.st_mode) or path_info.st_nlink != links or
+                    (path_info.st_dev, path_info.st_ino) != self.manifest_identity):
+                raise CollectionError('manifest_publication', 'manifest_identity_mismatch')
+        os.lseek(self.manifest_fd, 0, os.SEEK_SET)
+        with os.fdopen(os.dup(self.manifest_fd), 'rb') as stream:
+            actual = stream.read()
+        if actual != data or digest(actual) != digest(data):
+            raise CollectionError('manifest_publication', 'manifest_bytes_mismatch')
+        after = os.fstat(self.manifest_fd)
+        if (after.st_size != len(data) or after.st_nlink != links or
+                (after.st_dev, after.st_ino) != self.manifest_identity):
+            raise CollectionError('manifest_publication', 'manifest_identity_mismatch')
+
     def freeze(self, manifest, schema, paths, source_bytes, algorithm):
         self.identity()
         if [p.read_bytes() for p in paths] != source_bytes:
@@ -411,15 +505,15 @@ class Output:
         self.identity()
         if [p.read_bytes() for p in paths] != source_bytes:
             raise CollectionError('producer_binding', 'producer_drift')
+        self.verify_manifest(data, ['manifest.partial'], 1)
         os.link('manifest.partial', 'manifest.json', src_dir_fd=self.fd, dst_dir_fd=self.fd, follow_symlinks=False)
-        info = os.stat('manifest.partial', dir_fd=self.fd, follow_symlinks=False)
-        marker = os.stat('manifest.json', dir_fd=self.fd, follow_symlinks=False)
-        if not stat.S_ISREG(info.st_mode) or info.st_nlink != 2 or (info.st_dev, info.st_ino) != (marker.st_dev, marker.st_ino):
-            raise CollectionError('manifest_publication', 'manifest_identity_mismatch')
+        # Both path names must still denote the retained collector-created inode.
+        # A foreign partial replacement is preserved rather than unlinked.
+        self.verify_manifest(data, ['manifest.partial', 'manifest.json'], 2)
         os.unlink('manifest.partial', dir_fd=self.fd)
         os.fsync(self.fd)
-        if os.stat('manifest.json', dir_fd=self.fd, follow_symlinks=False).st_nlink != 1:
-            raise CollectionError('manifest_publication', 'manifest_identity_mismatch')
+        self.verify_manifest(data, ['manifest.json'], 1)
+        self.identity()
         return {'schema_version': 'ReviewPackageResult.v1', 'status': manifest['status'],
                 'manifest': 'manifest.json', 'manifest_sha256': digest(data)}
 
@@ -690,7 +784,9 @@ def main(argv=None):
     except Invalid as error:
         print('review-package: ' + str(error), file=sys.stderr)
         return 3
-    except (CollectionError, OSError, ValueError, KeyboardInterrupt):
+    except (CollectionError, OSError, ValueError, KeyboardInterrupt) as error:
+        if isinstance(error, CollectionError):
+            print('review-package: ' + error.operation + ': ' + error.code, file=sys.stderr)
         retained = ascii(args.out)[1:-1] if 'args' in locals() else '<unreserved>'
         print('review-package: collection/freeze failed; preserve partial output ' + retained + ' and use a new leaf.', file=sys.stderr)
         return 2
