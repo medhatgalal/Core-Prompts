@@ -1,5 +1,8 @@
 ## Unreleased
 
+- Correct the CLI reference’s stale denial of the bundled optional trace checker;
+  retain its mechanical-only scope and separate test, semantic and authority limits.
+
 - Add an externally pinned, read-only committed review-package binding verifier
   while preserving the collector's command and output contract. Document direct
   diagnosis followed by separately authorized repair, selected-comment IDs and
