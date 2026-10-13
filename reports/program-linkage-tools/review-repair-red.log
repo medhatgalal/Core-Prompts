@@ -1,0 +1,29 @@
+Pre-repair captured CLI failures; full raw log remains task-local.
+raw_sha256=d99e37167d7f6353994c15b1e5d9b89ac6aa0981c8d20a4c0beafa2150f8d713
+
+F....FFFFFF.FFFF.                                                        [100%]
+=================================== FAILURES ===================================
+________ test_selected_invalid_tests_cannot_downgrade_to_omission[None] ________
+
+checker = <module 'trace_check' from '/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-460/test_selected_invalid_tests_ca0/resources/scripts/trace_check.py'>
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-460/test_selected_invalid_tests_ca0')
+...
+        process=subprocess.run([sys.executable,'-I','-S',str(OWNER/'scripts/graph_check.py'),'--plan',str(path)],capture_output=True,text=True)
+>       assert process.returncode==2 and process.stderr==''
+E       AssertionError: assert (1 == 2)
+E        +  where 1 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...^^\nUnicodeEncodeError: \'utf-8\' codec can\'t encode character \'\\udfff\' in position 339: surrogates not allowed\n').returncode
+
+tests/test_task_graph_check.py:115: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_trace_check.py::test_selected_invalid_tests_cannot_downgrade_to_omission[None]
+FAILED tests/test_trace_check.py::test_trace_cli_rejects_lone_surrogate_keys_and_values[\ud800-spec-key]
+FAILED tests/test_trace_check.py::test_trace_cli_rejects_lone_surrogate_keys_and_values[\ud800-plan-id]
+FAILED tests/test_trace_check.py::test_trace_cli_rejects_lone_surrogate_keys_and_values[\ud800-tests-id]
+FAILED tests/test_trace_check.py::test_trace_cli_rejects_lone_surrogate_keys_and_values[\udfff-spec-key]
+FAILED tests/test_trace_check.py::test_trace_cli_rejects_lone_surrogate_keys_and_values[\udfff-plan-id]
+FAILED tests/test_trace_check.py::test_trace_cli_rejects_lone_surrogate_keys_and_values[\udfff-tests-id]
+FAILED tests/test_task_graph_check.py::test_graph_cli_rejects_lone_surrogate_keys_and_values[id-\ud800]
+FAILED tests/test_task_graph_check.py::test_graph_cli_rejects_lone_surrogate_keys_and_values[id-\udfff]
+FAILED tests/test_task_graph_check.py::test_graph_cli_rejects_lone_surrogate_keys_and_values[key-\ud800]
+FAILED tests/test_task_graph_check.py::test_graph_cli_rejects_lone_surrogate_keys_and_values[key-\udfff]
+11 failed, 6 passed, 36 deselected in 2.17s

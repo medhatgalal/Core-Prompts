@@ -1,0 +1,163 @@
+{
+  "schema_version": "ProgramLinkageSourceReceipt.v1",
+  "baseline_head": "3782da241e7c4fdb973d9f96f5592926c28e07a4",
+  "accepted_contract_sha256": "8f95260c538c06a0d6dcc4df5e8d6a3fb591894f39860e1be9f6e1b08d1d8fee",
+  "accepted_contract_md_sha256": "4db54e10e8964cebfdf8f0f8707b81694be5f0840472a9bab8407bd4f655dc62",
+  "source_bindings_verified_before_edit": [
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json",
+      "expected_sha256": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+      "verified_before_edits": true
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "expected_sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+      "verified_before_edits": true
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+      "expected_sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+      "verified_before_edits": true
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "expected_sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2",
+      "verified_before_edits": true
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/resource-map.json",
+      "expected_sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7",
+      "verified_before_edits": true
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/resource-map.json",
+      "expected_sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302",
+      "verified_before_edits": true
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/resource-map.json",
+      "expected_sha256": "0654e1d3ba4638da30b1ea18ec946e58eca7e993edd9a174410e0af9107cd8f6",
+      "verified_before_edits": true
+    },
+    {
+      "path": ".meta/shared-resource-imports.json",
+      "expected_sha256": "c632163cfd647f24b1b9c10f2eb6b4727c3b133d0ec9c429d61b2a0298d0ac3b",
+      "verified_before_edits": true
+    },
+    {
+      "path": ".meta/surface-rules.json",
+      "expected_sha256": "bc804cd16bd077ec3e98e594a33a23fc91425d5a6b2c2c8c1c5493f2fbe39e81",
+      "verified_before_edits": true
+    },
+    {
+      "path": "src/intent_pipeline/capability_resources.py",
+      "expected_sha256": "da85a944e8fc9fc9757838b5bc2c1d5ac43f847f2467e088090bb6f4c5b26eeb",
+      "verified_before_edits": true
+    },
+    {
+      "path": "tests/test_capability_resources.py",
+      "expected_sha256": "b614668be5bb2963f7ed0f151acd544e680bd30c786414fb6fc22dab6bf6ee72",
+      "verified_before_edits": true
+    },
+    {
+      "path": ".kiro/steering/repo-workflow.md",
+      "expected_sha256": "63d68a58740c77ecf73b6f83420d3c3d92df4561a0d92e4dac16e23534c999a1",
+      "verified_before_edits": true
+    },
+    {
+      "path": ".kiro/steering/agent-behavior.md",
+      "expected_sha256": "0592980bd11b250e1d335a55d96ac323f3c634f92176288e2308bd42be92d786",
+      "verified_before_edits": true
+    },
+    {
+      "path": ".kiro/steering/docs-governance.md",
+      "expected_sha256": "15dfce1cdcbf8f9522a86166593e34fe8094513d8f15a7730b2ba27858b798f8",
+      "verified_before_edits": true
+    }
+  ],
+  "production_schema_objects_unchanged": true,
+  "original_definitions_retained_in_accepted_contract": true,
+  "implemented_entrypoints": [
+    "scripts/graph_check.py",
+    "scripts/trace_check.py"
+  ],
+  "mechanical_checkers": "implemented; source-only",
+  "semantic_review": "pending actual independent review of hash-bound contradictory fixture",
+  "fixture_sha256": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7",
+  "limits": [
+    "bounded production schema vocabulary, not universal JSON Schema",
+    "Local detached receipt consistency is not package authenticity",
+    "No model/native behavioral improvement established",
+    "No execution authorization from graph frontier",
+    "No canonical SSOT/UAC/generated surfaces/CI wiring changed in worker"
+  ],
+  "remaining_gates": [
+    "Controller compose proposed registry additions and trace resource map preserving other imports",
+    "Independent semantic/source/docs review of exact fixture/source identity",
+    "Same-slug UAC plan/judge/apply with accepted candidates",
+    "Serialized generation then renew focused generated bundle and install-manifest checks",
+    "CI tests wired exactly once in both provider existing groups",
+    "Required shared local CI and exact candidate GitLab/GitHub hosted checks",
+    "Controller final schema/producer/hash binding renewal and authorized main parity delivery"
+  ],
+  "scope": "source-only; no push/merge/release/live install",
+  "resources": {
+    "sources/capability-resources/engos-design-specify-change/resource-map.json": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7",
+    "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7",
+    "sources/capability-resources/engos-design-specify-change/references/design-first.md": "341974202bc219f72746f6d51dd8807e4ce877a31d34f85bbaa4a7a723992ed6",
+    "sources/capability-resources/engos-design-specify-change/references/requirements-first.md": "17256c9d62d163f473704cd229d9f30f5dbd744b5e1fb5f17e8889cfa3342ac3",
+    "sources/capability-resources/engos-design-specify-change/references/bugfix.md": "87909e559fed2a6a800bbdaba9edb9c4f9e089f6a408ae1b73512db378c2eeef",
+    "sources/capability-resources/engos-design-specify-change/schemas/spec-contract.schema.json": "cfacd498af15f047b829902f1fa0068e886ef7c3c5fa0808b641417a2bd7ba50",
+    "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json": "2927ac79a1fedef2e77f78b05c88a386f0e1e45db88bfef1e94cfd9985b86162",
+    "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py": "f61ea5f64cf63d71f94ce73bbfa111077d7517ac8325927d242a69c727cabb55",
+    "sources/capability-resources/engos-design-specify-change/templates/requirements.md": "fa4bfc4041eec53943842423ba9681f1604919465322ba040c04a9a101f068b4",
+    "sources/capability-resources/engos-design-specify-change/templates/trace-matrix.json": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b",
+    "sources/capability-resources/engos-design-plan-implementation/resource-map.json": "c3acbaf9f82807c84b35165a369bc650d7eaa97ebedd3308a39d613e03b35a06",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json": "96271294c25cb298a04d9febc34da22719fc4c5128193d31d2742bba77839b7d",
+    "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py": "9cb6eadd265f18934af27af2c807b50f905f17fb17580ca75ec5aeea7b121d19",
+    "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+  },
+  "verification": {
+    "source_focused": {
+      "command": "python -m pytest -q tests/test_task_graph_check.py tests/test_trace_check.py tests/test_capability_resources.py tests/test_resource_delivery.py",
+      "passed": 275,
+      "failed": 0
+    },
+    "with_generated_bundle_tests": {
+      "passed": 283,
+      "failed": 2,
+      "classification": "process / pending combined regeneration",
+      "failures": [
+        "Existing D6 install manifest missing resource-map entry",
+        "Generated graph manifest/loader differs from new source map"
+      ]
+    },
+    "red_before_implementation": {
+      "checkers": "Missing scripts caused captured failures",
+      "shared_closure": "TaskPlan sibling import rejected by original blanket $ref ban"
+    },
+    "diff_check": "passed",
+    "runtime": "initiative/.validation-env-d5/bin/python; detached child invocations use -I -S",
+    "model_native_behavior": "not_assessed"
+  },
+  "source_sha256": {
+    ".meta/surface-rules.json": "28932c26694d4bb89f21071a0ad99c91869135312c56fe1468e1cd039520f15b",
+    "src/intent_pipeline/capability_resources.py": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+    "tests/test_task_graph_check.py": "5a438a9a2a019d63fb8103819db662270e1788897ce7c05531b96e826662b058",
+    "tests/test_trace_check.py": "2146dbb426efbeede6c413904cc38d2369cbb883c4d440410b93e79ff0bd704f",
+    "tests/test_capability_resources.py": "ceb7eb75c2575e1047e82b34412f805f76f56f6bbd57b8445517fa1cf9f72453"
+  },
+  "evidence_sha256": {
+    "specify-change-resource-map-proposed.json": "7f8250385ab1a6858fd366f7ce63ee33f8ef87e34e4484cf40809b1223f07e01",
+    "registry-additions-proposed.json": "31781a064130709c652849993b0b04914ee8a474fc518421c326d500c27cc5d1",
+    "user-doc-fragments.md": "3c51a9c79811997abdf0336d3e8cc0f22c8869844a741b27ca355f29fb03c9ae",
+    "focused-tests.log": "45412e5c885bae0e01f679221ad5a2792c2b98014f8053105583cf129e8b9951",
+    "red-checkers.log": "b4b023e4ff8813fb6f1593d358bc7b944846e22898bb938d3936d0a45f42ba73",
+    "source-tests.log": "8b5c3fa13e0521cfe4ef5c3f0a45da4ac6c966c7d905bdcbcf38447cc6ded43f",
+    "engos-design-specify-change-candidate.md": "bb741c613637fe4952c92e127213f071b7ae015cd53a63fd6fa5572abcd4d642",
+    "engos-design-plan-implementation-candidate.md": "fa6948a462b46ef3290e62f926ee568efa17597761a434162d9279e7a3400332",
+    "red-shared-closure.log": "36f37659787ec63ef130db07c054b6c168570443704d6fb2b4df74ea9c996788"
+  }
+}
