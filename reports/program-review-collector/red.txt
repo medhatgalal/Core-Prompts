@@ -1,0 +1,33 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________________________ test_rp01_exact_endpoints ___________________________
+
+git_repo = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-350/test_rp01_exact_endpoints0/repo'), <function git_repo.<locals>.git at 0x10948cb40>, 'e1390a1b56b9fc4f80884a5cd1e35a082afbecaf')
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-350/test_rp01_exact_endpoints0')
+
+    def test_rp01_exact_endpoints(git_repo, tmp_path):
+        repo, git, base = git_repo
+        (repo / 'a').write_text('C1\n'); git('commit', '-qam', 'one'); c1 = git('rev-parse', 'HEAD').decode().strip()
+        (repo / 'b').write_text('C2\n'); git('add', '.'); git('commit', '-qm', 'two'); head = git('rev-parse', 'HEAD').decode().strip()
+        (repo / 'a').write_text('C3\n'); git('commit', '-qam', 'later')
+>       out = tmp_path / 'package'; m = package(invoke(repo, base, head, out), out)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_review_package.py:53:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+result = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...rces/capability-resources/engos-quality-code-review/scripts/review_package.py': [Errno 2] No such file or directory\n")
+out = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-350/test_rp01_exact_endpoints0/package')
+status = 'complete'
+
+    def package(result, out, status='complete'):
+>       assert result.returncode == (0 if status == 'complete' else 2), result.stderr
+E       AssertionError: b"/opt/homebrew/Cellar/python@3.14/3.14.8_2/Frameworks/Python.framework/Versions/3.14/Resources/Python.app/Contents/Ma...urces/capability-resources/engos-quality-code-review/scripts/review_package.py': [Errno 2] No such file or directory
+E         "
+E       assert 2 == 0
+E        +  where 2 = CompletedProcess(args=['/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skil...rces/capability-resources/engos-quality-code-review/scripts/review_package.py': [Errno 2] No such file or directory\n").returncode
+
+tests/test_review_package.py:36: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_package.py::test_rp01_exact_endpoints - AssertionErr...
+1 failed in 0.60s

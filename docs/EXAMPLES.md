@@ -661,6 +661,20 @@ Follow with:
 
 ### `engos-quality-code-review`
 
+For committed-range evidence:
+
+> Collect an immutable review package for my recorded baseline and exact candidate
+> commit using task D6.S2, owner implementation-worker, generation 1 and my recorded
+> repository identity. Use a new task-owned output leaf; return the manifest receipt.
+
+Expect `ReviewPackage.v1` evidence plus a SHA-256 receipt, with no review verdict.
+The helper requires full commit IDs and excludes staged/dirty edits. Binary bytes
+remain unreviewed; changed gitlinks make collection incomplete. Follow with actual
+review and unchanged-consumer reads at the exact target. An empty net patch can
+still have multiple range commits. Required flags and output constraints are in
+[CLI reference](CLI-REFERENCE.md#committed-range-package).
+
+
 Use when:
 
 - you want to review staged changes before committing

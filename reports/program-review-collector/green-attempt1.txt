@@ -1,0 +1,313 @@
+...............F........................F........EEEEEEEEEEEEEEEEEEEEE   [100%]
+==================================== ERRORS ====================================
+_____________ ERROR at teardown of test_rp09_output_faults[unlink] _____________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpc3_xkjfm',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+______________ ERROR at setup of test_rp09_output_faults[stdout] _______________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmp4c7_unvw',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_____________ ERROR at teardown of test_rp09_output_faults[stdout] _____________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmp8bf3uoo_',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+____________ ERROR at setup of test_rp10_bindings_and_source_drift _____________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpdx9nggnx',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+___________ ERROR at teardown of test_rp10_bindings_and_source_drift ___________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpyvhg01ct',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_____________ ERROR at setup of test_rp11_environment_no_mutation ______________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpvg024cmk',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+____________ ERROR at teardown of test_rp11_environment_no_mutation ____________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpfko0dg0p',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+__________ ERROR at setup of test_rp12_unsupported_preflight[grafts] ___________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmp0x2a60s9',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_________ ERROR at teardown of test_rp12_unsupported_preflight[grafts] _________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpdyh0bga3',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+________ ERROR at setup of test_rp12_unsupported_preflight[attributes] _________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpq3o33fex',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_______ ERROR at teardown of test_rp12_unsupported_preflight[attributes] _______
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmphl5ejg4x',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+__________ ERROR at setup of test_rp12_unsupported_preflight[shallow] __________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmp_et5vrix',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+________ ERROR at teardown of test_rp12_unsupported_preflight[shallow] _________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpl_7hu553',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+________ ERROR at setup of test_rp12_unsupported_preflight[git_missing] ________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpj3xxc81e',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+______ ERROR at teardown of test_rp12_unsupported_preflight[git_missing] _______
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpyy1t0j9l',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_______ ERROR at setup of test_rp12_unsupported_preflight[global_switch] _______
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmp7fjyghh2',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_____ ERROR at teardown of test_rp12_unsupported_preflight[global_switch] ______
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmp3c5qvvvw',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+_________ ERROR at setup of test_rp12_unsupported_preflight[platform] __________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpcq2qkql4',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+________ ERROR at teardown of test_rp12_unsupported_preflight[platform] ________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpz5s0s_w6',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+____________ ERROR at setup of test_rp13_determinism_closed_schema _____________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpy3kcfbnp',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+___________ ERROR at teardown of test_rp13_determinism_closed_schema ___________
+
+a = ('/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/tmpqj6aorjk',), kw = {}
+
+>   def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   OSError: fixture unlink failure
+
+tests/test_review_package.py:259: OSError
+=================================== FAILURES ===================================
+_____________________ test_rp06_paths_modes_rename_delete ______________________
+
+git_repo = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-369/test_rp06_paths_modes_rename_d0/repo'), <function git_repo.<locals>.git at 0x108d8e2a0>, '040ecefb375993714ef1d770c29a66148e5c50c7')
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-369/test_rp06_paths_modes_rename_d0')
+
+    def test_rp06_paths_modes_rename_delete(git_repo, tmp_path):
+        repo, git, _ = git_repo
+        (repo / 'rename').write_text('line\n' * 40); (repo / 'edited').write_text('old\n' * 40)
+        for name in ['space name', 'tab\tname', 'newline\nname', '-dash', '$(sentinel)', 'delete']:
+            (repo / name).write_text('old\n')
+>       rawpath = os.fsencode(repo) + b'/nonutf8-\xff'; fd = os.open(rawpath, os.O_CREAT | os.O_WRONLY, 0o600); os.write(fd, b'old\n'); os.close(fd)
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       OSError: [Errno 92] Illegal byte sequence: b'/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-369/test_rp06_paths_modes_rename_d0/repo/nonutf8-\xff'
+
+tests/test_review_package.py:135: OSError
+______________________ test_rp09_output_faults[leaf_race] ______________________
+
+git_repo = (PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-369/test_rp09_output_faults_leaf_r0/repo'), <function git_repo.<locals>.git at 0x1094d6400>, '06a84558c79e0bc8dd46b46a3ca1df762f0044d2')
+tmp_path = PosixPath('/private/var/folders/42/sm0kpcrx151_t0cqygfwb3f80000gp/T/pytest-of-medhat.galal/pytest-369/test_rp09_output_faults_leaf_r0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x109531490>
+capfd = <_pytest.capture.CaptureFixture object at 0x108d2b5b0>
+fault = 'leaf_race'
+
+    @pytest.mark.parametrize('fault', ['leaf_race', 'ancestor_swap', 'identity', 'artifact_write', 'manifest_fsync', 'interrupt', 'marker_race', 'link', 'unlink', 'stdout'])
+    def test_rp09_output_faults(git_repo, tmp_path, monkeypatch, capfd, fault):
+        repo, git, base = git_repo; head = commit(git, repo); module = load_collector(); fired = []
+        parent = tmp_path / 'parent'; parent.mkdir(); out = parent / 'package'
+        if fault == 'leaf_race':
+            original = module.os.mkdir
+            def mkdir(name, *args, **kwargs):
+                if name == 'package':
+                    fired.append(fault); original(name, *args, **kwargs)
+                    (out / 'competitor').write_bytes(b'keep')
+                return original(name, *args, **kwargs)
+            monkeypatch.setattr(module.os, 'mkdir', mkdir)
+        elif fault in ('ancestor_swap', 'identity'):
+            original = module.Output.identity
+            def identity(self):
+                fired.append(fault)
+                if fault == 'ancestor_swap' and len(fired) == 1:
+                    parent.rename(tmp_path / 'moved'); parent.symlink_to(repo, target_is_directory=True)
+                if fault == 'identity': raise module.CollectionError('output_identity', 'output_identity_mismatch')
+                return original(self)
+            monkeypatch.setattr(module.Output, 'identity', identity)
+        elif fault in ('artifact_write', 'interrupt'):
+            original = module.Output.write
+            def write(self, name, data):
+                if name == 'diff.patch':
+                    fired.append(fault)
+                    if fault == 'interrupt': raise KeyboardInterrupt()
+                    raise OSError('fixture write failure')
+                return original(self, name, data)
+            monkeypatch.setattr(module.Output, 'write', write)
+        elif fault == 'manifest_fsync':
+            original = module.os.fsync
+            def fsync(fd):
+                if os.fstat(fd).st_size > 0 and (out / 'manifest.partial').exists():
+                    fired.append(fault); raise OSError('fixture fsync failure')
+                return original(fd)
+            monkeypatch.setattr(module.os, 'fsync', fsync)
+        elif fault in ('marker_race', 'link'):
+            original = module.os.link
+            def link(*args, **kwargs):
+                fired.append(fault)
+                if fault == 'link': raise OSError('fixture unsupported hard link')
+                (out / 'manifest.json').write_bytes(b'competitor')
+                return original(*args, **kwargs)
+            # supports_dir_fd refers to function identity: keep the capability check
+            # real and inject publication only through freeze seam.
+            original_freeze = module.Output.freeze
+            def freeze(self, *args):
+                monkeypatch.setattr(module.os, 'link', link)
+                return original_freeze(self, *args)
+            monkeypatch.setattr(module.Output, 'freeze', freeze)
+        elif fault == 'unlink':
+            original_freeze = module.Output.freeze
+            def freeze(self, *args):
+                def unlink(*a, **kw): fired.append(fault); raise OSError('fixture unlink failure')
+                monkeypatch.setattr(module.os, 'unlink', unlink)
+                return original_freeze(self, *args)
+            monkeypatch.setattr(module.Output, 'freeze', freeze)
+        else:
+            original_freeze = module.Output.freeze
+            def freeze(self, *args):
+                receipt = original_freeze(self, *args); fired.append(fault)
+                class Broken:
+                    def write(self, data): raise OSError('fixture stdout failure')
+                    def flush(self): pass
+                class Stdout: buffer = Broken()
+                monkeypatch.setattr(module.sys, 'stdout', Stdout()); return receipt
+            monkeypatch.setattr(module.Output, 'freeze', freeze)
+        code = call_module(module, repo, base, head, out); captured = capfd.readouterr()
+>       assert fired and code == (3 if fault == 'leaf_race' else 2) and captured.out == ''
+E       assert ([])
+
+tests/test_review_package.py:274: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_review_package.py::test_rp06_paths_modes_rename_delete - OS...
+FAILED tests/test_review_package.py::test_rp09_output_faults[leaf_race] - ass...
+ERROR tests/test_review_package.py::test_rp09_output_faults[unlink] - OSError...
+ERROR tests/test_review_package.py::test_rp09_output_faults[stdout] - OSError...
+ERROR tests/test_review_package.py::test_rp09_output_faults[stdout] - OSError...
+ERROR tests/test_review_package.py::test_rp10_bindings_and_source_drift - OSE...
+ERROR tests/test_review_package.py::test_rp10_bindings_and_source_drift - OSE...
+ERROR tests/test_review_package.py::test_rp11_environment_no_mutation - OSErr...
+ERROR tests/test_review_package.py::test_rp11_environment_no_mutation - OSErr...
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[grafts]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[grafts]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[attributes]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[attributes]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[shallow]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[shallow]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[git_missing]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[git_missing]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[global_switch]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[global_switch]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[platform]
+ERROR tests/test_review_package.py::test_rp12_unsupported_preflight[platform]
+ERROR tests/test_review_package.py::test_rp13_determinism_closed_schema - OSE...
+ERROR tests/test_review_package.py::test_rp13_determinism_closed_schema - OSE...
+2 failed, 47 passed, 21 errors in 31.83s
