@@ -1,0 +1,1307 @@
+{
+  "engos-reconciliation-converge": {
+    "descriptor_sha256": "62fd9293d56c800d928f8778ca100b6947d54286a1b6563f610d377d7a972fcc",
+    "patch": [
+      {
+        "op": "test",
+        "path": "/modes",
+        "value": [
+          {
+            "mode_slug": "failure-mode-to-avoid",
+            "display_name": "Failure Mode To Avoid",
+            "source_refs": [
+              "ssot/engos-reconciliation-converge.md"
+            ],
+            "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          }
+        ]
+      },
+      {
+        "op": "replace",
+        "path": "/modes",
+        "value": []
+      }
+    ],
+    "disposition": {
+      "descriptor_sha256": "62fd9293d56c800d928f8778ca100b6947d54286a1b6563f610d377d7a972fcc",
+      "existing_count": 1,
+      "expected_count": 0,
+      "exact_old_new_identity_matches": 0,
+      "expected_modes": [],
+      "mapping": [
+        {
+          "old_entry": {
+            "mode_slug": "failure-mode-to-avoid",
+            "display_name": "Failure Mode To Avoid",
+            "source_refs": [
+              "ssot/engos-reconciliation-converge.md"
+            ],
+            "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": null,
+          "source_trace": {
+            "path": "ssot/engos-reconciliation-converge.md",
+            "line_start": 189,
+            "line_end": 191,
+            "sha256": "d30937767f24085b67a592b9c128792ce35f147a51b521b6f6d772d2eae8a275",
+            "literal_text": "### Failure Mode To Avoid\n- returning a blended summary that hides the real conflicts and makes the final proposal harder to execute\n\n"
+          },
+          "disposition": "Remove only obsolete descriptor mode entry; keep the actual Failure Mode To Avoid prose and all Converge optional controls/defaults unchanged. It is a descriptive example heading, not a declared callable mode.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        }
+      ],
+      "historical_baseline_preserve_exact": {
+        "slug": "engos-reconciliation-converge",
+        "strategy": "historical_gold",
+        "group": "flattened_regression",
+        "baseline_path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md",
+        "selected_commit": "3bc88b43",
+        "richness_score": 5,
+        "line_count": 135,
+        "reason": "Latest portable prompt body that still includes the direct execution prompt, controls, defaults, and explicit phased synthesis behavior.",
+        "equivalent_commits": [
+          "e4b12fc3",
+          "f6025ddb",
+          "0f686cfe"
+        ],
+        "expected_companions": [
+          "engos-meta-supercharge"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "portable_prompt_body",
+            "kind": "individual_module",
+            "label": "portable prompt block",
+            "must_contain": [
+              "## The Prompt (paste into the target AI)",
+              "~~~~text",
+              "=== PHASE 1: INGEST & MAP ===",
+              "=== PHASE 7: OUTPUT ==="
+            ]
+          },
+          {
+            "id": "controls_and_tradeoffs",
+            "kind": "stacked_or_full",
+            "label": "controls and conflict handling",
+            "must_contain": [
+              "/swot",
+              "/mcda",
+              "/conflicts",
+              "Do NOT create a \u201cFrankenstein\u201d merge",
+              "Final Converged Proposal"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "0a2c1e46",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 133,
+          "materialized_from_commit": "3bc88b43"
+        },
+        "source": "source_library",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "quality_validation_matrix_preserve_exact": [
+        {
+          "id": "portable_prompt_body",
+          "kind": "individual_module",
+          "label": "portable prompt block",
+          "must_contain": [
+            "## The Prompt (paste into the target AI)",
+            "~~~~text",
+            "=== PHASE 1: INGEST & MAP ===",
+            "=== PHASE 7: OUTPUT ==="
+          ]
+        },
+        {
+          "id": "controls_and_tradeoffs",
+          "kind": "stacked_or_full",
+          "label": "controls and conflict handling",
+          "must_contain": [
+            "/swot",
+            "/mcda",
+            "/conflicts",
+            "Do NOT create a \u201cFrankenstein\u201d merge",
+            "Final Converged Proposal"
+          ]
+        }
+      ],
+      "current_topology": {
+        "path": "evals/topologies/engos-reconciliation-converge.json",
+        "sha256": "cb3f1496a8f64c32cba571ce91bd1e7cd1d2425632d425e8de6c8e346d1aeb3b",
+        "commands": [],
+        "modes_modules": [],
+        "aliases_shortcuts": [],
+        "disposition": "Already represents actual declarations: preserve node identities/semantics and empty aliases; regenerate only current source/resource bindings and legitimate added clauses. Do not translate obsolete descriptor pseudo-modes into topology nodes."
+      }
+    },
+    "apply_authority": "controller only; real source extractor refreshes locations after insertion"
+  },
+  "engos-audit-pitch-review": {
+    "descriptor_sha256": "52d1dc1afc9a06686ccb41100f37394d4c9e1411b153d7862c99cc81f687e6f4",
+    "patch": [
+      {
+        "op": "test",
+        "path": "/modes",
+        "value": [
+          {
+            "mode_slug": "pitch-create-goal-or-problem-statement",
+            "display_name": "pitch create [goal or problem statement]",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch create [goal or problem statement]` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-review-source",
+            "display_name": "pitch review <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch review <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-score-source",
+            "display_name": "pitch score <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch score <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-improve-source",
+            "display_name": "pitch improve <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch improve <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-compare-source1-source2",
+            "display_name": "pitch compare <source1> <source2>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch compare <source1> <source2>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-audit",
+            "display_name": "pitch audit",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch audit` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-bootstrap-goal",
+            "display_name": "pitch bootstrap <goal>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch bootstrap <goal>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-export-source-options",
+            "display_name": "pitch export <source> [options]",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch export <source> [options]` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          {
+            "mode_slug": "pitch-integration-proof-source",
+            "display_name": "pitch integration-proof <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch integration-proof <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          }
+        ]
+      },
+      {
+        "op": "replace",
+        "path": "/modes",
+        "value": [
+          {
+            "mode_slug": "engos-audit-pitch-review-create-goal-or-problem-statement",
+            "display_name": "engos-audit-pitch-review create [goal or problem statement]",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 142,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-review-source",
+            "display_name": "engos-audit-pitch-review review <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 150,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-score-source",
+            "display_name": "engos-audit-pitch-review score <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 158,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-improve-source",
+            "display_name": "engos-audit-pitch-review improve <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 167,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-compare-source1-source2",
+            "display_name": "engos-audit-pitch-review compare <source1> <source2>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 174,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-audit",
+            "display_name": "engos-audit-pitch-review audit",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 180,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-bootstrap-goal",
+            "display_name": "engos-audit-pitch-review bootstrap <goal>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 188,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-export-source-options",
+            "display_name": "engos-audit-pitch-review export <source> [options]",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 196,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-integration-proof-source",
+            "display_name": "engos-audit-pitch-review integration-proof <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 229,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          }
+        ]
+      }
+    ],
+    "disposition": {
+      "descriptor_sha256": "52d1dc1afc9a06686ccb41100f37394d4c9e1411b153d7862c99cc81f687e6f4",
+      "existing_count": 9,
+      "expected_count": 9,
+      "exact_old_new_identity_matches": 0,
+      "expected_modes": [
+        {
+          "mode_slug": "engos-audit-pitch-review-create-goal-or-problem-statement",
+          "display_name": "engos-audit-pitch-review create [goal or problem statement]",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 142,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-review-source",
+          "display_name": "engos-audit-pitch-review review <source>",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 150,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-score-source",
+          "display_name": "engos-audit-pitch-review score <source>",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 158,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-improve-source",
+          "display_name": "engos-audit-pitch-review improve <source>",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 167,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-compare-source1-source2",
+          "display_name": "engos-audit-pitch-review compare <source1> <source2>",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 174,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-audit",
+          "display_name": "engos-audit-pitch-review audit",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 180,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-bootstrap-goal",
+          "display_name": "engos-audit-pitch-review bootstrap <goal>",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 188,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-export-source-options",
+          "display_name": "engos-audit-pitch-review export <source> [options]",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 196,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        },
+        {
+          "mode_slug": "engos-audit-pitch-review-integration-proof-source",
+          "display_name": "engos-audit-pitch-review integration-proof <source>",
+          "entry_kind": "command",
+          "invocations": [],
+          "source_refs": [
+            "ssot/engos-audit-pitch-review.md"
+          ],
+          "source_line": 229,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
+          "required_inputs": [],
+          "expected_outputs": [],
+          "examples": [],
+          "uplift_notes": [
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
+        }
+      ],
+      "mapping": [
+        {
+          "old_entry": {
+            "mode_slug": "pitch-create-goal-or-problem-statement",
+            "display_name": "pitch create [goal or problem statement]",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch create [goal or problem statement]` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-create-goal-or-problem-statement",
+            "display_name": "engos-audit-pitch-review create [goal or problem statement]",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 142,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 142,
+            "line_end": 149,
+            "sha256": "ba97662037e3e5eaaa5dba92a122a0cf8e16577ea4970c382f5ea1614b5a4482",
+            "literal_text": "### `engos-audit-pitch-review create [goal or problem statement]`\nBootstrap a new pitch from a goal name or problem statement.\n1. Ask clarifying questions if the problem is unclear\n2. Scaffold the full template structure\n3. Pre-fill what can be inferred from context (goal mapping, known components)\n4. Mark sections that need human input with `[TODO: ...]`\n5. Output as markdown or write to a specified location\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-review-source",
+            "display_name": "pitch review <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch review <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-review-source",
+            "display_name": "engos-audit-pitch-review review <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 150,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 150,
+            "line_end": 157,
+            "sha256": "9a6e1d85891223c8471c1c2a19774d46fc33cd49ed9a15e571aa977e3cd67b78",
+            "literal_text": "### `engos-audit-pitch-review review <source>`\nRead and critique an existing pitch.\n- Source can be: Google Doc URL (including tab-specific URLs), local file path, or pasted content\n- Use `gws docs` to read Google Docs\n- Evaluate against the scoring rubric\n- Produce specific, actionable feedback per section\n- Output: structured review with score + gaps + suggestions\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-score-source",
+            "display_name": "pitch score <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch score <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-score-source",
+            "display_name": "engos-audit-pitch-review score <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 158,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 158,
+            "line_end": 166,
+            "sha256": "fac4b71242618dabb349c86f22570c45277d0323d3587cbd1018f394ae508d0a",
+            "literal_text": "### `engos-audit-pitch-review score <source>`\nScore a pitch against the rubric. Output:\n- Overall score (1-10)\n- Per-dimension scores\n- Gate check (see below)\n- Shaped status: `yes` / `partial` / `no`\n- Top 3 gaps preventing a higher score\n- Recommended next actions\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-improve-source",
+            "display_name": "pitch improve <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch improve <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-improve-source",
+            "display_name": "engos-audit-pitch-review improve <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 167,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 167,
+            "line_end": 173,
+            "sha256": "c2fbb5e4c98d09fa2afe11c2284cdc298857f438ff13a0cac849cf88f3d91026",
+            "literal_text": "### `engos-audit-pitch-review improve <source>`\nRead a pitch and produce an improved version.\n- Identify the weakest dimensions\n- Rewrite or expand those sections\n- Preserve the author's intent and voice\n- Show diff (what changed and why)\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-compare-source1-source2",
+            "display_name": "pitch compare <source1> <source2>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch compare <source1> <source2>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-compare-source1-source2",
+            "display_name": "engos-audit-pitch-review compare <source1> <source2>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 174,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 174,
+            "line_end": 179,
+            "sha256": "5f53646c2ee66fc98504e25b1a7440a5e050549f6d77967f3dd0465e7dce48ae",
+            "literal_text": "### `engos-audit-pitch-review compare <source1> <source2>`\nCompare two pitches (or two versions of the same pitch).\n- Score both against the same rubric\n- Identify which is stronger and why\n- Produce a merged recommendation if appropriate\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-audit",
+            "display_name": "pitch audit",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch audit` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-audit",
+            "display_name": "engos-audit-pitch-review audit",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 180,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 180,
+            "line_end": 187,
+            "sha256": "644826e5e8162ed9159ac82faffc713c806b5700a3e348bddc5e3259d6d0e3eb",
+            "literal_text": "### `engos-audit-pitch-review audit`\nPortfolio-level audit across multiple pitches.\n- Read pitches from tracker or provided list\n- Score each\n- Summarize: how many shaped vs. not, which goals have no pitch, which score below threshold\n- Priority-ordered list of pitches needing attention\n- Output as summary table\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-bootstrap-goal",
+            "display_name": "pitch bootstrap <goal>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch bootstrap <goal>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-bootstrap-goal",
+            "display_name": "engos-audit-pitch-review bootstrap <goal>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 188,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 188,
+            "line_end": 195,
+            "sha256": "9f2b53404986461ff7818f2a958e653efc5c287d52d15e1978f5c35745c5faaf",
+            "literal_text": "### `engos-audit-pitch-review bootstrap <goal>`\nFor \"PITCH NEEDED\" items \u2014 generate a first-draft pitch from:\n- Goal name and priority\n- Known components from the architecture map\n- Known team assignments\n- Known dependencies from the seam tracker\nProduces a draft with `[TODO]` markers for sections needing human input.\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-export-source-options",
+            "display_name": "pitch export <source> [options]",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch export <source> [options]` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-export-source-options",
+            "display_name": "engos-audit-pitch-review export <source> [options]",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 196,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 196,
+            "line_end": 228,
+            "sha256": "b27ac7ad4ffc882f1484776d6c8e87ab8f48cb3eee4f31c7ca24b07290b72e61",
+            "literal_text": "### `engos-audit-pitch-review export <source> [options]`\nExport a pitch from Google Docs to a local file.\n- Reads the pitch from GDrive (or any source)\n- Outputs as clean markdown by default\n- Preserves template structure (headings, sections, lists)\n- Strips Google Docs formatting artifacts\n\n**Options:**\n- `--output markdown` (default) \u2014 clean `.md` file\n- `--output json` \u2014 structured JSON with each section as a key\n- `--frontmatter` \u2014 include YAML frontmatter in markdown output (title, contributors, appetite, goal, date)\n\n**Usage:**\n```\nengos-audit-pitch-review export https://docs.google.com/document/d/...\nengos-audit-pitch-review export https://docs.google.com/document/d/... --frontmatter\nengos-audit-pitch-review export https://docs.google.com/document/d/... --output json\n```\n\n**Frontmatter example:**\n```yaml\n---\ntitle: \"Service Integration Boundary\"\ncontributors: [\"Product\", \"Engineering\"]\nappetite: \"two weeks\"\ngoal: \"Connect the approved client to the target service\"\ncycle: \"current\"\nshaped: yes\nscore: 7.5\nlast_reviewed: 2026-05-18\n---\n```\n\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        },
+        {
+          "old_entry": {
+            "mode_slug": "pitch-integration-proof-source",
+            "display_name": "pitch integration-proof <source>",
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "mode_summary": "Declared by the canonical `pitch integration-proof <source>` section.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
+            ],
+            "entry_kind": "mode",
+            "invocations": []
+          },
+          "new_entry_from_current_source": {
+            "mode_slug": "engos-audit-pitch-review-integration-proof-source",
+            "display_name": "engos-audit-pitch-review integration-proof <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 229,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          "source_trace": {
+            "path": "ssot/engos-audit-pitch-review.md",
+            "line_start": 229,
+            "line_end": 240,
+            "sha256": "d54ecd90c6227576454e88d1b97dd56ebaf1a03ea3429d10fbf73cbb62286c87",
+            "literal_text": "### `engos-audit-pitch-review integration-proof <source>`\nDeep-dive on integration proof for a specific pitch. Reads the pitch, identifies seams, and produces a concrete spike plan showing what \"good\" looks like for THIS pitch.\n\nUse after a `engos-audit-pitch-review review` identifies integration proof as the weak dimension, or when a shaper asks \"what do I need to prove before betting?\"\n\n**Behavior:**\n- If Architecture score < 3: output prerequisites first (\"you can't prove integration without defining components\")\n- If no seams are crossed: state \"no integration proof required\" with score guidance\n- Otherwise: produce seam-by-seam proof requirements scaled to appetite\n\n**Output structure:**\n```\n"
+          },
+          "disposition": "Replace stale descriptor identity/kind/display/source location with this already-existing canonical command declaration; not a new command or alias. No body/UI invocation change.",
+          "curation_disposition": {
+            "mode_summary": "Old summary is a heading-derived default naming the obsolete heading; regenerate the current extractor summary, do not transfer a false canonical-declaration claim.",
+            "required_inputs": "Existing empty array; retain empty extracted field. Any later substantive curation must be mapped and reviewed before apply.",
+            "expected_outputs": "Existing empty array; retain empty extracted field.",
+            "examples": "Existing empty array; retain empty extracted field.",
+            "uplift_notes": "Old generic CapabilityTopology.v1 pointer has no skill-specific content; replace with existing extractor default pointing to the same topology ownership.",
+            "entry_kind_mode_slug_display_source_line_invocations": "Current actual declarations are authoritative. No heuristic runtime prefix migration or retain-all fallback."
+          }
+        }
+      ],
+      "historical_baseline_preserve_exact": {
+        "slug": "engos-audit-pitch-review",
+        "strategy": "source_library",
+        "group": "applied_baseline",
+        "baseline_path": "sources/ssot-baselines/engos-audit-pitch-review/baseline.md",
+        "selected_commit": "c6b3203b",
+        "richness_score": 5,
+        "line_count": 456,
+        "reason": "Repo-resident baseline source snapshot used as the fidelity oracle for future UAC judging.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "materialized_from_commit": "c6b3203b",
+          "materialized_from_source_kind": "current_ssot",
+          "materialized_from_path": "ssot/engos-audit-pitch-review.md",
+          "materialized_from_sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4",
+          "last_materialized_at": "2026-05-21T05:26:42.776827+00:00"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "quality_validation_matrix_preserve_exact": [
+        {
+          "id": "operational_invocation",
+          "kind": "operational_contract",
+          "label": "operational invocation surface",
+          "must_contain": [
+            "## Invocation"
+          ]
+        }
+      ],
+      "current_topology": {
+        "path": "evals/topologies/engos-audit-pitch-review.json",
+        "sha256": "99d5662fc49bda95b4c4567e8329b15f2348b967336b8fa069e8647775202571",
+        "commands": [
+          {
+            "mode_slug": "engos-audit-pitch-review-create-goal-or-problem-statement",
+            "display_name": "engos-audit-pitch-review create [goal or problem statement]",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 142,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-review-source",
+            "display_name": "engos-audit-pitch-review review <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 150,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-score-source",
+            "display_name": "engos-audit-pitch-review score <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 158,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-improve-source",
+            "display_name": "engos-audit-pitch-review improve <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 167,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-compare-source1-source2",
+            "display_name": "engos-audit-pitch-review compare <source1> <source2>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 174,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-audit",
+            "display_name": "engos-audit-pitch-review audit",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 180,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-bootstrap-goal",
+            "display_name": "engos-audit-pitch-review bootstrap <goal>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 188,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-export-source-options",
+            "display_name": "engos-audit-pitch-review export <source> [options]",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 196,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          },
+          {
+            "mode_slug": "engos-audit-pitch-review-integration-proof-source",
+            "display_name": "engos-audit-pitch-review integration-proof <source>",
+            "entry_kind": "command",
+            "invocations": [],
+            "source_refs": [
+              "ssot/engos-audit-pitch-review.md"
+            ],
+            "source_line": 229,
+            "mode_summary": "Explicitly declared command in the canonical skill.",
+            "required_inputs": [],
+            "expected_outputs": [],
+            "examples": [],
+            "uplift_notes": [
+              "Composition and state rules belong to CapabilityTopology.v1."
+            ]
+          }
+        ],
+        "modes_modules": [],
+        "aliases_shortcuts": [],
+        "disposition": "Already represents actual declarations: preserve node identities/semantics and empty aliases; regenerate only current source/resource bindings and legitimate added clauses. Do not translate obsolete descriptor pseudo-modes into topology nodes."
+      }
+    },
+    "apply_authority": "controller only; real source extractor refreshes locations after insertion"
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "engos-reconciliation-converge",
+    "mode_identities": [],
+    "descriptor_sha256": "cdd8d69788555e81e7bdc7855913d590ce9319a9a072efd211afff3c0fe261c6",
+    "topology_sha256": "cb3f1496a8f64c32cba571ce91bd1e7cd1d2425632d425e8de6c8e346d1aeb3b",
+    "readback_evidence_class": "actual isolated builder output; not canonical UAC admission"
+  },
+  {
+    "slug": "engos-audit-pitch-review",
+    "mode_identities": [
+      [
+        "command",
+        "engos-audit-pitch-review-create-goal-or-problem-statement"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-review-source"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-score-source"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-improve-source"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-compare-source1-source2"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-audit"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-bootstrap-goal"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-export-source-options"
+      ],
+      [
+        "command",
+        "engos-audit-pitch-review-integration-proof-source"
+      ]
+    ],
+    "descriptor_sha256": "49891a3005c3c9cc83aede997aa29a3c4077f658c6bc125ce280cb5800cb8ea5",
+    "topology_sha256": "99d5662fc49bda95b4c4567e8329b15f2348b967336b8fa069e8647775202571",
+    "readback_evidence_class": "actual isolated builder output; not canonical UAC admission"
+  }
+]
