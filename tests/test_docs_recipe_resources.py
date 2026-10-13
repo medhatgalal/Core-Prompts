@@ -76,7 +76,7 @@ def test_count_arithmetic_is_separate_and_never_repaired():
     assert payload == before
 
 
-@pytest.mark.parametrize('raw', ['{', '{"items":[],"items":[]}', '[NaN]', '[Infinity]', '[1e999]', '[{"claim":"","source_paths":[],"status":"verified","rewrite_if_needed":"","extension":1e999}]'])
+@pytest.mark.parametrize('raw', ['{', '{"items":[],"items":[]}', '[NaN]', '[Infinity]', '[1e999]'])
 def test_invalid_json_emits_no_payload(tmp_path, raw):
     path = tmp_path / 'bad.json'; path.write_text(raw)
     result = subprocess.run([sys.executable, str(HELPER), 'roundtrip', '--format', 'master-array', '--input', str(path)], capture_output=True, text=True)
@@ -158,14 +158,73 @@ def request(kind='committed', gate='release'):
     return dict(schema_version='DocsShipHandoff.v1', kind='request', gate=gate, candidate=candidate, content_result=dict(verdict='PASS', evidence=['docs-observation'], unknowns=[]), requested_checks=['gitlab', 'github'], authority=['review'])
 
 
+def full_plan(req):
+    # Frozen repository-specific proposal fixtures, not evidence that commands ran.
+    head = req['candidate']['head_sha']
+    steps = [
+        ('commit', ['git', 'commit', '-m', 'reviewed documentation']),
+        ('candidate-checks', ['git', 'push', 'gitlab', 'AI/docs-fixture']),
+        ('candidate-checks', ['git', 'push', 'origin', 'AI/docs-fixture']),
+    ]
+    if req['gate'] in ('merge', 'release'):
+        steps += [('merge', ['glab', 'mr', 'merge', '123'])]
+    if req['gate'] == 'release':
+        steps += [
+            ('merged-release-preflight', ['python3', 'scripts/validate-surfaces.py', '--strict']),
+            ('package', ['scripts/package-surfaces.sh', '--version', '1.0.0']),
+            ('tag', ['git', 'tag', '-a', 'v1.0.0', head, '-m', 'reviewed release']),
+            ('tag', ['git', 'push', 'gitlab', 'v1.0.0']),
+            ('tag', ['git', 'push', 'origin', 'v1.0.0']),
+            ('publish-verify', ['glab', 'release', 'view', 'v1.0.0']),
+            ('publish-verify', ['gh', 'release', 'view', 'v1.0.0']),
+        ]
+    return [dict(phase=phase, argv=argv, preconditions=['gate prerequisites observed; actions still require explicit authority'] + (['tag_object:' + 'e'*40] if phase == 'tag' else []), evidence_refs=['fixture-current-help', 'fixture-observation']) for phase, argv in steps]
+
+
 def response(req):
-    return dict(schema_version='DocsShipHandoff.v1', kind='response', gate=req['gate'], candidate=copy.deepcopy(req['candidate']), authority=['review'], status='ready', observed_at='2026-10-12T12:00:00Z', checks=[dict(name=n, status='pass', evidence_ref=n+'-run', observed_head=req['candidate']['head_sha'], reason='exact candidate') for n in req['requested_checks']], version_prerequisites=dict(version='1.0.0', top_changelog_version='1.0.0', unreleased_empty=True, release_base='v0.9.0', package_verified=True), proposed_steps=[dict(phase='package', argv=['scripts/package-surfaces.sh', '--version', '1.0.0'], preconditions=['merged'], evidence_refs=['help'])], unknowns=[], blockers=[], manifest_verification=dict(method='committed_tree_reproduced', verified_target_kind='committed', verified_head=req['candidate']['head_sha'], reproduced_content_digest=req['candidate']['content_digest'], evidence_ref='git-tree-extraction', limitation='declared documentation scope'))
+    return dict(schema_version='DocsShipHandoff.v1', kind='response', gate=req['gate'], candidate=copy.deepcopy(req['candidate']), authority=['review'], status='ready', observed_at='2026-10-12T12:00:00Z', checks=[dict(name=n, status='pass', evidence_ref=n+'-run', observed_head=req['candidate']['head_sha'], reason='exact candidate') for n in req['requested_checks']], version_prerequisites=dict(version='1.0.0', top_changelog_version='1.0.0', unreleased_empty=True, release_base='v0.9.0', package_verified=True), proposed_steps=full_plan(req), unknowns=[], blockers=[], manifest_verification=dict(method='committed_tree_reproduced', verified_target_kind='committed', verified_head=req['candidate']['head_sha'], reproduced_content_digest=req['candidate']['content_digest'], evidence_ref='git-tree-extraction', limitation='declared documentation scope'))
+
+
+def plan_valid(req, reply):
+    # Bounded mechanical order/identity proof only: references are not authenticated here.
+    steps = reply['proposed_steps']
+    expected = ['commit', 'candidate-checks']
+    if req['gate'] in ('merge', 'release'):
+        expected += ['merge']
+    if req['gate'] == 'release':
+        expected += ['merged-release-preflight', 'package', 'tag', 'publish-verify']
+    phases = []
+    for step in steps:
+        if not step['argv'] or not step['preconditions'] or not step['evidence_refs']:
+            return False
+        if any(any(x in arg for x in ('<', '>', '...')) for arg in step['argv']):
+            return False
+        if not phases or phases[-1] != step['phase']:
+            phases.append(step['phase'])
+    if phases != expected:
+        return False
+    if req['gate'] != 'release':
+        return True
+    version = reply['version_prerequisites']['version']
+    tag = 'v' + version if isinstance(version, str) else None
+    package = [s for s in steps if s['phase'] == 'package']
+    tags = [s for s in steps if s['phase'] == 'tag']
+    if len(package) != 1 or package[0]['argv'] != ['scripts/package-surfaces.sh', '--version', version] or len(tags) != 3:
+        return False
+    if tags[0]['argv'] != ['git', 'tag', '-a', tag, req['candidate']['head_sha'], '-m', 'reviewed release']:
+        return False
+    if [t['argv'] for t in tags[1:]] != [['git', 'push', 'gitlab', tag], ['git', 'push', 'origin', tag]]:
+        return False
+    objects = [tuple(x for x in t['preconditions'] if x.startswith('tag_object:')) for t in tags]
+    if not objects[0] or any(x != objects[0] for x in objects):
+        return False
+    return [s['argv'] for s in steps if s['phase'] == 'publish-verify'] == [['glab', 'release', 'view', tag], ['gh', 'release', 'view', tag]]
 
 
 def ready(req, reply, independently_extracted, upstream_fresh=True):
     identity = lambda c: (c['target_kind'], c['base_sha'], c['head_sha'], c['manifest_version'], manifest(c), c['content_digest'])
     v = reply['manifest_verification']
-    return (req['content_result']['verdict'] == 'PASS' and not req['content_result']['unknowns'] and reply['status'] == 'ready' and not reply['unknowns'] and not reply['blockers'] and upstream_fresh and req['gate'] == reply['gate'] and identity(req['candidate']) == identity(reply['candidate']) and req['candidate']['content_digest'] == digest(req['candidate']) and req['candidate']['target_kind'] == 'committed' and v['method'] == 'committed_tree_reproduced' and v['verified_target_kind'] == 'committed' and v['verified_head'] == req['candidate']['head_sha'] and v['reproduced_content_digest'] == digest(independently_extracted) == digest(req['candidate']) and all(any(c['name'] == n and c['status'] == 'pass' and c['observed_head'] == req['candidate']['head_sha'] and c['evidence_ref'] for c in reply['checks']) for n in req['requested_checks']) and (req['gate'] != 'release' or (reply['version_prerequisites']['version'] == reply['version_prerequisites']['top_changelog_version'] and reply['version_prerequisites']['version'] is not None and reply['version_prerequisites']['unreleased_empty'] is True and reply['version_prerequisites']['release_base'] is not None and reply['version_prerequisites']['package_verified'] is True)) and all(not any(x in arg for x in ('<', '>', '...')) for step in reply['proposed_steps'] for arg in step['argv']))
+    return (plan_valid(req, reply) and reply['authority'] == req['authority'] and req['content_result']['verdict'] == 'PASS' and not req['content_result']['unknowns'] and reply['status'] == 'ready' and not reply['unknowns'] and not reply['blockers'] and upstream_fresh and req['gate'] == reply['gate'] and identity(req['candidate']) == identity(reply['candidate']) and req['candidate']['content_digest'] == digest(req['candidate']) and req['candidate']['target_kind'] == 'committed' and v['method'] == 'committed_tree_reproduced' and v['verified_target_kind'] == 'committed' and v['verified_head'] == req['candidate']['head_sha'] and v['reproduced_content_digest'] == digest(independently_extracted) == digest(req['candidate']) and all(any(c['name'] == n and c['status'] == 'pass' and c['observed_head'] == req['candidate']['head_sha'] and c['evidence_ref'] for c in reply['checks']) for n in req['requested_checks']) and (req['gate'] != 'release' or (reply['version_prerequisites']['version'] == reply['version_prerequisites']['top_changelog_version'] and reply['version_prerequisites']['version'] is not None and reply['version_prerequisites']['unreleased_empty'] is True and reply['version_prerequisites']['release_base'] is not None and reply['version_prerequisites']['package_verified'] is True)) and all(not any(x in arg for x in ('<', '>', '...')) for step in reply['proposed_steps'] for arg in step['argv']))
 
 
 def test_actual_handoff_schema_positive_negative():
@@ -222,6 +281,8 @@ def test_duplicate_and_unsupported_modes():
 
 
 def test_independent_committed_tree_extraction(tmp_path):
+    import shutil
+    assert shutil.which('git'), 'This exact-tree fixture requires the Git CLI in local and CI test setup'
     repo = tmp_path / 'repo'; repo.mkdir()
     def git(*args):
         return subprocess.run(['git', '-C', str(repo), *args], check=True, capture_output=True).stdout
@@ -269,3 +330,147 @@ def test_public_recipe_discovery_and_strict_boundary_text():
     for template, fmt in [('factual-audit-master.json', 'master-array'), ('factual-audit-prompt-e.json', 'prompt-e-object')]:
         payload = json.loads((DOCS / 'templates' / template).read_text())
         assert shape_valid(payload, fmt) and not audit.validate(payload, fmt)
+
+
+@pytest.mark.parametrize('token', ['0.10000000000000001', '1e-999', '-0.0', '1e999'])
+def test_exact_extension_number_wire_roundtrip(tmp_path, token):
+    from decimal import Decimal
+    raw = '[{"claim":"","source_paths":[],"status":"verified","rewrite_if_needed":"","extension":' + token + '}]'
+    path = tmp_path / 'exact.json'; path.write_text(raw)
+    result = subprocess.run([sys.executable, str(HELPER), 'roundtrip', '--format', 'master-array', '--input', str(path)], capture_output=True, text=True)
+    assert result.returncode == 0
+    assert result.stdout == raw
+    assert json.loads(result.stdout, parse_float=Decimal) == json.loads(raw, parse_float=Decimal)
+
+
+@pytest.mark.parametrize('where', ['claim', 'extension', 'key'])
+def test_escaped_surrogate_wire_roundtrip(tmp_path, where):
+    raw = json.dumps([dict(item(), **({'claim': '\ud800'} if where == 'claim' else {'\ud800' if where == 'key' else 'extension': '\ud800'}))], ensure_ascii=True)
+    path = tmp_path / 'escaped.json'; path.write_text(raw)
+    result = subprocess.run([sys.executable, str(HELPER), 'roundtrip', '--format', 'master-array', '--input', str(path)], capture_output=True, text=True)
+    assert result.returncode == 0 and result.stdout == raw
+    assert result.stderr == ''
+
+
+def test_integral_decimal_count_shape_parity(tmp_path):
+    payload = e_payload(); payload['summary']['total_claims'] = 0.0
+    assert shape_valid(payload, 'prompt-e-object')
+    assert audit.validate(payload, 'prompt-e-object') == []
+    path = tmp_path / 'integral.json'; path.write_text(json.dumps(payload))
+    result = subprocess.run([sys.executable, str(HELPER), 'roundtrip', '--format', 'prompt-e-object', '--input', str(path)], capture_output=True, text=True)
+    assert result.returncode == 0 and result.stdout == path.read_text()
+
+
+@pytest.mark.parametrize('plan', ['empty', 'tag_first', 'origin_only'])
+def test_release_command_plan_reviewer_failures(plan):
+    req = request(); reply = response(req)
+    if plan == 'empty': reply['proposed_steps'] = []
+    if plan == 'tag_first': reply['proposed_steps'] = [dict(phase='tag', argv=['git', 'tag', '-a', 'v1.0.0'], preconditions=['approved'], evidence_refs=['help'])] + reply['proposed_steps']
+    if plan == 'origin_only': reply['proposed_steps'] = [dict(phase='publish', argv=['git', 'push', 'origin', 'v1.0.0'], preconditions=['approved'], evidence_refs=['help'])]
+    assert not ready(req, reply, req['candidate'])
+
+
+@pytest.mark.parametrize('failure', ['missing_tag_push', 'wrong_tag', 'different_tag_object', 'missing_preconditions', 'authority_drift'])
+def test_full_plan_identity_failures(failure):
+    req = request(); reply = response(req)
+    tags = [s for s in reply['proposed_steps'] if s['phase'] == 'tag']
+    if failure == 'missing_tag_push': reply['proposed_steps'].remove(tags[-1])
+    if failure == 'wrong_tag': tags[-1]['argv'][-1] = 'v2.0.0'
+    if failure == 'different_tag_object': tags[-1]['preconditions'][-1] = 'tag_object:' + 'f'*40
+    if failure == 'missing_preconditions': reply['proposed_steps'][0]['preconditions'] = []
+    if failure == 'authority_drift': reply['authority'] = ['release']
+    assert not ready(req, reply, req['candidate'])
+
+
+def test_snapshot_commit_observation_stays_limited():
+    req = request('snapshot', 'commit'); reply = response(req)
+    reply['manifest_verification'].update(method='snapshot_bytes_observed', verified_target_kind='snapshot', limitation='commit-only supplied bytes; no hosted/main/release certification')
+    assert plan_valid(req, reply)
+    assert req['gate'] == 'commit' and reply['manifest_verification']['method'] == 'snapshot_bytes_observed'
+    assert not ready(req, reply, req['candidate'])  # Full F readiness is never snapshot readiness.
+
+
+def test_actual_importer_and_flattened_shape(tmp_path):
+    import shutil
+    sys.path.insert(0, str(ROOT / 'src'))
+    from intent_pipeline.capability_resources import validate_shared_resource_imports, load_capability_bundle
+    fixture = (tmp_path / 'isolated-source').resolve(); fixture.mkdir()
+    for slug in ['engos-quality-docs-review', 'engos-quality-gitops-review']:
+        source = ROOT / 'sources/capability-resources' / slug
+        for original in source.rglob('*'):
+            if original.is_file() and '__pycache__' not in str(original):
+                dest = fixture / 'sources/capability-resources' / slug / original.relative_to(source)
+                dest.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(original, dest)
+        dest = fixture / 'ssot' / (slug + '.md'); dest.parent.mkdir(exist_ok=True)
+        dest.write_text((ROOT / f'reports/program-doc-recipes/{slug}-candidate.md').read_text())
+    binding = json.loads((ROOT / 'reports/program-doc-recipes/shared-resource-import-patch.json').read_text())
+    registry = fixture / '.meta/shared-resource-imports.json'; registry.parent.mkdir()
+    registry.write_text(json.dumps(dict(schema_version='SharedResourceImports.v1', imports=[binding])))
+    normalized = validate_shared_resource_imports(fixture)
+    assert normalized['engos-quality-gitops-review'][0]['id'] == 'docs-ship-handoff-v1'
+    bundle = load_capability_bundle(fixture, 'engos-quality-gitops-review', (fixture / 'ssot/engos-quality-gitops-review.md').read_text(), 'docs-release-readiness')
+    for slug in ['engos-quality-docs-review', 'engos-quality-gitops-review']:
+        route_map = json.loads((fixture / 'sources/capability-resources' / slug / 'resource-map.json').read_text())
+        for route in route_map['routes']:
+            assert load_capability_bundle(fixture, slug, (fixture / 'ssot' / (slug + '.md')).read_text(), route)['resources']
+    schema_resource = next(r for r in bundle['resources'] if r['path'] == 'schemas/docs-ship-handoff.schema.json')
+    assert schema_resource['sha256'] == binding['sha256']
+    assert schema_resource['source_path'] == 'sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json'
+    flattened = json.loads(schema_resource['content'])
+    assert '$ref' not in json.dumps(flattened)
+    prior_wire = (ROOT / 'tests/fixtures/docs-recipes/handoff-pre-flatten.schema.json').read_bytes()
+    assert hashlib.sha256(prior_wire).hexdigest() == 'b44de0ae65a20f90539c1a3bcd50afab949d1b82d9db5460ba984c6bcc142483'
+    old = json.loads(prior_wire)
+    # Preserve the original independent importer failures as executable negatives.
+    from intent_pipeline.capability_resources import ResourceContractError
+    consumer_map = fixture / 'sources/capability-resources/engos-quality-gitops-review/resource-map.json'
+    current_map = consumer_map.read_bytes()
+    missing = json.loads(current_map); missing.pop('shared_imports')
+    consumer_map.write_text(json.dumps(missing))
+    with pytest.raises(ResourceContractError, match='declaration/receipt mismatch'):
+        validate_shared_resource_imports(fixture)
+    consumer_map.write_bytes(current_map)
+    owner_schema = fixture / 'sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json'
+    current_schema = owner_schema.read_bytes()
+    owner_schema.write_bytes(prior_wire)
+    prior_binding = dict(binding, sha256=hashlib.sha256(prior_wire).hexdigest())
+    registry.write_text(json.dumps(dict(schema_version='SharedResourceImports.v1', imports=[prior_binding])))
+    with pytest.raises(ResourceContractError, match='JSON references'):
+        validate_shared_resource_imports(fixture)
+    owner_schema.write_bytes(current_schema)
+    registry.write_text(json.dumps(dict(schema_version='SharedResourceImports.v1', imports=[binding])))
+    assert validate_shared_resource_imports(fixture)
+
+    for payload in [request(), response(request()), dict(request(), gate='deploy'), dict(response(request()), status='green')]:
+        assert jsonschema.Draft202012Validator(old).is_valid(payload) == jsonschema.Draft202012Validator(flattened).is_valid(payload)
+
+
+def test_amendment_active_destinations_and_mode_disposition():
+    rows = json.loads((ROOT / 'reports/d8-docs-recipes/clause-destination-map.json').read_text())
+    for row in rows:
+        if row['source_clause_id'] in [f'D8-F-{n:03}' for n in range(68, 76)]:
+            assert row['historical_retention'] and row['compatibility_amendment_id_if_changed'] == 'D8-COMPAT-SHIP-ORDER'
+            assert row['disposition'] == 'explicit_compatibility_amendment'
+            for dest in row['active_destinations']:
+                lines = (ROOT / dest['destination_path']).read_text().splitlines(keepends=True)
+                start, end = dest['destination_line_span']
+                assert hashlib.sha256(''.join(lines[start-1:end]).encode()).hexdigest() == dest['destination_literal_sha256']
+    sys.path.insert(0, str(ROOT / 'src'))
+    from intent_pipeline.uac_modes import extract_modes_from_sources, resolve_mode_entries
+    patch = json.loads((ROOT / 'reports/program-doc-recipes/mode-disposition-patch.json').read_text())
+    for row in patch:
+        slug = Path(row['path']).stem
+        assert json.loads((ROOT / row['path']).read_text())['modes'] in [row['before'], row['after']]
+        assert row['after'] == [] and row['before'][0]['mode_slug'] == 'failure-mode-to-avoid'
+        body = (ROOT / f'reports/program-doc-recipes/{slug}-candidate.md').read_text()
+        assert body.startswith((ROOT / f'ssot/{slug}.md').read_text()) and '### Failure Mode To Avoid' in body
+        resources = [(str(p.relative_to(ROOT)), p.read_text()) for p in (ROOT / 'sources/capability-resources' / slug / 'references').glob('*.md')]
+        extracted = extract_modes_from_sources(slug, [(f'ssot/{slug}.md', body), *resources])
+        assert resolve_mode_entries(extracted, row['before'], slug) == []
+
+
+def test_wire_newlines_and_large_integer_extensions(tmp_path):
+    raw = '[\r\n' + json.dumps(dict(item(), extension=0))[:-2] + '9' * 5000 + '}\r\n]'
+    path = tmp_path / 'wire.json'; path.write_bytes(raw.encode())
+    result = subprocess.run([sys.executable, str(HELPER), 'roundtrip', '--format', 'master-array', '--input', str(path)], capture_output=True)
+    assert result.returncode == 0 and result.stdout == raw.encode()

@@ -3,6 +3,7 @@
 import argparse
 import json
 import math
+from decimal import Decimal, InvalidOperation
 import sys
 from pathlib import Path
 
@@ -33,7 +34,7 @@ def validate(payload, source_format):
             elif expected == 'status':
                 valid = isinstance(v, str) and v in STATUSES
             else:
-                valid = type(v) is int and v >= 0
+                valid = _integer_count(v)
             if not valid:
                 issue(at, 'type_or_value', 'Invalid known field type or value')
 
@@ -63,7 +64,7 @@ def validate(payload, source_format):
         counts = {'total_claims': len(items)}
         counts.update({s: sum(isinstance(i, dict) and i.get('status') == s for i in items) for s in STATUSES})
         for key, expected in counts.items():
-            if type(summary.get(key)) is int and summary[key] >= 0 and summary[key] != expected:
+            if _integer_count(summary.get(key)) and summary[key] != expected:
                 issue('/summary/' + key, 'count_mismatch', 'Count does not match items')
     return issues
 
@@ -81,11 +82,15 @@ def _nonfinite(value):
     raise ValueError('Nonfinite JSON number')
 
 
-def _finite_float(value):
-    number = float(value)
-    if not math.isfinite(number):
-        raise ValueError("Nonfinite JSON number")
-    return number
+def _integer_count(value):
+    # JSON Schema integer means an integral numeric value, independent of spelling.
+    if isinstance(value, bool) or not isinstance(value, (int, float, Decimal)):
+        return False
+    if isinstance(value, Decimal):
+        return value.is_finite() and value >= 0 and value == value.to_integral_value()
+    if isinstance(value, float):
+        return math.isfinite(value) and value >= 0 and value.is_integer()
+    return value >= 0
 
 
 def main(argv=None):
@@ -98,15 +103,15 @@ def main(argv=None):
     except SystemExit as error:
         return 0 if error.code == 0 else 3
     try:
-        data = Path(args.input).read_text(encoding='utf-8')
+        data = Path(args.input).read_bytes().decode('utf-8')
     except (OSError, UnicodeError):
         report = dict(format=args.format, valid=False, issues=[dict(path='/', code='io', message='Cannot read UTF-8 input')])
         print(json.dumps(report), file=sys.stderr if args.command == 'roundtrip' else sys.stdout)
         return 3
     try:
-        payload = json.loads(data, object_pairs_hook=_pairs, parse_constant=_nonfinite, parse_float=_finite_float)
+        payload = json.loads(data, object_pairs_hook=_pairs, parse_constant=_nonfinite, parse_float=Decimal, parse_int=Decimal)
         issues = validate(payload, args.format)
-    except (ValueError, RecursionError):
+    except (ValueError, RecursionError, InvalidOperation):
         issues = [dict(path='/', code='json', message='Malformed, duplicate-key or nonfinite JSON')]
     report = dict(format=args.format, valid=not issues, issues=issues)
     if args.command == 'validate':
@@ -114,7 +119,7 @@ def main(argv=None):
     elif issues:
         print(json.dumps(report), file=sys.stderr)
     else:
-        print(json.dumps(payload, ensure_ascii=False, allow_nan=False))
+        sys.stdout.write(data)  # Validated original wire preserves exact numbers/escapes/order.
     return 2 if issues else 0
 
 

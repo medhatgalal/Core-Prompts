@@ -19,7 +19,7 @@ Drafts, findings and proposed commands grant no overwrite, install, Git mutation
 
 ## Candidate and evidence protocol
 ### schemaPath
-sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json
+resources/schemas/docs-ship-handoff.schema.json
 
 ### version
 DocsShipHandoff.v1
@@ -28,7 +28,7 @@ DocsShipHandoff.v1
 engos-quality-docs-review
 
 ### gitopsBundling
-One allowlisted import into sources/capability-resources/engos-quality-gitops-review/schemas/docs-ship-handoff.schema.json using already accepted .meta/shared-resource-imports.json semantics; generated GitOps copies preserve owner source_path/hash. Integrator owns registry edit. If shared mechanism unavailable on actual branch, integrate prerequisite D2.S2 first; do not hand-copy an independent authored schema.
+One allowlisted import into resources/schemas/docs-ship-handoff.schema.json using already accepted .meta/shared-resource-imports.json semantics; generated GitOps copies preserve owner source_path/hash. Integrator owns registry edit. If shared mechanism unavailable on actual branch, integrate prerequisite D2.S2 first; do not hand-copy an independent authored schema.
 
 ### requestFields
 {
@@ -184,3 +184,11 @@ target_kind=snapshot with gate=merge or release always blocks readiness regardle
    - git tag ...
    - git push origin <tag>
    - scripts/package-surfaces.sh --version <next-version>
+
+## Evidence limits and ordered proposal checks
+
+Schema acceptance establishes shape only. A proposal is not execution, authority, authenticated CI, tree reproduction or evidence truth. Inspect actual evidence references and gate-specific pass/fail/unknown/not-applicable observations separately; unknown required evidence blocks readiness. Preserve request authority exactly; review authority permits proposals and grants no commit, merge, tag or publish action. Proposed step preconditions and evidence references must be nonempty and describe observations or future prerequisites honestly. Never label future planned commands executed.
+
+For the declared gate, verify a nonempty ordered plan: commit and candidate checks for commit scope; then merge with main parity for merge scope; then merged-release preflight, package, tag creation plus dual-remote tag pushes, and publish/download verification for full release scope. Require package before tag creation. Verify actual resolved remote identities; send one exact tag name and the same verified tag object to both remotes. Bind package version, tag target and proposal evidence to the reviewed candidate or separately verified integrated main as applicable. Missing phase, reversed package/tag order, origin-only publication, different tag object, placeholders or missing evidence are mechanical failures; passing these comparisons still cannot authenticate evidence.
+
+Snapshot commit-only content review reports supplied-byte observation and its limits, and cannot become full F PASS. Merge/release requires committed-tree reproduction plus applicable exact-head hosted evidence and fresh upstream checks. Static fixtures demonstrate these bounded comparisons only; actual hosted/tree readiness remains an independent observation.

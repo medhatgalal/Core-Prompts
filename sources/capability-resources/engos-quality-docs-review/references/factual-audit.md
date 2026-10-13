@@ -95,7 +95,7 @@ Then return:
 
 ## Validation and same-format roundtrip
 {
-  "path": "sources/capability-resources/engos-quality-docs-review/scripts/factual_audit.py",
+  "path": "resources/scripts/factual_audit.py",
   "purpose": "One small Python standard-library helper for the two legacy shapes; validate without mutating inputs and reproduce valid payloads without field loss. No repository traversal, subprocesses, network, state store, scheduler or cross-format inference.",
   "minPython": "3.11",
   "commands": [
@@ -147,3 +147,9 @@ Then return:
 }
 
 A future DocsFactualAudit.v1 could preserve source_format and a lossless payload only for an explicitly opted-in consumer; no envelope or format conversion is implemented.
+
+## Exact JSON wire preservation
+
+Validate numeric values through standard-library Decimal, including extension numbers. Genuine JSON numbers such as 0.10000000000000001, 1e-999, 1e999 and negative zero are finite decimal values; binary-float overflow/underflow is not their validity criterion. Reject NaN/Infinity and duplicate keys. Integer summary counts follow JSON Schema's numeric meaning: finite nonnegative integral values, including 0.0, are accepted; booleans, negative and fractional values fail. Counts must equal the observed item/status totals and are never repaired.
+
+After validation, roundtrip emits the original UTF-8 JSON wire text unchanged, preserving numeric tokens, whitespace, escapes, CR/LF, extension keys and item/key order. Escaped lone surrogates in strings or keys remain escaped wire and roundtrip safely. Invalid UTF-8 input receives the structured I/O diagnostic; malformed/unsupported JSON receives a structured invalid-input diagnostic, never a payload or traceback. No numeric normalization or cross-format translation occurs.

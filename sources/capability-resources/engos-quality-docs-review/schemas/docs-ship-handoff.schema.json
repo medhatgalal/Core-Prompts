@@ -1,126 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "DocsShipHandoff.v1",
-  "$defs": {
-    "candidate": {
-      "type": "object",
-      "required": [
-        "target_kind",
-        "base_sha",
-        "head_sha",
-        "manifest_version",
-        "content_digest",
-        "files",
-        "scope_note"
-      ],
-      "properties": {
-        "target_kind": {
-          "enum": [
-            "committed",
-            "snapshot"
-          ]
-        },
-        "base_sha": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{40}$"
-        },
-        "head_sha": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{40}$"
-        },
-        "manifest_version": {
-          "const": "DocsCandidateManifest.v1"
-        },
-        "content_digest": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{64}$"
-        },
-        "files": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "required": [
-              "path",
-              "state",
-              "mode",
-              "sha256"
-            ],
-            "properties": {
-              "path": {
-                "type": "string",
-                "minLength": 1,
-                "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\\\u0000\\r\\n])(?!.*\\/$).+$"
-              },
-              "state": {
-                "enum": [
-                  "present",
-                  "deleted"
-                ]
-              },
-              "mode": {
-                "enum": [
-                  "100644",
-                  "100755",
-                  null
-                ]
-              },
-              "sha256": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "pattern": "^[0-9a-f]{64}$"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              }
-            },
-            "additionalProperties": false,
-            "allOf": [
-              {
-                "if": {
-                  "properties": {
-                    "state": {
-                      "const": "present"
-                    }
-                  }
-                },
-                "then": {
-                  "properties": {
-                    "mode": {
-                      "enum": [
-                        "100644",
-                        "100755"
-                      ]
-                    },
-                    "sha256": {
-                      "type": "string",
-                      "pattern": "^[0-9a-f]{64}$"
-                    }
-                  }
-                },
-                "else": {
-                  "properties": {
-                    "mode": {
-                      "type": "null"
-                    },
-                    "sha256": {
-                      "type": "null"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        "scope_note": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    },
-    "request": {
+  "oneOf": [
+    {
       "type": "object",
       "required": [
         "schema_version",
@@ -307,7 +189,7 @@
       },
       "additionalProperties": false
     },
-    "response": {
+    {
       "type": "object",
       "required": [
         "schema_version",
@@ -662,14 +544,6 @@
         }
       },
       "additionalProperties": false
-    }
-  },
-  "oneOf": [
-    {
-      "$ref": "#/$defs/request"
-    },
-    {
-      "$ref": "#/$defs/response"
     }
   ]
 }
