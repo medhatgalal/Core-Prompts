@@ -1851,15 +1851,17 @@ The original public prompts remain available at their existing paths. Consumer
 compatibility and exact retirement are separate decisions; matching recipes do
 not publish prompts automatically.
 
-| Donor row | Retained prompt |
-| --- | --- |
-| DOC-MIG-D8-1 | `docs/prompt-pack/prompts/master-orchestrator.md` |
-| DOC-MIG-D8-2 | `docs/prompt-pack/prompts/prompt-a-readme-story.md` |
-| DOC-MIG-D8-3 | `docs/prompt-pack/prompts/prompt-b-ai-install-flow.md` |
-| DOC-MIG-D8-4 | `docs/prompt-pack/prompts/prompt-c-technical-extraction.md` |
-| DOC-MIG-D8-5 | `docs/prompt-pack/prompts/prompt-d-visuals.md` |
-| DOC-MIG-D8-6 | `docs/prompt-pack/prompts/prompt-e-factual-gate.md` |
-| DOC-MIG-D8-7 | `docs/prompt-pack/prompts/prompt-f-evaluate-and-ship-gate.md` |
+| Donor row | Retained prompt | Known repository consumers | Optional receiving recipe | Preserved output | Retirement boundary |
+| --- | --- | --- | --- | --- | --- |
+| DOC-MIG-D8-1 | `docs/prompt-pack/prompts/master-orchestrator.md` | docs/prompt-pack/README.md Files list, single-pass instructions and handoff snippet; docs/README.md links the pack hub | `engos-quality-docs-review` → `docs-bundle` | README_vNext.md; docs/README_TECHNICAL.md; visuals_plan.md; factual_audit.json as master-array | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+| DOC-MIG-D8-2 | `docs/prompt-pack/prompts/prompt-a-readme-story.md` | docs/prompt-pack/README.md Files list and modular A–F sequence; docs/README.md links the pack hub | `engos-quality-docs-review` → `readme-authoring` | README_vNext.md Markdown ending in Claim Notes | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+| DOC-MIG-D8-3 | `docs/prompt-pack/prompts/prompt-b-ai-install-flow.md` | docs/prompt-pack/README.md Files list and modular A–F sequence; docs/README.md links the pack hub | `engos-quality-docs-review` → `ai-onboarding` | README Use this with AI snippet, then full Getting Started Markdown | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+| DOC-MIG-D8-4 | `docs/prompt-pack/prompts/prompt-c-technical-extraction.md` | docs/prompt-pack/README.md Files list and modular A–F sequence; docs/README.md links the pack hub | `engos-quality-docs-review` → `information-relocation` | technical README, architecture, FAQ, then relocation table | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+| DOC-MIG-D8-5 | `docs/prompt-pack/prompts/prompt-d-visuals.md` | docs/prompt-pack/README.md Files list and modular A–F sequence; docs/README.md links the pack hub | `engos-quality-docs-review` → `document-visuals` | visuals_plan.md with hero, full Mermaid/node-edge explanations, optional maximum three screenshots and accessibility notes | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+| DOC-MIG-D8-6 | `docs/prompt-pack/prompts/prompt-e-factual-gate.md` | docs/prompt-pack/README.md Files list and modular A–F sequence; docs/README.md links the pack hub | `engos-quality-docs-review` → `factual-audit` | factual_audit.json as summary/items object, edits by file, content PASS/FAIL, minimum fixes on FAIL | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+| DOC-MIG-D8-7 | `docs/prompt-pack/prompts/prompt-f-evaluate-and-ship-gate.md` | docs/prompt-pack/README.md Files list and modular A–F sequence; docs/README.md links the pack hub | `engos-quality-docs-review` → `adversarial-doc-review` | inversion, findings, five-area scorecard, Ship Verdict, conditional fixes or current proposed commands; hosted readiness is a separate GitOps handoff | Retain exact path: copied prompts, external links and downstream consumers remain unverified; no exact removal is approved. |
+
+Before: open and paste the named retained prompt from the pack. Optional now: ask engos-quality-docs-review for the matching recipe in this table. If that installed recipe is unavailable, keep using the retained prompt. Known in-repository entrypoints are listed here; outside copies, links and downstream parsers are not exhaustively known. All seven paths are retained. F command proposals must follow the current package-before-tag and dual-remote order described above, including when using the historical prompt as input; retained historical text grants no execution authority.
 
 The current names above remain authoritative for the proposed renames. Docs
 Review owns content truth, GitOps Review owns hosted readiness, Code Review

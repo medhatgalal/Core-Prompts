@@ -223,8 +223,12 @@ each generated skill carries it at `resources/schemas/spec-contract.schema.json`
 Keep the repository's existing spec format and add a sidecar only when needed.
 JSON Schema checks field shape and bugfix triad presence, while property-level ID
 uniqueness, reference existence, decisions and semantics need separate review.
-There is no bundled trace-check command. The architecture handoff below uses an
-explicit shared-resource import.
+The optional bundled `trace_check` helper checks supplied artifact shape and
+mechanical ID links; see [optional planning link checkers](#optional-planning-link-checkers).
+Omitted test artifacts report `not_supplied`; selected tests remain `not_run`.
+A mechanical pass does not establish semantic correctness, meaningful test
+coverage, behavioral verification or authorization. The architecture handoff
+below uses an explicit shared-resource import.
 
 ### Architecture Specification Input
 

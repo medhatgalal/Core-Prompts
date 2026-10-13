@@ -2404,13 +2404,13 @@
           "kind": "source_conditions",
           "clauses": [
             {
-              "text": "1. Identify the authoritative requirements and their current revision, actual\n   accepted scope and authorization. Read the existing plan and tracker before\n   writing. Preserve their IDs, completed evidence, unresolved items and ownership.\n   If inputs conflict or acceptance is unverified, hold the dependent tasks while\n   drafting useful independent scope. Do not require another approval turn when\n   the existing conversation or decision record already authorizes that scope.\n2. Inspect the relevant implementation boundaries. Carry forward requirements,\n   unchanged behavior, constraints and supplied design IDs. For plain prose, map\n   stable local requirement IDs to exact source passages without rewriting the\n   source. With `SpecContract.v1`, retain its requirement/design IDs, source and\n   authority references; examine open assumptions and design reconciliation.\n   A structurally valid draft is not an accepted input. No cross-skill import is\n   needed to read a supplied artifact.\n3. Choose outcome boundaries that a reviewer can accept or reject separately.\n   Prefer a working feature path when feasible. Attach scaffolding, configuration,\n   tests and documentation to the outcome they enable. Isolate a prerequisite only\n   if its own observable contract can be reviewed independently. Do not size tasks\n   by file count, mandate a fixed number of steps, or invent unrelated refactors.\n4. For each task record the outcome, requirement/design IDs, dependencies, consumed\n   source/interface references, produced artifacts/interfaces, likely files,\n   allowed writes, constraints, verification and stop condition. Distinguish likely\n   files from authorized mutation targets. Describe exact signatures, fields or\n   invariants where later work relies on them; avoid writing the whole implementation\n   into the plan. A planned future input references its producing task and expected\n   contract; its digest stays unknown until bytes exist.\n5. Order dependencies and manually inspect unique task IDs, reference existence,\n   dependency cycles and interface consistency. Identify shared-write conflicts;\n   absence of dependency edges alone does not establish safe parallel execution.\n   Check every included requirement has an owning task or an explicit unresolved\n   disposition. Keep unsupported assumptions and missing sources as holds. This\n   slice provides no graph checker, ready-frontier computation or trace validator.\n6. Give each task a concrete oracle: the observation and expected result that would\n   accept or reject it, the command or inspection that obtains evidence, and where\n   evidence should be recorded in the existing process. Include relevant failure,\n   boundary and compatibility cases. Match verification to risk and repository\n   rules; a prose edit may need a diff inspection, executable behavior focused\n   tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.\n7. Reconcile revisions in the actual plan. Keep incomplete unrelated work intact;\n   add or revise only authorized scope. Preserve completion claims only with their\n   existing evidence, and reopen affected work when changed inputs invalidate it.\n   Show superseded decisions and their replacements instead of silently dropping\n   tasks. If a destination belongs to different unfinished work, return the new\n   draft in chat and request a destination decision before overwriting anything.\n8. Review source coverage, outcome quality, authority and dependency consistency.\n   Return the plan, holds and a bounded handoff. State actual acceptance status\n   separately from format checks. Preserve any execution method already chosen;\n   otherwise name possible consumers without dispatching a worker, invoking a\n   controller or creating a goal. Execution needs its own authorized scope.",
+              "text": "1. Identify the authoritative requirements and their current revision, actual\n   accepted scope and authorization. Read the existing plan and tracker before\n   writing. Preserve their IDs, completed evidence, unresolved items and ownership.\n   If inputs conflict or acceptance is unverified, hold the dependent tasks while\n   drafting useful independent scope. Do not require another approval turn when\n   the existing conversation or decision record already authorizes that scope.\n2. Inspect the relevant implementation boundaries. Carry forward requirements,\n   unchanged behavior, constraints and supplied design IDs. For plain prose, map\n   stable local requirement IDs to exact source passages without rewriting the\n   source. With `SpecContract.v1`, retain its requirement/design IDs, source and\n   authority references; examine open assumptions and design reconciliation.\n   A structurally valid draft is not an accepted input. No cross-skill import is\n   needed to read a supplied artifact.\n3. Choose outcome boundaries that a reviewer can accept or reject separately.\n   Prefer a working feature path when feasible. Attach scaffolding, configuration,\n   tests and documentation to the outcome they enable. Isolate a prerequisite only\n   if its own observable contract can be reviewed independently. Do not size tasks\n   by file count, mandate a fixed number of steps, or invent unrelated refactors.\n4. For each task record the outcome, requirement/design IDs, dependencies, consumed\n   source/interface references, produced artifacts/interfaces, likely files,\n   allowed writes, constraints, verification and stop condition. Distinguish likely\n   files from authorized mutation targets. Describe exact signatures, fields or\n   invariants where later work relies on them; avoid writing the whole implementation\n   into the plan. A planned future input references its producing task and expected\n   contract; its digest stays unknown until bytes exist.\n5. Order dependencies and manually inspect unique task IDs, reference existence,\n   dependency cycles and interface consistency. Identify shared-write conflicts;\n   absence of dependency edges alone does not establish safe parallel execution.\n   Check every included requirement has an owning task or an explicit unresolved\n   disposition. Keep unsupported assumptions and missing sources as holds. For supplied\n   `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and\n   reports dependency-ready tasks; see [Optional mechanical graph check](#optional-mechanical-graph-check).\n   The manual dependency map remains a projection. Neither route establishes\n   semantic correctness, requirement linkage, execution authority or implemented\n   behavior.\n6. Give each task a concrete oracle: the observation and expected result that would\n   accept or reject it, the command or inspection that obtains evidence, and where\n   evidence should be recorded in the existing process. Include relevant failure,\n   boundary and compatibility cases. Match verification to risk and repository\n   rules; a prose edit may need a diff inspection, executable behavior focused\n   tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.\n7. Reconcile revisions in the actual plan. Keep incomplete unrelated work intact;\n   add or revise only authorized scope. Preserve completion claims only with their\n   existing evidence, and reopen affected work when changed inputs invalidate it.\n   Show superseded decisions and their replacements instead of silently dropping\n   tasks. If a destination belongs to different unfinished work, return the new\n   draft in chat and request a destination decision before overwriting anything.\n8. Review source coverage, outcome quality, authority and dependency consistency.\n   Return the plan, holds and a bounded handoff. State actual acceptance status\n   separately from format checks. Preserve any execution method already chosen;\n   otherwise name possible consumers without dispatching a worker, invoking a\n   controller or creating a goal. Execution needs its own authorized scope.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 52,
-                "end_line": 99,
-                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                "end_line": 103,
+                "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
               }
             }
           ]
@@ -2427,9 +2427,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 158,
-                "end_line": 165,
-                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                "start_line": 162,
+                "end_line": 169,
+                "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
               }
             }
           ]
@@ -2442,9 +2442,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 158,
-                "end_line": 165,
-                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                "start_line": 162,
+                "end_line": 169,
+                "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
               }
             }
           ]
@@ -2457,8 +2457,8 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-design-plan-implementation.md",
-          "ssot_sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
-          "effective_sha256": "506cb75ce30828ce0e9b6a295e40e3fa6badfd994c2f393433252902169375e0",
+          "ssot_sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a",
+          "effective_sha256": "dddacce3084a5e5e917a58d0c579408436631a6f142b186a273c3b5e26bfa772",
           "resources": [
             {
               "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -2492,7 +2492,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 20,
                   "end_line": 22,
-                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                  "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
                 }
               }
             ],
@@ -2504,7 +2504,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 26,
                   "end_line": 33,
-                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                  "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
                 }
               }
             ],
@@ -2516,7 +2516,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 37,
                   "end_line": 41,
-                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                  "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
                 }
               }
             ],
@@ -2526,9 +2526,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 124,
-                  "end_line": 128,
-                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                  "start_line": 128,
+                  "end_line": 132,
+                  "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
                 }
               },
               {
@@ -2536,9 +2536,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 130,
-                  "end_line": 139,
-                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                  "start_line": 134,
+                  "end_line": 143,
+                  "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
                 }
               },
               {
@@ -2546,9 +2546,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 141,
-                  "end_line": 147,
-                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
+                  "start_line": 145,
+                  "end_line": 151,
+                  "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
                 }
               }
             ]
@@ -2563,7 +2563,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "51b00360beb2dcd864b804b1118c31d24a0617efe29ac30b6d5530eee8520ab5"
+          "mapping_sha256": "02eb7fb82760c2b59cd0039b5222184556e8cf449723033d0a179cd8a2cdcd78"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -6157,7 +6157,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "053f293501bd45408446ab24d3de41d976bb25a241bf7119bfe04a03efaf93ed",
+    "skills_sha256": "8ca9622255e5ef230827b264f0d92590b3be07fd7a71aa538c30cb7fa3d31f48",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -6242,9 +6242,9 @@
         "mapping_sha256": "6386061d3347a50af07122ce84a89845f78ed454c5e3bbd099396a5e52770af3"
       },
       "engos-design-plan-implementation": {
-        "ssot_sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
-        "effective_sha256": "506cb75ce30828ce0e9b6a295e40e3fa6badfd994c2f393433252902169375e0",
-        "mapping_sha256": "51b00360beb2dcd864b804b1118c31d24a0617efe29ac30b6d5530eee8520ab5"
+        "ssot_sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a",
+        "effective_sha256": "dddacce3084a5e5e917a58d0c579408436631a6f142b186a273c3b5e26bfa772",
+        "mapping_sha256": "02eb7fb82760c2b59cd0039b5222184556e8cf449723033d0a179cd8a2cdcd78"
       },
       "engos-design-plan-to-goal": {
         "ssot_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",

@@ -1,0 +1,48 @@
+{
+  "schema": "ProgramDocsRepairReceipt.v1",
+  "baseMain": "a2c4c821541ecf11c64c3cd211e8c54e7d77b18b",
+  "verifiedRemoteMain": {
+    "gitlab": "a2c4c821541ecf11c64c3cd211e8c54e7d77b18b",
+    "origin": "a2c4c821541ecf11c64c3cd211e8c54e7d77b18b"
+  },
+  "branch": "AI/program-acceptance-repair",
+  "changedSourcePaths": [
+    "docs/CLI-REFERENCE.md",
+    "CHANGELOG.md"
+  ],
+  "reason": "Replace false global denial of trace checker with limited mechanical helper and optional-test/semantic/coverage/behavior/authority limits.",
+  "governance": "repo-workflow step5 requires affected docs and changelog; pure docs correction requires no fabricated capability intake.",
+  "checks": [
+    {
+      "command": "python3.14 --version",
+      "result": "Python 3.14.8",
+      "exit": 0
+    },
+    {
+      "command": "python3.14 sources/capability-resources/engos-design-specify-change/scripts/trace_check.py --help",
+      "exit": 0,
+      "evidence": "trace-check-help.txt"
+    },
+    {
+      "command": "python3.14 -m pytest -q tests/test_public_docs_contract.py",
+      "result": "5 passed in 0.34s",
+      "exit": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0
+    }
+  ],
+  "interpreter": "/Users/medhat.galal/.codex/visualizations/2026/10/09/01a11f7d-08d6-70d2-85a0-361ebd82f7b8/skill-landscape/initiative/.validation-env-d5/bin/python3.14",
+  "helperSHA256": "2f1d0e5f230216bd742753283d2e3c5a4ef39f396089b701885336ee70856968",
+  "afterDocHashes": {
+    "docs/CLI-REFERENCE.md": "c7c4cd9e6fbc1a0ec4d4d775a3f57b6f71d1648596342e804eee63c5ec1f8ba4",
+    "CHANGELOG.md": "a62c066ba7336f268147042234717d236d3764fc8d1a06a4baec9f05dd6450c9"
+  },
+  "unchangedSSOTClarification": "Schema/ledger alone supply no trace-check program (ssot section158); separate optional mechanical helper at218+. No source capability mutation.",
+  "authorityAndRemaining": [
+    "No commit, push, merge, tag, home installation or generated surface build performed.",
+    "Controller owns delivery and independent acceptance.",
+    "27-row map does not close all docs obligations or reinstate withdrawn9/11 claim."
+  ]
+}

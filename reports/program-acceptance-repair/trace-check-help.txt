@@ -1,0 +1,13 @@
+usage: trace_check.py [-h] --spec SPEC --plan PLAN [--tests TESTS]
+                      [--design-links]
+
+Offline mechanical assessment; no execution or semantic approval. The bounded
+schema interpreter supports only the current production vocabulary. Unknown
+keywords fail closed. Schema facts are read from explicit bundle files.
+
+options:
+  -h, --help      show this help message and exit
+  --spec SPEC
+  --plan PLAN
+  --tests TESTS
+  --design-links

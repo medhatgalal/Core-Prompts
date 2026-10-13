@@ -1,0 +1,171 @@
+{
+  "schema": "FinalEightDocumentationRepair.v1",
+  "headBeforeRepair": "50ee0b2b15e7ab4f7e9cf42446699a1f478fa957",
+  "mainBase": "a2c4c821541ecf11c64c3cd211e8c54e7d77b18b",
+  "sourceDiffSHA256": "d5af8f0d457f8675bf452259b0251431b6623573e1bcef082b135c74f13623aa",
+  "sourceSealSHA256": "dae034fc53f7074d5afbce854b01bac4ac8529d0238cb14ec3086b0dc71d56d1",
+  "sourceHashes": {
+    ".claude/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".claude/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".codex/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".codex/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".gemini/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".gemini/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".grok/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".grok/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".kiro/skills/engos-design-plan-implementation/SKILL.md": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846",
+    ".kiro/skills/engos-design-plan-implementation/resources/capability.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".meta/capabilities/engos-design-plan-implementation.json": "cf48fb6e7ed0b010bde7d6dfcd4bb5b409bd27a085fb13f886eb12b008874bb2",
+    ".meta/install-bundle.json": "3c66f2c76365d04b90f26e322b575124de80b2a4f7a6181ad88565f867982bbb",
+    ".meta/manifest.json": "dfbd73aff39984bf328b0957b7c9bddbd63ee0260ded97c4d186f354bea30bc7",
+    ".meta/skill-job-map.json": "e7db2cb6973dd6ac1a932100d235b1a8b1161e3f434d29950b89abefe4e06c53",
+    "CHANGELOG.md": "154a4193906606751021a50e912dfe1476efb07b91d09dd412c3eb915c371e6d",
+    "docs/EXAMPLES.md": "4dba6ced1aa1ce107116e95474824c18d82de4fef88dde873f600d4f396f2304",
+    "docs/STATUS.md": "a7539161be2645792b3e58e8e0b177a187e37950f757710ef127467a6ec6c956",
+    "evals/topologies/engos-design-plan-implementation.json": "8eba2f902a60ab66302bab5976f26ba29b399f6bdd930eefa586886eedd041a9",
+    "ssot/engos-design-plan-implementation.md": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+  },
+  "candidateSHA256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a",
+  "generatedPlannerReadback": {
+    "codex": {
+      "path": ".codex/skills/engos-design-plan-implementation/SKILL.md",
+      "sha256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846"
+    },
+    "gemini": {
+      "path": ".gemini/skills/engos-design-plan-implementation/SKILL.md",
+      "sha256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846"
+    },
+    "claude": {
+      "path": ".claude/skills/engos-design-plan-implementation/SKILL.md",
+      "sha256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846"
+    },
+    "kiro": {
+      "path": ".kiro/skills/engos-design-plan-implementation/SKILL.md",
+      "sha256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846"
+    },
+    "grok": {
+      "path": ".grok/skills/engos-design-plan-implementation/SKILL.md",
+      "sha256": "332ef4ad9b3b1b91eeaaeddadb7d5479a3a465db1df70e30bbd85ce4d151e846"
+    }
+  },
+  "ownerResourceHashes": {
+    "sources/capability-resources/engos-design-plan-implementation/resource-map.json": "c3acbaf9f82807c84b35165a369bc650d7eaa97ebedd3308a39d613e03b35a06",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a",
+    "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json": "96271294c25cb298a04d9febc34da22719fc4c5128193d31d2742bba77839b7d",
+    "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py": "868db891c87d96c68a30d9403fa47ac00bf957ede1a5c59a2c9c8083cf6f2d51",
+    "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83",
+    "sources/capability-resources/engos-design-plan-implementation/scripts/__pycache__/graph_check.cpython-314.pyc": "bb21964e462227acd1f668dc33796b43a3a428991a5062150faffc3f6cf298dd"
+  },
+  "resourcesAndPhysicalBaselineUnchanged": true,
+  "canonicalCurrentNamesPreserved": true,
+  "capabilityType": "skill",
+  "modeCount": 0,
+  "donorReadback": [
+    {
+      "finding": "F-D8-1",
+      "path": "docs/prompt-pack/prompts/master-orchestrator.md",
+      "sha256": "380bdb50268e60470d4a6d1ac061afb859b268a04cad81c49f568e8bc9d41900",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    },
+    {
+      "finding": "F-D8-2",
+      "path": "docs/prompt-pack/prompts/prompt-a-readme-story.md",
+      "sha256": "862a9e972071b9c72d596db9156a255b0b9588e7712abd085df3c80d1a500582",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    },
+    {
+      "finding": "F-D8-3",
+      "path": "docs/prompt-pack/prompts/prompt-b-ai-install-flow.md",
+      "sha256": "3acd51cbd2e55352007cf4236551ed82125bf58c1c8897109b460c48c6ea84c8",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    },
+    {
+      "finding": "F-D8-4",
+      "path": "docs/prompt-pack/prompts/prompt-c-technical-extraction.md",
+      "sha256": "373ac58e5ab14573ebe24b458d6f6488e9ef45337fb1aa3dd3488e0bc26c4189",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    },
+    {
+      "finding": "F-D8-5",
+      "path": "docs/prompt-pack/prompts/prompt-d-visuals.md",
+      "sha256": "34ef90992e0b556e77c4e2599e4d2b01c2f2b29080de65c6bca6fe42b9b1c0a0",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    },
+    {
+      "finding": "F-D8-6",
+      "path": "docs/prompt-pack/prompts/prompt-e-factual-gate.md",
+      "sha256": "404cda1de128ac29bb301dfe56497c958c63403ee95558deace54e4f2f0c1ed8",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    },
+    {
+      "finding": "F-D8-7",
+      "path": "docs/prompt-pack/prompts/prompt-f-evaluate-and-ship-gate.md",
+      "sha256": "3007e60b3226844556e711f4ed3df3e2ed0a123a56113a940eaa12ad625242c8",
+      "unchangedFromHead": true,
+      "exactReviewerRowPresent": true
+    }
+  ],
+  "checks": {
+    "uacPlanProcessExit": 0,
+    "uacPlanQuality": "structural_ready",
+    "uacJudgeProcessExit": 0,
+    "uacJudgeQuality": "structural_ready",
+    "uacApplyProcessExit": 0,
+    "uacApplyInitialStatus": "apply_failed_validation",
+    "uacApplyBuildExit": 0,
+    "uacApplyInitialValidationExit": 2,
+    "initialFailureClassification": "process: missing required local schema-cache entries",
+    "schemaSyncExit": 0,
+    "strictValidationAfterSyncExit": 0,
+    "focusedTestsExit": 0,
+    "focusedTests": "129 passed in9.45s",
+    "diffCheckExit": 0
+  },
+  "baselineMetadataDelta": "Computed derived-history quality selection changed f5d8374b to220e2ae8 with old commit retained in equivalent_commits; actual baseline files/resources unchanged. Independent review must assess computed provenance, not infer behavioral promotion.",
+  "findingsDispositions": [
+    {
+      "id": "F-D3",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-1",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-2",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-3",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-4",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-5",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-6",
+      "status": "addressed_pending_independent_recheck"
+    },
+    {
+      "id": "F-D8-7",
+      "status": "addressed_pending_independent_recheck"
+    }
+  ],
+  "remainingGates": [
+    "Independent current-source review, exact candidate delivery/CI and appropriate renewed source/package bindings required.",
+    "Historical27map4MET23UNKNOWN and later19MET8UNMET review remain historical; author does not promote rows to MET.",
+    "No native rerun, efficacy, installation, tag, release, publication or merge claim."
+  ]
+}

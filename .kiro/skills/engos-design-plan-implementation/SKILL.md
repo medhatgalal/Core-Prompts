@@ -74,8 +74,12 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
    dependency cycles and interface consistency. Identify shared-write conflicts;
    absence of dependency edges alone does not establish safe parallel execution.
    Check every included requirement has an owning task or an explicit unresolved
-   disposition. Keep unsupported assumptions and missing sources as holds. This
-   slice provides no graph checker, ready-frontier computation or trace validator.
+   disposition. Keep unsupported assumptions and missing sources as holds. For supplied
+   `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and
+   reports dependency-ready tasks; see [Optional mechanical graph check](#optional-mechanical-graph-check).
+   The manual dependency map remains a projection. Neither route establishes
+   semantic correctness, requirement linkage, execution authority or implemented
+   behavior.
 6. Give each task a concrete oracle: the observation and expected result that would
    accept or reject it, the command or inspection that obtains evidence, and where
    evidence should be recorded in the existing process. Include relevant failure,
