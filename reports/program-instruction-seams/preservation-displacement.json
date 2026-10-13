@@ -1,0 +1,1271 @@
+{
+  "schema_version": "PreservationDisplacement.v1",
+  "record_status": "prepared_source_only",
+  "choice": "reuse",
+  "receiving_owners": [
+    "engos-meta-supercharge",
+    "engos-reconciliation-converge",
+    "engos-design-shaping",
+    "engos-audit-pitch-review",
+    "engos-design-plan-to-goal",
+    "engos-orchestration-batman"
+  ],
+  "source_ref": "accepted program-instruction-seams contract 7a26e6c03c8c92f7d7f01063cd1f73220ee41684201f84d651743cc86b975a2f",
+  "clauses": [
+    {
+      "id": "S9-01",
+      "task": "D9.S1",
+      "path": "ssot/engos-meta-supercharge.md",
+      "anchor": "after Primary Objective section, before Agent Operating Contract",
+      "text": "Choose by the requested outcome, not merely the number of pasted inputs. Use SuperCharge to strengthen the current artifact, including comparisons among its candidate versions, with the existing selected modules and independent reviews. Use engos-reconciliation-converge when the deliverable is a source-attributed reconciliation of materially conflicting inputs into one recommendation. Use engos-optimization-auto-research when the user asks for measured behavioral benefit against a baseline. These are separate jobs, not a mandatory chain; naming a companion neither invokes it nor expands authority. Preserve explicit module choices, terminal controls and all existing output contracts.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S9-02",
+      "task": "D9.S1",
+      "path": "ssot/engos-reconciliation-converge.md",
+      "anchor": "after Primary Objective section, before Agent Operating Contract",
+      "text": "Keep each material retained claim, conflict and muted idea attributable to its supplied source: use the actual source identity and available revision, date, section or locator, and mark unavailable provenance explicitly. Preserve disagreement rather than inventing a consensus or missing preference. Multiple variants of one artifact may still be hardened with engos-meta-supercharge; choose Converge when source-attributed reconciliation is the requested work product. A request to establish measured behavioral superiority belongs to engos-optimization-auto-research with a baseline and bounded evaluation. Do not invoke either companion automatically. The existing recommendation review remains required for substantial authored proposals.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S9-03",
+      "task": "D9.S1",
+      "path": "sources/capability-resources/engos-meta-supercharge/references/help-examples.md",
+      "anchor": "append a Job Selection Examples subsection; preserve existing examples and terminal examples-only behavior",
+      "text": "One artifact: \"supercharge /simple /invert harden this rollout plan while preserving its approval boundaries\" returns an improved plan and independent findings. Conflicting sources: \"Use engos-reconciliation-converge to compare these two dated proposals, attribute the conflicts and recommend one\" returns a source-linked decision with rejected ideas. Measured benefit: \"Use engos-optimization-auto-research to compare these prompts against this frozen baseline and regression set within this budget\" returns observed results or an explicit blocked/inconclusive state. These examples select separate jobs; do not execute them or chain the capabilities when listing examples.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S9-04",
+      "task": "D9.S1",
+      "path": "ssot/engos-reconciliation-converge.md",
+      "anchor": "append Source Conflict Example Resource subsection",
+      "text": "For a worked source-attribution example, load route source-conflict from resources/resource-map.json and read resources/examples/source-conflict.md. Resolve these paths from the active skill resource root; obtain the complete example before claiming it was used. This optional example does not replace the domain workflow or independent recommendation review, and a missing example does not authorize inventing source evidence.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S10-01",
+      "task": "D10.S1",
+      "path": "ssot/engos-design-shaping.md",
+      "anchor": "after Invocation Hints section",
+      "text": "The three jobs remain separate: engos-design-shaping conducts a workshop or resumes its recorded stages; engos-audit-pitch-review can assess a finished pitch directly; engos-quality-shaping-gate owns current transition predicates, score anchors and receipts. A finished-pitch assessment does not create a workshop history. For this dependency map, load the stage-policy route and read resources/references/stage-policy-dependencies.md; for an actual gate, resolve the gate owner and read its complete applicable resources through the existing routing contract. This reference does not copy or supersede gate policy.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S10-02",
+      "task": "D10.S1",
+      "path": "ssot/engos-audit-pitch-review.md",
+      "anchor": "append to Guided Shaping Entry and Review Precedence",
+      "text": "For a direct finished-pitch review, identify which supplied artifacts were actually assessed and explicitly report unavailable Intake, Framed and Research history as unassessed prerequisites. Do not mint historical receipts, require the user to retroactively stage a workshop just to obtain an assessment, or claim a G0\u2013G4 transition from the standalone score. Keep the existing standalone rubric, artifact-completeness checks and output format; in full shaping mode the current gate owner and its applicable policy still take precedence. A recommendation that content is ready to bet is not the human betting decision, completed delivery, implementation authority or a request to start a goal. Even after human acceptance, a separate build session starts at specification only for the accepted handover scope and separately authorized build work.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S10-03",
+      "task": "D10.S1",
+      "path": "ssot/engos-audit-pitch-review.md",
+      "anchor": "append Standalone Pitch Example Resource subsection",
+      "text": "For a worked finished-pitch example, load route standalone-pitch from resources/resource-map.json and read resources/examples/standalone-pitch.md from this skill bundle. Read the complete selected example before claiming it was used. The example illustrates coverage reporting; it never supplies missing facts, human decisions or receipts for the actual pitch.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S3-01",
+      "task": "D3.S3 current-name clarification",
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "anchor": "after existing Invocation Hints explanatory paragraph",
+      "text": "Use engos-design-plan-implementation for an ordinary dependency-aware implementation plan and task contracts. This existing engos-design-plan-to-goal skill is the compiler when a bounded long-running goal packet is explicitly wanted: it researches, drafts, materializes where permitted, lints, seals and rechecks the goal/specification/verifier bundle under all contracts below. It does not become the implementation worker or delivery controller. Compiling or sealing a packet is not a request to create or start a running goal; runtime actions require the user's separate explicit request. engos-orchestration-batman remains a separately invoked controller-owned delivery protocol. No alias, rename or automatic hop between these jobs is implied.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    },
+    {
+      "id": "S3-02",
+      "task": "D3.S3 current-name clarification",
+      "path": "ssot/engos-orchestration-batman.md",
+      "anchor": "after Companion Contract final paragraph, before Tool Boundaries",
+      "text": "Ordinary planning and goal-packet compilation do not activate Batman. engos-design-plan-implementation owns ordinary plans; engos-design-plan-to-goal may compile a separately requested bounded packet and verifier. Neither is a Batman alias or a direct-worker replacement for this controller. When this protocol is explicitly requested, retain every stage, gate, companion-resolution rule, independent role, current plan_generation, task/owner identity and controller-owned evidence/landing check below. A compiled packet neither satisfies those gates nor grants runtime or landing authority.",
+      "displaced_clause": null,
+      "disposition": "additive; all original bytes retained"
+    }
+  ],
+  "retained_clause_hashes": [
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Purpose",
+      "line_start": 12,
+      "line_end": 14,
+      "sha256": "c1c7fa91adc1a2946f3399da79c6c48e982d12d1e3df20b89de18ae41b6c91fe",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Primary Objective",
+      "line_start": 15,
+      "line_end": 19,
+      "sha256": "3772289e5fc6d63562e070a7e6498f18ba966b8406d635cfefd11ec25f7da18f",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Agent Operating Contract",
+      "line_start": 20,
+      "line_end": 34,
+      "sha256": "844e8e9c50809cbcbd23b4d151c2a7669c2a470c3310a8202f2c77d827c29847",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Tool Boundaries",
+      "line_start": 35,
+      "line_end": 39,
+      "sha256": "e7502dc8c84381118528e1ddce9902c811b7795ec1db773e1014c2e152408a6d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Output Directory",
+      "line_start": 40,
+      "line_end": 44,
+      "sha256": "d8240aefc7863e29aeee706e53b060007b53474b2e6b26e5d6072b863461e41c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Invocation Hints",
+      "line_start": 45,
+      "line_end": 55,
+      "sha256": "e62ecb5b7249d917a1a65b6c0f62c21b0112dae4356c16988dac0c5eb863b2ea",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Required Inputs",
+      "line_start": 56,
+      "line_end": 62,
+      "sha256": "b2db0366ca80f59e715592b4b6a6f11e0915ff7f83f84293ade51014875dc279",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Required Output",
+      "line_start": 63,
+      "line_end": 84,
+      "sha256": "eccf08540c7d03ce31c3b70ac4f4dad1da486eeb396259f9d3fce99f84637ac8",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Constraints",
+      "line_start": 85,
+      "line_end": 93,
+      "sha256": "bc16e44cebc801b9ef3d7f305b738bfec677f838eab68da783b531d0f69f9d16",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## 0) Activation, Parsing, and Dispatch",
+      "line_start": 94,
+      "line_end": 150,
+      "sha256": "a6019c09456bc1596169a8e596c89bb0558992bab4f44e6a292925ede3b923d8",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## 1) Core Execution Model (How SuperCharge Works)",
+      "line_start": 151,
+      "line_end": 233,
+      "sha256": "9c18867e9af158417c122f8a725ed867f4877a9f2e5b8ee09c54263052a3eb97",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## 2) Auto-Catchup Capstone (Session Continuity)",
+      "line_start": 234,
+      "line_end": 244,
+      "sha256": "a5f16553993432f06034a565c3fcc201a3ea9fa5a3c40146aab23e85cf2ab6cc",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## HELP OUTPUT (Quick Guide)",
+      "line_start": 245,
+      "line_end": 247,
+      "sha256": "3ad03f20a168976cfc46bfa358297d00f95f47ca9440000c566a78daee3b9a8c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## HELP EXAMPLES OUTPUT (Auto-Generated Examples)",
+      "line_start": 248,
+      "line_end": 252,
+      "sha256": "373430889ccc1294ea75b1099a19241dd40088b1e960f9af1ffb30808503389a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## MODULE REFERENCE (Full Spec)",
+      "line_start": 253,
+      "line_end": 271,
+      "sha256": "df7da92d1d6784e084530516c9d10c16147fc667e5a41170df6a82fecc28b2e0",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Examples",
+      "line_start": 272,
+      "line_end": 281,
+      "sha256": "f6ddc416018bf2e5112223a766de5422a122625d7670ccf9d2732ffe08329ab1",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 282,
+      "line_end": 292,
+      "sha256": "4d71a4d4c991d57b760ef88f393362c0c9b19d2d2ac52f8ddee32ca7a5faa5e0",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "heading": "## Review Timing",
+      "line_start": 293,
+      "line_end": 296,
+      "sha256": "14725c701f1d2de7909f19d7074ade95652e1bdd87e0d8931a1c8abcc656f0ff",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Purpose",
+      "line_start": 11,
+      "line_end": 13,
+      "sha256": "85b70567021e4e1cbaffd7e7e35b082db0869c8e371658ba71a1850a107a49e7",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Primary Objective",
+      "line_start": 14,
+      "line_end": 16,
+      "sha256": "5611d53a1aa69116f84a14ccf8eb40b3c5d7e0c9c9490de38f24b8a87f000ae0",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Agent Operating Contract",
+      "line_start": 17,
+      "line_end": 30,
+      "sha256": "59eee50f12aee24c8d5c2aa2b798ad20fad619c4892ac6ec7f8b33554264ff9c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Tool Boundaries",
+      "line_start": 31,
+      "line_end": 35,
+      "sha256": "6fe3bfa50b399249a7d6f2684dc111ff5bbb0eeff9f61c8a73e10bf46a605864",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Output Directory",
+      "line_start": 36,
+      "line_end": 43,
+      "sha256": "f53ca84858c995d5b23b68d507897d5daf9a7d4b4353b8549cfcf129d911ba9c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Invocation Hints",
+      "line_start": 44,
+      "line_end": 51,
+      "sha256": "fddd405f8171c56365fdf3ee25d013ad8ef8acd4a026554891e2a8720aa1db38",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Required Inputs",
+      "line_start": 52,
+      "line_end": 57,
+      "sha256": "08c51337a75dee19170130f168b147b690c89fb95c4101dfcbdf7f0a6eb359bc",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Required Output",
+      "line_start": 58,
+      "line_end": 68,
+      "sha256": "f4c60ad676e3aa6f44e4d81dd43ecd86556e535f09702f88811a82c11ed48eed",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Constraints",
+      "line_start": 69,
+      "line_end": 77,
+      "sha256": "506b34504731816bd30b2b7460f1a35ef36871090e3d0f9a4e83708a84ecb183",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Core Principles",
+      "line_start": 78,
+      "line_end": 84,
+      "sha256": "ee740b741c6d8ec0eab65dd373c23010bffd3788457329f6cdb482e1076c49a7",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Optional Controls",
+      "line_start": 85,
+      "line_end": 97,
+      "sha256": "a2943a38443712f67a6af042d2633634e2bd415b5bfffb3a97e1efae1d8ca505",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## The Prompt (paste into the target AI)",
+      "line_start": 98,
+      "line_end": 169,
+      "sha256": "fbb83897f802d9ae4f2c56f2760cb5cdc55d43c7f9e8933dbf341f1269d4bdec",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## What Good Looks Like",
+      "line_start": 170,
+      "line_end": 177,
+      "sha256": "feedee1d6e9cd551a83d1c32e4f2cdac123acb0d1c826b897512475bfb52a80b",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Examples",
+      "line_start": 178,
+      "line_end": 191,
+      "sha256": "ba86d24f01bb9ea043f6c4227d194a328ed8d24622a07095ad6f70ad87e69bac",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 192,
+      "line_end": 201,
+      "sha256": "c47777cf6f285c8260170075b11cde27926e2b1e5451ff8662b6770518fcffd2",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "heading": "## Recommendation Artifact Review",
+      "line_start": 202,
+      "line_end": 221,
+      "sha256": "5cd008a94b4851988b18e1a3770209bc56c0bdfb8e61bc8c203e66aa9153c4f7",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Purpose",
+      "line_start": 13,
+      "line_end": 26,
+      "sha256": "9b681290d5ab0ff46964a73f76dfb0e0d7fa0f47e181153b90f43b2dd019cd48",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Primary Objective",
+      "line_start": 27,
+      "line_end": 29,
+      "sha256": "9c8b2520cd8aa173919f86151dc3848804ea69f5a4377c7cdba41b54ce9ec2c6",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Resource Delivery Contract",
+      "line_start": 30,
+      "line_end": 36,
+      "sha256": "eaaeb7bb671a51e08ed825674df777231abdb0d5aa0ae5e3423e5a656eef338e",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Capability Evaluation Contract",
+      "line_start": 37,
+      "line_end": 61,
+      "sha256": "a349b14819e7a9a93f043bef991e47445ea5d5e716d0f182f186bb76303cede1",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## In Scope",
+      "line_start": 62,
+      "line_end": 70,
+      "sha256": "aa0b43bbf8d5ebb162ce3d1d7a008d01a3666564852f3740befef6d6b244269f",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Out of Scope",
+      "line_start": 71,
+      "line_end": 77,
+      "sha256": "7413ab50f32c94f376828a611019a4296fbe7e84a8a092ad5c654b47eb41bdfb",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Agent Operating Contract",
+      "line_start": 78,
+      "line_end": 96,
+      "sha256": "7b7e8fb1f7f6795efa7dafbe53eae6a73d343d5e7cfed1aec20776be050c4e8d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Tool Boundaries",
+      "line_start": 97,
+      "line_end": 101,
+      "sha256": "1eac9ef083f693f922f48313b89d6d84b1ed7cf28828fa6b783a9fcfaa554634",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Output Directory",
+      "line_start": 102,
+      "line_end": 106,
+      "sha256": "eab3c75f0a8ff68bb48a2a925f757626b6864aa8ff709dfeff722b41d953400a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Workflow",
+      "line_start": 107,
+      "line_end": 146,
+      "sha256": "a92671f4ec788bf92464ea8581c07c2ceb767accb11a7b159e973cf9d6d96b88",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Decision States",
+      "line_start": 147,
+      "line_end": 163,
+      "sha256": "8d2e69ddee97686955cdc1dddd70924d6beb99d2c3a140920394441fca834942",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Rules",
+      "line_start": 164,
+      "line_end": 181,
+      "sha256": "85697c660422d418a8f044c9a465d5daca3adba74baf99e207202fedc342aee1",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Invocation Hints",
+      "line_start": 182,
+      "line_end": 193,
+      "sha256": "010a0ed1bb331440ea6c4c45d7549b95dbea13f4926635328a044d8aa8da1c66",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Required Inputs",
+      "line_start": 194,
+      "line_end": 210,
+      "sha256": "b5ab29d25013dc6ffa15d068290028c12c08c993fd260b37677decaa9b297fba",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Required Output",
+      "line_start": 211,
+      "line_end": 243,
+      "sha256": "f0ec5064a48d3f51b0a4d7a144381c52359722424b9945f8f8db6fec4808ad1c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Help System",
+      "line_start": 244,
+      "line_end": 378,
+      "sha256": "fbe8226c7a3ff43a907db172101a5597532a8e74da3b7afdd42b0683ecec5309",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Modes",
+      "line_start": 379,
+      "line_end": 451,
+      "sha256": "54d9121a15f83ddd70984ffe646804cb31f8537f04f76318e555463e296526c5",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Control Loop Mechanisms",
+      "line_start": 452,
+      "line_end": 525,
+      "sha256": "1a16dba636ecc6ee897eb09ba468e9ce8d9b14167882d224e310323667134e9c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Artifact Schemas",
+      "line_start": 526,
+      "line_end": 574,
+      "sha256": "013c265f524ec0745568fcc5ea957cd0c116e7ddbfe3fc0a90169a4864024a28",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Operating Profiles",
+      "line_start": 575,
+      "line_end": 607,
+      "sha256": "e84ca609dc6b1d99ae96fd5a595c63616bb3c438224f70d2089502785b72c121",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Self-Improvement Protocol",
+      "line_start": 608,
+      "line_end": 632,
+      "sha256": "c351ca5b8eb2576e6c792e821813ca3cce7b2c6a7d6b7c502bbc75b719963cfb",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Examples",
+      "line_start": 633,
+      "line_end": 679,
+      "sha256": "d9ec4d3a392ad91500af513d9e5043592db56e9d1c097daf8c97007a4efd520a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Review Timing",
+      "line_start": 680,
+      "line_end": 687,
+      "sha256": "c08154d5e7106403fb5acf76be06fd38cb2dbcde39a9982ae7dc83a9fd3ca49f",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Constraints",
+      "line_start": 688,
+      "line_end": 698,
+      "sha256": "39a98952ec031ee5be99dea7502646e11229878f2ec147351216dbc4155e798d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 699,
+      "line_end": 709,
+      "sha256": "cf121e98f1f980faa40ed28e2d12d95b56211501a2c42e1d690d8793db246288",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Purpose",
+      "line_start": 10,
+      "line_end": 17,
+      "sha256": "e4129a91d765057ea107439671c9aac6fad1bd09a6bd423c1f386a8f4ff67e98",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Primary Objective",
+      "line_start": 18,
+      "line_end": 24,
+      "sha256": "631784c401348cee1fccd4578de26436631c5580792b3c651efb81d9081bb8e7",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Invocation Hints",
+      "line_start": 25,
+      "line_end": 31,
+      "sha256": "a9dc9f7eb0a6114a76326ac9021e73058ecee62a6eda65908179eb0ca2b260a4",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Required Inputs",
+      "line_start": 32,
+      "line_end": 39,
+      "sha256": "96e9c8ee340d0f3e48a09602f88e08103b80663347d9957d575553897a105e2c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Required Output",
+      "line_start": 40,
+      "line_end": 62,
+      "sha256": "a169eaf673478b4405f1863bbe8aeba927ca5825007e7c07ad55699912bd6b6d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Human roles and pauses",
+      "line_start": 63,
+      "line_end": 90,
+      "sha256": "6adbffa4e9e23b6593a765fd723c3c0c9dfa213401451e7a107ee33c06a46f2d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Workflow",
+      "line_start": 91,
+      "line_end": 177,
+      "sha256": "ad11104cc9fddc48e6e0b379735c1fc5338666438a70e575b85466b60cb337cd",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Rules",
+      "line_start": 178,
+      "line_end": 227,
+      "sha256": "f60a782b1b6887cb45e64fc188aeed1698d6d505ff64257b8b5b62b6a0a5e03d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Constraints",
+      "line_start": 228,
+      "line_end": 234,
+      "sha256": "7c47bbc14fe21a748c64d5bfca82a2d02856985a913245e96b763cda1b56eda6",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Examples",
+      "line_start": 235,
+      "line_end": 247,
+      "sha256": "e4d3903cd6c9645dc9489768e1caa3da457da1d366619b7c85e6ba589f6c874e",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 248,
+      "line_end": 256,
+      "sha256": "f4f962fb1412afd0f0563b48387be81708076dd2486547c43ca3203d7ecf3836",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Readable Artifacts and Flow Progress",
+      "line_start": 257,
+      "line_end": 277,
+      "sha256": "7efa3ecaa286d22eddd0156ec45fdd347b9dc75f4aad47dfa893c55ad5937c78",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "heading": "## Repository Fit and Specialist Advice",
+      "line_start": 278,
+      "line_end": 298,
+      "sha256": "5041be9ab93f020eca0ecc6d3e4842d1870009cbd379771ca1a66cfccb874ee2",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Purpose",
+      "line_start": 12,
+      "line_end": 14,
+      "sha256": "2ccbf8a01796d7e15ab3958c7773c68d47fbd6984c138f57bca22f846c23ed3b",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Primary Objective",
+      "line_start": 15,
+      "line_end": 19,
+      "sha256": "f3fb415e7480c620f131b57b0420071a81f9d199fde1c530b0ced3b683840c6a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Context",
+      "line_start": 20,
+      "line_end": 122,
+      "sha256": "8a23d151e6945760f6e41e6869c348faa710d58d9bf18294cdf2c818e696004c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Component Extraction",
+      "line_start": 123,
+      "line_end": 139,
+      "sha256": "96a1c6b9c2696358d4ea141bccc0aaf307ef6c229cc2eb87d213233177c8154b",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Commands",
+      "line_start": 140,
+      "line_end": 240,
+      "sha256": "d4e24fb1f4710d16d25513fc15e26b3c847511c0b38024ca6f61ecd444c6f4a6",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Integration Proof Guide: [Pitch Title]",
+      "line_start": 241,
+      "line_end": 275,
+      "sha256": "6039cf79531508e60267f7ee433ffee7bcfba671d1b748bdc5d7e168211b75b0",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Scoring Rubric",
+      "line_start": 276,
+      "line_end": 379,
+      "sha256": "aabdf40347ca2cc158c48f333d4e0fdef7997ed51a087b90f75041446fc82a73",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Reading Pitches",
+      "line_start": 380,
+      "line_end": 395,
+      "sha256": "efa3b702ba6bc3ddfa2dd358e9d3fb17fde7e6fd21765e7e7bb3ed5c68370907",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Output Format",
+      "line_start": 396,
+      "line_end": 401,
+      "sha256": "5320ee17252a423e24e81caad6f5ec1495f23d323cda7ae215a3a9d0f4cbceba",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## TL;DR",
+      "line_start": 402,
+      "line_end": 433,
+      "sha256": "dca81f5908835615fe4238b7a2a42c82193f8715eb45856e1aec5b4ff5ad5bbc",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Tracker Update",
+      "line_start": 434,
+      "line_end": 443,
+      "sha256": "d143377fb0b7fcf3ac1cfa62f87334c5129b5f4622f8fe78def8241fa8fddcae",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Invocation Hints",
+      "line_start": 444,
+      "line_end": 455,
+      "sha256": "e70cf58891e192f1336f9634241faff9f9df8149b52d5b4c53b82a80b386cd0b",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Required Inputs",
+      "line_start": 456,
+      "line_end": 462,
+      "sha256": "62e05fa2ac3217e055159bdc9cfc33cea29a42035e7e44eec8734c53b04da232",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Required Output",
+      "line_start": 463,
+      "line_end": 484,
+      "sha256": "6db89594f3756d28cfa8c265c3ca3b8bdee01981ff0ce475f1102bfd98f135cf",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Examples",
+      "line_start": 485,
+      "line_end": 491,
+      "sha256": "873af7e5b1415d5f8b43b5a0d777633a2be606286f7387585d2c94fd359f2f30",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## TL;DR",
+      "line_start": 492,
+      "line_end": 527,
+      "sha256": "73d315b52e4fe11a84aaadee26f8b470b403c9e05a29d8d2b3472783348508d1",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Integration Proof Guide: Dev MCP",
+      "line_start": 528,
+      "line_end": 556,
+      "sha256": "95b15447a899ea0670c357d1d0cdafb8f5718a5041fdd33f6722a6d6dc51dff3",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 557,
+      "line_end": 571,
+      "sha256": "4642b5fca2be9ae8cb0b1c21d65e2c93a1c1e6d72872f98bb7eb15f3f8662102",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Tool Boundaries",
+      "line_start": 572,
+      "line_end": 576,
+      "sha256": "ce81197da77951c25eabb7187267dbe7d285c4b458c015b94008df69e1ed3f42",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Agent Operating Contract",
+      "line_start": 577,
+      "line_end": 587,
+      "sha256": "be13aac07b6cbe908a5deaeda827297b4898c74ad05fa6a1dc60b4e2a3c24490",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "heading": "## Guided Shaping Entry and Review Precedence",
+      "line_start": 588,
+      "line_end": 611,
+      "sha256": "923e62eeffd8235013803c7ce8904e131a3de3cc3028bed8c7b3699cef20f008",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Purpose",
+      "line_start": 11,
+      "line_end": 16,
+      "sha256": "0cbb80b33b14dd43614ce01a6587da29bb6acfd5b447c5cc02febf3c16ce2b98",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Primary Objective",
+      "line_start": 17,
+      "line_end": 22,
+      "sha256": "3b76e83d29d84bd28e5e082534900447b14413543e73961c18040873b4a9876c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Invocation Hints",
+      "line_start": 23,
+      "line_end": 28,
+      "sha256": "1fab575d2d74dacabbc2d85494ddff7a1418ea8f9e0846b4d170512bbb141d37",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Required Inputs",
+      "line_start": 29,
+      "line_end": 37,
+      "sha256": "f703f761738920fd41969ba02a5f5621cb5abe7945c2f95f1df3d455b9d810ad",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Workflow",
+      "line_start": 38,
+      "line_end": 105,
+      "sha256": "2dac9a0a938b6ffe99e32cd0e6528690a6a3345e3f91513c144b7014dc2b3334",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Required Output",
+      "line_start": 106,
+      "line_end": 112,
+      "sha256": "0152244b7c776a3a1fe43d37bb8f003f6f9dd0ea4cac7d82c42474f8f745f01c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Rules",
+      "line_start": 113,
+      "line_end": 140,
+      "sha256": "17a32be8d09fc7bc337649e4d19c450c314b44ecc897ff76dc3ae892197f72a4",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Current-profile review contract",
+      "line_start": 141,
+      "line_end": 170,
+      "sha256": "21b9eb301ecf1b8e938397f3743e044ca66cadd076f98e5ee1ff1b6161633b7c",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Constraints",
+      "line_start": 171,
+      "line_end": 177,
+      "sha256": "251f16d2cbb59b9a01364a1b4b0ae897c890c32ae2779aa9e98b013904f437ee",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Examples",
+      "line_start": 178,
+      "line_end": 184,
+      "sha256": "4e4d8d3cf52768f1cc94d06296dbf1eaa38c21e72eb3a8ced936884bfda5ad70",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 185,
+      "line_end": 195,
+      "sha256": "d31d4df489caa1c3616572bf853dfc993edea71a4d1665fbc73961cad8cb5671",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Visual Quality and Evidence-Derived Progress",
+      "line_start": 196,
+      "line_end": 217,
+      "sha256": "ebeaaf9302e1eb582b99376c6fe383b32d7503f6badf68ddb074f920bedb5d33",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "heading": "## Existing Capabilities and Architecture Fit",
+      "line_start": 218,
+      "line_end": 235,
+      "sha256": "e31069ea852d1decf0948e2cb8803f482e68f4e9889bedfbf06b8c4cdd9f4e4d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Purpose",
+      "line_start": 11,
+      "line_end": 15,
+      "sha256": "e9ae4c6a7cedb0257530057e83134c9c83ac07a3bc6aa2898cfb5b78a04a4da6",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Primary Objective",
+      "line_start": 16,
+      "line_end": 18,
+      "sha256": "85d97b00afb149dc7e7bba135d193952ad0f6685c0333d052f1c895201da8d7a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## In Scope",
+      "line_start": 19,
+      "line_end": 25,
+      "sha256": "bfd5e0552993372eabb6d6745405b9b208fc7b0e9f38200244c9c9c943b482e9",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Out of Scope",
+      "line_start": 26,
+      "line_end": 32,
+      "sha256": "0e7b1779ac9c241f68135fe5033a58998e15d4e863202964dbb076205bc820aa",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Invocation Hints",
+      "line_start": 33,
+      "line_end": 42,
+      "sha256": "b858d1d7700a18337fc980ce9ddc1bb6421279f8109ec2e4b1894c223f6c6a38",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Host Contract",
+      "line_start": 43,
+      "line_end": 53,
+      "sha256": "29bb769d201da392245171084ba87914236498e648a4f052cd9bff5d8a408045",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Goal Prose Contract",
+      "line_start": 54,
+      "line_end": 76,
+      "sha256": "96e0077dd12e6a51548ef386b0ce3e64a35c59db65b41a682475d46845cc73a1",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Research-First Contract",
+      "line_start": 77,
+      "line_end": 93,
+      "sha256": "c09b243df8ad08cd6b9dd9c05c89700d33986fecadf559a002df4f10c72dd3af",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Specification Contract",
+      "line_start": 94,
+      "line_end": 111,
+      "sha256": "fa77463dd8a454d672b6f5e10fc77770f92c08476db06f55cf2a783e5fc3684b",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Verification Contract",
+      "line_start": 112,
+      "line_end": 135,
+      "sha256": "71527413959812eeb00f74f99910a63ccbc632824023dd74ceb94b7a052c2731",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Storage and State Contract",
+      "line_start": 136,
+      "line_end": 153,
+      "sha256": "a8b1bb5dc23af618ffcba961a1beca5f291bd4be5a2c1597c5e6e12fc28908a5",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Workflow",
+      "line_start": 154,
+      "line_end": 168,
+      "sha256": "5fc825b20ecd10e9a1e78ddb8bbeb45d4cd10e45457713e31a8a265077fc2067",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Rules",
+      "line_start": 169,
+      "line_end": 185,
+      "sha256": "5ef1f386ab82d8196e036b46efc81fd1d6bbbda8982b9964ea9590d6d8793e6e",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Required Inputs",
+      "line_start": 186,
+      "line_end": 192,
+      "sha256": "e02e73c5462116f5793ee057ebf073f632c9d2d0b66de70a3c566625a30dedb3",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Required Output",
+      "line_start": 193,
+      "line_end": 207,
+      "sha256": "feabb3cd71968be54039bc9f49e35ce130aafe674c94c4ed328437185a8e6f11",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Constraints",
+      "line_start": 208,
+      "line_end": 216,
+      "sha256": "c6fbaed4bb5ab651fa3bfc528d31623ecfe68c6f85dc63545d26094ec2d32fce",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Examples",
+      "line_start": 217,
+      "line_end": 232,
+      "sha256": "cf5a1e29140072416bf51bc34c98ac69782b691a333b6a19dce3e153488cc231",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 233,
+      "line_end": 249,
+      "sha256": "40fc06ce023d01ac7e4986cff433c50e360f39dbccb4aa463f17561120c0b094",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "heading": "## Recommendation Artifact Review",
+      "line_start": 250,
+      "line_end": 269,
+      "sha256": "65793a3c0609b9d89f39b00efc4389a290059c70f1abc1ee70da43ba6571d829",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Purpose",
+      "line_start": 12,
+      "line_end": 16,
+      "sha256": "67ff631e189340f85cc6221f431b41e5486f431049cf819490ea753b1d33ebef",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Primary Objective",
+      "line_start": 17,
+      "line_end": 19,
+      "sha256": "68666502155abc3ad76d3bb0513d0063717aeca356aad0e406209b2d96783fd0",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## In Scope",
+      "line_start": 20,
+      "line_end": 26,
+      "sha256": "fad9caa44eeaf04348025d87892353e7b3969ead53e89afd443d11704d5dac47",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Out of Scope",
+      "line_start": 27,
+      "line_end": 32,
+      "sha256": "534c6c327e3cc92693c0ce7ddf54a56da3c7e02504ed931b779aa2585d54a6aa",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Agent Operating Contract",
+      "line_start": 33,
+      "line_end": 48,
+      "sha256": "4d2a0422972db637b29b91096f8415afa5cc8fd49840b7efd75776880150b1c7",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Companion Contract",
+      "line_start": 49,
+      "line_end": 74,
+      "sha256": "6795324d2a1b3306048986ef603931a5ef01d3592d594fe012a3e5d758662b99",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Tool Boundaries",
+      "line_start": 75,
+      "line_end": 81,
+      "sha256": "bf833ec088b60b3fed7266a48f064b04b59e30578b388dd0c2671538c8e6dfb9",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Invocation Hints",
+      "line_start": 82,
+      "line_end": 86,
+      "sha256": "8bbd192c0ecb9dd2c2b88adab38d8e3a9827d93ad9485815873bd3b718a0f42a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Required Inputs",
+      "line_start": 87,
+      "line_end": 93,
+      "sha256": "b158ee2fc31ca617a09f763af98a409b23b6fd4b1f3ed14aa71936b972289eb2",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Instruction Integrity",
+      "line_start": 94,
+      "line_end": 103,
+      "sha256": "f3258c502c604aa4bced0b7f29175074fe4ebeff47a073a3afca7b66c5713be3",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Required Output",
+      "line_start": 104,
+      "line_end": 119,
+      "sha256": "b287de8a8afe249b1100aefb99c1d84a008e74564c7aa80278570ded6d06ef11",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Output Directory",
+      "line_start": 120,
+      "line_end": 124,
+      "sha256": "065d5e807c97be816144d0ae2570443987f9444e5c973bc8f450e7f7cd232b90",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Progress Reporting",
+      "line_start": 125,
+      "line_end": 134,
+      "sha256": "9f90ce1f0b3372261a539b84ec5154264ff84fbff8bf778adbc345fcf462fde2",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Conditional Interface and Evidence Rules",
+      "line_start": 135,
+      "line_end": 143,
+      "sha256": "ae4aa2458e81dac86d4f5078f8bb3c635c41ed82c83f65623e5c6e8425840e13",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Milestone Backpressure",
+      "line_start": 144,
+      "line_end": 157,
+      "sha256": "19a2fb5e48a804539a20acf09a3263a0c5115b6f554d520700f65b5e722e0161",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Workflow",
+      "line_start": 158,
+      "line_end": 301,
+      "sha256": "4cd08b879eef58a22a8e7029755b90c855fe11c2c3ec0d47604190cbd9e92cc5",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Rules",
+      "line_start": 302,
+      "line_end": 311,
+      "sha256": "c3d1b359cf35628522e3e54b33787359a03bc01e35c628db652c757140f5e69a",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Constraints",
+      "line_start": 312,
+      "line_end": 321,
+      "sha256": "f8dabd14df5db316da06f0182edf3a39e144c94ffe7972fe95c93f554405a24d",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Examples",
+      "line_start": 322,
+      "line_end": 340,
+      "sha256": "8ad7189db8132f366e08e7896d021963d5d787a415c4aab3172adc5e5142f715",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## What Good Looks Like",
+      "line_start": 341,
+      "line_end": 349,
+      "sha256": "f3df53dfd31407d2bc2a710ba51e5804cc4a425a91b5abe38ba29b2fea322308",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "heading": "## Evaluation Rubric",
+      "line_start": 350,
+      "line_end": 363,
+      "sha256": "8df07bf6d505ac8399636ed60d0033d7cfb9efc5869e2702a25d67302b0ff1d1",
+      "disposition": "retain exact baseline clauses; only separately listed additive paragraphs may be inserted"
+    }
+  ],
+  "unresolved": [],
+  "limits": [
+    "Not UACRequirementReview or PromotionVerdict; controller owns exact candidate review and application."
+  ]
+}

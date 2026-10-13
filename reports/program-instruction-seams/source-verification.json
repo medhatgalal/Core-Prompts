@@ -1,0 +1,588 @@
+{
+  "contract_sha256": "7a26e6c03c8c92f7d7f01063cd1f73220ee41684201f84d651743cc86b975a2f",
+  "repository_source_checks": [
+    {
+      "path": ".meta/capabilities/engos-audit-pitch-review.json",
+      "sha256": "52d1dc1afc9a06686ccb41100f37394d4c9e1411b153d7862c99cc81f687e6f4"
+    },
+    {
+      "path": ".meta/capabilities/engos-reconciliation-converge.json",
+      "sha256": "62fd9293d56c800d928f8778ca100b6947d54286a1b6563f610d377d7a972fcc"
+    },
+    {
+      "path": "evals/cases/public/supercharge/core.jsonl",
+      "sha256": "0a02a6395e597fef1cf85717f0b9bdfcc383c0c106f3c812541dace6128ad6cf"
+    },
+    {
+      "path": "evals/contracts/engos-audit-pitch-review.json",
+      "sha256": "2b5173408a8ba0e1a2007c3e6a339d419db14334f3e8dcb4e1ac8cdb5cb4e51c"
+    },
+    {
+      "path": "evals/contracts/engos-design-plan-to-goal.json",
+      "sha256": "804b0e6995cd02303327948d74be0b82779728058e58b9511567b4b1128bc2a1"
+    },
+    {
+      "path": "evals/contracts/engos-design-shaping.json",
+      "sha256": "21e4126c62db1c23596c278e76e12e6cdb0731ae17f8118a8ffeb1fafb90aa2c"
+    },
+    {
+      "path": "evals/contracts/engos-meta-supercharge.json",
+      "sha256": "1a3b04a69c5238eb4905e6ecc6cf07681a99bdc33c4eb52e56757bbd584e7754"
+    },
+    {
+      "path": "evals/contracts/engos-optimization-auto-research.json",
+      "sha256": "42d0961cc6162e51efe46bb9e75425d347f8767c47c240a6cb275cc0c32197c7"
+    },
+    {
+      "path": "evals/contracts/engos-orchestration-batman.json",
+      "sha256": "5aed7cb19ca865f0f7d95f2e468630999836e09f0b81996972db7184f475e031"
+    },
+    {
+      "path": "evals/contracts/engos-quality-shaping-gate.json",
+      "sha256": "d9c1357a8570766b46790942f4a4423f10e9eb117aa32683d094099093240752"
+    },
+    {
+      "path": "evals/contracts/engos-reconciliation-converge.json",
+      "sha256": "1b211589bef62ebb922384b5267597dda6022c3b85cfdf5ec99fe86f22d2878e"
+    },
+    {
+      "path": "evals/fixtures/supercharge/module-preservation.json",
+      "sha256": "d6d0601dbdef2b57e7e56610e24deb8333046919792daaa7e451144494cc65fc"
+    },
+    {
+      "path": "evals/topologies/engos-audit-pitch-review.json",
+      "sha256": "99d5662fc49bda95b4c4567e8329b15f2348b967336b8fa069e8647775202571"
+    },
+    {
+      "path": "evals/topologies/engos-design-plan-to-goal.json",
+      "sha256": "d2f3954f4836feb6f7a63fe372a44520bf59acacd74ac25974c70223599db9b6"
+    },
+    {
+      "path": "evals/topologies/engos-design-shaping.json",
+      "sha256": "d2dc24f8243703b5401420164cd1b488910fca4352479c6e64f5ce02838eb72d"
+    },
+    {
+      "path": "evals/topologies/engos-meta-supercharge.json",
+      "sha256": "e2fa7154c3c6b9135bcf542a2478dd37a872616a660d7903c1e3a027b95b0a80"
+    },
+    {
+      "path": "evals/topologies/engos-optimization-auto-research.json",
+      "sha256": "feeaa5af07b12baec5416257c535b2934b276e1ae4fe5008d88969cc8ab7c848"
+    },
+    {
+      "path": "evals/topologies/engos-orchestration-batman.json",
+      "sha256": "74fc2307dc8d02565a721eba9e7d2f22fa2e98e119decea98f95391f446a11f8"
+    },
+    {
+      "path": "evals/topologies/engos-quality-shaping-gate.json",
+      "sha256": "fc6d8fa36c08338fb38c0fe0fa63d2d3c15367c7276c5af5d2b2351b765531d6"
+    },
+    {
+      "path": "evals/topologies/engos-reconciliation-converge.json",
+      "sha256": "cb3f1496a8f64c32cba571ce91bd1e7cd1d2425632d425e8de6c8e346d1aeb3b"
+    },
+    {
+      "path": "scripts/build-surfaces.py",
+      "sha256": "b4d39218b8e0e275800ada2946a9a3882946783a5eb89626556db174c48ef31c"
+    },
+    {
+      "path": "scripts/uac-import.py",
+      "sha256": "8e83888c834371110dbe81624c1dc5462b622dd36cc06401f6a3bc2534436cb1"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/adapters/hosts.json",
+      "sha256": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/goal-lint",
+      "sha256": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/references/evidence.md",
+      "sha256": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/references/goal-authoring.md",
+      "sha256": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/references/goal-design-lessons.md",
+      "sha256": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/references/verifier-trust.md",
+      "sha256": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/schemas/packet.schema.json",
+      "sha256": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/scripts/criterion_flip.py",
+      "sha256": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/scripts/goal_packet.py",
+      "sha256": "dd4f3f533ce74967916f87f50453dcec070ee34749ccd9368937b3b0b11ff34f"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/baseline.json.tmpl",
+      "sha256": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/criterion-flips.json.tmpl",
+      "sha256": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/goal.txt.tmpl",
+      "sha256": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/judge-amendments.json.tmpl",
+      "sha256": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/packet.json.tmpl",
+      "sha256": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/receipt.json.tmpl",
+      "sha256": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-to-goal/templates/spec.md.tmpl",
+      "sha256": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/architecture-fit.md",
+      "sha256": "e7bbc98d865d2465099ae00d1e4a230d201e2b2302bfdf3ac49d4eb101793037"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/code-scan.md",
+      "sha256": "1eeb764fc851124e236f688253e80a298d5e2fe94543d6fdec470b16a7b2ec34"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/decisions.md",
+      "sha256": "755649a7e4e94fdab041f551b2988936181099288d2edd63c0d2cd54c95fa1d6"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/dispatch.md",
+      "sha256": "6820c589986611f037cccb180412d3696a4899931f32db54ece75d99f5bf5445"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/fallback.md",
+      "sha256": "a4b205b3d283210773c1032c433f5ea5780e6248c889a0a7cbe1ebe6a7bac49d"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/handover.md",
+      "sha256": "02e3b2076f1a98bee3e51c25e530ed9536ce53a9e154de9b6955a02253258a02"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/human-evidence.md",
+      "sha256": "5342694ba348481d7070293bd331013644e3bfe74c7a24a7db74ac53c99b2686"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/progress.md",
+      "sha256": "cbf61c25f22ebbf751e53bfc0c71f6adf532fc955004258bd6821d1b54767b33"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/questions.md",
+      "sha256": "2adcdfb3502841a79f53dd6044e2dbb6c803266c085ed8515611d9218c2a98aa"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/reconciliation.md",
+      "sha256": "13b1c1ac0b7901b5816c226a789e71bbc6378f6cff04444840c55a908167e757"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/repository-discovery.md",
+      "sha256": "67bbc45e7a97a9e4b00c3d92c79189c379a795f84c264e298b6e3460a9b0ae45"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/representations.md",
+      "sha256": "3fa4fdcd8d9a1bebde0d6efefb7e39307610154be2370cde73f60a8fed44d499"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/resource-map.json",
+      "sha256": "99e7d46120f078ca1c6e9d529154acfc2cb9763fe4876a70275cec868148410f"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/routing.md",
+      "sha256": "8d47bf551f607f7b146e8173465c7859aee8e6378f585789585980f85a8f33da"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/scripts/handover_outputs.py",
+      "sha256": "97c1658925ea786d917fbf246b25062381716435b418e6fa672d4a0339190f56"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/sources.md",
+      "sha256": "d011714d16be04d77ddd5801926c68744ee664599064ad1f850d83a40475d96a"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/stages/publish.md",
+      "sha256": "961ca3cbcc390dbb4af79e78821beaaa168989cc61322e4305c06f94cbd755cd"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/stages/research.md",
+      "sha256": "5b6bcf67a5f6559414102d23d98a1a8df4f9d908e369e4e837e8d2e8b26154e8"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/stages/review.md",
+      "sha256": "4da973583685c6618c4d7e560a7145206a70e3884fcf7015771f6e6a8829c1a7"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/stages/shape.md",
+      "sha256": "53d718ee4df6b7f377f5565082d1bbe0c0cdcbbf1aef7b082f6a8a277a62f25d"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/start-resume.md",
+      "sha256": "ed648b365d4f0d94a3d305206c00d2fc84382527d6ec81e9fbeb97a9f5a184cf"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md",
+      "sha256": "837a351edfe14f85c582890d3c2f46c1b3f5ecd741d142d300922ffe09905893"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-shaping/ways-of-working.md",
+      "sha256": "363290f1b9130644d78940f86cdf90b1222c91666b586d2027b03ab3276b95ef"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/help-examples.md",
+      "sha256": "e99377e9262b00bf0c9752c1b0c845dc75d9344b699d2f233588720438e677a7"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/help.md",
+      "sha256": "bcc7f46f9a66dc92fa4e21be22ba4bf3a0cb2631ad740ff99bd9a9c9d4ec5c98"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/model-guidance.md",
+      "sha256": "242cb28d1fedeb07b51e3a016876fb55053463bc610d66ed5202e95bbdc8d5b2"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md",
+      "sha256": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md",
+      "sha256": "f17ecfb25b1f863ffbdde0909c8900c58b386aa6631ecbed8a26c1dc9d4176c2"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md",
+      "sha256": "024463bfd8cb186533d62788b63bed2457decc1cb3e1b6aa1efc7dc226860138"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md",
+      "sha256": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/full.md",
+      "sha256": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md",
+      "sha256": "005f349510bd5a6b41760ed66eee9fe31499fd44e5bd51af3421036ed1ad6eca"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md",
+      "sha256": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md",
+      "sha256": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md",
+      "sha256": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md",
+      "sha256": "c8485bf36b587b8252c1481669e51d920306c12b55143918692de95540a56425"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md",
+      "sha256": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/references/shared-review.md",
+      "sha256": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791"
+    },
+    {
+      "path": "sources/capability-resources/engos-meta-supercharge/resource-map.json",
+      "sha256": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/bootstrap.py",
+      "sha256": "3eff93af273920c02740faf7e53550026ef6dfbabbae108048cf93dccca1c6f4"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/references/experiment-loop.md",
+      "sha256": "c913ea95e9a42ad8485f8dd6807021d2f03d84913c8012291c1bc78584b05c57"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/references/resource-delivery.md",
+      "sha256": "e9232c7a9417584fa2f92ad8b5b209af32bb2770ebf3a6cc01e5e1c76c691ed0"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/resource-map.json",
+      "sha256": "a485f7eaf1c508e21d130f75ab04c44966ac9700c0a4d33f0d9ad8443bad9dc8"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/experiment-ledger.md.tmpl",
+      "sha256": "5fb35a2a5f0c25dbbe262ad97f55606978a742e61428f61a8dc59191d37b745b"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/goal-contract.md.tmpl",
+      "sha256": "f5ce6157f5b6030491158f99d56b350dc5a60e1d899f8cf9fdcc50c2977846ed"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/promotion-packet.md.tmpl",
+      "sha256": "baa7a3d81d84cecfa2cc5374e7777b7a196a232b419132b4f7284bfc58b33c77"
+    },
+    {
+      "path": "sources/capability-resources/engos-optimization-auto-research/templates/scorecard.json.tmpl",
+      "sha256": "a905e3211e3001698debf4a5bfd9cb45e5c493b3fb29f91e5bad8d69771a243e"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/references/gates.md",
+      "sha256": "0869f8f31ca4ad40da2fb7067247ae8b05c359580a7504fadf47b5d91953f36d"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/references/progress.md",
+      "sha256": "afabc9a153c2bcbef9600ba95dbaee7df9b597b34fa2f17b61a17aa201f2c4f7"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/references/review-evidence.md",
+      "sha256": "e4d4b6354dc8b3edf877753a0904c01849a2e232925b54348024421756707ef5"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/references/rubrics.md",
+      "sha256": "29fb3704545aad1de0a176f57fd08adf3b845a8873f967265baacc7f259e04ee"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/references/runtime.md",
+      "sha256": "86b901cf5dd2cb29c1e4e4cb20378a5f2921c12ad67dd354364d0e5c8982be64"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/resource-map.json",
+      "sha256": "fa1d1587bcf724cf19f1753326ac07ff9a6555ec64d168b216a15c8f91ba2e20"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/policy.example.json",
+      "sha256": "fa1416316aa08e9a3d1c80ba33d78238dea3bc7e9f8a4bddcd1ce8e5836c3209"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/progress.schema.json",
+      "sha256": "9888082079239b50e34e8ef500c655bc6423133b4e58a9e18ce2e20d9b584d1e"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/review-evidence.schema.json",
+      "sha256": "4ca1aa64d6ad0b0583eb3d712573e6221eedee5b84d06cb18215a6eb0428d137"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/schemas/runtime.schema.json",
+      "sha256": "87f9f2770b7b6a7ce1e3d0ceb527420059fe4054d6ce04f200130c3da80f5023"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-shaping-gate/scripts/shaping_run.py",
+      "sha256": "815f89346b87ee97dd77b31c3c2a3b2b3e59f34d7bd1724b0c7b88ed1085c70d"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-audit-pitch-review/baseline.md",
+      "sha256": "2570975eae752eda8e9acb1227f478e4e25ae05f5e0d07ba1385a20ecb3a01d4"
+    },
+    {
+      "path": "sources/ssot-baselines/engos-reconciliation-converge/baseline.md",
+      "sha256": "2d836405d6df11ec0267f53a5ab4d74f020675b46296fe04ca72835464060cf1"
+    },
+    {
+      "path": "src/intent_pipeline/uac_modes.py",
+      "sha256": "81d99bfb93b5492da9ef83eabcda1e191f46cb78559dd096f701af584e77e871"
+    },
+    {
+      "path": "ssot/engos-audit-pitch-review.md",
+      "sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b"
+    },
+    {
+      "path": "ssot/engos-design-plan-to-goal.md",
+      "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+    },
+    {
+      "path": "ssot/engos-meta-supercharge.md",
+      "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+    },
+    {
+      "path": "ssot/engos-optimization-auto-research.md",
+      "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52"
+    },
+    {
+      "path": "ssot/engos-orchestration-batman.md",
+      "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+    },
+    {
+      "path": "ssot/engos-quality-shaping-gate.md",
+      "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98"
+    },
+    {
+      "path": "ssot/engos-reconciliation-converge.md",
+      "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+    },
+    {
+      "path": "tests/fixtures/supercharge-acceptance-cases.json",
+      "sha256": "85cb361efc7c10ea0566bfc66244076240814fe4938304fc59d89ce0ad1929bf"
+    },
+    {
+      "path": "tests/fixtures/supercharge-help-preservation.json",
+      "sha256": "716a030a814e6692f753a2ef86f57a565cc9732ac6fb2e068a7b320a09479635"
+    },
+    {
+      "path": "tests/test_frontier_skill_contracts.py",
+      "sha256": "6e1f3d78a42f371ea8e0168655fa04867071d2398b4b5917471340f819168b98"
+    },
+    {
+      "path": "tests/test_goal_lint_resource.py",
+      "sha256": "b6216543310fb095b7917f3a3ac51a26b416c0ad55932682b9b97db2e78da4ff"
+    },
+    {
+      "path": "tests/test_plan_to_goal_design.py",
+      "sha256": "9412f679982ba7c0a5a1480c298c5c455cc8f95c6ccc13eaf4240613b5aa5238"
+    },
+    {
+      "path": "tests/test_resource_backed_skill_surfaces.py",
+      "sha256": "7de52519c03177b5df96317230415074d1c3f609d34701d52b0341913185781e"
+    },
+    {
+      "path": "tests/test_resource_delivery.py",
+      "sha256": "b9b72cf3b499e2f9fd5f6ada47bafb80862de739510af0e5ca03a06f88d6ee48"
+    },
+    {
+      "path": "tests/test_shaping_handover_outputs.py",
+      "sha256": "85a6c304c0ecaafb98c8926f0ee4debf4363543652d4f5e2f1385fce98388148"
+    },
+    {
+      "path": "tests/test_shaping_policy_recovery.py",
+      "sha256": "bd99a0a9d1fd25de58a4e56f358b0ce0ee97e4428487ce5b320b1d0290b0c4e5"
+    },
+    {
+      "path": "tests/test_shaping_repository_fit.py",
+      "sha256": "00a4905112b13644bbb79fa1b5eb58e43d9e13a711c4119adce3833d3c145078"
+    },
+    {
+      "path": "tests/test_shaping_review_evidence.py",
+      "sha256": "8732ae48d61a857008f9095e08a3c5c5da22ffaa0f0d9a96c5d1f12ce8abdfad"
+    },
+    {
+      "path": "tests/test_shaping_runtime.py",
+      "sha256": "a8e8e38f52be29f2eb7859dbc4fb80053430e18510868d4d5984a5ef61d33488"
+    },
+    {
+      "path": "tests/test_supercharge_debate.py",
+      "sha256": "aada90bedfa759d342a42e54eec4954995d5e2beb482a08c37084517fae09472"
+    },
+    {
+      "path": "tests/test_supercharge_preservation.py",
+      "sha256": "6d1b474648e239b86fdb695d0138d3b9e1332e8ff597b584481868001d3652f0"
+    },
+    {
+      "path": "tests/test_uac_promotion_apply.py",
+      "sha256": "c309c71fb8becff34102338a285ad08483fe9ce0c55afa95eb4c0e2a6466df37"
+    }
+  ],
+  "verified_repository_count": 122,
+  "verified_retained_clauses": 146,
+  "source_head": "72aab57c99fc2d1b1181549e15a9deb85d53b86f",
+  "candidate_hashes": {
+    "ssot/engos-meta-supercharge.md": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181",
+    "ssot/engos-reconciliation-converge.md": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5",
+    "sources/capability-resources/engos-meta-supercharge/references/help-examples.md": "f55986d02d788a3aeb109c52e72a76fc9f7a4574422e6276a7c5c975d4a5dd8c",
+    "ssot/engos-design-shaping.md": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a",
+    "ssot/engos-audit-pitch-review.md": "59e995b0d2de0a2fd231cbda94437e524751357a87d0cf861dc30917a665de8e",
+    "ssot/engos-design-plan-to-goal.md": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
+    "ssot/engos-orchestration-batman.md": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
+  },
+  "canonical_ssot_applied": false,
+  "behavioral_status": "pending",
+  "noop_dispositions": {
+    "D9.S2": "Independent design review accepted bounded selected-source no-op: no demonstrated task-specific variation gap; no new module, resource or route. This is not global donor equivalence.",
+    "D10.S2": "Independent design review accepted bounded selected-file no-op: no proven safely removable residual authored clause. Distinct actor and standalone semantics retained; generated copies excluded. This is not repository-wide absence of duplication."
+  },
+  "rename": "deferred pending separate approval and V-RENAME",
+  "verified_total_source_count": 122,
+  "source_classification": "122 repository-relative files in the exact accepted contract; controller dispatch referenced 114, but all 122 matched",
+  "effective_resource_file_hashes": {
+    "engos-design-shaping": {
+      "sources/capability-resources/engos-design-shaping/architecture-fit.md": "e7bbc98d865d2465099ae00d1e4a230d201e2b2302bfdf3ac49d4eb101793037",
+      "sources/capability-resources/engos-design-shaping/code-scan.md": "1eeb764fc851124e236f688253e80a298d5e2fe94543d6fdec470b16a7b2ec34",
+      "sources/capability-resources/engos-design-shaping/decisions.md": "755649a7e4e94fdab041f551b2988936181099288d2edd63c0d2cd54c95fa1d6",
+      "sources/capability-resources/engos-design-shaping/dispatch.md": "6820c589986611f037cccb180412d3696a4899931f32db54ece75d99f5bf5445",
+      "sources/capability-resources/engos-design-shaping/fallback.md": "a4b205b3d283210773c1032c433f5ea5780e6248c889a0a7cbe1ebe6a7bac49d",
+      "sources/capability-resources/engos-design-shaping/handover.md": "02e3b2076f1a98bee3e51c25e530ed9536ce53a9e154de9b6955a02253258a02",
+      "sources/capability-resources/engos-design-shaping/human-evidence.md": "5342694ba348481d7070293bd331013644e3bfe74c7a24a7db74ac53c99b2686",
+      "sources/capability-resources/engos-design-shaping/progress.md": "cbf61c25f22ebbf751e53bfc0c71f6adf532fc955004258bd6821d1b54767b33",
+      "sources/capability-resources/engos-design-shaping/questions.md": "2adcdfb3502841a79f53dd6044e2dbb6c803266c085ed8515611d9218c2a98aa",
+      "sources/capability-resources/engos-design-shaping/reconciliation.md": "13b1c1ac0b7901b5816c226a789e71bbc6378f6cff04444840c55a908167e757",
+      "sources/capability-resources/engos-design-shaping/references/stage-policy-dependencies.md": "c0ce1526010594598a7650c9e04408d7ab5994458c5c718950573e47f2e61182",
+      "sources/capability-resources/engos-design-shaping/repository-discovery.md": "67bbc45e7a97a9e4b00c3d92c79189c379a795f84c264e298b6e3460a9b0ae45",
+      "sources/capability-resources/engos-design-shaping/representations.md": "3fa4fdcd8d9a1bebde0d6efefb7e39307610154be2370cde73f60a8fed44d499",
+      "sources/capability-resources/engos-design-shaping/resource-map.json": "b8b48ac687ac8ed4d8282288a90b3002154830c327fe1c72d0ff151c5915c48c",
+      "sources/capability-resources/engos-design-shaping/routing.md": "8d47bf551f607f7b146e8173465c7859aee8e6378f585789585980f85a8f33da",
+      "sources/capability-resources/engos-design-shaping/scripts/handover_outputs.py": "97c1658925ea786d917fbf246b25062381716435b418e6fa672d4a0339190f56",
+      "sources/capability-resources/engos-design-shaping/sources.md": "d011714d16be04d77ddd5801926c68744ee664599064ad1f850d83a40475d96a",
+      "sources/capability-resources/engos-design-shaping/stages/publish.md": "961ca3cbcc390dbb4af79e78821beaaa168989cc61322e4305c06f94cbd755cd",
+      "sources/capability-resources/engos-design-shaping/stages/research.md": "5b6bcf67a5f6559414102d23d98a1a8df4f9d908e369e4e837e8d2e8b26154e8",
+      "sources/capability-resources/engos-design-shaping/stages/review.md": "4da973583685c6618c4d7e560a7145206a70e3884fcf7015771f6e6a8829c1a7",
+      "sources/capability-resources/engos-design-shaping/stages/shape.md": "53d718ee4df6b7f377f5565082d1bbe0c0cdcbbf1aef7b082f6a8a277a62f25d",
+      "sources/capability-resources/engos-design-shaping/start-resume.md": "ed648b365d4f0d94a3d305206c00d2fc84382527d6ec81e9fbeb97a9f5a184cf",
+      "sources/capability-resources/engos-design-shaping/templates/shaped-bundle.md": "837a351edfe14f85c582890d3c2f46c1b3f5ecd741d142d300922ffe09905893",
+      "sources/capability-resources/engos-design-shaping/ways-of-working.md": "363290f1b9130644d78940f86cdf90b1222c91666b586d2027b03ab3276b95ef"
+    },
+    "engos-reconciliation-converge": {
+      "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md": "17c7b3acb92bcc69f26ca5ccac1fde6b43c9020791adb49170a79e1e3a50a516",
+      "sources/capability-resources/engos-reconciliation-converge/resource-map.json": "38da21a17c537bfb958c2fa204db7695f31b8c812e6adf9f9a9d1759a8c31d9c"
+    },
+    "engos-meta-supercharge": {
+      "sources/capability-resources/engos-meta-supercharge/references/help-examples.md": "f55986d02d788a3aeb109c52e72a76fc9f7a4574422e6276a7c5c975d4a5dd8c",
+      "sources/capability-resources/engos-meta-supercharge/references/help.md": "bcc7f46f9a66dc92fa4e21be22ba4bf3a0cb2631ad740ff99bd9a9c9d4ec5c98",
+      "sources/capability-resources/engos-meta-supercharge/references/model-guidance.md": "242cb28d1fedeb07b51e3a016876fb55053463bc610d66ed5202e95bbdc8d5b2",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/adversarial.md": "2948880659615f25dbcc3ac2d0a27977f20510932a97536b6b9ad24b86b56d49",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md": "f17ecfb25b1f863ffbdde0909c8900c58b386aa6631ecbed8a26c1dc9d4176c2",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/catchup.md": "024463bfd8cb186533d62788b63bed2457decc1cb3e1b6aa1efc7dc226860138",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/contract.md": "15f72081c0f36d7ccba4c58c1202e79d96aad9c4ff704b16f08f26c9a91234ea",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/full.md": "f97d60c8609bdbc1da6dc09b94b88b40d8ba6eb076d148f5ada6f850de41231c",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/gaslight.md": "005f349510bd5a6b41760ed66eee9fe31499fd44e5bd51af3421036ed1ad6eca",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/grade.md": "a605e4d384f5d9b16e459a96c7e10d7dec52e6496c3e650b7fdbbc32d94af86a",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/invert.md": "7750f226cc0da7f1237b23f3f13bc5e7212163e8dcaf94d92638e55a14015f40",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/simple.md": "8ee70354b7b346145095eb1081732d93166ef79187e2b312a269f4a741e29770",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/stop-ult.md": "c8485bf36b587b8252c1481669e51d920306c12b55143918692de95540a56425",
+      "sources/capability-resources/engos-meta-supercharge/references/modules/ult.md": "feefa5eeca27af194bf359ab795cae62dfdadc26701b0e6a83425c28f66e68d2",
+      "sources/capability-resources/engos-meta-supercharge/references/shared-review.md": "92fe588ebc996fa935204ced17e9761dd8927d7ee6906466988af0ee2285d791",
+      "sources/capability-resources/engos-meta-supercharge/resource-map.json": "56fee7ec78e0bac117fb3f517e8577890cfa638c3ac3a758f236ec64ee3df91f"
+    },
+    "engos-design-plan-to-goal": {
+      "sources/capability-resources/engos-design-plan-to-goal/adapters/hosts.json": "3e56e00f7ce2e776b1c70e1f693151efade433dbfbd4323d70449ca20c553048",
+      "sources/capability-resources/engos-design-plan-to-goal/goal-lint": "ae126fc5b1d7ad655a0ebc4aa79edc95b93b1f674a7bfac27b319d198619191d",
+      "sources/capability-resources/engos-design-plan-to-goal/references/evidence.md": "1a0985e59bf9036554f45264b4c326385d487fc7895d2f50270464327586ab57",
+      "sources/capability-resources/engos-design-plan-to-goal/references/goal-authoring.md": "ed998401b88da54e776a019eb6ea3c7e948cab83d8224d3c8e82e03849707c30",
+      "sources/capability-resources/engos-design-plan-to-goal/references/goal-design-lessons.md": "583c6d8b46aaf227bf43aaf0de4105b7d06d670b90f325e1c11bc517d2ec4637",
+      "sources/capability-resources/engos-design-plan-to-goal/references/verifier-trust.md": "fef011ae0cf7c47ad1b3ce6393983b25e06849d6aa4e4b81240037ddd246606a",
+      "sources/capability-resources/engos-design-plan-to-goal/schemas/packet.schema.json": "3248411d95ac5c5b42a376ba9a352761f1b89fa8db6459093f988a0096c3efbc",
+      "sources/capability-resources/engos-design-plan-to-goal/scripts/criterion_flip.py": "c3fb05ff903f0bc4390cfdded79caf8ab4180933f6c3d6798451a90bdb59541d",
+      "sources/capability-resources/engos-design-plan-to-goal/scripts/goal_packet.py": "dd4f3f533ce74967916f87f50453dcec070ee34749ccd9368937b3b0b11ff34f",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/baseline.json.tmpl": "9e7f0bc3e95d10655e87fa43f05638dfb5fa2c5515631dd1828e19bb97371dfa",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/criterion-flips.json.tmpl": "7bd2fd326fa9f94e955c1a7c8ddde21a7fa67c9f03cb78893c0103633bb1a874",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/goal.txt.tmpl": "ce0eb16dafabe54b658c1dceeb242ddb549aa9593bcd2b2d010aa0a4555f2001",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/judge-amendments.json.tmpl": "adb989a6d8ddecf527a778fe168bcfcaab2ec8f8777ea10edff19a10c2008793",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/packet.json.tmpl": "b8f09376bfbde81a4476122db20cbf1191b067bf1f120d546af80d2fd2936687",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/receipt.json.tmpl": "9e93d1ac697c713a337cc8bef4af1eefd531fa4c6e7f1284944b5ce2a8a725ff",
+      "sources/capability-resources/engos-design-plan-to-goal/templates/spec.md.tmpl": "745dcc9066d548e74acc3da842b843c91858b2438588aac4e79e57fb7aeaf21d"
+    },
+    "engos-orchestration-batman": {},
+    "engos-audit-pitch-review": {
+      "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md": "4d0fd3f93f1ad62a6ea45486465caf8e74fc37833226738b6af32e2f3645bd6d",
+      "sources/capability-resources/engos-audit-pitch-review/resource-map.json": "cae46ff9208167a79be453eae01132d3836ff0f4a92ee4413ec741a9c0e9d9ba"
+    }
+  },
+  "preservation_check": "Removing the exact additive contract passages leaves all original nonblank source lines in order, byte-exact; 146 captured original sections also matched before edits."
+}
