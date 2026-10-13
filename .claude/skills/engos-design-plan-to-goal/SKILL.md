@@ -36,6 +36,8 @@ Invoke this skill for requests such as:
 
 This skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.
 
+Use engos-design-plan-implementation for an ordinary dependency-aware implementation plan and task contracts. This existing engos-design-plan-to-goal skill is the compiler when a bounded long-running goal packet is explicitly wanted: it researches, drafts, materializes where permitted, lints, seals and rechecks the goal/specification/verifier bundle under all contracts below. It does not become the implementation worker or delivery controller. Compiling or sealing a packet is not a request to create or start a running goal; runtime actions require the user's separate explicit request. engos-orchestration-batman remains a separately invoked controller-owned delivery protocol. No alias, rename or automatic hop between these jobs is implied.
+
 ## Host Contract
 Load `resources/adapters/hosts.json` and select the adapter matching the active product and measured version. Recheck the installed version when possible. Do not generalize one host's command grammar, size limit, iteration mechanism, file behavior, or Plan-mode permissions to another host.
 

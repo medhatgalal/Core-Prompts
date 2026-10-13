@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-quality-gitops-review",
-  "ssot_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
+  "ssot_sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -43,11 +43,29 @@
     "engos-quality-gitops-review:L82:f13318f8962f",
     "engos-quality-gitops-review:L83:ae1fc668c8f5",
     "engos-quality-gitops-review:L84:88752cb21f2f",
-    "engos-quality-gitops-review:L85:8a3e99280f77"
+    "engos-quality-gitops-review:L85:8a3e99280f77",
+    "engos-quality-gitops-review:L150:901493f9e54b",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L8:b7f1fc9c9af2",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L15:5ca1139e834d",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L31:b7a0bcc13060",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L41:ee33bb30f7c5",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L66:fa57181d7f58",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L69:b5c8ca9aab38",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L84:be8b022f9022",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L87:fc3e08a1b27b",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L98:4d0af5180bfd",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L121:7acef827f5d6",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L176:800d4fa14e45",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L179:5164830c1912",
+    "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L190:a47c081f60d2"
   ],
-  "resources": [],
+  "resources": [
+    "- `docs-release-readiness`: read `resources/references/docs-release-readiness.md`. Outputs in order: Default seven GitOps sections, with DocsShipHandoff.v1 response JSON inside Recommended Commands or Actions; default headings remain. The F assembler consumes this response as evidence, not an extra eighth top-level section.."
+  ],
   "handoffs": [
-    "- Do not replace companion capability reviews with generic \u201clooks good\u201d language."
+    "- Do not replace companion capability reviews with generic \u201clooks good\u201d language.",
+    "One allowlisted import into resources/schemas/docs-ship-handoff.schema.json using already accepted .meta/shared-resource-imports.json semantics; generated GitOps copies preserve owner source_path/hash. Integrator owns registry edit. If shared mechanism unavailable on actual branch, integrate prerequisite D2.S2 first; do not hand-copy an independent authored schema.",
+    "resources/schemas/docs-ship-handoff.schema.json"
   ],
   "protected_invariants": [
     {
@@ -239,6 +257,456 @@
       "text": "## Required Companion Reviews",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:L146:02c16335c21c",
+      "heading": "Optional named documentation recipes",
+      "source": "ssot/engos-quality-gitops-review.md",
+      "source_line": 153,
+      "sha256": "02c16335c21c20e6533731fca4ebd3fa1f6dbb19bccb82dadae6ed57dd236426",
+      "text": "Read `resources/resource-map.json` only when selecting a recipe. Generic review loads no recipe and preserves the default seven Required Output sections. Select a recipe only by explicit name or a clear request for its exact artifact set; ambiguous requests retain generic review and clarify the artifact set. Load only that route and declared dependencies.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:L150:901493f9e54b",
+      "heading": "Optional named documentation recipes",
+      "source": "ssot/engos-quality-gitops-review.md",
+      "source_line": 157,
+      "sha256": "901493f9e54b8f7c9c0e106975d5d0c3a4957f5048bce31e724e86ddc1b97883",
+      "text": "Embed the companion response inside Recommended Commands or Actions; keep all seven GitOps headings. It does not add a Docs rewrite review cycle. Readiness is advisory and never creates mutation authority. No installed sibling dependency: use the bundled imported schema.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L32:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 32,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L67:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 67,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L156:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 156,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L194:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 194,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L225:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 225,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L260:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 260,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L362:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 362,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L404:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 404,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L461:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 461,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json:L507:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "source_line": 507,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L6:8dc240bb43ae",
+      "heading": "Selection and inputs",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 6,
+      "sha256": "8dc240bb43aeecf2468a04796f821bcd38db00b3aef6d8393bfa460a32a2c815",
+      "text": "DocsShipHandoff.v1 request with explicit committed/snapshot target kind, deterministic content manifest/digest, exact head/base, requested gate and content evidence; fresh independently reproduced target-tree and hosted/version/command evidence as required. Snapshot allowed only for explicitly limited commit-scope content review.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L8:b7f1fc9c9af2",
+      "heading": "Selection and inputs",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 8,
+      "sha256": "b7f1fc9c9af215c6ca626c7df4ece2d38c8f435297da02a241e163c1bdf2431f",
+      "text": "Missing inputs: Return blocked/unknown response with exact gaps. Never infer live CI or release authority from content PASS; no package dependency on installed Docs skill.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L13:29cdeada8019",
+      "heading": "Output precedence and authority",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 13,
+      "sha256": "29cdeada801916da929317925d60697c795d403786fdc2f3a3cf11c3b66fd6a2",
+      "text": "Docs explicit substantial-rewrite execution uses existing coordinator/writer/reviewer acceptance. Findings-only/ordinary recommendations/narrow formatting remain advisory. No corresponding cycle is added to GitOps.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L15:5ca1139e834d",
+      "heading": "Output precedence and authority",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 15,
+      "sha256": "5ca1139e834d53a7bc263ae6087391fefae5f20b74de9c0a4ed43956586a268a",
+      "text": "Drafts, findings and proposed commands grant no overwrite, install, Git mutation or release authority. Read named source evidence; never invent unavailable commands or hosted results.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L17:defbc076d650",
+      "heading": "Required artifacts, in order",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 17,
+      "sha256": "defbc076d65076fb51f1b6cbe9f73787f2374fd69d9dc84fd766c596a38bf75a",
+      "text": "## Required artifacts, in order",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L31:b7a0bcc13060",
+      "heading": "gitopsBundling",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 31,
+      "sha256": "b7a0bcc130608027c74fdc3b6c42488055b81a360eba8298dfbc7ad8e8b6f519",
+      "text": "One allowlisted import into resources/schemas/docs-ship-handoff.schema.json using already accepted .meta/shared-resource-imports.json semantics; generated GitOps copies preserve owner source_path/hash. Integrator owns registry edit. If shared mechanism unavailable on actual branch, integrate prerequisite D2.S2 first; do not hand-copy an independent authored schema.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L39:1a9251edc504",
+      "heading": "requestFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 39,
+      "sha256": "1a9251edc504a7ad170fb53ce14402c3f3a9d1e17dfc7baaf4715c42840fcf6b",
+      "text": "\"target_kind\": \"committed|snapshot (required explicit discriminator)\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L41:ee33bb30f7c5",
+      "heading": "requestFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 41,
+      "sha256": "ee33bb30f7c58e4bc6b71087c6d77e759f7a25f07e3a5caf21875b4b5a998e3b",
+      "text": "\"head_sha\": \"full resolved candidate commit SHA for committed; contextual current HEAD only for snapshot, never certification of snapshot bytes\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L64:f9ce79597ba4",
+      "heading": "responseFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 64,
+      "sha256": "f9ce79597ba4f502393c8ebaef14dacff4620887aa1e3808ba460b015ec67315",
+      "text": "\"checks\": \"array {name,status(pass|fail|unknown|not_applicable),evidence_ref,observed_head,reason}; for merge/release every applicable hosted check must identify the exact committed candidate head and result. not_applicable requires gate-specific reason and cannot substitute for a required check.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L66:fa57181d7f58",
+      "heading": "responseFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 66,
+      "sha256": "fa57181d7f5819c69b95e728cc8ef94ce2082fa94b19d546b7fc02e56a417ac4",
+      "text": "\"proposed_steps\": \"ordered {phase,argv,preconditions,evidence_refs}; shell argument vectors, never executed by receipt\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L69:b5c8ca9aab38",
+      "heading": "responseFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 69,
+      "sha256": "b5c8ca9aab3861ada025287082e8f04695cc67903dddca8cd4346652adf4fb48",
+      "text": "\"authority\": \"echo actual relevant authorization; readiness never grants it\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L73:11acb2028151",
+      "heading": "responseFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 73,
+      "sha256": "11acb2028151b9d99dbc4155f5a73083525fb5183d0ae41a7542063031ce6dc5",
+      "text": "\"verified_head\": \"exact committed candidate head for tree reproduction; contextual head for snapshot only\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L76:8ae398970c4c",
+      "heading": "responseFields",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 76,
+      "sha256": "8ae398970c4c0535a94e13d96c397ff889d501b100b96ca8daff9b13b40dce85",
+      "text": "\"limitation\": \"Snapshot observation proves only supplied bytes; it cannot certify committed/main/hosted readiness.\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L81:3bc8b793a1d7",
+      "heading": "matchingAndFreshness",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 81,
+      "sha256": "3bc8b793a1d7e6ba7c299219ec2820e4b4ee1689268dc85f579320e9da9efb6e",
+      "text": "Docs assembler verifies full identity and canonical manifest rather than trusting digest echo. GitOps independently reproduces every present file raw byte/mode and every deletion from the exact committed candidate tree for merge/release and recomputes its digest; a worktree copy is not proof of that relation. Require committed target kind, scope completeness, matching tree reproduction receipt and all applicable hosted checks for that exact head. Timestamp alone cannot establish freshness. Recheck candidate/upstream at decision; change invalidates affected evidence. Snapshot is permitted only for explicitly labeled commit-scope content review and has status/limits that cannot establish full F ship readiness. A subsequent commit requires a new committed identity, reproduction and matching CI; no auto-promotion. Host may transport evidence; neither skill requires an installed sibling or new runtime.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L84:be8b022f9022",
+      "heading": "verdictOwnership",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 84,
+      "sha256": "be8b022f90224309e5c5ede533e72903bd278656d8da7dbbc02b0d225fb4ea39",
+      "text": "Docs owns F content findings, five-area scorecard and strict assembled artifact. GitOps owns hosted/git/package readiness. F Ship Verdict PASS requires content PASS and matching ready response for requested ship gate; missing/uncertain/failing required evidence yields FAIL. E Release gate verdict remains docs-content only. Merge/release PASS additionally requires committed target kind and independent exact-tree manifest reproduction. Snapshot content PASS never implies merge/release readiness.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L87:fc3e08a1b27b",
+      "heading": "assembly",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 87,
+      "sha256": "fc3e08a1b27bc13331fab0a377abb3c9c55c14c95da229ad869619bd8e04e0d1",
+      "text": "F retains Inversion Analysis, Adversarial Findings, scorecard, Ship Verdict and conditional minimum fixes or proposed commands. Cite GitOps evidence/limits under existing verdict/findings slots; do not append GitOps generic report to strict F output. No numeric pass threshold invented.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L90:43a4cb2fc21a",
+      "heading": "schemaValidation",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 90,
+      "sha256": "43a4cb2fc21a7882c1f7db11e639b953be8edfde4a16b5d1547b58c066b2c027",
+      "text": "Use oneOf request/response branches keyed kind and candidate target_kind; schema constrains known fields/states. Focused fixture tests verify canonical hashing, target-tree relation, gate matching and freshness. Implement these comparisons within recipe instructions and existing test utilities; no additional runtime, collector or schema engine is required.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L93:76f3167f33e1",
+      "heading": "gateScope",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 93,
+      "sha256": "76f3167f33e124593cf2e43fcb1f9082968c4ccc77835c89d4541a2fc09c2920",
+      "text": "The unchanged F-style full ship review defaults to release scope and requires the complete release readiness/command plan before Ship Verdict PASS. A caller explicitly narrowing the gate to commit or merge receives that labeled partial scope; its PASS must say commit-only or merge-only and must not claim the original full ship gate passed. Generic GitOps may assess any declared gate.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L98:4d0af5180bfd",
+      "heading": "contentManifestContract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 98,
+      "sha256": "4d0af5180bfd3eddcb2210b1f711cda0c8e6d27cea08cdb1e5646ca982ed0b44",
+      "text": "\"pathRules\": \"Repo-relative exact POSIX paths using /; reject leading slash, empty path/components, . or .. components, backslash, NUL, CR and LF. Do not resolve/normalize case, Unicode or symlinks into a different identity. Duplicate exact paths are errors, never last-write-wins. Only regular files are supported in this seam; symlink/gitlink/special targets return unsupported/blocked.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L99:02158d1f57fa",
+      "heading": "contentManifestContract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 99,
+      "sha256": "02158d1f57fa18013efc9c24f011d93e3a363e801e884b6eb4610d508dd95022",
+      "text": "\"entries\": \"Each entry has exactly path, state, mode, sha256. For present, mode is 100644 or 100755 and sha256 is raw file-content bytes SHA-256 (not Git object ID; no newline/text/filter transformation). For deleted, mode and sha256 are null. A deletion must be present at base and absent from reviewed target. Represent rename as deleted old path plus present new path; no implicit rename detection.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L100:22017560cd08",
+      "heading": "contentManifestContract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 100,
+      "sha256": "22017560cd08d2954954b9885389ad62c782ff521d4e6203515fa196cf87288d",
+      "text": "\"ordering\": \"Sort entries lexicographically by their path encoded as UTF-8 bytes, ascending. Input ordering differences must canonicalize identically; duplicate paths fail before sorting.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L102:6713129791cd",
+      "heading": "contentManifestContract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 102,
+      "sha256": "6713129791cd03c579cb8cace0995bedf6722767c7973ba168ebf3594e50a50a",
+      "text": "\"identityEquality\": \"Match target_kind, base_sha, head_sha, manifest_version, exact normalized manifest and content_digest, not only an echoed digest. Changing snapshot to committed changes target kind/digest even if content bytes happen to match; commit/head evidence is renewed.\",",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L107:4f7ec2265f09",
+      "heading": "snapshotAcceptance",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 107,
+      "sha256": "4f7ec2265f09dde0d248de87f3f9b2a84aed3fa0d1c0faeb091ae72adf16f0f0",
+      "text": "target_kind=snapshot with gate=merge or release always blocks readiness regardless of head SHA/green CI. With gate=commit it may support a labeled commit-only content review of exact snapshot bytes; the response states no hosted/main/release certification and must not reuse HEAD checks as tests of those bytes. Full F default release gate cannot PASS from this state.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L121:7acef827f5d6",
+      "heading": "Active command contract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 121,
+      "sha256": "7acef827f5d66a7d41e70a6fbaebb0c6b747d48f76b64a614fe0a0daa61c1966",
+      "text": "\"condition\": \"scope and source review pass; never broad git add .\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L128:4cd0d594661d",
+      "heading": "Active command contract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 128,
+      "sha256": "4cd0d594661d9b6f0d782fc537a14d20047c9195ed23a71cb9c8eaeb3c129f33",
+      "text": "\"Open/refresh actual PR/MR; verify exact-head required checks and independent reviews on both providers\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L130:bd291d99bc2c",
+      "heading": "Active command contract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 130,
+      "sha256": "bd291d99bc2c4e64e93a3336a9ce7229e43d9805fdfc80b87deadefd978d9cd7",
+      "text": "\"condition\": \"Use actual remote identities; no release claim from local-only checks\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L136:21bc3de11ac5",
+      "heading": "Active command contract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 136,
+      "sha256": "21bc3de11ac540cd7cfa0b57fbd3e1470e92ce9ef5fde5ce38c24902bbc2fa7f",
+      "text": "\"Fetch both main refs, require same intended integrated commit and required post-merge checks\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L176:800d4fa14e45",
+      "heading": "Active command contract",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 176,
+      "sha256": "800d4fa14e45bbd18ebfb0b17eeeef484c5d31da587458697b49c194353fe89d",
+      "text": "\"renderingRule\": \"These are design placeholders, not executable output or permission. For F PASS output, GitOps must render exact argv/identities for the requested authorized gate using current CLI help and actual candidate state. If required identity/help/evidence unavailable, F FAIL with minimum fix; do not label placeholders exact commands. For commit/merge gate, future release steps stay explicitly out-of-scope, not executed. Current program release hold remains.\"",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L179:5164830c1912",
+      "heading": "Historical source compatibility (never active commands)",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 179,
+      "sha256": "5164830c1912dc14c92404be25ce3c0c9061435513d4dd6ac561ad120982635f",
+      "text": "## Historical source compatibility (never active commands)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L190:a47c081f60d2",
+      "heading": "Evidence limits and ordered proposal checks",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 190,
+      "sha256": "a47c081f60d2f4d347a99d0ce33644c464599f59c033a017e31e2381f02f225b",
+      "text": "Schema acceptance establishes shape only. A proposal is not execution, authority, authenticated CI, tree reproduction or evidence truth. Inspect actual evidence references and gate-specific pass/fail/unknown/not-applicable observations separately; unknown required evidence blocks readiness. Preserve request authority exactly; review authority permits proposals and grants no commit, merge, tag or publish action. Proposed step preconditions and evidence references must be nonempty and describe observations or future prerequisites honestly. Never label future planned commands executed.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L192:4ca1203c72da",
+      "heading": "Evidence limits and ordered proposal checks",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 192,
+      "sha256": "4ca1203c72daf20e4a09e69d6e7ff3ec038af10a22dc4ce43c1a8c5d0f8ad01f",
+      "text": "For the declared gate, verify a nonempty ordered plan: commit and candidate checks for commit scope; then merge with main parity for merge scope; then merged-release preflight, package, tag creation plus dual-remote tag pushes, and publish/download verification for full release scope. Require package before tag creation. Verify actual resolved remote identities; send one exact tag name and the same verified tag object to both remotes. Bind package version, tag target and proposal evidence to the reviewed candidate or separately verified integrated main as applicable. Missing phase, reversed package/tag order, origin-only publication, different tag object, placeholders or missing evidence are mechanical failures; passing these comparisons still cannot authenticate evidence.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-quality-gitops-review:sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md:L194:1a1fed59501c",
+      "heading": "Evidence limits and ordered proposal checks",
+      "source": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "source_line": 194,
+      "sha256": "1a1fed59501c5056c10c246865db9683f8c3f060835ce5213dd2fbdbcfed7c8c",
+      "text": "Snapshot commit-only content review reports supplied-byte observation and its limits, and cannot become full F PASS. Merge/release requires committed-tree reproduction plus applicable exact-head hosted evidence and fresh upstream checks. Static fixtures demonstrate these bounded comparisons only; actual hosted/tree readiness remains an independent observation.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -249,7 +717,19 @@
   "source_references": [
     {
       "path": "ssot/engos-quality-gitops-review.md",
-      "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+      "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+      "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+      "sha256": "c93fdef9d96cba3d5283c4a234d73bc3d0e41c25f8ec97526a4a0ce5aab91f2c"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-gitops-review/resource-map.json",
+      "sha256": "5ab65c3690be07873203066aa894b16ce6dc3c6c9e6c90481e25b543f0d86aec"
     }
   ],
   "known_ambiguities": [],
@@ -262,10 +742,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 19,
+    "total": 64,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "896ac0f3a35d60237d53b1b4bbb8f5a47ae5ee3bf600b8367e06a9ea9cb2c90f"
 }

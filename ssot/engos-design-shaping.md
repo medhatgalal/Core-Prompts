@@ -29,6 +29,8 @@ only,” “continue shaping,” “review this existing pitch,” and “resume
 or registered Doc” select its scope. The user need not invoke each phase.
 Standalone diagram or finished-pitch review requests use their existing helpers.
 
+The three jobs remain separate: engos-design-shaping conducts a workshop or resumes its recorded stages; engos-audit-pitch-review can assess a finished pitch directly; engos-quality-shaping-gate owns current transition predicates, score anchors and receipts. A finished-pitch assessment does not create a workshop history. For this dependency map, load the stage-policy route and read resources/references/stage-policy-dependencies.md; for an actual gate, resolve the gate owner and read its complete applicable resources through the existing routing contract. This reference does not copy or supersede gate policy.
+
 ## Required Inputs
 
 Start with one sentence or available documents; no repository or complete form is

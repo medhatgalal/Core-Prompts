@@ -92,6 +92,36 @@ judgment. Independent expected-binding verification and actual source/consumer
 review remain separate. See the bundled review-target reference for the full
 coverage and trust contract.
 
+## Optional planning link checkers
+
+From the selected skill's bundle directory:
+
+```sh
+python3 resources/scripts/graph_check.py --plan PLAN.json
+python3 resources/scripts/trace_check.py --spec SPEC.json --plan PLAN.json
+python3 resources/scripts/trace_check.py --spec SPEC.json --plan PLAN.json --tests TESTS.json --design-links
+```
+
+Load planner `graph_check`, or specification `trace_check` and, for selected
+tests, `trace_tests`. `trace_examples` provides positive and contradictory
+fixtures. These commands use standard-library Python and explicit bundled schema
+bytes, with no repository or sibling-install discovery. Each emits one
+deterministic JSON object. Exit 0 means selected mechanical checks passed; 1
+means schema, ID, graph or selected-linkage/coverage failure; 2 means CLI, input
+or package inability to assess. Errors leave the frontier or matrix empty.
+Semantic correctness, behavior and authority remain `not_assessed`. A nonnull
+plan spec digest is compared to the exact supplied specification bytes, and spec
+references are opaque.
+
+Optional retrieval selectors use the existing resource loader: Converge
+`source-conflict` reads `resources/examples/source-conflict.md`; pitch review
+`standalone-pitch` reads `resources/examples/standalone-pitch.md`; shaping
+`stage-policy` reads `resources/references/stage-policy-dependencies.md`. These
+are resource routes, not native commands. The dependency map points to the
+existing gate owner; it does not bundle gate policy into the conductor. The
+compiler keeps the `engos-design-plan-to-goal` name; rename and aliases remain
+deferred.
+
 ## Failure diagnosis skill
 
 Select `$engos-debug-diagnose-failure` in Codex or `/engos-debug-diagnose-failure`
@@ -345,8 +375,9 @@ python3 resources/scripts/load_module.py --route dependency_map --format text
 
 `task_plan` includes its sibling `task-contract.schema.json` dependency. Narrative
 planning needs no JSON sidecar. The map template records manually inspected
-relationships; no graph checker or ready-frontier command is shipped. Loader output
-proves assembly only, and schema shape does not prove task quality or authorization.
+relationships; the optional graph checker reports a mechanical ready frontier.
+Loader output proves assembly only, and graph or schema results do not prove task
+quality, semantic correctness or authorization.
 
 ### Lint, Seal, And Check A Plan To Goal Packet
 

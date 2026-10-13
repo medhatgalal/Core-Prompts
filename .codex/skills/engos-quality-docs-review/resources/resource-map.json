@@ -1,0 +1,48 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "docs-bundle": [
+      "references/docs-bundle.md"
+    ],
+    "readme-authoring": [
+      "references/readme-authoring.md"
+    ],
+    "ai-onboarding": [
+      "references/ai-onboarding.md"
+    ],
+    "information-relocation": [
+      "references/information-relocation.md"
+    ],
+    "document-visuals": [
+      "references/document-visuals.md"
+    ],
+    "factual-audit": [
+      "references/factual-audit.md"
+    ],
+    "adversarial-doc-review": [
+      "references/adversarial-doc-review.md"
+    ]
+  },
+  "dependencies": {
+    "references/docs-bundle.md": [
+      "references/factual-audit.md",
+      "schemas/factual-audit.schema.json",
+      "templates/factual-audit-master.json",
+      "scripts/factual_audit.py"
+    ],
+    "references/readme-authoring.md": [],
+    "references/ai-onboarding.md": [],
+    "references/information-relocation.md": [],
+    "references/document-visuals.md": [],
+    "references/factual-audit.md": [
+      "schemas/factual-audit.schema.json",
+      "templates/factual-audit-master.json",
+      "templates/factual-audit-prompt-e.json",
+      "scripts/factual_audit.py"
+    ],
+    "references/adversarial-doc-review.md": [
+      "schemas/docs-ship-handoff.schema.json"
+    ]
+  }
+}

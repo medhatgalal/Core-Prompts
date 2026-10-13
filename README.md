@@ -102,6 +102,23 @@ For a rough product or engineering idea, use [guided Shape Up](#guided-shape-up-
 For an already written pitch, use `engos-audit-pitch-review` for assessment without
 claiming the earlier shaping stages ran.
 
+Choose the job by its outcome: `engos-meta-supercharge` hardens an artifact
+(including its candidate versions), `engos-reconciliation-converge` reconciles
+conflicting sources with attribution, and `engos-optimization-auto-research`
+measures outcomes against a baseline. These jobs do not form an automatic chain.
+
+For shaping, use `engos-design-shaping` to conduct the workshop,
+`engos-audit-pitch-review` to assess a finished pitch directly, and
+`engos-quality-shaping-gate` for actual transition policy. Ordinary plans belong
+to `engos-design-plan-implementation`; a separately requested bounded packet
+belongs to the current `engos-design-plan-to-goal` compiler. Compiling a packet
+does not start a goal or activate `engos-orchestration-batman`.
+
+When a supplied plan or specification is difficult to inspect by hand, its
+planner and specification skills also offer optional mechanical link checks.
+They check graph/link consistency; inspect source truth, semantic correctness,
+approval and implemented behavior separately. Manual artifacts stay optional.
+
 | Intent | Use | Boundary |
 | --- | --- | --- |
 | Review staged changes, a diff, or a commit before committing, pushing, merging, or releasing | `engos-quality-code-review` | Read-only review gate; binds the exact target and consumer evidence, with structured findings; covers correctness, scope, resource lifecycle, concurrency, operational readiness, API compatibility, and advisory merge guidance |

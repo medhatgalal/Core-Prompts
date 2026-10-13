@@ -606,5 +606,11 @@ missing owner, unresolved material question or required artifact.
 Blast radius: every invoker can discover the guided entry; the changed gate/scoring
 contract is scoped to full shaping mode. No provider-native agent is introduced.
 
+For a direct finished-pitch review, identify which supplied artifacts were actually assessed and explicitly report unavailable Intake, Framed and Research history as unassessed prerequisites. Do not mint historical receipts, require the user to retroactively stage a workshop just to obtain an assessment, or claim a G0–G4 transition from the standalone score. Keep the existing standalone rubric, artifact-completeness checks and output format; in full shaping mode the current gate owner and its applicable policy still take precedence. A recommendation that content is ready to bet is not the human betting decision, completed delivery, implementation authority or a request to start a goal. Even after human acceptance, a separate build session starts at specification only for the accepted handover scope and separately authorized build work.
+
+## Standalone Pitch Example Resource
+
+For a worked finished-pitch example, load route standalone-pitch from resources/resource-map.json and read resources/examples/standalone-pitch.md from this skill bundle. Read the complete selected example before claiming it was used. The example illustrates coverage reporting; it never supplies missing facts, human decisions or receipts for the actual pitch.
+
 
 Capability resource: `resources/capability.json`

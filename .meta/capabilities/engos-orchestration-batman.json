@@ -175,7 +175,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-orchestration-batman",
-  "shared_summary": "Runs an explicitly invoked, host-aware, topology-declared, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
+  "shared_summary": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
   "shared_constraints": [
     "One canonical Batman SSOT body.",
     "One active public identity: `engos-orchestration-batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.",
@@ -199,15 +199,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "83157939",
+        "selected_commit": "628786ff",
         "richness_score": 5,
         "line_count": 363,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
-          "bd6cfd14",
-          "4e880e24",
-          "6be48300",
-          "7691d9d5"
+          "6fbcff2d"
         ],
         "expected_companions": [],
         "operator_invariants": [
@@ -251,6 +248,12 @@
               "missing_markers": []
             }
           ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
           "scorecard": {
             "baseline_richness": 5,
             "candidate_richness": 5,
@@ -258,7 +261,7 @@
             "candidate_operational_score": 3,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "83157939",
+          "baseline_commit": "628786ff",
           "baseline_slug": "engos-orchestration-batman"
         },
         {
@@ -276,13 +279,13 @@
         {
           "judge": "benchmark_readiness",
           "title": "Benchmark Readiness and Template Fit",
-          "score": 10,
+          "score": 9,
           "blockers": [],
           "scorecard": {
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
@@ -299,16 +302,49 @@
         "baseline_preserved_in_resource": false,
         "operational_richness": 10,
         "metadata_integrity": 10,
-        "benchmark_readiness": 10,
+        "benchmark_readiness": 9,
         "title_clarity": 10,
         "description_richness": 10,
         "intent_coverage": 10,
-        "boundary_clarity": 10,
+        "boundary_clarity": 8,
         "output_specificity": 10,
         "metadata_completeness": 8,
         "surface_usability": 10
       },
-      "template_name": "both"
+      "template_name": "skill",
+      "effective_sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {
@@ -376,7 +412,7 @@
     "portfolio_action": "ship_single_batman_identity",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -385,9 +421,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 168,
-              "end_line": 168,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 170,
+              "end_line": 170,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -395,9 +431,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 173,
-              "end_line": 173,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 175,
+              "end_line": 175,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -405,9 +441,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 192,
-              "end_line": 192,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 194,
+              "end_line": 194,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -415,9 +451,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 194,
-              "end_line": 194,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 196,
+              "end_line": 196,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -425,9 +461,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 216,
-              "end_line": 220,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 218,
+              "end_line": 222,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -435,9 +471,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 225,
-              "end_line": 234,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 227,
+              "end_line": 236,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -445,9 +481,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 249,
-              "end_line": 261,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 251,
+              "end_line": 263,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -455,9 +491,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 292,
-              "end_line": 300,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 294,
+              "end_line": 302,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           }
         ]
@@ -472,7 +508,7 @@
               "path": "ssot/engos-orchestration-batman.md",
               "start_line": 34,
               "end_line": 34,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           }
         ]
@@ -487,7 +523,7 @@
               "path": "ssot/engos-orchestration-batman.md",
               "start_line": 28,
               "end_line": 31,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -495,9 +531,9 @@
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 76,
-              "end_line": 78,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 78,
+              "end_line": 80,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -505,9 +541,9 @@
             "heading": "Tool Boundaries",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 80,
-              "end_line": 80,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 82,
+              "end_line": 82,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -515,9 +551,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 313,
-              "end_line": 320,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 315,
+              "end_line": 322,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           }
         ]
@@ -532,7 +568,7 @@
               "path": "ssot/engos-orchestration-batman.md",
               "start_line": 28,
               "end_line": 31,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -542,7 +578,7 @@
               "path": "ssot/engos-orchestration-batman.md",
               "start_line": 13,
               "end_line": 13,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -552,7 +588,7 @@
               "path": "ssot/engos-orchestration-batman.md",
               "start_line": 15,
               "end_line": 15,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -560,9 +596,9 @@
             "heading": "Invocation Hints",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 83,
-              "end_line": 85,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 85,
+              "end_line": 87,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           },
           {
@@ -570,9 +606,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-orchestration-batman.md",
-              "start_line": 313,
-              "end_line": 320,
-              "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+              "start_line": 315,
+              "end_line": 322,
+              "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
             }
           }
         ]
@@ -585,7 +621,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -596,7 +632,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -607,7 +643,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -618,7 +654,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -629,7 +665,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -640,7 +676,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -651,7 +687,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -662,7 +698,7 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -673,7 +709,29 @@
             "path": "ssot/engos-orchestration-batman.md",
             "start_line": 62,
             "end_line": 71,
-            "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-design-plan-implementation",
+          "condition_and_handoff": "Ordinary planning and goal-packet compilation do not activate Batman. engos-design-plan-implementation owns ordinary plans; engos-design-plan-to-goal may compile a separately requested bounded packet and verifier. Neither is a Batman alias or a direct-worker replacement for this controller. When this protocol is explicitly requested, retain every stage, gate, companion-resolution rule, independent role, current plan_generation, task/owner identity and controller-owned evidence/landing check below. A compiled packet neither satisfies those gates nor grants runtime or landing authority.",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 75,
+            "end_line": 75,
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
+          },
+          "interpretation": "source_clause_requires_stage_review"
+        },
+        {
+          "skill": "engos-design-plan-to-goal",
+          "condition_and_handoff": "Ordinary planning and goal-packet compilation do not activate Batman. engos-design-plan-implementation owns ordinary plans; engos-design-plan-to-goal may compile a separately requested bounded packet and verifier. Neither is a Batman alias or a direct-worker replacement for this controller. When this protocol is explicitly requested, retain every stage, gate, companion-resolution rule, independent role, current plan_generation, task/owner identity and controller-owned evidence/landing check below. A compiled packet neither satisfies those gates nor grants runtime or landing authority.",
+          "source": {
+            "path": "ssot/engos-orchestration-batman.md",
+            "start_line": 75,
+            "end_line": 75,
+            "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
           },
           "interpretation": "source_clause_requires_stage_review"
         }
@@ -685,8 +743,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-orchestration-batman.md",
-        "ssot_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
-        "effective_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+        "ssot_sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670",
+        "effective_sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -705,7 +763,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "a33f44ec71a6ce7683ae5c46a349bcf4abf07c9eab23b0ebd52499df791f9894"
+        "mapping_sha256": "b9325175c86f6799c36f0446a0e8bb283c3e5291b11d87859cdb7b9e23067e30"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

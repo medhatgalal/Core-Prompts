@@ -10,6 +10,8 @@ Use this capability when multiple sources, drafts, plans, or AI outputs overlap,
 ## Primary Objective
 Turn overlapping or conflicting material into one defensible recommendation with explicit trade-offs, surfaced conflicts, muted ideas, and a clear rationale for what survived.
 
+Keep each material retained claim, conflict and muted idea attributable to its supplied source: use the actual source identity and available revision, date, section or locator, and mark unavailable provenance explicitly. Preserve disagreement rather than inventing a consensus or missing preference. Multiple variants of one artifact may still be hardened with engos-meta-supercharge; choose Converge when source-attributed reconciliation is the requested work product. A request to establish measured behavioral superiority belongs to engos-optimization-auto-research with a baseline and bounded evaluation. Do not invoke either companion automatically. The existing recommendation review remains required for substantial authored proposals.
+
 ## Agent Operating Contract
 When emitted as an agent, this capability remains advisory and synthesis-focused.
 
@@ -215,6 +217,10 @@ Use actual separate participants. If they or their resumed contexts are unavaila
 4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.
 5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.
 6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.
+
+## Source Conflict Example Resource
+
+For a worked source-attribution example, load route source-conflict from resources/resource-map.json and read resources/examples/source-conflict.md. Resolve these paths from the active skill resource root; obtain the complete example before claiming it was used. This optional example does not replace the domain workflow or independent recommendation review, and a missing example does not authorize inventing source evidence.
 
 
 Capability resource: `resources/capability.json`

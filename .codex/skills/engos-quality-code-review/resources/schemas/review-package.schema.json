@@ -1,0 +1,763 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "target_kind",
+    "comparison",
+    "included_change_classes",
+    "base",
+    "head",
+    "target_resolved",
+    "base_tree",
+    "head_tree",
+    "task",
+    "repository",
+    "producer",
+    "spec_sha256",
+    "plan_sha256",
+    "commits",
+    "diff",
+    "stat",
+    "raw_changes",
+    "files",
+    "no_change",
+    "coverage",
+    "collection_errors"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "ReviewPackage.v1"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "incomplete"
+      ]
+    },
+    "target_kind": {
+      "const": "committed_range"
+    },
+    "comparison": {
+      "const": "range"
+    },
+    "included_change_classes": {
+      "const": [
+        "committed"
+      ]
+    },
+    "base": {
+      "type": "string",
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "head": {
+      "type": "string",
+      "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+    },
+    "target_resolved": {
+      "type": "boolean"
+    },
+    "base_tree": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "head_tree": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "owner",
+        "generation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+        },
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "object_format",
+        "local_identity_sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^[^\\x00-\\x1f\\x7f]+$"
+        },
+        "object_format": {
+          "enum": [
+            "sha1",
+            "sha256"
+          ]
+        },
+        "local_identity_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "script_sha256",
+        "schema_sha256",
+        "resource_map_sha256"
+      ],
+      "properties": {
+        "owner": {
+          "const": "engos-quality-code-review"
+        },
+        "script_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "schema_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "resource_map_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "spec_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "plan_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "commits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "oid",
+          "parents",
+          "tree",
+          "object"
+        ],
+        "properties": {
+          "oid": {
+            "type": "string",
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          },
+          "parents": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+            }
+          },
+          "tree": {
+            "type": "string",
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          },
+          "object": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "diff": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "stat": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "raw_changes": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "change",
+          "similarity",
+          "old",
+          "new",
+          "head_blob",
+          "binary",
+          "added_lines",
+          "deleted_lines"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "change": {
+            "enum": [
+              "A",
+              "D",
+              "M",
+              "R",
+              "T"
+            ]
+          },
+          "similarity": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "old": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "mode",
+                  "oid",
+                  "object"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "display",
+                      "bytes_base64"
+                    ],
+                    "properties": {
+                      "display": {
+                        "type": "string"
+                      },
+                      "bytes_base64": {
+                        "type": "string",
+                        "contentEncoding": "base64"
+                      }
+                    }
+                  },
+                  "mode": {
+                    "enum": [
+                      "100644",
+                      "100755",
+                      "120000",
+                      "160000"
+                    ]
+                  },
+                  "oid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "object": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "path",
+                          "sha256",
+                          "bytes"
+                        ],
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+                          },
+                          "sha256": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{64}$"
+                          },
+                          "bytes": {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "new": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "path",
+                  "mode",
+                  "oid",
+                  "object"
+                ],
+                "properties": {
+                  "path": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "display",
+                      "bytes_base64"
+                    ],
+                    "properties": {
+                      "display": {
+                        "type": "string"
+                      },
+                      "bytes_base64": {
+                        "type": "string",
+                        "contentEncoding": "base64"
+                      }
+                    }
+                  },
+                  "mode": {
+                    "enum": [
+                      "100644",
+                      "100755",
+                      "120000",
+                      "160000"
+                    ]
+                  },
+                  "oid": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                  },
+                  "object": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "path",
+                          "sha256",
+                          "bytes"
+                        ],
+                        "properties": {
+                          "path": {
+                            "type": "string",
+                            "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+                          },
+                          "sha256": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{64}$"
+                          },
+                          "bytes": {
+                            "type": "integer",
+                            "minimum": 0
+                          }
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "head_blob": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "binary": {
+            "type": "boolean"
+          },
+          "added_lines": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "deleted_lines": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "no_change": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diff_scope",
+        "commit_scope",
+        "source_scope",
+        "unchanged_consumers",
+        "checkout_changes",
+        "binary_policy",
+        "submodule_policy",
+        "trust"
+      ],
+      "properties": {
+        "diff_scope": {
+          "const": "net_base_to_head"
+        },
+        "commit_scope": {
+          "const": "all_head_reachable_not_base_reachable"
+        },
+        "source_scope": {
+          "const": "both_sides_of_net_changed_paths"
+        },
+        "unchanged_consumers": {
+          "const": "not_collected"
+        },
+        "checkout_changes": {
+          "const": "excluded_not_inspected"
+        },
+        "binary_policy": {
+          "const": "raw_bytes_collected_not_reviewed"
+        },
+        "submodule_policy": {
+          "const": "changed_gitlinks_make_collection_incomplete"
+        },
+        "trust": {
+          "const": "integrity_binding_not_authentication_or_review"
+        }
+      }
+    },
+    "collection_errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "operation",
+          "path",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "operation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReviewPackage.v1 committed-range collection manifest",
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "complete"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "target_resolved": {
+            "const": true
+          },
+          "base_tree": {
+            "type": "string",
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          },
+          "head_tree": {
+            "type": "string",
+            "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+          },
+          "diff": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "stat": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "raw_changes": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^(?:diff\\.patch|stat\\.numstat|changes\\.raw|objects/[0-9a-f]{40}(?:[0-9a-f]{24})?\\.(?:blob|commit))$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          },
+          "no_change": {
+            "type": "boolean"
+          },
+          "collection_errors": {
+            "maxItems": 0
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "collection_errors": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}

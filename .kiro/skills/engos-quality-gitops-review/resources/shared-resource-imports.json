@@ -1,0 +1,13 @@
+{
+  "schema_version": "SharedResourceImportReceipt.v1",
+  "consumer": "engos-quality-gitops-review",
+  "imports": [
+    {
+      "id": "docs-ship-handoff-v1",
+      "owner": "engos-quality-docs-review",
+      "source": "schemas/docs-ship-handoff.schema.json",
+      "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df",
+      "destination": "schemas/docs-ship-handoff.schema.json"
+    }
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GraphCheckResult.v1",
+  "description": "Mechanical assessment only. No semantic, behavioral or authority approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mechanical_passed",
+    "errors",
+    "input_sha256",
+    "schema_sha256",
+    "semantic_correctness",
+    "behavioral_verification",
+    "authority_verification",
+    "graph_validation",
+    "ready_task_ids",
+    "completed_task_ids",
+    "blocked_tasks",
+    "completion_inconsistencies",
+    "readiness_holds",
+    "requirement_linkage",
+    "implementation_correctness",
+    "readiness_observations"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "GraphCheckResult.v1"
+    },
+    "mechanical_passed": {
+      "type": "boolean"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "artifact",
+          "pointer",
+          "ids",
+          "detail"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "artifact": {
+            "enum": [
+              "plan",
+              "spec",
+              "tests",
+              "package",
+              "cli"
+            ]
+          },
+          "pointer": {
+            "type": "string"
+          },
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "input_sha256": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "plan": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "spec": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "tests": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "schema_sha256": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "spec-contract.schema.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "task-plan.schema.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "task-contract.schema.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "test-design.schema.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "semantic_correctness": {
+      "const": "not_assessed"
+    },
+    "behavioral_verification": {
+      "const": "not_assessed"
+    },
+    "authority_verification": {
+      "const": "not_assessed"
+    },
+    "graph_validation": {
+      "enum": [
+        "passed",
+        "failed",
+        "not_assessed"
+      ]
+    },
+    "ready_task_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "completed_task_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blocked_tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "task_id",
+          "outstanding_dependency_ids"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "outstanding_dependency_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "completion_inconsistencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "task_id",
+          "uncompleted_dependency_ids"
+        ],
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "uncompleted_dependency_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "readiness_holds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirement_linkage": {
+      "const": "not_assessed"
+    },
+    "implementation_correctness": {
+      "const": "not_assessed"
+    },
+    "readiness_observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pointer",
+          "reason"
+        ],
+        "properties": {
+          "pointer": {
+            "type": "string"
+          },
+          "reason": {
+            "enum": [
+              "spec_digest_not_supplied",
+              "consumed_digest_not_supplied",
+              "task_authority_not_supplied"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

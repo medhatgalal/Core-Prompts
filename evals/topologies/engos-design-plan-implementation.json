@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-plan-implementation",
-  "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
+  "ssot_sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -41,7 +41,9 @@
     "engos-design-plan-implementation:L102:a4c443398cb6",
     "engos-design-plan-implementation:L120:8a85940f2e9c",
     "engos-design-plan-implementation:L150:1c0f01ccc7f3",
-    "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L4:4b71a02ba127"
+    "engos-design-plan-implementation:L234:aed91d54c9d8",
+    "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L4:4b71a02ba127",
+    "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L4:5b1ed3763d5f"
   ],
   "resources": [
     "- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.",
@@ -266,6 +268,36 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-plan-implementation:L224:5c58e7b72343",
+      "heading": "Optional mechanical graph check",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "source_line": 232,
+      "sha256": "5c58e7b7234364ab3d11fe6dc8b032d47228ec39ad89faa2b6ce1711c5e9d7ae",
+      "text": "helper reads only bundled TaskPlan/TaskContract schema bytes and supplied input.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:L227:9c72731c4c90",
+      "heading": "Optional mechanical graph check",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "source_line": 235,
+      "sha256": "9c72731c4c90a21298e1b014dc82700427c2d27331d59e5820fee01551baab55",
+      "text": "Use its sorted `ready_task_ids` only as dependency readiness: it grants no write",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:L234:aed91d54c9d8",
+      "heading": "Optional mechanical graph check",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "source_line": 242,
+      "sha256": "aed91d54c9d8956d97b6810a15232013a187d5452330fa84ca83db5546bbfb1d",
+      "text": "Do not suppress an otherwise dependency-ready node because these observations",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json:L7:df1c67746750",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -334,6 +366,146 @@
       "text": "\"authority\": \"Manual projection only; the actual plan/tracker remains authoritative.\",",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L4:5b1ed3763d5f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "source_line": 4,
+      "sha256": "5b1ed3763d5ff22bd15c5474c5c9fbd4c6ab82bea0b0a799c270f1266c7441c8",
+      "text": "\"description\": \"Mechanical assessment only. No semantic, behavioral or authority approval.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L38:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "source_line": 38,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L146:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "source_line": 146,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L168:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "source_line": 168,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L202:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "source_line": 202,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L3:368c26d6dcab",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 3,
+      "sha256": "368c26d6dcab77d46b95ffede14d474dfb883ea6c19ac2d0965a90a90ccb78a9",
+      "text": "The bounded schema interpreter supports only the current production vocabulary.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L13:9ea91f4a98a4",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 13,
+      "sha256": "9ea91f4a98a408fa520d52eb21a885024b6677635c50612d2ab546d0b41cf2ce",
+      "text": "VOCABULARY = {'$schema','title','description','type','additionalProperties','required','properties','const','enum','minLength','pattern','items','minItems','uniqueItems','anyOf','allOf','if','then','$ref'}",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L96:13dc7790840f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 96,
+      "sha256": "13dc7790840f9a6f8548a2d94bd84b831b0fdd50914cbeae77ab11229a7db6bb",
+      "text": "if 'required' in node and (not isinstance(node['required'],list) or any(not isinstance(x,str) for x in node['required'])):",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L97:5a2d86ab33a2",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 97,
+      "sha256": "5a2d86ab33a22393fb1dd8e4e4d21e7e31ec1d1a207971e20e3717aa8fe4111e",
+      "text": "raise AssessmentError('package_error','package','Invalid required contract')",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L148:18c9bf124f6a",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 148,
+      "sha256": "18c9bf124f6a59eb94a8e4dcf78027d237e45c1354270f9ad0bbbea63acb0bc3",
+      "text": "raise AssessmentError('package_error','package','TaskContract must be a reference-free leaf')",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L168:c0a860da374d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 168,
+      "sha256": "c0a860da374daee7975b70692b90711c281bbb5c123d2bce78edc7a90cf035a6",
+      "text": "for key in schema.get('required',[]):",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L169:b80a32b1cbdf",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 169,
+      "sha256": "b80a32b1cbdf6ac00ed4e8a27205b4eed3198e76af03e633daf7b80be2f9bec1",
+      "text": "if key not in value: issues.append((pointer(at,key),'Missing required property'))",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py:L311:216fb618702e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "source_line": 311,
+      "sha256": "216fb618702e06b9c4d4cb3d3a29ccded9dab6ff3d0c6046b65f7b2e849d13ca",
+      "text": "parser=Parser(description=__doc__); parser.add_argument('--plan',required=True)",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -344,7 +516,7 @@
   "source_references": [
     {
       "path": "ssot/engos-design-plan-implementation.md",
-      "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+      "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
     },
     {
       "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -359,8 +531,16 @@
       "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
     },
     {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+      "sha256": "96271294c25cb298a04d9febc34da22719fc4c5128193d31d2742bba77839b7d"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "sha256": "868db891c87d96c68a30d9403fa47ac00bf957ede1a5c59a2c9c8083cf6f2d51"
+    },
+    {
       "path": "sources/capability-resources/engos-design-plan-implementation/resource-map.json",
-      "sha256": "4a880f7742996d9c5dbfd51e20229371ee5fcb468edc514a63831b554a52f302"
+      "sha256": "c3acbaf9f82807c84b35165a369bc650d7eaa97ebedd3308a39d613e03b35a06"
     }
   ],
   "known_ambiguities": [],
@@ -373,11 +553,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 28,
+    "total": 45,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "d589bb37dfdd7fb7701e69851449f52c482af0724eae1d069a29940c240ad87d"
+  "resource_bundle_sha256": "b7c2e71c581e8b608f020c1e6a7d4ee2f1537bfd447e6583f7e69ac4b1cc240d"
 }

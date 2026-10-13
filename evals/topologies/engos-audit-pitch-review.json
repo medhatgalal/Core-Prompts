@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-pitch-review",
-  "ssot_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+  "ssot_sha256": "59e995b0d2de0a2fd231cbda94437e524751357a87d0cf861dc30917a665de8e",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -201,7 +201,11 @@
     "engos-audit-pitch-review:L535:2cb8c82423bb",
     "engos-audit-pitch-review:L556:3f409f81bf49",
     "engos-audit-pitch-review:L565:8862702a682e",
-    "engos-audit-pitch-review:L591:2fa57cd93caf"
+    "engos-audit-pitch-review:L591:2fa57cd93caf",
+    "engos-audit-pitch-review:L604:0d57a299fb51",
+    "engos-audit-pitch-review:L608:3f4423a36b5c",
+    "engos-audit-pitch-review:sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md:L7:8e700e4d09b0",
+    "engos-audit-pitch-review:sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md:L9:1ad6b1aa65b2"
   ],
   "resources": [
     "- All contracts exist and work \u2192 \"Integration proof is satisfied by reference. No spike needed.\"",
@@ -643,6 +647,46 @@
       "text": "missing owner, unresolved material question or required artifact.",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:L604:0d57a299fb51",
+      "heading": "Guided Shaping Entry and Review Precedence",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "source_line": 613,
+      "sha256": "0d57a299fb512ad9d8147a901e7bca73fff6924c8794426926b56c35039c57e1",
+      "text": "For a direct finished-pitch review, identify which supplied artifacts were actually assessed and explicitly report unavailable Intake, Framed and Research history as unassessed prerequisites. Do not mint historical receipts, require the user to retroactively stage a workshop just to obtain an assessment, or claim a G0\u2013G4 transition from the standalone score. Keep the existing standalone rubric, artifact-completeness checks and output format; in full shaping mode the current gate owner and its applicable policy still take precedence. A recommendation that content is ready to bet is not the human betting decision, completed delivery, implementation authority or a request to start a goal. Even after human acceptance, a separate build session starts at specification only for the accepted handover scope and separately authorized build work.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:L608:3f4423a36b5c",
+      "heading": "Standalone Pitch Example Resource",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "source_line": 617,
+      "sha256": "3f4423a36b5cb12532223def3ed1f75f207c752c52b88a748ffd7119e5c0a2bd",
+      "text": "For a worked finished-pitch example, load route standalone-pitch from resources/resource-map.json and read resources/examples/standalone-pitch.md from this skill bundle. Read the complete selected example before claiming it was used. The example illustrates coverage reporting; it never supplies missing facts, human decisions or receipts for the actual pitch.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md:L7:8e700e4d09b0",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md",
+      "source_line": 7,
+      "sha256": "8e700e4d09b0d2af58f37feca9f11853cff47468546586594d4f22faa35a3388",
+      "text": "A missing security owner or unsupported material seam still produces the applicable substantive finding. Missing history is not proof the pitch is bad and does not force a retroactive workshop. A high standalone score does not manufacture G3/G4 acceptance or authorize implementation. If later invoked inside a full shaping run, bind the actual predecessor receipts and load the gate owner's current policy, twelve-score rubric and applicable review evidence; never reuse the standalone score as their replacement.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-pitch-review:sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md:L9:1ad6b1aa65b2",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md",
+      "source_line": 9,
+      "sha256": "1ad6b1aa65b29dfc0267570254e0d39632aa0eb1bf3240b4c5505073eed673cb",
+      "text": "After a real human accepts a pitch, a separate build session still needs its own authorized scope and begins at specification for the accepted handover list. Do not start a goal, write product code, publish, or send anything merely because this illustrative assessment is complete.",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -653,7 +697,15 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-pitch-review.md",
-      "sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b"
+      "sha256": "59e995b0d2de0a2fd231cbda94437e524751357a87d0cf861dc30917a665de8e"
+    },
+    {
+      "path": "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md",
+      "sha256": "4d0fd3f93f1ad62a6ea45486465caf8e74fc37833226738b6af32e2f3645bd6d"
+    },
+    {
+      "path": "sources/capability-resources/engos-audit-pitch-review/resource-map.json",
+      "sha256": "cae46ff9208167a79be453eae01132d3836ff0f4a92ee4413ec741a9c0e9d9ba"
     }
   ],
   "known_ambiguities": [],
@@ -666,10 +718,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 43,
+    "total": 47,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
-  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
+  "resource_bundle_sha256": "8bd00bcc55011976ff930dad00f3b7d5711ad045fa59000a963e7300a0522249"
 }

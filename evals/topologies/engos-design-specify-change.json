@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-specify-change",
-  "ssot_sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
+  "ssot_sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -45,13 +45,20 @@
     "engos-design-specify-change:L149:b8ab985bec5e",
     "engos-design-specify-change:L150:ddd71c517ccb",
     "engos-design-specify-change:L164:0b21b0ed9c48",
+    "engos-design-specify-change:L218:85740478a7ab",
+    "engos-design-specify-change:L224:94909a997578",
     "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/templates/requirements.md:L28:113dc9f04f8c",
     "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/templates/requirements.md:L48:1f65898f0357",
     "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/references/requirements-first.md:L8:740b3f6c0afe",
     "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/references/requirements-first.md:L12:13bf3993774b",
     "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/references/requirements-first.md:L22:3b512a91b7bf",
     "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/references/design-first.md:L17:7ce03ed71bf1",
-    "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/references/design-first.md:L21:dba0366722bc"
+    "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/references/design-first.md:L21:dba0366722bc",
+    "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L4:4b71a02ba127",
+    "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L4:5b1ed3763d5f",
+    "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L317:80621674ae0a",
+    "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L202:eaacfe938fd1",
+    "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L283:935234987cf1"
   ],
   "resources": [
     "- Actual authority reference, accepted revision and status, or pending/unknown:",
@@ -309,6 +316,76 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-specify-change:L218:85740478a7ab",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 225,
+      "sha256": "85740478a7ab87939a6ebbe23a0b9be56e6dff0277c8c56c5b37c638714a3b71",
+      "text": "The helper reads fixed bundled schema bytes, never a repository, sibling skill,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:L222:39d02b816c12",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 229,
+      "sha256": "39d02b816c1204b2e2287c7bf0d5fc31f6ab2cd1e128d6223eabd1a93bafab1c",
+      "text": "Every must requirement needs an actual task link and, when tests are selected,",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:L224:94909a997578",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 231,
+      "sha256": "94909a997578c6fbd621583fc7de348dbe2e6f700500e7cf4a274b58e3e21819",
+      "text": "undecided requirements remain explicit; missing links do not promote priority.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:L228:eecabd4a6bc1",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 235,
+      "sha256": "eecabd4a6bc1a542956b1e1a54a6138c4b520fd65c6e4d75085e9008f8209e15",
+      "text": "unlinked test rows cannot establish required test linkage.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:L236:4edb38f05d23",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 243,
+      "sha256": "4edb38f05d23602f575c16a6503f19844fa4bd1053a498683a11a3fa5c2967ab",
+      "text": "Exit 0 means only selected mechanical checks pass, 1 means shape/link/coverage",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:L242:3000c0ddf0f7",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 249,
+      "sha256": "3000c0ddf0f7c8358f7472140cc36381e8a95f972f97b450bd3ac61f3fed9106",
+      "text": "A task promising to export every row can correctly link an R1 that requires only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:L254:a00e98a1590f",
+      "heading": "Optional mechanical trace check",
+      "source": "ssot/engos-design-specify-change.md",
+      "source_line": 261,
+      "sha256": "a00e98a1590f602249f11ed851d7a55d94441c841ae004d97328221e9f07d147",
+      "text": "status and exit 1; only absence of the CLI option means `not_supplied`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/templates/requirements.md:L27:cc994684ef4c",
       "heading": "Scope and requirements",
       "source": "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
@@ -517,6 +594,466 @@
       "text": "\"description\": \"Blank ledger for supplied links only; this is not a trace-check result or coverage report.\",",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json:L73:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+      "source_line": 73,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json:L143:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+      "source_line": 143,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L4:4b71a02ba127",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "source_line": 4,
+      "sha256": "4b71a02ba127060d99b6310b21dc3cc39793025986ce3356d6a9235d05c37a67",
+      "text": "\"description\": \"Optional projection of the authoritative plan and existing tracker. No automatic approval, property-level unique task IDs, dependency/cycle validation, completed-ID membership, coverage, source truth, authority or execution checks. Null hashes identify unavailable byte binding; do not invent digests.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L4:5b1ed3763d5f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 4,
+      "sha256": "5b1ed3763d5ff22bd15c5474c5c9fbd4c6ab82bea0b0a799c270f1266c7441c8",
+      "text": "\"description\": \"Mechanical assessment only. No semantic, behavioral or authority approval.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L43:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 43,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L188:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 188,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L191:91ddf375838f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 191,
+      "sha256": "91ddf375838f5cb19727d248564e3d29bf9b18f52ae0e55e1b86ed15d69cd499",
+      "text": "\"required\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L202:f7be59ed3810",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 202,
+      "sha256": "f7be59ed38106f9ecfdca0b2c05873fe5359c07db24fffb27880ff610d29d918",
+      "text": "\"must\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L208:474cf5c17d0c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "source_line": 208,
+      "sha256": "474cf5c17d0caf5cbcfb700faf6a5e748d0f56ac0dfbc435961e921a281bd6bb",
+      "text": "\"required\": {",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L3:368c26d6dcab",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 3,
+      "sha256": "368c26d6dcab77d46b95ffede14d474dfb883ea6c19ac2d0965a90a90ccb78a9",
+      "text": "The bounded schema interpreter supports only the current production vocabulary.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L13:9ea91f4a98a4",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 13,
+      "sha256": "9ea91f4a98a408fa520d52eb21a885024b6677635c50612d2ab546d0b41cf2ce",
+      "text": "VOCABULARY = {'$schema','title','description','type','additionalProperties','required','properties','const','enum','minLength','pattern','items','minItems','uniqueItems','anyOf','allOf','if','then','$ref'}",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L96:13dc7790840f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 96,
+      "sha256": "13dc7790840f9a6f8548a2d94bd84b831b0fdd50914cbeae77ab11229a7db6bb",
+      "text": "if 'required' in node and (not isinstance(node['required'],list) or any(not isinstance(x,str) for x in node['required'])):",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L97:5a2d86ab33a2",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 97,
+      "sha256": "5a2d86ab33a22393fb1dd8e4e4d21e7e31ec1d1a207971e20e3717aa8fe4111e",
+      "text": "raise AssessmentError('package_error','package','Invalid required contract')",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L148:18c9bf124f6a",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 148,
+      "sha256": "18c9bf124f6a59eb94a8e4dcf78027d237e45c1354270f9ad0bbbea63acb0bc3",
+      "text": "raise AssessmentError('package_error','package','TaskContract must be a reference-free leaf')",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L168:c0a860da374d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 168,
+      "sha256": "c0a860da374daee7975b70692b90711c281bbb5c123d2bce78edc7a90cf035a6",
+      "text": "for key in schema.get('required',[]):",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L169:b80a32b1cbdf",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 169,
+      "sha256": "b80a32b1cbdf6ac00ed4e8a27205b4eed3198e76af03e633daf7b80be2f9bec1",
+      "text": "if key not in value: issues.append((pointer(at,key),'Missing required property'))",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L272:419bc6c70218",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 272,
+      "sha256": "419bc6c70218b4647021eaa6cde1ffdf75c2fe4f77f51001f38c56ab25a6265d",
+      "text": "if item['priority']=='must' and not task_links[r]: coverage_errors.append(error('uncovered_requirement','spec','/requirements',[r],'Must requirement has no actual task link'))",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L286:d837ff46fcd4",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 286,
+      "sha256": "d837ff46fcd46c1fcc89e34d2b667f3d5db9a00be0bec700fa462db9231c9e3b",
+      "text": "if item['priority']=='must' and not test_links[r]: result['errors'].append(error('uncovered_test_requirement','tests','/tests',[r],'Must requirement has no actual test row link'))",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L289:80c18e679053",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 289,
+      "sha256": "80c18e679053ace4a1362c0b3c14df4ad2ca780472045fa7317df23ca3b12104",
+      "text": "result['uncovered_nonrequired_requirement_ids']=sorted(r for r,item in requirements.items() if item['priority']!='must' and (not task_links[r] or (tests_selected and not test_links[r])))",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L292:8869e2c236b2",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 292,
+      "sha256": "8869e2c236b2931215934398eca830c0fe1a737106aa30c29f3113c6b056e4f4",
+      "text": "result['matrix']=[dict(requirement_id=r,priority=requirements[r]['priority'],required=requirements[r]['priority']=='must',task_ids=sorted(task_links[r]),test_ids=sorted(test_links[r]),design_ids=sorted(design_ids[r])) for r in sorted(requirements)]",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L304:b363dd58890d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 304,
+      "sha256": "b363dd58890d8c6a9f96a31321b31df478053b241459fb35a6b2e408f9ab972a",
+      "text": "parser=Parser(description=__doc__); parser.add_argument('--spec',required=True); parser.add_argument('--plan',required=True); parser.add_argument('--tests'); parser.add_argument('--design-links',action='store_true')",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/scripts/trace_check.py:L317:80621674ae0a",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "source_line": 317,
+      "sha256": "80621674ae0a4935462249c6c1b1e0140fdf9eaaf582364f4bcd84f0eff14783",
+      "text": "result['errors'].append(error('spec_digest_mismatch','plan','/spec_sha256',[],'Supplied specification bytes do not match plan digest')); result['matrix']=[]",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json:L7:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "source_line": 7,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json:L36:df1c67746750",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "source_line": 36,
+      "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+      "text": "\"required\": [",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L19:317c762814c6",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 19,
+      "sha256": "317c762814c651f4b657df37bc27322b4ed510cc7cdaf6a8f2d8cfba34a4d2be",
+      "text": "\"behavior\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L21:c985bee80074",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 21,
+      "sha256": "c985bee800741f1c78b8d24dd8c119a2302c934e699cd833951cb1e8fe35fd53",
+      "text": "\"Export only permitted rows\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L24:474838dc3e99",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 24,
+      "sha256": "474838dc3e99f597f4e1bf62535b63edf6f8ba3cbd94c764cd33718731807441",
+      "text": "\"priority\": \"must\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L34:474838dc3e99",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 34,
+      "sha256": "474838dc3e99f597f4e1bf62535b63edf6f8ba3cbd94c764cd33718731807441",
+      "text": "\"priority\": \"must\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L50:869a5eb650ad",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 50,
+      "sha256": "869a5eb650ada76c450f0ff156c4d867cdc8121c01133e06677ae30ce82668b0",
+      "text": "\"outcome\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L73:9be7901f0cec",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 73,
+      "sha256": "9be7901f0ceceb1046770f24fbb4b6740a63ae12fcc232fe03d31b40184e4cc3",
+      "text": "\"oracle\": \"Only permitted rows appear\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L83:869a5eb650ad",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 83,
+      "sha256": "869a5eb650ada76c450f0ff156c4d867cdc8121c01133e06677ae30ce82668b0",
+      "text": "\"outcome\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L106:9be7901f0cec",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 106,
+      "sha256": "9be7901f0ceceb1046770f24fbb4b6740a63ae12fcc232fe03d31b40184e4cc3",
+      "text": "\"oracle\": \"Only permitted rows appear\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L131:ee22093f956b",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 131,
+      "sha256": "ee22093f956b659f41f957c6eeb3af715183fe1120a0e3aed2b2a309f25e658b",
+      "text": "\"expected\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L132:5e3851357013",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 132,
+      "sha256": "5e38513570130e635b2f34bbdecb6fc41e7d7da628f09123f26d4c0f500114db",
+      "text": "\"oracle\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L171:317c762814c6",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 171,
+      "sha256": "317c762814c651f4b657df37bc27322b4ed510cc7cdaf6a8f2d8cfba34a4d2be",
+      "text": "\"behavior\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L173:c985bee80074",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 173,
+      "sha256": "c985bee800741f1c78b8d24dd8c119a2302c934e699cd833951cb1e8fe35fd53",
+      "text": "\"Export only permitted rows\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L176:474838dc3e99",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 176,
+      "sha256": "474838dc3e99f597f4e1bf62535b63edf6f8ba3cbd94c764cd33718731807441",
+      "text": "\"priority\": \"must\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L186:474838dc3e99",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 186,
+      "sha256": "474838dc3e99f597f4e1bf62535b63edf6f8ba3cbd94c764cd33718731807441",
+      "text": "\"priority\": \"must\"",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L202:eaacfe938fd1",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 202,
+      "sha256": "eaacfe938fd1b9c6e4b1f08c2db44031d26b25e908b321494b80b82615064505",
+      "text": "\"outcome\": \"Export every row, including forbidden rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L225:9be7901f0cec",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 225,
+      "sha256": "9be7901f0ceceb1046770f24fbb4b6740a63ae12fcc232fe03d31b40184e4cc3",
+      "text": "\"oracle\": \"Only permitted rows appear\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L235:869a5eb650ad",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 235,
+      "sha256": "869a5eb650ada76c450f0ff156c4d867cdc8121c01133e06677ae30ce82668b0",
+      "text": "\"outcome\": \"Export only permitted rows\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L258:9be7901f0cec",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 258,
+      "sha256": "9be7901f0ceceb1046770f24fbb4b6740a63ae12fcc232fe03d31b40184e4cc3",
+      "text": "\"oracle\": \"Only permitted rows appear\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json:L283:935234987cf1",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "source_line": 283,
+      "sha256": "935234987cf1c882df35c6788a7b70990ceb79e68a8b3f74bcd929b642a2d034",
+      "text": "\"expected\": \"Every row appears, including forbidden rows\",",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -527,7 +1064,7 @@
   "source_references": [
     {
       "path": "ssot/engos-design-specify-change.md",
-      "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+      "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
     },
     {
       "path": "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
@@ -554,8 +1091,32 @@
       "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
     },
     {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+      "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+      "sha256": "2927ac79a1fedef2e77f78b05c88a386f0e1e45db88bfef1e94cfd9985b86162"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "sha256": "2f1d0e5f230216bd742753283d2e3c5a4ef39f396089b701885336ee70856968"
+    },
+    {
+      "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+      "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+    },
+    {
+      "path": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+      "sha256": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7"
+    },
+    {
       "path": "sources/capability-resources/engos-design-specify-change/resource-map.json",
-      "sha256": "087b69f7e229d5b51d52240ea4b5f06779f613c1cd0eb2a1f9e05ee3d19816f7"
+      "sha256": "7f8250385ab1a6858fd366f7ce63ee33f8ef87e34e4484cf40809b1223f07e01"
     }
   ],
   "known_ambiguities": [],
@@ -568,11 +1129,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 45,
+    "total": 98,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "cc59eabe184caaf90f57dde9abed082594fae3dfac2577335387a4ab4eb3ef04"
+  "resource_bundle_sha256": "a1b13b659aff880e7be3d343d14399a69c1592d1296575b67dd8e00900303a43"
 }

@@ -177,7 +177,7 @@
   ],
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-quality-gitops-review",
-  "shared_summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
+  "shared_summary": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
   "shared_constraints": [
     "Do not hide destructive git behavior behind helper language.",
     "Do not claim CI is green unless the current hosted runs were verified.",
@@ -185,24 +185,7 @@
     "Do not invent GitHub or GitLab state from local git alone.",
     "Do not replace companion capability reviews with generic \u201clooks good\u201d language."
   ],
-  "modes": [
-    {
-      "mode_slug": "failure-mode-to-avoid",
-      "display_name": "Failure Mode To Avoid",
-      "source_refs": [
-        "ssot/engos-quality-gitops-review.md"
-      ],
-      "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-      "required_inputs": [],
-      "expected_outputs": [],
-      "examples": [],
-      "uplift_notes": [
-        "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-      ],
-      "entry_kind": "mode",
-      "invocations": []
-    }
-  ],
+  "modes": [],
   "benchmark_sources": [
     {
       "label": "Code Review benchmark",
@@ -213,6 +196,182 @@
       "label": "UAC Import benchmark",
       "url": "ssot/engos-meta-uac-import.md",
       "note": "Benchmark for deterministic workflow contracts and machine-readable metadata."
+    }
+  ],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-quality-gitops-review",
+        "strategy": "head_snapshot",
+        "group": "single_history",
+        "baseline_path": "sources/ssot-baselines/engos-quality-gitops-review/baseline.md",
+        "selected_commit": "4e16d6a4",
+        "richness_score": 2,
+        "line_count": 149,
+        "reason": "Only version currently present in repo history; use as default oracle until a stronger historical body exists.",
+        "equivalent_commits": [],
+        "expected_companions": [
+          "engos-quality-code-review",
+          "engos-quality-docs-review",
+          "engos-quality-testing-review",
+          "engos-design-architecture"
+        ],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "gate_and_release_contract",
+            "kind": "individual_module",
+            "label": "gitops gate contract",
+            "must_contain": [
+              "## Workflow",
+              "## Required Output",
+              "## Required Companion Reviews",
+              "## Review Timing"
+            ]
+          },
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
+        "historical_proof": {
+          "current_head_commit": "4e16d6a4",
+          "current_head_richness_score": 2,
+          "current_head_line_count": 150,
+          "materialized_from_commit": "4e16d6a4"
+        },
+        "source": "source_library",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "additive",
+          "scenario_results": [
+            {
+              "id": "gate_and_release_contract",
+              "kind": "individual_module",
+              "label": "gitops gate contract",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "4e16d6a4",
+          "baseline_slug": "engos-quality-gitops-review"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 2,
+        "candidate_richness": 5,
+        "baseline_operational_score": 2,
+        "candidate_operational_score": 2,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "538bcedf772dc1478fa4e23b495c64930a44f93b6a5a2ede4a8978d7fe97ec61",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
     }
   ],
   "consumption_hints": {
@@ -230,6 +389,8 @@
     "invocation_style": "review_or_execution_assist",
     "requires_human_confirmation": true
   },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-quality-gitops-review",
     "strategy": "head_snapshot",
@@ -300,7 +461,7 @@
     "portfolio_action": "keep",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -311,7 +472,7 @@
               "path": "ssot/engos-quality-gitops-review.md",
               "start_line": 131,
               "end_line": 135,
-              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+              "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
             }
           }
         ]
@@ -330,7 +491,7 @@
               "path": "ssot/engos-quality-gitops-review.md",
               "start_line": 32,
               "end_line": 34,
-              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+              "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
             }
           },
           {
@@ -340,7 +501,7 @@
               "path": "ssot/engos-quality-gitops-review.md",
               "start_line": 88,
               "end_line": 92,
-              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+              "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
             }
           }
         ]
@@ -355,7 +516,7 @@
               "path": "ssot/engos-quality-gitops-review.md",
               "start_line": 88,
               "end_line": 92,
-              "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+              "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
             }
           }
         ]
@@ -368,7 +529,7 @@
             "path": "ssot/engos-quality-gitops-review.md",
             "start_line": 104,
             "end_line": 108,
-            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -379,7 +540,7 @@
             "path": "ssot/engos-quality-gitops-review.md",
             "start_line": 104,
             "end_line": 108,
-            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -390,7 +551,7 @@
             "path": "ssot/engos-quality-gitops-review.md",
             "start_line": 104,
             "end_line": 108,
-            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
           },
           "interpretation": "source_clause_requires_stage_review"
         },
@@ -401,7 +562,7 @@
             "path": "ssot/engos-quality-gitops-review.md",
             "start_line": 104,
             "end_line": 108,
-            "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+            "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
           },
           "interpretation": "source_clause_requires_stage_review"
         }
@@ -413,9 +574,18 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-quality-gitops-review.md",
-        "ssot_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
-        "effective_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
-        "resources": [],
+        "ssot_sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947",
+        "effective_sha256": "538bcedf772dc1478fa4e23b495c64930a44f93b6a5a2ede4a8978d7fe97ec61",
+        "resources": [
+          {
+            "path": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+            "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df"
+          },
+          {
+            "path": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+            "sha256": "c93fdef9d96cba3d5283c4a234d73bc3d0e41c25f8ec97526a4a0ce5aab91f2c"
+          }
+        ],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
         "field_sources": {},
@@ -433,7 +603,7 @@
           "works_on"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "12bd2b2e59d9a132c09d732d456b292983a4cf110234ed636b81666bc16a2884"
+        "mapping_sha256": "c7b07ea870cafa870379e5d4061cee9e4a61d765d62bf6acafc6609341bf2e7e"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

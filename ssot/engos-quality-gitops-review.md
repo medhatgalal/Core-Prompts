@@ -147,3 +147,11 @@ Default GitOps review timing:
 
 ### Failure Mode To Avoid
 - saying “CI looks good” without checking the current hosted runs or ignoring release steps such as changelog, package, tag, or remote parity
+
+## Optional named documentation recipes
+
+Read `resources/resource-map.json` only when selecting a recipe. Generic review loads no recipe and preserves the default seven Required Output sections. Select a recipe only by explicit name or a clear request for its exact artifact set; ambiguous requests retain generic review and clarify the artifact set. Load only that route and declared dependencies.
+
+- `docs-release-readiness`: read `resources/references/docs-release-readiness.md`. Outputs in order: Default seven GitOps sections, with DocsShipHandoff.v1 response JSON inside Recommended Commands or Actions; default headings remain. The F assembler consumes this response as evidence, not an extra eighth top-level section..
+
+Embed the companion response inside Recommended Commands or Actions; keep all seven GitOps headings. It does not add a Docs rewrite review cycle. Readiness is advisory and never creates mutation authority. No installed sibling dependency: use the bundled imported schema.

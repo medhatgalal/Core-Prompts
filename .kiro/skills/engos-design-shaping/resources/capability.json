@@ -175,11 +175,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "afa02db7",
+        "selected_commit": "fcdb73a4",
         "richness_score": 5,
-        "line_count": 280,
+        "line_count": 298,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "afa02db7",
           "73b1a925",
           "96888e5e",
           "1ee53a73",
@@ -212,7 +213,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
+          "classification": "additive",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -224,7 +225,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -235,7 +236,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "afa02db7",
+          "baseline_commit": "fcdb73a4",
           "baseline_slug": "engos-design-shaping"
         },
         {
@@ -286,7 +287,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "c4243ac80fb6b6ed64cf982fb445998c2e38496e1643c6713a8a64634684c27c",
+      "effective_sha256": "f1d9af6cf1488c8f91d1aa7c34a9f4c15c320eef792f39c9923f4e91dfcc53bf",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -366,7 +367,7 @@
   ],
   "job_contract": {
     "primary_job": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
-    "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
+    "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.\n\nThe three jobs remain separate: engos-design-shaping conducts a workshop or resumes its recorded stages; engos-audit-pitch-review can assess a finished pitch directly; engos-quality-shaping-gate owns current transition predicates, score anchors and receipts. A finished-pitch assessment does not create a workshop history. For this dependency map, load the stage-policy route and read resources/references/stage-policy-dependencies.md; for an actual gate, resolve the gate owner and read its complete applicable resources through the existing routing contract. This reference does not copy or supersede gate policy.",
     "works_on": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
     "main_output": "Return friendly links and a short status in plain words: the last checked version,\nchanged facts, independent review, requested copies, missing inputs and next action.\nKeep exact stage/revision identifiers and bookkeeping in the agent records. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, role assignments and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. On a human accept,\nwrite one scope handover using `resources/handover.md`, then ask which copies the\nperson wants: HTML, Google Doc, Word, JSON, Markdown, or all of them. All means\nall five. Produce only selected\noutputs and verify their saved targets. Markdown reuses the complete existing\nhandover file/hash, preserving three Mermaid fences, captions and full contract/\nsecurity tables; do not author a second prose document. Required content belongs\nin the mutable candidate before sealing. Incomplete accepted content holds delivery\nfor candidate/reconciliation, renewed hashes and affected review, preserving\naccepted bytes/history and the bet. Word is an added handover-only output\nthrough the existing host Word skill; retain the existing pitch export paths. The read-only handover-tools route checks explicit selections and exact accepted\nsource inventory, with optional adapter evidence consistency; it never publishes\nor authenticates host/visual claims. Read its help before use. Do not fabricate\nartifacts for unreached stages. The phase templates define fields, not gate verdicts.",
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
@@ -386,9 +387,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 93,
-              "end_line": 176,
-              "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+              "start_line": 95,
+              "end_line": 178,
+              "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
             }
           }
         ]
@@ -405,9 +406,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 230,
-              "end_line": 233,
-              "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+              "start_line": 232,
+              "end_line": 235,
+              "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
             }
           }
         ]
@@ -420,9 +421,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 230,
-              "end_line": 233,
-              "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+              "start_line": 232,
+              "end_line": 235,
+              "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
             }
           }
         ]
@@ -435,8 +436,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-shaping.md",
-        "ssot_sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa",
-        "effective_sha256": "c4243ac80fb6b6ed64cf982fb445998c2e38496e1643c6713a8a64634684c27c",
+        "ssot_sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a",
+        "effective_sha256": "f1d9af6cf1488c8f91d1aa7c34a9f4c15c320eef792f39c9923f4e91dfcc53bf",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-shaping/routing.md",
@@ -525,6 +526,10 @@
           {
             "path": "sources/capability-resources/engos-design-shaping/fallback.md",
             "sha256": "a4b205b3d283210773c1032c433f5ea5780e6248c889a0a7cbe1ebe6a7bac49d"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-shaping/references/stage-policy-dependencies.md",
+            "sha256": "c0ce1526010594598a7650c9e04408d7ab5994458c5c718950573e47f2e61182"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -538,7 +543,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 20,
                 "end_line": 23,
-                "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
               }
             }
           ],
@@ -550,7 +555,17 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 27,
                 "end_line": 30,
-                "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
+              }
+            },
+            {
+              "text": "The three jobs remain separate: engos-design-shaping conducts a workshop or resumes its recorded stages; engos-audit-pitch-review can assess a finished pitch directly; engos-quality-shaping-gate owns current transition predicates, score anchors and receipts. A finished-pitch assessment does not create a workshop history. For this dependency map, load the stage-policy route and read resources/references/stage-policy-dependencies.md; for an actual gate, resolve the gate owner and read its complete applicable resources through the existing routing contract. This reference does not copy or supersede gate policy.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-design-shaping.md",
+                "start_line": 32,
+                "end_line": 32,
+                "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
               }
             }
           ],
@@ -560,9 +575,9 @@
               "heading": "Required Inputs",
               "source": {
                 "path": "ssot/engos-design-shaping.md",
-                "start_line": 34,
-                "end_line": 38,
-                "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                "start_line": 36,
+                "end_line": 40,
+                "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
               }
             }
           ],
@@ -572,9 +587,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-shaping.md",
-                "start_line": 42,
-                "end_line": 61,
-                "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                "start_line": 44,
+                "end_line": 63,
+                "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
               }
             }
           ]
@@ -589,7 +604,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "a4de1c82d50592ae87425d6e22bb58a8b288789a7d41caa4dee90ca8690da08e"
+        "mapping_sha256": "30157fee9abe7857d952d9df3df3e87c1458506e0dd1c5d8d13b893124a553b7"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

@@ -207,11 +207,13 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "6fbcff2d",
+        "selected_commit": "f0dbe198",
         "richness_score": 5,
-        "line_count": 248,
+        "line_count": 269,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "6fbcff2d"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -235,7 +237,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
+          "classification": "preserved",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -247,7 +249,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -258,7 +260,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "6fbcff2d",
+          "baseline_commit": "f0dbe198",
           "baseline_slug": "engos-design-plan-to-goal"
         },
         {
@@ -309,7 +311,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+      "effective_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -389,7 +391,7 @@
   ],
   "job_contract": {
     "primary_job": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
-    "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
+    "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.\n\nUse engos-design-plan-implementation for an ordinary dependency-aware implementation plan and task contracts. This existing engos-design-plan-to-goal skill is the compiler when a bounded long-running goal packet is explicitly wanted: it researches, drafts, materializes where permitted, lints, seals and rechecks the goal/specification/verifier bundle under all contracts below. It does not become the implementation worker or delivery controller. Compiling or sealing a packet is not a request to create or start a running goal; runtime actions require the user's separate explicit request. engos-orchestration-batman remains a separately invoked controller-owned delivery protocol. No alias, rename or automatic hop between these jobs is implied.",
     "works_on": "- an implementation plan, intent, issue, or approved planning artifact\n- the target repository or working context\n- the active host/runtime when detectable\n- any user-supplied iteration, token, time, or cost bound\n- explicit protected surfaces, approvals, or operator checks when already known",
     "main_output": "The packet delivery written by the writer uses these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
     "not_for": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
@@ -411,7 +413,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 12,
               "end_line": 12,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           },
           {
@@ -421,7 +423,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 14,
               "end_line": 14,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           },
           {
@@ -431,7 +433,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 34,
               "end_line": 39,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           },
           {
@@ -439,9 +441,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-design-plan-to-goal.md",
-              "start_line": 155,
-              "end_line": 167,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "start_line": 157,
+              "end_line": 169,
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           }
         ]
@@ -460,7 +462,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 27,
               "end_line": 31,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           },
           {
@@ -468,9 +470,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-plan-to-goal.md",
-              "start_line": 209,
-              "end_line": 215,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "start_line": 211,
+              "end_line": 217,
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           }
         ]
@@ -485,7 +487,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 27,
               "end_line": 31,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           },
           {
@@ -495,7 +497,7 @@
               "path": "ssot/engos-design-plan-to-goal.md",
               "start_line": 12,
               "end_line": 12,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           },
           {
@@ -503,9 +505,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-plan-to-goal.md",
-              "start_line": 209,
-              "end_line": 215,
-              "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+              "start_line": 211,
+              "end_line": 217,
+              "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
             }
           }
         ]
@@ -518,8 +520,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-plan-to-goal.md",
-        "ssot_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
-        "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+        "ssot_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
+        "effective_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -532,7 +534,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 17,
                 "end_line": 17,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             }
           ],
@@ -544,7 +546,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 34,
                 "end_line": 39,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             },
             {
@@ -554,7 +556,17 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 41,
                 "end_line": 41,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
+              }
+            },
+            {
+              "text": "Use engos-design-plan-implementation for an ordinary dependency-aware implementation plan and task contracts. This existing engos-design-plan-to-goal skill is the compiler when a bounded long-running goal packet is explicitly wanted: it researches, drafts, materializes where permitted, lints, seals and rechecks the goal/specification/verifier bundle under all contracts below. It does not become the implementation worker or delivery controller. Compiling or sealing a packet is not a request to create or start a running goal; runtime actions require the user's separate explicit request. engos-orchestration-batman remains a separately invoked controller-owned delivery protocol. No alias, rename or automatic hop between these jobs is implied.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-design-plan-to-goal.md",
+                "start_line": 43,
+                "end_line": 43,
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             }
           ],
@@ -564,9 +576,9 @@
               "heading": "Required Inputs",
               "source": {
                 "path": "ssot/engos-design-plan-to-goal.md",
-                "start_line": 187,
-                "end_line": 191,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "start_line": 189,
+                "end_line": 193,
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             }
           ],
@@ -576,9 +588,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-to-goal.md",
-                "start_line": 194,
-                "end_line": 202,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "start_line": 196,
+                "end_line": 204,
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             },
             {
@@ -586,9 +598,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-to-goal.md",
-                "start_line": 204,
-                "end_line": 204,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "start_line": 206,
+                "end_line": 206,
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             },
             {
@@ -596,9 +608,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-to-goal.md",
-                "start_line": 206,
-                "end_line": 206,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "start_line": 208,
+                "end_line": 208,
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             }
           ],
@@ -610,7 +622,7 @@
                 "path": "ssot/engos-design-plan-to-goal.md",
                 "start_line": 27,
                 "end_line": 31,
-                "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
               }
             }
           ]
@@ -624,7 +636,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "3d98c711bae3dfd98833fe620347e983c3ea5436f9660885fda6391bd8a2a6f8"
+        "mapping_sha256": "b4859fcd04ba3c27c5c832dc2ec1bc2da3c4b9e05b7025310d30c5b83db62b3c"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

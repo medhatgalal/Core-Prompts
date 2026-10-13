@@ -172,20 +172,29 @@
       "status": "structural_ready",
       "historical_baseline": {
         "slug": "engos-design-plan-implementation",
-        "strategy": "candidate_seed",
-        "group": "new_or_untracked",
+        "strategy": "derived_history",
+        "group": "derived",
         "baseline_path": null,
-        "selected_commit": null,
+        "selected_commit": "f5d8374b",
         "richness_score": 5,
         "line_count": 226,
-        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [],
         "expected_companions": [],
         "operator_invariants": [],
-        "scenario_matrix": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          }
+        ],
         "historical_proof": {},
-        "source": "candidate_seed",
-        "verified_by_git_history": false,
+        "source": "git_history",
+        "verified_by_git_history": true,
         "has_baseline_text": true
       },
       "judge_reports": [
@@ -194,11 +203,19 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "reviewed_modernization",
-          "scenario_results": [],
+          "classification": "preserved",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "bound_attestation",
+            "status": "not_supplied_or_invalid",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -209,7 +226,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": null,
+          "baseline_commit": "f5d8374b",
           "baseline_slug": "engos-design-plan-implementation"
         },
         {
@@ -260,7 +277,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+      "effective_sha256": "506cb75ce30828ce0e9b6a295e40e3fa6badfd994c2f393433252902169375e0",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -352,7 +369,7 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": [
@@ -363,7 +380,7 @@
               "path": "ssot/engos-design-plan-implementation.md",
               "start_line": 52,
               "end_line": 99,
-              "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
             }
           }
         ]
@@ -382,7 +399,7 @@
               "path": "ssot/engos-design-plan-implementation.md",
               "start_line": 158,
               "end_line": 165,
-              "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
             }
           }
         ]
@@ -397,7 +414,7 @@
               "path": "ssot/engos-design-plan-implementation.md",
               "start_line": 158,
               "end_line": 165,
-              "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+              "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
             }
           }
         ]
@@ -410,8 +427,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-plan-implementation.md",
-        "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
-        "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+        "ssot_sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
+        "effective_sha256": "506cb75ce30828ce0e9b6a295e40e3fa6badfd994c2f393433252902169375e0",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -424,6 +441,14 @@
           {
             "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
             "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+            "sha256": "96271294c25cb298a04d9febc34da22719fc4c5128193d31d2742bba77839b7d"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+            "sha256": "868db891c87d96c68a30d9403fa47ac00bf957ede1a5c59a2c9c8083cf6f2d51"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -437,7 +462,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 20,
                 "end_line": 22,
-                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
               }
             }
           ],
@@ -449,7 +474,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 26,
                 "end_line": 33,
-                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
               }
             }
           ],
@@ -461,7 +486,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 37,
                 "end_line": 41,
-                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
               }
             }
           ],
@@ -473,7 +498,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 124,
                 "end_line": 128,
-                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
               }
             },
             {
@@ -483,7 +508,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 130,
                 "end_line": 139,
-                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
               }
             },
             {
@@ -493,7 +518,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 141,
                 "end_line": 147,
-                "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
               }
             }
           ]
@@ -508,7 +533,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "3224345fae8a91dfef8b3c167bcc58f245b7a3e3077e9ae5c3a9db197cd7e8c0"
+        "mapping_sha256": "51b00360beb2dcd864b804b1118c31d24a0617efe29ac30b6d5530eee8520ab5"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

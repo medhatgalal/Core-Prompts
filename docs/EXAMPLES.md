@@ -63,6 +63,35 @@ For an independent review of work already discussed in the main session:
 
 These are conversational requests, not provider-native commands. The second requires a real worker and verified resource delivery. If that is unavailable, report the limitation; a second answer in the same session does not establish independent review. Neither request authorizes edits or invokes Batman's delivery workflow.
 
+## Optional planning link checks
+
+Ask the planner: “Check `PLAN.json` and show the dependency-ready tasks.” For
+independent roots T1/T2 it returns both IDs, sorted. If T3 depends on both, it
+remains blocked until both appear in the supplied completed-task list. Null
+digest and authority observations remain visible even when `unresolved` is empty;
+the frontier grants no execution permission.
+
+Ask the specification skill: “Check the actual requirement-to-task links in
+`SPEC.json` and `PLAN.json`; select `TESTS.json` only if supplied.” Every `must`
+requirement needs an actual task link and, when selected, an actual test-row link.
+Missing R2, unknown R9 and duplicate T1 fail. A test inventory alone is
+insufficient. Omitted tests say `not_supplied`; selected designed tests say
+`not_run`.
+
+Use `--design-links` only to check task design IDs against supplied specification
+design refs. It does not inspect design files or verify their hashes. A task
+saying “export every row” can link to a requirement saying “export only permitted
+rows”: mechanical linkage passes while semantic correctness remains unassessed.
+An independent reviewer must inspect that contradiction.
+
+| Ask | Expected result |
+| --- | --- |
+| `supercharge /simple /invert harden this rollout plan while preserving approvals` | Improved artifact with the existing independent review and explicit module contracts. |
+| Reconcile these two dated proposals and attribute retained and rejected claims. | Converge recommendation with source-linked conflicts and unresolved choices. |
+| Compare these prompts against this frozen baseline within this budget. | Auto-Research observed results, or explicit blocked/inconclusive status. |
+| Review this finished pitch; earlier workshop receipts are unavailable. | Standalone pitch assessment with prior stages unassessed; no invented gate receipts or betting acceptance. |
+| Compile this approved plan into a bounded packet without starting it. | Current-name plan-to-goal specification/verifier packet under its trust, drift and rollback contracts; no running goal. |
+
 For the full plan-hardening stack:
 
 > Supercharge /full /basis /invert /adversarial /grade this plan: delete every named agent whose name matches a skill because I have never selected agents myself.

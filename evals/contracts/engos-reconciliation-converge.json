@@ -6,6 +6,7 @@
   "change_class": "unknown",
   "non_goals": [],
   "protected_behaviors": [
+    "00c9e843f8d1b726782f28567012c63b0ad76ce4833af8b499eb276e9c3b7bac",
     "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
     "62f01eb43cca94f1e72732bf7ece66d4ab2f266909bc60437d925b43f1f372a6",
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
@@ -28,7 +29,9 @@
     "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
     "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
     "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
-    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d"
+    "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+    "a609e8416a8fb334d3e5590b0238ba90f4cfaaa177ecc5448e9c4e7cc7683e45",
+    "2dcfe536aa83dc3117c41bebba00787928bedf005976cc157404fc0e6e3ca967"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -60,6 +63,11 @@
   "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
   "rollback_trigger": "Any protected regression or stale bound evidence.",
   "source_clause_hashes": [
+    {
+      "sha256": "00c9e843f8d1b726782f28567012c63b0ad76ce4833af8b499eb276e9c3b7bac",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "Keep each material retained claim, conflict and muted idea attributable to its supplied source: use the actual source identity and available revision, date, section or locator, and mark unavailable provenance explicitly. Preserve disagreement rather than inventing a consensus or missing preference. Multiple variants of one artifact may still be hardened with engos-meta-supercharge; choose Converge when source-attributed reconciliation is the requested work product. A request to establish measured behavioral superiority belongs to engos-optimization-auto-research with a baseline and bounded evaluation. Do not invoke either companion automatically. The existing recommendation review remains required for substantial authored proposals."
+    },
     {
       "sha256": "8b97e9494f3e97b44b5d15b2029107a269332326b547cda0cb3db3237018fcfe",
       "source": "ssot/engos-reconciliation-converge.md",
@@ -174,6 +182,16 @@
       "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
       "source": "ssot/engos-reconciliation-converge.md",
       "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
+    },
+    {
+      "sha256": "a609e8416a8fb334d3e5590b0238ba90f4cfaaa177ecc5448e9c4e7cc7683e45",
+      "source": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
+      "text": "Illustrative inputs: proposal A at revision a1 requires immediate erasure; proposal B at revision b1 requires retaining the same records for 30 days. Preserve both supplied locators and mark the policy decision owner unknown. The overlap is the same data lifecycle; the conflict is incompatible retention. Do not promise both. Present consequences, request the unresolved policy choice, and record which proposal or claim is rejected under the chosen criterion. A recommendation can remain conditional without inventing the owner or acceptance. This is a constructed routing example, not legal guidance or observed source evidence."
+    },
+    {
+      "sha256": "2dcfe536aa83dc3117c41bebba00787928bedf005976cc157404fc0e6e3ca967",
+      "source": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
+      "text": "Hardening the wording of proposal A alone can use SuperCharge. Showing that one prompt handles this conflict more reliably requires an Auto-Research comparison with frozen cases and independent evaluation; source counts or fewer calls do not establish benefit. The existing Converge writer/reviewer/coordinator contract still applies to substantial outputs."
     }
   ],
   "review_status": "draft"

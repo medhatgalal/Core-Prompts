@@ -11,6 +11,7 @@ import pytest
 from intent_pipeline.capability_resources import (
     ResourceContractError,
     effective_capability_text,
+    load_capability_bundle,
     load_resource_bundle,
 )
 
@@ -339,14 +340,19 @@ def test_spec_schema_does_not_claim_id_uniqueness_or_semantic_approval() -> None
     ("trace_ledger", "templates/trace-matrix.json"),
 ])
 def test_spec_routes_have_bounded_self_contained_resource_closure(route: str, selected: str) -> None:
-    bundle = load_resource_bundle(SPEC_RESOURCE_ROOT, route)
+    # Canonical imports are assembled from their declared owners; they are not
+    # duplicate files inside the consumer's source directory.
+    bundle = load_capability_bundle(SPEC_RESOURCE_ROOT.parents[2], "engos-design-specify-change", "", route)
     assert set(paths(bundle)) == {"templates/requirements.md", selected}
     assert bundle["delivery_claim"] == "assembled_not_proof_of_consumption"
 
 
 def test_spec_resources_load_from_a_relocated_package(tmp_path: Path) -> None:
     package = tmp_path / "independent-install" / "resources"
-    shutil.copytree(SPEC_RESOURCE_ROOT, package)
+    # Relocate the actual generated package, including its pinned imports and
+    # receipt, rather than an incomplete source-only consumer directory.
+    emitted = SPEC_RESOURCE_ROOT.parents[2] / ".codex/skills/engos-design-specify-change/resources"
+    shutil.copytree(emitted, package)
     helper = package / "scripts" / "load_module.py"
     helper.parent.mkdir(exist_ok=True)
     shutil.copy2(Path(__file__).resolve().parents[1] / "src/intent_pipeline/capability_resources.py", helper)
@@ -356,7 +362,10 @@ def test_spec_resources_load_from_a_relocated_package(tmp_path: Path) -> None:
     )
     bundle = json.loads(result.stdout)
     assert set(paths(bundle)) == {"templates/requirements.md", "references/design-first.md"}
-    assert bundle["sha256"] == load_resource_bundle(SPEC_RESOURCE_ROOT, "design_first")["sha256"]
+    canonical = load_capability_bundle(SPEC_RESOURCE_ROOT.parents[2], "engos-design-specify-change", "", "design_first")
+    assert bundle["sha256"] == canonical["sha256"]
+    assert bundle["shared_imports"] == canonical["shared_imports"]
+    assert bundle["shared_imports"]["consumer"] == "engos-design-specify-change"
 
 
 def test_spec_trace_template_is_blank_and_makes_no_coverage_claim() -> None:

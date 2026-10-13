@@ -2073,148 +2073,157 @@
       "shared_constraints": [],
       "modes": [
         {
-          "mode_slug": "pitch-create-goal-or-problem-statement",
-          "display_name": "pitch create [goal or problem statement]",
+          "mode_slug": "engos-audit-pitch-review-create-goal-or-problem-statement",
+          "display_name": "engos-audit-pitch-review create [goal or problem statement]",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch create [goal or problem statement]` section.",
+          "source_line": 142,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-review-source",
-          "display_name": "pitch review <source>",
+          "mode_slug": "engos-audit-pitch-review-review-source",
+          "display_name": "engos-audit-pitch-review review <source>",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch review <source>` section.",
+          "source_line": 150,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-score-source",
-          "display_name": "pitch score <source>",
+          "mode_slug": "engos-audit-pitch-review-score-source",
+          "display_name": "engos-audit-pitch-review score <source>",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch score <source>` section.",
+          "source_line": 158,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-improve-source",
-          "display_name": "pitch improve <source>",
+          "mode_slug": "engos-audit-pitch-review-improve-source",
+          "display_name": "engos-audit-pitch-review improve <source>",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch improve <source>` section.",
+          "source_line": 167,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-compare-source1-source2",
-          "display_name": "pitch compare <source1> <source2>",
+          "mode_slug": "engos-audit-pitch-review-compare-source1-source2",
+          "display_name": "engos-audit-pitch-review compare <source1> <source2>",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch compare <source1> <source2>` section.",
+          "source_line": 174,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-audit",
-          "display_name": "pitch audit",
+          "mode_slug": "engos-audit-pitch-review-audit",
+          "display_name": "engos-audit-pitch-review audit",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch audit` section.",
+          "source_line": 180,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-bootstrap-goal",
-          "display_name": "pitch bootstrap <goal>",
+          "mode_slug": "engos-audit-pitch-review-bootstrap-goal",
+          "display_name": "engos-audit-pitch-review bootstrap <goal>",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch bootstrap <goal>` section.",
+          "source_line": 188,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-export-source-options",
-          "display_name": "pitch export <source> [options]",
+          "mode_slug": "engos-audit-pitch-review-export-source-options",
+          "display_name": "engos-audit-pitch-review export <source> [options]",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch export <source> [options]` section.",
+          "source_line": 196,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         },
         {
-          "mode_slug": "pitch-integration-proof-source",
-          "display_name": "pitch integration-proof <source>",
+          "mode_slug": "engos-audit-pitch-review-integration-proof-source",
+          "display_name": "engos-audit-pitch-review integration-proof <source>",
+          "entry_kind": "command",
+          "invocations": [],
           "source_refs": [
             "ssot/engos-audit-pitch-review.md"
           ],
-          "mode_summary": "Declared by the canonical `pitch integration-proof <source>` section.",
+          "source_line": 229,
+          "mode_summary": "Explicitly declared command in the canonical skill.",
           "required_inputs": [],
           "expected_outputs": [],
           "examples": [],
           "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
+            "Composition and state rules belong to CapabilityTopology.v1."
+          ]
         }
       ],
       "benchmark_sources": [],
@@ -2337,7 +2346,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
+          "effective_sha256": "77f4085e2842b7f687c685869143d0ce6e34f8f27a61e2cea65c69a85e1f74b7",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -2420,7 +2429,7 @@
                   "path": "ssot/engos-audit-pitch-review.md",
                   "start_line": 573,
                   "end_line": 575,
-                  "sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b"
+                  "sha256": "59e995b0d2de0a2fd231cbda94437e524751357a87d0cf861dc30917a665de8e"
                 }
               }
             ]
@@ -2437,9 +2446,14 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-audit-pitch-review.md",
-            "ssot_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
-            "effective_sha256": "9fc43c2cff2cdd1c13de462021a279864839b1fcd3458180b8c0e0ba11c9dd2b",
-            "resources": [],
+            "ssot_sha256": "59e995b0d2de0a2fd231cbda94437e524751357a87d0cf861dc30917a665de8e",
+            "effective_sha256": "77f4085e2842b7f687c685869143d0ce6e34f8f27a61e2cea65c69a85e1f74b7",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md",
+                "sha256": "4d0fd3f93f1ad62a6ea45486465caf8e74fc37833226738b6af32e2f3645bd6d"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -2457,7 +2471,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "34b42c876341c1b2363e8310cfe23bb89f4b0be05b2d3a17232cde79c1dd6898"
+            "mapping_sha256": "27ea229c41bb8fa1e543471d6f2f714bc43e8087e511b2e0715defa88f0caed5"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -8641,20 +8655,29 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-design-plan-implementation",
-            "strategy": "candidate_seed",
-            "group": "new_or_untracked",
+            "strategy": "derived_history",
+            "group": "derived",
             "baseline_path": null,
-            "selected_commit": null,
+            "selected_commit": "f5d8374b",
             "richness_score": 5,
             "line_count": 226,
-            "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
-            "scenario_matrix": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
             "historical_proof": {},
-            "source": "candidate_seed",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -8663,11 +8686,19 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
-              "scenario_results": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -8678,7 +8709,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "f5d8374b",
               "baseline_slug": "engos-design-plan-implementation"
             },
             {
@@ -8729,7 +8760,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+          "effective_sha256": "506cb75ce30828ce0e9b6a295e40e3fa6badfd994c2f393433252902169375e0",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -8791,7 +8822,7 @@
         "portfolio_action": "draft_new_skill_pending_review",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -8802,7 +8833,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 52,
                   "end_line": 99,
-                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                 }
               }
             ]
@@ -8821,7 +8852,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 158,
                   "end_line": 165,
-                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                 }
               }
             ]
@@ -8836,7 +8867,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 158,
                   "end_line": 165,
-                  "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                  "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                 }
               }
             ]
@@ -8849,8 +8880,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-plan-implementation.md",
-            "ssot_sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d",
-            "effective_sha256": "9e72b3f36f2220b72bfc8dc897a469eca7019891d8e25a4a3a5f89ce85d01973",
+            "ssot_sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48",
+            "effective_sha256": "506cb75ce30828ce0e9b6a295e40e3fa6badfd994c2f393433252902169375e0",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -8863,6 +8894,14 @@
               {
                 "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
                 "sha256": "12aa06e551bd5d23e012e3224fa699992ee3b0f181b09624cd2d8edc12c67f83"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
+                "sha256": "96271294c25cb298a04d9febc34da22719fc4c5128193d31d2742bba77839b7d"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+                "sha256": "868db891c87d96c68a30d9403fa47ac00bf957ede1a5c59a2c9c8083cf6f2d51"
               }
             ],
             "extractor_version": "source-clauses.v1",
@@ -8876,7 +8915,7 @@
                     "path": "ssot/engos-design-plan-implementation.md",
                     "start_line": 20,
                     "end_line": 22,
-                    "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                    "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                   }
                 }
               ],
@@ -8888,7 +8927,7 @@
                     "path": "ssot/engos-design-plan-implementation.md",
                     "start_line": 26,
                     "end_line": 33,
-                    "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                    "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                   }
                 }
               ],
@@ -8900,7 +8939,7 @@
                     "path": "ssot/engos-design-plan-implementation.md",
                     "start_line": 37,
                     "end_line": 41,
-                    "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                    "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                   }
                 }
               ],
@@ -8912,7 +8951,7 @@
                     "path": "ssot/engos-design-plan-implementation.md",
                     "start_line": 124,
                     "end_line": 128,
-                    "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                    "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                   }
                 },
                 {
@@ -8922,7 +8961,7 @@
                     "path": "ssot/engos-design-plan-implementation.md",
                     "start_line": 130,
                     "end_line": 139,
-                    "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                    "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                   }
                 },
                 {
@@ -8932,7 +8971,7 @@
                     "path": "ssot/engos-design-plan-implementation.md",
                     "start_line": 141,
                     "end_line": 147,
-                    "sha256": "5b0cb478a114550f7b2211c447958205b68729947a9fe6a9823f442390d2d09d"
+                    "sha256": "78133018f8b70a7f6852ec77e76c550cff93e60e3029def0f8552777206dde48"
                   }
                 }
               ]
@@ -8947,7 +8986,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "3224345fae8a91dfef8b3c167bcc58f245b7a3e3077e9ae5c3a9db197cd7e8c0"
+            "mapping_sha256": "51b00360beb2dcd864b804b1118c31d24a0617efe29ac30b6d5530eee8520ab5"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -9163,11 +9202,13 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "6fbcff2d",
+            "selected_commit": "f0dbe198",
             "richness_score": 5,
-            "line_count": 248,
+            "line_count": 269,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "6fbcff2d"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -9191,7 +9232,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "preserved",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -9203,7 +9244,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -9214,7 +9255,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "6fbcff2d",
+              "baseline_commit": "f0dbe198",
               "baseline_slug": "engos-design-plan-to-goal"
             },
             {
@@ -9265,7 +9306,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+          "effective_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -9315,7 +9356,7 @@
       },
       "job_contract": {
         "primary_job": "Return a compact goal whose details live in sealed, durable artifacts; prove that the packet matches the current repository and host; and refuse launch when the runner, research, verifier, or storage contract is not ready.",
-        "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.",
+        "use_when": "Invoke this skill for requests such as:\n- turn this approved plan into a goal\n- prepare a copyable Goal-mode objective and iteration setting\n- convert this implementation brief into a durable goal packet\n- make this long-running goal research the repository before it edits\n- create a goal, spec, and verifier without assuming every CLI has `/goal`\n\nThis skill compiles and validates a packet. It does not grant implementation authority, start a goal implicitly, install a custom runner, approve operator checks, or promote its own behavioral quality.\n\nUse engos-design-plan-implementation for an ordinary dependency-aware implementation plan and task contracts. This existing engos-design-plan-to-goal skill is the compiler when a bounded long-running goal packet is explicitly wanted: it researches, drafts, materializes where permitted, lints, seals and rechecks the goal/specification/verifier bundle under all contracts below. It does not become the implementation worker or delivery controller. Compiling or sealing a packet is not a request to create or start a running goal; runtime actions require the user's separate explicit request. engos-orchestration-batman remains a separately invoked controller-owned delivery protocol. No alias, rename or automatic hop between these jobs is implied.",
         "works_on": "- an implementation plan, intent, issue, or approved planning artifact\n- the target repository or working context\n- the active host/runtime when detectable\n- any user-supplied iteration, token, time, or cost bound\n- explicit protected surfaces, approvals, or operator checks when already known",
         "main_output": "The packet delivery written by the writer uses these fields in order:\n1. `Research Receipt`\n2. `Goal Packet Status`\n3. `Artifact Manifest`\n4. `Goal Prose`\n5. `Host Budget`\n6. `Verification Trust`\n7. `Launch Command`\n8. `Next Action`\n\nFor `DRAFTED_UNSEALED`, `Launch Command` must be `null`. For `UNSUPPORTED_NATIVE_GOAL`, keep the packet useful but state which runner contract is missing. For `SEALED_READY`, report goal characters, UTF-8 bytes, adapter version, repository binding, artifact hashes, baseline verifier result, and exact command.\n\nAlso report the `goal-lint` result, each criterion-flip result, the falsifiability exit, the hostile-pass exit, the anchor identifier and sample size, the population/exclusion intersection, judge amendment state, and whether all five written answers are present.",
         "not_for": "- implementing the compiled goal or changing product source while the skill is in read-only planning mode\n- inventing, installing, or operating a Claude, Gemini, or custom Goal runner\n- treating a visible checksum as independent verification or treating self-review as completion\n- choosing behavioral promotion, deployment, commit, merge, or external approval on the user's behalf\n- manufacturing a long-running goal for a completed, one-step, watch-only, or otherwise unsuitable task",
@@ -9337,7 +9378,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 12,
                   "end_line": 12,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               },
               {
@@ -9347,7 +9388,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 14,
                   "end_line": 14,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               },
               {
@@ -9357,7 +9398,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 34,
                   "end_line": 39,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               },
               {
@@ -9365,9 +9406,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-design-plan-to-goal.md",
-                  "start_line": 155,
-                  "end_line": 167,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "start_line": 157,
+                  "end_line": 169,
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               }
             ]
@@ -9386,7 +9427,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 27,
                   "end_line": 31,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               },
               {
@@ -9394,9 +9435,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-design-plan-to-goal.md",
-                  "start_line": 209,
-                  "end_line": 215,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "start_line": 211,
+                  "end_line": 217,
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               }
             ]
@@ -9411,7 +9452,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 27,
                   "end_line": 31,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               },
               {
@@ -9421,7 +9462,7 @@
                   "path": "ssot/engos-design-plan-to-goal.md",
                   "start_line": 12,
                   "end_line": 12,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               },
               {
@@ -9429,9 +9470,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-design-plan-to-goal.md",
-                  "start_line": 209,
-                  "end_line": 215,
-                  "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                  "start_line": 211,
+                  "end_line": 217,
+                  "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                 }
               }
             ]
@@ -9444,8 +9485,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-plan-to-goal.md",
-            "ssot_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
-            "effective_sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d",
+            "ssot_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
+            "effective_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -9458,7 +9499,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 17,
                     "end_line": 17,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 }
               ],
@@ -9470,7 +9511,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 34,
                     "end_line": 39,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 },
                 {
@@ -9480,7 +9521,17 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 41,
                     "end_line": 41,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
+                  }
+                },
+                {
+                  "text": "Use engos-design-plan-implementation for an ordinary dependency-aware implementation plan and task contracts. This existing engos-design-plan-to-goal skill is the compiler when a bounded long-running goal packet is explicitly wanted: it researches, drafts, materializes where permitted, lints, seals and rechecks the goal/specification/verifier bundle under all contracts below. It does not become the implementation worker or delivery controller. Compiling or sealing a packet is not a request to create or start a running goal; runtime actions require the user's separate explicit request. engos-orchestration-batman remains a separately invoked controller-owned delivery protocol. No alias, rename or automatic hop between these jobs is implied.",
+                  "heading": "Invocation Hints",
+                  "source": {
+                    "path": "ssot/engos-design-plan-to-goal.md",
+                    "start_line": 43,
+                    "end_line": 43,
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 }
               ],
@@ -9490,9 +9541,9 @@
                   "heading": "Required Inputs",
                   "source": {
                     "path": "ssot/engos-design-plan-to-goal.md",
-                    "start_line": 187,
-                    "end_line": 191,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "start_line": 189,
+                    "end_line": 193,
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 }
               ],
@@ -9502,9 +9553,9 @@
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-design-plan-to-goal.md",
-                    "start_line": 194,
-                    "end_line": 202,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "start_line": 196,
+                    "end_line": 204,
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 },
                 {
@@ -9512,9 +9563,9 @@
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-design-plan-to-goal.md",
-                    "start_line": 204,
-                    "end_line": 204,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "start_line": 206,
+                    "end_line": 206,
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 },
                 {
@@ -9522,9 +9573,9 @@
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-design-plan-to-goal.md",
-                    "start_line": 206,
-                    "end_line": 206,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "start_line": 208,
+                    "end_line": 208,
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 }
               ],
@@ -9536,7 +9587,7 @@
                     "path": "ssot/engos-design-plan-to-goal.md",
                     "start_line": 27,
                     "end_line": 31,
-                    "sha256": "fdb8e808c513428249b26ed96a2ea0b87998d686922fbd91ba06eebb239ab48d"
+                    "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8"
                   }
                 }
               ]
@@ -9550,7 +9601,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "3d98c711bae3dfd98833fe620347e983c3ea5436f9660885fda6391bd8a2a6f8"
+            "mapping_sha256": "b4859fcd04ba3c27c5c832dc2ec1bc2da3c4b9e05b7025310d30c5b83db62b3c"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -9747,11 +9798,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "afa02db7",
+            "selected_commit": "fcdb73a4",
             "richness_score": 5,
-            "line_count": 280,
+            "line_count": 298,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "afa02db7",
               "73b1a925",
               "96888e5e",
               "1ee53a73",
@@ -9784,7 +9836,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "additive",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -9796,7 +9848,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -9807,7 +9859,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "afa02db7",
+              "baseline_commit": "fcdb73a4",
               "baseline_slug": "engos-design-shaping"
             },
             {
@@ -9858,7 +9910,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "c4243ac80fb6b6ed64cf982fb445998c2e38496e1643c6713a8a64634684c27c",
+          "effective_sha256": "f1d9af6cf1488c8f91d1aa7c34a9f4c15c320eef792f39c9923f4e91dfcc53bf",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -9908,7 +9960,7 @@
       },
       "job_contract": {
         "primary_job": "Produce an evidence-backed pitch with current acceptance receipts and faithful\nrequested outputs, or a useful hold naming the missing decision/evidence, owner\nand next action. Keep content readiness, delivery, human betting and implementation\ndistinct. A complete-looking document is not a passing review.",
-        "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.",
+        "use_when": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame\nonly,\u201d \u201ccontinue shaping,\u201d \u201creview this existing pitch,\u201d and \u201cresume this folder\nor registered Doc\u201d select its scope. The user need not invoke each phase.\nStandalone diagram or finished-pitch review requests use their existing helpers.\n\nThe three jobs remain separate: engos-design-shaping conducts a workshop or resumes its recorded stages; engos-audit-pitch-review can assess a finished pitch directly; engos-quality-shaping-gate owns current transition predicates, score anchors and receipts. A finished-pitch assessment does not create a workshop history. For this dependency map, load the stage-policy route and read resources/references/stage-policy-dependencies.md; for an actual gate, resolve the gate owner and read its complete applicable resources through the existing routing contract. This reference does not copy or supersede gate policy.",
         "works_on": "Start with one sentence or available documents; no repository or complete form is\nrequired. Recover the original request, available source access, artifact home,\nhuman decisions and current state when present. Ask only for missing load-bearing\ninputs. Actual appetite, walk-away and decision authority must be established\nbefore accepting a frame, not invented as entry defaults.",
         "main_output": "Return friendly links and a short status in plain words: the last checked version,\nchanged facts, independent review, requested copies, missing inputs and next action.\nKeep exact stage/revision identifiers and bookkeeping in the agent records. Maintain\nMarkdown brief/intake/frame/research/pitch, question and decision provenance,\nsource coverage, role assignments and receipts in the project's authorized artifact\nhome. Reached shaping stages add the full diagram/contract/security bundle,\nsummary, provisional workstreams/proof slices and traceability. On a human accept,\nwrite one scope handover using `resources/handover.md`, then ask which copies the\nperson wants: HTML, Google Doc, Word, JSON, Markdown, or all of them. All means\nall five. Produce only selected\noutputs and verify their saved targets. Markdown reuses the complete existing\nhandover file/hash, preserving three Mermaid fences, captions and full contract/\nsecurity tables; do not author a second prose document. Required content belongs\nin the mutable candidate before sealing. Incomplete accepted content holds delivery\nfor candidate/reconciliation, renewed hashes and affected review, preserving\naccepted bytes/history and the bet. Word is an added handover-only output\nthrough the existing host Word skill; retain the existing pitch export paths. The read-only handover-tools route checks explicit selections and exact accepted\nsource inventory, with optional adapter evidence consistency; it never publishes\nor authenticates host/visual claims. Read its help before use. Do not fabricate\nartifacts for unreached stages. The phase templates define fields, not gate verdicts.",
         "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
@@ -9928,9 +9980,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-design-shaping.md",
-                  "start_line": 93,
-                  "end_line": 176,
-                  "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                  "start_line": 95,
+                  "end_line": 178,
+                  "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                 }
               }
             ]
@@ -9947,9 +9999,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-design-shaping.md",
-                  "start_line": 230,
-                  "end_line": 233,
-                  "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                  "start_line": 232,
+                  "end_line": 235,
+                  "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                 }
               }
             ]
@@ -9962,9 +10014,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-design-shaping.md",
-                  "start_line": 230,
-                  "end_line": 233,
-                  "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                  "start_line": 232,
+                  "end_line": 235,
+                  "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                 }
               }
             ]
@@ -9977,8 +10029,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-shaping.md",
-            "ssot_sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa",
-            "effective_sha256": "c4243ac80fb6b6ed64cf982fb445998c2e38496e1643c6713a8a64634684c27c",
+            "ssot_sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a",
+            "effective_sha256": "f1d9af6cf1488c8f91d1aa7c34a9f4c15c320eef792f39c9923f4e91dfcc53bf",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-design-shaping/routing.md",
@@ -10067,6 +10119,10 @@
               {
                 "path": "sources/capability-resources/engos-design-shaping/fallback.md",
                 "sha256": "a4b205b3d283210773c1032c433f5ea5780e6248c889a0a7cbe1ebe6a7bac49d"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-shaping/references/stage-policy-dependencies.md",
+                "sha256": "c0ce1526010594598a7650c9e04408d7ab5994458c5c718950573e47f2e61182"
               }
             ],
             "extractor_version": "source-clauses.v1",
@@ -10080,7 +10136,7 @@
                     "path": "ssot/engos-design-shaping.md",
                     "start_line": 20,
                     "end_line": 23,
-                    "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                    "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                   }
                 }
               ],
@@ -10092,7 +10148,17 @@
                     "path": "ssot/engos-design-shaping.md",
                     "start_line": 27,
                     "end_line": 30,
-                    "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                    "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
+                  }
+                },
+                {
+                  "text": "The three jobs remain separate: engos-design-shaping conducts a workshop or resumes its recorded stages; engos-audit-pitch-review can assess a finished pitch directly; engos-quality-shaping-gate owns current transition predicates, score anchors and receipts. A finished-pitch assessment does not create a workshop history. For this dependency map, load the stage-policy route and read resources/references/stage-policy-dependencies.md; for an actual gate, resolve the gate owner and read its complete applicable resources through the existing routing contract. This reference does not copy or supersede gate policy.",
+                  "heading": "Invocation Hints",
+                  "source": {
+                    "path": "ssot/engos-design-shaping.md",
+                    "start_line": 32,
+                    "end_line": 32,
+                    "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                   }
                 }
               ],
@@ -10102,9 +10168,9 @@
                   "heading": "Required Inputs",
                   "source": {
                     "path": "ssot/engos-design-shaping.md",
-                    "start_line": 34,
-                    "end_line": 38,
-                    "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                    "start_line": 36,
+                    "end_line": 40,
+                    "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                   }
                 }
               ],
@@ -10114,9 +10180,9 @@
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-design-shaping.md",
-                    "start_line": 42,
-                    "end_line": 61,
-                    "sha256": "e64191fe3023581f51ca0d07c119b0473d56d2d458df756e47610c2d20a925aa"
+                    "start_line": 44,
+                    "end_line": 63,
+                    "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a"
                   }
                 }
               ]
@@ -10131,7 +10197,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "a4de1c82d50592ae87425d6e22bb58a8b288789a7d41caa4dee90ca8690da08e"
+            "mapping_sha256": "30157fee9abe7857d952d9df3df3e87c1458506e0dd1c5d8d13b893124a553b7"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -10327,13 +10393,13 @@
           "status": "structural_ready",
           "historical_baseline": {
             "slug": "engos-design-specify-change",
-            "strategy": "head_snapshot",
-            "group": "derived_current",
-            "baseline_path": "ssot/engos-design-specify-change.md",
-            "selected_commit": null,
+            "strategy": "derived_history",
+            "group": "derived",
+            "baseline_path": null,
+            "selected_commit": "a91199fd",
             "richness_score": 5,
-            "line_count": 222,
-            "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+            "line_count": 216,
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [],
             "expected_companions": [],
             "operator_invariants": [],
@@ -10348,8 +10414,8 @@
               }
             ],
             "historical_proof": {},
-            "source": "current_ssot",
-            "verified_by_git_history": false,
+            "source": "git_history",
+            "verified_by_git_history": true,
             "has_baseline_text": true
           },
           "judge_reports": [
@@ -10358,7 +10424,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "preserved",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -10370,7 +10436,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -10381,7 +10447,7 @@
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": null,
+              "baseline_commit": "a91199fd",
               "baseline_slug": "engos-design-specify-change"
             },
             {
@@ -10432,7 +10498,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+          "effective_sha256": "347000a127b18a8c3c9c8172d79f7cdd94289dc324430bb9b4941c6a77b5454f",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -10504,7 +10570,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 12,
                   "end_line": 16,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               },
               {
@@ -10514,7 +10580,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 18,
                   "end_line": 20,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               },
               {
@@ -10524,7 +10590,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 31,
                   "end_line": 38,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               },
               {
@@ -10534,7 +10600,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 51,
                   "end_line": 95,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               }
             ]
@@ -10553,7 +10619,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 149,
                   "end_line": 153,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               },
               {
@@ -10563,7 +10629,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 155,
                   "end_line": 160,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               }
             ]
@@ -10578,7 +10644,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 31,
                   "end_line": 38,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               },
               {
@@ -10588,7 +10654,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 149,
                   "end_line": 153,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               },
               {
@@ -10598,7 +10664,7 @@
                   "path": "ssot/engos-design-specify-change.md",
                   "start_line": 155,
                   "end_line": 160,
-                  "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                  "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                 }
               }
             ]
@@ -10611,8 +10677,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-design-specify-change.md",
-            "ssot_sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05",
-            "effective_sha256": "dfc6fce21ec6e74aac9e6aaccc3892f6e82290a92c6a69b0d62bef965d313bb7",
+            "ssot_sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
+            "effective_sha256": "347000a127b18a8c3c9c8172d79f7cdd94289dc324430bb9b4941c6a77b5454f",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
@@ -10637,6 +10703,30 @@
               {
                 "path": "sources/capability-resources/engos-design-specify-change/templates/trace-matrix.json",
                 "sha256": "926ec6d1a3fbd782111e224f2252225aaf1a90e285cb78367ddd018931936a0b"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
+                "sha256": "0f55a2841cadf23c47801420161ab21bf24d94e78485bea291824707396ffc2a"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+                "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
+                "sha256": "2927ac79a1fedef2e77f78b05c88a386f0e1e45db88bfef1e94cfd9985b86162"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+                "sha256": "2f1d0e5f230216bd742753283d2e3c5a4ef39f396089b701885336ee70856968"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-testing-review/schemas/test-design.schema.json",
+                "sha256": "15167b745d4f478dc34d49785fa3bee458544600a2bc84c4989a24c6d38f3db2"
+              },
+              {
+                "path": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
+                "sha256": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7"
               }
             ],
             "extractor_version": "source-clauses.v1",
@@ -10650,7 +10740,7 @@
                     "path": "ssot/engos-design-specify-change.md",
                     "start_line": 24,
                     "end_line": 27,
-                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                    "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                   }
                 }
               ],
@@ -10662,7 +10752,7 @@
                     "path": "ssot/engos-design-specify-change.md",
                     "start_line": 31,
                     "end_line": 38,
-                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                    "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                   }
                 }
               ],
@@ -10674,7 +10764,7 @@
                     "path": "ssot/engos-design-specify-change.md",
                     "start_line": 42,
                     "end_line": 47,
-                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                    "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                   }
                 }
               ],
@@ -10686,7 +10776,7 @@
                     "path": "ssot/engos-design-specify-change.md",
                     "start_line": 122,
                     "end_line": 123,
-                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                    "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                   }
                 },
                 {
@@ -10696,7 +10786,7 @@
                     "path": "ssot/engos-design-specify-change.md",
                     "start_line": 125,
                     "end_line": 131,
-                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                    "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                   }
                 },
                 {
@@ -10706,7 +10796,7 @@
                     "path": "ssot/engos-design-specify-change.md",
                     "start_line": 133,
                     "end_line": 137,
-                    "sha256": "1dcf67742d385b20f30e6164370cf30f4223e1f751dba4b88dbf93701364ad05"
+                    "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
                   }
                 }
               ]
@@ -10721,7 +10811,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "f842892d55ae33912a6f4ec6e550407a3e33182072a8a423d3b5edb0f10f1130"
+            "mapping_sha256": "0eb64c46708dbf416f9ddce75c2fb0563a2d76b94d4b9d7082aa9db5af3f00ba"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -12800,7 +12890,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
+          "effective_sha256": "969f9dfe122bb36f1c982ad1541f6e10b44436e27ab1f14fc06f94255138b27a",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -12862,9 +12952,9 @@
                 "heading": "Review Timing",
                 "source": {
                   "path": "ssot/engos-meta-supercharge.md",
-                  "start_line": 294,
-                  "end_line": 294,
-                  "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+                  "start_line": 296,
+                  "end_line": 296,
+                  "sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181"
                 }
               }
             ]
@@ -12881,9 +12971,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-meta-supercharge.md",
-                  "start_line": 36,
-                  "end_line": 38,
-                  "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+                  "start_line": 38,
+                  "end_line": 40,
+                  "sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181"
                 }
               },
               {
@@ -12891,9 +12981,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-meta-supercharge.md",
-                  "start_line": 86,
-                  "end_line": 90,
-                  "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+                  "start_line": 88,
+                  "end_line": 92,
+                  "sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181"
                 }
               },
               {
@@ -12901,9 +12991,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-meta-supercharge.md",
-                  "start_line": 92,
-                  "end_line": 92,
-                  "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+                  "start_line": 94,
+                  "end_line": 94,
+                  "sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181"
                 }
               }
             ]
@@ -12916,9 +13006,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-meta-supercharge.md",
-                  "start_line": 86,
-                  "end_line": 90,
-                  "sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a"
+                  "start_line": 88,
+                  "end_line": 92,
+                  "sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181"
                 }
               }
             ]
@@ -12931,8 +13021,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-meta-supercharge.md",
-            "ssot_sha256": "d5da37b0d385e1c678a972cea51ad422209b5d6d4637fa8973b0bff53a5ea62a",
-            "effective_sha256": "e7be36c70fc397af1c4ca5e3305eb5d65a7fe079fba0f2090fac435de7ec2d55",
+            "ssot_sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181",
+            "effective_sha256": "969f9dfe122bb36f1c982ad1541f6e10b44436e27ab1f14fc06f94255138b27a",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-meta-supercharge/references/shared-review.md",
@@ -12988,7 +13078,7 @@
               },
               {
                 "path": "sources/capability-resources/engos-meta-supercharge/references/help-examples.md",
-                "sha256": "e99377e9262b00bf0c9752c1b0c845dc75d9344b699d2f233588720438e677a7"
+                "sha256": "f55986d02d788a3aeb109c52e72a76fc9f7a4574422e6276a7c5c975d4a5dd8c"
               },
               {
                 "path": "sources/capability-resources/engos-meta-supercharge/references/model-guidance.md",
@@ -13012,7 +13102,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "642b685fe272a8948c63b81022580bc298c0a9f17a3aae60ce2de52e26f44784"
+            "mapping_sha256": "10d334f591cb89701ab670dcbb1b2376c2bb2ef22e1ddea09f0d5774242baaa3"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -15041,7 +15131,7 @@
       "display_name": "Batman \u2014 Evidence-Gated Delivery Controller",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-orchestration-batman",
-      "shared_summary": "Runs an explicitly invoked, host-aware, topology-declared, subagent-driven delivery protocol through research, design, TDD implementation, blocking reviews, verification, documentation, Git health, PR or MR, merge, and cleanup. Trigger with batman.",
+      "shared_summary": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
       "shared_constraints": [
         "One canonical Batman SSOT body.",
         "One active public identity: `engos-orchestration-batman`. Do not create a second SSOT, descriptor, skill, agent, route, invocation hint, example, or generated surface for this capability.",
@@ -15065,15 +15155,12 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "83157939",
+            "selected_commit": "628786ff",
             "richness_score": 5,
             "line_count": 363,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
-              "bd6cfd14",
-              "4e880e24",
-              "6be48300",
-              "7691d9d5"
+              "6fbcff2d"
             ],
             "expected_companions": [],
             "operator_invariants": [
@@ -15117,6 +15204,12 @@
                   "missing_markers": []
                 }
               ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
               "scorecard": {
                 "baseline_richness": 5,
                 "candidate_richness": 5,
@@ -15124,7 +15217,7 @@
                 "candidate_operational_score": 3,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "83157939",
+              "baseline_commit": "628786ff",
               "baseline_slug": "engos-orchestration-batman"
             },
             {
@@ -15142,13 +15235,13 @@
             {
               "judge": "benchmark_readiness",
               "title": "Benchmark Readiness and Template Fit",
-              "score": 10,
+              "score": 9,
               "blockers": [],
               "scorecard": {
                 "title_clarity": 10,
                 "description_richness": 10,
                 "intent_coverage": 10,
-                "boundary_clarity": 10,
+                "boundary_clarity": 8,
                 "output_specificity": 10,
                 "metadata_completeness": 8,
                 "surface_usability": 10
@@ -15165,16 +15258,49 @@
             "baseline_preserved_in_resource": false,
             "operational_richness": 10,
             "metadata_integrity": 10,
-            "benchmark_readiness": 10,
+            "benchmark_readiness": 9,
             "title_clarity": 10,
             "description_richness": 10,
             "intent_coverage": 10,
-            "boundary_clarity": 10,
+            "boundary_clarity": 8,
             "output_specificity": 10,
             "metadata_completeness": 8,
             "surface_usability": 10
           },
-          "template_name": "both"
+          "template_name": "skill",
+          "effective_sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -15212,7 +15338,7 @@
         "portfolio_action": "ship_single_batman_identity",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -15221,9 +15347,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 168,
-                  "end_line": 168,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 170,
+                  "end_line": 170,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15231,9 +15357,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 173,
-                  "end_line": 173,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 175,
+                  "end_line": 175,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15241,9 +15367,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 192,
-                  "end_line": 192,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 194,
+                  "end_line": 194,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15251,9 +15377,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 194,
-                  "end_line": 194,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 196,
+                  "end_line": 196,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15261,9 +15387,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 216,
-                  "end_line": 220,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 218,
+                  "end_line": 222,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15271,9 +15397,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 225,
-                  "end_line": 234,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 227,
+                  "end_line": 236,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15281,9 +15407,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 249,
-                  "end_line": 261,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 251,
+                  "end_line": 263,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15291,9 +15417,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 292,
-                  "end_line": 300,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 294,
+                  "end_line": 302,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               }
             ]
@@ -15308,7 +15434,7 @@
                   "path": "ssot/engos-orchestration-batman.md",
                   "start_line": 34,
                   "end_line": 34,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               }
             ]
@@ -15323,7 +15449,7 @@
                   "path": "ssot/engos-orchestration-batman.md",
                   "start_line": 28,
                   "end_line": 31,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15331,9 +15457,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 76,
-                  "end_line": 78,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 78,
+                  "end_line": 80,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15341,9 +15467,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 80,
-                  "end_line": 80,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 82,
+                  "end_line": 82,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15351,9 +15477,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 313,
-                  "end_line": 320,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 315,
+                  "end_line": 322,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               }
             ]
@@ -15368,7 +15494,7 @@
                   "path": "ssot/engos-orchestration-batman.md",
                   "start_line": 28,
                   "end_line": 31,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15378,7 +15504,7 @@
                   "path": "ssot/engos-orchestration-batman.md",
                   "start_line": 13,
                   "end_line": 13,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15388,7 +15514,7 @@
                   "path": "ssot/engos-orchestration-batman.md",
                   "start_line": 15,
                   "end_line": 15,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15396,9 +15522,9 @@
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 83,
-                  "end_line": 85,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 85,
+                  "end_line": 87,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               },
               {
@@ -15406,9 +15532,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-orchestration-batman.md",
-                  "start_line": 313,
-                  "end_line": 320,
-                  "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                  "start_line": 315,
+                  "end_line": 322,
+                  "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
                 }
               }
             ]
@@ -15421,7 +15547,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15432,7 +15558,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15443,7 +15569,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15454,7 +15580,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15465,7 +15591,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15476,7 +15602,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15487,7 +15613,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15498,7 +15624,7 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -15509,7 +15635,29 @@
                 "path": "ssot/engos-orchestration-batman.md",
                 "start_line": 62,
                 "end_line": 71,
-                "sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec"
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
+              },
+              "interpretation": "source_clause_requires_stage_review"
+            },
+            {
+              "skill": "engos-design-plan-implementation",
+              "condition_and_handoff": "Ordinary planning and goal-packet compilation do not activate Batman. engos-design-plan-implementation owns ordinary plans; engos-design-plan-to-goal may compile a separately requested bounded packet and verifier. Neither is a Batman alias or a direct-worker replacement for this controller. When this protocol is explicitly requested, retain every stage, gate, companion-resolution rule, independent role, current plan_generation, task/owner identity and controller-owned evidence/landing check below. A compiled packet neither satisfies those gates nor grants runtime or landing authority.",
+              "source": {
+                "path": "ssot/engos-orchestration-batman.md",
+                "start_line": 75,
+                "end_line": 75,
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
+              },
+              "interpretation": "source_clause_requires_stage_review"
+            },
+            {
+              "skill": "engos-design-plan-to-goal",
+              "condition_and_handoff": "Ordinary planning and goal-packet compilation do not activate Batman. engos-design-plan-implementation owns ordinary plans; engos-design-plan-to-goal may compile a separately requested bounded packet and verifier. Neither is a Batman alias or a direct-worker replacement for this controller. When this protocol is explicitly requested, retain every stage, gate, companion-resolution rule, independent role, current plan_generation, task/owner identity and controller-owned evidence/landing check below. A compiled packet neither satisfies those gates nor grants runtime or landing authority.",
+              "source": {
+                "path": "ssot/engos-orchestration-batman.md",
+                "start_line": 75,
+                "end_line": 75,
+                "sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -15521,8 +15669,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-orchestration-batman.md",
-            "ssot_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
-            "effective_sha256": "388c0b3584e299ca0af1aa142d414ae62d27b152d2097aec79308969a2d599ec",
+            "ssot_sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670",
+            "effective_sha256": "c7e6fa50b71a47c99e47828a329a7685a5d6a525079d1d5235141fd4b64a6670",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -15541,7 +15689,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "a33f44ec71a6ce7683ae5c46a349bcf4abf07c9eab23b0ebd52499df791f9894"
+            "mapping_sha256": "b9325175c86f6799c36f0446a0e8bb283c3e5291b11d87859cdb7b9e23067e30"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -15791,7 +15939,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "additive",
               "scenario_results": [
                 {
                   "id": "commit_review_procedure",
@@ -15810,7 +15958,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -15872,7 +16020,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+          "effective_sha256": "41d58ef8ec1e02dc3916751277c56192560f7fc6187c428acfb755e37d39dc2b",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -15947,7 +16095,7 @@
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 11,
                   "end_line": 11,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               },
               {
@@ -15957,7 +16105,7 @@
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 13,
                   "end_line": 13,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               },
               {
@@ -15965,9 +16113,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 43,
-                  "end_line": 48,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "start_line": 66,
+                  "end_line": 71,
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               },
               {
@@ -15975,9 +16123,9 @@
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 74,
-                  "end_line": 80,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "start_line": 97,
+                  "end_line": 103,
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               }
             ]
@@ -15994,9 +16142,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 57,
-                  "end_line": 59,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "start_line": 80,
+                  "end_line": 82,
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               },
               {
@@ -16004,9 +16152,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 350,
-                  "end_line": 355,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "start_line": 373,
+                  "end_line": 378,
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               }
             ]
@@ -16021,7 +16169,7 @@
                   "path": "ssot/engos-quality-code-review.md",
                   "start_line": 13,
                   "end_line": 13,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               },
               {
@@ -16029,9 +16177,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-quality-code-review.md",
-                  "start_line": 350,
-                  "end_line": 355,
-                  "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                  "start_line": 373,
+                  "end_line": 378,
+                  "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
                 }
               }
             ]
@@ -16042,9 +16190,9 @@
               "condition_and_handoff": "| release readiness, changelog, CI, packaging, or merge gates matter | `engos-quality-gitops-review` | commit quality alone is not enough for release or branch health |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 66,
-                "end_line": 66,
-                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                "start_line": 89,
+                "end_line": 89,
+                "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16053,9 +16201,9 @@
               "condition_and_handoff": "| behavior changed and test confidence is weak | `engos-quality-testing-review` | test coverage and edge-case discovery need a dedicated pass |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 67,
-                "end_line": 67,
-                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                "start_line": 90,
+                "end_line": 90,
+                "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16064,9 +16212,9 @@
               "condition_and_handoff": "| interface, architecture, or migration risk is material | `engos-design-architecture` | structural risk needs architectural judgment, not just commit review |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 68,
-                "end_line": 68,
-                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                "start_line": 91,
+                "end_line": 91,
+                "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16075,9 +16223,9 @@
               "condition_and_handoff": "| resource growth, capacity exhaustion, or missing cleanup is material | `engos-design-architecture` | identify an eviction strategy or explicit lifecycle bounds |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 69,
-                "end_line": 69,
-                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                "start_line": 92,
+                "end_line": 92,
+                "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16086,9 +16234,9 @@
               "condition_and_handoff": "| doc drift or example drift is part of the commit | `engos-quality-docs-review` | keep documentation review explicit and separate |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 70,
-                "end_line": 70,
-                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                "start_line": 93,
+                "end_line": 93,
+                "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16097,9 +16245,9 @@
               "condition_and_handoff": "| reviewer comments need to be implemented | `engos-delivery-address-code-review` | this review gate should not mutate files |",
               "source": {
                 "path": "ssot/engos-quality-code-review.md",
-                "start_line": 71,
-                "end_line": 71,
-                "sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558"
+                "start_line": 94,
+                "end_line": 94,
+                "sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -16111,8 +16259,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-quality-code-review.md",
-            "ssot_sha256": "c5d128e24dc1a37bd74af3aba75f667b0da32df630eb810930f1a4a5badab558",
-            "effective_sha256": "8f7ce683c13206b41b81ca4204b6f06cbb936d3a6ecf8b6972e08b8458d7a1e4",
+            "ssot_sha256": "8ea2082a3278c50c8e7ff92b7c14b2f404fa882ca362b2452cfd7e80a0c8bc85",
+            "effective_sha256": "41d58ef8ec1e02dc3916751277c56192560f7fc6187c428acfb755e37d39dc2b",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-quality-code-review/schemas/findings.schema.json",
@@ -16120,7 +16268,15 @@
               },
               {
                 "path": "sources/capability-resources/engos-quality-code-review/references/review-targets.md",
-                "sha256": "5f38714bfd211dbb2d46ada6c4d0c90928d957af4e505715279436fb56827fba"
+                "sha256": "7a09a4de93723b417790b3c91975b28012567011278506e98672a54a92a51b10"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-code-review/schemas/review-package.schema.json",
+                "sha256": "328e1db501939eec62f24b981136aea633c3d0f14f530ff70a75ceafc99ebb9c"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-code-review/scripts/review_package.py",
+                "sha256": "bbb604a13fb587eeaccd005fb69dadd16ea2ef91925c7e0b1df5c4963ce02aef"
               }
             ],
             "extractor_version": "source-clauses.v1",
@@ -16140,7 +16296,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "b5f978ed47c53b90104938791cd9ce4596888849845f64ece40b42aa0c448d32"
+            "mapping_sha256": "af88d85eadad12ce6ac7fea00ad8ff903c105ebc861dbcc4e0b1d424c9929940"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -16351,24 +16507,7 @@
         "Do not infer behavior from docs alone when code or scripts are available to verify it.",
         "Do not leave the caller with generic advice that lacks file placement or evidence."
       ],
-      "modes": [
-        {
-          "mode_slug": "failure-mode-to-avoid",
-          "display_name": "Failure Mode To Avoid",
-          "source_refs": [
-            "ssot/engos-quality-docs-review.md"
-          ],
-          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        }
-      ],
+      "modes": [],
       "benchmark_sources": [
         {
           "label": "Architecture benchmark",
@@ -16425,7 +16564,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "additive",
               "scenario_results": [
                 {
                   "id": "operational_invocation",
@@ -16437,13 +16576,13 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
               "scorecard": {
                 "baseline_richness": 2,
-                "candidate_richness": 5,
+                "candidate_richness": 7,
                 "baseline_operational_score": 2,
                 "candidate_operational_score": 2,
                 "baseline_preserved_in_resource": false
@@ -16483,7 +16622,7 @@
           "scorecard": {
             "source_fidelity": 10,
             "baseline_richness": 2,
-            "candidate_richness": 5,
+            "candidate_richness": 7,
             "baseline_operational_score": 2,
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false,
@@ -16499,7 +16638,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
+          "effective_sha256": "bbca36db404ffd5b91e12f8f4352a1b435cbc451e54af6063966dbec32095abc",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -16584,7 +16723,7 @@
                   "path": "ssot/engos-quality-docs-review.md",
                   "start_line": 32,
                   "end_line": 34,
-                  "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+                  "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a"
                 }
               },
               {
@@ -16594,7 +16733,7 @@
                   "path": "ssot/engos-quality-docs-review.md",
                   "start_line": 89,
                   "end_line": 93,
-                  "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+                  "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a"
                 }
               }
             ]
@@ -16609,7 +16748,7 @@
                   "path": "ssot/engos-quality-docs-review.md",
                   "start_line": 89,
                   "end_line": 93,
-                  "sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c"
+                  "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a"
                 }
               }
             ]
@@ -16622,9 +16761,58 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-quality-docs-review.md",
-            "ssot_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
-            "effective_sha256": "2d7adf37829fc90c99cfd812935bc5b2aa17f9c3b524c8687a035e62ad284d1c",
-            "resources": [],
+            "ssot_sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a",
+            "effective_sha256": "bbca36db404ffd5b91e12f8f4352a1b435cbc451e54af6063966dbec32095abc",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/schemas/factual-audit.schema.json",
+                "sha256": "77bc55f5f0a6ed445654ae08e2b34d4fa06e9620fd790e96a1ae6ebe7874f5dd"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-master.json",
+                "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/templates/factual-audit-prompt-e.json",
+                "sha256": "9b12fd2475ee7237db2a5c6418c28fd5864749587a3b47e0cb6bba23b5924fd0"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/scripts/factual_audit.py",
+                "sha256": "651512372e59f8e57b3c0cb4d0b3a39a20dd47c493aec904543244504c0f0187"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/factual-audit.md",
+                "sha256": "0d0513029aafca8eed8b72a142da5abd9cd69e75342aabb1d9a188bd68fc8ff1"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/docs-bundle.md",
+                "sha256": "005a5cfeb3b25790f97e7ba75c8447323e3c6a23fbf5f09c493be390de972d52"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/readme-authoring.md",
+                "sha256": "4038cd955a84c49808e0de424e27894e6ae99d387b5cd43f5d726cfabe19aa8c"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/ai-onboarding.md",
+                "sha256": "04d3afb80093f3641f39a085a308c604b33ee42f2df36c2673bd05943b284f58"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/information-relocation.md",
+                "sha256": "75b56d74736bab883fb39d3c1f1ed0dd7843d86a1e23eaa887a943ca212ade78"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/document-visuals.md",
+                "sha256": "f1161e46a889c60481a64b242f432802d7d9cdc3524b9229b4a3c79a73d29bc4"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+                "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/references/adversarial-doc-review.md",
+                "sha256": "7cc727a9df14e03731d479f806b1bb598467354b0715ee6638ef36d37bfdf88e"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -16642,7 +16830,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "3b877b24a321236406c769c3ce8ae994f0fa2e7faed57814d0b876249f93202d"
+            "mapping_sha256": "30f917d94915ff963bcfee15bbb1bf757252a884e53c3dd4fc32b4dbeffb7bf0"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -16833,7 +17021,7 @@
       "display_name": "GitOps Review \u2014 Repo Hygiene, CI, Release, and Merge Gate",
       "descriptor_version": "capability-fabric.descriptor.v0",
       "family_slug": "engos-quality-gitops-review",
-      "shared_summary": "GitOps Review for repo hygiene, commit quality, PR readiness, CI state, packaging, changelog, merge, tag, push, and release gates across GitHub and GitLab.",
+      "shared_summary": "Assess repository hygiene, commit and pull request or merge request readiness, CI, packaging, merge, tag, and release prerequisites across GitHub and GitLab. Use for release or merge gates; do not claim hosted state without current verification.",
       "shared_constraints": [
         "Do not hide destructive git behavior behind helper language.",
         "Do not claim CI is green unless the current hosted runs were verified.",
@@ -16841,24 +17029,7 @@
         "Do not invent GitHub or GitLab state from local git alone.",
         "Do not replace companion capability reviews with generic \u201clooks good\u201d language."
       ],
-      "modes": [
-        {
-          "mode_slug": "failure-mode-to-avoid",
-          "display_name": "Failure Mode To Avoid",
-          "source_refs": [
-            "ssot/engos-quality-gitops-review.md"
-          ],
-          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        }
-      ],
+      "modes": [],
       "benchmark_sources": [
         {
           "label": "Code Review benchmark",
@@ -16869,6 +17040,182 @@
           "label": "UAC Import benchmark",
           "url": "ssot/engos-meta-uac-import.md",
           "note": "Benchmark for deterministic workflow contracts and machine-readable metadata."
+        }
+      ],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-quality-gitops-review",
+            "strategy": "head_snapshot",
+            "group": "single_history",
+            "baseline_path": "sources/ssot-baselines/engos-quality-gitops-review/baseline.md",
+            "selected_commit": "4e16d6a4",
+            "richness_score": 2,
+            "line_count": 149,
+            "reason": "Only version currently present in repo history; use as default oracle until a stronger historical body exists.",
+            "equivalent_commits": [],
+            "expected_companions": [
+              "engos-quality-code-review",
+              "engos-quality-docs-review",
+              "engos-quality-testing-review",
+              "engos-design-architecture"
+            ],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "gate_and_release_contract",
+                "kind": "individual_module",
+                "label": "gitops gate contract",
+                "must_contain": [
+                  "## Workflow",
+                  "## Required Output",
+                  "## Required Companion Reviews",
+                  "## Review Timing"
+                ]
+              },
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              }
+            ],
+            "historical_proof": {
+              "current_head_commit": "4e16d6a4",
+              "current_head_richness_score": 2,
+              "current_head_line_count": 150,
+              "materialized_from_commit": "4e16d6a4"
+            },
+            "source": "source_library",
+            "verified_by_git_history": false,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "additive",
+              "scenario_results": [
+                {
+                  "id": "gate_and_release_contract",
+                  "kind": "individual_module",
+                  "label": "gitops gate contract",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 2,
+                "candidate_richness": 5,
+                "baseline_operational_score": 2,
+                "candidate_operational_score": 2,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "4e16d6a4",
+              "baseline_slug": "engos-quality-gitops-review"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 2,
+            "candidate_richness": 5,
+            "baseline_operational_score": 2,
+            "candidate_operational_score": 2,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "538bcedf772dc1478fa4e23b495c64930a44f93b6a5a2ede4a8978d7fe97ec61",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
         }
       ],
       "consumption_hints": {
@@ -16903,7 +17250,7 @@
         "portfolio_action": "keep",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": [
@@ -16914,7 +17261,7 @@
                   "path": "ssot/engos-quality-gitops-review.md",
                   "start_line": 131,
                   "end_line": 135,
-                  "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                  "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
                 }
               }
             ]
@@ -16933,7 +17280,7 @@
                   "path": "ssot/engos-quality-gitops-review.md",
                   "start_line": 32,
                   "end_line": 34,
-                  "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                  "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
                 }
               },
               {
@@ -16943,7 +17290,7 @@
                   "path": "ssot/engos-quality-gitops-review.md",
                   "start_line": 88,
                   "end_line": 92,
-                  "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                  "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
                 }
               }
             ]
@@ -16958,7 +17305,7 @@
                   "path": "ssot/engos-quality-gitops-review.md",
                   "start_line": 88,
                   "end_line": 92,
-                  "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                  "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
                 }
               }
             ]
@@ -16971,7 +17318,7 @@
                 "path": "ssot/engos-quality-gitops-review.md",
                 "start_line": 104,
                 "end_line": 108,
-                "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16982,7 +17329,7 @@
                 "path": "ssot/engos-quality-gitops-review.md",
                 "start_line": 104,
                 "end_line": 108,
-                "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -16993,7 +17340,7 @@
                 "path": "ssot/engos-quality-gitops-review.md",
                 "start_line": 104,
                 "end_line": 108,
-                "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
               },
               "interpretation": "source_clause_requires_stage_review"
             },
@@ -17004,7 +17351,7 @@
                 "path": "ssot/engos-quality-gitops-review.md",
                 "start_line": 104,
                 "end_line": 108,
-                "sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146"
+                "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947"
               },
               "interpretation": "source_clause_requires_stage_review"
             }
@@ -17016,9 +17363,18 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-quality-gitops-review.md",
-            "ssot_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
-            "effective_sha256": "4c63f50d4a0efd32c87200615560957d73998bc47363487b15349aba9b74f146",
-            "resources": [],
+            "ssot_sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947",
+            "effective_sha256": "538bcedf772dc1478fa4e23b495c64930a44f93b6a5a2ede4a8978d7fe97ec61",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-quality-docs-review/schemas/docs-ship-handoff.schema.json",
+                "sha256": "edd096dd4d03e3455bb6ad9b4c57b27e8aec8626e0f82001c48d955f143a31df"
+              },
+              {
+                "path": "sources/capability-resources/engos-quality-gitops-review/references/docs-release-readiness.md",
+                "sha256": "c93fdef9d96cba3d5283c4a234d73bc3d0e41c25f8ec97526a4a0ce5aab91f2c"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -17036,7 +17392,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "12bd2b2e59d9a132c09d732d456b292983a4cf110234ed636b81666bc16a2884"
+            "mapping_sha256": "c7b07ea870cafa870379e5d4061cee9e4a61d765d62bf6acafc6609341bf2e7e"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -17045,6 +17401,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -18377,24 +18735,7 @@
         "Do not skip the rationale for rejected ideas.",
         "Do not claim execution authority beyond synthesis and recommendation."
       ],
-      "modes": [
-        {
-          "mode_slug": "failure-mode-to-avoid",
-          "display_name": "Failure Mode To Avoid",
-          "source_refs": [
-            "ssot/engos-reconciliation-converge.md"
-          ],
-          "mode_summary": "Declared by the canonical `Failure Mode To Avoid` section.",
-          "required_inputs": [],
-          "expected_outputs": [],
-          "examples": [],
-          "uplift_notes": [
-            "Use CapabilityTopology.v1 for composition, guard, and transition semantics."
-          ],
-          "entry_kind": "mode",
-          "invocations": []
-        }
-      ],
+      "modes": [],
       "benchmark_sources": [],
       "quality_profile": "default",
       "quality_status": "structural_ready",
@@ -18461,7 +18802,7 @@
               "title": "Source Fidelity and Uplift",
               "score": 10,
               "blockers": [],
-              "classification": "reviewed_modernization",
+              "classification": "additive",
               "scenario_results": [
                 {
                   "id": "portable_prompt_body",
@@ -18480,7 +18821,7 @@
               ],
               "reviewed_deltas": [],
               "requirement_review": {
-                "status": "bound_attestation",
+                "status": "not_supplied_or_invalid",
                 "identity_authenticated": false,
                 "behavioral_status": "behavioral_pending"
               },
@@ -18542,7 +18883,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
+          "effective_sha256": "6986cb72ea2845fa0694f2a27aa092d45704d7021e92516c6630856af74a0732",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -18603,9 +18944,9 @@
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-reconciliation-converge.md",
-                  "start_line": 45,
-                  "end_line": 50,
-                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+                  "start_line": 47,
+                  "end_line": 52,
+                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
                 }
               }
             ]
@@ -18622,9 +18963,9 @@
                 "heading": "Tool Boundaries",
                 "source": {
                   "path": "ssot/engos-reconciliation-converge.md",
-                  "start_line": 32,
-                  "end_line": 34,
-                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+                  "start_line": 34,
+                  "end_line": 36,
+                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
                 }
               },
               {
@@ -18632,9 +18973,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-reconciliation-converge.md",
-                  "start_line": 70,
-                  "end_line": 74,
-                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+                  "start_line": 72,
+                  "end_line": 76,
+                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
                 }
               },
               {
@@ -18642,9 +18983,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-reconciliation-converge.md",
-                  "start_line": 76,
-                  "end_line": 76,
-                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+                  "start_line": 78,
+                  "end_line": 78,
+                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
                 }
               }
             ]
@@ -18657,9 +18998,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-reconciliation-converge.md",
-                  "start_line": 70,
-                  "end_line": 74,
-                  "sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906"
+                  "start_line": 72,
+                  "end_line": 76,
+                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
                 }
               }
             ]
@@ -18672,9 +19013,14 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-reconciliation-converge.md",
-            "ssot_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
-            "effective_sha256": "793d1cdd14b5cf085c907c9115636c95283df384ef9b1e05834e142108c4c906",
-            "resources": [],
+            "ssot_sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5",
+            "effective_sha256": "6986cb72ea2845fa0694f2a27aa092d45704d7021e92516c6630856af74a0732",
+            "resources": [
+              {
+                "path": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
+                "sha256": "17c7b3acb92bcc69f26ca5ccac1fde6b43c9020791adb49170a79e1e3a50a516"
+              }
+            ],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
             "field_sources": {},
@@ -18692,7 +19038,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "72a4f06b8362e0a18b0b9dabaab30d805c58d4182d915f73a709ff28741f7dc3"
+            "mapping_sha256": "d1c6042750cf4e74f10df035dbd31429893c7c54efbc16d2b21a46ba83373778"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -20272,6 +20618,9 @@
       ".grok/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".grok/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".grok/skills/engos-audit-pitch-review/resources/capability.json",
+      ".grok/skills/engos-audit-pitch-review/resources/examples/standalone-pitch.md",
+      ".grok/skills/engos-audit-pitch-review/resources/resource-map.json",
+      ".grok/skills/engos-audit-pitch-review/resources/scripts/load_module.py",
       ".grok/skills/engos-audit-weekly-intel/resources/capability.json",
       ".grok/skills/engos-browser-demo-recorder/resources/capability.json",
       ".grok/skills/engos-content-dynamic-html-presentations/resources/capability.json",
@@ -20318,8 +20667,10 @@
       ".grok/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
       ".grok/skills/engos-design-plan-implementation/resources/capability.json",
       ".grok/skills/engos-design-plan-implementation/resources/resource-map.json",
+      ".grok/skills/engos-design-plan-implementation/resources/schemas/graph-result.schema.json",
       ".grok/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
       ".grok/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      ".grok/skills/engos-design-plan-implementation/resources/scripts/graph_check.py",
       ".grok/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
       ".grok/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
       ".grok/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -20350,6 +20701,7 @@
       ".grok/skills/engos-design-shaping/resources/progress.md",
       ".grok/skills/engos-design-shaping/resources/questions.md",
       ".grok/skills/engos-design-shaping/resources/reconciliation.md",
+      ".grok/skills/engos-design-shaping/resources/references/stage-policy-dependencies.md",
       ".grok/skills/engos-design-shaping/resources/repository-discovery.md",
       ".grok/skills/engos-design-shaping/resources/representations.md",
       ".grok/skills/engos-design-shaping/resources/resource-map.json",
@@ -20365,13 +20717,20 @@
       ".grok/skills/engos-design-shaping/resources/ways-of-working.md",
       ".grok/skills/engos-design-shaping/resources/scripts/load_module.py",
       ".grok/skills/engos-design-specify-change/resources/capability.json",
+      ".grok/skills/engos-design-specify-change/resources/evals/positive-and-near-miss.json",
       ".grok/skills/engos-design-specify-change/resources/references/bugfix.md",
       ".grok/skills/engos-design-specify-change/resources/references/design-first.md",
       ".grok/skills/engos-design-specify-change/resources/references/requirements-first.md",
       ".grok/skills/engos-design-specify-change/resources/resource-map.json",
       ".grok/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".grok/skills/engos-design-specify-change/resources/schemas/trace-result.schema.json",
+      ".grok/skills/engos-design-specify-change/resources/scripts/trace_check.py",
       ".grok/skills/engos-design-specify-change/resources/templates/requirements.md",
       ".grok/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".grok/skills/engos-design-specify-change/resources/schemas/task-contract.schema.json",
+      ".grok/skills/engos-design-specify-change/resources/schemas/task-plan.schema.json",
+      ".grok/skills/engos-design-specify-change/resources/schemas/test-design.schema.json",
+      ".grok/skills/engos-design-specify-change/resources/shared-resource-imports.json",
       ".grok/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".grok/skills/engos-memory-context-continuity/resources/capability.json",
       ".grok/skills/engos-memory-context-continuity/resources/state_store.py",
@@ -20421,9 +20780,30 @@
       ".grok/skills/engos-quality-code-review/resources/references/review-targets.md",
       ".grok/skills/engos-quality-code-review/resources/resource-map.json",
       ".grok/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".grok/skills/engos-quality-code-review/resources/schemas/review-package.schema.json",
+      ".grok/skills/engos-quality-code-review/resources/scripts/review_package.py",
       ".grok/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".grok/skills/engos-quality-docs-review/resources/capability.json",
+      ".grok/skills/engos-quality-docs-review/resources/references/adversarial-doc-review.md",
+      ".grok/skills/engos-quality-docs-review/resources/references/ai-onboarding.md",
+      ".grok/skills/engos-quality-docs-review/resources/references/docs-bundle.md",
+      ".grok/skills/engos-quality-docs-review/resources/references/document-visuals.md",
+      ".grok/skills/engos-quality-docs-review/resources/references/factual-audit.md",
+      ".grok/skills/engos-quality-docs-review/resources/references/information-relocation.md",
+      ".grok/skills/engos-quality-docs-review/resources/references/readme-authoring.md",
+      ".grok/skills/engos-quality-docs-review/resources/resource-map.json",
+      ".grok/skills/engos-quality-docs-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".grok/skills/engos-quality-docs-review/resources/schemas/factual-audit.schema.json",
+      ".grok/skills/engos-quality-docs-review/resources/scripts/factual_audit.py",
+      ".grok/skills/engos-quality-docs-review/resources/templates/factual-audit-master.json",
+      ".grok/skills/engos-quality-docs-review/resources/templates/factual-audit-prompt-e.json",
+      ".grok/skills/engos-quality-docs-review/resources/scripts/load_module.py",
       ".grok/skills/engos-quality-gitops-review/resources/capability.json",
+      ".grok/skills/engos-quality-gitops-review/resources/references/docs-release-readiness.md",
+      ".grok/skills/engos-quality-gitops-review/resources/resource-map.json",
+      ".grok/skills/engos-quality-gitops-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".grok/skills/engos-quality-gitops-review/resources/shared-resource-imports.json",
+      ".grok/skills/engos-quality-gitops-review/resources/scripts/load_module.py",
       ".grok/skills/engos-quality-shaping-gate/resources/capability.json",
       ".grok/skills/engos-quality-shaping-gate/resources/references/gates.md",
       ".grok/skills/engos-quality-shaping-gate/resources/references/progress.md",
@@ -20444,6 +20824,9 @@
       ".grok/skills/engos-quality-testing-review/resources/templates/test-design.md",
       ".grok/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".grok/skills/engos-reconciliation-converge/resources/capability.json",
+      ".grok/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".grok/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".grok/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".grok/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json",
       ".grok/skills/loopy/resources/capability.json",
       ".grok/skills/loopy/LICENSE",
@@ -20466,6 +20849,9 @@
       ".codex/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".codex/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".codex/skills/engos-audit-pitch-review/resources/capability.json",
+      ".codex/skills/engos-audit-pitch-review/resources/examples/standalone-pitch.md",
+      ".codex/skills/engos-audit-pitch-review/resources/resource-map.json",
+      ".codex/skills/engos-audit-pitch-review/resources/scripts/load_module.py",
       ".codex/skills/engos-audit-weekly-intel/resources/capability.json",
       ".codex/skills/engos-browser-demo-recorder/resources/capability.json",
       ".codex/skills/engos-content-dynamic-html-presentations/resources/capability.json",
@@ -20512,8 +20898,10 @@
       ".codex/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
       ".codex/skills/engos-design-plan-implementation/resources/capability.json",
       ".codex/skills/engos-design-plan-implementation/resources/resource-map.json",
+      ".codex/skills/engos-design-plan-implementation/resources/schemas/graph-result.schema.json",
       ".codex/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
       ".codex/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      ".codex/skills/engos-design-plan-implementation/resources/scripts/graph_check.py",
       ".codex/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
       ".codex/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
       ".codex/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -20544,6 +20932,7 @@
       ".codex/skills/engos-design-shaping/resources/progress.md",
       ".codex/skills/engos-design-shaping/resources/questions.md",
       ".codex/skills/engos-design-shaping/resources/reconciliation.md",
+      ".codex/skills/engos-design-shaping/resources/references/stage-policy-dependencies.md",
       ".codex/skills/engos-design-shaping/resources/repository-discovery.md",
       ".codex/skills/engos-design-shaping/resources/representations.md",
       ".codex/skills/engos-design-shaping/resources/resource-map.json",
@@ -20559,13 +20948,20 @@
       ".codex/skills/engos-design-shaping/resources/ways-of-working.md",
       ".codex/skills/engos-design-shaping/resources/scripts/load_module.py",
       ".codex/skills/engos-design-specify-change/resources/capability.json",
+      ".codex/skills/engos-design-specify-change/resources/evals/positive-and-near-miss.json",
       ".codex/skills/engos-design-specify-change/resources/references/bugfix.md",
       ".codex/skills/engos-design-specify-change/resources/references/design-first.md",
       ".codex/skills/engos-design-specify-change/resources/references/requirements-first.md",
       ".codex/skills/engos-design-specify-change/resources/resource-map.json",
       ".codex/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".codex/skills/engos-design-specify-change/resources/schemas/trace-result.schema.json",
+      ".codex/skills/engos-design-specify-change/resources/scripts/trace_check.py",
       ".codex/skills/engos-design-specify-change/resources/templates/requirements.md",
       ".codex/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".codex/skills/engos-design-specify-change/resources/schemas/task-contract.schema.json",
+      ".codex/skills/engos-design-specify-change/resources/schemas/task-plan.schema.json",
+      ".codex/skills/engos-design-specify-change/resources/schemas/test-design.schema.json",
+      ".codex/skills/engos-design-specify-change/resources/shared-resource-imports.json",
       ".codex/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".codex/skills/engos-memory-context-continuity/resources/capability.json",
       ".codex/skills/engos-memory-context-continuity/resources/state_store.py",
@@ -20615,9 +21011,30 @@
       ".codex/skills/engos-quality-code-review/resources/references/review-targets.md",
       ".codex/skills/engos-quality-code-review/resources/resource-map.json",
       ".codex/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".codex/skills/engos-quality-code-review/resources/schemas/review-package.schema.json",
+      ".codex/skills/engos-quality-code-review/resources/scripts/review_package.py",
       ".codex/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".codex/skills/engos-quality-docs-review/resources/capability.json",
+      ".codex/skills/engos-quality-docs-review/resources/references/adversarial-doc-review.md",
+      ".codex/skills/engos-quality-docs-review/resources/references/ai-onboarding.md",
+      ".codex/skills/engos-quality-docs-review/resources/references/docs-bundle.md",
+      ".codex/skills/engos-quality-docs-review/resources/references/document-visuals.md",
+      ".codex/skills/engos-quality-docs-review/resources/references/factual-audit.md",
+      ".codex/skills/engos-quality-docs-review/resources/references/information-relocation.md",
+      ".codex/skills/engos-quality-docs-review/resources/references/readme-authoring.md",
+      ".codex/skills/engos-quality-docs-review/resources/resource-map.json",
+      ".codex/skills/engos-quality-docs-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".codex/skills/engos-quality-docs-review/resources/schemas/factual-audit.schema.json",
+      ".codex/skills/engos-quality-docs-review/resources/scripts/factual_audit.py",
+      ".codex/skills/engos-quality-docs-review/resources/templates/factual-audit-master.json",
+      ".codex/skills/engos-quality-docs-review/resources/templates/factual-audit-prompt-e.json",
+      ".codex/skills/engos-quality-docs-review/resources/scripts/load_module.py",
       ".codex/skills/engos-quality-gitops-review/resources/capability.json",
+      ".codex/skills/engos-quality-gitops-review/resources/references/docs-release-readiness.md",
+      ".codex/skills/engos-quality-gitops-review/resources/resource-map.json",
+      ".codex/skills/engos-quality-gitops-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".codex/skills/engos-quality-gitops-review/resources/shared-resource-imports.json",
+      ".codex/skills/engos-quality-gitops-review/resources/scripts/load_module.py",
       ".codex/skills/engos-quality-shaping-gate/resources/capability.json",
       ".codex/skills/engos-quality-shaping-gate/resources/references/gates.md",
       ".codex/skills/engos-quality-shaping-gate/resources/references/progress.md",
@@ -20638,6 +21055,9 @@
       ".codex/skills/engos-quality-testing-review/resources/templates/test-design.md",
       ".codex/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".codex/skills/engos-reconciliation-converge/resources/capability.json",
+      ".codex/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".codex/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".codex/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".codex/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json",
       ".codex/skills/loopy/resources/capability.json",
       ".codex/skills/loopy/LICENSE",
@@ -20661,6 +21081,9 @@
       ".gemini/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".gemini/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".gemini/skills/engos-audit-pitch-review/resources/capability.json",
+      ".gemini/skills/engos-audit-pitch-review/resources/examples/standalone-pitch.md",
+      ".gemini/skills/engos-audit-pitch-review/resources/resource-map.json",
+      ".gemini/skills/engos-audit-pitch-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-audit-weekly-intel/resources/capability.json",
       ".gemini/skills/engos-browser-demo-recorder/resources/capability.json",
       ".gemini/skills/engos-content-dynamic-html-presentations/resources/capability.json",
@@ -20707,8 +21130,10 @@
       ".gemini/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
       ".gemini/skills/engos-design-plan-implementation/resources/capability.json",
       ".gemini/skills/engos-design-plan-implementation/resources/resource-map.json",
+      ".gemini/skills/engos-design-plan-implementation/resources/schemas/graph-result.schema.json",
       ".gemini/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
       ".gemini/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      ".gemini/skills/engos-design-plan-implementation/resources/scripts/graph_check.py",
       ".gemini/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
       ".gemini/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
       ".gemini/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -20739,6 +21164,7 @@
       ".gemini/skills/engos-design-shaping/resources/progress.md",
       ".gemini/skills/engos-design-shaping/resources/questions.md",
       ".gemini/skills/engos-design-shaping/resources/reconciliation.md",
+      ".gemini/skills/engos-design-shaping/resources/references/stage-policy-dependencies.md",
       ".gemini/skills/engos-design-shaping/resources/repository-discovery.md",
       ".gemini/skills/engos-design-shaping/resources/representations.md",
       ".gemini/skills/engos-design-shaping/resources/resource-map.json",
@@ -20754,13 +21180,20 @@
       ".gemini/skills/engos-design-shaping/resources/ways-of-working.md",
       ".gemini/skills/engos-design-shaping/resources/scripts/load_module.py",
       ".gemini/skills/engos-design-specify-change/resources/capability.json",
+      ".gemini/skills/engos-design-specify-change/resources/evals/positive-and-near-miss.json",
       ".gemini/skills/engos-design-specify-change/resources/references/bugfix.md",
       ".gemini/skills/engos-design-specify-change/resources/references/design-first.md",
       ".gemini/skills/engos-design-specify-change/resources/references/requirements-first.md",
       ".gemini/skills/engos-design-specify-change/resources/resource-map.json",
       ".gemini/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".gemini/skills/engos-design-specify-change/resources/schemas/trace-result.schema.json",
+      ".gemini/skills/engos-design-specify-change/resources/scripts/trace_check.py",
       ".gemini/skills/engos-design-specify-change/resources/templates/requirements.md",
       ".gemini/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".gemini/skills/engos-design-specify-change/resources/schemas/task-contract.schema.json",
+      ".gemini/skills/engos-design-specify-change/resources/schemas/task-plan.schema.json",
+      ".gemini/skills/engos-design-specify-change/resources/schemas/test-design.schema.json",
+      ".gemini/skills/engos-design-specify-change/resources/shared-resource-imports.json",
       ".gemini/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".gemini/skills/engos-memory-context-continuity/resources/capability.json",
       ".gemini/skills/engos-memory-context-continuity/resources/state_store.py",
@@ -20810,9 +21243,30 @@
       ".gemini/skills/engos-quality-code-review/resources/references/review-targets.md",
       ".gemini/skills/engos-quality-code-review/resources/resource-map.json",
       ".gemini/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".gemini/skills/engos-quality-code-review/resources/schemas/review-package.schema.json",
+      ".gemini/skills/engos-quality-code-review/resources/scripts/review_package.py",
       ".gemini/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-quality-docs-review/resources/capability.json",
+      ".gemini/skills/engos-quality-docs-review/resources/references/adversarial-doc-review.md",
+      ".gemini/skills/engos-quality-docs-review/resources/references/ai-onboarding.md",
+      ".gemini/skills/engos-quality-docs-review/resources/references/docs-bundle.md",
+      ".gemini/skills/engos-quality-docs-review/resources/references/document-visuals.md",
+      ".gemini/skills/engos-quality-docs-review/resources/references/factual-audit.md",
+      ".gemini/skills/engos-quality-docs-review/resources/references/information-relocation.md",
+      ".gemini/skills/engos-quality-docs-review/resources/references/readme-authoring.md",
+      ".gemini/skills/engos-quality-docs-review/resources/resource-map.json",
+      ".gemini/skills/engos-quality-docs-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".gemini/skills/engos-quality-docs-review/resources/schemas/factual-audit.schema.json",
+      ".gemini/skills/engos-quality-docs-review/resources/scripts/factual_audit.py",
+      ".gemini/skills/engos-quality-docs-review/resources/templates/factual-audit-master.json",
+      ".gemini/skills/engos-quality-docs-review/resources/templates/factual-audit-prompt-e.json",
+      ".gemini/skills/engos-quality-docs-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-quality-gitops-review/resources/capability.json",
+      ".gemini/skills/engos-quality-gitops-review/resources/references/docs-release-readiness.md",
+      ".gemini/skills/engos-quality-gitops-review/resources/resource-map.json",
+      ".gemini/skills/engos-quality-gitops-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".gemini/skills/engos-quality-gitops-review/resources/shared-resource-imports.json",
+      ".gemini/skills/engos-quality-gitops-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-quality-shaping-gate/resources/capability.json",
       ".gemini/skills/engos-quality-shaping-gate/resources/references/gates.md",
       ".gemini/skills/engos-quality-shaping-gate/resources/references/progress.md",
@@ -20833,6 +21287,9 @@
       ".gemini/skills/engos-quality-testing-review/resources/templates/test-design.md",
       ".gemini/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-reconciliation-converge/resources/capability.json",
+      ".gemini/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".gemini/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".gemini/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".gemini/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json",
       ".gemini/skills/loopy/resources/capability.json",
       ".gemini/skills/loopy/LICENSE",
@@ -20856,6 +21313,9 @@
       ".claude/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".claude/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".claude/skills/engos-audit-pitch-review/resources/capability.json",
+      ".claude/skills/engos-audit-pitch-review/resources/examples/standalone-pitch.md",
+      ".claude/skills/engos-audit-pitch-review/resources/resource-map.json",
+      ".claude/skills/engos-audit-pitch-review/resources/scripts/load_module.py",
       ".claude/skills/engos-audit-weekly-intel/resources/capability.json",
       ".claude/skills/engos-browser-demo-recorder/resources/capability.json",
       ".claude/skills/engos-content-dynamic-html-presentations/resources/capability.json",
@@ -20902,8 +21362,10 @@
       ".claude/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
       ".claude/skills/engos-design-plan-implementation/resources/capability.json",
       ".claude/skills/engos-design-plan-implementation/resources/resource-map.json",
+      ".claude/skills/engos-design-plan-implementation/resources/schemas/graph-result.schema.json",
       ".claude/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
       ".claude/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      ".claude/skills/engos-design-plan-implementation/resources/scripts/graph_check.py",
       ".claude/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
       ".claude/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
       ".claude/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -20934,6 +21396,7 @@
       ".claude/skills/engos-design-shaping/resources/progress.md",
       ".claude/skills/engos-design-shaping/resources/questions.md",
       ".claude/skills/engos-design-shaping/resources/reconciliation.md",
+      ".claude/skills/engos-design-shaping/resources/references/stage-policy-dependencies.md",
       ".claude/skills/engos-design-shaping/resources/repository-discovery.md",
       ".claude/skills/engos-design-shaping/resources/representations.md",
       ".claude/skills/engos-design-shaping/resources/resource-map.json",
@@ -20949,13 +21412,20 @@
       ".claude/skills/engos-design-shaping/resources/ways-of-working.md",
       ".claude/skills/engos-design-shaping/resources/scripts/load_module.py",
       ".claude/skills/engos-design-specify-change/resources/capability.json",
+      ".claude/skills/engos-design-specify-change/resources/evals/positive-and-near-miss.json",
       ".claude/skills/engos-design-specify-change/resources/references/bugfix.md",
       ".claude/skills/engos-design-specify-change/resources/references/design-first.md",
       ".claude/skills/engos-design-specify-change/resources/references/requirements-first.md",
       ".claude/skills/engos-design-specify-change/resources/resource-map.json",
       ".claude/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".claude/skills/engos-design-specify-change/resources/schemas/trace-result.schema.json",
+      ".claude/skills/engos-design-specify-change/resources/scripts/trace_check.py",
       ".claude/skills/engos-design-specify-change/resources/templates/requirements.md",
       ".claude/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".claude/skills/engos-design-specify-change/resources/schemas/task-contract.schema.json",
+      ".claude/skills/engos-design-specify-change/resources/schemas/task-plan.schema.json",
+      ".claude/skills/engos-design-specify-change/resources/schemas/test-design.schema.json",
+      ".claude/skills/engos-design-specify-change/resources/shared-resource-imports.json",
       ".claude/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".claude/skills/engos-memory-context-continuity/resources/capability.json",
       ".claude/skills/engos-memory-context-continuity/resources/state_store.py",
@@ -21005,9 +21475,30 @@
       ".claude/skills/engos-quality-code-review/resources/references/review-targets.md",
       ".claude/skills/engos-quality-code-review/resources/resource-map.json",
       ".claude/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".claude/skills/engos-quality-code-review/resources/schemas/review-package.schema.json",
+      ".claude/skills/engos-quality-code-review/resources/scripts/review_package.py",
       ".claude/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".claude/skills/engos-quality-docs-review/resources/capability.json",
+      ".claude/skills/engos-quality-docs-review/resources/references/adversarial-doc-review.md",
+      ".claude/skills/engos-quality-docs-review/resources/references/ai-onboarding.md",
+      ".claude/skills/engos-quality-docs-review/resources/references/docs-bundle.md",
+      ".claude/skills/engos-quality-docs-review/resources/references/document-visuals.md",
+      ".claude/skills/engos-quality-docs-review/resources/references/factual-audit.md",
+      ".claude/skills/engos-quality-docs-review/resources/references/information-relocation.md",
+      ".claude/skills/engos-quality-docs-review/resources/references/readme-authoring.md",
+      ".claude/skills/engos-quality-docs-review/resources/resource-map.json",
+      ".claude/skills/engos-quality-docs-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".claude/skills/engos-quality-docs-review/resources/schemas/factual-audit.schema.json",
+      ".claude/skills/engos-quality-docs-review/resources/scripts/factual_audit.py",
+      ".claude/skills/engos-quality-docs-review/resources/templates/factual-audit-master.json",
+      ".claude/skills/engos-quality-docs-review/resources/templates/factual-audit-prompt-e.json",
+      ".claude/skills/engos-quality-docs-review/resources/scripts/load_module.py",
       ".claude/skills/engos-quality-gitops-review/resources/capability.json",
+      ".claude/skills/engos-quality-gitops-review/resources/references/docs-release-readiness.md",
+      ".claude/skills/engos-quality-gitops-review/resources/resource-map.json",
+      ".claude/skills/engos-quality-gitops-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".claude/skills/engos-quality-gitops-review/resources/shared-resource-imports.json",
+      ".claude/skills/engos-quality-gitops-review/resources/scripts/load_module.py",
       ".claude/skills/engos-quality-shaping-gate/resources/capability.json",
       ".claude/skills/engos-quality-shaping-gate/resources/references/gates.md",
       ".claude/skills/engos-quality-shaping-gate/resources/references/progress.md",
@@ -21028,6 +21519,9 @@
       ".claude/skills/engos-quality-testing-review/resources/templates/test-design.md",
       ".claude/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".claude/skills/engos-reconciliation-converge/resources/capability.json",
+      ".claude/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".claude/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".claude/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".claude/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json",
       ".claude/skills/loopy/resources/capability.json",
       ".claude/skills/loopy/LICENSE",
@@ -21051,6 +21545,9 @@
       ".kiro/skills/engos-audit-opex-incident-review/resources/references/briefing.md",
       ".kiro/skills/engos-audit-opex-incident-review/resources/snapshot.schema.json",
       ".kiro/skills/engos-audit-pitch-review/resources/capability.json",
+      ".kiro/skills/engos-audit-pitch-review/resources/examples/standalone-pitch.md",
+      ".kiro/skills/engos-audit-pitch-review/resources/resource-map.json",
+      ".kiro/skills/engos-audit-pitch-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-audit-weekly-intel/resources/capability.json",
       ".kiro/skills/engos-browser-demo-recorder/resources/capability.json",
       ".kiro/skills/engos-content-dynamic-html-presentations/resources/capability.json",
@@ -21097,8 +21594,10 @@
       ".kiro/skills/engos-design-frame-from-vague/resources/scripts/load_module.py",
       ".kiro/skills/engos-design-plan-implementation/resources/capability.json",
       ".kiro/skills/engos-design-plan-implementation/resources/resource-map.json",
+      ".kiro/skills/engos-design-plan-implementation/resources/schemas/graph-result.schema.json",
       ".kiro/skills/engos-design-plan-implementation/resources/schemas/task-contract.schema.json",
       ".kiro/skills/engos-design-plan-implementation/resources/schemas/task-plan.schema.json",
+      ".kiro/skills/engos-design-plan-implementation/resources/scripts/graph_check.py",
       ".kiro/skills/engos-design-plan-implementation/resources/templates/dependency-map.json",
       ".kiro/skills/engos-design-plan-implementation/resources/scripts/load_module.py",
       ".kiro/skills/engos-design-plan-to-goal/resources/capability.json",
@@ -21129,6 +21628,7 @@
       ".kiro/skills/engos-design-shaping/resources/progress.md",
       ".kiro/skills/engos-design-shaping/resources/questions.md",
       ".kiro/skills/engos-design-shaping/resources/reconciliation.md",
+      ".kiro/skills/engos-design-shaping/resources/references/stage-policy-dependencies.md",
       ".kiro/skills/engos-design-shaping/resources/repository-discovery.md",
       ".kiro/skills/engos-design-shaping/resources/representations.md",
       ".kiro/skills/engos-design-shaping/resources/resource-map.json",
@@ -21144,13 +21644,20 @@
       ".kiro/skills/engos-design-shaping/resources/ways-of-working.md",
       ".kiro/skills/engos-design-shaping/resources/scripts/load_module.py",
       ".kiro/skills/engos-design-specify-change/resources/capability.json",
+      ".kiro/skills/engos-design-specify-change/resources/evals/positive-and-near-miss.json",
       ".kiro/skills/engos-design-specify-change/resources/references/bugfix.md",
       ".kiro/skills/engos-design-specify-change/resources/references/design-first.md",
       ".kiro/skills/engos-design-specify-change/resources/references/requirements-first.md",
       ".kiro/skills/engos-design-specify-change/resources/resource-map.json",
       ".kiro/skills/engos-design-specify-change/resources/schemas/spec-contract.schema.json",
+      ".kiro/skills/engos-design-specify-change/resources/schemas/trace-result.schema.json",
+      ".kiro/skills/engos-design-specify-change/resources/scripts/trace_check.py",
       ".kiro/skills/engos-design-specify-change/resources/templates/requirements.md",
       ".kiro/skills/engos-design-specify-change/resources/templates/trace-matrix.json",
+      ".kiro/skills/engos-design-specify-change/resources/schemas/task-contract.schema.json",
+      ".kiro/skills/engos-design-specify-change/resources/schemas/task-plan.schema.json",
+      ".kiro/skills/engos-design-specify-change/resources/schemas/test-design.schema.json",
+      ".kiro/skills/engos-design-specify-change/resources/shared-resource-imports.json",
       ".kiro/skills/engos-design-specify-change/resources/scripts/load_module.py",
       ".kiro/skills/engos-memory-context-continuity/resources/capability.json",
       ".kiro/skills/engos-memory-context-continuity/resources/state_store.py",
@@ -21200,9 +21707,30 @@
       ".kiro/skills/engos-quality-code-review/resources/references/review-targets.md",
       ".kiro/skills/engos-quality-code-review/resources/resource-map.json",
       ".kiro/skills/engos-quality-code-review/resources/schemas/findings.schema.json",
+      ".kiro/skills/engos-quality-code-review/resources/schemas/review-package.schema.json",
+      ".kiro/skills/engos-quality-code-review/resources/scripts/review_package.py",
       ".kiro/skills/engos-quality-code-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-quality-docs-review/resources/capability.json",
+      ".kiro/skills/engos-quality-docs-review/resources/references/adversarial-doc-review.md",
+      ".kiro/skills/engos-quality-docs-review/resources/references/ai-onboarding.md",
+      ".kiro/skills/engos-quality-docs-review/resources/references/docs-bundle.md",
+      ".kiro/skills/engos-quality-docs-review/resources/references/document-visuals.md",
+      ".kiro/skills/engos-quality-docs-review/resources/references/factual-audit.md",
+      ".kiro/skills/engos-quality-docs-review/resources/references/information-relocation.md",
+      ".kiro/skills/engos-quality-docs-review/resources/references/readme-authoring.md",
+      ".kiro/skills/engos-quality-docs-review/resources/resource-map.json",
+      ".kiro/skills/engos-quality-docs-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".kiro/skills/engos-quality-docs-review/resources/schemas/factual-audit.schema.json",
+      ".kiro/skills/engos-quality-docs-review/resources/scripts/factual_audit.py",
+      ".kiro/skills/engos-quality-docs-review/resources/templates/factual-audit-master.json",
+      ".kiro/skills/engos-quality-docs-review/resources/templates/factual-audit-prompt-e.json",
+      ".kiro/skills/engos-quality-docs-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-quality-gitops-review/resources/capability.json",
+      ".kiro/skills/engos-quality-gitops-review/resources/references/docs-release-readiness.md",
+      ".kiro/skills/engos-quality-gitops-review/resources/resource-map.json",
+      ".kiro/skills/engos-quality-gitops-review/resources/schemas/docs-ship-handoff.schema.json",
+      ".kiro/skills/engos-quality-gitops-review/resources/shared-resource-imports.json",
+      ".kiro/skills/engos-quality-gitops-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-quality-shaping-gate/resources/capability.json",
       ".kiro/skills/engos-quality-shaping-gate/resources/references/gates.md",
       ".kiro/skills/engos-quality-shaping-gate/resources/references/progress.md",
@@ -21223,6 +21751,9 @@
       ".kiro/skills/engos-quality-testing-review/resources/templates/test-design.md",
       ".kiro/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-reconciliation-converge/resources/capability.json",
+      ".kiro/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".kiro/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".kiro/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".kiro/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json",
       ".kiro/skills/loopy/resources/capability.json",
       ".kiro/skills/loopy/LICENSE",

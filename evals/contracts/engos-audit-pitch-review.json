@@ -48,7 +48,11 @@
     "7c1abbd4f7b26cd9e35f9516a7f552784c20e9973bbad8138ba72805958bbe68",
     "95f76c66d454e7435eee0d91799935db050d0b1c6c57c0f462b43535949d7913",
     "2fa57cd93caf9c46329210af42fd6a35952cab6a209ee527aff49d778a356880",
-    "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506"
+    "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506",
+    "0d57a299fb512ad9d8147a901e7bca73fff6924c8794426926b56c35039c57e1",
+    "3f4423a36b5cb12532223def3ed1f75f207c752c52b88a748ffd7119e5c0a2bd",
+    "8e700e4d09b0d2af58f37feca9f11853cff47468546586594d4f22faa35a3388",
+    "1ad6b1aa65b29dfc0267570254e0d39632aa0eb1bf3240b4c5505073eed673cb"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -294,6 +298,26 @@
       "sha256": "99b3fadaa7eb56b501767aa23138306659308fe3f00d1d8bb8c16dd040e75506",
       "source": "ssot/engos-audit-pitch-review.md",
       "text": "missing owner, unresolved material question or required artifact."
+    },
+    {
+      "sha256": "0d57a299fb512ad9d8147a901e7bca73fff6924c8794426926b56c35039c57e1",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "For a direct finished-pitch review, identify which supplied artifacts were actually assessed and explicitly report unavailable Intake, Framed and Research history as unassessed prerequisites. Do not mint historical receipts, require the user to retroactively stage a workshop just to obtain an assessment, or claim a G0\u2013G4 transition from the standalone score. Keep the existing standalone rubric, artifact-completeness checks and output format; in full shaping mode the current gate owner and its applicable policy still take precedence. A recommendation that content is ready to bet is not the human betting decision, completed delivery, implementation authority or a request to start a goal. Even after human acceptance, a separate build session starts at specification only for the accepted handover scope and separately authorized build work."
+    },
+    {
+      "sha256": "3f4423a36b5cb12532223def3ed1f75f207c752c52b88a748ffd7119e5c0a2bd",
+      "source": "ssot/engos-audit-pitch-review.md",
+      "text": "For a worked finished-pitch example, load route standalone-pitch from resources/resource-map.json and read resources/examples/standalone-pitch.md from this skill bundle. Read the complete selected example before claiming it was used. The example illustrates coverage reporting; it never supplies missing facts, human decisions or receipts for the actual pitch."
+    },
+    {
+      "sha256": "8e700e4d09b0d2af58f37feca9f11853cff47468546586594d4f22faa35a3388",
+      "source": "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md",
+      "text": "A missing security owner or unsupported material seam still produces the applicable substantive finding. Missing history is not proof the pitch is bad and does not force a retroactive workshop. A high standalone score does not manufacture G3/G4 acceptance or authorize implementation. If later invoked inside a full shaping run, bind the actual predecessor receipts and load the gate owner's current policy, twelve-score rubric and applicable review evidence; never reuse the standalone score as their replacement."
+    },
+    {
+      "sha256": "1ad6b1aa65b29dfc0267570254e0d39632aa0eb1bf3240b4c5505073eed673cb",
+      "source": "sources/capability-resources/engos-audit-pitch-review/examples/standalone-pitch.md",
+      "text": "After a real human accepts a pitch, a separate build session still needs its own authorized scope and begins at specification for the accepted handover list. Do not start a goal, write product code, publish, or send anything merely because this illustrative assessment is complete."
     }
   ],
   "review_status": "draft"

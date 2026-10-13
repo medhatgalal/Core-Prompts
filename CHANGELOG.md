@@ -1,5 +1,16 @@
 ## Unreleased
 
+- Clarify how to choose between hardening, reconciliation, baseline experiments,
+  shaping, standalone pitch review, ordinary plans and bounded goal packets.
+  Add optional planner/specification graph and trace check examples, including
+  explicit mechanical versus semantic, authority and behavior limits. Document
+  committed-range package collection and its resource and platform requirements
+  without implying implementation review, release or installation. Correct the
+  current Converge descriptive pseudo-mode to zero modes and the nine stale pitch
+  metadata identities to the existing full-name command declarations; add no
+  command, alias, gate-policy change, variation module or shaping-policy removal.
+  Preserve all seven prompt donors and prior changelog entries.
+
 - Add explicit committed-range collection to `engos-quality-code-review`: a
   standalone stdlib/Git helper, closed `ReviewPackage.v1` schema, exact endpoint
   and source bindings, raw path/blob evidence, and exclusive atomic manifest

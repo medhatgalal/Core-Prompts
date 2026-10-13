@@ -179,18 +179,24 @@ def _bindings_check(bindings, manifest, declared):
 
 
 
-def _reject_shared_json_references(content: str) -> None:
-    # Decode JSON keys before inspection: escapes are semantically equivalent.
-    # Non-JSON text resources continue using the resources/ reference contract.
+def _check_shared_json_references(content, binding, bindings, manifest, owner_map=None):
+    """Admit only the explicit TaskPlan -> sibling TaskContract closure.
+
+    Canonical callers supply the owner map. Detached callers can establish local
+    receipt consistency only; authenticity requires an external package identity.
+    """
     try:
         value = json.loads(content, object_pairs_hook=_pairs)
     except json.JSONDecodeError:
-        return
+        return  # Non-JSON text still follows the resources/ reference contract.
+    refs = []
 
     def visit(node):
         if isinstance(node, dict):
-            if {"$ref", "$dynamicRef"}.intersection(node):
-                raise ResourceContractError("Shared JSON references require a supported explicit closure rule")
+            if {"$dynamicRef", "$id", "$anchor", "$dynamicAnchor", "$recursiveRef", "$recursiveAnchor"}.intersection(node):
+                raise ResourceContractError("Shared JSON base-changing references are forbidden by closure policy")
+            if "$ref" in node:
+                refs.append(node["$ref"])
             for child in node.values():
                 visit(child)
         elif isinstance(node, list):
@@ -198,6 +204,24 @@ def _reject_shared_json_references(content: str) -> None:
                 visit(child)
 
     visit(value)
+    for ref in refs:
+        if (binding["owner"] != "engos-design-plan-implementation"
+                or binding["source"] != "schemas/task-plan.schema.json"
+                or binding["destination"] != binding["source"]
+                or ref != "task-contract.schema.json"):
+            raise ResourceContractError("Shared JSON references require the explicit TaskPlan sibling closure")
+        target = "schemas/task-contract.schema.json"
+        paired = [b for b in bindings if b["owner"] == binding["owner"]
+                  and b["source"] == target and b["destination"] == target]
+        if len(paired) != 1:
+            raise ResourceContractError("Missing same-owner sibling reference binding")
+        if target not in manifest["dependencies"].get(binding["destination"], []):
+            raise ResourceContractError("Missing direct consumer sibling dependency edge")
+        _closure([binding["destination"]], manifest["dependencies"])
+        if owner_map is not None:
+            if target not in owner_map["dependencies"].get(binding["source"], []):
+                raise ResourceContractError("Missing direct owner sibling dependency edge")
+            _closure([binding["source"]], owner_map["dependencies"])
 
 
 def _local_receipt(root, manifest, declared):
@@ -220,6 +244,9 @@ def _local_receipt(root, manifest, declared):
         raw = _strict_file(root, b["destination"]).read_bytes()
         if hashlib.sha256(raw).hexdigest() != b["sha256"]:
             raise ResourceContractError("Shared import digest drift")
+    for b in receipt["imports"]:
+        content = _strict_file(root, b["destination"]).read_text(encoding="utf-8")
+        _check_shared_json_references(content, b, receipt["imports"], manifest)
     return receipt
 
 
@@ -300,7 +327,7 @@ def validate_shared_resource_imports(repo_root: Path) -> dict[str, list[dict]]:
             content = _strict_file(owner_root, b["source"]).read_text(encoding="utf-8")
             _check_references(content, set(_closure([b["source"]], owner_map["dependencies"])), b["source"])
             _check_references(content, set(_closure([b["destination"]], manifest["dependencies"])), b["source"])
-            _reject_shared_json_references(content)
+            _check_shared_json_references(content, b, bindings, manifest, owner_map)
         for relative in declared - destinations:
             _strict_file(root, relative)
         result[slug] = sorted(bindings, key=lambda b: b["id"])

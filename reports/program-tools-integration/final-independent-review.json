@@ -1,0 +1,219 @@
+{
+  "schema_version": "Findings.v1",
+  "target": {
+    "kind": "diff",
+    "base": "582e131c8a5293e6f86c61c4b45046a4f2e5097f",
+    "head": "60a53ab75861f3946dd40c63b9db2ffcfde6dd9a",
+    "snapshot_digest": "ebb3a2e8dc869a9afc18245b4008cd75cf6670873203ce1f280f3eba38f6441d",
+    "comparison": "supplied_diff",
+    "included_change_classes": [
+      "supplied"
+    ]
+  },
+  "review_status": "complete",
+  "evidence": [
+    {
+      "id": "E-diff",
+      "path": "git diff --binary 582e131c8a5293e6f86c61c4b45046a4f2e5097f -- [509 exact product-payload.json paths]",
+      "kind": "diff",
+      "side": "snapshot",
+      "identity": "8f9b83435b7f957fb2db41a90be00abeeead3ba56e068f058c348396cdfb5ab0",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-seal",
+      "path": "reports/program-tools-integration/product-payload.json",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "b32ec83b7a3f457a052ddfdcdb941f43f3a4d24dfbd143c6397ea041412ec6dd",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-cli",
+      "path": "docs/CLI-REFERENCE.md",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "53e7070753e3aada44ff70009d32ad371146557d33d93f8175ac526ada35179e",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-tests-adaptation",
+      "path": "tests/test_capability_resources.py",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "1b8d94ad460b41d50ddce72c473ec5c34cd61d22aefaf7a2417d7dd6482bc54d",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-policy",
+      "path": ".meta/surface-rules.json",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "28932c26694d4bb89f21071a0ad99c91869135312c56fe1468e1cd039520f15b",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-loader",
+      "path": "src/intent_pipeline/capability_resources.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "ab320d44b1720c5d93a498d031b4b3ad71dc15030f9b995970a54c810ce03add",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-graph",
+      "path": "sources/capability-resources/engos-design-plan-implementation/scripts/graph_check.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "868db891c87d96c68a30d9403fa47ac00bf957ede1a5c59a2c9c8083cf6f2d51",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-trace",
+      "path": "sources/capability-resources/engos-design-specify-change/scripts/trace_check.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "2f1d0e5f230216bd742753283d2e3c5a4ef39f396089b701885336ee70856968",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-docs-tool",
+      "path": "sources/capability-resources/engos-quality-docs-review/scripts/factual_audit.py",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "651512372e59f8e57b3c0cb4d0b3a39a20dd47c493aec904543244504c0f0187",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-ci-gitlab",
+      "path": ".gitlab-ci.yml",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "ecf1a71d27474463a96fc19fbb7745e49c7f431230243f0e51a78a24ad41a51d",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-ci-github",
+      "path": ".github/workflows/cli-surfaces-validate.yml",
+      "kind": "source",
+      "side": "snapshot",
+      "identity": "7c49eb06cbdbb6dcfcb619446f446b12c2424362128219ce76b3cdda68779816",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-uac",
+      "path": "reports/program-tools-integration/uac/apply-receipt.json",
+      "kind": "decision",
+      "side": "snapshot",
+      "identity": "7e769ccd12a67f91b5a35482a164a5ea3991c42a3a2471ca72f012adce3bdd35",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-ci-original",
+      "path": "reports/program-tools-integration/local-ci/receipt.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "84276187fd111ffea509c956eb12e1a6ad618411f67010c66c037875f262a7e0",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-ci-original13",
+      "path": "reports/program-tools-integration/local-ci/13.log",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "ad9c48586e505f0d9d68659e753de04796578ee30bb6f13a3ef46aa3124517d6",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-recovery1",
+      "path": "reports/program-tools-integration/local-ci/staging-recovery.log",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "e948dd3f8aa222ea59287dac2af0123775aa6ca8705feb7ab75c634068812ab1",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-recovery2",
+      "path": "reports/program-tools-integration/local-ci/staging-recovery-round2.log",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "3e031eadf9da58e0a32f9eff3b37ea9b37e3fdced77324d1ab2302e4d87d75ec",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-recovery3",
+      "path": "reports/program-tools-integration/local-ci/staging-recovery-round3.log",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "79776cf55817d789070b88561c82037f9b52522332b52c1ac2d6936ef301d0c1",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-dist-recovery",
+      "path": "reports/program-tools-integration/local-ci/distribution-output-recovery.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "6516971b4a9a4e09565602dc1a52755277a811a3cd85774800771969d9d18ff9",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-semantic",
+      "path": "reports/program-linkage-tools/semantic-review.json",
+      "kind": "decision",
+      "side": "snapshot",
+      "identity": "ded79709a47e3e788ae8756c68b1e29dd976d4e34191728eb6e2122d105d3f0d",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    },
+    {
+      "id": "E-recovery3-receipt",
+      "path": "reports/program-tools-integration/local-ci/staging-recovery-round3.json",
+      "kind": "test",
+      "side": "snapshot",
+      "identity": "38e5dfa33a31992049de3a06930b65630af977f472c8edfccdf9a9d7c151efcd",
+      "line_start": null,
+      "line_end": null,
+      "read_status": "read"
+    }
+  ],
+  "findings": [],
+  "unreviewed": [],
+  "verdict": "ready"
+}
