@@ -91,6 +91,37 @@ Instruction preservation is separately callable through `engos-meta-instruction-
 
 For example: “Keep the current skill name, reuse any equivalent clause, and show one reviewed destination for the missing rule.” Expect the decision, mapped candidate and UAC findings, with no automatic host configuration or deployment. The operative contracts live in the two skills and their owned resources; the [repository workflow](../.kiro/steering/repo-workflow.md) governs canonical delivery.
 
+## Worked improvement with preservation and evidence
+
+**Illustrative example, not a performed uplift or measured improvement.** Suppose
+an installed `engos-quality-testing-review` request asks: “Add explicit expected
+outcomes and stop claiming tests ran.” Source inspection finds that both behaviors
+already exist. Before drafting a new skill, compare the ask with the current
+`ssot/engos-quality-testing-review.md` and its owned oracle resource.
+
+| Requested change | Existing source obligation | Candidate disposition | Evidence claim |
+| --- | --- | --- | --- |
+| Name an expected outcome and a plausible defect | The testing skill's oracle guidance supplies source-linked outcomes and fault checks | Reuse the current clause/resource; no duplicate owner | Source comparison only |
+| Keep design distinct from test execution | The optional `TestDesign.v1` interchange uses `not_run`; the skill does not execute tests | Preserve verbatim meaning and its no-execution boundary | Contract preservation, not test execution |
+| Make the rule easier to find | Existing invocation and output guidance may be sufficient | If a concrete discoverability gap remains, propose a same-slug wording/location edit with `engos-meta-instruction-editor` | Diff/link/parse checks, not measured benefit |
+
+A completed preservation record would identify the exact source revision, passage,
+destination, displaced clause (or none), disposition and consumers. This example
+is a ledger outline, not a fabricated `PreservationDisplacement.v1` receipt or an
+independent approval. A semantic edit additionally retains the instruction editor's
+`SemanticChangeLedger.v1`. The receiving owner stays `engos-quality-testing-review`;
+donors and existing names remain callable.
+
+If inspection shows no actual gap, the result is a documented reuse decision.
+If an authorized change remains, start the candidate from current SSOT, retain
+frontmatter, authority, outputs and resource ownership, then use the same-slug
+[update sequence](#update-an-existing-capability). An independent review checks the
+actual candidate and preservation evidence. Structural/contract checks may establish
+admission readiness while behavior remains unmeasured or `behavioral_pending`.
+Only a declared baseline comparison with observed results supports a benefit claim;
+no score, hypothetical trial or passing parser substitutes for it. Source delivery
+also remains separate from release and installation.
+
 ## Update An Existing Capability
 
 An installed-skill improvement follows the same quality gate as an addition. Resolve its name to the current mainline `ssot/<slug>.md`, prepare a same-slug candidate in an isolated linked worktree, and review the UAC plan before applying it. A pending rename in another checkout is not the mainline name.
@@ -459,3 +490,13 @@ unless a separately approved rename passes consumer migration evidence. Retain
 public documentation prompts until exact retirement is approved. Install whole
 generated packages; [explicit selection policy](INSTALL-PROFILES.md#choose-future-skill-membership)
 controls future membership without authorizing new agent surfaces.
+
+### Reading job-map availability
+
+The generated [job map](SKILL-JOB-MAP.md#availability-evidence) keeps six evidence
+fields separate from `portfolio_action` and `nearest_neighbors`. Source presence
+is content-hash bound; generated package paths point to the manifest and remain
+uninspected by this map. Release, installed bytes, native discovery and scoped
+runtime cases require per-initiative/run evidence. A `draft_new_skill_pending_review`
+portfolio judgment neither hides a source package nor proves it is usable in the
+current session. Neighbor handoffs cite source clauses and stay conditional.

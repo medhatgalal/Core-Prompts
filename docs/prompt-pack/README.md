@@ -7,6 +7,14 @@ It supports two operating modes:
 1. Together: run one orchestrator prompt for end-to-end output.
 2. Separately: run modular prompts A-E in sequence or as needed.
 
+For everyday onboarding, use the [Getting Started fast/safe paths](../GETTING-STARTED.md)
+and [conditional skill flows](../SKILL-FLOWS.md). To author that documentation,
+request the existing Docs Review `ai-onboarding` recipe, which returns the README
+snippet followed by a full Getting Started draft. All seven prompts below remain
+callable; the [recipe mapping and fallback](../EXAMPLES.md#seven-retained-prompt-donors)
+retains their exact output contracts. No donor retirement or rename is part of
+these documentation changes.
+
 ## Files
 
 - `prompts/master-orchestrator.md`

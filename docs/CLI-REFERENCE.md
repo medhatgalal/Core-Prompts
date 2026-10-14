@@ -615,6 +615,17 @@ instead of treating the generated copy as a new source of truth. See the
 - [UAC usage](UAC-USAGE.md)
 - [Release packaging](RELEASE-PACKAGING.md)
 
+## Antigravity executable and discovery boundary
+
+The executable grammar is `agy`, not `agy cli`. The repository's `--cli agy`
+installer selector is a separate interface. Its configured destination and the
+unresolved CLI documentation difference are recorded in [installation profiles](INSTALL-PROFILES.md#antigravity-cli-agy).
+Use version-, root- and package-bound observations for native `/skills` discovery;
+static help, a successful model listing or package hashes alone do not establish
+skill execution. Plan mode does not enforce a read-only tool boundary. No native
+acceptance recipe here changes account permissions or restarts historical Gemini
+CLI trials.
+
 ## Selected local skill targets
 
 Choose Codex, Kiro, and Grok with an explicit skills-only profile. Codex skills install

@@ -80,4 +80,68 @@ def test_rendered_job_map_is_plain_english_and_routes_all_skills() -> None:
 
     assert "not behavioral proof and not a merger plan" in rendered
     assert "No skill is marked for merger or deletion" in rendered
-    assert rendered.count("\n| `") == len(slugs)
+    assert all(rendered.count(f"\n| `{slug}`<br>") == 1 for slug in slugs)
+
+
+def test_availability_never_infers_live_state_from_source(tmp_path: Path) -> None:
+    from intent_pipeline.skill_jobs import build_advisory_job_map, compile_skill_job
+    slug = "sample-skill"
+    source = "# Sample\n\n## Purpose\nInspect a supplied example.\n"
+    (tmp_path / "ssot").mkdir()
+    (tmp_path / "ssot" / f"{slug}.md").write_text(source)
+    job = compile_skill_job(tmp_path, slug, source, display_name="Sample", description="Inspect")
+    payload = build_advisory_job_map({slug: job})
+    state = payload["availability"][slug]
+    assert state["source_at_revision"]["status"] == "present"
+    assert state["generated_package_at_revision"]["status"] == "not_inspected"
+    assert len(state["generated_package_at_revision"]["distribution_paths"]) == 5
+    assert state["installed_bytes_observation"]["status"] == "not_inspected"
+    assert state["native_discovery_observation"]["status"] == "not_established"
+    assert state["scoped_runtime_evidence"]["status"] == "no_applicable_case_evidence"
+    # A copied live observation cannot be laundered through otherwise valid source metadata.
+    state["native_discovery_observation"]["status"] = "discovery_observed"
+    path = tmp_path / "map.json"
+    path.write_text(json.dumps(payload))
+    with pytest.raises(ValueError, match="per-run evidence gaps"):
+        load_skill_job_map(path, [slug])
+
+
+def test_source_availability_changes_with_source_not_worktree_identity(tmp_path: Path) -> None:
+    from intent_pipeline.skill_jobs import build_advisory_job_map, compile_skill_job
+    slug = "sample-skill"
+    (tmp_path / "ssot").mkdir()
+    path = tmp_path / "ssot" / f"{slug}.md"
+    def compile_text(text: str) -> dict:
+        path.write_text(text)
+        job = compile_skill_job(tmp_path, slug, text, display_name="Sample", description="Inspect")
+        return build_advisory_job_map({slug: job})["availability"]
+    before = compile_text("# Sample\n\n## Purpose\nInspect one example.\n")
+    assert before == compile_text(path.read_text())
+    after = compile_text("# Sample\n\n## Purpose\nInspect a changed example.\n")
+    assert before[slug]["source_at_revision"]["sha256"] != after[slug]["source_at_revision"]["sha256"]
+    assert before[slug]["native_discovery_observation"] == after[slug]["native_discovery_observation"]
+    assert str(tmp_path) not in json.dumps(after)
+
+
+def test_legacy_v2_map_without_availability_stays_readable() -> None:
+    payload = json.loads(JOB_MAP.read_text())
+    payload.pop("availability", None)
+    from intent_pipeline.skill_jobs import _validate_skill_job_map
+    assert _validate_skill_job_map(payload, payload["skills"]) == payload
+
+
+def test_neighbor_handoff_rejects_stale_or_nonportable_source(tmp_path: Path) -> None:
+    import hashlib
+    from intent_pipeline.skill_jobs import validate_neighbor_handoff
+    target = tmp_path / "source.md"
+    target.write_text("One retained handoff.\n")
+    ref = {"path": "source.md", "start_line": 1, "end_line": 1,
+           "sha256": hashlib.sha256(target.read_bytes()).hexdigest()}
+    job = {"neighbor_handoff": {"condition_and_handoff": "A conditional handoff.", "source_refs": [ref]}}
+    validate_neighbor_handoff(job, tmp_path)
+    target.write_text("Changed source requires renewed review.\n")
+    with pytest.raises(ValueError, match="stale"):
+        validate_neighbor_handoff(job, tmp_path)
+    ref["path"] = "../outside.md"
+    with pytest.raises(ValueError, match="invalid neighbor source"):
+        validate_neighbor_handoff(job)

@@ -8,6 +8,40 @@ Install or repair an existing setup with the current installer, even if it has n
 
 The shipped setup is skills-only. Generic independent workers can apply these skills; future named-agent surfaces require your explicit approval. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
 
+## Choose the job you need now
+
+| Your next outcome | Start here |
+| --- | --- |
+| Define a feature, plan accepted work, or implement a small change | [Feature flow](docs/SKILL-FLOWS.md#feature-or-bounded-change) |
+| Explain a failure and hand off an authorized repair | [Bug flow](docs/SKILL-FLOWS.md#failure-diagnosis-and-repair) |
+| Turn rough notes into a frame or shaped pitch | [Shaping flow](docs/SKILL-FLOWS.md#framing-and-shaping) |
+| Design tests, judge a diff, or address selected feedback | [Tests and feedback](docs/SKILL-FLOWS.md#tests-and-review-feedback) |
+| Prepare durable or repeatable work | [Goals and Loopy](docs/SKILL-FLOWS.md#long-horizon-and-repeatable-work) |
+| Improve a skill, audit evidence, or reconcile proposals | [Improvement and analysis](docs/SKILL-FLOWS.md#skill-improvement-audits-and-synthesis) |
+
+Start at the first missing job. A clear, small authorized edit can go straight to
+`engos-delivery-implement-slice`; no workshop, plan sidecar or Batman invocation
+is required. See the [progressive feature and bug examples](docs/EXAMPLES.md#progressive-feature-example).
+
+## Use this with AI
+
+Copy this into your assistant from a trusted checkout. Replace the bracketed job
+and scope with your request:
+
+> Help me use Core-Prompts for [job] in [project and allowed scope]. Read this
+> repository's AGENTS.md and applicable steering, then docs/GETTING-STARTED.md
+> and the relevant route in docs/SKILL-FLOWS.md. Identify the first missing job,
+> check which exact skill is available in this session, and read its complete
+> entry contract and selected resources. Reuse accepted requirements and existing
+> work. Explain the expected artifact and its acceptance or verification status.
+> If the package is unavailable, report the gap and offer the documented setup
+> preview. Keep installation, release, publication and external messages on hold
+> unless I explicitly include them in this request.
+
+The [fast and safe paths](docs/GETTING-STARTED.md) include a first-use check,
+setup preview and recovery. A checkout on main is source state; it does not prove
+that your assistant has installed or discovered those bytes.
+
 ## Guided Shape Up: start with your notes
 
 Use **`engos-design-shaping`** to guide product and engineering through Intake,
@@ -125,7 +159,7 @@ approval and implemented behavior separately. Manual artifacts stay optional.
 | Implement one accepted task or bounded software change | `engos-delivery-implement-slice` | A usable patch, proportionate checks and an honest handoff; no mandatory receipt, commit or full suite |
 | Implement selected reviewer comments from an existing PR/MR | `engos-delivery-address-code-review` | Mutating action workflow; edits only files tied to selected review feedback |
 
-Antigravity CLI (`agy`) can install the same portable skills under `~/.gemini/config/skills` using `--cli agy`.
+Antigravity CLI (`agy`) is a sixth installation reader of the portable Gemini package; there are five generated distributions. The installer currently targets `~/.gemini/config/skills` with `--cli agy`, but native root/discovery needs [version-bound verification](docs/INSTALL-PROFILES.md#antigravity-cli-agy).
 
 Codex and Gemini share installed skills under `~/.agents/skills`; Gemini settings
 and agents remain under `~/.gemini`. See [installation and migration](docs/INSTALL-PROFILES.md)

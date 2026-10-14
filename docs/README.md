@@ -10,8 +10,9 @@ Use this page to pick the right documentation path quickly. The intended order i
 
 | Need | Start here |
 | --- | --- |
-| I want to use an installed Core-Prompts skill or agent | [Getting started](GETTING-STARTED.md) |
+| I want to use an installed Core-Prompts skill | [Getting started](GETTING-STARTED.md) |
 | I need to install, repair old packages, or enable updates | [Installation and recovery](INSTALL-PROFILES.md) |
+| I need the next skill and its conditional handoff | [Skill flows](SKILL-FLOWS.md) |
 | I want richer, copyable example asks | [Examples](EXAMPLES.md) |
 | I am importing or uplifting a capability | [UAC usage](UAC-USAGE.md) |
 | I need to choose the right skill or understand neighboring boundaries | [Skill Job Map](SKILL-JOB-MAP.md) |
@@ -46,8 +47,9 @@ Use [Installation and recovery](INSTALL-PROFILES.md) for fresh installs, histori
 
 ## Canonical Homes
 
-- [`../README.md`](../README.md): longer orientation, real usage examples, UAC boundary, and repo-tooling fast path
+- [`../README.md`](../README.md): orientation, AI handoff, real usage examples, UAC boundary, and repo-tooling fast path
 - [`GETTING-STARTED.md`](GETTING-STARTED.md): first-run path in the correct order
+- [`SKILL-FLOWS.md`](SKILL-FLOWS.md): conditional routes and handoff boundaries
 - [`EXAMPLES.md`](EXAMPLES.md): deeper scenario-style asks and expected outputs
 - [`UAC-USAGE.md`](UAC-USAGE.md): intake, uplift, `plan`, `judge`, and `apply`
 - [`CLI-REFERENCE.md`](CLI-REFERENCE.md): exact commands, paths, generated surfaces, and deploy behavior

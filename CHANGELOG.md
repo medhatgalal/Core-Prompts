@@ -1,5 +1,13 @@
 ## Unreleased
 
+- Add job-first skill flows, a copyable AI onboarding handoff, fast/safe first-use
+  paths and progressive feature/bug examples. Separate job-map source/package
+  evidence from per-run release, installed-byte, discovery and runtime evidence;
+  retain advisory portfolio judgments and source-backed neighbor boundaries.
+  Qualify Antigravity's configured install destination pending version-bound native
+  discovery. No release, live installation, skill rename or retirement is claimed.
+
+
 - Clarify the planner’s optional mechanical graph checker without requiring JSON
   or execution, and document all seven retained prompt-to-recipe consumer mappings
   with their output formats, fallback and unknown external consumers.
