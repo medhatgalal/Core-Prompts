@@ -40,6 +40,7 @@ def _validate_skill_job_map(payload: dict[str, Any], expected_slugs: Iterable[st
         for field in REQUIRED_FIELDS - {"nearest_neighbors"}:
             if not isinstance(job[field], str) or not job[field].strip():
                 raise ValueError(f"{slug}: {field} must be a non-empty string")
+        validate_neighbor_handoff(job)
         validate_routing_fitness(job)
         for companion in (job.get("routing_fitness") or {}).get("conditional_companions", []):
             if companion["skill"] not in expected:
@@ -52,6 +53,8 @@ def _validate_skill_job_map(payload: dict[str, Any], expected_slugs: Iterable[st
         for field in ("review_status", "plain_english_note"):
             if payload.get(field) != derived[field]:
                 raise ValueError("routing map cannot assert review or behavioral readiness")
+        if "availability" in payload and payload["availability"] != derived["availability"]:
+            raise ValueError("availability must retain source bindings and per-run evidence gaps")
         expected = derived["receipt"]
         if payload.get("receipt") != expected:
             raise ValueError("routing map receipt mismatch")
@@ -101,6 +104,10 @@ def render_skill_job_map(payload: Mapping[str, Any], display_names: Mapping[str,
         "",
         "Version 2 includes source/effective-content bindings and source-clause routing fitness. This remains advisory; it does not configure native discovery, authorize actions, or establish behavioral improvement.",
         "",
+        "For conditional journeys and artifact handoffs, use [Skill Flows](SKILL-FLOWS.md). Start at the first missing job; a neighbor is not an automatic invocation.",
+        "",
+        "Availability and portfolio judgments are separate. See [Availability evidence](#availability-evidence); a draft portfolio label does not mean a package is absent.",
+        "",
         "Portfolio actions mean:",
         "",
         "- `keep`: the boundary is already focused.",
@@ -137,6 +144,28 @@ def render_skill_job_map(payload: Mapping[str, Any], display_names: Mapping[str,
     )
     for slug, job in payload["skills"].items():
         lines.append(f"- `{slug}`: {job['routing_question']}")
+    lines.extend([
+        "", "## Availability evidence", "",
+        "This deterministic source view is bound to SSOT content hashes, not an inferred Git HEAD, installed host or release. Generated package presence is not inspected by this map; inspect the manifest and actual bytes at the chosen revision. Per-run reports supply commit/package identity and live observations. Unknown is not failure or success.", "",
+        "| Field | What this map establishes | Evidence needed for a stronger claim |",
+        "| --- | --- | --- |",
+        "| `source_at_revision` | Source path and SHA-256 from the source compiler | Bind that content to the chosen commit or candidate in a run report |",
+        "| `generated_package_at_revision` | Not inspected here; five distribution paths and manifest reference | Presence and package/resource hashes at the same chosen revision |",
+        "| `released_in_this_initiative` | Unknown; per-initiative report required | Verified release identifier and publication receipt, or explicit not-released status |",
+        "| `installed_bytes_observation` | Not inspected | Host, exact path, observation time and matching/differing/absent bytes |",
+        "| `native_discovery_observation` | Not established | Runtime version, effective root, package identity and native probe receipt |",
+        "| `scoped_runtime_evidence` | No applicable case evidence in this map | Job/case, runtime, source revision, original criteria and accepted/unmet/hold/untested result |",
+        "", "Antigravity reads the portable Gemini package and has no additional generated directory. Its installation/discovery evidence is separate from Gemini CLI history. Source presence, a generated manifest, installed bytes and a passing scoped case each answer different questions; none establishes all-skill behavioral quality.", "",
+    ])
+    for slug, evidence in payload.get("availability", {}).items():
+        source = evidence["source_at_revision"]
+        lines.append(f"- `{slug}`: source `{source['path']}`, SHA-256 `{source['sha256']}`; generated packages: **not inspected by this map**, see `.meta/manifest.json`. Release, installation, discovery and runtime evidence require a bound run report.")
+    lines.extend(["", "## Source-backed neighbor handoffs", ""])
+    for slug, job in payload["skills"].items():
+        handoff = job.get("neighbor_handoff")
+        if handoff:
+            refs = ", ".join(f"[{ref['path']}:{ref['start_line']}](../{ref['path']})" for ref in handoff["source_refs"])
+            lines.append(f"- `{slug}`: {handoff['condition_and_handoff']} Sources: {refs}.")
     lines.append("")
     return "\n".join(lines)
 
@@ -208,6 +237,7 @@ def compile_skill_job(repo_root: Path, slug: str, raw_text: str, *, display_name
     import re
     from .capability_resources import load_capability_bundle, effective_capability_text
     job = json.loads(json.dumps(existing)) if existing else draft_skill_job(slug, display_name, description)
+    validate_neighbor_handoff(job, repo_root)
     previous = job.pop("routing_fitness", {})
     path = f"ssot/{slug}.md"
     clauses = _source_clauses(raw_text, path)
@@ -297,12 +327,68 @@ def compile_skill_job(repo_root: Path, slug: str, raw_text: str, *, display_name
     return job
 
 
+def validate_neighbor_handoff(job: Mapping[str, Any], repo_root: Path | None = None) -> None:
+    """Keep optional curated handoffs portable and bound to inspectable source."""
+    handoff = job.get("neighbor_handoff")
+    if handoff is None:
+        return
+    import re
+    from pathlib import PurePosixPath
+    if (not isinstance(handoff, dict)
+            or not isinstance(handoff.get("condition_and_handoff"), str)
+            or not handoff["condition_and_handoff"].strip()
+            or not isinstance(handoff.get("source_refs"), list)
+            or not handoff["source_refs"]):
+        raise ValueError("invalid neighbor handoff")
+    for ref in handoff["source_refs"]:
+        if not isinstance(ref, dict):
+            raise ValueError("invalid neighbor source binding")
+        path = ref.get("path", "")
+        if (not isinstance(path, str) or not path or PurePosixPath(path).is_absolute()
+                or ".." in PurePosixPath(path).parts or "\\" in path
+                or not re.fullmatch(r"[a-f0-9]{64}", str(ref.get("sha256", "")))
+                or type(ref.get("start_line")) is not int or type(ref.get("end_line")) is not int
+                or not 1 <= ref["start_line"] <= ref["end_line"]):
+            raise ValueError("invalid neighbor source binding")
+        if repo_root is not None:
+            target = repo_root / path
+            if not target.is_file() or not target.resolve().is_relative_to(repo_root.resolve()):
+                raise ValueError("neighbor source is unavailable or outside repository")
+            text = target.read_text(encoding="utf-8")
+            if _digest(text) != ref["sha256"] or ref["end_line"] > len(text.splitlines()):
+                raise ValueError("neighbor source binding is stale")
+
+
+def source_availability(jobs: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
+    """Describe source evidence without borrowing release or host/runtime authority."""
+    return {
+        slug: {
+            "source_at_revision": {
+                "status": "present",
+                "path": job["routing_fitness"]["provenance"]["ssot_path"],
+                "sha256": job["routing_fitness"]["provenance"]["ssot_sha256"],
+                "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report",
+            },
+            "generated_package_at_revision": {
+                "status": "not_inspected",
+                "manifest": ".meta/manifest.json",
+                "distribution_paths": {provider: f".{provider}/skills/{slug}/" for provider in
+                                       ("codex", "gemini", "claude", "kiro", "grok")},
+            },
+            "released_in_this_initiative": {"status": "unknown", "evidence": "per_initiative_report_required"},
+            "installed_bytes_observation": {"status": "not_inspected", "evidence": "per_run_report_required"},
+            "native_discovery_observation": {"status": "not_established", "evidence": "per_run_report_required"},
+            "scoped_runtime_evidence": {"status": "no_applicable_case_evidence", "evidence": "per_run_report_required"},
+        } for slug, job in jobs.items()
+    }
+
+
 def build_advisory_job_map(jobs: Mapping[str, Mapping[str, Any]]) -> dict[str, Any]:
     """One deterministic derived view. No timestamps or model-consumption claims."""
     skills = json.loads(json.dumps(dict(sorted(jobs.items()))))
     return {"schema_version": "SkillJobMap.v2", "review_status": "draft_for_human_review",
             "plain_english_note": "Source-bound advisory mapping; no runtime behavior or permission grant.",
-            "skills": skills,
+            "skills": skills, "availability": source_availability(skills),
             "receipt": {"schema_version": "SkillJobMapReceipt.v1", "skills_sha256": _digest(skills),
                         "advisory_only": True, "behavioral_verified": False,
                         "source_bindings": {s: {k: j["routing_fitness"]["provenance"][k]

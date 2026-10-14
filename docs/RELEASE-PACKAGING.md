@@ -242,7 +242,11 @@ need their own exact-byte and behavior evidence. Existing selections do not expa
 without explicit [full/curated policy](INSTALL-PROFILES.md#choose-future-skill-membership).
 Build the capsule and install inventory together from canonical installer sources.
 State3 is accepted only by the new runtime; historical scope guards remain intact.
-Keep package, detached updater, rollback and five-provider native results distinct.
+Keep package, detached updater and rollback evidence distinct. The source emits
+five provider distributions; Antigravity is a sixth installation reader of the
+portable Gemini package, not an extra generated tree. Runtime targets and native
+case results need an explicit version-bound matrix. Historical Gemini CLI results
+do not transfer to Antigravity; see the [unresolved root qualification](INSTALL-PROFILES.md#antigravity-cli-agy).
 Missing mandatory native cases leave the program release on HOLD. Source/main
 checks do not authorize publication, a tag, retirement, rename or home install.
 Historical `RELEASE.md` resolves to this document; no obsolete alias is recreated.

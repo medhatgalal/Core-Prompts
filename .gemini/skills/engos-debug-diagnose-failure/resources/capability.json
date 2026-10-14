@@ -388,9 +388,30 @@
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
     "routing_question": "Does this request directly require Diagnose a Failure?",
-    "nearest_neighbors": [],
+    "nearest_neighbors": [
+      "engos-delivery-implement-slice",
+      "engos-quality-code-review",
+      "engos-operations-ic-assistant"
+    ],
     "shape": "unclassified_new_skill",
     "portfolio_action": "draft_new_skill_pending_review",
+    "neighbor_handoff": {
+      "condition_and_handoff": "Hand reproduction, discriminating evidence, unchanged behavior, uncertainty and the proposed repair boundary to a separately authorized implementer. Code review judges the actual candidate; incident coordination retains human decisions. Diagnosis stops at a supported scoped cause or honest unknown and performs no repair.",
+      "source_refs": [
+        {
+          "path": "ssot/engos-debug-diagnose-failure.md",
+          "start_line": 94,
+          "end_line": 108,
+          "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
+        },
+        {
+          "path": "ssot/engos-delivery-implement-slice.md",
+          "start_line": 96,
+          "end_line": 100,
+          "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+        }
+      ]
+    },
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
       "mapping_status": "stale",
@@ -553,7 +574,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "e5eb06e5e839b645b10bfb43076ea8980773c0cae9538d61f1fa313fd4412277"
+        "mapping_sha256": "8285d788d8064d97643ba1cab97078b9327c7ff414902be6a4d14717423b4f85"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

@@ -1001,9 +1001,30 @@
       "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
       "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
       "routing_question": "Does this request directly require Diagnose a Failure?",
-      "nearest_neighbors": [],
+      "nearest_neighbors": [
+        "engos-delivery-implement-slice",
+        "engos-quality-code-review",
+        "engos-operations-ic-assistant"
+      ],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review",
+      "neighbor_handoff": {
+        "condition_and_handoff": "Hand reproduction, discriminating evidence, unchanged behavior, uncertainty and the proposed repair boundary to a separately authorized implementer. Code review judges the actual candidate; incident coordination retains human decisions. Diagnosis stops at a supported scoped cause or honest unknown and performs no repair.",
+        "source_refs": [
+          {
+            "path": "ssot/engos-debug-diagnose-failure.md",
+            "start_line": 94,
+            "end_line": 108,
+            "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa"
+          },
+          {
+            "path": "ssot/engos-delivery-implement-slice.md",
+            "start_line": 96,
+            "end_line": 100,
+            "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+          }
+        ]
+      },
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
         "mapping_status": "stale",
@@ -1166,7 +1187,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "e5eb06e5e839b645b10bfb43076ea8980773c0cae9538d61f1fa313fd4412277"
+          "mapping_sha256": "8285d788d8064d97643ba1cab97078b9327c7ff414902be6a4d14717423b4f85"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -1823,9 +1844,36 @@
       "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
       "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
       "routing_question": "Does this request directly require Implement a Bounded Slice?",
-      "nearest_neighbors": [],
+      "nearest_neighbors": [
+        "engos-delivery-address-code-review",
+        "engos-quality-testing-review",
+        "engos-quality-code-review"
+      ],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review",
+      "neighbor_handoff": {
+        "condition_and_handoff": "Plain authorized requests can enter directly. Selected comment IDs and dispositions remain with the review-feedback owner. Meaningful verification uses local bundled oracle guidance without automatically invoking test design. Return the actual patch and results for independent candidate judgment; TestDesign stays not_run.",
+        "source_refs": [
+          {
+            "path": "ssot/engos-delivery-implement-slice.md",
+            "start_line": 23,
+            "end_line": 35,
+            "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+          },
+          {
+            "path": "ssot/engos-delivery-implement-slice.md",
+            "start_line": 96,
+            "end_line": 103,
+            "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+          },
+          {
+            "path": "ssot/engos-quality-code-review.md",
+            "start_line": 11,
+            "end_line": 18,
+            "sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a"
+          }
+        ]
+      },
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
         "mapping_status": "stale",
@@ -2004,7 +2052,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "dacd66f424a64d6721fd9562a0607b7360c2f9bca712a065b8ddcb898fed7fc5"
+          "mapping_sha256": "8c9b5751cecc5435197fdcc98b3f144218eda3b88e2e5b863efdd540ab2f1ec3"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -2394,9 +2442,37 @@
       "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
       "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
       "routing_question": "Does this request directly require Plan Implementation?",
-      "nearest_neighbors": [],
+      "nearest_neighbors": [
+        "engos-design-specify-change",
+        "engos-design-architecture",
+        "engos-design-plan-to-goal",
+        "engos-orchestration-batman"
+      ],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review",
+      "neighbor_handoff": {
+        "condition_and_handoff": "Accept plain accepted requirements or an optional supplied SpecContract. Return material design decisions to architecture. A durable goal packet is separately requested; Batman is explicitly selected. Return outcome tasks and holds without launching execution; graph readiness is not acceptance or authority.",
+        "source_refs": [
+          {
+            "path": "ssot/engos-design-plan-implementation.md",
+            "start_line": 24,
+            "end_line": 31,
+            "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+          },
+          {
+            "path": "ssot/engos-design-plan-implementation.md",
+            "start_line": 49,
+            "end_line": 59,
+            "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+          },
+          {
+            "path": "ssot/engos-design-plan-implementation.md",
+            "start_line": 97,
+            "end_line": 103,
+            "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+          }
+        ]
+      },
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
         "mapping_status": "stale",
@@ -2563,7 +2639,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "02eb7fb82760c2b59cd0039b5222184556e8cf449723033d0a179cd8a2cdcd78"
+          "mapping_sha256": "c38b321055bdf63c9774a4009dbbe7b93620633f1a923378ecb1e53fd212975d"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -3089,9 +3165,35 @@
       "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
       "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
       "routing_question": "Does this request directly require Specify a Change?",
-      "nearest_neighbors": [],
+      "nearest_neighbors": [
+        "engos-design-architecture",
+        "engos-design-plan-implementation"
+      ],
       "shape": "unclassified_new_skill",
       "portfolio_action": "draft_new_skill_pending_review",
+      "neighbor_handoff": {
+        "condition_and_handoff": "Use architecture only for a material technical choice; pass accepted requirements to planning when breakdown is needed. Carry requirement IDs, accepted revision and open decisions. Material assumptions hold dependent task approval; specification does not dispatch a consumer.",
+        "source_refs": [
+          {
+            "path": "ssot/engos-design-specify-change.md",
+            "start_line": 31,
+            "end_line": 37,
+            "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+          },
+          {
+            "path": "ssot/engos-design-specify-change.md",
+            "start_line": 80,
+            "end_line": 94,
+            "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+          },
+          {
+            "path": "ssot/engos-design-plan-implementation.md",
+            "start_line": 24,
+            "end_line": 31,
+            "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+          }
+        ]
+      },
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
         "mapping_status": "stale",
@@ -3346,7 +3448,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "0eb64c46708dbf416f9ddce75c2fb0563a2d76b94d4b9d7082aa9db5af3f00ba"
+          "mapping_sha256": "b1fd2b79704f88288bb4a6fcb0116c27a882961ec177fa9dffe1ad1b7446a86d"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -6155,9 +6257,1271 @@
       }
     }
   },
+  "availability": {
+    "engos-audit-code-health": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-audit-code-health.md",
+        "sha256": "13d5adaedbb9a83243b3daa6c19af5ac1024a766c2292f73e0500a2da20ff90e",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-audit-code-health/",
+          "gemini": ".gemini/skills/engos-audit-code-health/",
+          "claude": ".claude/skills/engos-audit-code-health/",
+          "kiro": ".kiro/skills/engos-audit-code-health/",
+          "grok": ".grok/skills/engos-audit-code-health/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-audit-engineering-progress": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-audit-engineering-progress.md",
+        "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-audit-engineering-progress/",
+          "gemini": ".gemini/skills/engos-audit-engineering-progress/",
+          "claude": ".claude/skills/engos-audit-engineering-progress/",
+          "kiro": ".kiro/skills/engos-audit-engineering-progress/",
+          "grok": ".grok/skills/engos-audit-engineering-progress/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-audit-feature-status": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-audit-feature-status.md",
+        "sha256": "856eeeb0ea96203aea43ad3fde7e16311d83fa02a657c773a03e1113661b6df0",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-audit-feature-status/",
+          "gemini": ".gemini/skills/engos-audit-feature-status/",
+          "claude": ".claude/skills/engos-audit-feature-status/",
+          "kiro": ".kiro/skills/engos-audit-feature-status/",
+          "grok": ".grok/skills/engos-audit-feature-status/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-audit-opex-incident-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-audit-opex-incident-review.md",
+        "sha256": "556b396ab2a40d1a1599adabbc66f5de0c2f0ed31a8d75f37a957f2e233580ec",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-audit-opex-incident-review/",
+          "gemini": ".gemini/skills/engos-audit-opex-incident-review/",
+          "claude": ".claude/skills/engos-audit-opex-incident-review/",
+          "kiro": ".kiro/skills/engos-audit-opex-incident-review/",
+          "grok": ".grok/skills/engos-audit-opex-incident-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-audit-pitch-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-audit-pitch-review.md",
+        "sha256": "59e995b0d2de0a2fd231cbda94437e524751357a87d0cf861dc30917a665de8e",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-audit-pitch-review/",
+          "gemini": ".gemini/skills/engos-audit-pitch-review/",
+          "claude": ".claude/skills/engos-audit-pitch-review/",
+          "kiro": ".kiro/skills/engos-audit-pitch-review/",
+          "grok": ".grok/skills/engos-audit-pitch-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-audit-weekly-intel": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-audit-weekly-intel.md",
+        "sha256": "8fd16656292ab76b90954cb291a6f54177bfa0723550cb6ad9f200b9b3065043",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-audit-weekly-intel/",
+          "gemini": ".gemini/skills/engos-audit-weekly-intel/",
+          "claude": ".claude/skills/engos-audit-weekly-intel/",
+          "kiro": ".kiro/skills/engos-audit-weekly-intel/",
+          "grok": ".grok/skills/engos-audit-weekly-intel/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-browser-demo-recorder": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-browser-demo-recorder.md",
+        "sha256": "6d37a05b3348ba25ffe62cf832a458f2fef9b39ee6c2b0c3b475e9a2490abee8",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-browser-demo-recorder/",
+          "gemini": ".gemini/skills/engos-browser-demo-recorder/",
+          "claude": ".claude/skills/engos-browser-demo-recorder/",
+          "kiro": ".kiro/skills/engos-browser-demo-recorder/",
+          "grok": ".grok/skills/engos-browser-demo-recorder/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-content-dynamic-html-presentations": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-content-dynamic-html-presentations.md",
+        "sha256": "dfd228aa737da0a0345f1097b6431fac78f507d1fc8c458af3379c7903dacc73",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-content-dynamic-html-presentations/",
+          "gemini": ".gemini/skills/engos-content-dynamic-html-presentations/",
+          "claude": ".claude/skills/engos-content-dynamic-html-presentations/",
+          "kiro": ".kiro/skills/engos-content-dynamic-html-presentations/",
+          "grok": ".grok/skills/engos-content-dynamic-html-presentations/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-debug-diagnose-failure": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-debug-diagnose-failure.md",
+        "sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-debug-diagnose-failure/",
+          "gemini": ".gemini/skills/engos-debug-diagnose-failure/",
+          "claude": ".claude/skills/engos-debug-diagnose-failure/",
+          "kiro": ".kiro/skills/engos-debug-diagnose-failure/",
+          "grok": ".grok/skills/engos-debug-diagnose-failure/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-delivery-address-code-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-delivery-address-code-review.md",
+        "sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-delivery-address-code-review/",
+          "gemini": ".gemini/skills/engos-delivery-address-code-review/",
+          "claude": ".claude/skills/engos-delivery-address-code-review/",
+          "kiro": ".kiro/skills/engos-delivery-address-code-review/",
+          "grok": ".grok/skills/engos-delivery-address-code-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-delivery-artifact-embed": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-delivery-artifact-embed.md",
+        "sha256": "61124134e12aeb7a3a411622068ca73168435a98f7f820f480acce89d0a6a8de",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-delivery-artifact-embed/",
+          "gemini": ".gemini/skills/engos-delivery-artifact-embed/",
+          "claude": ".claude/skills/engos-delivery-artifact-embed/",
+          "kiro": ".kiro/skills/engos-delivery-artifact-embed/",
+          "grok": ".grok/skills/engos-delivery-artifact-embed/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-delivery-diagram-contract-artifacts": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-delivery-diagram-contract-artifacts.md",
+        "sha256": "a5d2407742d2c56a764423cb3d87c5a5222e208db95cce1ec10be8d66c6764ff",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-delivery-diagram-contract-artifacts/",
+          "gemini": ".gemini/skills/engos-delivery-diagram-contract-artifacts/",
+          "claude": ".claude/skills/engos-delivery-diagram-contract-artifacts/",
+          "kiro": ".kiro/skills/engos-delivery-diagram-contract-artifacts/",
+          "grok": ".grok/skills/engos-delivery-diagram-contract-artifacts/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-delivery-implement-slice": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-delivery-implement-slice.md",
+        "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-delivery-implement-slice/",
+          "gemini": ".gemini/skills/engos-delivery-implement-slice/",
+          "claude": ".claude/skills/engos-delivery-implement-slice/",
+          "kiro": ".kiro/skills/engos-delivery-implement-slice/",
+          "grok": ".grok/skills/engos-delivery-implement-slice/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-delivery-resolve-conflict": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-delivery-resolve-conflict.md",
+        "sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-delivery-resolve-conflict/",
+          "gemini": ".gemini/skills/engos-delivery-resolve-conflict/",
+          "claude": ".claude/skills/engos-delivery-resolve-conflict/",
+          "kiro": ".kiro/skills/engos-delivery-resolve-conflict/",
+          "grok": ".grok/skills/engos-delivery-resolve-conflict/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-design-architecture": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-design-architecture.md",
+        "sha256": "c70eba62d287793edc6776676f383b691e11734ee79c0c27504c4f4b33975bf2",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-design-architecture/",
+          "gemini": ".gemini/skills/engos-design-architecture/",
+          "claude": ".claude/skills/engos-design-architecture/",
+          "kiro": ".kiro/skills/engos-design-architecture/",
+          "grok": ".grok/skills/engos-design-architecture/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-design-frame-from-vague": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-design-frame-from-vague.md",
+        "sha256": "d194971bf322bdbe86abbd4b60128a5c1a717d201469d77148d4261b03863074",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-design-frame-from-vague/",
+          "gemini": ".gemini/skills/engos-design-frame-from-vague/",
+          "claude": ".claude/skills/engos-design-frame-from-vague/",
+          "kiro": ".kiro/skills/engos-design-frame-from-vague/",
+          "grok": ".grok/skills/engos-design-frame-from-vague/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-design-plan-implementation": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-design-plan-implementation.md",
+        "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-design-plan-implementation/",
+          "gemini": ".gemini/skills/engos-design-plan-implementation/",
+          "claude": ".claude/skills/engos-design-plan-implementation/",
+          "kiro": ".kiro/skills/engos-design-plan-implementation/",
+          "grok": ".grok/skills/engos-design-plan-implementation/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-design-plan-to-goal": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-design-plan-to-goal.md",
+        "sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-design-plan-to-goal/",
+          "gemini": ".gemini/skills/engos-design-plan-to-goal/",
+          "claude": ".claude/skills/engos-design-plan-to-goal/",
+          "kiro": ".kiro/skills/engos-design-plan-to-goal/",
+          "grok": ".grok/skills/engos-design-plan-to-goal/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-design-shaping": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-design-shaping.md",
+        "sha256": "0ccbc7dffe17fe291f6ddde65c2ff0776072fd3ed1b7813fc2914eb1487dea4a",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-design-shaping/",
+          "gemini": ".gemini/skills/engos-design-shaping/",
+          "claude": ".claude/skills/engos-design-shaping/",
+          "kiro": ".kiro/skills/engos-design-shaping/",
+          "grok": ".grok/skills/engos-design-shaping/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-design-specify-change": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-design-specify-change.md",
+        "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-design-specify-change/",
+          "gemini": ".gemini/skills/engos-design-specify-change/",
+          "claude": ".claude/skills/engos-design-specify-change/",
+          "kiro": ".kiro/skills/engos-design-specify-change/",
+          "grok": ".grok/skills/engos-design-specify-change/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-memory-context-continuity": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-memory-context-continuity.md",
+        "sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-memory-context-continuity/",
+          "gemini": ".gemini/skills/engos-memory-context-continuity/",
+          "claude": ".claude/skills/engos-memory-context-continuity/",
+          "kiro": ".kiro/skills/engos-memory-context-continuity/",
+          "grok": ".grok/skills/engos-memory-context-continuity/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-memory-threader": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-memory-threader.md",
+        "sha256": "3980433cb346c43e530fd34e800f530fec5759b98ec955ec27f8ed096f4f191c",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-memory-threader/",
+          "gemini": ".gemini/skills/engos-memory-threader/",
+          "claude": ".claude/skills/engos-memory-threader/",
+          "kiro": ".kiro/skills/engos-memory-threader/",
+          "grok": ".grok/skills/engos-memory-threader/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-meta-instruction-editor": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-meta-instruction-editor.md",
+        "sha256": "664a802ed009e967b598da307a40bcfef3bc01fbf199132eca8452a4b3687c86",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-meta-instruction-editor/",
+          "gemini": ".gemini/skills/engos-meta-instruction-editor/",
+          "claude": ".claude/skills/engos-meta-instruction-editor/",
+          "kiro": ".kiro/skills/engos-meta-instruction-editor/",
+          "grok": ".grok/skills/engos-meta-instruction-editor/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-meta-supercharge": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-meta-supercharge.md",
+        "sha256": "4d73dd89fb6830b48af36f7acb69ffa6d79e514f7083b7509e1f7a95c571f181",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-meta-supercharge/",
+          "gemini": ".gemini/skills/engos-meta-supercharge/",
+          "claude": ".claude/skills/engos-meta-supercharge/",
+          "kiro": ".kiro/skills/engos-meta-supercharge/",
+          "grok": ".grok/skills/engos-meta-supercharge/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-meta-uac-import": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-meta-uac-import.md",
+        "sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-meta-uac-import/",
+          "gemini": ".gemini/skills/engos-meta-uac-import/",
+          "claude": ".claude/skills/engos-meta-uac-import/",
+          "kiro": ".kiro/skills/engos-meta-uac-import/",
+          "grok": ".grok/skills/engos-meta-uac-import/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-operations-ic-assistant": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-operations-ic-assistant.md",
+        "sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-operations-ic-assistant/",
+          "gemini": ".gemini/skills/engos-operations-ic-assistant/",
+          "claude": ".claude/skills/engos-operations-ic-assistant/",
+          "kiro": ".kiro/skills/engos-operations-ic-assistant/",
+          "grok": ".grok/skills/engos-operations-ic-assistant/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-optimization-auto-research": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-optimization-auto-research.md",
+        "sha256": "50515be8f59b2bf3fe33b503dcedeca4b9c7f60e0875fd01771d29a3ced37b52",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-optimization-auto-research/",
+          "gemini": ".gemini/skills/engos-optimization-auto-research/",
+          "claude": ".claude/skills/engos-optimization-auto-research/",
+          "kiro": ".kiro/skills/engos-optimization-auto-research/",
+          "grok": ".grok/skills/engos-optimization-auto-research/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-orchestration-batman": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-orchestration-batman.md",
+        "sha256": "e13d65cbb432fa793105578a93257ab3bcce8f971f40b532cebbb54a61fa7eb3",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-orchestration-batman/",
+          "gemini": ".gemini/skills/engos-orchestration-batman/",
+          "claude": ".claude/skills/engos-orchestration-batman/",
+          "kiro": ".kiro/skills/engos-orchestration-batman/",
+          "grok": ".grok/skills/engos-orchestration-batman/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-quality-code-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-quality-code-review.md",
+        "sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-quality-code-review/",
+          "gemini": ".gemini/skills/engos-quality-code-review/",
+          "claude": ".claude/skills/engos-quality-code-review/",
+          "kiro": ".kiro/skills/engos-quality-code-review/",
+          "grok": ".grok/skills/engos-quality-code-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-quality-docs-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-quality-docs-review.md",
+        "sha256": "ce2988f194693dd05fd1d3c1b634547a98415ad1b9ff2f1a5f364343de82981a",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-quality-docs-review/",
+          "gemini": ".gemini/skills/engos-quality-docs-review/",
+          "claude": ".claude/skills/engos-quality-docs-review/",
+          "kiro": ".kiro/skills/engos-quality-docs-review/",
+          "grok": ".grok/skills/engos-quality-docs-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-quality-gitops-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-quality-gitops-review.md",
+        "sha256": "b9db2e90b139946e412496ef843de26a585402f5f28a164ae432e5915264c947",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-quality-gitops-review/",
+          "gemini": ".gemini/skills/engos-quality-gitops-review/",
+          "claude": ".claude/skills/engos-quality-gitops-review/",
+          "kiro": ".kiro/skills/engos-quality-gitops-review/",
+          "grok": ".grok/skills/engos-quality-gitops-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-quality-shaping-gate": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-quality-shaping-gate.md",
+        "sha256": "8db6ef5ff79772e18045baf1641907859d46ace3eebe9cb9aa1f7e6412096a98",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-quality-shaping-gate/",
+          "gemini": ".gemini/skills/engos-quality-shaping-gate/",
+          "claude": ".claude/skills/engos-quality-shaping-gate/",
+          "kiro": ".kiro/skills/engos-quality-shaping-gate/",
+          "grok": ".grok/skills/engos-quality-shaping-gate/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-quality-testing-review": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-quality-testing-review.md",
+        "sha256": "3aae8f12eb8a990f9e7f0d99056eedddcb2119a739c7a94098f500c138dd3a0b",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-quality-testing-review/",
+          "gemini": ".gemini/skills/engos-quality-testing-review/",
+          "claude": ".claude/skills/engos-quality-testing-review/",
+          "kiro": ".kiro/skills/engos-quality-testing-review/",
+          "grok": ".grok/skills/engos-quality-testing-review/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-reconciliation-converge": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-reconciliation-converge.md",
+        "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-reconciliation-converge/",
+          "gemini": ".gemini/skills/engos-reconciliation-converge/",
+          "claude": ".claude/skills/engos-reconciliation-converge/",
+          "kiro": ".kiro/skills/engos-reconciliation-converge/",
+          "grok": ".grok/skills/engos-reconciliation-converge/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "engos-triage-my-inbox-chat-pulse": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-triage-my-inbox-chat-pulse.md",
+        "sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-triage-my-inbox-chat-pulse/",
+          "gemini": ".gemini/skills/engos-triage-my-inbox-chat-pulse/",
+          "claude": ".claude/skills/engos-triage-my-inbox-chat-pulse/",
+          "kiro": ".kiro/skills/engos-triage-my-inbox-chat-pulse/",
+          "grok": ".grok/skills/engos-triage-my-inbox-chat-pulse/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
+    "loopy": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/loopy.md",
+        "sha256": "5da614f097a9bf6fe3cc860142849120caa357fad06b2cc82dfdaaba0b9c537d",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/loopy/",
+          "gemini": ".gemini/skills/loopy/",
+          "claude": ".claude/skills/loopy/",
+          "kiro": ".kiro/skills/loopy/",
+          "grok": ".grok/skills/loopy/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    }
+  },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "8ca9622255e5ef230827b264f0d92590b3be07fd7a71aa538c30cb7fa3d31f48",
+    "skills_sha256": "8cab06eedd0c0a5810943294c43a88ed9c0072e7b006718ef61e725d500a0c5b",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -6204,7 +7568,7 @@
       "engos-debug-diagnose-failure": {
         "ssot_sha256": "04805445e9530460938ee5354198ecb776f60c6a27b88dac1fbf75c705a978aa",
         "effective_sha256": "b9443acc6dd182877f0c0dc5c44909799662e7a9b6cfd2b45600b766a5aae49b",
-        "mapping_sha256": "e5eb06e5e839b645b10bfb43076ea8980773c0cae9538d61f1fa313fd4412277"
+        "mapping_sha256": "8285d788d8064d97643ba1cab97078b9327c7ff414902be6a4d14717423b4f85"
       },
       "engos-delivery-address-code-review": {
         "ssot_sha256": "ecc1b2b37feb7a6ebd287e2042b21a800cad69741f20d288e3256703bd1853f8",
@@ -6224,7 +7588,7 @@
       "engos-delivery-implement-slice": {
         "ssot_sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d",
         "effective_sha256": "76ef99de75363342d05af5fda264364415a615c74b5519aef8e428f14086e352",
-        "mapping_sha256": "dacd66f424a64d6721fd9562a0607b7360c2f9bca712a065b8ddcb898fed7fc5"
+        "mapping_sha256": "8c9b5751cecc5435197fdcc98b3f144218eda3b88e2e5b863efdd540ab2f1ec3"
       },
       "engos-delivery-resolve-conflict": {
         "ssot_sha256": "b4fabeaad5249d5a5ac2cad259e1a6574a98e26fbafd34f98579546934b5fa0b",
@@ -6244,7 +7608,7 @@
       "engos-design-plan-implementation": {
         "ssot_sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a",
         "effective_sha256": "dddacce3084a5e5e917a58d0c579408436631a6f142b186a273c3b5e26bfa772",
-        "mapping_sha256": "02eb7fb82760c2b59cd0039b5222184556e8cf449723033d0a179cd8a2cdcd78"
+        "mapping_sha256": "c38b321055bdf63c9774a4009dbbe7b93620633f1a923378ecb1e53fd212975d"
       },
       "engos-design-plan-to-goal": {
         "ssot_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
@@ -6259,7 +7623,7 @@
       "engos-design-specify-change": {
         "ssot_sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
         "effective_sha256": "347000a127b18a8c3c9c8172d79f7cdd94289dc324430bb9b4941c6a77b5454f",
-        "mapping_sha256": "0eb64c46708dbf416f9ddce75c2fb0563a2d76b94d4b9d7082aa9db5af3f00ba"
+        "mapping_sha256": "b1fd2b79704f88288bb4a6fcb0116c27a882961ec177fa9dffe1ad1b7446a86d"
       },
       "engos-memory-context-continuity": {
         "ssot_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",

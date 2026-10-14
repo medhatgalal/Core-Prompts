@@ -1,5 +1,86 @@
 # Getting Started
 
+Start with an installed skill and the outcome you need. Use UAC when changing a
+capability; use repository tooling when maintaining its source and packages.
+Core skills use their full `engos-*` names; upstream `loopy` keeps its own name.
+The [flow guide](SKILL-FLOWS.md) helps you enter at the first missing job.
+
+## Fast path: use what is already available
+
+1. **Choose one outcome.** For example, ask “Use `engos-design-specify-change`
+   to define acceptance for this feature in our existing format.” For a clear,
+   authorized small edit, use `engos-delivery-implement-slice` directly.
+2. **Check the session.** Select the exact name in your host's skill list and
+   supply the relevant files, desired result and allowed scope. Ask the assistant
+   to identify the loaded package and read its complete entry and selected resources.
+   A name in this repository's catalog alone is not native discovery.
+3. **Inspect the result.** A specification should separate acceptance, unchanged
+   behavior and open decisions. An implementation should return its patch and
+   actual checks, including unavailable checks. Continue only to the job you need;
+   [worked examples](EXAMPLES.md#progressive-feature-example) show the handoffs.
+
+If the skill is missing, use the safe path. Reading a generated package explicitly
+can support a manual workflow, but it is not evidence that native discovery works.
+
+## Safe path: verify setup before changing it
+
+Run these commands from the root of a trusted current checkout. The repository
+requires Python 3.11 or newer (3.14 preferred) and Bash for the installer wrappers.
+This example selects Kiro; choose the provider/profile you actually intend to use.
+For Antigravity, first read the [version and root qualification](INSTALL-PROFILES.md#antigravity-cli-agy).
+
+1. **Check prerequisites and source structure.**
+   ```bash
+   python3 --version
+   bash scripts/install-local.sh --help
+   python3 scripts/validate-surfaces.py
+   ```
+   Validation checks repository packages; it does not validate a live installation.
+2. **Preview the exact installation.** For an existing Kiro setup:
+   ```bash
+   bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+     --cli kiro --repair --dry-run > /tmp/core-prompts-install-plan.json
+   ```
+   For a fresh setup, omit `--repair`. Inspect selected providers/skills, actions,
+   preservation notices and blockers. Choose [full or curated membership](INSTALL-PROFILES.md#choose-future-skill-membership)
+   explicitly if adding new skills; routine updates preserve the saved selection.
+3. **Apply only when installation is in your authorized scope.** Keep this step
+   on hold during source-only work or any explicit installation hold. If approved,
+   use the exact reviewed plan; changed source or destination bytes require a new preview:
+   ```bash
+   bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+     --apply-plan /tmp/core-prompts-install-plan.json
+   ```
+   Customized, unowned, partial and symlinked packages may remain preserved.
+   Review exit `2` as attention needed, not blanket success. See [recovery](INSTALL-PROFILES.md#recover-an-installation).
+4. **Verify the result in your host.** Start a new session if your host caches
+   skills, inspect exact-name discovery, then make the bounded fast-path request.
+   Compare the selected installed package with the intended source/release and
+   repeat the preview to inspect idempotence. Record byte identity, native discovery
+   and the observed task result separately.
+
+## What success looks like
+
+- [ ] The selected job matches the requested outcome and its exact current name.
+- [ ] The host can find the intended package, or the manual-loading limitation is explicit.
+- [ ] The result includes the expected artifact and separates draft/accepted or proposed/observed status.
+- [ ] Existing work and package customizations are preserved; unresolved setup actions remain visible.
+- [ ] Any installation or release hold remains in place. Source-main, release, installed bytes and runtime use have separate evidence.
+
+## Troubleshooting
+
+| Symptom | Likely cause | Action |
+| --- | --- | --- |
+| `python3` or Bash is missing | Documented prerequisite is unavailable | Install the prerequisite through your normal environment process, then rerun the check; do not infer validation passed. |
+| Surface validation fails | Source/generated drift, missing files or schema mismatch | Read the first diagnostic. For maintainer work, follow [build and validation](CLI-REFERENCE.md#rebuild-everything-from-canonical-state); do not install a failing candidate. |
+| Skill absent from the host | Saved selection, preserved package, cached session or wrong effective root | Inspect the plan and installed bytes, refresh the session, and verify the host's effective root; a catalog row is insufficient. |
+| Preview/apply reports preservation or exit `2` | Customized, unowned, partial or symlinked destination | Keep the preservation notice, compare the exact package and use [installation recovery](INSTALL-PROFILES.md); do not delete it to force success. |
+| Reviewed plan is rejected | Source or destination changed after preview | Generate and review a fresh plan. Use the transaction recovery path for an already-applied change. |
+
+## Explore the skills
+
+The following reference examples remain available when you need more detail.
+
 For a resumed shaping workshop, ask the conductor to preserve its pinned history,
 distinguish a normal hold from `recovery_pending`, and return note corrections to
 the assigned researcher. The conductor must not silently edit the candidate to
@@ -18,7 +99,7 @@ Conversational `Supercharge /full` and stacked forms such as `supercharge /simpl
 
 For engineering activity, start with `engos-audit-engineering-progress help`. Supply a repository configuration and reporting window when ready; JSON collection leaves HTML reports untouched, then a separate rendering pass uses your narrative. See the [worked example](EXAMPLES.md#engos-audit-engineering-progress).
 
-## Step 1: Use Installed Capabilities
+## Installed capability examples
 
 For a focused change, ask: “Use `engos-design-specify-change` to specify this feature
 in our existing format; show acceptance conditions, unchanged behavior and open
@@ -219,7 +300,7 @@ required. `TestDesign.v1` stays `not_run`; actual checks belong in a separate
 `SliceReceipt.v1` or other execution evidence. A wrapper exit code of zero alone
 does not establish that an underlying check ran. See [worked handoffs](EXAMPLES.md#bounded-repair-and-review-handoffs).
 
-## Step 2: Use UAC When You Are Landing New Capability Source
+## Use UAC When You Are Landing New Capability Source
 
 Use UAC, the capability intake and uplift workflow, only when you are bringing in a new prompt-like source or intentionally changing canonical capability state.
 
@@ -249,7 +330,7 @@ To move an already-canonical candidate from `behavioral_pending` to `promote`, u
 
 For the full flow, go to [UAC usage](UAC-USAGE.md).
 
-## Step 3: Use Repo Tooling To Verify Or Operate The Repo
+## Use Repo Tooling To Verify Or Operate The Repo
 
 Compile the skill's goal and topology before claiming that an instruction change is behavior-neutral:
 
@@ -382,7 +463,7 @@ These are useful inspection aids, not the first thing a new user should read.
 
 ## Selected local skill targets
 
-Choose agy, Codex, Kiro, or Grok with an explicit skills-only profile. agy uses `.gemini/config/skills`. Codex skills install
+Choose agy, Codex, Kiro, or Grok with an explicit skills-only profile. The current agy installer targets `.gemini/config/skills`; native CLI discovery needs [version-bound verification](INSTALL-PROFILES.md#antigravity-cli-agy). Codex skills install
 under `.agents/skills`, shared with Gemini; Gemini settings and agents stay under `.gemini`. Grok gets native `.grok/skills` packages. Preview the exact
 write set and preserve unknown or customized copies before applying. See
 [installation profiles and rollback](INSTALL-PROFILES.md).

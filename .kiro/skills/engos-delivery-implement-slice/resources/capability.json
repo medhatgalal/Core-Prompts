@@ -368,9 +368,36 @@
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
     "routing_question": "Does this request directly require Implement a Bounded Slice?",
-    "nearest_neighbors": [],
+    "nearest_neighbors": [
+      "engos-delivery-address-code-review",
+      "engos-quality-testing-review",
+      "engos-quality-code-review"
+    ],
     "shape": "unclassified_new_skill",
     "portfolio_action": "draft_new_skill_pending_review",
+    "neighbor_handoff": {
+      "condition_and_handoff": "Plain authorized requests can enter directly. Selected comment IDs and dispositions remain with the review-feedback owner. Meaningful verification uses local bundled oracle guidance without automatically invoking test design. Return the actual patch and results for independent candidate judgment; TestDesign stays not_run.",
+      "source_refs": [
+        {
+          "path": "ssot/engos-delivery-implement-slice.md",
+          "start_line": 23,
+          "end_line": 35,
+          "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+        },
+        {
+          "path": "ssot/engos-delivery-implement-slice.md",
+          "start_line": 96,
+          "end_line": 103,
+          "sha256": "21341957778722963f4a15b97cf93ff56b72133a3864ecff2a2d59875144d76d"
+        },
+        {
+          "path": "ssot/engos-quality-code-review.md",
+          "start_line": 11,
+          "end_line": 18,
+          "sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a"
+        }
+      ]
+    },
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
       "mapping_status": "stale",
@@ -549,7 +576,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "dacd66f424a64d6721fd9562a0607b7360c2f9bca712a065b8ddcb898fed7fc5"
+        "mapping_sha256": "8c9b5751cecc5435197fdcc98b3f144218eda3b88e2e5b863efdd540ab2f1ec3"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

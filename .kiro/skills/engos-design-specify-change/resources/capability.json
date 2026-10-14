@@ -377,9 +377,35 @@
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
     "routing_question": "Does this request directly require Specify a Change?",
-    "nearest_neighbors": [],
+    "nearest_neighbors": [
+      "engos-design-architecture",
+      "engos-design-plan-implementation"
+    ],
     "shape": "unclassified_new_skill",
     "portfolio_action": "draft_new_skill_pending_review",
+    "neighbor_handoff": {
+      "condition_and_handoff": "Use architecture only for a material technical choice; pass accepted requirements to planning when breakdown is needed. Carry requirement IDs, accepted revision and open decisions. Material assumptions hold dependent task approval; specification does not dispatch a consumer.",
+      "source_refs": [
+        {
+          "path": "ssot/engos-design-specify-change.md",
+          "start_line": 31,
+          "end_line": 37,
+          "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+        },
+        {
+          "path": "ssot/engos-design-specify-change.md",
+          "start_line": 80,
+          "end_line": 94,
+          "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+        },
+        {
+          "path": "ssot/engos-design-plan-implementation.md",
+          "start_line": 24,
+          "end_line": 31,
+          "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+        }
+      ]
+    },
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
       "mapping_status": "stale",
@@ -634,7 +660,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "0eb64c46708dbf416f9ddce75c2fb0563a2d76b94d4b9d7082aa9db5af3f00ba"
+        "mapping_sha256": "b1fd2b79704f88288bb4a6fcb0116c27a882961ec177fa9dffe1ad1b7446a86d"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

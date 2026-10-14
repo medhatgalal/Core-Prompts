@@ -93,5 +93,16 @@
     "shape",
     "portfolio_action"
   ],
-  "forbidden_quality_statuses": ["ship"]
+  "forbidden_quality_statuses": [
+    "ship"
+  ],
+  "skill_job_map_evidence_contract": {
+    "location": ".meta/skill-job-map.json availability",
+    "advisory_only": true,
+    "source_binding": "SSOT path and content SHA-256; run reports bind commit/candidate",
+    "generated_package_binding": "not_inspected with distribution paths and manifest reference",
+    "runtime_policy": "release, installed bytes, native discovery and scoped runtime evidence require per-run/initiative reports; never inferred from curation or source presence",
+    "legacy_policy": "v1/v2 maps without availability remain accepted without implying evidence",
+    "neighbor_handoff": "optional curated condition and nonempty portable source path/line/hash references; generation rejects missing, escaped or stale references; nearest_neighbors and portfolio_action retain advisory meaning"
+  }
 }

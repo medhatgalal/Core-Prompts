@@ -14,6 +14,72 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## Progressive feature example
+
+**Illustrative walkthrough, not an executed test or measured improvement.** Suppose
+an issue asks: “Let users export the filtered orders they can currently see.”
+Before: that sentence leaves filtering, authorization and empty results implicit.
+After: the handoffs below make the decision and evidence boundaries inspectable.
+The names and IDs are example project conventions, not required filenames.
+
+1. Ask `engos-design-specify-change`: “Use our issue format. Define observable
+   acceptance and unchanged behavior; keep unresolved choices visible.” A draft
+   might propose `R1`: exported rows equal the currently visible filtered rows;
+   `R2`: export never includes unauthorized rows; `R3`: existing list behavior
+   is unchanged. Empty-result behavior stays pending until the product owner
+   chooses it. Carry the accepted revision and decision reference, not just IDs.
+2. If a material choice exists (for example, asynchronous export versus the
+   existing synchronous API), ask `engos-design-architecture` with that accepted
+   scope. Otherwise skip architecture. A proposed requirement change returns to
+   the requirement owner before dependent work is accepted.
+3. Ask `engos-design-plan-implementation` to plan the accepted scope in the
+   existing tracker. `T1` might own the authorized export path and its tests,
+   consuming the accepted `R1–R3` revision and producing the endpoint/UI behavior.
+   Its task lists allowed writes, interfaces, checks and a stop for unresolved
+   empty-result behavior. Optional task JSON points back to that tracker.
+4. Authorize `engos-delivery-implement-slice` for `T1`. Its oracle compares returned
+   row IDs with the authorized filtered set and probes an excluded row. Ask
+   `engos-quality-testing-review` only if this oracle needs design. Proposed tests
+   remain `not_run`; the implementer records actual commands/results and binds
+   them to the resulting patch. No output here asserts those checks passed.
+5. Give the actual candidate and task evidence to `engos-quality-code-review`.
+   If selected actionable findings remain, use `engos-delivery-address-code-review`
+   with their IDs, then return the repaired revision for review. Applicable docs
+   and hosted gates remain separate; this walkthrough grants no release/install scope.
+
+For a fully specified one-step edit, skip steps 1–3 and provide the same scope and
+expected observation directly to implementation. For a missing material decision,
+continue independent drafting but hold the dependent task. The useful difference
+is traceable acceptance → task → actual evidence, not the number of skills invoked.
+
+## Progressive bug example
+
+**Illustrative walkthrough, not a reproduced defect or accepted runtime result.**
+Before: “Retry the flaky pagination test until it passes” would leave the cause
+unknown. After: diagnosis and an authorized repair share a testable boundary.
+
+1. Ask `engos-debug-diagnose-failure` to compare supplied passing/failing logs
+   at the same revision. Expected: each eligible item appears once. Preserve
+   ordering and authorization behavior. Bound investigation; record exposure,
+   failures and successes. Competing explanations might be shared fixture state
+   and cursor handling; a discriminatory observation must distinguish them.
+2. If the evidence supports a cursor defect, the diagnosis returns its mechanism,
+   reproduction, source/log references, remaining uncertainty and a proposed
+   regression oracle. If both explanations still fit, return `unknown` and the
+   next useful observation. An all-passing retry batch does not become “fixed.”
+3. With repair authority, ask `engos-delivery-implement-slice` to change only the
+   supported boundary. Carry expected and unchanged behavior plus exact evidence
+   references. Reproduce the defect where feasible, run the focused regression
+   and record actual outcomes; unavailable runners remain unavailable. Use test
+   design only if the oracle itself needs work.
+4. `engos-quality-code-review` judges the actual candidate and checks whether the
+   observed evidence supports the claim. Selected comments retain their IDs through
+   the feedback owner. An incident may separately need `engos-operations-ic-assistant`;
+   that is coordination, not a substitute for causal evidence.
+
+The [flow guide](SKILL-FLOWS.md) is the canonical route map. The remaining sections
+provide standalone asks when only one of these jobs is needed.
+
 ## engos-debug-diagnose-failure
 
 **Use when:** a test, build or runtime behavior fails and the cause is uncertain.
@@ -1714,9 +1780,11 @@ scheduling, and publication retain their separate authorization boundaries.
 
 ## Use a skill from agy
 
-Deploy with `scripts/install-local.sh --cli agy --target "$HOME" --allow-nonlocal-target --dry-run`,
-review and apply the saved plan as described in [installation profiles](INSTALL-PROFILES.md),
-then start `agy` and use `/skills` to inspect the available names. For example,
+First resolve the [version-bound native root](INSTALL-PROFILES.md#antigravity-cli-agy).
+Preview with `bash scripts/install-local.sh --cli agy --target "$HOME" --allow-nonlocal-target --dry-run`;
+keep application on hold while that root or installation authority is unresolved.
+When the intended package is available, start `agy` and use its documented `/skills`
+control to inspect actual names; retain the observation rather than assuming discovery. For example,
 ask `Use engos-quality-code-review to review this diff` and expect source-linked
 findings. Deployment does not grant tool permissions or establish account access.
 

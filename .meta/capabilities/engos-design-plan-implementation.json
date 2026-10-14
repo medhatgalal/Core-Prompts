@@ -366,9 +366,37 @@
     "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
     "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
     "routing_question": "Does this request directly require Plan Implementation?",
-    "nearest_neighbors": [],
+    "nearest_neighbors": [
+      "engos-design-specify-change",
+      "engos-design-architecture",
+      "engos-design-plan-to-goal",
+      "engos-orchestration-batman"
+    ],
     "shape": "unclassified_new_skill",
     "portfolio_action": "draft_new_skill_pending_review",
+    "neighbor_handoff": {
+      "condition_and_handoff": "Accept plain accepted requirements or an optional supplied SpecContract. Return material design decisions to architecture. A durable goal packet is separately requested; Batman is explicitly selected. Return outcome tasks and holds without launching execution; graph readiness is not acceptance or authority.",
+      "source_refs": [
+        {
+          "path": "ssot/engos-design-plan-implementation.md",
+          "start_line": 24,
+          "end_line": 31,
+          "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+        },
+        {
+          "path": "ssot/engos-design-plan-implementation.md",
+          "start_line": 49,
+          "end_line": 59,
+          "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+        },
+        {
+          "path": "ssot/engos-design-plan-implementation.md",
+          "start_line": 97,
+          "end_line": 103,
+          "sha256": "56891e290348815e1ee136ef5ce9baf0b7c033d5b860d052be6768b86107d75a"
+        }
+      ]
+    },
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
       "mapping_status": "stale",
@@ -535,7 +563,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "02eb7fb82760c2b59cd0039b5222184556e8cf449723033d0a179cd8a2cdcd78"
+        "mapping_sha256": "c38b321055bdf63c9774a4009dbbe7b93620633f1a923378ecb1e53fd212975d"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

@@ -327,7 +327,7 @@ compatibility path. Empty directories may remain after exact-file retirement.
 The agent paths below are historical cleanup and future-adapter locations; the
 current package emits no named agents.
 
-| Provider | Installed skill root | Agent root |
+| Provider | Installer destination (native discovery verified separately) | Agent root |
 | --- | --- | --- |
 | Codex | `.agents/skills/` | `.codex/agents/`, with target-local registrations |
 | Kiro | `.kiro/skills/` | `.kiro/agents/` |
@@ -388,24 +388,41 @@ alone does not update them. Check the installed result before claiming cleanup.
 
 ## Antigravity CLI (agy)
 
-agy is a supported installation reader for the portable Gemini skill package.
-It uses `~/.gemini/config/skills`, separate from the legacy Gemini CLI shared root.
-Settings remain in `~/.gemini/antigravity-cli/settings.json`. This deployment adds
-skills and complete resource bundles; it does not translate named agents or copy
-Gemini authentication, trust, MCP, or permission settings.
+The current repository installer accepts `--cli agy` and places the portable
+Gemini skill package at `~/.gemini/config/skills`. This is the configured installer
+destination, not a claim that every installed Antigravity CLI discovers it.
+There are five generated distributions and six installer readers; no `.agy`
+generated surface or named-agent translation is added.
+
+A previously inspected embedded customization guide describes a global `.gemini/config` root and
+project `.agents/skills` with project precedence, while the [current CLI skills
+documentation](https://antigravity.google/docs/skills) lists
+`~/.gemini/antigravity-cli/skills`. That historical guide is not proof of the current executable. The effective global root needs a version-bound
+native probe before installation or migration is recommended. A changelog heading
+or historical version label does not establish the running executable's version.
+Do not reinterpret historical Gemini CLI evidence as Antigravity acceptance.
+
+For an authorized setup investigation, begin with the current installer preview:
 
 ```bash
-scripts/install-local.sh --cli agy --target "$HOME" --allow-nonlocal-target --dry-run > agy-plan.json
-scripts/install-local.sh --target "$HOME" --allow-nonlocal-target --apply-plan agy-plan.json
+bash scripts/install-local.sh --cli agy --target "$HOME" --allow-nonlocal-target --dry-run > agy-plan.json
 ```
 
-An explicit `--cli agy` installs its skills even when an older saved selection did
-not include agy. Existing selections survive; subsequent syncs maintain the new
-agy selection. Customized native packages remain protected and reported.
+Review destination, selection and preservation notices before any apply. Keep
+application on hold while the native destination remains unresolved. The general
+[preview/apply](#preview-and-apply) and [recovery](#recover-an-installation) workflows
+apply once the intended root and write set have evidence and installation is in
+scope. Explicit `--cli agy` can add that reader to an older selection; subsequent
+syncs retain it. This membership effect is distinct from native discovery.
 
-The repository continues to generate `.gemini` distribution artifacts. It does
-not invent an `.agy` source surface. For project reuse, agy supports
-`.agents/skills` and `.agents/skills.json` registrations. The installed 1.2.3
-customization guide and the [current global skill documentation](https://antigravity.google/docs/skills)
-identify `.gemini/config/skills`; older CLI migration examples show the superseded
-`.gemini/antigravity-cli/skills` path. Recheck the installed guide when upgrading.
+The executable is `agy`, not `agy cli`. Native `/skills` and `/<skill>` controls
+are documented, but only an actual bound observation establishes discovery or
+use. Record executable identity/version, working directory, effective skill root,
+package digest and observed result. [Plan mode](https://antigravity.google/docs/cli/modes/)
+is instruction-based and does not itself enforce read-only execution; configured
+permissions still apply, including in [headless mode](https://antigravity.google/docs/cli/headless/).
+
+Preserve existing `~/.gemini/antigravity-cli/settings.json`, `mcp_config`,
+authentication, trust, plugins and permission settings. The skill installation
+flow does not translate or grant these controls. This guide records the unresolved
+root distinction without changing the installer or awarding native-test credit.
