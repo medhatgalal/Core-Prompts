@@ -187,8 +187,11 @@ not authorize another provider. Recognized `autosearch` packages migrate to
 when its package ownership is recognized and no unresolved dependency
 requires it. Replacement files are verified before predecessor files are removed.
 
-The current release retires all 11 first-party named-agent variants on Codex,
-Gemini, Claude, and Kiro (44 entrypoints), retaining the current 32 skill capabilities.
+The v1.15.0 retirement (2026-09-15) covers all 11 first-party named-agent variants
+on Codex, Gemini, Claude, and Kiro (44 entrypoints). The v1.16.5 release contains
+32 skills; the unreleased catalog as of 2026-10-15 contains 36. Both retain
+skills-only distribution; catalog growth alone does not expand a saved concrete
+selection (see [future skill membership](#choose-future-skill-membership)).
 The existing historical catalog and ownership receipts identify the affected
 packages; no second registry is needed. A recognized owned retired agent maps
 to the exact same capability's skill on the same provider. Its skill is retained
@@ -210,9 +213,11 @@ Future added or reintroduced agent surfaces require explicit user approval and
 independent execution-need review before they can be emitted.
 
 
-Except for the identified retired Core-Prompts agents described above, unknown,
-customized, and symlinked packages are preserved as whole packages,
-including partial packages that fail ownership recognition. During schema-1
+Unknown and symlinked packages are preserved as whole packages, including partial
+packages that fail ownership recognition. Customized skills and custom non-Core
+agents remain preserved. Only local modifications are exempted from preservation
+for exactly identified retired Core-Prompts agents; symlink, ambiguous-identity,
+configuration, and dependency protections still apply as described above. During schema-1
 receipt conversion, matching present files can establish ownership even when
 receipted members are missing; the reviewed plan may restore those members.
 Inspect the plan's exact actions before applying it. A custom successor normally preserves its predecessor; the explicit Core-agent
