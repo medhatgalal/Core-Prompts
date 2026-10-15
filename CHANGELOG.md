@@ -1,5 +1,11 @@
 ## Unreleased
 
+- Clarify installer help and preservation guidance: local modifications alone
+  do not prevent retirement of exactly identified retired Core-Prompts agents.
+  Retain symlink, identity, configuration, and dependency protections and reviewed,
+  recoverable transactions. Date the retirement baseline and distinguish the v1.16.5
+  32-skill release from the unreleased 36-skill catalog; installer policy is unchanged.
+
 - Add job-first skill flows, a copyable AI onboarding handoff, fast/safe first-use
   paths and progressive feature/bug examples. Separate job-map source/package
   evidence from per-run release, installed-byte, discovery and runtime evidence;

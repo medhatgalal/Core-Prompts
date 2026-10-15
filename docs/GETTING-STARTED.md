@@ -379,14 +379,18 @@ bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
 For a fresh target, omit `--repair`; the current package contains skills only.
 Existing skills and agents are recognized independently from trusted historical
 identities. Repair plans retirement of recognized owned agent variants and keeps
-or installs their same-job skill on the selected provider. Customized or unowned
-packages remain preserved. `--with-agents` selects only emitted agents (currently
-none) and cannot authorize source creation.
+or installs their same-job skill on the selected provider. Customized skills and
+custom non-Core agents remain preserved. Local modifications alone do not prevent
+retirement of an exactly identified retired Core-Prompts agent. Symlink,
+ambiguous-identity, configuration, and dependency protections still apply;
+review the plan before applying removals through the recoverable transaction.
+`--with-agents` selects only emitted agents (currently none) and cannot authorize
+source creation.
 
 The resulting `.core-prompts-state/installation.json` saves concrete provider,
 surface, and slug selection. Routine updates reconcile owned package resources
-and keep that selection. Unknown, customized, symlinked, and unrecognized partial
-packages are preserved and reported; exit `2` means migration still needs attention.
+and keep that selection. Unknown, symlinked, and unrecognized partial packages
+remain preserved and reported; exit `2` means migration still needs attention.
 Schema-1 receipt conversion may restore missing receipted files; see
 [recognition and preservation](INSTALL-PROFILES.md#historical-recognition-and-preservation)
 when reviewing the plan.

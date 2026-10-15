@@ -477,7 +477,12 @@ Recognized owned retired agents map to their exact same-job, same-provider skill
 including agent-only saved selections. Routine updates reconcile owned selected
 packages and declared retirements without adding unrelated catalog entries.
 
-Whole unknown, custom, symlinked, or unrecognized partial packages are preserved. Exit `2`
+Whole unknown, symlinked, and unrecognized partial packages remain preserved,
+as do customized skills and custom non-Core agents. Local modifications alone do
+not prevent retirement of an exactly identified retired Core-Prompts agent.
+Symlink, ambiguous-identity, configuration, and dependency protections still apply.
+Review the plan before applying removals through the recoverable transaction; see
+[recognition and preservation](INSTALL-PROFILES.md#historical-recognition-and-preservation). Exit `2`
 reports `applied-with-preserved` or `no-op-with-preserved`; it is not full parity.
 Exit `1` reports blockers or failures. Source/runtime blockers prevent surface
 changes, while interrupted apply requires recovery using its reported transaction.

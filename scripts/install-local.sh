@@ -6,7 +6,13 @@ usage() {
 Usage: scripts/install-local.sh [--cli agy|gemini|claude|kiro|codex|grok|all] [--target PATH] [--allow-nonlocal-target] [--dry-run] [--strict-cli] [--mode copy]
 
 Compatibility wrapper around deploy-surfaces.sh and its transactional installer.
-Symlinked and customized packages are preserved; link installation is unsupported.
+Unknown, symlinked, and unrecognized partial packages remain preserved, as do
+customized skills and custom non-Core agents. Local modifications alone do not
+prevent retirement of an exactly identified retired Core-Prompts agent.
+Symlink, ambiguous-identity, configuration, and dependency protections still apply.
+Removals use a recoverable transaction; review the plan before applying. See
+docs/INSTALL-PROFILES.md ("Historical recognition and preservation").
+Link installation is unsupported.
 When --target points outside this repository, install also writes the standalone updater bundle,
 installed VERSION, RELEASE_SOURCE.env, and update_core_prompts.sh
 for later release checks.
