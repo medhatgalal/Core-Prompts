@@ -22,6 +22,11 @@ The [flow guide](SKILL-FLOWS.md) helps you enter at the first missing job.
 If the skill is missing, use the safe path. Reading a generated package explicitly
 can support a manual workflow, but it is not evidence that native discovery works.
 
+If you already installed an older catalog and want the latest source before a
+release, follow [upgrade from verified main](INSTALL-PROFILES.md#upgrade-from-verified-main-before-the-next-release)
+first. Fetching source, applying the installer and choosing new skill membership
+are separate steps; release checking alone does not adopt unreleased main.
+
 ## Safe path: verify setup before changing it
 
 Run these commands from the root of a trusted current checkout. The repository

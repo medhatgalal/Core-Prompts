@@ -9,6 +9,19 @@ Prefer the repo wrappers for build and validate so the runtime selection stays c
 
 ## Local Release Gate
 
+Before any generator or source-generating test, verify the committed runtime
+inventory without rebuilding it:
+
+```bash
+python3 -m pytest -q tests/test_install_bundle.py
+python3 scripts/build-install-runtime.py --check
+python3 scripts/build-legacy-catalog.py --check
+```
+
+An inventory mismatch identifies stale committed bytes or file modes. Preserve the
+failure evidence, then regenerate from canonical sources and review the resulting
+diff; a successful build cannot prove the prior committed inventory was valid.
+
 First verify the comparison baseline and run the release build described below. The full test suite includes archive tests that require the generated `dist/consumer-shell` views. On a clean committed checkout, validate the checked-in surfaces before that build, as CI does.
 
 ```bash
@@ -59,7 +72,7 @@ release alone does not require a home installation.
 scripts/package-surfaces.sh --version "$(tr -d '[:space:]' < VERSION)"
 ```
 
-`VERSION` is the canonical shipped release version. Packaging fails if `--version` does not match `VERSION`, if the top `CHANGELOG.md` entry does not match `VERSION`, or if a nonempty `Unreleased` section remains.
+`VERSION` is the canonical shipped release version. Packaging fails if `--version` does not match `VERSION`, if the top `CHANGELOG.md` entry does not match `VERSION`, or if a nonempty `Unreleased` section remains. It also verifies the standalone runtime inventory before creating output directories or archives. A stale inventory fails with the mismatched path; packaging does not regenerate or repair it.
 
 ## Packaged Boundary
 The package should include:
@@ -143,7 +156,9 @@ forbidden.
 The editable installation engine is `scripts/core_install/`.
 `python3 scripts/build-install-runtime.py` deterministically regenerates the
 shipped `scripts/deploy-profile.py` capsule. Verify source/capsule parity before
-building the bundle inventory. The capsule preserves the older v1.14 runtime path
+building the bundle inventory. The standard build generates the capsule first,
+then refreshes `.meta/install-bundle.json` through the existing inventory builder.
+The capsule preserves the older v1.14 runtime path
 allowlist; the modular source tree is not required at installation runtime.
 
 Historical package recognition comes from the checked-in
@@ -175,7 +190,9 @@ GitLab also disables the Docker runner's permissive checkout umask and builds wi
   - runs on branch pushes
   - runs on merge request pipelines
 
-Both providers validate the checked-in surfaces before building the distribution views required by the archive tests. This preserves drift detection on fresh checkouts.
+Both providers verify the committed installer inventory immediately after test
+dependencies are installed, before any source-generating tests or build. They
+validate the checked-in surfaces before building the distribution views required by the archive tests. This preserves drift detection on fresh checkouts.
 
 Local release gates retain `bin/capability-fabric validate --strict`, including schema cache checks, so transient hosted network or vendor-doc failures do not mask local schema drift review.
 

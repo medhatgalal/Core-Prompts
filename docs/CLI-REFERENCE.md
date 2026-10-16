@@ -696,3 +696,11 @@ including state3 versus plan2/journal1/receipt2 and saved legacy membership
 proof. Legacy `docs/adoption/IMPORT_PROMPTS.md` guidance resolves there. Copy
 entire packages, including loader, resource map and owner-bound import receipt;
 a copied entrypoint alone cannot establish resource closure or native acceptance.
+
+## Upgrade from current main
+
+Use the [verified-main upgrade path](INSTALL-PROFILES.md#upgrade-from-verified-main-before-the-next-release)
+when adopting source changes ahead of a release. It covers fast-forward-only
+checkout refresh, current-installer preview/apply, full versus curated membership,
+AI handoff, package readback and transaction recovery. Release-watch commands
+follow immutable releases; they do not adopt an unreleased branch.

@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import os
 import subprocess
 import tarfile
 import zipfile
 from pathlib import Path
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -280,3 +283,43 @@ def test_package_rejects_unreleased_changes_before_archive_creation(tmp_path: Pa
     assert result.returncode != 0
     assert "Unreleased content" in result.stdout + result.stderr
     assert not (tmp_path / "out").exists()
+
+
+@pytest.mark.parametrize("existing_output", [False, True])
+def test_stale_runtime_inventory_rejects_packaging_before_output_writes(
+    tmp_path: Path, finalized_release_tree: Path, existing_output: bool
+) -> None:
+    repo = finalized_release_tree
+    inventory = repo / ".meta/install-bundle.json"
+    inventory_before = inventory.read_bytes()
+    wrapper = repo / "scripts/install-local.sh"
+    wrapper.write_text(wrapper.read_text() + "\n# Help-only drift must block packaging.\n")
+    output = tmp_path / "artifacts"
+    if existing_output:
+        output.mkdir()
+        (output / "sentinel.txt").write_text("preserve existing output\n")
+    before = {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()}
+    # The negative path must not depend on archive tools being installed.
+    tools = tmp_path / "archive-tool-shims"
+    tools.mkdir()
+    marker = tmp_path / "archive-tool-invoked"
+    for name in ("tar", "zip"):
+        shim = tools / name
+        shim.write_text('#!/bin/sh\nprintf invoked > "$ARCHIVE_TOOL_MARKER"\nexit 97\n')
+        shim.chmod(0o755)
+    env = dict(os.environ, PATH=str(tools) + os.pathsep + os.environ["PATH"],
+               ARCHIVE_TOOL_MARKER=str(marker))
+    version = (repo / "VERSION").read_text().strip()
+
+    result = subprocess.run(
+        [str(repo / "scripts/package-surfaces.sh"), "--version", version,
+         "--output-dir", str(output)], cwd=repo, env=env,
+        capture_output=True, text=True,
+    )
+
+    assert result.returncode != 0
+    assert "standalone bundle identity mismatch: scripts/install-local.sh" in result.stdout + result.stderr
+    assert inventory.read_bytes() == inventory_before
+    assert not marker.exists()
+    assert output.exists() == existing_output
+    assert {p.relative_to(output): p.read_bytes() for p in output.rglob("*") if p.is_file()} == before
