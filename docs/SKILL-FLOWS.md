@@ -107,5 +107,5 @@ packet nor Loopy creates authority for a downstream action.
 
 Each route ends at its requested artifact or experiment bound. A missing source
 remains an evidence gap; conflicting human priorities remain a decision. The
-retained [prompt donors](prompt-pack/README.md) remain callable. No route retires
+retained [prompt donors (source repository)](https://github.com/medhatgalal/Core-Prompts/blob/main/docs/prompt-pack/README.md) remain callable. No route retires
 a donor, renames an owner, adds an agent surface or authorizes installation.

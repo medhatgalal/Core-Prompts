@@ -108,7 +108,14 @@ def test_same_slug_canonicalization_preserves_ssot_frontmatter_and_drops_generat
     assert "Capability resource:" not in canonicalized
 
 
-def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_differs() -> None:
+def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_differs(monkeypatch) -> None:
+    existing = {
+        "shared_summary": "Existing curated review summary",
+        "consumption_hints": {"preferred_use_cases": [
+            "pre-merge commit review", "scope creep detection", "over-engineering checks",
+        ]},
+    }
+    monkeypatch.setattr(UAC_IMPORT, "load_descriptor", lambda root, slug: existing)
     candidate = {
         "shared_summary": "generic uplift summary",
         "consumption_hints": {"preferred_use_cases": ["generic"]},
@@ -125,7 +132,7 @@ def test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_diffe
     )
 
     assert quality_bound is False
-    assert merged["shared_summary"] == "[ScottP] Git commit review with scope control and over-engineering detection"
+    assert merged["shared_summary"] == existing["shared_summary"]
     assert merged["consumption_hints"]["preferred_use_cases"] == [
         "pre-merge commit review",
         "scope creep detection",
@@ -154,12 +161,13 @@ def test_same_slug_apply_preserves_current_matrix_over_historical_judge_plan(mon
     assert merged["quality_validation_matrix"] == (current if has_current_matrix else historical)
 
 
-def test_same_slug_descriptor_refreshes_bound_explicit_description() -> None:
+def test_same_slug_descriptor_refreshes_bound_explicit_description(monkeypatch) -> None:
     applied = (ROOT / "ssot" / "engos-quality-code-review.md").read_text(encoding="utf-8")
     frontmatter, _ = UAC_IMPORT.parse_ssot_frontmatter_and_body(applied)
     explicit_description = str(frontmatter["description"])
-    existing = UAC_IMPORT.load_descriptor(ROOT, "engos-quality-code-review")
+    existing = {"shared_summary": "Existing curated review summary"}
     assert existing["shared_summary"] != explicit_description
+    monkeypatch.setattr(UAC_IMPORT, "load_descriptor", lambda root, slug: existing)
 
     merged, quality_bound = UAC_IMPORT._merge_existing_descriptor_for_apply(
         "engos-quality-code-review",

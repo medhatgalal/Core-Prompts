@@ -87,7 +87,10 @@ The package should include:
 - deploy/install scripts, the generated `scripts/deploy-profile.py` installation capsule, and `scripts/eng-report.py`; installed runtime execution is independent of the source checkout
 - release-watch updater scripts, `VERSION`, and `RELEASE_SOURCE.env`
 - any retained legacy local source checkout metadata; new-engine release acceptance does not advance a development checkout
-- curated operator/integrator docs
+- curated operator/integrator docs, including `docs/SKILL-FLOWS.md` and
+  `AGENTS.md` with its packaged `.kiro/steering/` dependencies
+- primary onboarding links resolved inside both archives; authoring `ssot/` and
+  retained prompt donors are explicitly linked to the source repository
 - generated consumer-shell docs (`docs/CAPABILITY-CATALOG.md`, `docs/RELEASE-DELTA.md`, `docs/STATUS.md`)
 - capability-evaluation and Skill Job Map documentation
 - `README.md`
@@ -193,12 +196,23 @@ GitLab also disables the Docker runner's permissive checkout umask and builds wi
 Both providers verify the committed installer inventory immediately after test
 dependencies are installed, before any source-generating tests or build. They
 validate the checked-in surfaces before building the distribution views required by the archive tests. This preserves drift detection on fresh checkouts.
+Both pipelines also run five focused pre-generation regressions for the README
+skill count, Batman advisory authority, a protected pilot marker and UAC
+descriptor preservation/refresh. These fixtures use the existing Python test
+dependencies and require no native provider command.
 
 Local release gates retain `bin/capability-fabric validate --strict`, including schema cache checks, so transient hosted network or vendor-doc failures do not mask local schema drift review.
 
 When using `validate --with-cli`, native validator results also honor error-output patterns declared in `.meta/surface-rules.json`. Kiro CLI 2.21.1 can print an `Error:` diagnostic while returning zero; this is a failure, including when ANSI color codes surround the diagnostic. The Kiro reference set includes the current configuration page and the versioned CLI 2.x reference; it does not imply that a CLI 3.x migration was performed.
 
 ## Recommended Release Order
+
+The v1.17.0 preparation does not authorize these publication steps. The
+[publication and live-rollout hold](#publication-and-live-rollout-hold) must be
+resolved before creating or pushing matching tags. The target is the future
+reviewed release-preparation merge SHA with exact-SHA hosted checks and parity,
+not the earlier source-main commit or this unmerged preparation branch.
+
 1. run the local release gate
 2. push the branch and wait for GitHub Actions and GitLab CI to go green
 3. merge only after the hosted checks are green
@@ -264,6 +278,45 @@ five provider distributions; Antigravity is a sixth installation reader of the
 portable Gemini package, not an extra generated tree. Runtime targets and native
 case results need an explicit version-bound matrix. Historical Gemini CLI results
 do not transfer to Antigravity; see the [unresolved root qualification](INSTALL-PROFILES.md#antigravity-cli-agy).
-Missing mandatory native cases leave the program release on HOLD. Source/main
-checks do not authorize publication, a tag, retirement, rename or home install.
+### Qualified v1.17.0 preparation scope
+
+The authorized release preparation adopts the qualified main/adoption acceptance
+scope for source packages and controlled upgrades. It replaces the blanket
+missing-native-case release criterion for this preparation with an explicit,
+limited promise; it does not waive or regrade any native test. Historical native
+acceptance remains **18/25**, with the original cells and criteria unchanged.
+No new native provider run or universal provider acceptance is claimed.
+
+Controlled upgrade evidence covers six authentic owned 32-skill selections through
+ordinary 32, explicit 36 and unchanged-repeat workflows. A4 retirement/recovery
+acceptance reuses qualified synthetic evidence; it is not proof of universal
+historical migration or live retirement. A5 accepts qualified manual package
+loading for agy, not global catalog/slash-command discovery. The documented
+checkout route is a path-only adaptation and has not been replayed as a native
+acceptance run. Missing access remains a blocker; no trust/authentication change
+is implied. AGY global discovery and apply remain **HOLD** while the effective
+version-bound destination is unresolved. See the exact [manual-use limits](INSTALL-PROFILES.md#temporary-manual-use-from-a-checkout).
+
+These are source/package and controlled-adoption claims, not comparative skill
+benefit, model superiority, installed-byte parity or fresh task success. Exact
+candidate and merged-main hosted CI, reviewed archive contents and published
+asset readback remain distinct release gates. Source/main checks do not authorize
+publication, a tag, retirement, rename or home install.
+
+### Publication and live-rollout hold
+
+**v1.17.0 tagging, publication and live installation remain HOLD.** The release
+watcher can discover matching remote tags before hosted assets exist. The
+reviewed local metadata on 2026-10-16 showed a daily 09:00 auto-accept runner and
+six saved 32-skill readers, including agy. This is exposure evidence, not proof
+that the scheduler ran or applied a release. A matching tag pair could activate
+that path despite a manual-install hold.
+
+Publication needs a separately authorized resolution of that exposure, fresh
+schedule/selection readback and a reviewed exact write set for any controls.
+This preparation changes no schedules, global profiles, authentication, trust or
+updater behavior and grants no live apply authority. Do not infer provider-selective
+safety from an unscoped acceptance command. The eventual tag target remains the
+future reviewed release-preparation merge SHA after parity and hosted gates;
+version metadata and local package creation alone do not establish a release.
 Historical `RELEASE.md` resolves to this document; no obsolete alias is recreated.

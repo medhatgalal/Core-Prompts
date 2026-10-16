@@ -26,6 +26,9 @@ If you already installed an older catalog and want the latest source before a
 release, follow [upgrade from verified main](INSTALL-PROFILES.md#upgrade-from-verified-main-before-the-next-release)
 first. Fetching source, applying the installer and choosing new skill membership
 are separate steps; release checking alone does not adopt unreleased main.
+The v1.17.0 source preparation contains 36 skills; v1.16.5 remains the preceding
+published 32-skill release. [Qualified acceptance and publication holds](RELEASE-PACKAGING.md#program-adoption-readiness)
+remain separate from these first-use instructions.
 
 ## Safe path: verify setup before changing it
 
@@ -498,7 +501,7 @@ When importing a new skill, inspect the `job_contract` delta in UAC plan/judge: 
 
 ## Optional documentation recipes
 
-For a bounded first draft, ask: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” Expect that single Markdown draft. For all four coordinated artifacts, name `docs-bundle`. Ordinary review keeps its seven sections and loads no recipe. See [the complete recipe list and exact outputs](EXAMPLES.md#optional-documentation-recipes) and the [retained original prompts](prompt-pack/README.md).
+For a bounded first draft, ask: “Use `engos-quality-docs-review` with `readme-authoring` to draft README_vNext.md ending in Claim Notes.” Expect that single Markdown draft. For all four coordinated artifacts, name `docs-bundle`. Ordinary review keeps its seven sections and loads no recipe. See [the complete recipe list and exact outputs](EXAMPLES.md#optional-documentation-recipes) and the [retained original prompts (source repository)](https://github.com/medhatgalal/Core-Prompts/blob/main/docs/prompt-pack/README.md).
 
 `docs-release-readiness` in GitOps Review supplies candidate-bound evidence under existing authority. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review; findings-only work stays advisory.
 

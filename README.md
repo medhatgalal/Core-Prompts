@@ -115,7 +115,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces contain `36` skills across all supported CLIs and `0` named-agent configurations. Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces contain `36` skills, `180` packages across five distributions, and `0` named-agent configurations in the prepared v1.17.0 source. v1.16.5 is the preceding published 32-skill release. Preparation does not establish publication or native acceptance; see the [qualified release scope and holds](docs/RELEASE-PACKAGING.md#program-adoption-readiness). Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 `engos-quality-code-review` can also collect immutable committed-range evidence
 from exact baseline/candidate IDs into a new task-owned output leaf. The manifest
@@ -509,7 +509,7 @@ They help maintainers, release reviewers, and packaged users answer "what ships,
 
 ## What Ships
 
-- canonical authored source in [`ssot/`](ssot/)
+- canonical authored source in [`ssot/` (source repository)](https://github.com/medhatgalal/Core-Prompts/tree/main/ssot)
 - preserved strongest baselines in [`sources/ssot-baselines/`](sources/ssot-baselines/)
 - machine-readable descriptors in [`.meta/capabilities/`](.meta/capabilities/)
 - generated surfaces under [`.codex/`](.codex/), [`.gemini/`](.gemini/), [`.claude/`](.claude/), and [`.kiro/`](.kiro/)
@@ -567,7 +567,7 @@ UAC also prepares source-backed advisory routing metadata during intake. It pres
 
 ## Optional documentation recipes
 
-Name a recipe with `engos-quality-docs-review` when you need a particular artifact: `readme-authoring` produces only README_vNext.md ending in Claim Notes; `docs-bundle` produces README, technical README, visuals plan and the original array audit. Ordinary review retains its seven sections. See [all recipe examples and outputs](docs/EXAMPLES.md#optional-documentation-recipes). The [seven original prompts](docs/prompt-pack/README.md) remain callable.
+Name a recipe with `engos-quality-docs-review` when you need a particular artifact: `readme-authoring` produces only README_vNext.md ending in Claim Notes; `docs-bundle` produces README, technical README, visuals plan and the original array audit. Ordinary review retains its seven sections. See [all recipe examples and outputs](docs/EXAMPLES.md#optional-documentation-recipes). The [seven original prompts (source repository)](https://github.com/medhatgalal/Core-Prompts/blob/main/docs/prompt-pack/README.md) remain callable.
 
 Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bound ship evidence. E content PASS does not establish hosted readiness; dirty snapshot bytes with green HEAD CI cannot pass merge/release readiness. Recipe selection grants no mutation or release authority.
 
@@ -576,7 +576,7 @@ Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bo
 To use accepted changes before the next release, [refresh a trusted checkout to
 main and use its current installer](docs/INSTALL-PROFILES.md#upgrade-from-verified-main-before-the-next-release).
 That guide includes a copyable AI upgrade handoff, reviewed preview/apply and
-recovery. An older release watcher does not install unreleased main.
+recovery. The watcher discovers matching release tags, not unreleased main. Existing auto-accept schedules can apply a matching tag before release assets are published; [publication remains held](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold) until that exposure is resolved.
 
 The current source catalog contains 36 skills. An installation that previously
 selected 32 keeps those concrete skills during ordinary sync. Choose

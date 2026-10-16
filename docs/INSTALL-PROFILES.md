@@ -13,7 +13,9 @@ available for every supported provider regardless of local installation selectio
 ## Upgrade from verified main before the next release
 
 A source merge does not update installed skills. The release watcher follows
-published immutable releases; it does not fetch unreleased `main`. To adopt the
+matching immutable release tags; it does not fetch unreleased `main`. A matching
+tag can be accepted by an existing schedule before release assets are published;
+see the [publication and live-rollout hold](RELEASE-PACKAGING.md#publication-and-live-rollout-hold). To adopt the
 latest accepted source before a release, use the current installer from a trusted
 checkout once. An older installed updater is not a substitute for this step.
 
@@ -248,7 +250,7 @@ requires it. Replacement files are verified before predecessor files are removed
 
 The v1.15.0 retirement (2026-09-15) covers all 11 first-party named-agent variants
 on Codex, Gemini, Claude, and Kiro (44 entrypoints). The v1.16.5 release contains
-32 skills; the unreleased catalog as of 2026-10-15 contains 36. Both retain
+32 skills; the v1.17.0 source preparation dated 2026-10-16 contains 36. Both retain
 skills-only distribution; catalog growth alone does not expand a saved concrete
 selection (see [future skill membership](#choose-future-skill-membership)).
 The existing historical catalog and ownership receipts identify the affected

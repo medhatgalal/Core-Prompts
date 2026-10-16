@@ -83,20 +83,27 @@ def test_calibration_includes_pilot_fixture_result_without_model_calls() -> None
 def test_static_pilot_validator_fails_when_a_protected_marker_disappears(tmp_path: Path) -> None:
     shutil.copytree(ROOT / "evals", tmp_path / "evals")
     shutil.copytree(ROOT / ".meta", tmp_path / ".meta")
-    (tmp_path / "ssot").mkdir()
+    # Canonical resource validation also resolves the shared registry's owners.
+    shutil.copytree(ROOT / "ssot", tmp_path / "ssot")
+    shutil.copytree(ROOT / "sources/capability-resources", tmp_path / "sources/capability-resources")
     (tmp_path / "scripts").mkdir()
-    supercharge = (ROOT / "ssot" / "engos-meta-supercharge.md").read_text(encoding="utf-8")
-    (tmp_path / "ssot" / "engos-meta-supercharge.md").write_text(supercharge, encoding="utf-8")
-    resource_path = Path("sources/capability-resources/engos-meta-supercharge")
-    shutil.copytree(ROOT / resource_path, tmp_path / resource_path)
-    basis = tmp_path / resource_path / "references/modules/basis.md"
-    basis.write_text(basis.read_text().replace("## MODULE: /basis", "## REMOVED MODULE: /basis"))
     shutil.copy2(ROOT / "scripts" / "uac-import.py", tmp_path / "scripts" / "uac-import.py")
+    baseline = validate_pilot_foundations(tmp_path)
+    assert baseline["status"] == "structural_ready", baseline["errors"]
+    assert baseline["errors"] == []
+
+    basis = tmp_path / "sources/capability-resources/engos-meta-supercharge/references/modules/basis.md"
+    marker = "## MODULE: /basis"
+    before = basis.read_text(encoding="utf-8")
+    assert marker in before
+    changed = before.replace(marker, "## REMOVED MODULE: /basis")
+    assert changed != before and marker not in changed
+    basis.write_text(changed, encoding="utf-8")
 
     result = validate_pilot_foundations(tmp_path)
 
     assert result["status"] == "hold"
-    assert any("missing marker" in error for error in result["errors"])
+    assert result["errors"] == [f"supercharge-module-preservation: missing marker {marker!r}"]
 
 
 def test_static_pilot_validator_fails_when_a_lifecycle_fixture_is_missing(tmp_path: Path) -> None:
