@@ -424,3 +424,95 @@ def test_agy_does_not_claim_named_agent_translation(tmp_path):
     result = document(external(DEPLOY_SCRIPT, tmp_path, '--cli', 'agy', '--with-agents'), 1)
     assert 'named-agent translation' in result['error']
     assert list(tmp_path.iterdir()) == []
+
+
+def agy_preview_apply_repeat(target, *extra):
+    """Review and replay the real wrapper plan, then check package stability."""
+    args = ('--cli', 'agy', *extra)
+    plan = document(external(INSTALL_SCRIPT, target, *args, '--dry-run'))
+    assert not plan['blockers']
+    approved = target.parent / (target.name + '-approved.json')
+    approved.write_text(json.dumps(plan))
+    document(external(INSTALL_SCRIPT, target, '--apply-plan', str(approved)))
+    repeat = document(external(INSTALL_SCRIPT, target, '--cli', 'agy', '--dry-run'))
+    assert not repeat['blockers']
+    assert repeat['request']['mode'] == 'sync'
+    assert repeat['request']['kinds'] == ['skill']
+    assert repeat['selection'] == plan['selection']
+    assert not [a for a in repeat['actions'] if a['path'].startswith('.gemini/config/skills/')]
+    return plan
+
+
+@pytest.mark.parametrize('membership', ['owned32', 'curated'])
+def test_agy_saved_membership_sync_and_explicit_expansion(tmp_path, membership):
+    """Current-byte ownership with pinned prior names; not an authentic upgrade."""
+    target = tmp_path / 'target'
+    if membership == 'owned32':
+        catalog = json.loads((ROOT / '.meta/install-profiles/legacy-installations.json').read_text())
+        commit = catalog['releases']['v1.16.3']['commit']
+        historical = json.loads(subprocess.check_output(
+            ['git', 'show', commit + ':.meta/manifest.json'], cwd=ROOT, text=True))
+        slugs = sorted(p['slug'] for p in historical['ssot_sources'])
+        assert len(slugs) == 32
+        extra = []
+    else:
+        slugs = [ARCH]
+        extra = ['--selection-policy', 'curated']
+    slug_args = [arg for slug in slugs for arg in ('--slug', slug)]
+    document(external(INSTALL_SCRIPT, target, '--cli', 'agy', *slug_args, *extra))
+    prior = state(target)
+    wanted = {f'agy:skill:{slug}' for slug in slugs}
+    assert set(prior['selection']) == wanted
+
+    preview = document(external(INSTALL_SCRIPT, target, '--cli', 'agy', '--dry-run'))
+    assert preview['request']['mode'] == 'sync'
+    assert preview['request']['kinds'] == ['skill']
+    assert set(preview['selection']) == wanted
+    assert not [a for a in preview['actions'] if a['path'].startswith('.gemini/config/skills/')]
+    agy_preview_apply_repeat(target)
+    assert set(state(target)['selection']) == wanted
+    if membership == 'owned32':
+        assert state(target)['schema'] == 2 and 'selection_policy' not in state(target)
+        expanded = agy_preview_apply_repeat(target, '--selection-policy', 'full-catalog')
+        assert len(expanded['selection']) == 36
+        assert state(target)['selection_policy'] == {'agy': 'full_catalog'}
+    else:
+        assert state(target)['selection_policy'] == {'agy': 'curated'}
+        expanded = agy_preview_apply_repeat(target, '--slug', 'engos-design-specify-change')
+        assert set(expanded['selection']) == wanted | {'agy:skill:engos-design-specify-change'}
+        assert state(target)['selection_policy'] == {'agy': 'curated'}
+
+
+@pytest.mark.parametrize('existing_reader', [False, True])
+def test_agy_fresh_or_new_reader_adds_skills_then_syncs(tmp_path, existing_reader):
+    target = tmp_path / 'target'
+    prior = set()
+    if existing_reader:
+        document(external(INSTALL_SCRIPT, target, '--cli', 'kiro', '--slug', ARCH))
+        prior = set(state(target)['selection'])
+    preview = document(external(INSTALL_SCRIPT, target, '--cli', 'agy', '--dry-run'))
+    assert preview['request']['mode'] == 'install'
+    assert preview['request']['kinds'] == ['skill']
+    plan = agy_preview_apply_repeat(target)
+    agy = {k for k in plan['selection'] if k.startswith('agy:')}
+    assert len(agy) == 36 and all(k.startswith('agy:skill:') for k in agy)
+    assert set(state(target)['selection']) == prior | agy
+    assert not (target / '.gemini/skills').exists()
+    assert not (target / '.gemini/config/agents').exists()
+
+
+@pytest.mark.parametrize('saved_kind', ['empty_curated', 'v1'])
+def test_agy_saved_reader_request_translation_controls(tmp_path, monkeypatch, capsys, saved_kind):
+    """Translation-only controls: these mock states do not establish ownership."""
+    monkeypatch.syspath_prepend(str(ROOT / "scripts"))
+    from scripts.core_install import cli
+    saved_state = ({'schema': 3, 'selection': [], 'selection_policy': {'agy': 'curated'}}
+                   if saved_kind == 'empty_curated' else None)
+    saved_profile = {'schema': 1, 'scope': 'skills', 'targets': ['agy'], 'slugs': []}
+    monkeypatch.setattr(cli.planner, 'read_state', lambda target: saved_state)
+    monkeypatch.setattr(cli.planner, 'read_json', lambda *args: saved_profile)
+    monkeypatch.setattr(cli.planner, 'plan', lambda repo, target, request: {'request': request})
+    assert cli.main(['--repo', str(ROOT), '--target', str(tmp_path), '--cli', 'agy', '--dry-run']) == 0
+    request = json.loads(capsys.readouterr().out)['request']
+    assert request['mode'] == 'sync'
+    assert request['kinds'] == ['skill']

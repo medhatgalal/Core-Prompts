@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Preserve saved AGY skill membership on repeated `--cli agy` syncs, including
+  curated and intentionally empty selections; retain explicit new-reader, slug
+  and full-catalog expansion.
+
 - Refresh the stale standalone installer inventory, verify committed runtime bytes
   and modes before generation in both CI pipelines, and reject stale inventory
   before packaging creates output or archives.

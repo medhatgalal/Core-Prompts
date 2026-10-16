@@ -496,8 +496,14 @@ Review destination, selection and preservation notices before any apply. Keep
 application on hold while the native destination remains unresolved. The general
 [preview/apply](#preview-and-apply) and [recovery](#recover-an-installation) workflows
 apply once the intended root and write set have evidence and installation is in
-scope. Explicit `--cli agy` can add that reader to an older selection; subsequent
-syncs retain it. This membership effect is distinct from native discovery.
+scope. Explicit `--cli agy` adds current skills when selecting AGY as a new
+reader. For an existing AGY reader with legacy or curated policy, repeating it
+retains saved membership, including a saved 32-skill selection or an empty curated
+selection. A saved full-catalog policy continues adopting current and future
+skills during ordinary sync without restating the flag. Use
+`--selection-policy full-catalog` to opt into that policy, or `--slug` to add a
+named skill while retaining curated policy. These membership choices are distinct
+from native discovery.
 
 The executable is `agy`, not `agy cli`. Native `/skills` and `/<skill>` controls
 are documented, but only an actual bound observation establishes discovery or

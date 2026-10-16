@@ -7,7 +7,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from . import planner, providers, transaction
+from . import planner, providers, selection_policy, transaction
 
 
 def main(argv=None):
@@ -75,7 +75,11 @@ def main(argv=None):
             elif args.cli!='all':
                 request['providers']=[args.cli]
                 if args.cli == 'agy' and not args.repair:
-                    request.update(mode='install', kinds=['skill'])
+                    request['kinds']=['skill']
+                    saved_readers = (selection_policy.state_policies(state) if state is not None
+                                     else saved.get('targets', []) if saved else [])
+                    if 'agy' not in saved_readers:
+                        request['mode']='install'
             elif args.repair and saved:
                 request['providers']=saved['targets']
             elif not state and not saved:
