@@ -4,7 +4,9 @@ Choose the first missing job, then carry its artifact and uncertainty to the nex
 needed owner. These are conditional user journeys, not an automatic invocation
 chain. A clear small change can enter implementation directly. Existing acceptance
 and authorization still apply; a sidecar, neighbor link or passing schema adds none.
-The skill contracts and [repository steering](../AGENTS.md) govern execution.
+The skill contracts, your project's own rules and the applicable
+[execution context](../.kiro/steering/agent-behavior.md#execution-context) govern execution.
+Core-Prompts source-maintainer prerequisites do not apply to ordinary distribution use.
 
 Use the [job map](SKILL-JOB-MAP.md) for all 36 names and boundaries, then read the
 chosen skill's complete entry and selected resource route. Availability has six

@@ -14,6 +14,25 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## Use a distribution in your project
+
+**Illustrative example, not a native behavior test.** After verifying the trusted
+archive and its [runtime inventory](GETTING-STARTED.md#check-your-core-prompts-context),
+ask your assistant:
+
+> Read the Core-Prompts distribution's AGENTS.md and context-aware steering, then
+> the complete bundled engos-design-specify-change skill and selected resources.
+> In my authorized project, follow its own AGENTS.md and define acceptance for
+> this change in our existing format. This is ordinary skill use: do not create
+> a Core-Prompts worktree or require its missing SSOT/UAC/build tools. Keep setup,
+> publication and external messages on hold.
+
+Expect source-backed requirements and open decisions in the requested project.
+A missing resource remains a gap; layout and inventory checks do not prove native
+skill discovery or task success. If the request instead changes the Core-Prompts
+capability itself, use a separately verified complete source checkout and its
+maintainer workflow. Do not make an installed or archived copy the lasting fix.
+
 ## Progressive feature example
 
 **Illustrative walkthrough, not an executed test or measured improvement.** Suppose

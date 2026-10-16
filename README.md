@@ -25,15 +25,19 @@ is required. See the [progressive feature and bug examples](docs/EXAMPLES.md#pro
 
 ## Use this with AI
 
-Copy this into your assistant from a trusted checkout. Replace the bracketed job
-and scope with your request:
+Use a trusted source checkout or verified extracted distribution. The
+[context check](docs/GETTING-STARTED.md#check-your-core-prompts-context) explains
+which tools are present. Replace the bracketed job and scope with your request:
 
 > Help me use Core-Prompts for [job] in [project and allowed scope]. Read this
-> repository's AGENTS.md and applicable steering, then docs/GETTING-STARTED.md
+> Core-Prompts root's AGENTS.md and applicable steering. Identify its source or
+> distribution layout and follow my project's own rules. Then read docs/GETTING-STARTED.md
 > and the relevant route in docs/SKILL-FLOWS.md. Identify the first missing job,
 > check which exact skill is available in this session, and read its complete
 > entry contract and selected resources. Reuse accepted requirements and existing
-> work. Explain the expected artifact and its acceptance or verification status.
+> work. Use bundled skills/resources for ordinary distribution use; do not require
+> Core-Prompts source maintenance tools or Git delivery for my project task.
+> Explain the expected artifact and its acceptance or verification status.
 > If the package is unavailable, report the gap and offer the documented setup
 > preview. Keep installation, release, publication and external messages on hold
 > unless I explicitly include them in this request.

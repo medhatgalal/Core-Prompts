@@ -30,6 +30,8 @@ Preparation date; publication and live installation remain held pending the
 
 ### Documentation and release scope
 
+- Make the packaged canonical AGENTS and always-loaded steering context-aware: ordinary distribution use follows project rules and bundled resources, while Core-Prompts authoring retains the complete-source workflow. Reject ambiguous layouts, preserve safety/approval and inventory requirements, align onboarding, and test actual TAR/ZIP instruction contracts without claiming model behavior.
+
 - Restore stale test fixtures with explicit curation inputs, a complete pilot resource closure and a confirmed injected fault, and separate fresh versus retained stale advisory routing checks. Add the five release-preparation regression checks to both CI pipelines before generation; retain existing gates and runtime contracts.
 
 - Add job-first Skill Flows, progressive feature/bug examples, copyable AI onboarding and current-main/current-installer upgrade guidance. Source refresh, selected-package update, native use and recovery are distinct steps.

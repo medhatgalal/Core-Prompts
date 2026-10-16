@@ -104,6 +104,23 @@ The package should not include:
 
 Both archive formats and standalone runtime inventories/copies exclude local Codex registration configuration. A runtime inventory claiming this local file is rejected; agent registration still generates configuration at the installation target. ZIP creation uses a fresh temporary archive before replacing the output, so excluded or retired members cannot survive from an earlier package with the same filename.
 
+## Instruction context in both archives
+
+The archives retain the exact canonical `AGENTS.md`, `agent-behavior.md` and
+`repo-workflow.md` bytes. Their context guard separates a complete source checkout,
+a verified distribution and an incomplete/ambiguous layout, including the
+always-loaded steering path. Missing Git metadata alone does not select archive
+mode. See the [first context check](GETTING-STARTED.md#check-your-core-prompts-context).
+
+A distribution deliberately omits `ssot/`, `.meta/surface-rules.json`,
+`scripts/build-surfaces.py` and `scripts/validate-surfaces.py`. Its bundled skills,
+resources and portable installer support authorized use under the user's project
+rules; authoring Core-Prompts requires a separately verified source checkout.
+Runtime inventory checks remain mandatory, and all installation/publication holds
+remain unchanged. TAR/ZIP tests check instruction bytes, context clauses, retained
+source obligations and actual layout/inventory contents. These static checks do
+not establish model compliance or native behavior.
+
 ## Shared-resource consumer packages
 
 An importing skill ships as one complete generated package: its `SKILL.md`,

@@ -5,6 +5,24 @@ capability; use repository tooling when maintaining its source and packages.
 Core skills use their full `engos-*` names; upstream `loopy` keeps its own name.
 The [flow guide](SKILL-FLOWS.md) helps you enter at the first missing job.
 
+## Check your Core-Prompts context
+
+The same AGENTS and steering files travel with source and release archives.
+Their [execution-context rules](../.kiro/steering/agent-behavior.md#execution-context)
+keep ordinary use separate from maintaining Core-Prompts itself.
+
+- A complete source layout contains canonical `ssot/` entries, `.meta/surface-rules.json`, `scripts/build-surfaces.py` and `scripts/validate-surfaces.py`. Its source identity and Git readiness still need verification for maintenance.
+- A distribution omits those authoring inputs and includes the portable installer, capsule and runtime inventory. From its trusted extracted root, check the existing inventory without installing:
+  ```bash
+  python3 -B -c 'from pathlib import Path; import sys; sys.path.insert(0, "scripts"); import install_bundle; print(len(install_bundle.verified(Path.cwd())), "verified runtime paths")'
+  ```
+  A successful consistency check is separate from trusted package origin, native discovery and permission to install. Use the selected bundled `SKILL.md` and its complete package-local resources for ordinary work in your authorized project; that project's rules still apply.
+- A partial source layout or failed/missing inventory is a setup gap. Missing `.git` alone does not make an archive. Report the gap instead of rebuilding hashes or editing the bundle to make it pass.
+
+Ordinary distribution use needs no Core-Prompts SSOT, UAC, source build/validation,
+worktree or PR/MR workflow. Changing Core-Prompts itself needs a separately verified
+complete source checkout. [Distribution example](EXAMPLES.md#use-a-distribution-in-your-project).
+
 ## Fast path: use what is already available
 
 1. **Choose one outcome.** For example, ask “Use `engos-design-specify-change`
@@ -32,18 +50,20 @@ remain separate from these first-use instructions.
 
 ## Safe path: verify setup before changing it
 
-Run these commands from the root of a trusted current checkout. The repository
-requires Python 3.11 or newer (3.14 preferred) and Bash for the installer wrappers.
+Run the installer commands from a trusted current source checkout or verified
+distribution root. Python 3.11 or newer (3.14 preferred) and Bash are required.
+The source validator below applies only to the complete source layout.
 This example selects Kiro; choose the provider/profile you actually intend to use.
 For Antigravity, first read the [version and root qualification](INSTALL-PROFILES.md#antigravity-cli-agy).
 
-1. **Check prerequisites and source structure.**
+1. **Check prerequisites and the applicable layout.**
    ```bash
    python3 --version
    bash scripts/install-local.sh --help
-   python3 scripts/validate-surfaces.py
    ```
-   Validation checks repository packages; it does not validate a live installation.
+   In a complete source checkout, also run `python3 scripts/validate-surfaces.py`.
+   In an extracted distribution, use the inventory command above; the source
+   validator is intentionally absent. Neither check validates a live installation.
 2. **Preview the exact installation.** For an existing Kiro setup:
    ```bash
    bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
