@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Refresh the stale standalone installer inventory, verify committed runtime bytes
+  and modes before generation in both CI pipelines, and reject stale inventory
+  before packaging creates output or archives.
+
 - Clarify installer help and preservation guidance: local modifications alone
   do not prevent retirement of exactly identified retired Core-Prompts agents.
   Retain symlink, identity, configuration, and dependency protections and reviewed,

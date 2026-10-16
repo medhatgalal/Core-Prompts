@@ -10,9 +10,68 @@ Author capabilities in `ssot/` and canonical resources; installed directories ar
 destinations, never authoring sources. Generated repository surfaces remain
 available for every supported provider regardless of local installation selection.
 
+## Upgrade from verified main before the next release
+
+A source merge does not update installed skills. The release watcher follows
+published immutable releases; it does not fetch unreleased `main`. To adopt the
+latest accepted source before a release, use the current installer from a trusted
+checkout once. An older installed updater is not a substitute for this step.
+
+First inspect the checkout and its remote:
+
+```bash
+git status --short --branch
+git remote get-url origin
+```
+
+Keep local work intact. If the checkout has changes or `main` has local commits,
+resolve that separately before continuing; do not reset it to force an upgrade.
+The following example uses `origin`; substitute your trusted Core-Prompts remote
+if it has another name:
+
+```bash
+git fetch origin main
+git switch main
+git merge --ff-only origin/main
+git rev-parse HEAD
+```
+
+Record the resulting commit. A failed fast-forward needs inspection, not a forced
+update. Run the preview below from that checkout. The installer checks its runtime
+inventory before planning; an identity mismatch means this source is unusable.
+Obtain a corrected verified source rather than rebuilding hashes to bypass it.
+
+For a saved 32-skill installation, ordinary sync refreshes its selected packages
+and resources but keeps 32 members. To add the four new skills, explicitly choose
+[full-catalog membership](#choose-future-skill-membership), or keep `curated` and
+add only named skills. Preview and apply from the same source and target. Review
+preserved packages afterwards; a preserved copy may still contain older content.
+
+After an authorized apply, verify installed package/resource identity, then use
+the [first-use checks](GETTING-STARTED.md#fast-path-use-what-is-already-available)
+and [skill flows](SKILL-FLOWS.md). Native discovery and a successful task are
+separate observations. See [recovery](#recover-an-installation) for the exact
+transaction rollback path. Source-only work or an installation hold stops before
+apply; refreshing the checkout alone changes no live skills or schedules.
+
+### Copyable AI upgrade handoff
+
+> Inspect this trusted Core-Prompts checkout and my selected installation scope.
+> Keep unrelated work and customized, unowned or ambiguous packages intact.
+> Identify the source commit and saved provider/skill membership. Preview with
+> the current source installer, then show the exact additions, updates,
+> preservations, recognized Core-agent retirements and blockers. Ask me to choose
+> full-catalog versus curated membership if that intent is missing; do not expand
+> a shared Codex/Gemini reader without explicit joint consent. Apply only within
+> my installation authority using the reviewed plan. Report package/resource
+> parity, preservation notices, native discovery and an observed first task
+> separately. Do not release, schedule, change provider settings or force cleanup.
+> Show the transaction recovery command and any remaining limitations.
+
 ## Preview and apply
 
-From the current release directory, preview an existing Kiro installation:
+From the trusted current release directory or verified source checkout, preview
+an existing Kiro installation:
 
 ```bash
 bash scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
@@ -406,6 +465,26 @@ documentation](https://antigravity.google/docs/skills) lists
 native probe before installation or migration is recommended. A changelog heading
 or historical version label does not establish the running executable's version.
 Do not reinterpret historical Gemini CLI evidence as Antigravity acceptance.
+
+### Temporary manual use from a checkout
+
+While the global destination is unresolved, a current package can be supplied
+explicitly without installing it. For example, ask agy:
+
+> Read `<absolute-Core-Prompts-checkout>/.gemini/skills/engos-design-specify-change/SKILL.md`
+> and its selected package-local resources. Specify this change in our existing
+> format; preserve unchanged behavior and keep open decisions visible.
+
+Use the complete trusted package directory, not `SKILL.md` alone. Resolve resource
+paths from that directory and invoke any helper by its absolute path or with that
+directory as its working directory. This is a path-only adaptation of explicit
+package loading, not native catalog or slash-command discovery, and the checkout
+placement has not been replayed as a native acceptance run. If the host denies
+checkout access, report the missing permission; do not silently change trust or
+copy over an existing installation. Global installation, migration and cleanup
+remain on hold until their destination and write set are verified.
+
+### Investigate the global destination
 
 For an authorized setup investigation, begin with the current installer preview:
 

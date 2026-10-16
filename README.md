@@ -573,6 +573,11 @@ Use `engos-quality-gitops-review` with `docs-release-readiness` for candidate-bo
 
 ## Choose future skill membership for an existing installation
 
+To use accepted changes before the next release, [refresh a trusted checkout to
+main and use its current installer](docs/INSTALL-PROFILES.md#upgrade-from-verified-main-before-the-next-release).
+That guide includes a copyable AI upgrade handoff, reviewed preview/apply and
+recovery. An older release watcher does not install unreleased main.
+
 The current source catalog contains 36 skills. An installation that previously
 selected 32 keeps those concrete skills during ordinary sync. Choose
 `--selection-policy full-catalog` to adopt current and future skills, or choose

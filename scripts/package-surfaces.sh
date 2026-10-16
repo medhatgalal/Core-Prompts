@@ -78,6 +78,17 @@ if [[ "$CHANGELOG_VERSION" != "$SHIPPED_VERSION" ]]; then
   exit 1
 fi
 
+# Verify the committed runtime before creating any output. Packaging never repairs it.
+python3 - <<'PYTHON'
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path.cwd() / "scripts"))
+import install_bundle
+
+install_bundle.verified(Path.cwd())
+PYTHON
+
 INCLUDE_PATHS=(
   ".grok"
   ".codex"

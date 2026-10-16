@@ -17,6 +17,7 @@ validate_cli_surfaces:
     - apt-get update && apt-get install -y --no-install-recommends zip procps
     - python3 scripts/sync-surface-specs.py --refresh
     - python3 -m pip install 'pytest>=8,<10' 'jsonschema>=4,<5' 'cryptography>=43' 'python-docx>=1.2,<2' 'Pillow>=11,<13'
+    - python3 -m pytest -q tests/test_install_bundle.py
     - git fetch --tags origin
     - python3 scripts/build-install-runtime.py --check
     - python3 scripts/build-legacy-catalog.py --check
