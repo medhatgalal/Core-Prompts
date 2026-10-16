@@ -1,157 +1,44 @@
-## Unreleased
+## v1.17.0 - 2026-10-16
 
-- Preserve saved AGY skill membership on repeated `--cli agy` syncs, including
-  curated and intentionally empty selections; retain explicit new-reader, slug
-  and full-catalog expansion.
+Preparation date; publication and live installation remain held pending the
+[release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
 
-- Refresh the stale standalone installer inventory, verify committed runtime bytes
-  and modes before generation in both CI pipelines, and reject stale inventory
-  before packaging creates output or archives.
+### Four new software jobs
 
-- Clarify installer help and preservation guidance: local modifications alone
-  do not prevent retirement of exactly identified retired Core-Prompts agents.
-  Retain symlink, identity, configuration, and dependency protections and reviewed,
-  recoverable transactions. Date the retirement baseline and distinguish the v1.16.5
-  32-skill release from the unreleased 36-skill catalog; installer policy is unchanged.
+- `engos-design-specify-change`: turn an unclear change into observable requirements, preserved behavior and explicit open decisions. Supports requirements-first, design-first and bugfix entry routes without forcing a new document format.
+- `engos-design-plan-implementation`: break accepted work into independently verifiable tasks, dependencies, interface obligations and bounded writes. Optional TaskPlan/TaskContract resources and a mechanical graph checker support planning without executing it.
+- `engos-debug-diagnose-failure`: collect a reproduction and discriminating causal evidence, or return a bounded unknown. Diagnosis does not silently authorize repair.
+- `engos-delivery-implement-slice`: complete one authorized change with scoped edits, meaningful checks and an honest handoff. Optional SliceReceipt resources preserve actual source/verification identity.
 
-- Add job-first skill flows, a copyable AI onboarding handoff, fast/safe first-use
-  paths and progressive feature/bug examples. Separate job-map source/package
-  evidence from per-run release, installed-byte, discovery and runtime evidence;
-  retain advisory portfolio judgments and source-backed neighbor boundaries.
-  Qualify Antigravity's configured install destination pending version-bound native
-  discovery. No release, live installation, skill rename or retirement is claimed.
+### Existing skill improvements and convergence
 
+- Keep all existing public skill names, including `engos-meta-uac-import`, `engos-meta-supercharge`, `engos-meta-instruction-editor` and `loopy`. No skill alias, skill removal or Core named-agent package is introduced.
+- Add proportionate reuse/harvest/combine/new authoring choices, one receiving owner, provenance and preservation/displacement evidence. Keep instruction editing separately callable and record semantic changes.
+- Bind review findings to actual commit, index, working tree, branch or supplied-diff targets. Add optional committed-range evidence collection and an independently pinned package-binding verifier without changing ordinary review defaults. Binary data and changed gitlinks retain explicit limitations.
+- Strengthen test-design oracles and source-linked expected outcomes. Optional TestDesign interchange remains `not_run`; a test plan never claims execution.
+- Share canonical schemas and test-oracle references through finite, hash-bound imports. Generated architecture/specification/implementation consumer bundles carry their own required bytes and receipts; they need no sibling installed skill.
+- Add optional graph and trace helpers. They check declared structure, references and consistency, not semantic completeness, authority or task success.
+- Clarify diagnosis/repair, planning/goal, hardening/reconciliation/experiment, and shaping/pitch-review seams. Keep Batman explicit and optional. Preserve the seven prompt donors while adding optional Docs Review/GitOps recipes.
+- Bind shaping reviews to sealed source packets and current evidence; support selected Markdown handover reuse while preserving requested outputs, diagrams, tables and separately authorized downstream work.
 
-- Clarify the planner’s optional mechanical graph checker without requiring JSON
-  or execution, and document all seven retained prompt-to-recipe consumer mappings
-  with their output formats, fallback and unknown external consumers.
+### Installation and recovery
 
-- Correct the CLI reference’s stale denial of the bundled optional trace checker;
-  retain its mechanical-only scope and separate test, semantic and authority limits.
+- Ordinary sync retains saved concrete membership. Explicit `full-catalog` adopts the current 36 and future additions; `curated` retains scope and supports named additions. Protect intentionally empty curated readers and shared Codex/Gemini consent.
+- Fix repeated explicit agy sync so an existing legacy/curated reader does not silently expand saved 32 to 36. Fresh/new-reader and explicitly requested expansion remain supported.
+- Fix stale committed installer inventory and verify its bytes/modes before generation in CI and before packaging writes any output. Ship the source-bound portable runtime capsule with its complete inventory.
+- Preserve ownership-aware retired Core-agent cleanup and transaction recovery. Customized skills, third-party packages, identity/symlink/configuration/dependency conflicts and later edits retain their protections. An old engine may require the current-installer bridge; no universal self-upgrade is promised.
 
-- Add an externally pinned, read-only committed review-package binding verifier
-  while preserving the collector's command and output contract. Document direct
-  diagnosis followed by separately authorized repair, selected-comment IDs and
-  dispositions, and explicit Batman invocation. Bundle D7's test-oracle reference
-  in standalone D5 through the sole-owner import route; TestDesign remains
-  `not_run`, and execution evidence remains separate. No new native command or
-  alias, publication, installation or release is claimed.
+### Documentation and release scope
 
-- Clarify how to choose between hardening, reconciliation, baseline experiments,
-  shaping, standalone pitch review, ordinary plans and bounded goal packets.
-  Add optional planner/specification graph and trace check examples, including
-  explicit mechanical versus semantic, authority and behavior limits. Document
-  committed-range package collection and its resource and platform requirements
-  without implying implementation review, release or installation. Correct the
-  current Converge descriptive pseudo-mode to zero modes and the nine stale pitch
-  metadata identities to the existing full-name command declarations; add no
-  command, alias, gate-policy change, variation module or shaping-policy removal.
-  Preserve all seven prompt donors and prior changelog entries.
+- Make the packaged canonical AGENTS and always-loaded steering context-aware: ordinary distribution use follows project rules and bundled resources, while Core-Prompts authoring retains the complete-source workflow. Reject ambiguous layouts, preserve safety/approval and inventory requirements, align onboarding, and test actual TAR/ZIP instruction contracts without claiming model behavior.
 
-- Add explicit committed-range collection to `engos-quality-code-review`: a
-  standalone stdlib/Git helper, closed `ReviewPackage.v1` schema, exact endpoint
-  and source bindings, raw path/blob evidence, and exclusive atomic manifest
-  publication. Preserve ordinary review defaults and `Findings.v1`. Binary data
-  stays unreviewed; changed gitlinks remain incomplete without nested traversal.
-  Collection completeness is separate from correctness/security judgment,
-  consumer verification, merge, release and installation.
+- Restore stale test fixtures with explicit curation inputs, a complete pilot resource closure and a confirmed injected fault, and separate fresh versus retained stale advisory routing checks. Add the five release-preparation regression checks to both CI pipelines before generation; retain existing gates and runtime contracts.
 
-- Add optional documentation recipes under the existing Docs Review and GitOps
-  Review skills. Preserve all seven prompt-pack donors, default seven-section
-  reviews, the execution-only substantial rewrite review trigger and advisory
-  command boundaries. Preserve the two original factual audit formats with a
-  read-only validator and same-format roundtrip; add candidate-bound handoff
-  schema and committed-tree versus snapshot evidence requirements. Active ship
-  proposals follow current package-before-tag and dual-remote order. This is
-  contract/resource evidence, not behavioral promotion, release or installation.
-
-- Add explicit full-catalog or curated future skill membership to the transactional
-  installer. Persist state3 only after explicit adoption, preserve undecided
-  state2 scope, prove saved empty profile membership from historical receipts,
-  and block mixed Codex/Gemini shared-root expansion until an exact joint choice.
-  Plans disclose policy and shared-owner effects. Protect empty curated shared
-  readers, retain the actual v1.16.3 Gemini portable-source mapping, and reject
-  receipt-only catalog promotion or duplicate inventory records. Existing
-  journals and receipts keep their versions; release, native acceptance and home
-  installation remain separate.
-- Add explicit source-owned resource imports with a finite registry, consumer
-  declarations, generated provenance receipts and portable standalone loading.
-  `engos-design-architecture` optionally consumes the unchanged `SpecContract.v1`
-  schema authored by `engos-design-specify-change`; ordinary architecture input
-  remains supported. Bind source identity into review/evaluation hashes and reject
-  drift, missing resources, collisions, shadows, cycles and symlink escapes.
-  Existing no-import bundles remain compatible; importing packages require the
-  new loader, map, resources and receipt together. This is packaging and contract
-  evidence, not a measured behavioral benefit or an installation/release claim.
-
-- Add the skill-only `engos-design-specify-change` job with requirements-first,
-  design-first and bugfix routes, a portable `SpecContract.v1` schema and a blank
-  supplied-link ledger. Preserve repository formats, shaping acceptance and
-  separate architecture/planning/implementation ownership. Schema and link
-  structure do not prove approval, semantic correctness or implemented behavior.
-  Generated inventory moves from 32 to 33 skills with no named agents; behavioral
-  promotion, native Kiro equivalence, release and installation are not claimed.
-
-- Preserve curated descriptive mode contracts when resource-backed skills are
-  applied or regenerated, while retaining current source membership, locations
-  and invocations. Removed or changed mode identities do not inherit curation.
-
-- Strengthen test design under `engos-quality-testing-review`: source-linked
-  observable outcomes, fault oracles, fixtures, negative/boundary cases and command
-  provenance, plus optional TestDesign.v1 interchange fixed to `not_run`.
-  Preserve all four modes, six artifact sections and independent artifact review.
-  Keep the current name and design-only scope; no behavioral promotion is claimed.
-
-- Add `engos-delivery-implement-slice` for one accepted software task or clear
-  bounded request, with preservation of unrelated work, proportionate checks and
-  an honest handoff. Include optional `SliceReceipt.v1` resources with explicit
-  unknown metadata and commit versus dirty-snapshot identity. Keep the existing
-  review-fix and Batman contracts unchanged; no mandatory receipt, per-slice
-  commit, blanket suite, new agent, install or release is introduced.
-  The new skill's role survives regeneration through existing per-skill defaults; runtime authority is unchanged.
-- Receipt validation covers structure and result consistency; it does not prove
-  execution, source truth, preservation, behavioral improvement or live acceptance.
-
-- Add a proportionate authoring decision to `engos-meta-uac-import` under its
-  current name: reuse, harvest, combine or new, one receiving owner, source
-  provenance and preservation/displacement evidence. Keep instruction editing
-  independently callable with a semantic-change ledger and conditional handoffs.
-  Exact relocation uses preservation and structural checks; behavioral benefit
-  claims still need independent evaluation. No renames or agent surfaces added.
-
-- Bind code review to explicit commit, staged, working-tree, branch or supplied-diff
-  targets while preserving default HEAD and the existing review lenses. Add verified
-  affected-consumer evidence for introduced breakage and structured Findings.v1
-  output; incomplete or malformed evidence cannot produce a clean verdict. Reuse
-  the resource loader and retain review-only authority. Structural checks do not
-  establish actual reading, review accuracy or behavioral improvement.
-
-- Add `engos-design-plan-implementation` for ordinary task planning from accepted
-  requirements and optional architecture. Preserve existing plans and trackers,
-  describe independently verifiable outcomes and bounded writes, and provide optional
-  TaskContract.v1 / TaskPlan.v1 schemas plus a manual dependency-map template.
-  Planning does not delegate, execute, create goals or certify acceptance; no graph
-  checker, installation, release or measured benefit is claimed by this slice.
-
-- Add `engos-debug-diagnose-failure` for bounded reproduction, localization and
-  discriminating causal evidence. Preserve unknown outcomes, redact sensitive
-  evidence and keep repairs and incident coordination with their authorized owners.
-  Include optional hypothesis and `DiagnosisReceipt.v1` handoff resources and
-  focused structural checks; behavioral acceptance and effectiveness remain pending.
-
-- Bind future shaping reviews to ordered sealed source packets, host-observed
-  openings, source-bound diagram pixels and stable reviewer/contributor identities.
-  Keep semantic audits separate from deterministic checks and preserve historical
-  pinned receipts. Add grounded predicates, quote-backed question independence,
-  one bound repair route per finding and explicitly accepted independent fixers.
-- Add selectable Markdown handover reuse; all means all five outputs. Preserve
-  Mermaid fences, captions and full tables in one source, complete candidates before
-  sealing, and hold incomplete accepted delivery for reconciliation and affected
-  review. Add a read-only selection/reuse helper with exact accepted inventories
-  and adapter-evidence consistency checks, keeping host authenticity and actual
-  delivery pending. Retain selected-only Word/Google Doc/HTML/JSON verification.
-- No live workshop success, numeric skill grade, installation or release is claimed
-  by these instruction and focused mechanical changes.
+- Add job-first Skill Flows, progressive feature/bug examples, copyable AI onboarding and current-main/current-installer upgrade guidance. Source refresh, selected-package update, native use and recovery are distinct steps.
+- Include Skill Flows and repository instructions in both TAR/ZIP archives. Check primary onboarding member bytes, local destinations and heading anchors; link source-only authoring and prompt donors explicitly to the repository. Reconcile release guidance with the qualified source/controlled-adoption scope while preserving all native and live-rollout holds.
+- The prepared source offers 36 skills versus 32 in v1.16.5, with zero Core named-agent packages. Four new jobs and 19 changed existing packages are source/package facts; they are not measured effectiveness gains. Thirteen existing packages are byte/mode unchanged on the compared Codex distribution.
+- Controlled proof covers all six authentic owned 32 → ordinary 32 → explicit 36 → unchanged repeat workflows. Reused retirement/recovery proof remains qualified synthetic evidence. Historical native acceptance remains 18/25; global Antigravity discovery/apply remains held, with explicitly qualified manual package loading documented. No universal native-provider, model-superiority or numeric score-improvement claim is made.
+- Tagging/publication may expose the release to existing tag-based auto-accept schedules. A release must resolve that rollout boundary before matching tags are pushed; live installation remains a separate reviewed operation.
 
 ## v1.16.5 - 2026-10-04
 

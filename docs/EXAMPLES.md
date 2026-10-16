@@ -14,6 +14,25 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## Use a distribution in your project
+
+**Illustrative example, not a native behavior test.** After verifying the trusted
+archive and its [runtime inventory](GETTING-STARTED.md#check-your-core-prompts-context),
+ask your assistant:
+
+> Read the Core-Prompts distribution's AGENTS.md and context-aware steering, then
+> the complete bundled engos-design-specify-change skill and selected resources.
+> In my authorized project, follow its own AGENTS.md and define acceptance for
+> this change in our existing format. This is ordinary skill use: do not create
+> a Core-Prompts worktree or require its missing SSOT/UAC/build tools. Keep setup,
+> publication and external messages on hold.
+
+Expect source-backed requirements and open decisions in the requested project.
+A missing resource remains a gap; layout and inventory checks do not prove native
+skill discovery or task success. If the request instead changes the Core-Prompts
+capability itself, use a separately verified complete source checkout and its
+maintainer workflow. Do not make an installed or archived copy the lasting fix.
+
 ## Progressive feature example
 
 **Illustrative walkthrough, not an executed test or measured improvement.** Suppose
@@ -1862,7 +1881,7 @@ Use `engos-quality-docs-review` for ordinary placement, drift and navigation rev
 | `factual-audit` | Checking supplied candidate drafts | Original E summary/items JSON, edits by file, content PASS/FAIL, minimum fixes on FAIL |
 | `adversarial-doc-review` | Inversion and five-area ship assessment | Inversion, findings, scorecard, Ship Verdict, conditional fixes or proposed commands |
 
-The original [prompt pack](prompt-pack/README.md) and all seven donor prompts remain callable. Named recipes draft artifacts and propose commands; they do not authorize overwrite, install, commit, merge or release. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review. Findings-only E/F routes stay advisory.
+The original [prompt pack (source repository)](https://github.com/medhatgalal/Core-Prompts/blob/main/docs/prompt-pack/README.md) and all seven donor prompts remain callable. Named recipes draft artifacts and propose commands; they do not authorize overwrite, install, commit, merge or release. Only explicitly requested execution of a substantial documentation rewrite triggers the existing separate artifact review. Findings-only E/F routes stay advisory.
 
 For candidate-bound Git, hosted-check and package evidence, request `docs-release-readiness` from `engos-quality-gitops-review`. It embeds a DocsShipHandoff.v1 response inside its existing seven-section report. E content PASS does not establish hosted readiness. F defaults to full release scope; explicit commit-only or merge-only scope must be labeled. Unknown evidence yields FAIL. Merge/release readiness requires independently reproduced committed documentation bytes and exact-head hosted checks; dirty snapshot bytes with green HEAD CI cannot pass. Commands remain proposals under actual authority.
 
@@ -1878,8 +1897,9 @@ graph does not grant execution approval, and a clean rerun alone does not prove
 a reported bug is fixed. Package availability is source evidence; native use and
 helper effectiveness require separate evidence.
 
-The catalog update takes a prior 32-skill selection to the current 36-skill
-catalog. Ordinary sync preserves a concrete saved selection. Explicit full
+The v1.17.0 preparation offers a 36-skill catalog compared with the published
+v1.16.5 catalog of 32. These examples do not assert release publication or new
+native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
 catalog adopts all current and future skills; curated policy adds named skills.
 Use [the install-profile commands and shared-root consent rules](INSTALL-PROFILES.md#choose-future-skill-membership).
 A refreshed helper inside one of the 36 packages is a resource update, not a new

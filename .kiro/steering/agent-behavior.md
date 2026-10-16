@@ -8,6 +8,34 @@ inclusion: always
 
 Keep rule surfaces machine-readable, keep human docs free of hidden policy, and force execution quality to stay grounded in facts and best practices.
 
+## Execution context
+
+Identify the Core-Prompts root separately from the user's project before choosing
+its workflow. Do not infer a distribution from missing `.git` alone.
+
+- **Complete source checkout:** require `ssot/` with canonical entries, `.meta/surface-rules.json`, `scripts/build-surfaces.py` and `scripts/validate-surfaces.py` together. These markers identify source layout, not trust, Git readiness or validation success. Verify source identity before maintenance. A source export without Git metadata remains source layout; obtain a verified checkout before Git-dependent maintenance.
+- **Verified distribution:** require `VERSION`, `.meta/install-bundle.json`, `scripts/install-local.sh`, the `scripts/deploy-profile.py` capsule and `scripts/install_bundle.py`. All canonical source markers must be absent, and runtime inventory verification must pass against the trusted package. Inventory consistency alone does not establish trusted package origin.
+- **Incomplete or ambiguous layout:** if source markers are partial, the runtime is missing, inventory verification fails, or identity is unresolved, report the exact gap. Do not relabel a broken checkout as a distribution or regenerate ownership hashes to bypass the failure. Continue only independent work whose inputs and authority are established.
+
+For ordinary skill use, follow the user's project's own rules and the selected
+skill's complete contract/resources. Do not impose Core-Prompts maintenance rules
+on work in another repository. In a verified distribution, use the bundled skills,
+package-local resources and portable installation tools only within the authorized
+scope; do not require Core-Prompts SSOT, UAC, build/validate, worktree or PR/MR prerequisites
+for ordinary use. Write requested outputs in the authorized user project, not into
+the distribution as an authoring shortcut. Installation preview and apply retain
+their existing exact-target, preservation and approval requirements.
+
+If the request changes a Core-Prompts capability, build, rule or release, use a
+separately verified complete source checkout and its [source delivery workflow](repo-workflow.md#delivery-workflow).
+Do not patch bundled or installed skills as the lasting fix or run absent source
+tooling from an archive. A distribution is not a replacement source checkout.
+
+Safety, approvals, preservation and evidence boundaries apply in every context.
+Layout detection grants no installation, external messaging, commit, merge, tag,
+publication, schedule, authentication or trust authority. Keep source/package
+identity, static checks, native discovery and observed task behavior distinct.
+
 ## Rules Versus Docs
 
 - Do not comingle rules and docs.

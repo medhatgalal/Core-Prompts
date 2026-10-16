@@ -351,12 +351,21 @@ class BatmanContractTests(unittest.TestCase):
         self.assertNotIn(FORMER_ALIAS, benchmark.lower())
 
     def test_batman_routing_fitness_remains_advisory_and_explicit_only(self) -> None:
-        job_map = json.loads(_read(".meta/skill-job-map.json"))["skills"]["engos-orchestration-batman"]
-        fitness = job_map["routing_fitness"]
-        self.assertEqual(fitness["mapping_status"], "source_derived_draft")
-        self.assertEqual(fitness["activation"]["mode"], "explicit_only")
-        self.assertIs(fitness["risk_authority_ceiling"]["grants_authority"], False)
-        self.assertIs(fitness["pack_hints"]["default_bulk_activation"], False)
+        from intent_pipeline.skill_jobs import compile_skill_job
+
+        slug = "engos-orchestration-batman"
+        shipped = json.loads(_read(".meta/skill-job-map.json"))["skills"][slug]["routing_fitness"]
+        fresh = compile_skill_job(
+            ROOT, slug, _read(f"ssot/{slug}.md"),
+            display_name="Batman", description="Delivery",
+        )["routing_fitness"]
+        self.assertEqual(fresh["mapping_status"], "source_derived_draft")
+        # Retained curation is deliberately stale, not silently re-approved by a build.
+        self.assertEqual(shipped["mapping_status"], "stale")
+        for fitness in (fresh, shipped):
+            self.assertEqual(fitness["activation"]["mode"], "explicit_only")
+            self.assertIs(fitness["risk_authority_ceiling"]["grants_authority"], False)
+            self.assertIs(fitness["pack_hints"]["default_bulk_activation"], False)
 
 
 if __name__ == "__main__":

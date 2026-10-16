@@ -13,9 +13,21 @@ Keep repository changes reviewable, reversible, and easy to isolate.
 - This file is the canonical rule surface for branch workflow and repo mutation sequencing.
 - Do not place branch-governance policy only inside human docs.
 
+## Source-checkout-only guard
+
+Apply the delivery sequence only to Core-Prompts source maintenance in a complete
+source checkout identified by [Execution context](agent-behavior.md#execution-context).
+This guard applies when this `inclusion: always` steering file is loaded directly,
+including without the root AGENTS router. Do not apply the delivery sequence to ordinary skill use
+in a user's project or a verified extracted distribution. Use that project's rules,
+the bundled skill contract/resources and only authorized portable installation
+tools instead. Missing `.git` alone does not establish a distribution; partial or
+ambiguous layouts need a reported gap and a separately verified source checkout
+before source authoring. Preserve all safety, approval and evidence boundaries.
+
 ## Delivery Workflow
 
-Use this sequence for implementation, including capability updates requested through an installed path, documentation, `AGENTS.md`, and steering. Honor an explicit review-only, draft-only, or no-merge instruction. For an implementation request without such a limit, complete the PR/MR, mainline verification, and task-owned cleanup sequence; do not stop at a local patch or home installation.
+Within the complete Core-Prompts source-checkout scope above, use this sequence for implementation, including capability updates requested through an installed path, documentation, `AGENTS.md`, and steering. Honor an explicit review-only, draft-only, or no-merge instruction. For an implementation request without such a limit, complete the PR/MR, mainline verification, and task-owned cleanup sequence; do not stop at a local patch or home installation.
 
 1. Verify runtime/task identity, cwd, branch/HEAD, dirty state, and both remotes. Fetch main and reconcile remote differences before choosing a base. Preserve all unrelated work.
 2. Create a dedicated `AI/` branch in a linked worktree from verified main. Keep primary checkouts read-only. Do not substitute a copied dirty checkout or silently include another task's pending migration. Resolve an installed name to its current canonical slug before editing.

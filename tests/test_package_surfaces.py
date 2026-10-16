@@ -1,6 +1,11 @@
 from __future__ import annotations
 
 import os
+import hashlib
+import json
+import posixpath
+import re
+from urllib.parse import unquote, urlsplit
 import subprocess
 import tarfile
 import zipfile
@@ -145,6 +150,111 @@ def test_package_boundary_includes_release_watch_contract(
             for name in names
             for retired in retired_package_paths
         )
+
+
+
+SOURCE_MARKERS = (".meta/surface-rules.json", "scripts/build-surfaces.py", "scripts/validate-surfaces.py")
+LAYOUT_RULES = ("AGENTS.md", ".kiro/steering/agent-behavior.md", ".kiro/steering/repo-workflow.md")
+
+
+def assert_layout_instruction_contract(files: dict[str, bytes]) -> None:
+    """Static clause/placement checks only: no claim about model routing behavior."""
+    agents, behavior, workflow = (files[name].decode() for name in LAYOUT_RULES)
+    flat = lambda text: " ".join(text.split())
+    assert "## Execution context" in agents
+    assert ".kiro/steering/agent-behavior.md#execution-context" in agents
+    assert "source-checkout maintenance" in agents
+    for steering in (behavior, workflow):
+        assert steering.startswith("---\ninclusion: always\n---\n")
+    assert "## Execution context" in behavior
+    assert all(marker in behavior for marker in ("ssot/", *SOURCE_MARKERS))
+    assert "Do not infer a distribution from missing `.git` alone." in behavior
+    for clause in (
+        "All canonical source markers must be absent",
+        "runtime inventory verification must pass",
+        "Incomplete or ambiguous layout",
+        "separately verified complete source checkout",
+        "project's own rules",
+        "do not require Core-Prompts SSOT, UAC, build/validate, worktree or PR/MR prerequisites",
+        "Safety, approvals, preservation and evidence boundaries apply in every context",
+    ):
+        assert clause in flat(behavior), clause
+    assert "## Source-checkout-only guard" in workflow
+    assert "agent-behavior.md#execution-context" in workflow
+    assert "Do not apply the delivery sequence to ordinary skill use" in flat(workflow)
+    # Preserve the source-maintainer contract instead of solving archive use by deleting it.
+    for clause in ("isolated linked worktree from verified main", "bin/uac plan", "bin/uac judge"):
+        assert clause in flat(agents + workflow), clause
+    for clause in ("both remotes", "GitHub PR and GitLab MR", "post-merge checks",
+                   "explicit review-only", "validation failures as blocking"):
+        assert clause in flat(workflow), clause
+
+
+@pytest.mark.parametrize("archive_format", ["tar", "zip"])
+def test_packaged_primary_onboarding_links_resolve(
+    tmp_path: Path, finalized_release_tree: Path, archive_format: str
+) -> None:
+    """Check actual shipped bytes, not the checkout that can mask missing members."""
+    repo = finalized_release_tree
+    version = (repo / "VERSION").read_text().strip()
+    subprocess.run(
+        [str(repo / "scripts/package-surfaces.sh"), "--version", version,
+         "--output-dir", str(tmp_path / "artifacts")],
+        cwd=repo, check=True, capture_output=True, text=True,
+    )
+    base = tmp_path / "artifacts" / f"core-prompts-{version}-surfaces"
+    if archive_format == "tar":
+        with tarfile.open(str(base) + ".tar.gz") as archive:
+            files = {m.name: archive.extractfile(m).read()
+                     for m in archive.getmembers() if m.isfile()}
+    else:
+        with zipfile.ZipFile(str(base) + ".zip") as archive:
+            files = {m.filename: archive.read(m) for m in archive.infolist()
+                     if not m.is_dir()}
+    primary = ("README.md", "docs/GETTING-STARTED.md", "docs/EXAMPLES.md",
+               "docs/SKILL-FLOWS.md", "docs/INSTALL-PROFILES.md", "AGENTS.md")
+    errors = [f"missing primary guide: {name}" for name in primary if name not in files]
+    for name in primary:
+        if name not in files:
+            continue
+        assert files[name] == (repo / name).read_bytes(), name
+        for link in re.findall(r"\]\(([^)]+)\)", files[name].decode()):
+            url = urlsplit(link)
+            if url.scheme or url.netloc:
+                continue  # Source-only links are explicitly external, not archive claims.
+            target = (posixpath.normpath(posixpath.join(posixpath.dirname(name), unquote(url.path)))
+                      if url.path else name)
+            if url.path.endswith("/") and any(member.startswith(target + "/") for member in files):
+                continue
+            if target not in files:
+                errors.append(f"{name}: {link} -> missing {target}")
+                continue
+            if url.fragment and target.endswith(".md"):
+                headings = re.findall(r"^#{1,6} +(.+)$", files[target].decode(), re.M)
+                anchors = {re.sub(r"[^\w\- ]", "", h.lower()).replace(" ", "-") for h in headings}
+                anchors.update(re.findall(r'<a\s+(?:id|name)=[\"]([^\"]+)', files[target].decode()))
+                if unquote(url.fragment) not in anchors:
+                    errors.append(f"{name}: {link} -> missing anchor")
+    assert not errors, "\n".join(errors)
+
+    # The copied full source has no .git, yet remains a source layout.
+    assert not (repo / ".git").exists()
+    assert (repo / "ssot").is_dir()
+    assert all((repo / marker).is_file() for marker in SOURCE_MARKERS)
+    source_rules = {name: (repo / name).read_bytes() for name in LAYOUT_RULES}
+
+    # Actual distribution bytes omit canonical authoring inputs but carry a complete
+    # independently checked runtime inventory. Keep the exact canonical instructions.
+    assert not any(name.startswith("ssot/") for name in files)
+    assert not any(marker in files for marker in SOURCE_MARKERS)
+    inventory = json.loads(files[".meta/install-bundle.json"])
+    assert {"VERSION", "scripts/install-local.sh", "scripts/deploy-profile.py",
+            "scripts/install_bundle.py"} <= inventory["files"].keys()
+    for name, identity in inventory["files"].items():
+        assert hashlib.sha256(files[name]).hexdigest() == identity["sha256"], name
+    assert {name: files[name] for name in LAYOUT_RULES} == source_rules
+    assert_layout_instruction_contract(files)
+    assert_layout_instruction_contract(source_rules)
 
 
 def test_packaged_profile_updates_verified_release_and_rolls_back(

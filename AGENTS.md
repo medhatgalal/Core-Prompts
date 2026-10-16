@@ -1,5 +1,11 @@
 # AGENTS.md - Core-Prompts Source of Truth
 
+## Execution context
+
+- First classify the Core-Prompts layout using [Execution context](.kiro/steering/agent-behavior.md#execution-context): complete source checkout, verified distribution, or incomplete/ambiguous layout.
+- The source-checkout maintenance rules below govern changes to Core-Prompts itself. Ordinary skill use follows the user's project rules; a verified distribution uses its bundled skills/resources and authorized portable installer without source-maintainer prerequisites.
+- Safety, approvals, preservation and evidence boundaries apply in every context. Capability authoring requires a separately verified complete source checkout; missing source files are not permission to modify an installed bundle.
+
 ## Scope and priority
 
 - Canonical source for all surface initialization: `ssot/`.
@@ -8,7 +14,7 @@
 
 ## Change delivery
 
-- For every capability addition or behavior change, including an installed-skill request, follow [Repo Workflow](.kiro/steering/repo-workflow.md): isolated linked worktree from verified main, same-slug UAC plan/judge/apply, canonical resources, regenerated surfaces, docs, and validation. Never make the installed bundle the lasting fix.
+- For Core-Prompts source-checkout maintenance, including a requested capability addition or behavior change originating from an installed-skill request, follow [Repo Workflow](.kiro/steering/repo-workflow.md): isolated linked worktree from verified main, same-slug UAC plan/judge/apply, canonical resources, regenerated surfaces, docs, and validation. Never make the installed bundle the lasting fix.
 - Carry authorized implementation through GitHub PR and GitLab MR checks, merge to main, verify remote parity, and clean task-owned branches, worktrees, and scratch. Apply the same delivery path to `AGENTS.md` and steering changes; honor explicit review-only or no-merge scope. Deployment and releases remain separate steps when in scope.
 
 ## Surface rules
