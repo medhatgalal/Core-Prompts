@@ -154,8 +154,8 @@ Review `selection_before`, `selection`, `policy_before`, `policy_after`,
 `membership_changes`, `legacy_choices`, `shared_exposure` and
 `shared_resource_changes` alongside actions and preservation reports.
 State schema3 records explicit intent; undecided installations retain schema2.
-The transaction plan remains schema2, persisted journal schema1 and transaction
-receipt schema2. Old schema2 engines reject state3 before writes. The policy flag
+The transaction plan and receipt remain schema2. Ordinary persisted journals use
+schema1; explicit missing-package recovery uses schema2 journals. Old schema2 engines reject state3 before writes. The policy flag
 cannot combine with repair, agents, surface-only or transaction controls; apply
 uses the policy embedded in the exact reviewed plan.
 
@@ -518,3 +518,83 @@ Preserve existing `~/.gemini/antigravity-cli/settings.json`, `mcp_config`,
 authentication, trust, plugins and permission settings. The skill installation
 flow does not translate or grant these controls. This guide records the unresolved
 root distinction without changing the installer or awarding native-test credit.
+
+## Shared-reader namespace observations
+
+Codex and Gemini read the same `.agents/skills` tree. Plans report the same physical
+`before_slugs` and projected `after_slugs` for both supported readers, together with
+typed directory/link entries and `observation_status`. These names describe occupied
+package slots, not verified native discovery. Unrelated links, including broken links,
+are observed with their raw targets and identities; planning does not follow or write
+them. Regular files and other entry types are recorded for drift without being counted
+as skill directories. An observation error reports unknown (`null`) exposure and blocks
+apply; an empty or absent root reports an empty list with a distinct status.
+
+Only accepted package writes add projected physical slots. A preserved missing package
+is not counted as installed. Logical selection remains separate, and showing both
+readers never enrolls a new reader or bypasses the exact joint-profile policy.
+Membership changes and link replacement or retargeting invalidate an approved plan.
+Selected packages and their resources still use strict symlink and ownership checks.
+
+## Restore wholly missing owned Grok skills
+
+Use a trusted, verified installer with this recovery support. Record its source commit
+or release identity; an old plan cannot approve a changed engine. This operation requires
+an existing schema2/schema3 installation receipt, an existing safe `.grok/skills` parent,
+and exact current Grok skill names already present in both selection and ownership.
+The complete package root must be absent. Recovery rejects empty directories, partial
+packages, custom files, symlinks, aliases, retired names, unowned packages and legacy
+schema1-only receipts. Every requested package must qualify before any can be applied.
+
+```bash
+# Substitute the exact current canonical names approved for restoration.
+bash "$VERIFIED_ENGINE/scripts/install-local.sh" \
+  --target "$TARGET" --allow-nonlocal-target \
+  --recover-missing --cli grok \
+  --slug engos-design-architecture --slug engos-quality-code-review \
+  --dry-run > "$RECOVERY_PLAN"
+
+# After reviewing the new plan, its source, paths, identities and blockers:
+bash "$VERIFIED_ENGINE/scripts/install-local.sh" \
+  --target "$TARGET" --allow-nonlocal-target --apply-plan "$RECOVERY_PLAN"
+```
+
+The preview requires `--dry-run`; apply uses only the saved plan. Do not combine
+recovery with profiles, selection-policy changes, repair, agents, surface-only mode,
+rollback or transaction listing. `--strict-cli` may optionally check for the Grok
+binary. Both installer wrappers accept this form. Routine updater sync and `--repair`
+do not opt into recovery. Selection, future-membership policy, runtime, registrations
+and other packages stay unchanged; only recovered ownership records and their exact
+preservation notices are updated through the transaction. This is restoration, not
+adoption or an installed-release upgrade.
+
+Apply replans under the cooperating-installer lock, exclusively claims absent roots,
+and publishes complete package files without replacing an existing destination. A path
+that appears after preview blocks recovery and is preserved. Unexpected entries, root
+identity changes and directory-mode changes also block. The lock does not exclude
+arbitrary external processes; multi-file installation remains recoverable, not atomic.
+
+Recovery uses schema2 transaction journals so an older installer rejects them instead
+of attempting rollback without the directory safeguards. Older installers also reject
+subsequent applies while a retained schema2 journal exists, even after rollback. Continue
+using a recovery-capable verified installer; do not remove journals to bypass this guard.
+Retain the verified recovery
+engine, transaction ID and journal. Use that engine with the [normal rollback commands](#recover-an-installation)
+to review and restore its preimages. Recovery rollback removes only unchanged newly
+written files and the exact recorded, unchanged, empty directories created for those
+packages; it restores previous package-root absence and leaves the pre-existing parent.
+Later custom files or links, changed bytes/modes, or replaced directories block rollback
+and remain intact. An interruption between creation and durable ownership recording can
+leave an ambiguous node; recovery preserves it and reports a conflict rather than
+inferring ownership from emptiness. This includes a successful file publication
+interrupted before its file identity is durably added to the journal; matching
+package bytes alone do not authorize removing that unrecorded file. Keep the journal and inspect the exact conflict.
+Ordinary transactions retain their existing empty-directory behavior.
+
+Restoring old selected packages does not add the four jobs that grew the catalog from
+32 to 36. Perform any desired membership update in a separate fresh plan, and review
+protected-package conflicts separately. Preserved content is an explicit partial result,
+not proof that every selected package has current bytes. This recovery adds no retired
+skill/agent cleanup rule: remove only independently identified eligible catalog targets
+through their existing reviewed transaction, never by prefix, age or missing-use count.
+Third-party skill links and their targets remain protected.

@@ -8,6 +8,8 @@ Install or repair an existing setup with the current installer, even if it has n
 
 The shipped setup is skills-only. Generic independent workers can apply these skills; future named-agent surfaces require your explicit approval. See [skills, agents, and prompts](docs/FAQ.md#what-is-the-difference-between-a-skill-an-agent-and-a-prompt) for the distinction and its limits. Explicit-only workflows such as Batman still require an explicit request.
 
+Missing installed Grok skills can be restored through an [exact recovery preview](docs/INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills) when their current names are already selected and receipt-owned. Recovery preserves custom packages and adds no new catalog membership. Codex and Gemini share one physical skill directory; unrelated third-party links remain visible and untouched during planning.
+
 ## Choose the job you need now
 
 | Your next outcome | Start here |

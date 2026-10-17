@@ -9,7 +9,7 @@ import tomllib
 from pathlib import Path
 
 import install_bundle
-from . import catalog, providers, selection_policy
+from . import catalog, providers, selection_policy, discovery
 from .transaction import encoded, identity, inventory, safe
 
 STATE = '.core-prompts-state/installation.json'
@@ -134,7 +134,7 @@ def plan(repo: Path, target: Path, request: dict):
     if repo.resolve() == target.resolve():
         raise ValueError('INVALID_TARGET: build repository surfaces instead')
     mode = request.get('mode', 'repair')
-    if mode not in ('install', 'repair', 'sync'):
+    if mode not in ('install', 'repair', 'sync', 'recover_missing'):
         raise ValueError('INVALID_REQUEST: unknown installation mode')
     bundle = install_bundle.verified(repo)
     trusted = catalog.load_catalog(repo)
@@ -148,6 +148,9 @@ def plan(repo: Path, target: Path, request: dict):
         return catalog.successor(provider, kind, slug)
 
     state = read_state(target)
+    if mode == 'recover_missing':
+        from . import recovery
+        return recovery.plan(repo, target, request, current, state, bundle)
     previous = state or dict(schema=2, owner='Core-Prompts', selection=[], packages={}, runtime={}, registrations={})
     profile = request['profile'] if 'profile' in request else (read_json(target, V1_PROFILE) if state is None else None)
     profile_present = 'profile' in request or (state is None and safe(target,V1_PROFILE).exists())
@@ -338,10 +341,11 @@ def plan(repo: Path, target: Path, request: dict):
         selection |= {k for k,p in current.items() if p['provider'] in clients and p['kind'] in request.get('kinds',['skill'])
                       and policy != 'curated'}
     shared_readers = ({k.split(':')[0] for k in prior_selection} | set(policies_before) | set(clients)) & selection_policy.SHARED_READERS
-    physical_before, physical_error = _observe(target, ['.agents/skills'], observations)
-    if physical_error:
-        blockers.append('SHARED_SURFACE_POLICY_CONFLICT: ' + physical_error)
-    physical_before_slugs = {r.split('/')[2] for r in physical_before if len(r.split('/')) > 3}
+    shared_observation = discovery.shared_root(target)
+    observations['.agents/skills'] = shared_observation
+    if shared_observation['status'] == 'error':
+        blockers.append('SHARED_SURFACE_POLICY_CONFLICT: ' + shared_observation['error'])
+    physical_before_slugs = set(discovery.slots(shared_observation) or [])
     physical_after_slugs = physical_before_slugs | {current[k]['slug'] for k in selection if k in current
         and current[k]['kind'] == 'skill' and current[k]['roots'][0].startswith('.agents/skills/')}
     shared_additions = physical_after_slugs - physical_before_slugs
@@ -355,7 +359,10 @@ def plan(repo: Path, target: Path, request: dict):
             if shared_additions:
                 blockers.append('SHARED_SURFACE_POLICY_CONFLICT: full catalog requires exact joint shared-reader profile')
     shared_exposure = dict(root='.agents/skills', known_readers=sorted(shared_readers),
-                           before_slugs=sorted(physical_before_slugs), after_slugs=sorted(physical_after_slugs))
+                           supported_readers=sorted(selection_policy.SHARED_READERS),
+                           observation_status=shared_observation['status'], entries=shared_observation['entries'],
+                           discovery_verified=False,
+                           before_slugs=discovery.slots(shared_observation), after_slugs=None)
     next_packages = dict(previous['packages'])
     package_actions, blocked_keys, to_retire = {}, set(), {}
     retirement_only = set()
@@ -662,6 +669,12 @@ def plan(repo: Path, target: Path, request: dict):
         shared_changes.append(dict(root=desired['roots'][0], updated_provider=desired['provider'],
             affected_existing_owners=affected, before_digest=selection_policy.digest(old_files),
             after_digest=selection_policy.digest(desired['files'])))
+    if shared_observation['status'] != 'error':
+        # Directory/link slots survive preserved writes and file-only retirement.
+        # Only accepted writes can add a projected physical slot.
+        added = {a['path'].split('/')[2] for a in unique.values()
+                 if a['op'] == 'write' and a['path'].startswith('.agents/skills/')}
+        shared_exposure['after_slugs'] = sorted(physical_before_slugs | added)
     return dict(schema=2,selection_before=sorted(prior_selection), policy_before=policies_before,
                 policy_after=prospective.get('selection_policy', policies_before), legacy_choices=legacy_choices,
                 shared_resource_changes=shared_changes, shared_exposure=shared_exposure,
