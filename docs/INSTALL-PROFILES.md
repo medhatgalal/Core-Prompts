@@ -559,8 +559,10 @@ bash "$VERIFIED_ENGINE/scripts/install-local.sh" \
   --target "$TARGET" --allow-nonlocal-target --apply-plan "$RECOVERY_PLAN"
 ```
 
-The preview requires `--dry-run`; apply uses only the saved plan. Do not combine
-recovery with profiles, selection-policy changes, repair, agents, surface-only mode,
+The recovery preview requires `--dry-run`; recovery apply uses only the saved plan
+and rejects fresh selection or operation flags. Existing ordinary repair plans may
+retain legacy `--repair` arguments; those arguments never override the saved request.
+Do not combine recovery with profiles, selection-policy changes, repair, agents, surface-only mode,
 rollback or transaction listing. `--strict-cli` may optionally check for the Grok
 binary. Both installer wrappers accept this form. Routine updater sync and `--repair`
 do not opt into recovery. Selection, future-membership policy, runtime, registrations

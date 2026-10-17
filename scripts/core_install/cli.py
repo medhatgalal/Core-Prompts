@@ -37,9 +37,6 @@ def main(argv=None):
                 or args.repair or args.with_agents or args.surface_only or args.profile
                 or args.selection_policy or args.apply_plan or args.rollback or args.list_transactions):
             raise ValueError('INVALID_REQUEST: recover-missing requires --cli grok, exact --slug values and --dry-run only')
-        if args.apply_plan and (explicit_cli or args.slug or args.profile or args.repair or args.with_agents
-                or args.surface_only or args.selection_policy or args.list_transactions or args.strict_cli):
-            raise ValueError('INVALID_REQUEST: apply-plan cannot combine with selection or operation flags')
         if args.selection_policy and (args.repair or args.with_agents or args.surface_only or args.apply_plan or args.rollback or args.list_transactions):
             raise ValueError('INVALID_REQUEST: selection-policy cannot combine with repair/agents/surface-only/transaction controls')
         if args.selection_policy and not args.profile and args.cli == 'all':
@@ -54,6 +51,16 @@ def main(argv=None):
             raise ValueError('INVALID_REQUEST: --surface-only requires --slug')
         if args.profile and (explicit_cli or args.slug or args.surface_only):
             raise ValueError('INVALID_REQUEST: profile cannot combine with CLI/slug/surface-only selection')
+        if args.apply_plan:
+            approved=json.loads(args.apply_plan.read_text())
+            request=approved['request']
+            # Recovery accepts only its reviewed request. Ordinary plans retain
+            # legacy flag compatibility; argv never replaces the saved request.
+            # Check before listing can return early without applying anything.
+            if isinstance(request, dict) and request.get('mode') == 'recover_missing' and (
+                    explicit_cli or args.slug or args.profile or args.repair or args.with_agents
+                    or args.surface_only or args.selection_policy or args.list_transactions or args.strict_cli):
+                raise ValueError('INVALID_REQUEST: recovery apply-plan cannot combine with selection or operation flags')
         if args.list_transactions:
             rows=[]
             root=transaction.safe(target,transaction.TRANSACTIONS)
@@ -67,7 +74,6 @@ def main(argv=None):
             result=transaction.rollback(target,args.rollback,args.dry_run)
             print(json.dumps(result,indent=2));return 0
         if args.apply_plan:
-            approved=json.loads(args.apply_plan.read_text())
             request=approved['request']
         elif args.recover_missing:
             if args.strict_cli and not shutil.which('grok'):

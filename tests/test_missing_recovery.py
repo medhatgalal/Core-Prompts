@@ -455,3 +455,35 @@ def test_schema1_reader_rejects_recovery_journal(recovery):
     # Retained journals still require a capable installer after rollback.
     with pytest.raises(ValueError, match='invalid transaction journal'):
         schema1_reader(journal_path)
+
+
+@pytest.mark.parametrize('extra', [['--repair'], ['--repair', '--cli', 'grok', '--slug', 'unknown']])
+def test_ordinary_reviewed_repair_accepts_legacy_flags_without_overriding_plan(installation, tmp_path, capsys, extra):
+    from core_install import cli
+    repo, target = installation
+    put(target, '.kiro/skills/architecture/SKILL.md', 'kiro-architecture-skill\n')
+    request = dict(mode='repair', providers=['kiro'], runtime=False)
+    plan = planner.plan(repo, target, request)
+    assert not plan['blockers'] and not plan['preserved']
+    saved = tmp_path / 'ordinary-repair.json'
+    saved.write_text(json.dumps(plan))
+    assert cli.main(['--repo', str(repo), '--target', str(target), '--apply-plan', str(saved), *extra]) == 0
+    assert json.loads(capsys.readouterr().out)['status'] == 'complete'
+    assert (target / '.kiro/skills/engos-design-architecture/SKILL.md').exists()
+    assert not (target / '.grok').exists()
+
+
+@pytest.mark.parametrize('extra', [['--repair'], ['--cli', 'grok'], ['--slug', 'engos-design-architecture'],
+    ['--with-agents'], ['--surface-only', '--slug', 'engos-design-architecture'],
+    ['--profile', 'unused.json'], ['--selection-policy', 'curated'],
+    ['--list-transactions'], ['--strict-cli']])
+def test_reviewed_recovery_rejects_fresh_flags_before_dispatch(recovery, tmp_path, capsys, extra):
+    from core_install import cli
+    repo, target, request = recovery
+    before = (target / planner.STATE).read_bytes()
+    saved = tmp_path / 'recovery.json'
+    saved.write_text(json.dumps(planner.plan(repo, target, request)))
+    assert cli.main(['--repo', str(repo), '--target', str(target), '--apply-plan', str(saved), *extra]) == 1
+    assert 'INVALID_REQUEST' in capsys.readouterr().err
+    assert (target / planner.STATE).read_bytes() == before
+    assert not (target / tx.TRANSACTIONS).exists()
