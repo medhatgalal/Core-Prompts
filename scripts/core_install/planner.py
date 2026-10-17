@@ -349,15 +349,6 @@ def plan(repo: Path, target: Path, request: dict):
     physical_after_slugs = physical_before_slugs | {current[k]['slug'] for k in selection if k in current
         and current[k]['kind'] == 'skill' and current[k]['roots'][0].startswith('.agents/skills/')}
     shared_additions = physical_after_slugs - physical_before_slugs
-    for reader in sorted(shared_readers):
-        logical = {k.split(':', 2)[2] for k in selection if k.startswith(reader + ':skill:')}
-        if shared_additions and (policies_after.get(reader, 'legacy_unspecified') != 'full_catalog'
-                                 and not shared_additions <= logical):
-            blockers.append('SHARED_SURFACE_POLICY_CONFLICT: expansion exceeds ' + reader + ' concrete selection; review exact joint profile choice')
-    if policy == 'full_catalog' and len(shared_readers) > 1 and any(policies_before.get(p) != 'full_catalog' for p in shared_readers):
-        if ('profile' not in request or set(request['profile']['targets']) != shared_readers):
-            if shared_additions:
-                blockers.append('SHARED_SURFACE_POLICY_CONFLICT: full catalog requires exact joint shared-reader profile')
     shared_exposure = dict(root='.agents/skills', known_readers=sorted(shared_readers),
                            supported_readers=sorted(selection_policy.SHARED_READERS),
                            observation_status=shared_observation['status'], entries=shared_observation['entries'],
@@ -659,6 +650,22 @@ def plan(repo: Path, target: Path, request: dict):
         if prior is not None and prior != action:
             blockers.append('ACTION_CONFLICT: '+action['path'])
         unique[action['path']]=action
+    # Occupied namespace slots are not proof of prior skill exposure. A new
+    # catalog entrypoint in an existing empty root still expands both readers.
+    # Use only accepted actions and catalog metadata; never follow opaque links.
+    shared_additions |= {p['slug'] for p in current.values()
+                         if p['kind'] == 'skill' and p['roots'][0].startswith('.agents/skills/')
+                         and (action := unique.get(p['entrypoint'])) is not None
+                         and action['op'] == 'write' and action['before'] is None}
+    for reader in sorted(shared_readers):
+        logical = {k.split(':', 2)[2] for k in selection if k.startswith(reader + ':skill:')}
+        if shared_additions and (policies_after.get(reader, 'legacy_unspecified') != 'full_catalog'
+                                 and not shared_additions <= logical):
+            blockers.append('SHARED_SURFACE_POLICY_CONFLICT: expansion exceeds ' + reader + ' concrete selection; review exact joint profile choice')
+    if policy == 'full_catalog' and len(shared_readers) > 1 and any(policies_before.get(p) != 'full_catalog' for p in shared_readers):
+        if ('profile' not in request or set(request['profile']['targets']) != shared_readers):
+            if shared_additions:
+                blockers.append('SHARED_SURFACE_POLICY_CONFLICT: full catalog requires exact joint shared-reader profile')
     shared_changes = []
     for k, desired in sorted(current.items()):
         if not package_actions.get(k) or k in blocked_keys or desired['provider'] not in ('codex', 'gemini') or desired['kind'] != 'skill':

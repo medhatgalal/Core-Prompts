@@ -530,7 +530,10 @@ them. Regular files and other entry types are recorded for drift without being c
 as skill directories. An observation error reports unknown (`null`) exposure and blocks
 apply; an empty or absent root reports an empty list with a distinct status.
 
-Only accepted package writes add projected physical slots. A preserved missing package
+Only accepted package writes add projected physical slots. An existing empty directory
+is still an occupied slot, but creating its first catalog skill entrypoint is new
+shared exposure and must satisfy both readers' selection policies. Updating an
+already-present owned entrypoint does not create new exposure. A preserved missing package
 is not counted as installed. Logical selection remains separate, and showing both
 readers never enrolls a new reader or bypasses the exact joint-profile policy.
 Membership changes and link replacement or retargeting invalidate an approved plan.

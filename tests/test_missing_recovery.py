@@ -487,3 +487,104 @@ def test_reviewed_recovery_rejects_fresh_flags_before_dispatch(recovery, tmp_pat
     assert 'INVALID_REQUEST' in capsys.readouterr().err
     assert (target / planner.STATE).read_bytes() == before
     assert not (target / tx.TRANSACTIONS).exists()
+
+
+def test_empty_shared_slot_cannot_bypass_other_readers_curated_selection(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    state = dict(schema=3, owner='Core-Prompts', selection=[], packages={}, runtime={},
+                 registrations={}, selection_policy={'gemini': 'curated'})
+    state_path = put(target, planner.STATE, tx.encoded(state))
+    shared = target / '.agents/skills' / slug
+    shared.mkdir(parents=True)
+    before = state_path.read_bytes()
+    request = dict(mode='install', providers=['codex'], slugs=[slug], kinds=['skill'], runtime=False)
+    plan = planner.plan(repo, target, request)
+    assert plan['shared_exposure']['known_readers'] == ['codex', 'gemini']
+    assert state_path.read_bytes() == before and not list(shared.iterdir())
+    print(json.dumps({'known_readers': plan['shared_exposure']['known_readers'],
+                      'before_slugs': plan['shared_exposure']['before_slugs'],
+                      'blockers': plan['blockers'],
+                      'shared_writes': [a['path'] for a in plan['actions']
+                                        if a['path'].startswith('.agents/skills/')]}))
+    assert any('SHARED_SURFACE_POLICY_CONFLICT' in blocker and 'gemini' in blocker
+               for blocker in plan['blockers'])
+    with pytest.raises(tx.InstallError, match='unresolved blockers'):
+        tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert state_path.read_bytes() == before and not list(shared.iterdir())
+
+
+@pytest.mark.parametrize('other_policy', ['curated', 'full_catalog'])
+def test_empty_shared_slot_can_be_populated_with_compatible_other_reader_policy(installation, other_policy):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    selection = ['gemini:skill:' + slug] if other_policy == 'curated' else []
+    state = dict(schema=3, owner='Core-Prompts', selection=selection, packages={}, runtime={},
+                 registrations={}, selection_policy={'gemini': other_policy})
+    put(target, planner.STATE, tx.encoded(state))
+    shared = target / '.agents/skills' / slug
+    shared.mkdir(parents=True)
+    request = dict(mode='install', providers=['codex'], slugs=[slug], kinds=['skill'], runtime=False)
+    plan = planner.plan(repo, target, request)
+    assert not plan['blockers']
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert (shared / 'SKILL.md').read_text() == 'current skill\n'
+    assert planner.read_state(target)['selection_policy']['gemini'] == other_policy
+
+
+def test_empty_shared_slot_accepts_exact_joint_curated_profile(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    put(target, planner.STATE, tx.encoded(dict(schema=3, owner='Core-Prompts', selection=[], packages={},
+        runtime={}, registrations={}, selection_policy={'gemini': 'curated'})))
+    shared = target / '.agents/skills' / slug
+    shared.mkdir(parents=True)
+    profile = dict(schema=1, scope='skills', targets=['codex', 'gemini'], slugs=[slug])
+    request = dict(mode='repair', providers=profile['targets'], profile=profile,
+                   selection_policy='curated', kinds=['skill'])
+    plan = planner.plan(repo, target, request)
+    assert not plan['blockers']
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert (shared / 'SKILL.md').read_text() == 'current skill\n'
+    state = planner.read_state(target)
+    assert state['selection'] == ['codex:skill:' + slug, 'gemini:skill:' + slug]
+    assert state['selection_policy'] == {'codex': 'curated', 'gemini': 'curated'}
+
+
+def test_empty_shared_slot_does_not_bypass_full_catalog_joint_consent(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    put(target, planner.STATE, tx.encoded(dict(schema=3, owner='Core-Prompts', selection=[], packages={},
+        runtime={}, registrations={}, selection_policy={'gemini': 'curated'})))
+    shared = target / '.agents/skills' / slug
+    shared.mkdir(parents=True)
+    request = dict(mode='sync', providers=['codex'], selection_policy='full_catalog')
+    plan = planner.plan(repo, target, request)
+    assert any('full catalog requires exact joint shared-reader profile' in b for b in plan['blockers'])
+    assert any('expansion exceeds gemini' in b for b in plan['blockers'])
+    with pytest.raises(tx.InstallError, match='unresolved blockers'):
+        tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert not list(shared.iterdir())
+
+
+def test_existing_shared_entrypoint_update_is_not_new_policy_exposure(installation):
+    repo, target = installation
+    slug = 'engos-design-architecture'
+    request = dict(mode='install', providers=['codex'], slugs=[slug], kinds=['skill'], runtime=False)
+    initial = planner.plan(repo, target, request)
+    tx.apply(repo, target, initial, lambda: planner.plan(repo, target, request))
+    state = planner.read_state(target)
+    state.update(schema=3, selection_policy={'codex': 'curated', 'gemini': 'curated'})
+    put(target, planner.STATE, tx.encoded(state))
+    for provider in ('codex', 'gemini'):
+        put(repo, f'.{provider}/skills/{slug}/SKILL.md', 'updated existing skill\n')
+    install_bundle.build(repo)
+    request = dict(mode='sync', providers=['codex'], runtime=False)
+    plan = planner.plan(repo, target, request)
+    assert not plan['blockers']
+    writes = [a for a in plan['actions'] if a['path'] == f'.agents/skills/{slug}/SKILL.md']
+    assert len(writes) == 1 and writes[0]['before'] is not None
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert (target / writes[0]['path']).read_text() == 'updated existing skill\n'
+    assert planner.read_state(target)['selection_policy']['gemini'] == 'curated'
+    assert 'gemini:skill:' + slug not in planner.read_state(target)['selection']
