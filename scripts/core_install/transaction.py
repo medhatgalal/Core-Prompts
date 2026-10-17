@@ -184,6 +184,8 @@ def _actions(plan, target, repo=None):
     for rel in seen:
         if any(parent.as_posix() in seen for parent in Path(rel).parents if parent != Path(".")):
             raise InstallError("overlapping file action paths", "invalid-plan")
+    from . import recovery
+    recovery.contract(plan, target)
     return plan["actions"]
 
 
@@ -220,13 +222,15 @@ def _load(target, transaction):
         journal = json.loads(path.read_text())
     except (OSError, ValueError) as exc:
         raise InstallError(f"unreadable transaction journal: {transaction}", "invalid-journal", transaction) from exc
-    if (not isinstance(journal, dict) or journal.get("schema") != 1
+    if (not isinstance(journal, dict) or journal.get("schema") not in (1, 2)
             or journal.get("transaction") != transaction
             or type(journal.get("created_ns")) is not int
             or type(journal.get("restoring", False)) is not bool
             or journal.get("status") not in ("prepared", "applying", "complete", "rolled-back")):
         raise InstallError("invalid transaction journal", "invalid-journal", transaction)
     _actions(journal.get("plan"), target)
+    if (journal["schema"] == 2) != bool(journal["plan"].get("recovery_roots")):
+        raise InstallError("journal schema does not match recovery contract", "invalid-journal", transaction)
     return journal
 
 
@@ -291,6 +295,9 @@ def apply(repo: Path, target: Path, approved: dict, replan):
     # Detach approval from a caller which might mutate its dict during replan.
     approved = json.loads(encoded(approved))
     transaction = None
+    from . import recovery
+    if approved.get("recovery_roots"):
+        return recovery.apply(repo, target, approved, replan)
     with _lock(target):
         journals = _journals(target)
         if any(item["status"] in ("prepared", "applying") for item in journals):
@@ -451,8 +458,16 @@ images remain immutable; the derived recovery image is recorded separately.
 
 def rollback(target: Path, transaction: str, dry_run=False):
     target = _checked(target)
+    # Read-only route hint. Recovery authoritatively reloads through anchored
+    # descriptors before its lock; either route rejects classification drift.
+    hint = _load(target, transaction)
+    if hint["schema"] == 2:
+        from . import recovery
+        return recovery.rollback(target, transaction, dry_run, hint)
     with _lock(target):
         journal = _load(target, transaction)
+        if journal["schema"] != 1:
+            raise InstallError("rollback classification changed", "stale-journal")
         if any(item["transaction"] != transaction and item["status"] in ("prepared", "applying")
                for item in _journals(target)):
             raise InstallError("another unfinished transaction requires rollback first", "unfinished-transaction")

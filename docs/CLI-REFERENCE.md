@@ -704,3 +704,15 @@ when adopting source changes ahead of a release. It covers fast-forward-only
 checkout refresh, current-installer preview/apply, full versus curated membership,
 AI handoff, package readback and transaction recovery. Release-watch commands
 follow immutable releases; they do not adopt an unreleased branch.
+
+### Exact absent-owned Grok recovery
+
+`install-local.sh` and `deploy-surfaces.sh` accept
+`--recover-missing --cli grok --slug CURRENT_SLUG [--slug CURRENT_SLUG] --dry-run`
+with an explicit external `--target` and, where required, `--allow-nonlocal-target`.
+Names must be unique, current, already selected and receipt-owned; entire package
+roots must be absent. Apply the reviewed JSON using `--apply-plan PATH` alone with
+target flags. Recovery cannot combine with `--repair`, `--with-agents`, `--profile`,
+`--selection-policy`, `--surface-only`, `--rollback` or `--list-transactions`.
+The [complete recovery contract](INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills)
+explains race checks, journal retention, rollback conflicts and unchanged membership.

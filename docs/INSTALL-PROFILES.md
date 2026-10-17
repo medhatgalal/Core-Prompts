@@ -154,8 +154,8 @@ Review `selection_before`, `selection`, `policy_before`, `policy_after`,
 `membership_changes`, `legacy_choices`, `shared_exposure` and
 `shared_resource_changes` alongside actions and preservation reports.
 State schema3 records explicit intent; undecided installations retain schema2.
-The transaction plan remains schema2, persisted journal schema1 and transaction
-receipt schema2. Old schema2 engines reject state3 before writes. The policy flag
+The transaction plan and receipt remain schema2. Ordinary persisted journals use
+schema1; explicit missing-package recovery uses schema2 journals. Old schema2 engines reject state3 before writes. The policy flag
 cannot combine with repair, agents, surface-only or transaction controls; apply
 uses the policy embedded in the exact reviewed plan.
 
@@ -518,3 +518,120 @@ Preserve existing `~/.gemini/antigravity-cli/settings.json`, `mcp_config`,
 authentication, trust, plugins and permission settings. The skill installation
 flow does not translate or grant these controls. This guide records the unresolved
 root distinction without changing the installer or awarding native-test credit.
+
+## Shared-reader namespace observations
+
+Codex and Gemini read the same `.agents/skills` tree. Plans report the same physical
+`before_slugs` and projected `after_slugs` for both supported readers, together with
+typed directory/link entries and `observation_status`. These names describe occupied
+package slots, not verified native discovery. Unrelated links, including broken links,
+are observed with their raw targets and identities; planning does not follow or write
+them. Regular files and other entry types are recorded for drift without being counted
+as skill directories. An observation error reports unknown (`null`) exposure and blocks
+apply; an empty or absent root reports an empty list with a distinct status.
+
+Only accepted package writes add projected physical slots. An existing empty directory
+is still an occupied slot, but creating its first catalog skill entrypoint is new
+shared exposure and must satisfy both readers' selection policies. Updating an
+already-present owned entrypoint does not create new exposure. A preserved missing package
+is not counted as installed. Logical selection remains separate, and showing both
+readers never enrolls a new reader or bypasses the exact joint-profile policy.
+Membership changes and link replacement or retargeting invalidate an approved plan.
+Selected packages and their resources still use strict symlink and ownership checks.
+
+## Restore wholly missing owned Grok skills
+
+Use a trusted, verified installer with this recovery support. Record its source commit
+or release identity; an old plan cannot approve a changed engine. This operation requires
+an existing schema2/schema3 installation receipt, an existing safe `.grok/skills` parent,
+and exact current Grok skill names already present in both selection and ownership.
+The complete package root must be absent. Recovery rejects empty directories, partial
+packages, custom files, symlinks, aliases, retired names, unowned packages and legacy
+schema1-only receipts. Every requested package must qualify before any can be applied.
+
+```bash
+# Substitute the exact current canonical names approved for restoration.
+bash "$VERIFIED_ENGINE/scripts/install-local.sh" \
+  --target "$TARGET" --allow-nonlocal-target \
+  --recover-missing --cli grok \
+  --slug engos-design-architecture --slug engos-quality-code-review \
+  --dry-run > "$RECOVERY_PLAN"
+
+# After reviewing the new plan, its source, paths, identities and blockers:
+bash "$VERIFIED_ENGINE/scripts/install-local.sh" \
+  --target "$TARGET" --allow-nonlocal-target --apply-plan "$RECOVERY_PLAN"
+```
+
+The recovery preview requires `--dry-run`; recovery apply uses only the saved plan
+and rejects fresh selection or operation flags. Existing ordinary repair plans may
+retain legacy `--repair` arguments; those arguments never override the saved request.
+Do not combine recovery with profiles, selection-policy changes, repair, agents, surface-only mode,
+rollback or transaction listing. `--strict-cli` may optionally check for the Grok
+binary. Both installer wrappers accept this form. Routine updater sync and `--repair`
+do not opt into recovery. Selection, future-membership policy, runtime, registrations
+and other packages stay unchanged; only recovered ownership records and their exact
+preservation notices are updated through the transaction. This is restoration, not
+adoption or an installed-release upgrade.
+
+Recovery preflights the required POSIX descriptor/no-follow operations and directory
+fsync on existing anchors before creating a lock or changing state. Unsupported recovery
+fails explicitly; it never falls back to path-based mutation. Ordinary installer routes
+retain their existing behavior. The recovery descriptor backend uses nonblocking,
+no-follow file acquisition and rejects non-regular descriptors before reading contents. A substituted FIFO therefore
+cannot wait for a writer while recovery holds the lock. This is not a general I/O timeout
+guarantee for filesystem or storage operations. Both routes use the same persistent `installation.lock`
+and nonblocking flock; the lock file is never replaced or deleted to release a lock.
+Its presence alone does not mean another process holds the lock.
+
+Apply replans under that lock, retains verified target/state/Grok directory anchors,
+and uses descriptor-relative operations for package claims, metadata, staging, receipt
+replacement and rollback. Observed directory identities remain bound across operations;
+a regular-directory replacement is rejected as well as a replacement symlink. New
+transaction directories, initial journals and stage files are created exclusively.
+Later journal/receipt replacements require the previously observed full identity;
+re-reading the same bytes from a different journal inode does not renew that authority.
+
+Publication retains the original readable temporary-file descriptor, verifies its
+bytes/mode/inode, and compares both linked names to that original before claiming
+ownership. It syncs the temporary name before its record, the destination directory
+before the file-ownership record, and temporary removal before removing its record.
+A journal save failure may leave old or new visible bytes; recovery reports its anchored
+readback outcome and stops, without blindly retrying against an assumed old version.
+All descriptor owners unwind on exceptions; an ambiguous close error is reported and
+not blindly retried. Do not assume the lock was released when closure is uncertain.
+
+These checks prevent following a replacement ancestor into an unrelated tree. They do
+not freeze pathnames if another process moves the original pinned directory, and
+portable POSIX unlink/replace provides no atomic compare-inode-and-mutate operation
+against arbitrary hostile writers in the same directory. Observed rebinding or identity
+drift aborts; no stronger hostile-leaf isolation is claimed. Multi-file installation
+remains recoverable, not atomic. Durability relies on the filesystem honoring fsync;
+deterministic fault tests are not physical power-loss validation.
+
+Recovery uses schema2 transaction journals so an older installer rejects them instead
+of attempting rollback without the directory safeguards. Older installers also reject
+subsequent applies while a retained schema2 journal exists, even after rollback. Continue
+using a recovery-capable verified installer; do not remove journals to bypass this guard.
+Retain the verified recovery
+engine, transaction ID and journal. Use that engine with the [normal rollback commands](#recover-an-installation)
+to review and restore its preimages. Recovery rollback removes only unchanged newly
+written files and the exact recorded, unchanged, empty directories created for those
+packages; it restores previous package-root absence and leaves the pre-existing parent.
+Detected later custom files or links, changed bytes/modes, or replaced directories
+block rollback and remain intact, subject to the concurrency limits above. An interruption between creation and durable ownership recording can
+leave an ambiguous node; recovery preserves it and reports a conflict rather than
+inferring ownership from emptiness. This includes a successful file publication
+interrupted before its file identity is durably added to the journal; matching
+package bytes alone do not authorize removing that unrecorded file. Keep the journal and inspect the exact conflict.
+Old schema2 journals without a temporary-record field remain readable. A missing
+recorded temporary file retains the existing rollback allowance after interrupted
+cleanup; a present different inode is preserved as a conflict. Ordinary transactions
+retain their existing empty-directory behavior.
+
+Restoring old selected packages does not add the four jobs that grew the catalog from
+32 to 36. Perform any desired membership update in a separate fresh plan, and review
+protected-package conflicts separately. Preserved content is an explicit partial result,
+not proof that every selected package has current bytes. This recovery adds no retired
+skill/agent cleanup rule: remove only independently identified eligible catalog targets
+through their existing reviewed transaction, never by prefix, age or missing-use count.
+Third-party skill links and their targets remain protected.

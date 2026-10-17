@@ -337,3 +337,14 @@ safety from an unscoped acceptance command. The eventual tag target remains the
 future reviewed release-preparation merge SHA after parity and hosted gates;
 version metadata and local package creation alone do not establish a release.
 Historical `RELEASE.md` resolves to this document; no obsolete alias is recreated.
+
+## Shared discovery and missing-package recovery runtime
+
+Installer changes to shallow shared-root observation and exact Grok recovery travel in
+the regenerated `scripts/deploy-profile.py` capsule and verified install-bundle inventory.
+Validate source and extracted-distribution execution, both wrappers, selected/source
+symlink guards, stale plans, exclusive recovery claims, no-clobber file publication and
+journal rollback before publishing a runtime. A source fix or reviewed PR does not
+update an installed runtime, approve a live plan, resolve protected packages, or resume
+a held runner. Generate a fresh plan with the separately verified delivered engine.
+See [exact recovery](INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills).

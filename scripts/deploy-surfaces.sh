@@ -17,6 +17,7 @@ Options:
   --profile PATH                     Use explicit receipt-protected skills target profile
   --apply-plan PATH                  Apply only a byte/hash-verified reviewed JSON dry-run plan
   --rollback ID                      Restore exact transaction preimages, preserving later edits
+  --recover-missing                  Preview exact absent owned Grok skills; --cli grok, --slug and --dry-run required
   --repair                           Recognize existing skills and agents and record managed ownership
   --with-agents                      Explicitly select current skills and agents
   --cli agy|gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
@@ -43,6 +44,7 @@ PROFILE=""
 PROFILE_AUTO=0
 APPLY_PLAN=""
 ROLLBACK=""
+RECOVER_MISSING=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -74,6 +76,9 @@ while [[ $# -gt 0 ]]; do
       ;;
     --allow-nonlocal-target)
       ALLOW_NONLOCAL_TARGET=1
+      ;;
+    --recover-missing)
+      RECOVER_MISSING=1
       ;;
     --repair|--with-agents|--list-transactions)
       # The external installation engine handles these options below.
@@ -136,6 +141,10 @@ if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
     exit 1
   fi
   exec "$installer_python" "$REPO_ROOT/scripts/deploy-profile.py" --install --repo "$REPO_ROOT" "${ORIGINAL_ARGS[@]}"
+fi
+
+if [[ "$RECOVER_MISSING" -eq 1 ]]; then
+  echo "error: --recover-missing requires an external installation target"; exit 1
 fi
 
 if [[ -n "$SELECTION_POLICY" ]]; then

@@ -537,3 +537,18 @@ joint Codex/Gemini choice](INSTALL-PROFILES.md#choose-future-skill-membership).
 A new explicit empty profile selects today's catalog once; a saved empty profile
 needs its historical receipt proof. Source installation tests do not certify
 native invocation or a release.
+
+## Restore a missing selected Grok skill
+
+If a current Grok skill was previously selected and receipt-owned but its entire
+package directory is now absent, use the [exact recovery procedure](INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills).
+Start with `--recover-missing --cli grok --slug EXACT_CURRENT_NAME --dry-run` against
+an explicit external target, inspect the saved plan, then apply that plan separately.
+Ordinary sync and `--repair` continue to preserve missing owned packages.
+An empty directory, partial package, custom bytes or symlink requires a separate
+conflict decision; recovery never overwrites it.
+
+A saved 32-skill selection and a 36-skill source catalog describe different things.
+The four added jobs require an explicit membership update. Restoring missing old
+packages does not add those jobs or resolve customized packages. Verify complete
+package resources and retained custom targets before calling an installation current.

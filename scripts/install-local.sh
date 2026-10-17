@@ -19,9 +19,11 @@ for later release checks.
 
 Options:
   --selection-policy full-catalog|curated  Explicit future skills; one --cli or exact --profile
+  --slug SLUG                        Exact skill name (repeatable)
   --profile PATH                     Use a receipt-protected skills profile
   --apply-plan PATH                  Apply a reviewed JSON plan
   --rollback ID                      Restore an installation transaction
+  --recover-missing                  Preview exact absent owned Grok skills; --cli grok, --slug and --dry-run required
   --repair                           Recognize historical/current installed skills and agents
   --with-agents                      Explicitly install current skills and agents
   --cli agy|gemini|claude|kiro|codex|grok|all  Target CLI(s). Default: all
@@ -58,7 +60,7 @@ while [[ $# -gt 0 ]]; do
       fi
       ARGS+=("$flag" "$value")
       ;;
-    --allow-nonlocal-target|--dry-run|--strict-cli|--repair|--with-agents|--surface-only|--list-transactions)
+    --allow-nonlocal-target|--dry-run|--strict-cli|--recover-missing|--repair|--with-agents|--surface-only|--list-transactions)
       ARGS+=("$1")
       ;;
     -h|--help)

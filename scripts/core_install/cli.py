@@ -19,6 +19,7 @@ def main(argv=None):
     parser.add_argument('--slug',action='append',default=[])
     parser.add_argument('--profile',type=Path)
     parser.add_argument('--selection-policy',choices=('full-catalog','curated'),help='Explicit future skill membership; requires one --cli or an exact --profile')
+    parser.add_argument('--recover-missing', action='store_true', help='Preview exact absent owned Grok skills; requires --cli grok, repeated --slug and --dry-run; apply the saved plan separately')
     parser.add_argument('--repair',action='store_true',help='Discover and adopt recognized installed packages, including agents on selected providers')
     parser.add_argument('--with-agents',action='store_true',help='Select current agent packages as well as skills for explicit installation')
     parser.add_argument('--surface-only',action='store_true',help='Manage selected surfaces without updater/launcher refresh (requires --slug)')
@@ -32,6 +33,10 @@ def main(argv=None):
     args=parser.parse_args(arguments)
     try:
         repo,target=args.repo.expanduser().absolute(),args.target.expanduser().absolute()
+        if args.recover_missing and (not explicit_cli or args.cli != 'grok' or not args.slug or not args.dry_run
+                or args.repair or args.with_agents or args.surface_only or args.profile
+                or args.selection_policy or args.apply_plan or args.rollback or args.list_transactions):
+            raise ValueError('INVALID_REQUEST: recover-missing requires --cli grok, exact --slug values and --dry-run only')
         if args.selection_policy and (args.repair or args.with_agents or args.surface_only or args.apply_plan or args.rollback or args.list_transactions):
             raise ValueError('INVALID_REQUEST: selection-policy cannot combine with repair/agents/surface-only/transaction controls')
         if args.selection_policy and not args.profile and args.cli == 'all':
@@ -46,6 +51,16 @@ def main(argv=None):
             raise ValueError('INVALID_REQUEST: --surface-only requires --slug')
         if args.profile and (explicit_cli or args.slug or args.surface_only):
             raise ValueError('INVALID_REQUEST: profile cannot combine with CLI/slug/surface-only selection')
+        if args.apply_plan:
+            approved=json.loads(args.apply_plan.read_text())
+            request=approved['request']
+            # Recovery accepts only its reviewed request. Ordinary plans retain
+            # legacy flag compatibility; argv never replaces the saved request.
+            # Check before listing can return early without applying anything.
+            if isinstance(request, dict) and request.get('mode') == 'recover_missing' and (
+                    explicit_cli or args.slug or args.profile or args.repair or args.with_agents
+                    or args.surface_only or args.selection_policy or args.list_transactions or args.strict_cli):
+                raise ValueError('INVALID_REQUEST: recovery apply-plan cannot combine with selection or operation flags')
         if args.list_transactions:
             rows=[]
             root=transaction.safe(target,transaction.TRANSACTIONS)
@@ -59,8 +74,13 @@ def main(argv=None):
             result=transaction.rollback(target,args.rollback,args.dry_run)
             print(json.dumps(result,indent=2));return 0
         if args.apply_plan:
-            approved=json.loads(args.apply_plan.read_text())
             request=approved['request']
+        elif args.recover_missing:
+            if args.strict_cli and not shutil.which('grok'):
+                raise ValueError('MISSING_CLI: grok')
+            request=dict(mode='recover_missing', providers=['grok'], kinds=['skill'],
+                         slugs=args.slug, runtime=False)
+            approved=planner.plan(repo,target,request)
         else:
             state=planner.read_state(target)
             saved=planner.read_json(target,planner.V1_PROFILE) if not state else None
