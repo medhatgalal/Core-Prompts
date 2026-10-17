@@ -296,7 +296,8 @@ def apply(repo: Path, target: Path, approved: dict, replan):
     approved = json.loads(encoded(approved))
     transaction = None
     from . import recovery
-    recovering = bool(approved.get("recovery_roots"))
+    if approved.get("recovery_roots"):
+        return recovery.apply(repo, target, approved, replan)
     with _lock(target):
         journals = _journals(target)
         if any(item["status"] in ("prepared", "applying") for item in journals):
@@ -324,7 +325,7 @@ def apply(repo: Path, target: Path, approved: dict, replan):
             if action["op"] == "write":
                 postimages[index] = _source(repo, action)
         transaction = uuid.uuid4().hex
-        journal = {"schema": 2 if recovering else 1, "transaction": transaction, "status": "prepared",
+        journal = {"schema": 1, "transaction": transaction, "status": "prepared",
                    "created_ns": time.time_ns(), "plan": approved}
         try:
             _save(target, journal)
@@ -335,12 +336,8 @@ def apply(repo: Path, target: Path, approved: dict, replan):
                 _replace(safe(directory, f"after/{index}"), data, actions[index]["after"]["mode"])
             journal["status"] = "applying"
             _save(target, journal)
-            if recovering:
-                recovery.claim(target, journal, _save)
             retirement_started = False
             for index, action in _order(actions):
-                if recovering:
-                    recovery.check(target, journal)
                 path = safe(target, action["path"])
                 if identity(path) != action["before"]:
                     raise InstallError(f"target drift during apply: {action['path']}", "stale-target")
@@ -348,10 +345,7 @@ def apply(repo: Path, target: Path, approved: dict, replan):
                     staged = safe(directory, f"after/{index}")
                     if identity(staged) != action["after"]:
                         raise InstallError("staged postimage changed", "invalid-stage")
-                    if recovering and action["path"] != INSTALLATION:
-                        recovery.publish(target, journal, action, staged.read_bytes(), _save)
-                    else:
-                        _replace(path, staged.read_bytes(), action["after"]["mode"])
+                    _replace(path, staged.read_bytes(), action["after"]["mode"])
                 else:
                     if not retirement_started:
                         # A subsequent copy or external edit can invalidate an
@@ -366,8 +360,6 @@ def apply(repo: Path, target: Path, approved: dict, replan):
                     _remove(path)
                 if identity(path) != action["after"]:
                     raise InstallError(f"write verification failed: {action['path']}", "verification-failed")
-            if recovering:
-                recovery.check(target, journal)
             journal["status"] = "complete"
             _save(target, journal)
             receipt = _receipt(journal)
@@ -466,18 +458,22 @@ images remain immutable; the derived recovery image is recorded separately.
 
 def rollback(target: Path, transaction: str, dry_run=False):
     target = _checked(target)
+    # Read-only route hint. Recovery authoritatively reloads through anchored
+    # descriptors before its lock; either route rejects classification drift.
+    hint = _load(target, transaction)
+    if hint["schema"] == 2:
+        from . import recovery
+        return recovery.rollback(target, transaction, dry_run, hint)
     with _lock(target):
         journal = _load(target, transaction)
+        if journal["schema"] != 1:
+            raise InstallError("rollback classification changed", "stale-journal")
         if any(item["transaction"] != transaction and item["status"] in ("prepared", "applying")
                for item in _journals(target)):
             raise InstallError("another unfinished transaction requires rollback first", "unfinished-transaction")
         actions = journal["plan"]["actions"]
         directory = _journal_path(target, transaction).parent
         restoring = journal.get("restoring", False)
-        from . import recovery
-        recovering = bool(journal["plan"].get("recovery_roots"))
-        if recovering:
-            recovery.check(target, journal, rollback=True)
         restore = []
         for index, action in _order(actions):
             current = identity(safe(target, action["path"]))
@@ -509,8 +505,6 @@ def rollback(target: Path, transaction: str, dry_run=False):
             journal["restoring"] = True
             _save(target, journal)
             for action, current, desired, data in restore:
-                if recovering:
-                    recovery.check(target, journal, rollback=True)
                 path = safe(target, action["path"])
                 if identity(path) != current:
                     raise InstallError(f"rollback conflict during restore: {action['path']}", "rollback-conflict")
@@ -522,8 +516,6 @@ def rollback(target: Path, transaction: str, dry_run=False):
                     _replace(path, data, desired["mode"])
                 if identity(path) != desired:
                     raise InstallError("restore verification failed", "verification-failed")
-            if recovering:
-                recovery.remove_directories(target, journal)
             journal["status"] = "rolled-back"
             _save(target, journal)
             return _receipt(journal)

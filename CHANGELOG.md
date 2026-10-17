@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Anchor explicit recovery mutations to verified POSIX directory descriptors, reject FIFO substitutions through nonblocking no-follow file acquisition, retain original publication inode ownership, and sync namespace changes before journal ownership facts. Preserve exclusive metadata creation, expected-preimage replacement, persistent lock interoperability and conservative interruption handling; document filesystem and hostile-leaf concurrency limits.
 - Apply shared-reader consent checks when creating a catalog skill entrypoint inside an existing empty directory. Namespace occupancy no longer bypasses curated or joint full-catalog policy; ordinary owned entrypoint updates remain unchanged.
 - Observe shared Codex/Gemini skill-directory entries without following unrelated third-party links. Preserve strict selected-package checks, report unknown inventory failures accurately, and bind membership/link drift to approved plans.
 - Add explicit, preview-first recovery of exact current, selected, receipt-owned Grok skills whose complete package directories are absent. Keep routine sync/repair protection and future membership unchanged; preserve newly appeared paths through exclusive claims and no-clobber publication.

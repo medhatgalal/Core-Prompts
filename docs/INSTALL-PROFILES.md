@@ -573,11 +573,40 @@ and other packages stay unchanged; only recovered ownership records and their ex
 preservation notices are updated through the transaction. This is restoration, not
 adoption or an installed-release upgrade.
 
-Apply replans under the cooperating-installer lock, exclusively claims absent roots,
-and publishes complete package files without replacing an existing destination. A path
-that appears after preview blocks recovery and is preserved. Unexpected entries, root
-identity changes and directory-mode changes also block. The lock does not exclude
-arbitrary external processes; multi-file installation remains recoverable, not atomic.
+Recovery preflights the required POSIX descriptor/no-follow operations and directory
+fsync on existing anchors before creating a lock or changing state. Unsupported recovery
+fails explicitly; it never falls back to path-based mutation. Ordinary installer routes
+retain their existing behavior. The recovery descriptor backend uses nonblocking,
+no-follow file acquisition and rejects non-regular descriptors before reading contents. A substituted FIFO therefore
+cannot wait for a writer while recovery holds the lock. This is not a general I/O timeout
+guarantee for filesystem or storage operations. Both routes use the same persistent `installation.lock`
+and nonblocking flock; the lock file is never replaced or deleted to release a lock.
+Its presence alone does not mean another process holds the lock.
+
+Apply replans under that lock, retains verified target/state/Grok directory anchors,
+and uses descriptor-relative operations for package claims, metadata, staging, receipt
+replacement and rollback. Observed directory identities remain bound across operations;
+a regular-directory replacement is rejected as well as a replacement symlink. New
+transaction directories, initial journals and stage files are created exclusively.
+Later journal/receipt replacements require the previously observed full identity;
+re-reading the same bytes from a different journal inode does not renew that authority.
+
+Publication retains the original readable temporary-file descriptor, verifies its
+bytes/mode/inode, and compares both linked names to that original before claiming
+ownership. It syncs the temporary name before its record, the destination directory
+before the file-ownership record, and temporary removal before removing its record.
+A journal save failure may leave old or new visible bytes; recovery reports its anchored
+readback outcome and stops, without blindly retrying against an assumed old version.
+All descriptor owners unwind on exceptions; an ambiguous close error is reported and
+not blindly retried. Do not assume the lock was released when closure is uncertain.
+
+These checks prevent following a replacement ancestor into an unrelated tree. They do
+not freeze pathnames if another process moves the original pinned directory, and
+portable POSIX unlink/replace provides no atomic compare-inode-and-mutate operation
+against arbitrary hostile writers in the same directory. Observed rebinding or identity
+drift aborts; no stronger hostile-leaf isolation is claimed. Multi-file installation
+remains recoverable, not atomic. Durability relies on the filesystem honoring fsync;
+deterministic fault tests are not physical power-loss validation.
 
 Recovery uses schema2 transaction journals so an older installer rejects them instead
 of attempting rollback without the directory safeguards. Older installers also reject
@@ -588,13 +617,16 @@ engine, transaction ID and journal. Use that engine with the [normal rollback co
 to review and restore its preimages. Recovery rollback removes only unchanged newly
 written files and the exact recorded, unchanged, empty directories created for those
 packages; it restores previous package-root absence and leaves the pre-existing parent.
-Later custom files or links, changed bytes/modes, or replaced directories block rollback
-and remain intact. An interruption between creation and durable ownership recording can
+Detected later custom files or links, changed bytes/modes, or replaced directories
+block rollback and remain intact, subject to the concurrency limits above. An interruption between creation and durable ownership recording can
 leave an ambiguous node; recovery preserves it and reports a conflict rather than
 inferring ownership from emptiness. This includes a successful file publication
 interrupted before its file identity is durably added to the journal; matching
 package bytes alone do not authorize removing that unrecorded file. Keep the journal and inspect the exact conflict.
-Ordinary transactions retain their existing empty-directory behavior.
+Old schema2 journals without a temporary-record field remain readable. A missing
+recorded temporary file retains the existing rollback allowance after interrupted
+cleanup; a present different inode is preserved as a conflict. Ordinary transactions
+retain their existing empty-directory behavior.
 
 Restoring old selected packages does not add the four jobs that grew the catalog from
 32 to 36. Perform any desired membership update in a separate fresh plan, and review
