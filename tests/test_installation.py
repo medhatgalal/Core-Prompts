@@ -866,3 +866,32 @@ def test_cache_source_drift_never_commits_retirement(replacement, monkeypatch, w
     assert (target / planner.STATE).read_bytes() == state_before
     if when != 'before-ownership':
         assert cache.exists()
+
+
+@pytest.mark.parametrize('link_path', [
+    '.kiro/agents/hidden',
+    '.gemini/config/agents/nested/hidden',
+    '.gemini/config/plugins/custom/agents/hidden',
+    '.gemini/config/plugins/linked-plugin',
+    '.claude/agents',
+    '.gemini/config',
+])
+def test_replacement_refuses_hidden_agent_directory_symlinks(replacement, link_path):
+    repo, target, root, request = replacement
+    external = target.parent / 'preserved-agent-target'
+    # A hidden preserved agent depends on an extra file that adoption would remove.
+    hidden = replacement_put(external, 'agents/custom.json', json.dumps({
+        'resources': ['file://' + str(target / root / 'local.txt')]}))
+    destination = external if link_path.endswith(('linked-plugin', '/config')) else hidden.parent
+    link = target / link_path
+    link.parent.mkdir(parents=True, exist_ok=True)
+    link.symlink_to(destination, target_is_directory=True)
+    before = tx.inventory(target, [root])
+    hidden_before = hidden.read_bytes()
+    with pytest.raises(ValueError, match='symlink'):
+        planner.plan(repo, target, request)
+    assert tx.inventory(target, [root]) == before
+    assert (target / root / 'local.txt').read_text() == 'old local state'
+    assert hidden.read_bytes() == hidden_before
+    assert link.is_symlink()
+    assert not (target / tx.STATE).exists()

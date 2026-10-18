@@ -88,13 +88,22 @@ def plan(repo, target, request, current, state, bundle):
     roots.append(('.gemini/config/agents', True))
     plugin_root = tx.safe(target, '.gemini/config/plugins')
     if plugin_root.is_dir():
-        roots.extend((p.relative_to(target).as_posix(), True) for p in sorted(plugin_root.glob('*/agents')))
+        for plugin in sorted(plugin_root.iterdir()):
+            plugin = tx.safe(target, plugin.relative_to(target).as_posix())
+            if plugin.is_dir():
+                roots.append(((plugin / 'agents').relative_to(target).as_posix(), True))
     for relative, recursive in roots:
         directory = tx.safe(target, relative)
         if not directory.is_dir():
             continue
-        definitions = sorted(p for p in (directory.rglob('*') if recursive else directory.iterdir())
-                             if p.suffix in ('.json', '.toml', '.md', '.yaml', '.yml') and not p.is_dir())
+        definitions = []
+        for entry in (directory.rglob('*') if recursive else directory.iterdir()):
+            # Inspect every encountered entry before type/suffix filtering. A
+            # directory link can hide a preserved agent dependency; never follow it.
+            entry = tx.safe(target, entry.relative_to(target).as_posix())
+            if entry.suffix in ('.json', '.toml', '.md', '.yaml', '.yml') and not entry.is_dir():
+                definitions.append(entry)
+        definitions.sort()
         if len(definitions) > 1000:
             raise ValueError('REPLACEMENT_CONFLICT: more than 1000 agent definitions')
         for definition in definitions:
