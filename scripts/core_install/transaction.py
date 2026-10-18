@@ -186,6 +186,8 @@ def _actions(plan, target, repo=None):
             raise InstallError("overlapping file action paths", "invalid-plan")
     from . import recovery
     recovery.contract(plan, target)
+    from . import replacement as explicit_replacement
+    explicit_replacement.contract(plan)
     return plan["actions"]
 
 
@@ -222,7 +224,7 @@ def _load(target, transaction):
         journal = json.loads(path.read_text())
     except (OSError, ValueError) as exc:
         raise InstallError(f"unreadable transaction journal: {transaction}", "invalid-journal", transaction) from exc
-    if (not isinstance(journal, dict) or journal.get("schema") not in (1, 2)
+    if (not isinstance(journal, dict) or journal.get("schema") not in (1, 2, 3)
             or journal.get("transaction") != transaction
             or type(journal.get("created_ns")) is not int
             or type(journal.get("restoring", False)) is not bool
@@ -231,6 +233,8 @@ def _load(target, transaction):
     _actions(journal.get("plan"), target)
     if (journal["schema"] == 2) != bool(journal["plan"].get("recovery_roots")):
         raise InstallError("journal schema does not match recovery contract", "invalid-journal", transaction)
+    if (journal["schema"] == 3) != bool(journal["plan"].get("replacement_packages")):
+        raise InstallError("journal schema does not match replacement contract", "invalid-journal", transaction)
     return journal
 
 
@@ -313,6 +317,10 @@ def apply(repo: Path, target: Path, approved: dict, replan):
                     "status": "no-op-with-preserved" if preserved else "no-op",
                     "target": str(target), "actions": 0, "preserved": preserved,
                     "retention_candidates": _retention_candidates(target, journals)}
+        from . import replacement as explicit_replacement
+        explicit_replacement.check(target, approved)
+        from . import python_cache
+        python_cache.check(target, approved)
         preimages, postimages = {}, {}
         for index, action in enumerate(actions):
             path = safe(target, action["path"])
@@ -325,7 +333,7 @@ def apply(repo: Path, target: Path, approved: dict, replan):
             if action["op"] == "write":
                 postimages[index] = _source(repo, action)
         transaction = uuid.uuid4().hex
-        journal = {"schema": 1, "transaction": transaction, "status": "prepared",
+        journal = {"schema": 3 if approved.get("replacement_packages") else 1, "transaction": transaction, "status": "prepared",
                    "created_ns": time.time_ns(), "plan": approved}
         try:
             _save(target, journal)
@@ -336,8 +344,15 @@ def apply(repo: Path, target: Path, approved: dict, replan):
                 _replace(safe(directory, f"after/{index}"), data, actions[index]["after"]["mode"])
             journal["status"] = "applying"
             _save(target, journal)
+            explicit_replacement.check(target, approved)
+            explicit_replacement.prepare_directories(target, approved)
             retirement_started = False
+            applied = []
             for index, action in _order(actions):
+                if action["op"] == "remove" or action["path"] == INSTALLATION:
+                    python_cache.check(target, approved, applied)
+                if action["path"] == INSTALLATION:
+                    explicit_replacement.check(target, approved, phase="after")
                 path = safe(target, action["path"])
                 if identity(path) != action["before"]:
                     raise InstallError(f"target drift during apply: {action['path']}", "stale-target")
@@ -360,6 +375,9 @@ def apply(repo: Path, target: Path, approved: dict, replan):
                     _remove(path)
                 if identity(path) != action["after"]:
                     raise InstallError(f"write verification failed: {action['path']}", "verification-failed")
+                applied.append(action)
+            python_cache.check(target, approved, applied)
+            explicit_replacement.check(target, approved, phase="after")
             journal["status"] = "complete"
             _save(target, journal)
             receipt = _receipt(journal)
@@ -466,7 +484,7 @@ def rollback(target: Path, transaction: str, dry_run=False):
         return recovery.rollback(target, transaction, dry_run, hint)
     with _lock(target):
         journal = _load(target, transaction)
-        if journal["schema"] != 1:
+        if journal["schema"] not in (1, 3) or journal["schema"] != hint["schema"]:
             raise InstallError("rollback classification changed", "stale-journal")
         if any(item["transaction"] != transaction and item["status"] in ("prepared", "applying")
                for item in _journals(target)):
@@ -474,6 +492,9 @@ def rollback(target: Path, transaction: str, dry_run=False):
         actions = journal["plan"]["actions"]
         directory = _journal_path(target, transaction).parent
         restoring = journal.get("restoring", False)
+        from . import replacement as explicit_replacement
+        explicit_replacement.check(target, journal["plan"], phase="after",
+                          partial=journal["status"] != "complete" or restoring)
         restore = []
         for index, action in _order(actions):
             current = identity(safe(target, action["path"]))
@@ -505,6 +526,7 @@ def rollback(target: Path, transaction: str, dry_run=False):
             journal["restoring"] = True
             _save(target, journal)
             for action, current, desired, data in restore:
+                explicit_replacement.check(target, journal["plan"], partial=True)
                 path = safe(target, action["path"])
                 if identity(path) != current:
                     raise InstallError(f"rollback conflict during restore: {action['path']}", "rollback-conflict")

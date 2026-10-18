@@ -553,3 +553,10 @@ A saved 32-skill selection and a 36-skill source catalog describe different thin
 The four added jobs require an explicit membership update. Restoring missing old
 packages does not add those jobs or resolve customized packages. Verify complete
 package resources and retained custom targets before calling an installation current.
+
+
+For an owner-approved replacement of specific unowned Claude packages, follow the
+[explicit replacement guide](INSTALL-PROFILES.md#explicit-replacement-of-unowned-claude-skills).
+Review a complete before/after manifest, preview with `--replace-unowned PATH
+--dry-run`, apply the saved plan, and retain the transaction ID before testing
+ordinary scoped sync. A preservation notice alone is not replacement authority.

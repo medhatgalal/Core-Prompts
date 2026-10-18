@@ -647,3 +647,101 @@ not proof that every selected package has current bytes. This recovery adds no r
 skill/agent cleanup rule: remove only independently identified eligible catalog targets
 through their existing reviewed transaction, never by prefix, age or missing-use count.
 Third-party skill links and their targets remain protected.
+
+
+## Explicit replacement of unowned Claude skills
+
+Ordinary installation and repair preserve differing unowned packages. If the owner
+has approved replacing specific current Claude skill roots, use
+`--replace-unowned MANIFEST --dry-run` to prepare a separate reviewed transaction.
+This operation is restricted to exact current `claude:skill:SLUG` identities. It
+cannot replace owned packages, adopt historical aliases, change providers, install
+agents, change future membership policy, refresh the runtime, or change settings.
+Reconcile a legacy profile through the normal installer first.
+
+The manifest is a JSON object with exactly `schema: 1`, the absolute `target`, and
+`packages`. Each package key maps to exactly `root`, `before`, and `after`:
+
+```json
+{
+  "schema": 1,
+  "target": "/absolute/installation/root",
+  "packages": {
+    "claude:skill:engos-design-architecture": {
+      "root": ".claude/skills/engos-design-architecture",
+      "before": {"files": {}, "directories": {}},
+      "after": {"files": {}, "directories": {}}
+    }
+  }
+}
+```
+
+The empty maps above describe the format only; they are not a usable approval.
+Populate each `files` map with every root-relative member path and its SHA-256
+and integer POSIX mode (`{"sha256": "64 lowercase hex digits", "mode": 420}`).
+Populate each `directories` map with every directory, including the package root
+and empty directories, mapped to its integer mode. `before` binds the complete
+approved installed package, including package-local state; `after` binds the
+complete verified source package and must match the source manifest. In a source
+checkout, `core_install.replacement.snapshot(base, root)` can produce these maps
+for review. Compare the resulting inventory with the owner's approved targets;
+a fresh snapshot does not authorize replacing previously unapproved changes.
+
+```bash
+scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --replace-unowned approved-claude-manifest.json --dry-run > claude-plan.json
+# Review every package, before/after identity, removal and ownership change.
+scripts/install-local.sh --target "$HOME" --allow-nonlocal-target \
+  --apply-plan claude-plan.json
+```
+
+Preview accepts only the manifest, target and `--dry-run`. Apply accepts the saved
+plan and target without selection/operation flags. The complete manifest is
+embedded in the plan, so modifying the manifest file after preview cannot change
+the saved operation. Apply replans under the installer lock and refuses changed
+source or installed membership, hashes, modes, symlinks, special nodes, ambiguous
+names, unlisted paths, file/directory type transitions, and removed resources still
+referenced by a preserved agent. Every original file, even an identical member,
+is backed up outside discovery before package writes. Ownership is written last,
+after complete package verification. Unlisted packages and existing runtime,
+profile, registration and selection-policy values remain unchanged.
+
+As with ordinary file transactions, existing empty directories are retained;
+existing directory modes remain unchanged. New source directories use their
+source modes and remain empty after rollback. The file after-image is exact;
+retained empty directories are explicit recovery scaffolding, not extra active
+skill content. Later files, directory additions, mode changes or content edits
+block rollback instead of being overwritten. Transactions remain recoverable
+rather than globally atomic against unrelated concurrent processes; stop writers
+to the selected packages while applying or restoring them.
+
+These operations use **schema3 transaction journals**. Keep this installer or a
+compatible newer engine while those journals exist: older engines must reject
+these journals rather than roll back without whole-package guards. Retain the
+transaction ID, full before-images, manifest and verified engine. Use the normal
+`--rollback ID --dry-run` / `--rollback ID` commands above. Never edit receipts or
+journals, or move a root to manufacture missing-owned recovery eligibility.
+
+A subsequent ordinary scoped sync must succeed to establish ongoing ownership.
+Package-local state and unproven caches remain protected unexpected members.
+
+### Generated Python caches during ordinary sync
+
+Normal imports of installed helpers can create `__pycache__/*.pyc`. When every
+receipt-owned skill file still matches its recorded hash/mode, ordinary sync can
+recognize only cache files whose complete bytes are reproducible from a
+receipt-owned `.py` file. The matching installed CPython interpreter compiles the
+verified source bytes without importing or executing package code. Cache tag,
+optimization, magic/header, source timestamp or hash, code bytes and file identity
+must agree. A missing matching interpreter, stale/modified cache, symlink, changed
+shipped source, custom sibling or any other extra preserves the whole package.
+
+The plan lists each recognized member in `cache_retirements` with its cache and
+source identities, and schedules an explicit file removal. Apply binds these
+observations by replanning and rechecks the complete affected package before each
+retirement, ownership commit and completion, including cache-only transitions.
+It backs up the exact cache with its mode and uses the normal guarded transaction. Caches never become receipt-owned shipped files and
+are never excluded from inventory. Rollback restores unchanged retired caches;
+regeneration or later edits block restoration. Repeat ordinary imports and scoped
+sync to verify normal usage. No blanket cache deletion, global bytecode setting
+or test-only launch environment is required.

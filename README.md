@@ -10,6 +10,8 @@ The shipped setup is skills-only. Generic independent workers can apply these sk
 
 Missing installed Grok skills can be restored through an [exact recovery preview](docs/INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills) when their current names are already selected and receipt-owned. Recovery preserves custom packages and adds no new catalog membership. Codex and Gemini share one physical skill directory; unrelated third-party links remain visible and untouched during planning.
 
+Owner-approved replacement of differing unowned Claude skills has a separate [manifest-bound adoption preview](docs/INSTALL-PROFILES.md#explicit-replacement-of-unowned-claude-skills), with full before-images and guarded rollback. Ordinary sync continues to preserve unowned content.
+
 ## Choose the job you need now
 
 | Your next outcome | Start here |

@@ -23,6 +23,7 @@ Options:
   --profile PATH                     Use a receipt-protected skills profile
   --apply-plan PATH                  Apply a reviewed JSON plan
   --rollback ID                      Restore an installation transaction
+  --replace-unowned PATH             Preview exact manifest-bound Claude skill adoption; --dry-run required
   --recover-missing                  Preview exact absent owned Grok skills; --cli grok, --slug and --dry-run required
   --repair                           Recognize historical/current installed skills and agents
   --with-agents                      Explicitly install current skills and agents
@@ -49,7 +50,7 @@ while [[ $# -gt 0 ]]; do
         exit 1
       fi
       ;;
-    --cli|--target|--profile|--apply-plan|--rollback|--slug|--selection-policy)
+    --cli|--target|--profile|--apply-plan|--rollback|--slug|--selection-policy|--replace-unowned)
       flag="$1"
       shift
       value="${1:-}"
