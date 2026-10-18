@@ -156,6 +156,26 @@ remains blocked until both appear in the supplied completed-task list. Null
 digest and authority observations remain visible even when `unresolved` is empty;
 the frontier grants no execution permission.
 
+If the request supplies no completion state, expect “completion state unknown,”
+an explicit unresolved hold, and a conditional frontier based on no evidenced
+completions. An empty sidecar array does not establish that no tasks have completed.
+For T1 followed by independent T2/T3, that projection makes only T1 ready and
+leaves T2/T3 dependent on T1; evidenced completion of T1 changes the frontier.
+An explicitly supplied empty list is distinct from absent state.
+
+For an inline dependency map, the reference matches the concrete plan identity.
+These are identity fields only, not complete plan artifacts:
+
+```json
+{
+  "task_plan_id": "PLAN-EXAMPLE-1",
+  "dependency_map": {"plan_ref": "PLAN-EXAMPLE-1", "plan_sha256": null}
+}
+```
+
+A schema-name alias such as `inline:TaskPlan.v1` or a different plan ID leaves the
+binding unresolved. The null digest means exact plan bytes were not verified.
+
 Ask the specification skill: “Check the actual requirement-to-task links in
 `SPEC.json` and `PLAN.json`; select `TESTS.json` only if supplied.” Every `must`
 requirement needs an actual task link and, when selected, an actual test-row link.

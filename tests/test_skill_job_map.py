@@ -145,3 +145,13 @@ def test_neighbor_handoff_rejects_stale_or_nonportable_source(tmp_path: Path) ->
     ref["path"] = "../outside.md"
     with pytest.raises(ValueError, match="invalid neighbor source"):
         validate_neighbor_handoff(job)
+
+
+def test_rendered_source_links_remain_usable_without_bundled_ssot() -> None:
+    slugs = sorted(path.stem for path in (ROOT / "ssot").glob("*.md"))
+    payload = load_skill_job_map(JOB_MAP, slugs)
+    rendered = render_skill_job_map(payload, {slug: slug for slug in slugs})
+    assert "(../ssot/" not in rendered
+    assert "https://github.com/medhatgalal/Core-Prompts/blob/main/ssot/" in rendered
+    assert "selected bundled `SKILL.md`" in rendered
+    assert "verify the recorded content hashes" in rendered

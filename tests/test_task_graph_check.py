@@ -141,3 +141,53 @@ def test_graph_emitter_defensively_escapes_python_api_surrogates(capsys):
     text=capsys.readouterr().out
     assert '\\udfff' in text and 'T\udfff' in json.loads(text)['ready_task_ids']
     text.encode('utf-8')
+
+
+def test_unknown_completion_hold_survives_conditional_frontier():
+    p = plan()
+    t3 = copy.deepcopy(p['tasks'][1])
+    t3['id'] = 'T3'
+    p['tasks'].append(t3)
+    p['tasks'][0]['depends_on'] = []
+    for task in p['tasks'][1:]:
+        task['depends_on'] = ['T1']
+    p['completed_task_ids'] = []
+    hold = 'Completion state unknown; frontier conditional on no evidenced completions.'
+    p['unresolved'] = [hold]
+    result = module().check_graph(p)
+    assert result['mechanical_passed']
+    assert result['ready_task_ids'] == ['T1']
+    assert result['blocked_tasks'] == [
+        {'task_id': 'T2', 'outstanding_dependency_ids': ['T1']},
+        {'task_id': 'T3', 'outstanding_dependency_ids': ['T1']},
+    ]
+    assert result['readiness_holds'] == [hold]
+    assert result['semantic_correctness'] == 'not_assessed'
+    assert result['authority_verification'] == 'not_assessed'
+    # An explicit empty source list has the same topology, but no unknown-state hold.
+    p['unresolved'] = []
+    explicit_empty = module().check_graph(p)
+    assert explicit_empty['ready_task_ids'] == result['ready_task_ids']
+    assert explicit_empty['readiness_holds'] == []
+    # A supplied completed prerequisite changes the projection without inventing state.
+    p['completed_task_ids'] = ['T1']
+    assert module().check_graph(p)['ready_task_ids'] == ['T2', 'T3']
+
+
+def test_documented_inline_map_binds_concrete_plan_identity():
+    import re
+    examples = (REPO / 'docs/EXAMPLES.md').read_text()
+    section = examples.split('## Optional planning link checks', 1)[1]
+    identity_examples = [json.loads(block) for block in re.findall(r'```json\n(.*?)\n```', section, re.S)
+                         if '"task_plan_id"' in block]
+    assert len(identity_examples) == 1
+    example = identity_examples[0]
+    projection = example['dependency_map']
+    assert projection['plan_ref'] == example['task_plan_id']
+    assert projection['plan_ref'] not in {'TaskPlan.v1', 'inline:TaskPlan.v1'}
+    assert projection['plan_sha256'] is None
+    # This protects the published example, not native output or source-provenance verification.
+    template = json.loads((OWNER / 'templates/dependency-map.json').read_text())
+    assert template['plan_ref'] is None and template['plan_sha256'] is None
+    assert 'exact id' in template['instructions']['plan_binding']
+    assert 'never the schema name' in template['instructions']['plan_binding']

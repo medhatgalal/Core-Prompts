@@ -9,6 +9,7 @@
     "node": "For each actual task record id and outcome. Preserve task IDs.",
     "edge": "Record predecessor and successor IDs from depends_on; predecessor must finish before successor consumes its output.",
     "authority": "Manual projection only; the actual plan/tracker remains authoritative.",
-    "review": "Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. This is not a graph-check result, a computed ready frontier or approval."
+    "review": "Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. This is not a graph-check result, a computed ready frontier or approval.",
+    "plan_binding": "For an inline TaskPlan, set plan_ref to its exact id, never the schema name or an invented inline URI. For an existing plan file, use its actual source reference. Keep plan_sha256 null unless exact canonical plan bytes and a trusted digest are available. Cross-check identity, nodes, edges and unresolved holds against the authoritative plan."
   }
 }

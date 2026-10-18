@@ -19,7 +19,27 @@ Capability Fabric/UAC do not publish:
 ## Canonical Read Order
 1. `.meta/capability-handoff.json`
 2. `.meta/capabilities/<slug>.json`
-3. `ssot/<slug>.md` only when deeper prompt semantics are needed
+3. In a source checkout, `ssot/<slug>.md` when deeper semantics are needed.
+   In an extracted distribution, read the selected provider's bundled
+   `skills/<slug>/SKILL.md` and its selected package-local resources instead;
+   distributions omit canonical SSOT. An installed standalone package can use
+   its `SKILL.md` and `resources/capability.json` when aggregate metadata is absent.
+
+## Selecting from the user's prompt
+
+The host can use the [skill flows](SKILL-FLOWS.md) and
+[job map](SKILL-JOB-MAP.md) to identify the requested outcome, existing accepted
+work, material uncertainty and allowed scope. Choose the first missing job:
+diagnosis for an unexplained failure, specification for unclear behavior,
+architecture for a material design decision, planning for a useful breakdown,
+or implementation for a clear authorized change. Review-only requests end in
+findings. Small changes can bypass planning; Batman requires explicit selection.
+
+These are selection aids for the external router, not installed routing policy.
+If a material ambiguity changes the route or authority, a concise clarification
+is needed; otherwise the smallest sufficient route can proceed. Skill discovery
+depends on the host. Explicitly loading the exact available skill and resources
+is the documented fallback, not proof of native discovery or permission to act.
 
 ## Canonical Capability Types
 - `skill`

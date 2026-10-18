@@ -77,6 +77,13 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
    disposition. Keep unsupported assumptions and missing sources as holds. For supplied
    `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and
    reports dependency-ready tasks; see [Optional mechanical graph check](#optional-mechanical-graph-check).
+   Distinguish a supplied empty completion list, supplied completed IDs and absent
+   completion state. If state is absent, the actual current frontier is unknown.
+   Use an empty `completed_task_ids` only as a no-evidenced-completions projection;
+   record the missing state in `unresolved` and label any derived frontier and
+   blocked tasks conditional on that projection. Never call this supplied state
+   or evidence that no tasks have completed. Keep semantic, acceptance and authority
+   holds separate from dependency readiness.
    The manual dependency map remains a projection. Neither route establishes
    semantic correctness, requirement linkage, execution authority or implemented
    behavior.
@@ -142,6 +149,20 @@ planning uses this entrypoint without requiring sidecars or a resource invocatio
 `spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,
 tracker reference and unresolved items. `TaskContract.v1` records nullable consumed
 artifact digests and authority references without pretending unknowns are verified.
+For an inline TaskPlan projection, set the dependency map's `plan_ref` to the
+exact TaskPlan `id`, not its schema name or an invented inline URI. Keep
+`plan_sha256` null unless exact canonical plan bytes and a trusted digest are
+available. For an existing plan file, use its actual source reference and only a
+trusted digest of those bytes. Cross-check plan identity, nodes, edges and holds
+against the readable plan before handoff.
+
+Emit actual source and future-artifact bindings rather than copying instructional
+placeholder references or a protocol tutorial into the result. Keep each readable
+provenance claim on one line with its exact reference and trusted digest or
+unknown/not computed; avoid unbound duplicate assertions. A future artifact's
+producer, exact output label, direct dependency and unknown digest must agree in
+prose and sidecars.
+
 Shape validation cannot establish source truth, task quality, ID uniqueness by
 property, graph correctness, acceptance, authority, coverage or execution. Review
 those separately. A plan containing holds can validate while remaining unready.
@@ -235,8 +256,11 @@ self dependencies and cycles across the entire graph, including completed tasks.
 Use its sorted `ready_task_ids` only as dependency readiness: it grants no write
 or execution authority and does not assess requirement or implementation quality.
 
-Completed tasks are caller claims. A completed child with an uncompleted parent
-appears in `completion_inconsistencies` without fabricated completion. Preserve
+Completed tasks are caller claims; the helper cannot establish their source
+provenance. With unknown completion state, its computed frontier is conditional
+on the supplied projection, not an observed current frontier. A completed child
+with an uncompleted parent appears in `completion_inconsistencies` without
+fabricated completion. Preserve
 `readiness_holds` from the exact unresolved array; separate pointer observations
 expose null spec/consumed hashes and task authority even when that array is empty.
 Do not suppress an otherwise dependency-ready node because these observations
