@@ -218,7 +218,7 @@ def load_journal(fs, transaction):
     rel = f'{tx.TRANSACTIONS}/{transaction}/journal.json'
     data, ident = fs.read(rel)
     journal = json.loads(data)
-    if (not isinstance(journal, dict) or journal.get('schema') not in (1, 2)
+    if (not isinstance(journal, dict) or journal.get('schema') not in (1, 2, 3)
             or journal.get('transaction') != transaction or type(journal.get('created_ns')) is not int
             or type(journal.get('restoring', False)) is not bool
             or journal.get('status') not in ('prepared', 'applying', 'complete', 'rolled-back')):
@@ -226,6 +226,8 @@ def load_journal(fs, transaction):
     tx._actions(journal.get('plan'), fs.target)
     if (journal['schema'] == 2) != bool(journal['plan'].get('recovery_roots')):
         raise tx.InstallError('journal schema does not match recovery contract', 'invalid-journal')
+    if (journal['schema'] == 3) != bool(journal['plan'].get('replacement_packages')):
+        raise tx.InstallError('journal schema does not match replacement contract', 'invalid-journal')
     prior_identity = fs.journal_expected.get(rel)
     if prior_identity is not None and prior_identity != ident:
         raise tx.InstallError("journal identity changed during recovery", "stale-journal")

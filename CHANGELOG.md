@@ -4,6 +4,8 @@ Preparation date; tagging, publication, live installation and runner restoration
 remain held pending separate authorization and the
 [release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
 
+- Add an explicit manifest-bound replacement preview for unowned current Claude skill packages, with full file before-images, transactional ownership, source/preimage drift refusal and whole-package rollback guards. Retain a compatible installer for schema3 journals.
+- Retire only byte-for-byte reproducible Python caches of unchanged receipt-owned source through explicit planned, backed-up file actions, allowing ordinary imports followed by sync while preserving unknown caches and all other local state.
 - Anchor explicit recovery mutations to verified POSIX directory descriptors, reject FIFO substitutions through nonblocking no-follow file acquisition, retain original publication inode ownership, and sync namespace changes before journal ownership facts. Preserve exclusive metadata creation, expected-preimage replacement, persistent lock interoperability and conservative interruption handling; document filesystem and hostile-leaf concurrency limits.
 - Apply shared-reader consent checks when creating a catalog skill entrypoint inside an existing empty directory. Namespace occupancy no longer bypasses curated or joint full-catalog policy; ordinary owned entrypoint updates remain unchanged.
 - Observe shared Codex/Gemini skill-directory entries without following unrelated third-party links. Preserve strict selected-package checks, report unknown inventory failures accurately, and bind membership/link drift to approved plans.

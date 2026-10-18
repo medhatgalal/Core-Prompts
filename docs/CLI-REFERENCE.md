@@ -716,3 +716,13 @@ target flags. Recovery cannot combine with `--repair`, `--with-agents`, `--profi
 `--selection-policy`, `--surface-only`, `--rollback` or `--list-transactions`.
 The [complete recovery contract](INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills)
 explains race checks, journal retention, rollback conflicts and unchanged membership.
+
+
+### Explicit unowned Claude replacement
+
+`--replace-unowned MANIFEST --dry-run` previews only the exact current Claude skill
+packages named in a complete before/after manifest. It rejects selection and
+other operation flags. Apply the reviewed result using `--apply-plan PLAN` with
+the same target and no selection flags. The [manifest and recovery contract](INSTALL-PROFILES.md#explicit-replacement-of-unowned-claude-skills)
+explains full preimages, directory preservation, schema3 journals and later-edit
+rollback guards. Ordinary install/repair does not infer this replacement authority.

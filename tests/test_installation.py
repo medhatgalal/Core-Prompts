@@ -411,3 +411,458 @@ def test_agy_agent_references_preserve_legacy_skill(installation, agent):
     proposal = planner.plan(repo, target, dict(mode='repair', providers=['agy'], runtime=False))
     assert proposal['preserved']
     assert not any(a['path'] == old for a in proposal['actions'])
+
+
+# Explicit Claude replacement and reproducible Python cache retirement.
+# Kept here so both hosted installer test groups execute these regressions.
+import copy
+from core_install import transaction as tx
+
+
+def replacement_put(root, rel, text):
+    path = root / rel
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text)
+    path.chmod(0o644)
+    return path
+
+
+@pytest.fixture
+def replacement(tmp_path):
+    repo, target = tmp_path / 'repo', tmp_path / 'home'
+    repo.mkdir(); target.mkdir()
+    slug = 'engos-design-architecture'
+    root = '.claude/skills/' + slug
+    replacement_put(repo, root + '/SKILL.md', 'current')
+    replacement_put(repo, root + '/resources/new.py', 'new')
+    replacement_put(repo, '.meta/manifest.json', json.dumps({'ssot_sources': [dict(slug=slug, expected_surface_names=['claude_skill'])], 'resources': {'claude_skill': [root + '/resources/new.py']}}))
+    # Provider resources are discovered from the actual source tree.
+    replacement_put(repo, '.meta/install-profiles/legacy-installations.json', json.dumps(dict(schema=1, releases={}, identities={}, packages=[], runtime={}, launchers={})))
+    for rel in ('VERSION', 'scripts/deploy-profile.py', 'scripts/update-core-prompts.py'):
+        replacement_put(repo, rel, 'fixture')
+    install_bundle.build(repo)
+    replacement_put(target, root + '/SKILL.md', 'unowned old')
+    replacement_put(target, root + '/local.txt', 'old local state')
+    replacement_put(target, root + '/resources/new.py', 'new')
+    replacement_put(target, '.claude/skills/custom/SKILL.md', 'custom')
+    from core_install import replacement as rep
+    manifest = dict(schema=1, target=str(target), packages={
+        'claude:skill:' + slug: dict(root=root, before=rep.snapshot(target, root), after=rep.snapshot(repo, root))})
+    request = dict(mode='replace_unowned', manifest=manifest)
+    return repo, target, root, request
+
+
+def test_complete_replacement_and_rollback(replacement):
+    repo, target, root, request = replacement
+    before = tx.inventory(target, [root])
+    plan = planner.plan(repo, target, request)
+    assert not plan['blockers'] and not plan['preserved']
+    result = tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert tx.inventory(target, [root]) == tx.inventory(repo, [root])
+    assert planner.read_state(target)['packages']['claude:skill:engos-design-architecture']['files'] == tx.inventory(repo, [root])
+    journal = tx._load(target, result['transaction'])
+    backups = {a['path']: tx.identity(target / tx.TRANSACTIONS / result['transaction'] / 'before' / str(i)) for i, a in enumerate(journal['plan']['actions']) if a['before'] and a['path'].startswith(root + '/')}
+    assert backups == before  # Includes identical members and local state.
+    assert (target / '.claude/skills/custom/SKILL.md').read_text() == 'custom'
+    assert not planner.plan(repo, target, dict(mode='sync', providers=['claude'], runtime=False))['preserved']
+    tx.rollback(target, result['transaction'])
+    assert tx.inventory(target, [root]) == before
+    assert planner.read_state(target) is None
+
+
+@pytest.mark.parametrize('drift', ['content', 'extra', 'symlink', 'directory-mode', 'empty-directory', 'fifo'])
+def test_changed_before_image_rejected_without_writes(replacement, drift):
+    repo, target, root, request = replacement
+    plan = planner.plan(repo, target, request)
+    if drift == 'content':
+        replacement_put(target, root + '/SKILL.md', 'changed')
+    elif drift == 'extra':
+        replacement_put(target, root + '/new.txt', 'new')
+    elif drift == 'symlink':
+        (target / root / 'link').symlink_to(target / '.claude/skills/custom')
+    elif drift == 'directory-mode':
+        (target / root).chmod(0o700)
+    elif drift == 'empty-directory':
+        (target / root / 'empty').mkdir()
+    else:
+        import os
+        os.mkfifo(target / root / 'pipe')
+    with pytest.raises(ValueError):
+        tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert (target / root / 'local.txt').read_text() == 'old local state'
+    assert planner.read_state(target) is None
+
+
+@pytest.mark.parametrize('drift', ['content', 'extra', 'directory-mode', 'empty-directory'])
+def test_rollback_preserves_later_edits(replacement, drift):
+    repo, target, root, request = replacement
+    plan = planner.plan(repo, target, request)
+    receipt = tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    if drift == 'content':
+        replacement_put(target, root + '/SKILL.md', 'later')
+    elif drift == 'extra':
+        replacement_put(target, root + '/later.txt', 'later')
+    elif drift == 'directory-mode':
+        (target / root).chmod(0o700)
+    else:
+        (target / root / 'later').mkdir()
+    with pytest.raises(ValueError):
+        tx.rollback(target, receipt['transaction'])
+    assert not (target / root / 'local.txt').exists()
+
+
+@pytest.mark.parametrize('bad', ['unlisted', 'source', 'provider', 'owned'])
+def test_manifest_refuses_scope_or_source_ambiguity(replacement, bad):
+    repo, target, root, request = replacement
+    request = copy.deepcopy(request)
+    package = request['manifest']['packages']['claude:skill:engos-design-architecture']
+    if bad == 'unlisted':
+        package['before']['files']['.claude/skills/custom/SKILL.md'] = tx.identity(target / '.claude/skills/custom/SKILL.md')
+    elif bad == 'source':
+        replacement_put(repo, root + '/SKILL.md', 'different source')
+        install_bundle.build(repo)
+    elif bad == 'provider':
+        request['manifest']['packages']['kiro:skill:engos-design-architecture'] = package
+    else:
+        replacement_put(target, planner.STATE, json.dumps(dict(schema=2, owner='Core-Prompts', selection=['claude:skill:engos-design-architecture'], packages={'claude:skill:engos-design-architecture': dict(provider='claude', kind='skill', slug='engos-design-architecture', roots=[root], files=tx.inventory(target, [root]))}, runtime={}, registrations={})))
+    with pytest.raises(ValueError):
+        planner.plan(repo, target, request)
+
+
+def test_new_source_directory_and_old_empty_directory_are_guarded(replacement):
+    repo, target, root, request = replacement
+    from core_install import replacement as rep
+    # Empty old directories are retained and recorded, not silently deleted.
+    (target / root / 'old-empty').mkdir(mode=0o700)
+    replacement_put(repo, root + '/nested/deeper/tool.py', 'new tool')
+    (repo / root / 'nested').chmod(0o750)
+    manifest_path = repo / '.meta/manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    manifest['resources']['claude_skill'].append(root + '/nested/deeper/tool.py')
+    manifest_path.write_text(json.dumps(manifest))
+    install_bundle.build(repo)
+    record = request['manifest']['packages']['claude:skill:engos-design-architecture']
+    record.update(before=rep.snapshot(target, root), after=rep.snapshot(repo, root))
+    plan = planner.plan(repo, target, request)
+    receipt = tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert (target / root / 'nested').stat().st_mode & 0o777 == 0o750
+    assert (target / root / 'old-empty').stat().st_mode & 0o777 == 0o700
+    tx.rollback(target, receipt['transaction'])
+    assert tx.inventory(target, [root]) == record['before']['files']
+    assert (target / root / 'nested/deeper').is_dir()
+    assert tx.rollback(target, receipt['transaction'])['status'] == 'rolled-back'
+
+
+def test_failed_apply_is_recoverable_and_restores_unowned_state(replacement, monkeypatch):
+    repo, target, root, request = replacement
+    plan = planner.plan(repo, target, request)
+    replace = tx._replace
+    def fail(path, data, mode):
+        if path == target / root / 'resources/new.py':
+            raise OSError('simulated interrupted install')
+        replace(path, data, mode)
+    monkeypatch.setattr(tx, '_replace', fail)
+    with pytest.raises(tx.InstallError) as error:
+        tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    monkeypatch.setattr(tx, '_replace', replace)
+    tx.rollback(target, error.value.transaction)
+    assert (target / root / 'SKILL.md').read_text() == 'unowned old'
+    assert planner.read_state(target) is None
+
+
+def test_concurrent_extra_blocks_ownership_commit(replacement, monkeypatch):
+    repo, target, root, request = replacement
+    plan = planner.plan(repo, target, request)
+    replace = tx._replace
+    def concurrent(path, data, mode):
+        replace(path, data, mode)
+        if path == target / root / 'SKILL.md':
+            replacement_put(target, root + '/concurrent.txt', 'retain this')
+    monkeypatch.setattr(tx, '_replace', concurrent)
+    with pytest.raises(tx.InstallError):
+        tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert planner.read_state(target) is None
+    assert (target / root / 'concurrent.txt').read_text() == 'retain this'
+
+
+def test_agent_dependency_blocks_replacement(replacement):
+    repo, target, root, request = replacement
+    replacement_put(target, '.kiro/agents/custom.json', json.dumps({'resources': ['file://' + str(target / root / 'local.txt')]}))
+    with pytest.raises(ValueError, match='depends on removed files'):
+        planner.plan(repo, target, request)
+
+
+def test_unproven_named_cache_is_still_protected_by_ordinary_sync(replacement):
+    """A cache-shaped filename alone never authorizes retiring local state."""
+    repo, target, root, request = replacement
+    plan = planner.plan(repo, target, request)
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    cache = replacement_put(target, root + '/resources/__pycache__/new.cpython-314.pyc', 'generated cache')
+    sync = planner.plan(repo, target, dict(mode='sync', providers=['claude'], runtime=False))
+    assert sync['preserved']
+    assert not any(a['path'].startswith(root + '/') for a in sync['actions'])
+    assert cache.read_text() == 'generated cache'
+
+
+def test_saved_plan_cannot_widen_cli_scope(replacement, tmp_path, capsys):
+    from core_install import cli
+    repo, target, root, request = replacement
+    manifest = replacement_put(tmp_path, 'manifest.json', json.dumps(request['manifest']))
+    args = ['--repo', str(repo), '--target', str(target), '--replace-unowned', str(manifest)]
+    assert cli.main(args) == 1
+    assert 'dry-run' in capsys.readouterr().err
+    assert cli.main(args + ['--dry-run']) == 0
+    plan = json.loads(capsys.readouterr().out)
+    saved = replacement_put(tmp_path, 'approved.json', json.dumps(plan))
+    assert cli.main(['--repo', str(repo), '--target', str(target), '--apply-plan', str(saved), '--cli', 'kiro']) == 1
+    capsys.readouterr()
+    assert cli.main(['--repo', str(repo), '--target', str(target), '--apply-plan', str(saved)]) == 0
+    receipt = json.loads(capsys.readouterr().out)
+    assert tx._load(target, receipt['transaction'])['schema'] == 3
+
+
+def test_replacement_journal_cannot_drop_guards(replacement):
+    repo, target, root, request = replacement
+    plan = planner.plan(repo, target, request)
+    result = tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    path = target / tx.TRANSACTIONS / result['transaction'] / 'journal.json'
+    journal = json.loads(path.read_text())
+    journal['schema'] = 1
+    path.write_text(json.dumps(journal))
+    with pytest.raises(tx.InstallError, match='schema does not match replacement'):
+        tx.rollback(target, result['transaction'])
+
+
+@pytest.mark.parametrize('optimization', [0, 1, 2])
+@pytest.mark.parametrize('update_source', [False, True])
+def test_real_python_import_then_sync_retires_cache_with_backup(replacement, optimization, update_source):
+    import os
+    import subprocess
+    repo, target, root, request = replacement
+    # Make the fixture source importable without side effects.
+    replacement_put(repo, root + '/resources/new.py', 'VALUE = 42\n')
+    from core_install import replacement as rep
+    request['manifest']['packages']['claude:skill:engos-design-architecture']['after'] = rep.snapshot(repo, root)
+    install_bundle.build(repo)
+    plan = planner.plan(repo, target, request)
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    module = target / root / 'resources/new.py'
+    code = "import importlib.util; s = importlib.util.spec_from_file_location('probe', " + repr(str(module)) + "); m = importlib.util.module_from_spec(s); s.loader.exec_module(m); assert m.VALUE == 42"
+    # Normal interpreter import, no test-only suppression of bytecode.
+    env = {k:v for k,v in os.environ.items() if k not in ('PYTHONDONTWRITEBYTECODE', 'PYTHONPYCACHEPREFIX', 'PYTHONOPTIMIZE')}
+    command = [sys.executable] + (['-' + 'O' * optimization] if optimization else []) + ['-c', code]
+    subprocess.run(command, check=True, env=env)
+    caches = list((module.parent / '__pycache__').glob('*.pyc'))
+    assert len(caches) == 1
+    cache_identity = tx.identity(caches[0])
+    if update_source:
+        replacement_put(repo, root + '/resources/new.py', 'VALUE = 84\n')
+        install_bundle.build(repo)
+    sync_request = dict(mode='sync', providers=['claude'], runtime=False)
+    sync = planner.plan(repo, target, sync_request)
+    assert not sync['preserved']
+    assert len(sync['cache_retirements']) == 1
+    receipt = tx.apply(repo, target, sync, lambda: planner.plan(repo, target, sync_request))
+    assert not caches[0].exists()
+    assert module.read_text() == ('VALUE = 84\n' if update_source else 'VALUE = 42\n')
+    journal = tx._load(target, receipt['transaction'])
+    index = next(i for i,a in enumerate(journal['plan']['actions']) if a['path'].endswith('.pyc'))
+    assert tx.identity(target / tx.TRANSACTIONS / receipt['transaction'] / 'before' / str(index)) == cache_identity
+    tx.rollback(target, receipt['transaction'])
+    assert tx.identity(caches[0]) == cache_identity
+    assert module.read_text() == 'VALUE = 42\n'
+
+
+def test_modified_cache_preserves_whole_package(replacement):
+    import py_compile
+    repo, target, root, request = replacement
+    from core_install import replacement as rep
+    replacement_put(repo, root + '/resources/new.py', 'VALUE = 42\n')
+    request['manifest']['packages']['claude:skill:engos-design-architecture']['after'] = rep.snapshot(repo, root)
+    install_bundle.build(repo)
+    plan = planner.plan(repo, target, request)
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    cache = Path(py_compile.compile(str(target / root / 'resources/new.py'), doraise=True))
+    cache.write_bytes(cache.read_bytes() + b'custom payload')
+    sync = planner.plan(repo, target, dict(mode='sync', providers=['claude'], runtime=False))
+    assert sync['preserved'] and not sync['cache_retirements']
+    assert not any(a['path'].startswith(root + '/') for a in sync['actions'])
+
+
+@pytest.mark.parametrize('failure', ['custom-source', 'custom-sibling', 'cache-link', 'stale-cache', 'unavailable-interpreter', 'changed-after-preview'])
+def test_cache_retirement_preserves_unproven_content(replacement, monkeypatch, failure):
+    import py_compile
+    from core_install import replacement as rep, python_cache
+    repo, target, root, request = replacement
+    source = replacement_put(repo, root + '/resources/new.py', 'VALUE = 42\n')
+    request['manifest']['packages']['claude:skill:engos-design-architecture']['after'] = rep.snapshot(repo, root)
+    install_bundle.build(repo)
+    plan = planner.plan(repo, target, request)
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    source = target / root / 'resources/new.py'
+    cache = Path(py_compile.compile(str(source), doraise=True))
+    request = dict(mode='sync', providers=['claude'], runtime=False)
+    approved = planner.plan(repo, target, request)
+    assert approved['cache_retirements']
+    if failure == 'custom-source':
+        source.write_text('VALUE = 99\n')
+    elif failure == 'custom-sibling':
+        replacement_put(target, root + '/resources/notes.txt', 'custom')
+    elif failure == 'cache-link':
+        cache.unlink()
+        cache.symlink_to(source)
+    elif failure == 'stale-cache':
+        cache.write_bytes(b'\0' * 4 + cache.read_bytes()[4:])
+    elif failure == 'unavailable-interpreter':
+        monkeypatch.setattr(python_cache.subprocess, 'run', lambda *a, **k: (_ for _ in ()).throw(OSError('missing interpreter')))
+    else:
+        cache.write_bytes(cache.read_bytes() + b'later edit')
+        with pytest.raises(ValueError):
+            tx.apply(repo, target, approved, lambda: planner.plan(repo, target, request))
+        assert cache.read_bytes().endswith(b'later edit')
+        return
+    rejected = planner.plan(repo, target, request)
+    assert rejected['preserved'] and not rejected['cache_retirements']
+    assert not any(a['path'].startswith(root + '/') for a in rejected['actions'])
+
+
+@pytest.mark.parametrize('mode', ['CHECKED_HASH', 'UNCHECKED_HASH'])
+def test_hash_based_python_cache_retirement(replacement, mode):
+    import py_compile
+    from core_install import replacement as rep
+    repo, target, root, request = replacement
+    replacement_put(repo, root + '/resources/new.py', 'VALUE = 42\n')
+    request['manifest']['packages']['claude:skill:engos-design-architecture']['after'] = rep.snapshot(repo, root)
+    install_bundle.build(repo)
+    plan = planner.plan(repo, target, request)
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    py_compile.compile(str(target / root / 'resources/new.py'), doraise=True,
+                       invalidation_mode=getattr(py_compile.PycInvalidationMode, mode))
+    sync = planner.plan(repo, target, dict(mode='sync', providers=['claude'], runtime=False))
+    assert not sync['preserved'] and len(sync['cache_retirements']) == 1
+
+
+def test_reverse_rollback_coexists_with_retained_missing_recovery_journals(replacement):
+    repo, target, root, request = replacement
+    manifest = json.loads((repo / '.meta/manifest.json').read_text())
+    manifest['ssot_sources'][0]['expected_surface_names'].append('grok_skill')
+    replacement_put(repo, '.meta/manifest.json', json.dumps(manifest))
+    grok = '.grok/skills/engos-design-architecture'
+    replacement_put(repo, grok + '/SKILL.md', 'grok current')
+    install_bundle.build(repo)
+    package = planner.providers.current_packages(repo, manifest, tx.identity, tx.safe)['grok:skill:engos-design-architecture']
+    state = dict(schema=2, owner='Core-Prompts', selection=['grok:skill:engos-design-architecture'], packages={'grok:skill:engos-design-architecture': {f: package[f] for f in ('provider', 'kind', 'slug', 'roots', 'files')}}, runtime={}, registrations={})
+    state_path = replacement_put(target, planner.STATE, json.dumps(state))
+    state_path.chmod(0o600)
+    (target / '.grok/skills').mkdir(parents=True)
+    before = tx.identity(state_path)
+    recover_request = dict(mode='recover_missing', providers=['grok'], kinds=['skill'], slugs=['engos-design-architecture'], runtime=False)
+    recover_plan = planner.plan(repo, target, recover_request)
+    recovered = tx.apply(repo, target, recover_plan, lambda: planner.plan(repo, target, recover_request))
+    plan = planner.plan(repo, target, request)
+    adopted = tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert tx.identity(state_path)['mode'] == 0o600
+    tx.rollback(target, adopted['transaction'])
+    tx.rollback(target, recovered['transaction'])
+    assert tx.identity(state_path) == before
+    assert not (target / grok).exists()
+
+
+def test_exact_25_package_manifest_replaces_only_listed_roots(replacement):
+    from core_install import replacement as rep
+    repo, target, root, request = replacement
+    manifest = json.loads((repo / '.meta/manifest.json').read_text())
+    for number in range(24):
+        slug = f'engos-adoption-fixture-{number:02}'
+        package_root = '.claude/skills/' + slug
+        replacement_put(repo, package_root + '/SKILL.md', 'current ' + slug)
+        replacement_put(target, package_root + '/SKILL.md', 'old ' + slug)
+        replacement_put(target, package_root + '/local-state.txt', 'retain in backup')
+        manifest['ssot_sources'].append(dict(slug=slug, expected_surface_names=['claude_skill']))
+        request['manifest']['packages']['claude:skill:' + slug] = dict(root=package_root,
+            before=rep.snapshot(target, package_root), after=rep.snapshot(repo, package_root))
+    replacement_put(repo, '.meta/manifest.json', json.dumps(manifest))
+    install_bundle.build(repo)
+    roots = [p['root'] for p in request['manifest']['packages'].values()]
+    before = tx.inventory(target, roots)
+    plan = planner.plan(repo, target, request)
+    assert len(plan['replacement_packages']) == 25
+    assert all(a['path'] == tx.INSTALLATION or any(a['path'].startswith(r + '/') for r in roots) for a in plan['actions'])
+    result = tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    assert tx.inventory(target, roots) == tx.inventory(repo, roots)
+    assert len(planner.read_state(target)['packages']) == 25
+    assert (target / '.claude/skills/custom/SKILL.md').read_text() == 'custom'
+    tx.rollback(target, result['transaction'])
+    assert tx.inventory(target, roots) == before
+
+
+def test_portable_shell_capsule_replacement_roundtrip(replacement, tmp_path):
+    import os
+    import subprocess
+    repo, target, root, request = replacement
+    for name in ('deploy-profile.py', 'deploy-surfaces.sh', 'install-local.sh', 'install_bundle.py'):
+        path = repo / 'scripts' / name
+        path.write_bytes((ROOT / 'scripts' / name).read_bytes())
+        path.chmod(0o755)
+    install_bundle.build(repo)
+    manifest = replacement_put(tmp_path, 'approved-manifest.json', json.dumps(request['manifest']))
+    command = [str(repo / 'scripts/install-local.sh'), '--target', str(target), '--allow-nonlocal-target']
+    env = dict(os.environ, PYTHON_BIN=sys.executable)
+    preview = subprocess.run(command + ['--replace-unowned', str(manifest), '--dry-run'], check=True, capture_output=True, text=True, env=env)
+    plan = replacement_put(tmp_path, 'approved-plan.json', preview.stdout)
+    applied = subprocess.run(command + ['--apply-plan', str(plan)], check=True, capture_output=True, text=True, env=env)
+    receipt = json.loads(applied.stdout)
+    assert tx.inventory(target, [root]) == tx.inventory(repo, [root])
+    subprocess.run(command + ['--rollback', receipt['transaction']], check=True, capture_output=True, text=True, env=env)
+    assert (target / root / 'SKILL.md').read_text() == 'unowned old'
+
+
+@pytest.mark.parametrize('when', ['after-replan', 'before-retirement', 'before-ownership'])
+def test_cache_source_drift_never_commits_retirement(replacement, monkeypatch, when):
+    import py_compile
+    from core_install import replacement as rep
+    repo, target, root, request = replacement
+    replacement_put(repo, root + '/resources/new.py', 'VALUE = 42\n')
+    request['manifest']['packages']['claude:skill:engos-design-architecture']['after'] = rep.snapshot(repo, root)
+    install_bundle.build(repo)
+    plan = planner.plan(repo, target, request)
+    tx.apply(repo, target, plan, lambda: planner.plan(repo, target, request))
+    # Establish ordinary sync metadata first, so unchanged-source cases have
+    # ONLY the cache removal action and no ownership write to hide behind.
+    stable_request = dict(mode='sync', providers=['claude'], runtime=False)
+    stable = planner.plan(repo, target, stable_request)
+    tx.apply(repo, target, stable, lambda: planner.plan(repo, target, stable_request))
+    source = target / root / 'resources/new.py'
+    cache = Path(py_compile.compile(str(source), doraise=True))
+    if when == 'before-retirement':
+        # A legitimate package write precedes retirement; source drift during
+        # that write must also be caught by the package guard.
+        replacement_put(repo, root + '/SKILL.md', 'updated source entrypoint')
+        install_bundle.build(repo)
+    sync_request = dict(mode='sync', providers=['claude'], runtime=False)
+    approved = planner.plan(repo, target, sync_request)
+    if when != 'before-retirement':
+        assert [a['path'] for a in approved['actions']] == [str(cache.relative_to(target))]
+    state_before = (target / planner.STATE).read_bytes()
+    def replan():
+        refreshed = planner.plan(repo, target, sync_request)
+        if when == 'after-replan':
+            source.write_text('VALUE = 99\n')
+        return refreshed
+    original_replace, original_remove = tx._replace, tx._remove
+    def replace(path, data, mode):
+        original_replace(path, data, mode)
+        if when == 'before-retirement' and path == target / root / 'SKILL.md':
+            source.write_text('VALUE = 99\n')
+    def remove(path):
+        original_remove(path)
+        if when == 'before-ownership' and path == cache:
+            source.write_text('VALUE = 99\n')
+    monkeypatch.setattr(tx, '_replace', replace)
+    monkeypatch.setattr(tx, '_remove', remove)
+    with pytest.raises(tx.InstallError):
+        tx.apply(repo, target, approved, replan)
+    assert source.read_text() == 'VALUE = 99\n'
+    assert (target / planner.STATE).read_bytes() == state_before
+    if when != 'before-ownership':
+        assert cache.exists()

@@ -17,6 +17,7 @@ Options:
   --profile PATH                     Use explicit receipt-protected skills target profile
   --apply-plan PATH                  Apply only a byte/hash-verified reviewed JSON dry-run plan
   --rollback ID                      Restore exact transaction preimages, preserving later edits
+  --replace-unowned PATH             Preview exact manifest-bound Claude skill adoption; --dry-run required
   --recover-missing                  Preview exact absent owned Grok skills; --cli grok, --slug and --dry-run required
   --repair                           Recognize existing skills and agents and record managed ownership
   --with-agents                      Explicitly select current skills and agents
@@ -45,13 +46,15 @@ PROFILE_AUTO=0
 APPLY_PLAN=""
 ROLLBACK=""
 RECOVER_MISSING=0
+REPLACE_UNOWNED=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --profile|--apply-plan|--rollback|--selection-policy)
+    --profile|--apply-plan|--rollback|--selection-policy|--replace-unowned)
       flag="$1"; shift
       [[ -n "${1:-}" ]] || { echo "error: $flag requires a value"; exit 1; }
       case "$flag" in
+        --replace-unowned) REPLACE_UNOWNED="$1" ;;
         --selection-policy) SELECTION_POLICY="$1" ;;
         --profile) PROFILE="$1" ;;
         --apply-plan) APPLY_PLAN="$1" ;;
@@ -141,6 +144,10 @@ if [[ "$TARGET_ROOT" != "$REPO_ROOT" ]]; then
     exit 1
   fi
   exec "$installer_python" "$REPO_ROOT/scripts/deploy-profile.py" --install --repo "$REPO_ROOT" "${ORIGINAL_ARGS[@]}"
+fi
+
+if [[ -n "$REPLACE_UNOWNED" ]]; then
+  echo "error: --replace-unowned requires an external installation target"; exit 1
 fi
 
 if [[ "$RECOVER_MISSING" -eq 1 ]]; then

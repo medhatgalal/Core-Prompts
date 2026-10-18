@@ -19,6 +19,7 @@ def main(argv=None):
     parser.add_argument('--slug',action='append',default=[])
     parser.add_argument('--profile',type=Path)
     parser.add_argument('--selection-policy',choices=('full-catalog','curated'),help='Explicit future skill membership; requires one --cli or an exact --profile')
+    parser.add_argument('--replace-unowned', type=Path, help='Preview exact manifest-bound unowned Claude skill replacement; requires --dry-run')
     parser.add_argument('--recover-missing', action='store_true', help='Preview exact absent owned Grok skills; requires --cli grok, repeated --slug and --dry-run; apply the saved plan separately')
     parser.add_argument('--repair',action='store_true',help='Discover and adopt recognized installed packages, including agents on selected providers')
     parser.add_argument('--with-agents',action='store_true',help='Select current agent packages as well as skills for explicit installation')
@@ -33,6 +34,10 @@ def main(argv=None):
     args=parser.parse_args(arguments)
     try:
         repo,target=args.repo.expanduser().absolute(),args.target.expanduser().absolute()
+        if args.replace_unowned and (not args.dry_run or explicit_cli or args.slug or args.profile
+                or args.recover_missing or args.repair or args.with_agents or args.surface_only
+                or args.selection_policy or args.apply_plan or args.rollback or args.list_transactions or args.strict_cli):
+            raise ValueError('INVALID_REQUEST: replace-unowned requires only an exact manifest, target and --dry-run')
         if args.recover_missing and (not explicit_cli or args.cli != 'grok' or not args.slug or not args.dry_run
                 or args.repair or args.with_agents or args.surface_only or args.profile
                 or args.selection_policy or args.apply_plan or args.rollback or args.list_transactions):
@@ -57,9 +62,9 @@ def main(argv=None):
             # Recovery accepts only its reviewed request. Ordinary plans retain
             # legacy flag compatibility; argv never replaces the saved request.
             # Check before listing can return early without applying anything.
-            if isinstance(request, dict) and request.get('mode') == 'recover_missing' and (
+            if isinstance(request, dict) and request.get('mode') in ('recover_missing', 'replace_unowned') and (
                     explicit_cli or args.slug or args.profile or args.repair or args.with_agents
-                    or args.surface_only or args.selection_policy or args.list_transactions or args.strict_cli):
+                    or args.surface_only or args.selection_policy or args.list_transactions or args.strict_cli or args.replace_unowned):
                 raise ValueError('INVALID_REQUEST: recovery apply-plan cannot combine with selection or operation flags')
         if args.list_transactions:
             rows=[]
@@ -75,6 +80,9 @@ def main(argv=None):
             print(json.dumps(result,indent=2));return 0
         if args.apply_plan:
             request=approved['request']
+        elif args.replace_unowned:
+            request = dict(mode='replace_unowned', manifest=json.loads(args.replace_unowned.read_text()))
+            approved = planner.plan(repo, target, request)
         elif args.recover_missing:
             if args.strict_cli and not shutil.which('grok'):
                 raise ValueError('MISSING_CLI: grok')

@@ -9,7 +9,7 @@ import tomllib
 from pathlib import Path
 
 import install_bundle
-from . import catalog, providers, selection_policy, discovery
+from . import catalog, providers, selection_policy, discovery, python_cache
 from .transaction import encoded, identity, inventory, safe
 
 STATE = '.core-prompts-state/installation.json'
@@ -134,7 +134,7 @@ def plan(repo: Path, target: Path, request: dict):
     if repo.resolve() == target.resolve():
         raise ValueError('INVALID_TARGET: build repository surfaces instead')
     mode = request.get('mode', 'repair')
-    if mode not in ('install', 'repair', 'sync', 'recover_missing'):
+    if mode not in ('install', 'repair', 'sync', 'recover_missing', 'replace_unowned'):
         raise ValueError('INVALID_REQUEST: unknown installation mode')
     bundle = install_bundle.verified(repo)
     trusted = catalog.load_catalog(repo)
@@ -148,6 +148,9 @@ def plan(repo: Path, target: Path, request: dict):
         return catalog.successor(provider, kind, slug)
 
     state = read_state(target)
+    if mode == 'replace_unowned':
+        from . import replacement
+        return replacement.plan(repo, target, request, current, state, bundle)
     if mode == 'recover_missing':
         from . import recovery
         return recovery.plan(repo, target, request, current, state, bundle)
@@ -221,6 +224,7 @@ def plan(repo: Path, target: Path, request: dict):
         raise ValueError('SOURCE_SCOPE_REMOVED: ' + ', '.join(sorted(missing_selected)))
     observations, preserved, blockers, actions, outcomes = {}, [], [], [], []
     discovered, inventories = {}, {}
+    cache_retirements, cache_observations = {}, {}
     specs = list(catalog.packages(trusted))
     specs += [providers.agy_skill_package(p) for p in list(specs)
               if p['provider'] in ('codex', 'gemini') and p['kind'] == 'skill']
@@ -269,8 +273,12 @@ def plan(repo: Path, target: Path, request: dict):
             owned = next((p for p in previous['packages'].values()
                           if p['kind'] == 'skill' and p['provider'] in ('codex', 'gemini')
                           and p['roots'] == list(roots) and p['files'] == files), owned)
-        if owned and list(roots) == owned.get('roots') and files == owned.get('files') and not error:
-            known = dict(owned, provider=provider, kind=kind, slug=slug,
+        caches = python_cache.recognized(target, owned, files) if owned and list(roots) == owned.get('roots') and not error else None
+        if owned and list(roots) == owned.get('roots') and (files == owned.get('files') or caches) and not error:
+            if caches:
+                cache_retirements[k] = caches
+                cache_observations[k] = dict(roots=list(roots), files=files)
+            known = dict(owned, files=files, provider=provider, kind=kind, slug=slug,
                          successor=successor(provider, kind, slug), releases=['ownership-receipt'])
         if old_receipt and not error and files and all(old_receipt.get('files', {}).get(r, {}).get('identity') == i for r, i in files.items()):
             # v1 only owned skills. It cannot assert agent ownership indirectly.
@@ -682,11 +690,15 @@ def plan(repo: Path, target: Path, request: dict):
         added = {a['path'].split('/')[2] for a in unique.values()
                  if a['op'] == 'write' and a['path'].startswith('.agents/skills/')}
         shared_exposure['after_slugs'] = sorted(physical_before_slugs | added)
+    retiring_caches = {k: [r for r in records if unique.get(r['path'], {}).get('op') == 'remove']
+                       for k, records in cache_retirements.items()}
     return dict(schema=2,selection_before=sorted(prior_selection), policy_before=policies_before,
                 policy_after=prospective.get('selection_policy', policies_before), legacy_choices=legacy_choices,
                 shared_resource_changes=shared_changes, shared_exposure=shared_exposure,
                 membership_changes={p: dict(new=sorted(k for k in selection-prior_selection if k.startswith(p+':skill:')),
                     retained=sorted(k for k in selection & prior_selection if k.startswith(p+':skill:'))) for p in clients},repo=str(repo),target=str(target),request=request,selection=sorted(selection),
+                cache_retirements=[record for k, records in sorted(retiring_caches.items()) for record in records],
+                cache_observations={k: cache_observations[k] for k, records in retiring_caches.items() if records},
                 source_files=bundle,observations=observations,agent_observations=agent_observations,
                 runtime_observations=runtime_observations,state_identity=identity(safe(target,STATE)),
                 schema1_profile_identity=identity(safe(target,V1_PROFILE)),schema1_receipt_identity=identity(safe(target,V1_RECEIPT)),

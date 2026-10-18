@@ -359,3 +359,17 @@ journal rollback before publishing a runtime. A source fix or reviewed PR does n
 update an installed runtime, approve a live plan, resolve protected packages, or resume
 a held runner. Generate a fresh plan with the separately verified delivered engine.
 See [exact recovery](INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills).
+
+
+Explicit unowned Claude skill adoption ships in the generated installer capsule;
+run `python3 scripts/build-install-runtime.py --check` and the focused replacement,
+transaction, capsule and bundle tests before packaging. These operations produce
+schema3 transaction journals. Retain a compatible installer for rollback; older
+engines reject these journals. Follow the [manifest-bound replacement contract](INSTALL-PROFILES.md#explicit-replacement-of-unowned-claude-skills)
+for separate owner approval, installed after-image and subsequent scoped-sync
+acceptance. Source landing or archive creation does not prove live adoption.
+
+The same runtime includes planned Python cache retirement. Verify a real installed
+helper import followed by ordinary scoped sync, inspect `cache_retirements` and
+its before-image backups, and retain modified/unknown caches as conflicts. A
+source test with bytecode globally suppressed does not satisfy this acceptance.
