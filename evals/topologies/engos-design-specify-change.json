@@ -646,6 +646,16 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-specify-change:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L58:4b2b147ae576",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "source_line": 58,
+      "sha256": "4b2b147ae576f882132e6b1d9e598bb66562dd1687cccdeccf82b374d5bee145",
+      "text": "\"description\": \"Completion IDs supported by supplied state. If completion state is absent or unknown, an empty array means no evidenced completions only: record that missing state in unresolved and qualify the readable frontier and blocked tasks as conditional on this projection. It does not establish that no tasks have completed. Schema validation does not verify completion provenance.\"",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-specify-change:sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json:L4:5b1ed3763d5f",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
@@ -1096,7 +1106,7 @@
     },
     {
       "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
-      "sha256": "e02b36f16f758471e54e5c4340e2500de959d75a75536e451c77829e84bc761b"
+      "sha256": "556cfec5763559ba3b041ce446b7b4ed28c54b458190aa371ed7f976e73e8918"
     },
     {
       "path": "sources/capability-resources/engos-design-specify-change/schemas/trace-result.schema.json",
@@ -1129,11 +1139,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 98,
+    "total": 99,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "a1b13b659aff880e7be3d343d14399a69c1592d1296575b67dd8e00900303a43"
+  "resource_bundle_sha256": "35e15b131334a44b727cf7102c00928a9ca59d75b4d043ddf7ada207f00997ea"
 }

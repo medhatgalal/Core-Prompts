@@ -63,6 +63,7 @@
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
     "4b71a02ba127060d99b6310b21dc3cc39793025986ce3356d6a9235d05c37a67",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
+    "4b2b147ae576f882132e6b1d9e598bb66562dd1687cccdeccf82b374d5bee145",
     "5b1ed3763d5ff22bd15c5474c5c9fbd4c6ab82bea0b0a799c270f1266c7441c8",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
@@ -419,6 +420,11 @@
       "sha256": "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
       "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
       "text": "\"required\": ["
+    },
+    {
+      "sha256": "4b2b147ae576f882132e6b1d9e598bb66562dd1687cccdeccf82b374d5bee145",
+      "source": "sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json",
+      "text": "\"description\": \"Completion IDs supported by supplied state. If completion state is absent or unknown, an empty array means no evidenced completions only: record that missing state in unresolved and qualify the readable frontier and blocked tasks as conditional on this projection. It does not establish that no tasks have completed. Schema validation does not verify completion provenance.\""
     },
     {
       "sha256": "5b1ed3763d5ff22bd15c5474c5c9fbd4c6ab82bea0b0a799c270f1266c7441c8",
