@@ -1897,9 +1897,9 @@ graph does not grant execution approval, and a clean rerun alone does not prove
 a reported bug is fixed. Package availability is source evidence; native use and
 helper effectiveness require separate evidence.
 
-The v1.17.0 preparation offers a 36-skill catalog compared with the published
-v1.16.5 catalog of 32. These examples do not assert release publication or new
-native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
+Published v1.17.0 offers a 36-skill catalog compared with v1.16.5's 32. Prepared
+v1.17.1 retains that catalog and adds installer fixes. These examples do not assert
+v1.17.1 publication or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
 catalog adopts all current and future skills; curated policy adds named skills.
 Use [the install-profile commands and shared-root consent rules](INSTALL-PROFILES.md#choose-future-skill-membership).
 A refreshed helper inside one of the 36 packages is a resource update, not a new

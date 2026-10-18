@@ -1,4 +1,8 @@
-## Unreleased
+## v1.17.1 - 2026-10-17
+
+Preparation date; tagging, publication, live installation and runner restoration
+remain held pending separate authorization and the
+[release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
 
 - Anchor explicit recovery mutations to verified POSIX directory descriptors, reject FIFO substitutions through nonblocking no-follow file acquisition, retain original publication inode ownership, and sync namespace changes before journal ownership facts. Preserve exclusive metadata creation, expected-preimage replacement, persistent lock interoperability and conservative interruption handling; document filesystem and hostile-leaf concurrency limits.
 - Apply shared-reader consent checks when creating a catalog skill entrypoint inside an existing empty directory. Namespace occupancy no longer bypasses curated or joint full-catalog policy; ordinary owned entrypoint updates remain unchanged.
@@ -8,8 +12,10 @@
 
 ## v1.17.0 - 2026-10-16
 
-Preparation date; publication and live installation remain held pending the
-[release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
+Prepared on 2026-10-16 and published on both providers on 2026-10-17 from
+`d76f1ff2761348b7fc7ed8a11f438765a6065c39`. Publication supersedes the preparation-time
+tag/asset hold for v1.17.0 only; live installation and runner restoration remain
+separate held actions. See the [current release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
 
 ### Four new software jobs
 

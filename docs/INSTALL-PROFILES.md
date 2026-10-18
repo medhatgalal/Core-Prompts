@@ -229,6 +229,13 @@ trusted catalog or an existing valid ownership receipt, not a target-authored
 manifest. The catalog covers 56 pinned release versions; the historical 24-skill
 population is one fixture, not a limit on supported current capabilities.
 
+The v1.17.1 preparation does not add v1.17.0 to that pinned historical catalog.
+A valid existing ownership receipt remains the route for receipt-owned upgrades.
+Without one, an installed package must match an already pinned historical identity;
+v1.17.0 provenance or equality with current source alone does not authorize adoption.
+Unrecognized packages and runtime files retain their existing preservation/blocking
+behavior. This preparation makes no broader receiptless-migration claim.
+
 The exact v1.16.3 donor adds receipt-only membership records for historical
 artifact-embed, frame-from-vague and Loopy packages. These records prove the scope
 of a bound saved profile; they never authorize receiptless adoption of matching
@@ -250,7 +257,7 @@ requires it. Replacement files are verified before predecessor files are removed
 
 The v1.15.0 retirement (2026-09-15) covers all 11 first-party named-agent variants
 on Codex, Gemini, Claude, and Kiro (44 entrypoints). The v1.16.5 release contains
-32 skills; the v1.17.0 source preparation dated 2026-10-16 contains 36. Both retain
+32 skills; published v1.17.0 and prepared v1.17.1 contain 36. These versions retain
 skills-only distribution; catalog growth alone does not expand a saved concrete
 selection (see [future skill membership](#choose-future-skill-membership)).
 The existing historical catalog and ownership receipts identify the affected
@@ -570,8 +577,12 @@ rollback or transaction listing. `--strict-cli` may optionally check for the Gro
 binary. Both installer wrappers accept this form. Routine updater sync and `--repair`
 do not opt into recovery. Selection, future-membership policy, runtime, registrations
 and other packages stay unchanged; only recovered ownership records and their exact
-preservation notices are updated through the transaction. This is restoration, not
-adoption or an installed-release upgrade.
+preservation notices are updated through the transaction. Recovery writes the complete
+package from the verified current source, which may contain newer files or resources
+than the old ownership receipt. It does not promise historical-byte restoration or
+change the installation receipt's `source_version`. Review those source bytes in the
+plan separately from the unchanged installed runtime version. This is restoration of
+selected package availability, not adoption or an installed-release upgrade.
 
 Recovery preflights the required POSIX descriptor/no-follow operations and directory
 fsync on existing anchors before creating a lock or changing state. Unsupported recovery
@@ -611,7 +622,8 @@ deterministic fault tests are not physical power-loss validation.
 Recovery uses schema2 transaction journals so an older installer rejects them instead
 of attempting rollback without the directory safeguards. Older installers also reject
 subsequent applies while a retained schema2 journal exists, even after rollback. Continue
-using a recovery-capable verified installer; do not remove journals to bypass this guard.
+using the verified corrected recovery engine for apply and rollback; do not remove
+journals to bypass this guard. Ordinary schema1 journals retain their existing path.
 Retain the verified recovery
 engine, transaction ID and journal. Use that engine with the [normal rollback commands](#recover-an-installation)
 to review and restore its preimages. Recovery rollback removes only unchanged newly
