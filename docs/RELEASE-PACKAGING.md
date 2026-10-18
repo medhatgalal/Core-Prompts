@@ -43,11 +43,12 @@ Before each release build, verify and record the preceding published release on
 both providers. Its tag object and commit must agree. Set that exact tag as the
 comparison baseline and keep it set for every rebuild, including after merge.
 
-One example of the pattern: the v1.16.3 release compares against the verified
-published v1.16.2 tag:
+For the prepared v1.17.1 release, compare against published v1.17.0. Both providers
+were verified to have tag object `7f8c0d641a960c49bea1cb766b7b2c925aaacdd2`
+pointing to commit `d76f1ff2761348b7fc7ed8a11f438765a6065c39`:
 
 ```bash
-export CORE_PROMPTS_RELEASE_BASE_REF=v1.16.2
+export CORE_PROMPTS_RELEASE_BASE_REF=v1.17.0
 bin/capability-fabric build
 ```
 
@@ -72,7 +73,7 @@ release alone does not require a home installation.
 scripts/package-surfaces.sh --version "$(tr -d '[:space:]' < VERSION)"
 ```
 
-`VERSION` is the canonical shipped release version. Packaging fails if `--version` does not match `VERSION`, if the top `CHANGELOG.md` entry does not match `VERSION`, or if a nonempty `Unreleased` section remains. It also verifies the standalone runtime inventory before creating output directories or archives. A stale inventory fails with the mismatched path; packaging does not regenerate or repair it.
+`VERSION` is the canonical package version; a prepared value does not establish publication. Packaging fails if `--version` does not match `VERSION`, if the top `CHANGELOG.md` entry does not match `VERSION`, or if a nonempty `Unreleased` section remains. It also verifies the standalone runtime inventory before creating output directories or archives. A stale inventory fails with the mismatched path; packaging does not regenerate or repair it.
 
 ## Packaged Boundary
 The package should include:
@@ -224,7 +225,7 @@ When using `validate --with-cli`, native validator results also honor error-outp
 
 ## Recommended Release Order
 
-The v1.17.0 preparation does not authorize these publication steps. The
+The v1.17.1 preparation does not authorize merge or these publication steps. The
 [publication and live-rollout hold](#publication-and-live-rollout-hold) must be
 resolved before creating or pushing matching tags. The target is the future
 reviewed release-preparation merge SHA with exact-SHA hosted checks and parity,
@@ -295,13 +296,17 @@ five provider distributions; Antigravity is a sixth installation reader of the
 portable Gemini package, not an extra generated tree. Runtime targets and native
 case results need an explicit version-bound matrix. Historical Gemini CLI results
 do not transfer to Antigravity; see the [unresolved root qualification](INSTALL-PROFILES.md#antigravity-cli-agy).
-### Qualified v1.17.0 preparation scope
+### Qualified adoption scope
 
-The authorized release preparation adopts the qualified main/adoption acceptance
-scope for source packages and controlled upgrades. It replaces the blanket
-missing-native-case release criterion for this preparation with an explicit,
-limited promise; it does not waive or regrade any native test. Historical native
-acceptance remains **18/25**, with the original cells and criteria unchanged.
+Published v1.17.0 established the 36-skill catalog under the qualified
+source-package and controlled-upgrade scope below. Prepared v1.17.1 retains that
+catalog; it introduces no new skill bodies, names, membership or agent surfaces.
+The landed installer fixes address shallow shared-root observation, shared-reader
+consent for entrypoints in empty directories, exact missing-owned Grok recovery,
+and its descriptor, publication, durability and FIFO safeguards. The earlier
+qualified adoption evidence is retained with its original limits; it does not
+substitute for v1.17.1 candidate checks or waive or regrade any native test.
+Historical native acceptance remains **18/25**, with the original cells and criteria unchanged.
 No new native provider run or universal provider acceptance is claimed.
 
 Controlled upgrade evidence covers six authentic owned 32-skill selections through
@@ -322,21 +327,27 @@ publication, a tag, retirement, rename or home install.
 
 ### Publication and live-rollout hold
 
-**v1.17.0 tagging, publication and live installation remain HOLD.** The release
-watcher can discover matching remote tags before hosted assets exist. The
-reviewed local metadata on 2026-10-16 showed a daily 09:00 auto-accept runner and
-six saved 32-skill readers, including agy. This is exposure evidence, not proof
-that the scheduler ran or applied a release. A matching tag pair could activate
-that path despite a manual-install hold.
+**v1.17.1 tagging and publication, all live installation, and runner restoration
+remain HOLD.** v1.17.0 was published on both providers on 2026-10-17 from
+`d76f1ff2761348b7fc7ed8a11f438765a6065c39`. That publication supersedes its historical
+preparation-time tag/asset hold only. It does not establish installed parity or
+authorize another release, a live install, a schedule change or AGY global use.
 
-Publication needs a separately authorized resolution of that exposure, fresh
-schedule/selection readback and a reviewed exact write set for any controls.
-This preparation changes no schedules, global profiles, authentication, trust or
-updater behavior and grants no live apply authority. Do not infer provider-selective
-safety from an unscoped acceptance command. The eventual tag target remains the
-future reviewed release-preparation merge SHA after parity and hosted gates;
+The watcher can discover matching remote tags before hosted assets exist. The
+2026-10-16 assessment identified a daily 09:00 auto-accept path and six saved
+32-skill readers, including agy. That historical exposure record is not current
+scheduler-state proof or evidence of an applied release. Any separately held
+runner remains held; this candidate does not restore it.
+
+Publication needs separate authorization, fresh schedule/selection readback and
+reviewed controls for tag-triggered acceptance. This preparation changes no
+schedules, global profiles, authentication, trust or updater behavior and grants
+no live apply authority. Do not infer provider-selective safety from an unscoped
+acceptance command. Merge remains a separate review decision. The eventual tag
+target is the reviewed release-preparation merge SHA after parity and hosted gates;
 version metadata and local package creation alone do not establish a release.
-Historical `RELEASE.md` resolves to this document; no obsolete alias is recreated.
+Historical references to `RELEASE.md` belong to this document; no obsolete alias
+is recreated.
 
 ## Shared discovery and missing-package recovery runtime
 

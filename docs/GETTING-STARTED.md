@@ -44,8 +44,9 @@ If you already installed an older catalog and want the latest source before a
 release, follow [upgrade from verified main](INSTALL-PROFILES.md#upgrade-from-verified-main-before-the-next-release)
 first. Fetching source, applying the installer and choosing new skill membership
 are separate steps; release checking alone does not adopt unreleased main.
-The v1.17.0 source preparation contains 36 skills; v1.16.5 remains the preceding
-published 32-skill release. [Qualified acceptance and publication holds](RELEASE-PACKAGING.md#program-adoption-readiness)
+Published v1.17.0 contains 36 skills, up from v1.16.5's 32. The prepared v1.17.1
+retains those identities and adds installer fixes; its publication, live installation
+and runner restoration remain held. [Qualified acceptance and release holds](RELEASE-PACKAGING.md#program-adoption-readiness)
 remain separate from these first-use instructions.
 
 ## Safe path: verify setup before changing it
