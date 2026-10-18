@@ -54,7 +54,8 @@
         "minLength": 1,
         "pattern": "\\S"
       },
-      "uniqueItems": true
+      "uniqueItems": true,
+      "description": "Completion IDs supported by supplied state. If completion state is absent or unknown, an empty array means no evidenced completions only: record that missing state in unresolved and qualify the readable frontier and blocked tasks as conditional on this projection. It does not establish that no tasks have completed. Schema validation does not verify completion provenance."
     },
     "tracker_ref": {
       "anyOf": [

@@ -300,7 +300,9 @@ do not transfer to Antigravity; see the [unresolved root qualification](INSTALL-
 
 Published v1.17.0 established the 36-skill catalog under the qualified
 source-package and controlled-upgrade scope below. Prepared v1.17.1 retains that
-catalog; it introduces no new skill bodies, names, membership or agent surfaces.
+catalog and skill names, membership and agent-surface boundaries. It clarifies
+the existing implementation planner's unknown completion state and exact inline
+plan binding; that wording change requires its own scoped native confirmation.
 The landed installer fixes address shallow shared-root observation, shared-reader
 consent for entrypoints in empty directories, exact missing-owned Grok recovery,
 and its descriptor, publication, durability and FIFO safeguards. The earlier
@@ -316,8 +318,10 @@ historical migration or live retirement. A5 accepts qualified manual package
 loading for agy, not global catalog/slash-command discovery. The documented
 checkout route is a path-only adaptation and has not been replayed as a native
 acceptance run. Missing access remains a blocker; no trust/authentication change
-is implied. AGY global discovery and apply remain **HOLD** while the effective
-version-bound destination is unresolved. See the exact [manual-use limits](INSTALL-PROFILES.md#temporary-manual-use-from-a-checkout).
+is implied. Those earlier unresolved-root observations do not establish the
+effective destination of another host/version. Global use requires its own bound
+discovery, package, destination and authorized-write evidence. See the exact
+[manual-use limits](INSTALL-PROFILES.md#temporary-manual-use-from-a-checkout).
 
 These are source/package and controlled-adoption claims, not comparative skill
 benefit, model superiority, installed-byte parity or fresh task success. Exact
@@ -327,8 +331,11 @@ publication, a tag, retirement, rename or home install.
 
 ### Publication and live-rollout hold
 
-**v1.17.1 tagging and publication, all live installation, and runner restoration
-remain HOLD.** v1.17.0 was published on both providers on 2026-10-17 from
+**Preparation alone authorizes no tag, publication, live installation or runner
+restoration.** Each action requires its own authorization and verified gates;
+any separately held runner stays held until explicitly restored. Dated execution
+receipts, not this guide, establish a particular target's applied state.
+v1.17.0 was published on both providers on 2026-10-17 from
 `d76f1ff2761348b7fc7ed8a11f438765a6065c39`. That publication supersedes its historical
 preparation-time tag/asset hold only. It does not establish installed parity or
 authorize another release, a live install, a schedule change or AGY global use.
@@ -340,9 +347,10 @@ scheduler-state proof or evidence of an applied release. Any separately held
 runner remains held; this candidate does not restore it.
 
 Publication needs separate authorization, fresh schedule/selection readback and
-reviewed controls for tag-triggered acceptance. This preparation changes no
-schedules, global profiles, authentication, trust or updater behavior and grants
-no live apply authority. Do not infer provider-selective safety from an unscoped
+reviewed controls for tag-triggered acceptance. Reading or following the
+preparation guide grants no schedule, global-profile, authentication, trust or
+live-apply authority. Installer/updater changes are recorded in the changelog;
+source preparation alone does not apply them to a host. Do not infer provider-selective safety from an unscoped
 acceptance command. Merge remains a separate review decision. The eventual tag
 target is the reviewed release-preparation merge SHA after parity and hosted gates;
 version metadata and local package creation alone do not establish a release.

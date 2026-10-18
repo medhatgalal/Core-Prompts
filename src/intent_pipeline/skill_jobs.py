@@ -106,6 +106,8 @@ def render_skill_job_map(payload: Mapping[str, Any], display_names: Mapping[str,
         "",
         "For conditional journeys and artifact handoffs, use [Skill Flows](SKILL-FLOWS.md). Start at the first missing job; a neighbor is not an automatic invocation.",
         "",
+        "Extracted distributions omit canonical SSOT files: read the selected bundled `SKILL.md` and its resources for the runnable contract. Source links below browse upstream main; verify the recorded content hashes for the assessed revision.",
+        "",
         "Availability and portfolio judgments are separate. See [Availability evidence](#availability-evidence); a draft portfolio label does not mean a package is absent.",
         "",
         "Portfolio actions mean:",
@@ -164,7 +166,7 @@ def render_skill_job_map(payload: Mapping[str, Any], display_names: Mapping[str,
     for slug, job in payload["skills"].items():
         handoff = job.get("neighbor_handoff")
         if handoff:
-            refs = ", ".join(f"[{ref['path']}:{ref['start_line']}](../{ref['path']})" for ref in handoff["source_refs"])
+            refs = ", ".join(f"[{ref['path']}:{ref['start_line']}](https://github.com/medhatgalal/Core-Prompts/blob/main/{ref['path']}#L{ref['start_line']})" for ref in handoff["source_refs"])
             lines.append(f"- `{slug}`: {handoff['condition_and_handoff']} Sources: {refs}.")
     lines.append("")
     return "\n".join(lines)

@@ -477,8 +477,8 @@ Do not reinterpret historical Gemini CLI evidence as Antigravity acceptance.
 
 ### Temporary manual use from a checkout
 
-While the global destination is unresolved, a current package can be supplied
-explicitly without installing it. For example, ask agy:
+If the effective global destination has not been verified for your host/version,
+a current package can be supplied explicitly without installing it. For example, ask agy:
 
 > Read `<absolute-Core-Prompts-checkout>/.gemini/skills/engos-design-specify-change/SKILL.md`
 > and its selected package-local resources. Specify this change in our existing
@@ -490,8 +490,9 @@ directory as its working directory. This is a path-only adaptation of explicit
 package loading, not native catalog or slash-command discovery, and the checkout
 placement has not been replayed as a native acceptance run. If the host denies
 checkout access, report the missing permission; do not silently change trust or
-copy over an existing installation. Global installation, migration and cleanup
-remain on hold until their destination and write set are verified.
+copy over an existing installation. Apply a global installation, migration or
+cleanup only after its effective destination, exact write set and authority have
+been verified; another host's discovery receipt does not establish yours.
 
 ### Investigate the global destination
 

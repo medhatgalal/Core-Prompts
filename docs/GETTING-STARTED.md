@@ -45,8 +45,9 @@ release, follow [upgrade from verified main](INSTALL-PROFILES.md#upgrade-from-ve
 first. Fetching source, applying the installer and choosing new skill membership
 are separate steps; release checking alone does not adopt unreleased main.
 Published v1.17.0 contains 36 skills, up from v1.16.5's 32. The prepared v1.17.1
-retains those identities and adds installer fixes; its publication, live installation
-and runner restoration remain held. [Qualified acceptance and release holds](RELEASE-PACKAGING.md#program-adoption-readiness)
+retains those identities and adds installer fixes. Publication and runner restoration
+require their own authorization and verification; live installation requires
+authorization and verified results for each exact target. [Qualified acceptance and release holds](RELEASE-PACKAGING.md#program-adoption-readiness)
 remain separate from these first-use instructions.
 
 ## Safe path: verify setup before changing it
@@ -151,7 +152,9 @@ packet. Neither starts runtime work or Batman automatically.
 
 For optional mechanical checks on supplied planning artifacts, ask the planner
 for dependency-ready tasks or the specification skill for actual requirement to
-task links. These checks do not establish semantic correctness, authority or
+task links. When completion state is absent, the plan records it as unknown and
+any computed frontier is conditional. Inline dependency maps identify the exact
+plan ID. These checks do not establish semantic correctness, authority or
 implemented behavior; see the [link-check examples](EXAMPLES.md#optional-planning-link-checks).
 
 For an optional structured handoff, supply the accepted revision and ask:

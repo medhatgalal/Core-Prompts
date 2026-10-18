@@ -123,7 +123,7 @@ Use this repository in this order:
 
 If you are already using Core-Prompts in a CLI, start there. If you are importing a new capability family, go to UAC next. If you are rebuilding surfaces, validating state, deploying, or preparing release work, use the repo tooling after that.
 
-The current generated surfaces contain `36` skills, `180` packages across five distributions, and `0` named-agent configurations. Published v1.17.0 grew the catalog from v1.16.5's 32 skills; the prepared v1.17.1 retains those 36 identities and carries installer fixes. v1.17.1 publication, live installation and runner restoration remain held; see the [qualified release scope and holds](docs/RELEASE-PACKAGING.md#program-adoption-readiness). Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
+The current generated surfaces contain `36` skills, `180` packages across five distributions, and `0` named-agent configurations. Published v1.17.0 grew the catalog from v1.16.5's 32 skills; the prepared v1.17.1 retains those 36 identities and carries installer fixes. Publication and runner restoration require their own authorization and verification. Live installation requires authorization and verified results for each exact target; see the [qualified release scope and holds](docs/RELEASE-PACKAGING.md#program-adoption-readiness). Capability Fabric metadata is advisory; explicit invocation follows the selected capability's operating contract.
 
 `engos-quality-code-review` can also collect immutable committed-range evidence
 from exact baseline/candidate IDs into a new task-owned output leaf. The manifest

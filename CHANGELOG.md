@@ -1,8 +1,10 @@
 ## v1.17.1 - 2026-10-17
 
-Preparation date; tagging, publication, live installation and runner restoration
-remain held pending separate authorization and the
-[release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
+Preparation date; tagging, publication and runner restoration require their own
+authorization and verification. Live installation requires authorization and
+verified results for each exact target; see the [release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
+
+- Clarify planner completion provenance: absent state stays unknown, an empty projection has a conditional frontier, and inline dependency maps bind the exact plan ID. Preserve mechanical checker behavior and separate structural evidence from native acceptance.
 
 - Add an explicit manifest-bound replacement preview for unowned current Claude skill packages, with full file before-images, transactional ownership, source/preimage drift refusal and whole-package rollback guards. Retain a compatible installer for schema3 journals. Refuse encountered preserved-agent and plugin directory symlinks before discovery filters, so hidden dependencies cannot be deleted by adoption.
 - Retire only byte-for-byte reproducible Python caches of unchanged receipt-owned source through explicit planned, backed-up file actions, allowing ordinary imports followed by sync while preserving unknown caches and all other local state.
