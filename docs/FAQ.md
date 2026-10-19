@@ -13,7 +13,7 @@ Start with the job and its skill. A named agent can make an execution configurat
 
 Independent workers can isolate a review from the author's context and perform separate investigations concurrently. They also need context and resources, consume additional model and tool work, and can lose information during handoff. A generic independent worker can apply a skill when the host supports it, but must actually receive its instructions and required resources. It is not automatically equivalent to a named configuration: permissions, startup context, model settings, and delegation support can differ.
 
-Core-Prompts currently ships 29 skills and no named-agent configurations across the five providers. Generic workers remain available when the host supports them. Tooling still supports future native adapters for Codex, Gemini, Claude, and Kiro, but adding one requires your explicit approval plus independent execution-need review. Grok has no repository-generated agent adapter; this is a repository boundary, not a claim about its native capabilities.
+Core-Prompts currently ships 36 skills and no named-agent configurations across the five providers. Generic workers remain available when the host supports them. Tooling still supports future native adapters for Codex, Gemini, Claude, and Kiro, but adding one requires your explicit approval plus independent execution-need review. Grok has no repository-generated agent adapter; this is a repository boundary, not a claim about its native capabilities.
 
 ## Can UAC add an agent automatically?
 
@@ -62,3 +62,24 @@ No. Capability Fabric/UAC publish advisory metadata only. Routing and delegation
 
 ## Do behavioral evals require users to return production review results?
 No. Repository-owned synthetic diffs provide repeatable positive defects and matched safe controls for baseline-versus-candidate evaluation. De-identified field misses are useful additions when available, but the standing regression loop does not depend on users checking results back into Core-Prompts.
+
+## Must every change run specification, architecture and planning?
+
+No. Start at the first missing job. A clear bounded authorized change can use
+`engos-delivery-implement-slice` directly. Reuse accepted requirements/designs;
+use architecture only for a material technical choice and planning when breakdown
+helps. Required reviews and project checks still apply. [Flow guide](SKILL-FLOWS.md#the-shortest-useful-route).
+
+## Will updating an old 32-skill installation give me all 36?
+
+Routine sync preserves saved selection. Choose full catalog explicitly to adopt
+current and future additions, or curated named additions to retain a narrower
+scope. Codex/Gemini shared exposure needs the documented joint consent. Preserved
+custom packages may still carry older bytes. [Selection](INSTALL-PROFILES.md#choose-future-skill-membership).
+
+## How do I know a session uses the update?
+
+Inspect the actual loaded package and resources in a fresh session, including
+project-local overrides. Source/main, installed source, published release, native
+discovery and an observed task result are separate facts. An update does not
+resume a paused runner. [First-use checks](GETTING-STARTED.md#verify-discovery-on-your-host).

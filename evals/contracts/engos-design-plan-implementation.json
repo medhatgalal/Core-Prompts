@@ -26,7 +26,11 @@
     "8a85940f2e9c602de4fffcf333528865c0c51040ef97d28d566268a0fb2d81da",
     "5b824904802b4820cf313725e80228a4f0740ce84dd6ee9e6a2a6462dbe65b77",
     "69af4cbed41f8a0ba1278339310419dee49ac48debab0b5fe2d403e27e76d18a",
+    "0452c4932ec876feff8d106225db64c9fb5f1419bf98aabc22ef91faf896c83e",
+    "f9a4b231b49a5ade295edaae0d55c707c16c003bd31f49a8fa076ffea652a9f8",
+    "6aab1c0028e9bace0e70599b6e91dc3b67a683d1adc0e295ebb3a2ea4477b968",
     "6aabf68720f42a06f0767dc1cb4575f16a7214497413fd9764ea39716b31c8f3",
+    "9a28fa501efd05cdb3f737bcb62d3632c240f64d25832aeaa45c8bb0a18a70e6",
     "1c0f01ccc7f336d06c8f8a282ca85253e34741cbc7f1998f56eca985ed83ecd6",
     "5404eb1fe13358883485019143a76a64c3b2ea7cf86d8e61916836c55bea5d65",
     "34545ca9adfe1bcae29974977743c21d199b512fbbb87d8b331696b4391ca396",
@@ -42,7 +46,8 @@
     "4b2b147ae576f882132e6b1d9e598bb66562dd1687cccdeccf82b374d5bee145",
     "f9f0fbe2c8a9f09cbc4c9d769cc29f538f37c67cb9dcf40cbf0f6f5caa57b1e2",
     "53858b3b555992346ef5cd6ea73515f35bed6ff8e62149d3c168c007e1044761",
-    "196040b352227b1526b07976405aa05868cce6cd2d8f2b8486384230735eac6b",
+    "17e8777779929913a31783e332c214542b77596ebfd67c8be8cba99dde2df147",
+    "15d6a3c9ae31ee96ae5e011eb18600f5e09fcaea4f8f7c8ff4c6cc906804d043",
     "5b1ed3763d5ff22bd15c5474c5c9fbd4c6ab82bea0b0a799c270f1266c7441c8",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
     "df1c677467507b0e302413a44874c9fc515324867d869645b775af894cd13286",
@@ -189,9 +194,29 @@
       "text": "available. For an existing plan file, use its actual source reference and only a"
     },
     {
+      "sha256": "0452c4932ec876feff8d106225db64c9fb5f1419bf98aabc22ef91faf896c83e",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "text": "Every JSON fence must contain a complete standalone JSON value, including status"
+    },
+    {
+      "sha256": "f9a4b231b49a5ade295edaae0d55c707c16c003bd31f49a8fa076ffea652a9f8",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "text": "excerpts. Do not emit fragments, duplicate keys or non-JSON constants. In populated"
+    },
+    {
+      "sha256": "6aab1c0028e9bace0e70599b6e91dc3b67a683d1adc0e295ebb3a2ea4477b968",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "text": "dependency maps omit the template's authoring-only `instructions` object; retain"
+    },
+    {
       "sha256": "6aabf68720f42a06f0767dc1cb4575f16a7214497413fd9764ea39716b31c8f3",
       "source": "ssot/engos-design-plan-implementation.md",
       "text": "producer, exact output label, direct dependency and unknown digest must agree in"
+    },
+    {
+      "sha256": "9a28fa501efd05cdb3f737bcb62d3632c240f64d25832aeaa45c8bb0a18a70e6",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "text": "and do not copy authoring instructions into results."
     },
     {
       "sha256": "1c0f01ccc7f336d06c8f8a282ca85253e34741cbc7f1998f56eca985ed83ecd6",
@@ -269,9 +294,14 @@
       "text": "\"authority\": \"Manual projection only; the actual plan/tracker remains authoritative.\","
     },
     {
-      "sha256": "196040b352227b1526b07976405aa05868cce6cd2d8f2b8486384230735eac6b",
+      "sha256": "17e8777779929913a31783e332c214542b77596ebfd67c8be8cba99dde2df147",
       "source": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
-      "text": "\"plan_binding\": \"For an inline TaskPlan, set plan_ref to its exact id, never the schema name or an invented inline URI. For an existing plan file, use its actual source reference. Keep plan_sha256 null unless exact canonical plan bytes and a trusted digest are available. Cross-check identity, nodes, edges and unresolved holds against the authoritative plan.\""
+      "text": "\"plan_binding\": \"For an inline TaskPlan, set plan_ref to its exact id, never the schema name or an invented inline URI. For an existing plan file, use its actual source reference. Keep plan_sha256 null unless exact canonical plan bytes and a trusted digest are available. Cross-check identity, nodes, edges and unresolved holds against the authoritative plan.\","
+    },
+    {
+      "sha256": "15d6a3c9ae31ee96ae5e011eb18600f5e09fcaea4f8f7c8ff4c6cc906804d043",
+      "source": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
+      "text": "\"population\": \"Authoring instructions only: omit this instructions object from populated maps. Preserve plan identity, nodes, edges and unresolved holds.\""
     },
     {
       "sha256": "5b1ed3763d5ff22bd15c5474c5c9fbd4c6ab82bea0b0a799c270f1266c7441c8",

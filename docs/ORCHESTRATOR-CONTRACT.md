@@ -36,6 +36,10 @@ or implementation for a clear authorized change. Review-only requests end in
 findings. Small changes can bypass planning; Batman requires explicit selection.
 
 These are selection aids for the external router, not installed routing policy.
+No universal automatic Core-first router, organization model or replacement harness
+is installed. A copyable onboarding request in README is user guidance, not a
+new global routing rule. Load the smallest relevant skill and selected resources;
+retain the host's permissions, delegation constraints and project-local rules.
 If a material ambiguity changes the route or authority, a concise clarification
 is needed; otherwise the smallest sufficient route can proceed. Skill discovery
 depends on the host. Explicitly loading the exact available skill and resources

@@ -14,6 +14,114 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## Everyday requests: before and now
+
+These are illustrative requests and expected outputs, not executed tests. Each
+starts at the first missing job. “Before” shows a vague ask to sharpen; existing
+skill names and your project's delivery rules remain valid.
+
+### One-line bug
+
+**Before:** “Use the whole factory to fix this off-by-one.”
+
+**Now:** “Use `engos-delivery-implement-slice` to change the pagination bound from
+inclusive to exclusive. The supplied reproduction demonstrates the extra row;
+preserve sorting and authorization. Make the bounded fix and run the relevant
+regression check.”
+
+**Expect:** a scoped patch, the actual observation and remaining limits. Skip a
+new spec, architecture and task plan if the behavior and repair boundary are
+already clear. If the cause is uncertain, start with
+`engos-debug-diagnose-failure` instead. Review the actual candidate as required.
+
+### Feature with accepted requirements
+
+**Before:** “Start again and make a full feature plan.”
+
+**Now:** “Use `engos-design-plan-implementation` on these accepted export
+requirements and this existing design. Preserve the accepted revision and our
+tracker. Plan verifiable tasks with interfaces, allowed writes and meaningful
+checks; keep open decisions visible. Do not implement yet.”
+
+**Expect:** a useful task breakdown and holds, not another invented requirements
+set or automatic execution. Skip specification when acceptance is sufficient;
+skip architecture when no material choice remains. Then authorize
+`engos-delivery-implement-slice` for the next bounded task. The
+[progressive feature](#progressive-feature-example) shows the fuller route.
+
+### Design decision
+
+**Before:** “Write a spec, plan and code for async exports.”
+
+**Now:** “Use `engos-design-architecture` to compare synchronous and queued
+export against these accepted constraints. Recommend an option with interface,
+failure, migration and rollback implications. Return any requirement change to
+its owner; stop at the reviewed design.”
+
+**Expect:** source-backed options and a decision artifact under the skill's
+required independent review. A new technical choice does not itself authorize
+code changes. Plan only when the accepted design needs useful task breakdown.
+
+### Refactor
+
+**Before:** “Clean up this subsystem.”
+
+**Now:** “Use `engos-delivery-implement-slice` to extract this duplicated parser
+into the existing helper without changing accepted inputs, outputs or error
+behavior. Keep writes inside these modules and use the existing regression
+cases. Report any behavior decision before widening the refactor.”
+
+**Expect:** a bounded behavior-preserving patch and actual checks. If the safe
+boundary is unknown, first use `engos-audit-code-health` for structural evidence
+or `engos-design-architecture` for a material boundary decision. A whole-repo
+audit is optional; review the real diff after implementation.
+
+### CI/CD repair
+
+**Before:** “Retry CI until green.”
+
+**Now:** “Use `engos-debug-diagnose-failure` on these passing/failing logs and the
+exact revision. Check whether the failure is code, test, infrastructure or
+process. Diagnose only; preserve active sessions and configuration.”
+
+**Expect:** a supported cause or explicit unknown and the next useful observation.
+With repair authority, pass the supported boundary to
+`engos-delivery-implement-slice`, verify the focused fix, then use
+`engos-quality-code-review` for the candidate and `engos-quality-gitops-review`
+for the authorized hosted gate. A local pass is not exact-revision hosted proof;
+missing infrastructure stays a reported limit. Diagnosis may proceed into an
+already authorized repair; a diagnosis-only request stops at findings.
+
+### Larger delivery with a controller
+
+**Before:** “Build everything; use every skill.”
+
+**Now:** “Use `engos-orchestration-batman` explicitly for this accepted change.
+Reuse these requirements and design, verify the host-fit plan, break work into
+bounded slices, and retain separate implementers and reviewers. Deliver through
+our authorized PR/MR and merge gates. Release, live installation and schedules
+are outside this request.”
+
+**Expect:** the selected controller protocol, real independent participants and
+state-specific evidence through the authorized boundary. Required companion
+skills/resources must actually be available. Use ordinary
+`engos-design-plan-implementation` and direct slices when this protocol is not
+wanted; scale alone does not automatically select Batman.
+
+### Optional help between those jobs
+
+- “Use `engos-meta-supercharge` to strengthen this plan before we accept it.”
+  Expect an improved artifact; do not infer target execution.
+- “Use `engos-reconciliation-converge` to reconcile these two proposals.”
+  Expect attributed conflicts, decision criteria and a recommendation.
+- “Use `engos-memory-context-continuity` to preserve this investigation across
+  sessions.” Expect current context, pending work and insights.
+- “Use `engos-design-plan-to-goal` to compile this reviewed plan into a bounded
+  goal/spec/verifier packet.” Expect a durable packet; goal launch is separate.
+
+Use the [flow guide](SKILL-FLOWS.md) for skip conditions and handoffs, or the
+[job map](SKILL-JOB-MAP.md) to look up all 36 current identities.
+
 ## Use a distribution in your project
 
 **Illustrative example, not a native behavior test.** After verifying the trusted
@@ -1812,7 +1920,8 @@ conflicts; no home installation is implied.
 
 ### Loopy: bounded agent loops
 
-Use `$loopy` in Codex or `/loopy` in Kiro and Grok to find, audit, craft, run, or
+Select `loopy` using your host's current documented invocation (`$loopy` in Codex,
+`/loopy` in Grok) to find, audit, craft, run, or
 debrief a loop. For example: “Use Loopy to audit this loop and repair only material
 weaknesses.” Expect a concise verdict and a minimally repaired loop; execution,
 scheduling, and publication retain their separate authorization boundaries.

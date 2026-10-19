@@ -4,6 +4,8 @@ Preparation date; tagging, publication and runner restoration require their own
 authorization and verification. Live installation requires authorization and
 verified results for each exact target; see the [release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
 
+- Reorient returning users around the first missing job: four focused software skills, conditional handoffs, everyday before/now examples, optional helpers, and separate installation/discovery/release evidence. Shorten onboarding and link to canonical setup and reference guides.
+
 - Clarify planner completion provenance: absent state stays unknown, an empty projection has a conditional frontier, and inline dependency maps bind the exact plan ID. Preserve mechanical checker behavior and separate structural evidence from native acceptance.
 
 - Add an explicit manifest-bound replacement preview for unowned current Claude skill packages, with full file before-images, transactional ownership, source/preimage drift refusal and whole-package rollback guards. Retain a compatible installer for schema3 journals. Refuse encountered preserved-agent and plugin directory symlinks before discovery filters, so hidden dependencies cannot be deleted by adoption.
