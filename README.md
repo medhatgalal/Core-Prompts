@@ -78,8 +78,12 @@ consent when both readers are affected. Six readers use five generated
 provider distributions; `agy` reads the Gemini package.
 
 Preview identity-based historical Core cleanup and inspect preservation notices.
-Customized and third-party skills/agents, including Addy packages, retain their
-protections. Do not clean by name glob. Missing selected Grok packages have
+Customized skills and non-Core agents, including Addy packages, retain their
+protections. The [exact retired Core-agent exception](docs/INSTALL-PROFILES.md#historical-recognition-and-preservation)
+can retire locally modified agents identified by definition name and bundled
+metadata, with a same-job skill replacement and recoverable transaction. Symlink,
+identity, configuration and dependency conflicts still guard removal. Review the
+exact preview; do not clean by name glob. Missing selected Grok packages have
 [exact recovery](docs/INSTALL-PROFILES.md#restore-wholly-missing-owned-grok-skills);
 recovery is separate from native discovery. [Transaction listing and rollback](docs/INSTALL-PROFILES.md#recover-an-installation)
 provide the recovery path.
@@ -118,6 +122,20 @@ surfaces; installed bundles are destinations. Maintainers follow
 [maintainer hygiene](docs/MAINTAINER-HYGIENE.md) and
 [CLI reference](docs/CLI-REFERENCE.md). These are maintenance paths, not setup
 requirements for every user task.
+
+## Optional documentation recipes
+
+Use `engos-quality-docs-review` for ordinary documentation review. Name
+`readme-authoring` when you want only README_vNext.md ending in Claim Notes;
+choose `docs-bundle` for the README, technical README, visuals plan and factual
+audit together. See [all recipe asks and exact outputs](docs/EXAMPLES.md#optional-documentation-recipes).
+
+For candidate-bound ship evidence, use `engos-quality-gitops-review` with
+`docs-release-readiness`. The `factual-audit` recipe's original E verdict checks
+documentation content: E content PASS does not establish hosted readiness.
+Merge/release readiness needs independently reproduced committed candidate bytes
+and exact-head hosted checks; dirty snapshot bytes with green HEAD CI cannot pass.
+Recipe selection and proposed commands add no commit, merge or release authority.
 
 ## Documentation map
 

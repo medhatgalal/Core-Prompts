@@ -162,6 +162,20 @@ Its contract distinguishes local verification, hosted checks, merge, publication
 installation and cleanup. The job stops at the authorized boundary; a local pass
 cannot establish a release or live rollout. [Delivery examples](EXAMPLES.md#engos-orchestration-batman).
 
+## Optional documentation recipes
+
+Use `engos-quality-docs-review` for ordinary documentation review. Name
+`readme-authoring` when you want only README_vNext.md ending in Claim Notes;
+choose `docs-bundle` for the README, technical README, visuals plan and factual
+audit together. See [all recipe asks and exact outputs](EXAMPLES.md#optional-documentation-recipes).
+
+For candidate-bound ship evidence, use `engos-quality-gitops-review` with
+`docs-release-readiness`. The `factual-audit` recipe's original E verdict checks
+documentation content: E content PASS does not establish hosted readiness.
+Merge/release readiness needs independently reproduced committed candidate bytes
+and exact-head hosted checks; dirty snapshot bytes with green HEAD CI cannot pass.
+Recipe selection and proposed commands add no commit, merge or release authority.
+
 ## Next docs
 
 - [Skill flows](SKILL-FLOWS.md): skip conditions, artifacts and optional neighbors.
