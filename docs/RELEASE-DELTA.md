@@ -6,8 +6,8 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - Comparison basis: `git:v1.17.0@d76f1ff2761348b7fc7ed8a11f438765a6065c39 .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
-- Changed capability records: `0`
-- Records with contract-facing metadata changes: `0`
+- Changed capability records: `1`
+- Records with contract-facing metadata changes: `1`
 
 ## New Capabilities
 - none
@@ -16,7 +16,7 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - none
 
 ## Contract-Facing Metadata Changes
-- none
+- `engos-design-plan-implementation` — changed `expected_outputs`
 
 ## All Changed Capability Records
-- none
+- `engos-design-plan-implementation` — changed `expected_outputs`

@@ -1650,6 +1650,7 @@
         "Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.",
         "Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.",
         "Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.",
+        "For tasks that may run concurrently, name overlapping likely paths and affected task IDs; state future parallel-write safety is unassessed until actual authorized write sets are inspected. Put the concurrent-write handoff hold in the readable plan and every emitted TaskPlan and dependency-map `unresolved` array, even when all current `allowed_writes` are empty because only planning is authorized. Disjoint likely paths alone do not prove safety without actual authorized write sets.",
         "Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence."
       ],
       "tool_policy": {

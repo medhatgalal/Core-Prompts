@@ -271,6 +271,16 @@ For T1 followed by independent T2/T3, that projection makes only T1 ready and
 leaves T2/T3 dependent on T1; evidenced completion of T1 changes the frontier.
 An explicitly supplied empty list is distinct from absent state.
 
+For T2/T3 that both depend on T1 and might later run concurrently, suppose both
+list `src/export.py` as a likely file and have empty current `allowed_writes`
+because this request authorizes planning only. Expect: “T2/T3 overlap at
+`src/export.py`; future parallel-write safety is unassessed. Hold concurrent-write
+handoff until the execution owner inspects and disjoins or coordinates actual
+authorized write sets.” Keep T2/T3 dependency-independent after T1; a warning is
+not a reason to invent a T2-to-T3 edge. Carry the same hold into the readable
+plan and each emitted TaskPlan/dependency-map `unresolved` array. Empty current
+write lists and shared predecessors do not establish future write safety.
+
 For an inline dependency map, the reference matches the concrete plan identity.
 These are identity fields only, not complete plan artifacts:
 
