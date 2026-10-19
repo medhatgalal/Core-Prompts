@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-design-plan-implementation",
-  "ssot_sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6",
+  "ssot_sha256": "418f61721066c1411fde8f7a8a29110743c9d7d6fdd322b1ea5c7a087a58161f",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -29,24 +29,30 @@
     "- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.",
     "- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.",
     "- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.",
+    "- For tasks that may run concurrently, name overlapping likely paths and affected task IDs; state future parallel-write safety is unassessed until actual authorized write sets are inspected. Put the concurrent-write handoff hold in the readable plan and every emitted TaskPlan and dependency-map `unresolved` array, even when all current `allowed_writes` are empty because only planning is authorized. Disjoint likely paths alone do not prove safety without actual authorized write sets.",
     "- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence."
   ],
   "authority_boundaries": [
     "engos-design-plan-implementation:L33:eaede2aac28e",
     "engos-design-plan-implementation:L48:c4e4e1bf9162",
     "engos-design-plan-implementation:L60:e499a294c6c7",
-    "engos-design-plan-implementation:L82:a2fb303996ce",
-    "engos-design-plan-implementation:L93:17681574ba88",
-    "engos-design-plan-implementation:L110:049a2277a748",
-    "engos-design-plan-implementation:L113:d4a5d90fccd1",
-    "engos-design-plan-implementation:L115:a4c443398cb6",
-    "engos-design-plan-implementation:L133:8a85940f2e9c",
-    "engos-design-plan-implementation:L158:f9a4b231b49a",
-    "engos-design-plan-implementation:L169:9a28fa501efd",
-    "engos-design-plan-implementation:L184:1c0f01ccc7f3",
-    "engos-design-plan-implementation:L271:aed91d54c9d8",
+    "engos-design-plan-implementation:L75:ce23b3a5b343",
+    "engos-design-plan-implementation:L77:8bb0d58316e7",
+    "engos-design-plan-implementation:L87:a2fb303996ce",
+    "engos-design-plan-implementation:L98:17681574ba88",
+    "engos-design-plan-implementation:L115:049a2277a748",
+    "engos-design-plan-implementation:L118:d4a5d90fccd1",
+    "engos-design-plan-implementation:L120:a4c443398cb6",
+    "engos-design-plan-implementation:L138:e9de2c032759",
+    "engos-design-plan-implementation:L139:8a85940f2e9c",
+    "engos-design-plan-implementation:L164:f9a4b231b49a",
+    "engos-design-plan-implementation:L175:9a28fa501efd",
+    "engos-design-plan-implementation:L190:1c0f01ccc7f3",
+    "engos-design-plan-implementation:L277:aed91d54c9d8",
     "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/task-plan.schema.json:L4:4b71a02ba127",
+    "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L12:040a5e2fc38c",
     "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L13:17e877777992",
+    "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L14:b224be55fc13",
     "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json:L4:5b1ed3763d5f"
   ],
   "resources": [
@@ -55,10 +61,14 @@
     "| Bounded writes | Likely files, actual allowed writes, constraints and authority references are distinct |"
   ],
   "handoffs": [
+    "\"population\": \"Authoring instructions only: omit this instructions object from populated maps. Preserve plan identity, nodes, edges and unresolved holds. Copy the authoritative plan's concurrent-write handoff hold into unresolved, including affected task IDs and overlapping likely paths, even when all current allowed_writes are empty because only planning is authorized. Do not infer future safety from disjoint likely paths without inspected actual authorized write sets.\"",
+    "\"review\": \"Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. For tasks that may run concurrently, name overlapping likely paths and affected task IDs. Future parallel-write safety remains unassessed until actual authorized write sets are inspected; dependency independence, shared predecessors and empty current allowed-write lists do not prove safety. Hold concurrent-write handoff until the execution owner inspects and disjoins or coordinates the authorized sets; do not add dependency edges merely to hide possible conflicts. This is not a graph-check result, a computed ready frontier or approval.\",",
     "### Small edit and optional handoff",
+    "- For tasks that may run concurrently, name overlapping likely paths and affected task IDs; state future parallel-write safety is unassessed until actual authorized write sets are inspected. Put the concurrent-write handoff hold in the readable plan and every emitted TaskPlan and dependency-map `unresolved` array, even when all current `allowed_writes` are empty because only planning is authorized. Disjoint likely paths alone do not prove safety without actual authorized write sets.",
     "- Stop dependent handoff on source drift, unmet acceptance, unresolved material",
     "Return the plan, holds and a bounded handoff. State actual acceptance status",
     "against the readable plan before handoff.",
+    "handoff until the responsible execution owner inspects and disjoins or coordinates",
     "items hold their dependent handoff; a score or schema pass cannot waive them."
   ],
   "protected_invariants": [
@@ -123,260 +133,290 @@
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L80:312b41e7674e",
+      "id": "engos-design-plan-implementation:L75:ce23b3a5b343",
       "heading": "Workflow",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 88,
+      "source_line": 83,
+      "sha256": "ce23b3a5b343493a8905247e82af2389b80c77cccf3a1e4e595f82ff38516a2e",
+      "text": "allowed-write lists do not prove safe parallel execution. Hold concurrent-write",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:L77:8bb0d58316e7",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "source_line": 85,
+      "sha256": "8bb0d58316e7cba5a08b3cf92553cf9673cb27ce7b65af774088de59cae34b8d",
+      "text": "the authorized sets. Keep dependencies faithful to actual prerequisites; do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:L85:312b41e7674e",
+      "heading": "Workflow",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "source_line": 93,
       "sha256": "312b41e7674e9727416f6578b76892d594ac7b07a325d8961e6aa5d72ac7983d",
       "text": "Use an empty `completed_task_ids` only as a no-evidenced-completions projection;",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L82:a2fb303996ce",
+      "id": "engos-design-plan-implementation:L87:a2fb303996ce",
       "heading": "Workflow",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 90,
+      "source_line": 95,
       "sha256": "a2fb303996ce69baee1bec96903e4237cda59da65e4231dd7928aabcadbbda51",
       "text": "blocked tasks conditional on that projection. Never call this supplied state",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L93:17681574ba88",
+      "id": "engos-design-plan-implementation:L98:17681574ba88",
       "heading": "Workflow",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 101,
+      "source_line": 106,
       "sha256": "17681574ba881244558097a0ad833cfb90d8665f7038bd6b447f0f1ee7ffee88",
       "text": "tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L95:620a80880176",
+      "id": "engos-design-plan-implementation:L100:620a80880176",
       "heading": "Workflow",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 103,
+      "source_line": 108,
       "sha256": "620a808801761cf56a3dd4907e970a21a30803b18c3acfdea9e07abf25ea27bf",
       "text": "add or revise only authorized scope. Preserve completion claims only with their",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L110:049a2277a748",
+      "id": "engos-design-plan-implementation:L115:049a2277a748",
       "heading": "Rules",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 118,
+      "source_line": 123,
       "sha256": "049a2277a7480304e7a11adf0ef9a043800ecc637c3cc1ffa4319be926985d64",
       "text": "Do not create issues, send messages or change external tracker state unless",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L112:787b7c3efd29",
+      "id": "engos-design-plan-implementation:L117:787b7c3efd29",
       "heading": "Rules",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 120,
+      "source_line": 125,
       "sha256": "787b7c3efd2935e8cb65b8d657c269fb8d85ce98167c8f87ef0e3beb2485b57f",
       "text": "chat when only planning is authorized.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L113:d4a5d90fccd1",
+      "id": "engos-design-plan-implementation:L118:d4a5d90fccd1",
       "heading": "Rules",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 121,
+      "source_line": 126,
       "sha256": "d4a5d90fccd17968a3341f81b2d4864f60de61b71a198933dca475ecd4d9554d",
       "text": "- Preserve requirement and task identity. Never recycle IDs, erase unchecked work,",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L115:a4c443398cb6",
+      "id": "engos-design-plan-implementation:L120:a4c443398cb6",
       "heading": "Rules",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 123,
+      "source_line": 128,
       "sha256": "a4c443398cb6c8eb7903b419d32afd18fc66ce461e6aa36b75945739698dd68d",
       "text": "- `allowed_writes` narrows the task, never grants permission. `authority_ref` points",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L118:aa922503d284",
+      "id": "engos-design-plan-implementation:L123:aa922503d284",
       "heading": "Rules",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 126,
+      "source_line": 131,
       "sha256": "aa922503d2847d2ff9fd237441c6b04bb5000abfb28aa6b2fca7e003cd7f8a1e",
       "text": "- Digest only inspected bytes. Use null for unavailable or future artifacts and",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L127:3d4b9f171064",
+      "id": "engos-design-plan-implementation:L132:3d4b9f171064",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 135,
+      "source_line": 140,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L132:bf39173ac6fa",
+      "id": "engos-design-plan-implementation:L137:bf39173ac6fa",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 140,
+      "source_line": 145,
       "sha256": "bf39173ac6fa402897da15df2a474cc4e8c4a0d6718dbfa1fe997f5a745a32ee",
       "text": "- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L133:8a85940f2e9c",
+      "id": "engos-design-plan-implementation:L138:e9de2c032759",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 141,
+      "source_line": 146,
+      "sha256": "e9de2c032759ccad61aaf61ded71963335ad1d5dcf2eb4d51346e4adc852865d",
+      "text": "- For tasks that may run concurrently, name overlapping likely paths and affected task IDs; state future parallel-write safety is unassessed until actual authorized write sets are inspected. Put the concurrent-write handoff hold in the readable plan and every emitted TaskPlan and dependency-map `unresolved` array, even when all current `allowed_writes` are empty because only planning is authorized. Disjoint likely paths alone do not prove safety without actual authorized write sets.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-design-plan-implementation:L139:8a85940f2e9c",
+      "heading": "Required Output",
+      "source": "ssot/engos-design-plan-implementation.md",
+      "source_line": 147,
       "sha256": "8a85940f2e9c602de4fffcf333528865c0c51040ef97d28d566268a0fb2d81da",
       "text": "- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L138:5b824904802b",
+      "id": "engos-design-plan-implementation:L144:5b824904802b",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 146,
+      "source_line": 152,
       "sha256": "5b824904802b4820cf313725e80228a4f0740ce84dd6ee9e6a2a6462dbe65b77",
       "text": "Load only the needed resource route from `resources/resource-map.json`: run",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L153:69af4cbed41f",
+      "id": "engos-design-plan-implementation:L159:69af4cbed41f",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 161,
+      "source_line": 167,
       "sha256": "69af4cbed41f8a0ba1278339310419dee49ac48debab0b5fe2d403e27e76d18a",
       "text": "available. For an existing plan file, use its actual source reference and only a",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L157:0452c4932ec8",
+      "id": "engos-design-plan-implementation:L163:0452c4932ec8",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 165,
+      "source_line": 171,
       "sha256": "0452c4932ec876feff8d106225db64c9fb5f1419bf98aabc22ef91faf896c83e",
       "text": "Every JSON fence must contain a complete standalone JSON value, including status",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L158:f9a4b231b49a",
+      "id": "engos-design-plan-implementation:L164:f9a4b231b49a",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 166,
+      "source_line": 172,
       "sha256": "f9a4b231b49a5ade295edaae0d55c707c16c003bd31f49a8fa076ffea652a9f8",
       "text": "excerpts. Do not emit fragments, duplicate keys or non-JSON constants. In populated",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L159:6aab1c0028e9",
+      "id": "engos-design-plan-implementation:L165:6aab1c0028e9",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 167,
+      "source_line": 173,
       "sha256": "6aab1c0028e9bace0e70599b6e91dc3b67a683d1adc0e295ebb3a2ea4477b968",
       "text": "dependency maps omit the template's authoring-only `instructions` object; retain",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L166:6aabf68720f4",
+      "id": "engos-design-plan-implementation:L172:6aabf68720f4",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 174,
+      "source_line": 180,
       "sha256": "6aabf68720f42a06f0767dc1cb4575f16a7214497413fd9764ea39716b31c8f3",
       "text": "producer, exact output label, direct dependency and unknown digest must agree in",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L169:9a28fa501efd",
+      "id": "engos-design-plan-implementation:L175:9a28fa501efd",
       "heading": "Required Output",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 177,
+      "source_line": 183,
       "sha256": "9a28fa501efd05cdb3f737bcb62d3632c240f64d25832aeaa45c8bb0a18a70e6",
       "text": "and do not copy authoring instructions into results.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L184:1c0f01ccc7f3",
+      "id": "engos-design-plan-implementation:L190:1c0f01ccc7f3",
       "heading": "Constraints",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 192,
+      "source_line": 198,
       "sha256": "1c0f01ccc7f336d06c8f8a282ca85253e34741cbc7f1998f56eca985ed83ecd6",
       "text": "This capability owns planning artifacts only. Do not implement product code,",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L202:5404eb1fe133",
+      "id": "engos-design-plan-implementation:L208:5404eb1fe133",
       "heading": "Feature outcome with an interface",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 210,
+      "source_line": 216,
       "sha256": "5404eb1fe13358883485019143a76a64c3b2ea7cf86d8e61916836c55bea5d65",
       "text": "unauthorized access is denied if that is required by the source. Keep export code,",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L212:34545ca9adfe",
+      "id": "engos-design-plan-implementation:L218:34545ca9adfe",
       "heading": "Revise without erasing work",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 220,
+      "source_line": 226,
       "sha256": "34545ca9adfe1bcae29974977743c21d199b512fbbb87d8b331696b4391ca396",
       "text": "completed evidence remains applicable, and which dependent checks must reopen.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L221:3454f6519a4b",
+      "id": "engos-design-plan-implementation:L227:3454f6519a4b",
       "heading": "Small edit and optional handoff",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 229,
+      "source_line": 235,
       "sha256": "3454f6519a4ba533249a7cca64c2016a899e2fd879bac7e450548dda527c1500",
       "text": "workflow; no multi-task plan or JSON is required. \u201cPlan this migration for Batman\u201d",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L258:5c58e7b72343",
+      "id": "engos-design-plan-implementation:L264:5c58e7b72343",
       "heading": "Optional mechanical graph check",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 266,
+      "source_line": 272,
       "sha256": "5c58e7b7234364ab3d11fe6dc8b032d47228ec39ad89faa2b6ce1711c5e9d7ae",
       "text": "helper reads only bundled TaskPlan/TaskContract schema bytes and supplied input.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L261:9c72731c4c90",
+      "id": "engos-design-plan-implementation:L267:9c72731c4c90",
       "heading": "Optional mechanical graph check",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 269,
+      "source_line": 275,
       "sha256": "9c72731c4c90a21298e1b014dc82700427c2d27331d59e5820fee01551baab55",
       "text": "Use its sorted `ready_task_ids` only as dependency readiness: it grants no write",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:L271:aed91d54c9d8",
+      "id": "engos-design-plan-implementation:L277:aed91d54c9d8",
       "heading": "Optional mechanical graph check",
       "source": "ssot/engos-design-plan-implementation.md",
-      "source_line": 279,
+      "source_line": 285,
       "sha256": "aed91d54c9d8956d97b6810a15232013a187d5452330fa84ca83db5546bbfb1d",
       "text": "Do not suppress an otherwise dependency-ready node because these observations",
       "kind": "invariant",
@@ -463,6 +503,16 @@
       "mapped_to": []
     },
     {
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L12:040a5e2fc38c",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
+      "source_line": 12,
+      "sha256": "040a5e2fc38c0d5a0bc8775ff6d4d720d031f8d8fa1b157775956ee35f11039f",
+      "text": "\"review\": \"Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. For tasks that may run concurrently, name overlapping likely paths and affected task IDs. Future parallel-write safety remains unassessed until actual authorized write sets are inspected; dependency independence, shared predecessors and empty current allowed-write lists do not prove safety. Hold concurrent-write handoff until the execution owner inspects and disjoins or coordinates the authorized sets; do not add dependency edges merely to hide possible conflicts. This is not a graph-check result, a computed ready frontier or approval.\",",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L13:17e877777992",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
@@ -473,13 +523,13 @@
       "mapped_to": []
     },
     {
-      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L14:15d6a3c9ae31",
+      "id": "engos-design-plan-implementation:sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json:L14:b224be55fc13",
       "heading": "root",
       "source": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
       "source_line": 14,
-      "sha256": "15d6a3c9ae31ee96ae5e011eb18600f5e09fcaea4f8f7c8ff4c6cc906804d043",
-      "text": "\"population\": \"Authoring instructions only: omit this instructions object from populated maps. Preserve plan identity, nodes, edges and unresolved holds.\"",
-      "kind": "invariant",
+      "sha256": "b224be55fc13d97b67c9e62733768119238b1569c991a370e5ed87bd82a98bc2",
+      "text": "\"population\": \"Authoring instructions only: omit this instructions object from populated maps. Preserve plan identity, nodes, edges and unresolved holds. Copy the authoritative plan's concurrent-write handoff hold into unresolved, including affected task IDs and overlapping likely paths, even when all current allowed_writes are empty because only planning is authorized. Do not infer future safety from disjoint likely paths without inspected actual authorized write sets.\"",
+      "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
@@ -631,7 +681,7 @@
   "source_references": [
     {
       "path": "ssot/engos-design-plan-implementation.md",
-      "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
+      "sha256": "418f61721066c1411fde8f7a8a29110743c9d7d6fdd322b1ea5c7a087a58161f"
     },
     {
       "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -643,7 +693,7 @@
     },
     {
       "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
-      "sha256": "635375181dbb274ae2de80ce6720ad10871dd8618383e0af63596252377a5083"
+      "sha256": "f343ac0f90116220794c54777a932c68c36c91db6de07a22b8a19f381b6ce7f2"
     },
     {
       "path": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
@@ -668,11 +718,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 56,
+    "total": 60,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "61309f2dfc316f490bb3fbc7705984904ef569374634167dce1ddd54dc50f678"
+  "resource_bundle_sha256": "842694797ed73514bfb7975bc1b64e72e9291fbc9a08989101e1db70c23cf9c1"
 }

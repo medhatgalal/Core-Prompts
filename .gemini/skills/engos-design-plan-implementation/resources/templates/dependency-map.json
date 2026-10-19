@@ -9,8 +9,8 @@
     "node": "For each actual task record id and outcome. Preserve task IDs.",
     "edge": "Record predecessor and successor IDs from depends_on; predecessor must finish before successor consumes its output.",
     "authority": "Manual projection only; the actual plan/tracker remains authoritative.",
-    "review": "Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. This is not a graph-check result, a computed ready frontier or approval.",
+    "review": "Inspect missing references, duplicate IDs, cycles and shared-write conflicts manually. For tasks that may run concurrently, name overlapping likely paths and affected task IDs. Future parallel-write safety remains unassessed until actual authorized write sets are inspected; dependency independence, shared predecessors and empty current allowed-write lists do not prove safety. Hold concurrent-write handoff until the execution owner inspects and disjoins or coordinates the authorized sets; do not add dependency edges merely to hide possible conflicts. This is not a graph-check result, a computed ready frontier or approval.",
     "plan_binding": "For an inline TaskPlan, set plan_ref to its exact id, never the schema name or an invented inline URI. For an existing plan file, use its actual source reference. Keep plan_sha256 null unless exact canonical plan bytes and a trusted digest are available. Cross-check identity, nodes, edges and unresolved holds against the authoritative plan.",
-    "population": "Authoring instructions only: omit this instructions object from populated maps. Preserve plan identity, nodes, edges and unresolved holds."
+    "population": "Authoring instructions only: omit this instructions object from populated maps. Preserve plan identity, nodes, edges and unresolved holds. Copy the authoritative plan's concurrent-write handoff hold into unresolved, including affected task IDs and overlapping likely paths, even when all current allowed_writes are empty because only planning is authorized. Do not infer future safety from disjoint likely paths without inspected actual authorized write sets."
   }
 }

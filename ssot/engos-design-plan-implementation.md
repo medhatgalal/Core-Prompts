@@ -75,10 +75,15 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
    into the plan. A planned future input references its producing task and expected
    contract; its digest stays unknown until bytes exist.
 5. Order dependencies and manually inspect unique task IDs, reference existence,
-   dependency cycles and interface consistency. Identify shared-write conflicts;
-   absence of dependency edges alone does not establish safe parallel execution.
-   Shared predecessors describe ordering, not write-conflict safety. Keep that
-   safety unassessed until actual authorized write sets have been inspected.
+   dependency cycles and interface consistency. For tasks that may run concurrently,
+   compare likely files and actual authorized write sets. Name overlapping likely
+   paths and affected task IDs in the readable plan. Until actual authorized write
+   sets have been inspected, explicitly state that future parallel-write safety is
+   unassessed: dependency independence, shared predecessors and empty current
+   allowed-write lists do not prove safe parallel execution. Hold concurrent-write
+   handoff until the responsible execution owner inspects and disjoins or coordinates
+   the authorized sets. Keep dependencies faithful to actual prerequisites; do not
+   add edges merely to hide a possible shared-write conflict.
    Check every included requirement has an owning task or an explicit unresolved
    disposition. Keep unsupported assumptions and missing sources as holds. For supplied
    `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and
@@ -138,6 +143,7 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
 - Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.
 - Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.
 - Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.
+- For tasks that may run concurrently, name overlapping likely paths and affected task IDs; state future parallel-write safety is unassessed until actual authorized write sets are inspected. Put the concurrent-write handoff hold in the readable plan and every emitted TaskPlan and dependency-map `unresolved` array, even when all current `allowed_writes` are empty because only planning is authorized. Disjoint likely paths alone do not prove safety without actual authorized write sets.
 - Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.
 
 Optional machine interchange uses `resources/schemas/task-contract.schema.json`
