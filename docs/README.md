@@ -10,6 +10,7 @@ Use this page to pick the right documentation path quickly. The intended order i
 
 | Need | Start here |
 | --- | --- |
+| I am returning and want to know what changed in daily use | [Everyday changes](../README.md#what-changes-in-everyday-use) and [before/now examples](EXAMPLES.md#everyday-requests-before-and-now) |
 | I want to use an installed Core-Prompts skill | [Getting started](GETTING-STARTED.md) |
 | I need to install, repair old packages, or enable updates | [Installation and recovery](INSTALL-PROFILES.md) |
 | I need the next skill and its conditional handoff | [Skill flows](SKILL-FLOWS.md) |
@@ -26,8 +27,9 @@ Use this page to pick the right documentation path quickly. The intended order i
 ### Daily user of installed capabilities
 
 1. [Getting started](GETTING-STARTED.md)
-2. [Examples](EXAMPLES.md)
-3. [FAQ](FAQ.md)
+2. [Skill flows](SKILL-FLOWS.md) for the first missing job
+3. [Everyday examples](EXAMPLES.md#everyday-requests-before-and-now), then the selected skill example
+4. [FAQ](FAQ.md)
 
 ### Capability author or importer
 

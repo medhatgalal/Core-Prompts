@@ -77,6 +77,8 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
 5. Order dependencies and manually inspect unique task IDs, reference existence,
    dependency cycles and interface consistency. Identify shared-write conflicts;
    absence of dependency edges alone does not establish safe parallel execution.
+   Shared predecessors describe ordering, not write-conflict safety. Keep that
+   safety unassessed until actual authorized write sets have been inspected.
    Check every included requirement has an owning task or an explicit unresolved
    disposition. Keep unsupported assumptions and missing sources as holds. For supplied
    `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and
@@ -160,12 +162,19 @@ available. For an existing plan file, use its actual source reference and only a
 trusted digest of those bytes. Cross-check plan identity, nodes, edges and holds
 against the readable plan before handoff.
 
+Every JSON fence must contain a complete standalone JSON value, including status
+excerpts. Do not emit fragments, duplicate keys or non-JSON constants. In populated
+dependency maps omit the template's authoring-only `instructions` object; retain
+plan identity, nodes, edges and unresolved holds.
+
 Emit actual source and future-artifact bindings rather than copying instructional
 placeholder references or a protocol tutorial into the result. Keep each readable
 provenance claim on one line with its exact reference and trusted digest or
 unknown/not computed; avoid unbound duplicate assertions. A future artifact's
 producer, exact output label, direct dependency and unknown digest must agree in
-prose and sidecars.
+prose and sidecars. Keep every repeated future-byte hold explicitly unknown;
+place concrete identities in their binding fields or same-line readable bindings,
+and do not copy authoring instructions into results.
 
 Shape validation cannot establish source truth, task quality, ID uniqueness by
 property, graph correctness, acceptance, authority, coverage or execution. Review

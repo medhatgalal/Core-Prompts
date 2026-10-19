@@ -15,6 +15,34 @@ host has installed or discovered a skill. [Getting started](GETTING-STARTED.md)
 covers that check. JSON contracts below are optional interchange, not a required
 new document system.
 
+## The shortest useful route
+
+A clear one-step request → **implement slice** → review the actual candidate when
+required. For a larger uncertain change: **specify** → **architecture if a material
+choice remains** → **plan if breakdown helps** → **implement a bounded slice** →
+**review** → **GitOps for the authorized hosted gate**. This is a conditional map,
+not an automatic pipeline. Existing accepted artifacts let you start later.
+
+Skip a separate test-design pass when existing meaningful checks suffice. Skip
+JSON sidecars when your tracker/prose already carries the needed facts. Skip
+shaping for an already framed feature. None of these skips waives the selected
+skill's own contract, required independent review or your project's checks.
+
+## Optional jobs around the main flow
+
+| Ask for this only when needed | Skill | Output / next use |
+| --- | --- | --- |
+| Strengthen a prompt, plan or proposal before using it | `engos-meta-supercharge` | Improved artifact, assumptions and failure modes; does not normally execute its target. |
+| Resolve disagreement among proposals or sources | `engos-reconciliation-converge` | Attributed conflicts, criteria and one defensible recommendation. |
+| Preserve a long investigation across sessions | `engos-memory-context-continuity` | Current context, pending work and insights; resume from verified state. |
+| Compile a durable bounded goal/spec/verifier packet | `engos-design-plan-to-goal` | Packet and verification design; launching a goal is separate. |
+| Measure whether an improvement works better | `engos-optimization-auto-research` | Baseline-controlled evidence within declared bounds. |
+
+These jobs remain separately callable. Supercharge is not ordinary task planning;
+Converge needs competing inputs; continuity is not automatic global memory; a goal
+packet is not an implementation dispatch. Use [everyday examples](EXAMPLES.md#everyday-requests-before-and-now)
+for small fixes through larger delivery.
+
 ## Feature or bounded change
 
 | Missing job | Exact skill | Carry forward / finish condition |

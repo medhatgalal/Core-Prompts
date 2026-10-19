@@ -2438,7 +2438,7 @@
       "primary_job": "Give an implementer enough source context and explicit interfaces to deliver one\nindependently verifiable outcome at a time, with clear mutation bounds and a\ncredible acceptance oracle. Planning produces artifacts; it does not execute tasks.",
       "use_when": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and\n\u201crevise our unfinished plan against these accepted changes\u201d enter the same workflow.\nUse plain accepted requirements or an available `SpecContract.v1`; no installed\nspecification skill or machine sidecar is required. An unresolved product decision\nbelongs with its decision owner; material architecture belongs with\n`engos-design-architecture`. A separately requested durable goal packet belongs\nwith `engos-design-plan-to-goal`; explicitly selected controller delivery belongs\nwith `engos-orchestration-batman`. Neither is an automatic next step.",
       "works_on": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.\n- Inspect repository conventions and relevant code or interfaces.\n- Obtain optional accepted architecture, compatibility constraints and non-goals.\n- Read the actual tracker or unfinished plan when present.\n- Keep missing sources, decisions and permissions visible; do not invent an accepted specification or a new tracking system.",
-      "main_output": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.\n- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.\n- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.\n- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.\n- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.\n\nOptional machine interchange uses `resources/schemas/task-contract.schema.json`\nand `resources/schemas/task-plan.schema.json`. The dependency-map template is a\nmanual projection of the plan, not a second source of truth or ready-frontier result.\nLoad only the needed resource route from `resources/resource-map.json`: run\n`python3 resources/scripts/load_module.py --route task_plan --format text` from\nthe installed skill directory, substituting `task_contract` or `dependency_map`.\nThe existing standard-library loader resolves the complete route closure. If it\ncannot run, read the map and every selected dependency directly; missing or\ntruncated resources block claims that the resource route was applied. Narrative\nplanning uses this entrypoint without requiring sidecars or a resource invocation.\n\n`TaskPlan.v1` binds the authoritative requirements with `spec_ref` and nullable\n`spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,\ntracker reference and unresolved items. `TaskContract.v1` records nullable consumed\nartifact digests and authority references without pretending unknowns are verified.\nFor an inline TaskPlan projection, set the dependency map's `plan_ref` to the\nexact TaskPlan `id`, not its schema name or an invented inline URI. Keep\n`plan_sha256` null unless exact canonical plan bytes and a trusted digest are\navailable. For an existing plan file, use its actual source reference and only a\ntrusted digest of those bytes. Cross-check plan identity, nodes, edges and holds\nagainst the readable plan before handoff.\n\nEmit actual source and future-artifact bindings rather than copying instructional\nplaceholder references or a protocol tutorial into the result. Keep each readable\nprovenance claim on one line with its exact reference and trusted digest or\nunknown/not computed; avoid unbound duplicate assertions. A future artifact's\nproducer, exact output label, direct dependency and unknown digest must agree in\nprose and sidecars.\n\nShape validation cannot establish source truth, task quality, ID uniqueness by\nproperty, graph correctness, acceptance, authority, coverage or execution. Review\nthose separately. A plan containing holds can validate while remaining unready.",
+      "main_output": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.\n- Record each task's one independently verifiable outcome, requirement/design IDs, depends_on, consumes, produces, likely files, allowed writes, constraints, verification and stop condition.\n- Preserve incomplete work and completed-task evidence references, reconcile authorized changes, and state unresolved items and the next owner's bounds.\n- Provide optional TaskContract.v1 and TaskPlan.v1 sidecars and a manual dependency-map projection only when machine interchange is useful.\n- Use an empty design list for no supplied design and an empty allowed-write list for no writes. Do not manufacture completed tasks or implementation evidence.\n\nOptional machine interchange uses `resources/schemas/task-contract.schema.json`\nand `resources/schemas/task-plan.schema.json`. The dependency-map template is a\nmanual projection of the plan, not a second source of truth or ready-frontier result.\nLoad only the needed resource route from `resources/resource-map.json`: run\n`python3 resources/scripts/load_module.py --route task_plan --format text` from\nthe installed skill directory, substituting `task_contract` or `dependency_map`.\nThe existing standard-library loader resolves the complete route closure. If it\ncannot run, read the map and every selected dependency directly; missing or\ntruncated resources block claims that the resource route was applied. Narrative\nplanning uses this entrypoint without requiring sidecars or a resource invocation.\n\n`TaskPlan.v1` binds the authoritative requirements with `spec_ref` and nullable\n`spec_sha256`; plain accepted text works too. It carries tasks, completed IDs,\ntracker reference and unresolved items. `TaskContract.v1` records nullable consumed\nartifact digests and authority references without pretending unknowns are verified.\nFor an inline TaskPlan projection, set the dependency map's `plan_ref` to the\nexact TaskPlan `id`, not its schema name or an invented inline URI. Keep\n`plan_sha256` null unless exact canonical plan bytes and a trusted digest are\navailable. For an existing plan file, use its actual source reference and only a\ntrusted digest of those bytes. Cross-check plan identity, nodes, edges and holds\nagainst the readable plan before handoff.\n\nEvery JSON fence must contain a complete standalone JSON value, including status\nexcerpts. Do not emit fragments, duplicate keys or non-JSON constants. In populated\ndependency maps omit the template's authoring-only `instructions` object; retain\nplan identity, nodes, edges and unresolved holds.\n\nEmit actual source and future-artifact bindings rather than copying instructional\nplaceholder references or a protocol tutorial into the result. Keep each readable\nprovenance claim on one line with its exact reference and trusted digest or\nunknown/not computed; avoid unbound duplicate assertions. A future artifact's\nproducer, exact output label, direct dependency and unknown digest must agree in\nprose and sidecars. Keep every repeated future-byte hold explicitly unknown;\nplace concrete identities in their binding fields or same-line readable bindings,\nand do not copy authoring instructions into results.\n\nShape validation cannot establish source truth, task quality, ID uniqueness by\nproperty, graph correctness, acceptance, authority, coverage or execution. Review\nthose separately. A plan containing holds can validate while remaining unready.",
       "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
       "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
       "routing_question": "Does this request directly require Plan Implementation?",
@@ -2457,19 +2457,19 @@
             "path": "ssot/engos-design-plan-implementation.md",
             "start_line": 24,
             "end_line": 31,
-            "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+            "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
           },
           {
             "path": "ssot/engos-design-plan-implementation.md",
             "start_line": 49,
             "end_line": 59,
-            "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+            "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
           },
           {
             "path": "ssot/engos-design-plan-implementation.md",
-            "start_line": 104,
-            "end_line": 110,
-            "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+            "start_line": 106,
+            "end_line": 112,
+            "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
           }
         ]
       },
@@ -2480,13 +2480,13 @@
           "kind": "source_conditions",
           "clauses": [
             {
-              "text": "1. Identify the authoritative requirements and their current revision, actual\n   accepted scope and authorization. Read the existing plan and tracker before\n   writing. Preserve their IDs, completed evidence, unresolved items and ownership.\n   If inputs conflict or acceptance is unverified, hold the dependent tasks while\n   drafting useful independent scope. Do not require another approval turn when\n   the existing conversation or decision record already authorizes that scope.\n2. Inspect the relevant implementation boundaries. Carry forward requirements,\n   unchanged behavior, constraints and supplied design IDs. For plain prose, map\n   stable local requirement IDs to exact source passages without rewriting the\n   source. With `SpecContract.v1`, retain its requirement/design IDs, source and\n   authority references; examine open assumptions and design reconciliation.\n   A structurally valid draft is not an accepted input. No cross-skill import is\n   needed to read a supplied artifact.\n3. Choose outcome boundaries that a reviewer can accept or reject separately.\n   Prefer a working feature path when feasible. Attach scaffolding, configuration,\n   tests and documentation to the outcome they enable. Isolate a prerequisite only\n   if its own observable contract can be reviewed independently. Do not size tasks\n   by file count, mandate a fixed number of steps, or invent unrelated refactors.\n4. For each task record the outcome, requirement/design IDs, dependencies, consumed\n   source/interface references, produced artifacts/interfaces, likely files,\n   allowed writes, constraints, verification and stop condition. Distinguish likely\n   files from authorized mutation targets. Describe exact signatures, fields or\n   invariants where later work relies on them; avoid writing the whole implementation\n   into the plan. A planned future input references its producing task and expected\n   contract; its digest stays unknown until bytes exist.\n5. Order dependencies and manually inspect unique task IDs, reference existence,\n   dependency cycles and interface consistency. Identify shared-write conflicts;\n   absence of dependency edges alone does not establish safe parallel execution.\n   Check every included requirement has an owning task or an explicit unresolved\n   disposition. Keep unsupported assumptions and missing sources as holds. For supplied\n   `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and\n   reports dependency-ready tasks; see [Optional mechanical graph check](#optional-mechanical-graph-check).\n   Distinguish a supplied empty completion list, supplied completed IDs and absent\n   completion state. If state is absent, the actual current frontier is unknown.\n   Use an empty `completed_task_ids` only as a no-evidenced-completions projection;\n   record the missing state in `unresolved` and label any derived frontier and\n   blocked tasks conditional on that projection. Never call this supplied state\n   or evidence that no tasks have completed. Keep semantic, acceptance and authority\n   holds separate from dependency readiness.\n   The manual dependency map remains a projection. Neither route establishes\n   semantic correctness, requirement linkage, execution authority or implemented\n   behavior.\n6. Give each task a concrete oracle: the observation and expected result that would\n   accept or reject it, the command or inspection that obtains evidence, and where\n   evidence should be recorded in the existing process. Include relevant failure,\n   boundary and compatibility cases. Match verification to risk and repository\n   rules; a prose edit may need a diff inspection, executable behavior focused\n   tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.\n7. Reconcile revisions in the actual plan. Keep incomplete unrelated work intact;\n   add or revise only authorized scope. Preserve completion claims only with their\n   existing evidence, and reopen affected work when changed inputs invalidate it.\n   Show superseded decisions and their replacements instead of silently dropping\n   tasks. If a destination belongs to different unfinished work, return the new\n   draft in chat and request a destination decision before overwriting anything.\n8. Review source coverage, outcome quality, authority and dependency consistency.\n   Return the plan, holds and a bounded handoff. State actual acceptance status\n   separately from format checks. Preserve any execution method already chosen;\n   otherwise name possible consumers without dispatching a worker, invoking a\n   controller or creating a goal. Execution needs its own authorized scope.",
+              "text": "1. Identify the authoritative requirements and their current revision, actual\n   accepted scope and authorization. Read the existing plan and tracker before\n   writing. Preserve their IDs, completed evidence, unresolved items and ownership.\n   If inputs conflict or acceptance is unverified, hold the dependent tasks while\n   drafting useful independent scope. Do not require another approval turn when\n   the existing conversation or decision record already authorizes that scope.\n2. Inspect the relevant implementation boundaries. Carry forward requirements,\n   unchanged behavior, constraints and supplied design IDs. For plain prose, map\n   stable local requirement IDs to exact source passages without rewriting the\n   source. With `SpecContract.v1`, retain its requirement/design IDs, source and\n   authority references; examine open assumptions and design reconciliation.\n   A structurally valid draft is not an accepted input. No cross-skill import is\n   needed to read a supplied artifact.\n3. Choose outcome boundaries that a reviewer can accept or reject separately.\n   Prefer a working feature path when feasible. Attach scaffolding, configuration,\n   tests and documentation to the outcome they enable. Isolate a prerequisite only\n   if its own observable contract can be reviewed independently. Do not size tasks\n   by file count, mandate a fixed number of steps, or invent unrelated refactors.\n4. For each task record the outcome, requirement/design IDs, dependencies, consumed\n   source/interface references, produced artifacts/interfaces, likely files,\n   allowed writes, constraints, verification and stop condition. Distinguish likely\n   files from authorized mutation targets. Describe exact signatures, fields or\n   invariants where later work relies on them; avoid writing the whole implementation\n   into the plan. A planned future input references its producing task and expected\n   contract; its digest stays unknown until bytes exist.\n5. Order dependencies and manually inspect unique task IDs, reference existence,\n   dependency cycles and interface consistency. Identify shared-write conflicts;\n   absence of dependency edges alone does not establish safe parallel execution.\n   Shared predecessors describe ordering, not write-conflict safety. Keep that\n   safety unassessed until actual authorized write sets have been inspected.\n   Check every included requirement has an owning task or an explicit unresolved\n   disposition. Keep unsupported assumptions and missing sources as holds. For supplied\n   `TaskPlan.v1` input, the optional `graph_check` route checks graph structure and\n   reports dependency-ready tasks; see [Optional mechanical graph check](#optional-mechanical-graph-check).\n   Distinguish a supplied empty completion list, supplied completed IDs and absent\n   completion state. If state is absent, the actual current frontier is unknown.\n   Use an empty `completed_task_ids` only as a no-evidenced-completions projection;\n   record the missing state in `unresolved` and label any derived frontier and\n   blocked tasks conditional on that projection. Never call this supplied state\n   or evidence that no tasks have completed. Keep semantic, acceptance and authority\n   holds separate from dependency readiness.\n   The manual dependency map remains a projection. Neither route establishes\n   semantic correctness, requirement linkage, execution authority or implemented\n   behavior.\n6. Give each task a concrete oracle: the observation and expected result that would\n   accept or reject it, the command or inspection that obtains evidence, and where\n   evidence should be recorded in the existing process. Include relevant failure,\n   boundary and compatibility cases. Match verification to risk and repository\n   rules; a prose edit may need a diff inspection, executable behavior focused\n   tests. Do not impose blanket TDD, all-suite runs or commit-per-step rituals.\n7. Reconcile revisions in the actual plan. Keep incomplete unrelated work intact;\n   add or revise only authorized scope. Preserve completion claims only with their\n   existing evidence, and reopen affected work when changed inputs invalidate it.\n   Show superseded decisions and their replacements instead of silently dropping\n   tasks. If a destination belongs to different unfinished work, return the new\n   draft in chat and request a destination decision before overwriting anything.\n8. Review source coverage, outcome quality, authority and dependency consistency.\n   Return the plan, holds and a bounded handoff. State actual acceptance status\n   separately from format checks. Preserve any execution method already chosen;\n   otherwise name possible consumers without dispatching a worker, invoking a\n   controller or creating a goal. Execution needs its own authorized scope.",
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 52,
-                "end_line": 110,
-                "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                "end_line": 112,
+                "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
               }
             }
           ]
@@ -2503,9 +2503,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 183,
-                "end_line": 190,
-                "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                "start_line": 192,
+                "end_line": 199,
+                "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
               }
             }
           ]
@@ -2518,9 +2518,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 183,
-                "end_line": 190,
-                "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                "start_line": 192,
+                "end_line": 199,
+                "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
               }
             }
           ]
@@ -2533,8 +2533,8 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-design-plan-implementation.md",
-          "ssot_sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef",
-          "effective_sha256": "e843872ab66b0db9ea9646ed6eff1570ae66afcb29ee3499c3b3b0515d65754d",
+          "ssot_sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6",
+          "effective_sha256": "578a9c27ed77efadb5a0eb38748e7bddc91d714865f54bcbbfabe08a96594bcc",
           "resources": [
             {
               "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -2546,7 +2546,7 @@
             },
             {
               "path": "sources/capability-resources/engos-design-plan-implementation/templates/dependency-map.json",
-              "sha256": "c2b80a43b166b79f6369389365e03c4b6020d34b42749e896192c371e0eafab6"
+              "sha256": "635375181dbb274ae2de80ce6720ad10871dd8618383e0af63596252377a5083"
             },
             {
               "path": "sources/capability-resources/engos-design-plan-implementation/schemas/graph-result.schema.json",
@@ -2568,7 +2568,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 20,
                   "end_line": 22,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               }
             ],
@@ -2580,7 +2580,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 26,
                   "end_line": 33,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               }
             ],
@@ -2592,7 +2592,7 @@
                   "path": "ssot/engos-design-plan-implementation.md",
                   "start_line": 37,
                   "end_line": 41,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               }
             ],
@@ -2602,9 +2602,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 135,
-                  "end_line": 139,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "start_line": 137,
+                  "end_line": 141,
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               },
               {
@@ -2612,9 +2612,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 141,
-                  "end_line": 150,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "start_line": 143,
+                  "end_line": 152,
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               },
               {
@@ -2622,19 +2622,29 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 152,
-                  "end_line": 161,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "start_line": 154,
+                  "end_line": 163,
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               },
               {
-                "text": "Emit actual source and future-artifact bindings rather than copying instructional\nplaceholder references or a protocol tutorial into the result. Keep each readable\nprovenance claim on one line with its exact reference and trusted digest or\nunknown/not computed; avoid unbound duplicate assertions. A future artifact's\nproducer, exact output label, direct dependency and unknown digest must agree in\nprose and sidecars.",
+                "text": "Every JSON fence must contain a complete standalone JSON value, including status\nexcerpts. Do not emit fragments, duplicate keys or non-JSON constants. In populated\ndependency maps omit the template's authoring-only `instructions` object; retain\nplan identity, nodes, edges and unresolved holds.",
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 163,
+                  "start_line": 165,
                   "end_line": 168,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
+                }
+              },
+              {
+                "text": "Emit actual source and future-artifact bindings rather than copying instructional\nplaceholder references or a protocol tutorial into the result. Keep each readable\nprovenance claim on one line with its exact reference and trusted digest or\nunknown/not computed; avoid unbound duplicate assertions. A future artifact's\nproducer, exact output label, direct dependency and unknown digest must agree in\nprose and sidecars. Keep every repeated future-byte hold explicitly unknown;\nplace concrete identities in their binding fields or same-line readable bindings,\nand do not copy authoring instructions into results.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-design-plan-implementation.md",
+                  "start_line": 170,
+                  "end_line": 177,
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               },
               {
@@ -2642,9 +2652,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-design-plan-implementation.md",
-                  "start_line": 170,
-                  "end_line": 172,
-                  "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+                  "start_line": 179,
+                  "end_line": 181,
+                  "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
                 }
               }
             ]
@@ -2659,7 +2669,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "7530190fd2072b490895c1610364481ff28894ef97ce7a45eff93c772aacc0d7"
+          "mapping_sha256": "6ceaec4e742fd57581ac6a4351147ffa35cdc35eec672fedd0a9e81370e77f4c"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -3210,7 +3220,7 @@
             "path": "ssot/engos-design-plan-implementation.md",
             "start_line": 24,
             "end_line": 31,
-            "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef"
+            "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6"
           }
         ]
       },
@@ -3468,7 +3478,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "62d314809520fac49b7a610f8505bb620b7a959a3278a66105267a13c20c85f6"
+          "mapping_sha256": "bd6e11d572907dd6ecb48c1b8fa192aa194eb8ae392fe52fda1afbbc84efe9c3"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -6842,7 +6852,7 @@
       "source_at_revision": {
         "status": "present",
         "path": "ssot/engos-design-plan-implementation.md",
-        "sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef",
+        "sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6",
         "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
       },
       "generated_package_at_revision": {
@@ -7541,7 +7551,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "bcdc0511923a832a59ad03e01713f037b95a995f64b4e22cdddbd62cb9b84ce4",
+    "skills_sha256": "2f304a495539509c6b70ac38c4dcc73af1f1782c89b11d2a92aed4accdf18577",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -7626,9 +7636,9 @@
         "mapping_sha256": "6386061d3347a50af07122ce84a89845f78ed454c5e3bbd099396a5e52770af3"
       },
       "engos-design-plan-implementation": {
-        "ssot_sha256": "1a02327fc04710ea3ccdd3048efed471f82103697fe0efd1403da1b24508cfef",
-        "effective_sha256": "e843872ab66b0db9ea9646ed6eff1570ae66afcb29ee3499c3b3b0515d65754d",
-        "mapping_sha256": "7530190fd2072b490895c1610364481ff28894ef97ce7a45eff93c772aacc0d7"
+        "ssot_sha256": "bf5608c20858da41c558795a2564f4bdd4beb22353f6a7f9fc3c1c40ac7ef8d6",
+        "effective_sha256": "578a9c27ed77efadb5a0eb38748e7bddc91d714865f54bcbbfabe08a96594bcc",
+        "mapping_sha256": "6ceaec4e742fd57581ac6a4351147ffa35cdc35eec672fedd0a9e81370e77f4c"
       },
       "engos-design-plan-to-goal": {
         "ssot_sha256": "3a6f3a9235fde39ec290a0eca11101971b52427647016b856a3e5329ff660db8",
@@ -7643,7 +7653,7 @@
       "engos-design-specify-change": {
         "ssot_sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
         "effective_sha256": "2be14dd9f0bcfa2fbd7005ed6a432f433b8b74ee243b927104eeea017c355315",
-        "mapping_sha256": "62d314809520fac49b7a610f8505bb620b7a959a3278a66105267a13c20c85f6"
+        "mapping_sha256": "bd6e11d572907dd6ecb48c1b8fa192aa194eb8ae392fe52fda1afbbc84efe9c3"
       },
       "engos-memory-context-continuity": {
         "ssot_sha256": "1e3479ad869e1065a5c3fe2d102b0a8cda5b1206507745f1a817c3263f0b928b",
