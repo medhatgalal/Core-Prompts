@@ -39,6 +39,55 @@ def payload(root=ROOT):
                 for k in ["label", "when", "skip_when", "output", "next"]
             ):
                 raise ValueError("Incomplete step contract")
+    intake = catalog.get("intake")
+    if not isinstance(intake, dict) or not isinstance(intake.get("questions"), list):
+        raise ValueError("Intake questions are required")
+    questions = {q["id"]: q for q in intake["questions"]}
+    if (
+        len(questions) != len(intake["questions"])
+        or intake.get("start") not in questions
+    ):
+        raise ValueError("Duplicate or missing intake question")
+    for question in questions.values():
+        if (
+            not question.get("question")
+            or not question.get("why")
+            or not question.get("options")
+        ):
+            raise ValueError("Incomplete intake question")
+        if not any(
+            o.get("allow_text") and o.get("ask_assistant") for o in question["options"]
+        ):
+            raise ValueError("Every intake question requires an Other/free-text answer")
+        choices = set()
+        for option in question["options"]:
+            if option["id"] in choices:
+                raise ValueError("Duplicate intake choice")
+            choices.add(option["id"])
+            destinations = sum(
+                bool(option.get(k)) for k in ("next_question", "route", "ask_assistant")
+            )
+            if destinations != 1 or not option.get("label") or not option.get("detail"):
+                raise ValueError("Incomplete or ambiguous intake choice")
+            if option.get("next_question") and option["next_question"] not in questions:
+                raise ValueError("Unknown next intake question")
+            if option.get("route") and option["route"] not in seen:
+                raise ValueError("Unknown intake route")
+            if not option.get("next_question") and not option.get("rationale"):
+                raise ValueError("Intake outcome requires an explanation")
+    visited = set()
+
+    def visit(key, active):
+        if key in active:
+            raise ValueError("Intake question cycle")
+        visited.add(key)
+        for option in questions[key]["options"]:
+            if option.get("next_question"):
+                visit(option["next_question"], active | {key})
+
+    visit(intake["start"], set())
+    if visited != set(questions):
+        raise ValueError("Unreachable intake question")
     skills = [
         {"slug": slug, "primary_job": v["primary_job"], "use_when": v["use_when"]}
         for slug, v in sorted(jobs.items())

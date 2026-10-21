@@ -7,13 +7,35 @@
     "Interpret the requested outcome, available artifacts, accepted decisions and authority semantically; do not route from keywords or regex matches alone.",
     "Choose one first missing job and explain why, its expected artifact and the next conditional handoff. Reuse current accepted work rather than recreating it.",
     "An explicit named skill or scoped direct request takes precedence over advisory suggestions. Do not hijack unrelated work with a universal Core-first workflow.",
-    "Use this compact set for common starts. In source context consult the existing skill-job map for all 36 names; in verified runtime context use the available skill inventory and relevant bundled capability descriptor. Read the selected installed skill entry and only needed resources.",
+    "Use this compact set for common starts. In source context consult the existing skill-job map for current catalog names; in verified runtime context use the available skill inventory and relevant bundled capability descriptor. Read the selected installed skill entry and only needed resources.",
     "Ask only for missing information that changes the route. Missing competing inputs stay missing; do not fabricate proposals, evidence, acceptance or completion.",
     "Steps are conditional choices, not automatic invocation or execution. A missing document does not establish a missing decision. UI state selections are user-provided context, not verified acceptance.",
     "Preserve user, host, home and project policy. Routing grants no new permission. Proceed within an already authorized task without re-asking permission merely to select the skill.",
-    "Supercharge, continuity, goal-packet compilation and Batman are optional explicit requests. A goal packet does not launch a goal; delegation and external actions retain their existing authority gates."
+    "Supercharge, continuity, goal-packet compilation and Batman are optional explicit requests. A goal packet does not launch a goal; delegation and external actions retain their existing authority gates.",
+    "When the next job or depth is materially unclear, the available intake skill explains options and asks adaptive questions; every question supports Other/free text. Clear direct tasks skip the interview. Relationships may sequence, iterate, return, support or conditionally parallelize work; none grants execution authority."
   ],
   "routes": [
+    {
+      "id": "guided-intake",
+      "title": "Other — help me find the right job",
+      "intent": "The desired job, starting point or useful depth is uncertain; describe it in your own words.",
+      "entry_skill": "engos-orchestration-route-intent",
+      "why": "The assistant interprets the current context across the whole catalog rather than making you choose a framework.",
+      "output": "One justified next job and depth, or a focused question with Other/free text.",
+      "steps": [
+        {
+          "id": "intake",
+          "label": "Clarify the useful next job",
+          "skill": "engos-orchestration-route-intent",
+          "when": "A missing answer would materially change the next result or depth.",
+          "skip_when": "The direct task or selected skill is already clear.",
+          "output": "A context-based recommendation, expected artifact and necessary clarification.",
+          "next": "Read the selected current contract and continue already authorized work; preserve actual prerequisites and approval holds."
+        }
+      ],
+      "prompt": "Use the available intake skill to recommend the next useful job from my context. If a material uncertainty remains, explain the relevant outcome options, recommend one with a reason and ask a focused question using an available question tool or inline options. Always include Other/free text. Do not require me to choose a framework or invent an appetite.",
+      "next": "Continue with the selected current skill only within established scope; do not automatically run a stack."
+    },
     {
       "id": "rough-problem",
       "title": "I have a rough problem",
@@ -454,5 +476,179 @@
     }
   ],
   "source_job_map_ref": ".meta/skill-job-map.json",
-  "runtime_route_ref": ".kiro/steering/intent-routing.json"
+  "runtime_route_ref": ".kiro/steering/intent-routing.json",
+  "intake": {
+    "start": "outcome",
+    "questions": [
+      {
+        "id": "outcome",
+        "question": "What would be most useful to leave this conversation with?",
+        "why": "Choose the result you need, not a framework name. Your assistant can recommend an option from the context you already gave.",
+        "options": [
+          {
+            "id": "clarity",
+            "label": "A clearer problem or feature",
+            "detail": "Understand what matters before choosing a solution.",
+            "next_question": "clarity"
+          },
+          {
+            "id": "compare",
+            "label": "A recommendation between actual alternatives",
+            "detail": "Compare proposals you already have.",
+            "route": "competing-proposals",
+            "rationale": "Converge compares real alternatives and explains trade-offs; it does not invent missing proposals."
+          },
+          {
+            "id": "proposal",
+            "label": "A proposal others can judge or fund",
+            "detail": "Develop a justified pitch, or assess one that exists.",
+            "next_question": "proposal"
+          },
+          {
+            "id": "change",
+            "label": "Working code, a fix or an implementation plan",
+            "detail": "Start from the actual work and decisions already accepted.",
+            "next_question": "readiness"
+          },
+          {
+            "id": "unsure",
+            "label": "I am not sure—help me decide",
+            "detail": "Ask me a focused question about my situation.",
+            "ask_assistant": true,
+            "rationale": "There is not enough information for a responsible skill recommendation. The assistant should ask about your desired outcome and what you already have."
+          },
+          {
+            "id": "free-text",
+            "label": "Other — describe what you mean",
+            "detail": "Enter your own answer; the assistant will interpret it.",
+            "allow_text": true,
+            "ask_assistant": true,
+            "rationale": "A free-form answer needs context-sensitive interpretation. Ask a useful follow-up instead of forcing it into an existing choice."
+          }
+        ]
+      },
+      {
+        "id": "clarity",
+        "question": "Which part is unclear?",
+        "why": "An unclear problem and unclear feature behavior need different first steps.",
+        "options": [
+          {
+            "id": "problem",
+            "label": "Why this matters, for whom, or what success means",
+            "detail": "We have symptoms or rough ideas, not an agreed problem.",
+            "route": "rough-problem",
+            "rationale": "Start with lightweight framing. It clarifies the problem; it does not commit you to a full workshop."
+          },
+          {
+            "id": "acceptance",
+            "label": "The feature is known, but its behavior is unclear",
+            "detail": "We need observable requirements and acceptance conditions.",
+            "route": "unclear-feature",
+            "rationale": "Specification fits an identifiable change whose expected behavior still needs agreement."
+          },
+          {
+            "id": "unknown",
+            "label": "I cannot tell yet",
+            "detail": "Help me distinguish the uncertainty.",
+            "ask_assistant": true,
+            "rationale": "The assistant should use your examples to distinguish the problem from its proposed solution before selecting a skill."
+          },
+          {
+            "id": "free-text",
+            "label": "Other — describe what you mean",
+            "detail": "Enter your own answer; the assistant will interpret it.",
+            "allow_text": true,
+            "ask_assistant": true,
+            "rationale": "A free-form answer needs context-sensitive interpretation. Ask a useful follow-up instead of forcing it into an existing choice."
+          }
+        ]
+      },
+      {
+        "id": "proposal",
+        "question": "What do you already have for the proposal?",
+        "why": "A finished pitch can be reviewed directly. Rough material may need the guided workshop.",
+        "options": [
+          {
+            "id": "finished",
+            "label": "An existing pitch to assess",
+            "detail": "Judge this artifact rather than restart its history.",
+            "route": "review-pitch",
+            "rationale": "Review the actual pitch directly; do not invent earlier workshop stages."
+          },
+          {
+            "id": "rough",
+            "label": "Notes or ideas that need developing into a decision-ready pitch",
+            "detail": "Guide problem framing, research, solution shaping and review.",
+            "route": "shape-up",
+            "rationale": "The shaping conductor matches this end-to-end outcome. It explains stages, reuses accepted work and leaves appetite and betting decisions with people."
+          },
+          {
+            "id": "uncertain",
+            "label": "I need help deciding how much work is worthwhile",
+            "detail": "Discuss the decision, uncertainty and time investment first.",
+            "ask_assistant": true,
+            "rationale": "The assistant should explain a lightweight clarification versus a decision-ready workshop and recommend depth from your needs; it must not invent an appetite."
+          },
+          {
+            "id": "free-text",
+            "label": "Other — describe what you mean",
+            "detail": "Enter your own answer; the assistant will interpret it.",
+            "allow_text": true,
+            "ask_assistant": true,
+            "rationale": "A free-form answer needs context-sensitive interpretation. Ask a useful follow-up instead of forcing it into an existing choice."
+          }
+        ]
+      },
+      {
+        "id": "readiness",
+        "question": "Which best describes the starting point?",
+        "why": "Reuse accepted work. These answers are context, not proof of completion or permission.",
+        "options": [
+          {
+            "id": "bounded",
+            "label": "A small, clear task or supported repair",
+            "detail": "The change and allowed scope are already clear.",
+            "route": "small-change",
+            "rationale": "Implement a bounded slice without a fresh workshop or planning chain."
+          },
+          {
+            "id": "accepted",
+            "label": "Accepted requirements that need task breakdown",
+            "detail": "Plan dependencies and verifiable outcomes before execution.",
+            "route": "accepted-work",
+            "rationale": "Plan implementation from accepted scope; resolve a material technical choice only if one remains."
+          },
+          {
+            "id": "feature",
+            "label": "A feature idea with unclear expected behavior",
+            "detail": "Agree on what it should do before planning implementation.",
+            "route": "unclear-feature",
+            "rationale": "Specify acceptance and preserved behavior before breaking work into tasks."
+          },
+          {
+            "id": "failure",
+            "label": "A failure whose cause is not understood",
+            "detail": "A test, build or runtime behavior fails unexpectedly.",
+            "route": "unexplained-failure",
+            "rationale": "Diagnose the cause before treating a plausible fix as supported."
+          },
+          {
+            "id": "other",
+            "label": "Something else, or I am unsure",
+            "detail": "Let the assistant inspect my context and ask what matters.",
+            "ask_assistant": true,
+            "rationale": "A generic questionnaire cannot settle this case. Ask the smallest useful question rather than force a route."
+          },
+          {
+            "id": "free-text",
+            "label": "Other — describe what you mean",
+            "detail": "Enter your own answer; the assistant will interpret it.",
+            "allow_text": true,
+            "ask_assistant": true,
+            "rationale": "A free-form answer needs context-sensitive interpretation. Ask a useful follow-up instead of forcing it into an existing choice."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -1,8 +1,11 @@
 # Start with your intent
 
-Describe the result you want and what you already have. The assistant can choose
-one useful starting job, explain why it fits, and name the artifact you should
-expect. You do not need to memorize 36 skill names or run them as a pipeline.
+Describe the result you want and what you already have. The assistant should
+recommend both a useful starting job and how far to take it, explain the reason,
+and name the next artifact. The available `engos-orchestration-route-intent` skill
+provides that intake across the current catalog, including nonengineering jobs.
+You do not need to memorize skill names or decide
+whether your request counts as "lightweight shaping" or "full Shape Up".
 
 For example:
 
@@ -12,8 +15,9 @@ For example:
 
 A suitable response starts with something like: “I’ll use
 `engos-design-frame-from-vague` because the problem and outcome are still unclear.
-You’ll get a solution-free frame. Once you accept it, we can decide whether a
-specification or a full shaping workshop is useful.” The assistant then carries
+You’ll get a solution-free frame, which fits your request to clarify the problem
+before considering solutions. We can revisit the depth if you later need a
+researched proposal for a team decision.” The assistant then carries
 out the work already authorized by your request. Selecting a skill is not a new
 permission ceremony.
 
@@ -22,9 +26,63 @@ work you say is already accepted. Those selections are context for a recommendat
 not proof of acceptance or task completion. The guide does not interpret free-form
 language or execute skills; the assistant applies the
 [intent-routing policy](../.kiro/steering/skill-routing.md) to the actual context.
-The [full job map](SKILL-JOB-MAP.md) remains the lookup for all 36 names.
+The [job map](SKILL-JOB-MAP.md) remains a source-side lookup aid. The routing
+skill inspects the current inventory instead of treating these guide cards as a
+fixed or complete list of available jobs.
 
 ![Six common starting points: frame a vague problem, specify unclear acceptance, compare actual proposals, shape a full workshop, implement a clear change, or diagnose an unexplained failure.](guide/intent-flow.svg)
+
+## Let the assistant recommend how far to go
+
+A request for help does not need a completed intake form. The assistant starts
+with the conversation and supplied material, including decisions you have already
+accepted. If your request is clear, it can choose the useful job and proceed:
+"These requirements and this design are already accepted, so I’ll break the work
+into verifiable tasks." A small demonstrated fix or an exact diff review should
+not trigger a new interview.
+
+When depth really is unclear, the assistant explains the practical options and
+recommends one from your context. For a rough product idea, it might say:
+
+> Your notes describe a problem, but do not yet identify the outcome to improve.
+> I recommend clarifying that first. What result do you need next?
+> A. A clear problem and desired outcome.
+> B. Defined feature behavior and acceptance checks.
+> C. Researched options and a reviewed proposal for a team decision.
+> Other — describe the result you need, correct my premise, or say you are unsure.
+
+Those are example outcomes, not a question every task must answer. With an actual
+pair of proposals, the useful question may concern the decision criteria instead.
+With an accepted feature spec, there may be no intake question at all. An available
+question tool can present the choices; otherwise the assistant can ask inline and
+adapt its next question to your answer. Every intake question has an Other/free-text
+path, including the host's native Other field when supported. If the question tool
+cannot offer free text, use inline choices. Known facts are not asked again, and
+an unanswered recommendation is not a decision.
+
+| Result needed next | Appropriate depth |
+| --- | --- |
+| Understand the problem and outcome before discussing solutions | A bounded, solution-free frame. "Lightweight" does not waive its evidence or acceptance rules. |
+| Define a known feature's behavior, limits and acceptance | A specification in your existing format. |
+| Choose among supplied alternatives | Compare the actual proposals and their trade-offs; missing inputs stay missing. |
+| Work from a problem through research, shaping and a reviewed proposal | The shaping conductor, with the existing stage gates and human decisions. |
+| Plan accepted scope, make a clear change, diagnose a failure or review an artifact | Start with that direct job; do not rebuild upstream stages without a reason. |
+
+"Help us clarify the problem, investigate options and prepare a reviewed proposal
+for our team to decide on" is enough to request the deeper shaping workflow.
+You do not need to know its framework name. Conversely, "help me shape this idea"
+may leave the desired deliverable unclear; a focused question can resolve it.
+The assistant recommends the smallest depth that fulfills the actual request,
+not the smallest output regardless of your goal and not an automatic full stack.
+
+Choosing an outcome clarifies scope; it does not create unrelated permission to
+run commands, edit code, delegate, launch a goal or publish. Already authorized
+work can proceed without a new approval ceremony. Human appetite, acceptance and
+betting decisions still belong to their actual owners.
+
+The opted-in routing policy also preserves an Other/free-text path when a selected
+Core skill asks you a question later in the work. You can correct the premise or
+describe a result that its suggested choices missed.
 
 ## Find the first missing job
 
@@ -33,7 +91,7 @@ The [full job map](SKILL-JOB-MAP.md) remains the lookup for all 36 names.
 | “We have a problem, but cannot yet explain it clearly.” | `engos-design-frame-from-vague` | A solution-free frame: people, outcome, appetite and open questions. |
 | “We know the feature, but not its exact behavior or acceptance.” | `engos-design-specify-change` | Requirements, acceptance checks and unchanged behavior. |
 | “These two actual proposals disagree; help us choose.” | `engos-reconciliation-converge` | An attributed comparison and recommendation. Missing inputs are requested, not invented. |
-| “Guide a full Shape Up workshop.” | `engos-design-shaping` | Framing, research, shaping, review and delivery evidence under the existing stage gates; the human owner makes the betting decision. |
+| “Help us clarify the problem, research options and develop a reviewed proposal for a team decision.” | `engos-design-shaping` | Framing, research, shaping, review and delivery evidence under the existing stage gates; the human owner makes the betting decision. No framework name is required. |
 | “Make this small, clear change.” | `engos-delivery-implement-slice` | A bounded patch, actual checks and remaining limits. |
 | “This fails, and the cause is unclear.” | `engos-debug-diagnose-failure` | A supported cause or bounded unknown and a repair handoff. |
 | “These requirements are accepted; break the work down.” | `engos-design-plan-implementation` | Verifiable tasks, dependencies, interfaces and holds. |
@@ -53,6 +111,32 @@ material technical decision remains; an absent architecture document alone does
 not require a design pass. A real diff or finished pitch can be reviewed directly.
 If the requested work is already satisfied, the useful result may be a verified
 no-op rather than another stage.
+
+## The same method covers every catalog job
+
+For “audit this project,” the assistant uses the supplied purpose and sources.
+If the goal remains unclear, it might recommend a structural code-health audit and
+ask whether the result needed is A) maintainability risks, B) completeness against
+a feature's scope, C) progress from project activity, or Other — describe the
+decision you need to make. A supplied feature specification may settle that choice
+without any question.
+
+“Help with our incidents” may mean live coordination, retrospective operational
+analysis or a technical diagnosis. “Prepare our update” may mean a report, an
+attention queue or a presentation. The useful question concerns the requested
+result and actual sources, not an engineering framework. Every question retains
+Other/free text. Clear report and presentation requests go directly to their owners.
+
+The routing skill inspects the current inventory and a resource table of conditional
+**sequence**, **iterate**, **return**, **parallel** and **support** relationships.
+Rows identify triggers, handed-off artifacts, stops, source bindings and evidence
+class. A returned review issue is different from restarting an entire workflow;
+parallel suggestions do not authorize workers or establish write safety.
+
+New and updated skills remain eligible even without curated relationships. Stale
+edges stay unknown rather than making an updated skill disappear. Read the selected
+skill's current complete contract before relying on it. Bundled snapshots, paths
+and descriptor hashes do not prove native discovery, installation or task success.
 
 ## Continue only when the next job is needed
 
@@ -101,9 +185,19 @@ Use the available Core-Prompts skills when they fit this request. Read
 <CORE_ROOT>/.kiro/steering/skill-routing.md and resolve the routing data it
 names for this source checkout or verified runtime. Human docs are optional
 when the installed support root does not include them.
-Choose one first missing job from my intent and accepted work. Briefly name
-its exact skill, why it fits, the expected artifact and the next conditional
-handoff. Then proceed with the work already authorized above.
+For materially vague intent or depth, use the available
+engos-orchestration-route-intent skill and current resource inventory. Report
+an unavailable package honestly and use only a bounded manual fallback.
+Clear direct requests bypass redundant intake.
+Recommend one first missing job and the needed depth from my intent, supplied
+context and accepted work. Explain the result and why it fits before naming the
+skill. Do not ask me to choose a framework. If an unanswered question would
+materially change the route or depth, explain the relevant outcome options,
+recommend one and ask a focused question using an available question tool or
+inline choices. Every question must offer Other/free text. Reuse known answers;
+do not run a standard interview or infer new permission from a recommendation.
+Then proceed with the work already authorized above and give the next
+conditional handoff. A recommendation is not additional permission.
 
 Confirm the package this session can actually use. Read its complete SKILL.md
 and only the resources needed for this job. Preserve my project, host and
@@ -155,12 +249,16 @@ checked separately. This guide does not claim global autoloading or modify it.
 
 ## Where this guidance lives
 
-- [Canonical routing policy](../.kiro/steering/skill-routing.md): selection and
-  authority rules for opted-in contexts.
+- [Routing policy pointer](../.kiro/steering/skill-routing.md): when to invoke the
+  available intake skill, clear-task bypass and authority boundaries.
+- `engos-orchestration-route-intent`: the adaptive intake contract, read-only
+  current-catalog inspector, intake-method resource and conditional relationship
+  table. Resolve its actual package through the session's inventory; source
+  presence alone does not prove availability or effective loading.
 - [Compact route catalog](../.meta/intent-routing.json): shared descriptive data
   for common route cards and model lookup; not an executable classifier.
-- [Existing source job map](../.meta/skill-job-map.json): all 36 current skill
-  identities and boundaries for source-side lookup. Runtime packages instead use
+- [Existing source job map](../.meta/skill-job-map.json): skill identities and
+  boundaries for source-side lookup. Runtime packages instead use
   the available skill inventory and relevant bundled
   [capability descriptors](../.meta/capabilities/).
 - [Generated runtime route copy](../.kiro/steering/intent-routing.json): the same

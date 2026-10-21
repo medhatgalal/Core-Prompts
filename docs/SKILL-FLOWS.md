@@ -11,7 +11,7 @@ The skill contracts, your project's own rules and the applicable
 [execution context](../.kiro/steering/agent-behavior.md#execution-context) govern execution.
 Core-Prompts source-maintainer prerequisites do not apply to ordinary distribution use.
 
-Use the [job map](SKILL-JOB-MAP.md) for all 36 names and boundaries, then read the
+Use the [job map](SKILL-JOB-MAP.md) for the current names and boundaries, then read the
 chosen skill's complete entry and selected resource route. Availability has six
 separate evidence dimensions; advisory portfolio labels do not say whether your
 host has installed or discovered a skill. [Getting started](GETTING-STARTED.md)

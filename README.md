@@ -4,10 +4,17 @@ Reusable skills for Codex, Gemini, Claude, Kiro, Grok and Antigravity (`agy`).
 Core-Prompts supplies the skills and their resources; your project's rules and
 host retain control of tools, permissions, routing and delivery.
 
-**Describe the result you want; the assistant can choose the first missing job.**
-You do not need to memorize 36 names. It should recommend one starting skill,
-explain why, name the expected artifact, and carry forward accepted work.
-A clear small change can go straight to implementation.
+**Describe the result you want; the assistant recommends the job and depth.**
+You do not need to memorize skill names or choose between a brief frame and a full
+workshop yourself. The assistant uses your context and accepted work, explains
+its recommendation, and asks a focused outcome question only when the answer
+would materially change the route, with an Other/free-text answer path.
+`engos-orchestration-route-intent` provides intake across the current catalog,
+including nonengineering jobs. A clear direct task needs no new interview.
+
+The intake skill is an unreleased source addition. Check the package available in
+your session; pulling source, publishing a release and updating a live installation
+are separate steps. Missing intake support uses the documented manual fallback.
 
 Start with [your intent](docs/INTENT-ROUTING.md), browse the
 [portable visual guide](docs/guide/index.html), or use the copyable request
@@ -15,8 +22,9 @@ below. These are conditional routes, not an automatic skill chain.
 
 ## What changes in everyday use
 
-The catalog grew from 32 to 36 skills. Existing names remain; four focused jobs
-make it easier to ask for exactly the missing work:
+The earlier expansion from 32 to 36 skills added four focused software jobs.
+Those names remain; catalog-wide adaptive intake now helps select these and other
+current jobs without requiring users to learn the list:
 
 | Instead of a broad ask… | Ask now… | Expect |
 | --- | --- | --- |
@@ -44,8 +52,9 @@ for bugs, features, design, refactoring, CI and larger delivery.
 | A rough product problem or a finished pitch | [Shaping and pitch review](docs/SKILL-FLOWS.md#framing-and-shaping) |
 | A stronger artifact, competing sources, or resumable work | [Optional jobs](docs/SKILL-FLOWS.md#optional-jobs-around-the-main-flow) |
 
-The [job map](docs/SKILL-JOB-MAP.md) lists **all 36 current names**, their
-boundaries and neighbors. It is a lookup aid; read the chosen skill's complete
+The [job map](docs/SKILL-JOB-MAP.md) describes skill names, boundaries and neighbors.
+The intake skill inspects the current catalog; new or updated jobs remain eligible
+even when a curated relationship is missing or stale. It is a lookup aid; read the chosen skill's complete
 entry and selected resources before using it. `loopy` retains its upstream name;
 first-party skills use `engos-*`. No proposed rename or alias is needed.
 
@@ -56,9 +65,14 @@ From a trusted source checkout or verified distribution, replace the brackets:
 > Help me achieve [outcome] in [project and authorized scope]. From this trusted
 > Core-Prompts root, read .kiro/steering/skill-routing.md and the source/runtime
 > routing data it names. Use docs/INTENT-ROUTING.md for examples when included.
-> Choose one first missing job from my intent and existing accepted work. Briefly
-> explain the skill, why it fits, the artifact and the next conditional handoff;
-> then do the work already authorized. Read the available package's complete
+> For materially vague intent or depth, use the available
+> engos-orchestration-route-intent skill and current inventory; report a missing
+> package honestly. Recommend one first missing job and depth from my context.
+> Clear direct requests bypass redundant intake.
+> Explain the outcome and why it fits. If depth is materially unclear, describe
+> the relevant options, recommend one and ask a focused plain-language question;
+> offer Other/free text and reuse known answers rather than running a standard interview. Then do the work
+> already authorized and name the next conditional handoff. Read the available package's complete
 > SKILL.md and only needed resources. Follow my project, host and home policies.
 > Report missing inputs or evidence instead of inventing them. Do not treat a
 > route as new permission for execution, delegation, goals or external actions.
@@ -78,7 +92,7 @@ verified source checkout: inspect the target, preview, review, then apply only
 within your authorization. Old installations do not need a working updater first.
 
 A saved 32-skill selection stays at 32 on routine sync. Explicitly choose
-[all 36 and future additions, or named curated additions](docs/INSTALL-PROFILES.md#choose-future-skill-membership).
+[the current catalog and future additions, or named curated additions](docs/INSTALL-PROFILES.md#choose-future-skill-membership).
 Codex and Gemini share `~/.agents/skills`; expansion needs the documented joint
 consent when both readers are affected. Six readers use five generated
 provider distributions; `agy` reads the Gemini package.
@@ -96,7 +110,7 @@ provide the recovery path.
 
 ## Skills, workers and larger delivery
 
-The current generated surfaces contain `36` skills and no shipped named-agent configurations.
+The current generated surfaces contain `37` skills and no shipped named-agent configurations.
 Use the same skill in your main session or supply it and required resources to a
 real independent worker when requested or required by its contract. A second
 answer from the same author does not establish independent review. [Examples](docs/EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).

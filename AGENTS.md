@@ -8,7 +8,7 @@
 
 ## Skill selection
 
-- For Core-Prompts skill selection, follow [Intent-first routing](.kiro/steering/skill-routing.md): choose one first missing job from the user's intent and accepted work, preserve existing authority, and use the full catalog only as needed. Consumer-project adoption is explicit; this is not a global Core-first router.
+- For Core-Prompts skill selection, follow [Intent-first routing](.kiro/steering/skill-routing.md). When the user's intent or needed depth is materially unclear, use the available `engos-orchestration-route-intent` skill to explain options and ask adaptive questions; every question supports a free-form answer. Clear requests skip intake. Consumer-project adoption is explicit; routing adds no authority or global Core-first policy.
 
 ## Scope and priority
 

@@ -26,7 +26,7 @@ def test_audit_ssot_entries_reports_known_entries() -> None:
 
 def test_shipped_capabilities_are_skills_only() -> None:
     audits = audit_ssot_entries(ROOT)
-    assert len(audits) == 36
+    assert {audit.slug for audit in audits} == {p.stem for p in (ROOT / 'ssot').glob('*.md')}
     for audit in audits:
         assert audit.manifest['layers']['minimal']['capability_type'] == 'skill'
         assert all(name.endswith('_skill') for name in audit.expected_surface_names)
