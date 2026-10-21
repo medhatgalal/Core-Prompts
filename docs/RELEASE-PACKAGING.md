@@ -7,6 +7,10 @@ Minimum supported runtime: Python `3.11+`.
 
 Prefer the repo wrappers for build and validate so the runtime selection stays consistent.
 
+## Intent guide package contents
+
+Source archives include `docs/INTENT-ROUTING.md`, `docs/GUIDE-HOSTING.md`, the offline `docs/guide/` files and canonical `.meta/intent-routing.json`. The runtime steering boundary includes `skill-routing.md` and its generated sibling `intent-routing.json`; installed routing does not depend on source-only docs. Regenerate with `python3 scripts/build-intent-guide.py` before the normal build and verify with `--check`. Packaging does not activate hosting or global routing. See the [hosting guide](GUIDE-HOSTING.md).
+
 ## Local Release Gate
 
 Before any generator or source-generating test, verify the committed runtime

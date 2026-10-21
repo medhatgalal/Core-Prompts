@@ -1,23 +1,32 @@
 # Getting Started
 
-Choose one real task and the first missing job. If your skill is already
-available, the fast path below is enough. Use [skill flows](SKILL-FLOWS.md) for
-conditional handoffs and [examples](EXAMPLES.md#everyday-requests-before-and-now)
-for copyable everyday asks.
+Start with one real outcome, not a skill name. The assistant can interpret your
+intent and existing accepted work, recommend one first missing job, and explain
+the artifact to expect. Use the [intent guide](INTENT-ROUTING.md) or
+[portable visual guide](guide/index.html) when you are unsure where to start;
+[skill flows](SKILL-FLOWS.md) explain conditional handoffs.
 
 ## Fast path: use what is already available
 
-1. **Name the outcome and scope.** For example: “Use
-   `engos-delivery-implement-slice` to fix this off-by-one error in the pagination
-   helper; preserve sorting and permissions.” A clear one-step change needs no
-   new specification or elaborate plan.
-2. **Check the session's package.** Select the exact skill name using the host's
-   available skill list. Ask the assistant to identify the effective package,
-   read its complete entry and load only the resources selected for this job.
-   Repository catalog presence alone does not establish native discovery.
+1. **Describe the outcome, context and scope.** For example: “Fix this demonstrated
+   off-by-one error in the pagination helper; preserve sorting and permissions.”
+   The assistant can choose `engos-delivery-implement-slice` and proceed with the
+   authorized change. A clear one-step task needs no fresh specification or
+   elaborate plan. A vague problem, unclear acceptance and competing proposals
+   are different starts; see [the intent table](INTENT-ROUTING.md#find-the-first-missing-job).
+2. **Check the selected package.** The assistant identifies the exact skill and
+   effective package from this host's available skills, reads its complete entry,
+   and loads only the resources needed for the job. You can still name a skill
+   explicitly. Repository catalog presence alone does not establish native discovery.
 3. **Inspect the result.** Expect the requested artifact and an honest account
    of what was checked, what remains uncertain and the next needed job. A patch
    should include actual verification; a test design is still `not_run`.
+
+The routing explanation is brief: one skill, why it fits, the expected artifact
+and a next handoff only if needed. Routing itself is not a new approval gate.
+For another project, use a one-off request or an explicitly adopted
+[project instruction pointer](INTENT-ROUTING.md#opt-in-from-a-consumer-project);
+this repository's docs do not configure every harness globally.
 
 If the requested job requires independent review, expect a real separate reviewer
 and the skill's repair cycle. If that support is unavailable, the dependent review

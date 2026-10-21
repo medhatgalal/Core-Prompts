@@ -6,6 +6,10 @@
 - The source-checkout maintenance rules below govern changes to Core-Prompts itself. Ordinary skill use follows the user's project rules; a verified distribution uses its bundled skills/resources and authorized portable installer without source-maintainer prerequisites.
 - Safety, approvals, preservation and evidence boundaries apply in every context. Capability authoring requires a separately verified complete source checkout; missing source files are not permission to modify an installed bundle.
 
+## Skill selection
+
+- For Core-Prompts skill selection, follow [Intent-first routing](.kiro/steering/skill-routing.md): choose one first missing job from the user's intent and accepted work, preserve existing authority, and use the full catalog only as needed. Consumer-project adoption is explicit; this is not a global Core-first router.
+
 ## Scope and priority
 
 - Canonical source for all surface initialization: `ssot/`.

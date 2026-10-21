@@ -4,9 +4,14 @@ Reusable skills for Codex, Gemini, Claude, Kiro, Grok and Antigravity (`agy`).
 Core-Prompts supplies the skills and their resources; your project's rules and
 host retain control of tools, permissions, routing and delivery.
 
-**Returning user? Start with the job you are missing.** A clear small change can
-go directly to `engos-delivery-implement-slice`. You do not need to run every
-skill in a sequence, invoke Batman, or create new planning documents first.
+**Describe the result you want; the assistant can choose the first missing job.**
+You do not need to memorize 36 names. It should recommend one starting skill,
+explain why, name the expected artifact, and carry forward accepted work.
+A clear small change can go straight to implementation.
+
+Start with [your intent](docs/INTENT-ROUTING.md), browse the
+[portable visual guide](docs/guide/index.html), or use the copyable request
+below. These are conditional routes, not an automatic skill chain.
 
 ## What changes in everyday use
 
@@ -48,21 +53,22 @@ first-party skills use `engos-*`. No proposed rename or alias is needed.
 
 From a trusted source checkout or verified distribution, replace the brackets:
 
-> Help me use Core-Prompts for [job] in [project and allowed scope]. Read this
-> Core-Prompts root's AGENTS.md and applicable guidance, then docs/GETTING-STARTED.md
-> and the relevant route in docs/SKILL-FLOWS.md; use docs/SKILL-JOB-MAP.md to
-> resolve nearby jobs. Follow my project's rules and the host's authority.
-> Reuse accepted work and choose the first missing job, using the smallest
-> relevant skill and its complete entry plus selected resources. Check the exact
-> package available in this session. Explain the artifact and actual verification
-> or acceptance status. Report missing setup or evidence rather than guessing.
-> Do not install, publish, release, schedule or send messages unless my request
-> authorizes that action.
+> Help me achieve [outcome] in [project and authorized scope]. From this trusted
+> Core-Prompts root, read .kiro/steering/skill-routing.md and the source/runtime
+> routing data it names. Use docs/INTENT-ROUTING.md for examples when included.
+> Choose one first missing job from my intent and existing accepted work. Briefly
+> explain the skill, why it fits, the artifact and the next conditional handoff;
+> then do the work already authorized. Read the available package's complete
+> SKILL.md and only needed resources. Follow my project, host and home policies.
+> Report missing inputs or evidence instead of inventing them. Do not treat a
+> route as new permission for execution, delegation, goals or external actions.
 
 This is a copyable request, not installed global routing policy. Core-Prompts
 does not install a universal automatic Core-first router or replace your harness.
 Ordinary use in another project does not require Core-Prompts source-maintainer
-tools, UAC or its PR/MR workflow. [First successful use](docs/GETTING-STARTED.md).
+tools, UAC or its PR/MR workflow. A project owner can explicitly adopt a
+[portable instruction pointer](docs/INTENT-ROUTING.md#opt-in-from-a-consumer-project);
+documentation alone does not activate it. [First successful use](docs/GETTING-STARTED.md).
 
 ## Install or refresh your setup
 
