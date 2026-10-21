@@ -90,7 +90,7 @@ def test_a23_saved_empty_real_receipt_nonexpanding_then_both_policies(legacy, do
         state = planner.read_state(target)
         assert state['schema'] == 3 and state['selection_policy'] == {'kiro':policy}
         assert (ADDITIONS <= selected(plan)) == (policy == 'full_catalog')
-        assert len(selected(plan)) == (36 if policy == 'full_catalog' else 32)
+        assert len(selected(plan)) == (len(list((ROOT / 'ssot').glob('*.md'))) if policy == 'full_catalog' else 32)
         journal = json.loads(next((target/transaction.TRANSACTIONS).glob('*/journal.json')).read_text())
         assert plan['schema'] == 2 and journal['schema'] == 1
         assert result['schema'] == 2
@@ -102,7 +102,7 @@ def test_a23_saved_empty_real_receipt_nonexpanding_then_both_policies(legacy, do
     # Current-only explicit empty profile has no future-catalog consent.
     fresh = tmp_path/'explicit'; fresh.mkdir()
     plan, _ = apply(fresh, {'mode':'repair', 'profile':{'schema':1,'scope':'skills','targets':['kiro'],'slugs':[]}})
-    assert len(selected(plan)) == 36 and planner.read_state(fresh)['schema'] == 2
+    assert len(selected(plan)) == len(list((ROOT / 'ssot').glob('*.md'))) and planner.read_state(fresh)['schema'] == 2
 
 
 @pytest.mark.parametrize('fault', ['missing','hash','scope-missing','scope-unmapped','scope-duplicate','identity','source'])
@@ -202,7 +202,7 @@ def test_a05_provider_scope_and_full_to_curated_freeze(tmp_path):
     _, _ = apply(target, {'mode':'sync','providers':['kiro'],'selection_policy':'curated'})
     state = planner.read_state(target)
     assert state['selection_policy'] == {'kiro':'curated','claude':'curated'}
-    assert len(selected(planner.plan(ROOT,target,{'mode':'sync'}))) == 36
+    assert len(selected(planner.plan(ROOT,target,{'mode':'sync'}))) == len(list((ROOT / 'ssot').glob('*.md')))
 
 
 @pytest.mark.parametrize('arguments', [
@@ -416,7 +416,7 @@ def test_adopt_src002_actual_saved_shared_provider_membership(donor,tmp_path,cli
         updated,result=apply(destination,request)
         assert result['status']=='complete'
         for client in clients:
-            assert len(selected(updated,client))==(36 if policy=='full_catalog' else 32)
+            assert len(selected(updated,client))==(len(list((ROOT / 'ssot').glob('*.md'))) if policy=='full_catalog' else 32)
             assert (ADDITIONS<=selected(updated,client))==(policy=='full_catalog')
         assert (destination/planner.V1_RECEIPT).read_bytes()==receipt_bytes
         assert planner.read_state(destination)['selection_policy']=={p:policy for p in clients}

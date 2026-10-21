@@ -107,7 +107,7 @@ def test_package_boundary_includes_release_watch_contract(
     for names in (tar_files, zip_files):
         assert not any(name.startswith(tuple(f".{p}/agents/" for p in ("codex", "claude", "gemini", "kiro")))
                        and not name.endswith("/") for name in names)
-        assert sum(name.endswith("/SKILL.md") for name in names) == 180
+        assert sum(name.endswith("/SKILL.md") for name in names) == 5 * len(list((repo / "ssot").glob("*.md")))
 
     # Every provider ships the same owned receipt bytes in both archive formats.
     slug = "engos-delivery-implement-slice"

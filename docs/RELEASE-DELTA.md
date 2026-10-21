@@ -3,20 +3,20 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.17.0@d76f1ff2761348b7fc7ed8a11f438765a6065c39 .meta/manifest.json`
-- New capabilities: `0`
+- Comparison basis: `git:v1.17.1@86d9f51159a3a3dfdc7660a6872bc776f8f639b5 .meta/manifest.json`
+- New capabilities: `1`
 - Removed capabilities: `0`
-- Changed capability records: `1`
-- Records with contract-facing metadata changes: `1`
+- Changed capability records: `0`
+- Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- none
+- `engos-orchestration-route-intent` — Find the Right Job and Next Step
 
 ## Removed Capabilities
 - none
 
 ## Contract-Facing Metadata Changes
-- `engos-design-plan-implementation` — changed `expected_outputs`
+- none
 
 ## All Changed Capability Records
-- `engos-design-plan-implementation` — changed `expected_outputs`
+- none

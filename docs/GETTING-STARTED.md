@@ -1,8 +1,11 @@
 # Getting Started
 
-Start with one real outcome, not a skill name. The assistant can interpret your
-intent and existing accepted work, recommend one first missing job, and explain
-the artifact to expect. Use the [intent guide](INTENT-ROUTING.md) or
+Start with one real outcome, not a skill or framework name. The assistant uses
+your intent, available artifacts and accepted work to recommend a first job and
+the depth needed to produce the result. The available
+`engos-orchestration-route-intent` skill applies this method across the current
+catalog. It asks a focused question only when an unknown would materially change
+the route, always offering Other/free text. Use the [intent guide](INTENT-ROUTING.md) or
 [portable visual guide](guide/index.html) when you are unsure where to start;
 [skill flows](SKILL-FLOWS.md) explain conditional handoffs.
 
@@ -22,8 +25,18 @@ the artifact to expect. Use the [intent guide](INTENT-ROUTING.md) or
    of what was checked, what remains uncertain and the next needed job. A patch
    should include actual verification; a test design is still `not_run`.
 
-The routing explanation is brief: one skill, why it fits, the expected artifact
-and a next handoff only if needed. Routing itself is not a new approval gate.
+The routing explanation is brief: the recommended outcome and depth, why they
+fit your context, one skill and a next handoff only if needed. You do not have to
+choose "lightweight" versus "full" shaping. If that distinction matters and your
+request leaves it open, the assistant describes practical result options and
+recommends one, using an available question tool or focused inline choices.
+It reuses known answers and does not interview you for a clear direct task.
+An audit, incident review, attention queue, report or presentation uses the same
+intake method and goes to its own current owner. If the router is unavailable,
+report that and use only a bounded manual fallback; do not claim it was loaded
+or install it automatically.
+See [how intake adapts](INTENT-ROUTING.md#let-the-assistant-recommend-how-far-to-go).
+Routing itself is not a new approval gate or additional execution permission.
 For another project, use a one-off request or an explicitly adopted
 [project instruction pointer](INTENT-ROUTING.md#opt-in-from-a-consumer-project);
 this repository's docs do not configure every harness globally.
@@ -48,7 +61,7 @@ Keep existing names. Ordinary planning is now clearly separated from
 `engos-design-plan-to-goal`, which compiles a separately requested durable packet.
 Architecture is useful for a material design choice; it is optional when an
 accepted design already answers that question. Batman remains explicitly selected.
-The [job map](SKILL-JOB-MAP.md) covers all 36 names; the
+The [job map](SKILL-JOB-MAP.md) supports source-side lookup; the
 [flow guide](SKILL-FLOWS.md) explains the next handoff.
 
 Routine updates preserve saved membership. To expand an old 32-skill selection,

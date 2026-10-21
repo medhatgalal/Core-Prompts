@@ -25,7 +25,7 @@ authority. See [intent routing](INTENT-ROUTING.md) for the policy and consumer o
 | “Customers struggle with this process; help us define the problem before choosing a solution.” | `engos-design-frame-from-vague`: a solution-free frame; accepted scope can later enter specification or a requested workshop. |
 | “We want CSV export, but have not agreed on limits, errors or acceptance.” | `engos-design-specify-change`: observable requirements and open decisions; architecture only for a material remaining choice. |
 | “Compare these two supplied rollout proposals using our cost and recovery criteria.” | `engos-reconciliation-converge`: an attributed recommendation. If a proposal is absent, request it rather than inventing its position. |
-| “Run a full Shape Up workshop for this problem; the appetite is two weeks.” | `engos-design-shaping`: current framing/research/shaping/review/delivery gates and real human decisions; no fabricated prior receipts or automatic betting. |
+| “Help us frame this problem, research options and prepare a reviewed proposal for the team; the appetite is two weeks.” | `engos-design-shaping`: the plain-language requested outcome establishes workshop depth; preserve current stage gates and real human decisions without requiring the words "Shape Up". |
 | “Fix this demonstrated boundary error; preserve ordering and permissions.” | `engos-delivery-implement-slice`: the authorized bounded patch and checks, without a compulsory workshop. |
 | “Review this exact diff” or “Review this finished pitch.” | `engos-quality-code-review` or `engos-audit-pitch-review` directly; do not reconstruct upstream stages that were not requested. |
 
@@ -33,6 +33,75 @@ Accepted requirements, designs or task plans let you start later. The named form
 below remain useful when you already know the job; memorizing them is optional.
 Supercharge, continuity, goal packets and Batman are explicit optional requests,
 not required stages added to every example.
+
+## Intake adapts to what is already known
+
+These are illustrative decisions, not executed routing tests. The available
+`engos-orchestration-route-intent` skill recommends a depth from supplied context
+across the current catalog. Clear tasks bypass redundant intake; every question
+includes Other/free text.
+
+**Known direct task.** “These export requirements and this design are accepted;
+please break the work into tasks.” The assistant recommends
+`engos-design-plan-implementation`, explains the task-plan output, and proceeds
+within the request. It does not re-ask whether the user wants a brief frame or a
+full workshop, or repeat requirements already provided.
+
+**Material depth ambiguity.** “Help me shape our onboarding idea” may mean a clear
+problem, defined feature behavior or a researched decision proposal. The assistant
+first uses the supplied notes, then offers only the relevant outcomes. For example:
+“I recommend a problem frame because your notes do not yet state the desired
+outcome. What do you need next: A) clarify the problem, B) define feature behavior
+and acceptance, C) investigate options and develop a reviewed proposal, or
+Other — describe what you need, correct my premise, or say you are unsure?” An
+available question tool can carry the choices; otherwise the same question can be
+asked inline. “I’m not sure” is a reason to explain the recommendation, not a
+preselected approval for C.
+
+If the user chooses a researched proposal, the assistant routes to
+`engos-design-shaping` and asks only for still-missing material inputs required by
+that workflow. It retains previously supplied facts and actual appetite/decision
+owners. If the user only wants the problem clarified, direct framing preserves its
+own evidence/gate rules and stops at that scope. Neither answer authorizes coding,
+external publication or other actions absent from the request.
+
+**Clear deeper outcome without a framework name.** “Work with us to clarify the
+problem, investigate alternatives and prepare a reviewed pitch for our team to
+make an investment decision” already describes the shaping conductor's job. The
+assistant can explain that recommendation and begin authorized intake without
+asking the user to identify or separately approve a framework. Required human
+scope, appetite, acceptance and betting decisions are still obtained at their
+actual gates.
+
+**Actual alternatives, not invented ones.** “Compare these two proposals and tell
+me which best meets our recovery target” selects `engos-reconciliation-converge`.
+If only one proposal is supplied, the assistant requests the missing input; it does
+not invent an opponent or turn the request into a full workshop. A question about
+unresolved criteria is useful only if the answer changes the comparison.
+
+### Ambiguous nonengineering work
+
+“Audit this project” need not mean inspect code quality. If context leaves the
+outcome unclear, a useful question is: “Your notes focus on maintainability, so I
+recommend a structural health audit. Do you need A) code-health risks, B) completion
+against a feature specification, C) activity/progress over a period, or Other —
+describe the decision you need or correct my reading?” Supplied requirements or
+an explicit audience can make that question unnecessary.
+
+“Help with these incident notes” may call for live coordination, an operational
+review or diagnosis of one failure. “Turn this weekly evidence into six slides for
+leadership” already establishes a presentation outcome. The same current resource
+inventory covers each domain; it does not force them through software planning.
+
+### Updated jobs and conditional relationships
+
+A new skill can fit a task without a curated edge. Read its current contract and
+leave unsupported relationships unknown; stale edges do not ban updated skills.
+A finding may return an issue to its earlier owner, while a revision may iterate
+under its actual finding and stop condition. Parallel suggestions need dependency,
+write-set, coordination, role-independence and authority evidence; the router does
+not spawn workers or execute the graph. A report-to-presentation handoff remains
+conditional on the user actually wanting that output.
 
 ## Everyday requests: before and now
 
@@ -140,7 +209,8 @@ wanted; scale alone does not automatically select Batman.
   goal/spec/verifier packet.” Expect a durable packet; goal launch is separate.
 
 Use the [flow guide](SKILL-FLOWS.md) for skip conditions and handoffs, or the
-[job map](SKILL-JOB-MAP.md) to look up all 36 current identities.
+[job map](SKILL-JOB-MAP.md) for source-side identities and the routing skill's
+current inventory for available catalog candidates.
 
 ## Use a distribution in your project
 

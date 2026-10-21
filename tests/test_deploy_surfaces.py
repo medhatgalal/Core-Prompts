@@ -474,7 +474,7 @@ def test_agy_saved_membership_sync_and_explicit_expansion(tmp_path, membership):
     if membership == 'owned32':
         assert state(target)['schema'] == 2 and 'selection_policy' not in state(target)
         expanded = agy_preview_apply_repeat(target, '--selection-policy', 'full-catalog')
-        assert len(expanded['selection']) == 36
+        assert len(expanded['selection']) == len(list((ROOT / 'ssot').glob('*.md')))
         assert state(target)['selection_policy'] == {'agy': 'full_catalog'}
     else:
         assert state(target)['selection_policy'] == {'agy': 'curated'}
@@ -495,7 +495,7 @@ def test_agy_fresh_or_new_reader_adds_skills_then_syncs(tmp_path, existing_reade
     assert preview['request']['kinds'] == ['skill']
     plan = agy_preview_apply_repeat(target)
     agy = {k for k in plan['selection'] if k.startswith('agy:')}
-    assert len(agy) == 36 and all(k.startswith('agy:skill:') for k in agy)
+    assert len(agy) == len(list((ROOT / 'ssot').glob('*.md'))) and all(k.startswith('agy:skill:') for k in agy)
     assert set(state(target)['selection']) == prior | agy
     assert not (target / '.gemini/skills').exists()
     assert not (target / '.gemini/config/agents').exists()

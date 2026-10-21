@@ -23,7 +23,9 @@ def test_generated_portable_guide_and_runtime_route_snapshot_are_current():
 
 def test_real_catalog_and_distinct_high_value_intents():
     p = m.payload()
-    assert len(p["skills"]) == 36
+    assert {s["slug"] for s in p["skills"]} == {
+        p.stem for p in (ROOT / "ssot").glob("*.md")
+    }
     routes = {r["id"]: r for r in p["routes"]}
     expected = {
         "rough-problem": "engos-design-frame-from-vague",
@@ -130,3 +132,31 @@ def test_each_stage_has_its_own_result_and_handoff():
     framing, specification = routes["rough-problem"]["steps"]
     assert framing["output"] != specification["output"]
     assert framing["next"] != specification["next"]
+
+
+@pytest.mark.parametrize("fault", ["no-other", "question-cycle", "unknown-route"])
+def test_invalid_intake_graph_cannot_force_a_plausible_route(tmp_path, fault):
+    root = fixture(tmp_path)
+    path = root / ".meta/intent-routing.json"
+    data = json.loads(path.read_text())
+    q = data["intake"]["questions"][0]
+    if fault == "no-other":
+        q["options"] = [o for o in q["options"] if not o.get("allow_text")]
+    if fault == "question-cycle":
+        q["options"][0] = {
+            "id": "loop",
+            "label": "Loop",
+            "detail": "Invalid",
+            "next_question": q["id"],
+        }
+    if fault == "unknown-route":
+        q["options"][0] = {
+            "id": "bad",
+            "label": "Bad",
+            "detail": "Invalid",
+            "route": "invented",
+            "rationale": "Invalid",
+        }
+    path.write_text(json.dumps(data))
+    with pytest.raises(ValueError):
+        m.payload(root)

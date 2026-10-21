@@ -5033,6 +5033,246 @@
         ]
       }
     },
+    "engos-orchestration-route-intent": {
+      "primary_job": "Produce one supported recommendation: the first useful job, why it fits the actual\ncontext, its expected output, required input or scope questions, and the next\nconditional handoff. When the task is already authorized and the selected contract\nis available, continue with that skill in the current assistant without a redundant\nrouting-approval turn. The recommendation itself grants no additional actions.\n\nThis skill owns intake and routing. Selected skills retain their artifact,\nexecution, review and acceptance responsibilities. Catalog inspection, a relationship\nrow or a plausible recommendation does not establish task completion or measured\nrouting effectiveness.",
+      "use_when": "- \u201cHelp me with this,\u201d \u201cI do not know where to start,\u201d and \u201cWhat should happen next?\u201d\n  use this skill when the current task or opted-in project asks for Core-Prompts help.\n- \u201cHelp us understand the problem, investigate options and prepare a reviewed\n  proposal for a team decision\u201d can select the shaping conductor without the user\n  saying \u201cShape Up.\u201d Confirm only a material ambiguity the request leaves open.\n- \u201cReview this exact diff,\u201d \u201cmake this bounded fix,\u201d or a clear nonengineering\n  request can select the relevant owner directly; do not impose a questionnaire.\n- An explicit request for another skill is already a selection. Check its inputs\n  and authority, report a material mismatch, and avoid a second router invocation.\n- Use current skill names. Do not create aliases, new agent identities or provider\n  invocation syntax. This skill does not install a global router.",
+      "works_on": "Start with the user's sentence and any available conversation or artifacts. No\ncomplete intake form, preselected workflow or repository is required.\n\nEstablish only what the task needs:\n\n- Requested result, current context and known unresolved decisions.\n- Supplied sources, actual artifacts and existing accepted work at their revisions.\n- Scope, authority, constraints and effort limits already stated by the user or\n  applicable project/host policies.\n- A trusted Core-Prompts catalog root resolved by the host or user; optional explicit\n  skill-package roots corresponding to this session.\n- Current catalog observations and applicable relationship rows, with their binding\n  status. Missing sources or native-discovery evidence remain explicit unknowns.\n\nRead what is supplied before asking again. A reported acceptance, an artifact's\npresence and verified acceptance are different facts. Do not guess appetite,\ndecision owners, completed work, provider access or a machine-specific root.",
+      "main_output": "For a clear request, keep the user-facing response short:\n\n- Recommended result and depth, exact selected skill, and a context-based reason.\n- Expected next artifact and the relevant input or acceptance holds.\n- Already authorized action to continue, or the one focused question with an Other\n  free-text path when a material answer is missing.\n- The next conditional handoff, if useful, with its trigger and stopping boundary.\n\nFor an ongoing workflow, add only the needed relationship rows: current owner,\nrelationship kind, next/return owner, required evidence and unresolved authority or\nparallel-safety conditions. Carry source revisions, accepted decisions, requested\nscope and review findings into the receiving skill. An inline explanation is\nsufficient for a small request; use the project's existing tracker or artifact\nformat for durable work instead of mandating new sidecars.\n\nKeep exact inventory paths/hashes, edge status and coverage in supporting evidence\nwhen needed. Identify catalog-only, missing or stale evidence honestly. Do not turn\nhelper output, UI selections or an unexecuted handoff into a completion receipt.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require Find the Right Job and Next Step?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "stale",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "1. **Use known context.** Read the task, conversation and supplied material. Identify\n   the next desired result, accepted work, uncertainty and allowed scope. Do not\n   turn every task into a survey or re-ask settled facts.\n2. **Recommend one useful job and depth.** Explain the practical outcome first,\n   then the exact skill and why it fits now. Choose the smallest depth that fulfills\n   the user's request while preserving the selected skill's required evidence and\n   reviews. Do not default to either a minimal answer or an elaborate full stack.\n3. **Ask only a consequential missing question.** If two plausible routes or depths\n   would materially change the output, effort, research or handoff and current\n   context does not decide between them, explain the relevant options, recommend\n   one with an honest rationale and ask one focused question. After the answer,\n   update the recommendation and ask only the next still-material question.\n4. **Keep every answer space open.** Every user question must provide an explicit\n   free-text **Other \u2014 describe what you need** path. A documented native Other\n   field satisfies this requirement; do not duplicate it. If a question tool cannot\n   provide free text, use inline choices plus Other instead. Open-ended questions\n   must also explicitly welcome another answer, correction or \u201cnot sure.\u201d Never\n   force the user to pick the least-wrong option.\n5. **Use actual host support.** Prefer an available question tool when it supports\n   the needed clarification under the host's contract. Otherwise use the same\n   focused question inline, with plain-language A/B/C choices when useful and the\n   free-text Other path. Do not invent a tool, assume its result, or use clarification\n   tooling to bypass a permission or approval mechanism.\n6. **Respect uncertain scope.** An unanswered or unknown response is not approval.\n   Do not expand into deeper work whose scope remains materially unresolved. Explain\n   what the recommended next artifact would establish; continue only shared work\n   whose inputs and authority are already established. Human appetite, scope,\n   acceptance and investment decisions remain with their actual owners.\n7. **Read the selected contract and continue within authority.** Confirm the current\n   package and load the complete selected entry/resources. Carry forward relevant\n   evidence, decisions, unresolved items and the requested stopping point. Proceed\n   with already authorized work without a new permission ceremony solely for\n   routing; hold genuine prerequisites or approval gaps under their existing rules.\n8. **Reassess on new evidence.** A response, finding, changed source or failed check\n   can change the useful job or return work to an earlier owner. Explain the reason\n   and preserve the current artifact/revision and its status; do not mark a planned\n   transition as executed.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-orchestration-route-intent.md",
+                "start_line": 125,
+                "end_line": 161,
+                "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "- The selected downstream skill and host/project rules govern any authorized\n  implementation, tool use, independent review or external action. A required\n  review remains required; unavailable support makes that dependent gate incomplete.\n- Explicit user scope and applicable host, project and home policies remain in\n  force. Dotfiles owns home-global policy. This capability adds a skill surface\n  only; it neither creates an agent surface nor configures global autoloading.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-orchestration-route-intent.md",
+                "start_line": 255,
+                "end_line": 260,
+                "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": [
+            {
+              "text": "Apply the same intake method to every current catalog job, including analysis,\naudits, incident support, communication triage, documents, presentations, skill\nimprovement and software delivery. Do not filter candidates to a fixed list or a\nsingle domain. Honor a directly requested skill or established workflow; do not\nmake every unrelated task a Core-Prompts task.",
+              "heading": "Purpose",
+              "source": {
+                "path": "ssot/engos-orchestration-route-intent.md",
+                "start_line": 17,
+                "end_line": 21,
+                "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+              }
+            },
+            {
+              "text": "- \u201cHelp me with this,\u201d \u201cI do not know where to start,\u201d and \u201cWhat should happen next?\u201d\n  use this skill when the current task or opted-in project asks for Core-Prompts help.\n- \u201cHelp us understand the problem, investigate options and prepare a reviewed\n  proposal for a team decision\u201d can select the shaping conductor without the user\n  saying \u201cShape Up.\u201d Confirm only a material ambiguity the request leaves open.\n- \u201cReview this exact diff,\u201d \u201cmake this bounded fix,\u201d or a clear nonengineering\n  request can select the relevant owner directly; do not impose a questionnaire.\n- An explicit request for another skill is already a selection. Check its inputs\n  and authority, report a material mismatch, and avoid a second router invocation.\n- Use current skill names. Do not create aliases, new agent identities or provider\n  invocation syntax. This skill does not install a global router.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-orchestration-route-intent.md",
+                "start_line": 38,
+                "end_line": 48,
+                "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+              }
+            }
+          ]
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-orchestration-route-intent",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-orchestration-route-intent.md",
+          "ssot_sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03",
+          "effective_sha256": "9095213921a33ce31d687e1dc671e1a6c88c10a98b6a1226abe8ee3578b5bece",
+          "resources": [
+            {
+              "path": "sources/capability-resources/engos-orchestration-route-intent/references/intake-method.md",
+              "sha256": "b8ad633ea2f85b6a76cb0ed03616481bb607997d4556292de6ab4e5853434b14"
+            },
+            {
+              "path": "sources/capability-resources/engos-orchestration-route-intent/routing-relations.json",
+              "sha256": "0bbc80af0585e67b5a2c526f20045d2fbffec3e4219a1ff5db6a6ea8cb4f0017"
+            },
+            {
+              "path": "sources/capability-resources/engos-orchestration-route-intent/scripts/inspect_catalog.py",
+              "sha256": "cc1989c4c736f14c47f98d2aa5c8bfb122384e8cc9b8ae446a541ea2ca29e943"
+            }
+          ],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Produce one supported recommendation: the first useful job, why it fits the actual\ncontext, its expected output, required input or scope questions, and the next\nconditional handoff. When the task is already authorized and the selected contract\nis available, continue with that skill in the current assistant without a redundant\nrouting-approval turn. The recommendation itself grants no additional actions.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 25,
+                  "end_line": 29,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "This skill owns intake and routing. Selected skills retain their artifact,\nexecution, review and acceptance responsibilities. Catalog inspection, a relationship\nrow or a plausible recommendation does not establish task completion or measured\nrouting effectiveness.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 31,
+                  "end_line": 34,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "- \u201cHelp me with this,\u201d \u201cI do not know where to start,\u201d and \u201cWhat should happen next?\u201d\n  use this skill when the current task or opted-in project asks for Core-Prompts help.\n- \u201cHelp us understand the problem, investigate options and prepare a reviewed\n  proposal for a team decision\u201d can select the shaping conductor without the user\n  saying \u201cShape Up.\u201d Confirm only a material ambiguity the request leaves open.\n- \u201cReview this exact diff,\u201d \u201cmake this bounded fix,\u201d or a clear nonengineering\n  request can select the relevant owner directly; do not impose a questionnaire.\n- An explicit request for another skill is already a selection. Check its inputs\n  and authority, report a material mismatch, and avoid a second router invocation.\n- Use current skill names. Do not create aliases, new agent identities or provider\n  invocation syntax. This skill does not install a global router.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 38,
+                  "end_line": 48,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "Start with the user's sentence and any available conversation or artifacts. No\ncomplete intake form, preselected workflow or repository is required.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 52,
+                  "end_line": 53,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "Establish only what the task needs:",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 55,
+                  "end_line": 55,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "- Requested result, current context and known unresolved decisions.\n- Supplied sources, actual artifacts and existing accepted work at their revisions.\n- Scope, authority, constraints and effort limits already stated by the user or\n  applicable project/host policies.\n- A trusted Core-Prompts catalog root resolved by the host or user; optional explicit\n  skill-package roots corresponding to this session.\n- Current catalog observations and applicable relationship rows, with their binding\n  status. Missing sources or native-discovery evidence remain explicit unknowns.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 57,
+                  "end_line": 64,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "Read what is supplied before asking again. A reported acceptance, an artifact's\npresence and verified acceptance are different facts. Do not guess appetite,\ndecision owners, completed work, provider access or a machine-specific root.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 66,
+                  "end_line": 68,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "For a clear request, keep the user-facing response short:",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 224,
+                  "end_line": 224,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "- Recommended result and depth, exact selected skill, and a context-based reason.\n- Expected next artifact and the relevant input or acceptance holds.\n- Already authorized action to continue, or the one focused question with an Other\n  free-text path when a material answer is missing.\n- The next conditional handoff, if useful, with its trigger and stopping boundary.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 226,
+                  "end_line": 230,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "For an ongoing workflow, add only the needed relationship rows: current owner,\nrelationship kind, next/return owner, required evidence and unresolved authority or\nparallel-safety conditions. Carry source revisions, accepted decisions, requested\nscope and review findings into the receiving skill. An inline explanation is\nsufficient for a small request; use the project's existing tracker or artifact\nformat for durable work instead of mandating new sidecars.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 232,
+                  "end_line": 237,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              },
+              {
+                "text": "Keep exact inventory paths/hashes, edge status and coverage in supporting evidence\nwhen needed. Identify catalog-only, missing or stale evidence honestly. Do not turn\nhelper output, UI selections or an unexecuted handoff into a completion receipt.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-orchestration-route-intent.md",
+                  "start_line": 239,
+                  "end_line": 241,
+                  "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "2ebafe08c4fbf5da84eb5d1b717845d668e404883862e4c2a3f1d6b76323bd00"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility"
+        ]
+      }
+    },
     "engos-quality-code-review": {
       "primary_job": "Find actionable defects and release risks in a diff, commit, or staged change.",
       "use_when": "Code exists and needs a quality gate before commit, push, merge, or release.",
@@ -7268,6 +7508,41 @@
         "evidence": "per_run_report_required"
       }
     },
+    "engos-orchestration-route-intent": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-orchestration-route-intent.md",
+        "sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-orchestration-route-intent/",
+          "gemini": ".gemini/skills/engos-orchestration-route-intent/",
+          "claude": ".claude/skills/engos-orchestration-route-intent/",
+          "kiro": ".kiro/skills/engos-orchestration-route-intent/",
+          "grok": ".grok/skills/engos-orchestration-route-intent/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
     "engos-quality-code-review": {
       "source_at_revision": {
         "status": "present",
@@ -7551,7 +7826,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "2dccf7ef41c3fc98f50e1f9828d3ef92e055f5244054fe512c39de4927d706ad",
+    "skills_sha256": "ad2a27d88b328024f41a3d740f94ad4ecd9230c2048fe1154ce39c2132522610",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -7694,6 +7969,11 @@
         "ssot_sha256": "e13d65cbb432fa793105578a93257ab3bcce8f971f40b532cebbb54a61fa7eb3",
         "effective_sha256": "e13d65cbb432fa793105578a93257ab3bcce8f971f40b532cebbb54a61fa7eb3",
         "mapping_sha256": "a17a2ef2311f75c3689c6d0b9dbd04e11d5f720f96db2e50d13e6fec619be671"
+      },
+      "engos-orchestration-route-intent": {
+        "ssot_sha256": "b04fc501e0e46db7d1628072d86e21609f222a6b5495dbd4ff99af643d4cdd03",
+        "effective_sha256": "9095213921a33ce31d687e1dc671e1a6c88c10a98b6a1226abe8ee3578b5bece",
+        "mapping_sha256": "2ebafe08c4fbf5da84eb5d1b717845d668e404883862e4c2a3f1d6b76323bd00"
       },
       "engos-quality-code-review": {
         "ssot_sha256": "0943844d6c3ce586c13fc59e5308ada6182301c772471e72c25b835f62e19b0a",
