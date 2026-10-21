@@ -38,6 +38,7 @@ SUCCESSORS = {
     "threader": "engos-memory-threader",
     "uac-import": "engos-meta-uac-import",
     "weekly-intel": "engos-audit-weekly-intel",
+    "engos-orchestration-route-intent": "engos-route-intent",
     "mentor": None,
 }
 SUCCESSORS.update({slug: slug for slug in tuple(SUCCESSORS.values()) if slug})

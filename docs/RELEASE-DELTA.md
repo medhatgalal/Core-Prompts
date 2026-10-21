@@ -10,7 +10,7 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- `engos-orchestration-route-intent` — Find the Right Job and Next Step
+- `engos-route-intent` — Route Intent
 
 ## Removed Capabilities
 - none

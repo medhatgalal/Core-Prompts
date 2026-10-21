@@ -5,7 +5,7 @@ import json
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-RESOURCES = ROOT / "sources/capability-resources/engos-orchestration-route-intent"
+RESOURCES = ROOT / "sources/capability-resources/engos-route-intent"
 spec = importlib.util.spec_from_file_location(
     "routing_catalog_inspector", RESOURCES / "scripts/inspect_catalog.py"
 )
@@ -127,3 +127,18 @@ def test_bundled_relationships_cover_each_current_descriptor_without_fixed_count
         "parallel",
     }
     assert all(e["binding_status"] == "matched" for e in result["relationships"])
+
+
+@pytest.mark.parametrize("route,expected", [
+    ("intake", {"references/intake-method.md"}),
+    ("question_tools", {"references/question-tools.md"}),
+    ("relationships", {"references/relationship-method.md", "routing-relations.json"}),
+    ("catalog_inspection", {"scripts/inspect_catalog.py", "references/relationship-method.md", "routing-relations.json"}),
+])
+def test_resource_routes_are_complete_and_do_not_load_unrelated_methods(route, expected):
+    from intent_pipeline.capability_resources import load_resource_bundle
+
+    bundle = load_resource_bundle(RESOURCES, route)
+    assert {r["path"] for r in bundle["resources"]} == expected
+    for resource in bundle["resources"]:
+        assert resource["content"].encode() == (RESOURCES / resource["path"]).read_bytes()

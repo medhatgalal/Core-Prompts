@@ -33,7 +33,7 @@ $('all-intents').addEventListener('change',e=>choose(e.target.value));$('design-
 // This local wizard uses declared answers, never classifies free-form task text.
 const intakeQuestions = new Map(data.intake.questions.map(q => [q.id, q]));
 let intakeTrail = [];
-function intakeRequest() { return 'Use the available engos-orchestration-route-intent skill to help me choose the smallest useful approach for this task: ' + ($('task').value.trim() || '[describe my situation and desired result]') + '\n'
+function intakeRequest() { return 'Use the available engos-route-intent skill to help me choose the smallest useful approach for this task: ' + ($('task').value.trim() || '[describe my situation and desired result]') + '\n'
     + intakeTrail.map(a => a.question + ' ' + a.option.label).join('\n')
     + '\nReuse the context and accepted work I already supplied. If intent or depth remains ambiguous, explain 2–3 plain-language outcome options, recommend one with a reason grounded in my context, and ask one focused question using an available question tool or inline A/B/C choices. Allow a free-form answer. Do not expect me to choose a framework or invent an appetite. Stop interviewing once the next bounded job is clear. Read the matching skill before use and preserve my scope and existing approval gates. My answers and a recommendation grant no new authority.'; }
 function renderIntake() {

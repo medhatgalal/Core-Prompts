@@ -8,7 +8,7 @@
 
 ## Skill selection
 
-- For Core-Prompts skill selection, follow [Intent-first routing](.kiro/steering/skill-routing.md). When the user's intent or needed depth is materially unclear, use the available `engos-orchestration-route-intent` skill to explain options and ask adaptive questions; every question supports a free-form answer. Clear requests skip intake. Consumer-project adoption is explicit; routing adds no authority or global Core-first policy.
+- For Core-Prompts skill selection, follow [Intent-first routing](.kiro/steering/skill-routing.md). When the user's intent or needed depth is materially unclear, use the available `engos-route-intent` skill to explain options and ask adaptive questions; every question supports a free-form answer. Clear requests skip intake. Use is self-contained through native skill discovery or explicit selection; routing adds no authority or global Core-first policy.
 
 ## Scope and priority
 
@@ -47,6 +47,7 @@
   - `kiro`: skill in `.kiro/skills/<slug>/SKILL.md` and paired agent in `.kiro/agents/<slug>.json`
 
 - Grok exposes native skills through `/<slug>`; no native Grok agent surface is claimed.
+- `engos-route-intent` is the deliberately short first-party intake entrypoint; it replaces the unreleased longer name and does not emit a second alias.
 - Loopy retains its upstream `loopy` identity as a hash-pinned exception to first-party `engos-*` naming. Do not emit an alias package.
 
 ## Source-of-truth policy and schema controls

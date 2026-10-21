@@ -1,6 +1,8 @@
 ## Unreleased
 
-- Add `engos-orchestration-route-intent`: catalog-wide adaptive intake, outcome-based recommendations, question-tool/inline Other answers, and conditional sequence, iteration, return and parallel handoffs. Its read-only inspector observes current metadata and flags stale relationship bindings; no automatic dispatch, global routing configuration or live installation is included.
+- Rename the unreleased intake owner to `engos-route-intent`, consolidate repeated instructions into conditional resources, document actual question-tool support, and keep use contained in Core-Prompts. No Dotfiles integration, global activation, release or live installation is included.
+
+- Add `engos-route-intent`: catalog-wide adaptive intake, outcome-based recommendations, question-tool/inline Other answers, and conditional sequence, iteration, return and parallel handoffs. Its read-only inspector observes current metadata and flags stale relationship bindings; no automatic dispatch, global routing configuration or live installation is included.
 
 - Add intent-first skill selection for vague problems, competing proposals, full Shape Up, planning, repairs and reviews. Keep existing skill names and accepted work, with explicit consumer opt-in and conditional handoffs.
 - Bundle an offline interactive guide, static overview, routing catalog and AI integration instructions; validate generated guide consistency in both CI providers. No hosting activation or live installation is included.
