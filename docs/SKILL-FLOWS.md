@@ -1,7 +1,10 @@
 # Skill Flows
 
-Choose the first missing job, then carry its artifact and uncertainty to the next
-needed owner. These are conditional user journeys, not an automatic invocation
+Describe your intent and existing accepted work; let the assistant choose one
+first missing job before carrying its artifact and uncertainty to a next needed
+owner. The [intent guide](INTENT-ROUTING.md) and [visual guide](guide/index.html)
+help distinguish rough problems, unclear acceptance, real competing proposals and
+full shaping workshops. These are conditional journeys, not an automatic invocation
 chain. A clear small change can enter implementation directly. Existing acceptance
 and authorization still apply; a sidecar, neighbor link or passing schema adds none.
 The skill contracts, your project's own rules and the applicable
@@ -16,6 +19,12 @@ covers that check. JSON contracts below are optional interchange, not a required
 new document system.
 
 ## The shortest useful route
+
+A vague problem starts with framing; a known feature with unclear acceptance
+starts with specification. Actual competing proposals start with Converge; missing
+alternatives are requested, not invented. An explicitly requested full Shape Up
+workshop stays with the shaping conductor and its actual stage gates and human
+betting decisions. An actual diff or finished pitch can be reviewed directly.
 
 A clear one-step request → **implement slice** → review the actual candidate when
 required. For a larger uncertain change: **specify** → **architecture if a material

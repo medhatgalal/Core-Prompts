@@ -1,3 +1,8 @@
+## Unreleased
+
+- Add intent-first skill selection for vague problems, competing proposals, full Shape Up, planning, repairs and reviews. Keep existing skill names and accepted work, with explicit consumer opt-in and conditional handoffs.
+- Bundle an offline interactive guide, static overview, routing catalog and AI integration instructions; validate generated guide consistency in both CI providers. No hosting activation or live installation is included.
+
 ## v1.17.1 - 2026-10-17
 
 Preparation date; tagging, publication and runner restoration require their own

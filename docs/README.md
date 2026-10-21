@@ -10,6 +10,7 @@ Use this page to pick the right documentation path quickly. The intended order i
 
 | Need | Start here |
 | --- | --- |
+| I know the outcome but not the skill name | [Start with your intent](INTENT-ROUTING.md) and [portable visual guide](guide/index.html) |
 | I am returning and want to know what changed in daily use | [Everyday changes](../README.md#what-changes-in-everyday-use) and [before/now examples](EXAMPLES.md#everyday-requests-before-and-now) |
 | I want to use an installed Core-Prompts skill | [Getting started](GETTING-STARTED.md) |
 | I need to install, repair old packages, or enable updates | [Installation and recovery](INSTALL-PROFILES.md) |
@@ -26,8 +27,8 @@ Use this page to pick the right documentation path quickly. The intended order i
 
 ### Daily user of installed capabilities
 
-1. [Getting started](GETTING-STARTED.md)
-2. [Skill flows](SKILL-FLOWS.md) for the first missing job
+1. [Intent routing](INTENT-ROUTING.md) for a plain-language starting point, then [Getting started](GETTING-STARTED.md)
+2. [Skill flows](SKILL-FLOWS.md) for conditional handoffs
 3. [Everyday examples](EXAMPLES.md#everyday-requests-before-and-now), then the selected skill example
 4. [FAQ](FAQ.md)
 
@@ -50,6 +51,7 @@ Use [Installation and recovery](INSTALL-PROFILES.md) for fresh installs, histori
 ## Canonical Homes
 
 - [`../README.md`](../README.md): orientation, AI handoff, real usage examples, UAC boundary, and repo-tooling fast path
+- [`INTENT-ROUTING.md`](INTENT-ROUTING.md): intent-first selection, portable guide and explicit consumer-project adoption; policy lives in steering
 - [`GETTING-STARTED.md`](GETTING-STARTED.md): first-run path in the correct order
 - [`SKILL-FLOWS.md`](SKILL-FLOWS.md): conditional routes and handoff boundaries
 - [`EXAMPLES.md`](EXAMPLES.md): deeper scenario-style asks and expected outputs

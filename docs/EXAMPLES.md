@@ -14,6 +14,26 @@ Each current skill example uses the same pattern:
 - expected output
 - follow with
 
+## Start without a skill name
+
+These examples show intended routing, not measured model behavior. The assistant
+chooses one starting job, explains why and proceeds within the request's existing
+authority. See [intent routing](INTENT-ROUTING.md) for the policy and consumer opt-in.
+
+| Say what you need | Expected first job and handoff |
+| --- | --- |
+| “Customers struggle with this process; help us define the problem before choosing a solution.” | `engos-design-frame-from-vague`: a solution-free frame; accepted scope can later enter specification or a requested workshop. |
+| “We want CSV export, but have not agreed on limits, errors or acceptance.” | `engos-design-specify-change`: observable requirements and open decisions; architecture only for a material remaining choice. |
+| “Compare these two supplied rollout proposals using our cost and recovery criteria.” | `engos-reconciliation-converge`: an attributed recommendation. If a proposal is absent, request it rather than inventing its position. |
+| “Run a full Shape Up workshop for this problem; the appetite is two weeks.” | `engos-design-shaping`: current framing/research/shaping/review/delivery gates and real human decisions; no fabricated prior receipts or automatic betting. |
+| “Fix this demonstrated boundary error; preserve ordering and permissions.” | `engos-delivery-implement-slice`: the authorized bounded patch and checks, without a compulsory workshop. |
+| “Review this exact diff” or “Review this finished pitch.” | `engos-quality-code-review` or `engos-audit-pitch-review` directly; do not reconstruct upstream stages that were not requested. |
+
+Accepted requirements, designs or task plans let you start later. The named forms
+below remain useful when you already know the job; memorizing them is optional.
+Supercharge, continuity, goal packets and Batman are explicit optional requests,
+not required stages added to every example.
+
 ## Everyday requests: before and now
 
 These are illustrative requests and expected outputs, not executed tests. Each

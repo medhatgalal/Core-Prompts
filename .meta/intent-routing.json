@@ -1,0 +1,458 @@
+{
+  "schema_version": "IntentRouting.v1",
+  "title": "Start with what you need",
+  "catalog_ref": ".meta/capabilities/",
+  "policy_ref": ".kiro/steering/skill-routing.md",
+  "selection_rules": [
+    "Interpret the requested outcome, available artifacts, accepted decisions and authority semantically; do not route from keywords or regex matches alone.",
+    "Choose one first missing job and explain why, its expected artifact and the next conditional handoff. Reuse current accepted work rather than recreating it.",
+    "An explicit named skill or scoped direct request takes precedence over advisory suggestions. Do not hijack unrelated work with a universal Core-first workflow.",
+    "Use this compact set for common starts. In source context consult the existing skill-job map for all 36 names; in verified runtime context use the available skill inventory and relevant bundled capability descriptor. Read the selected installed skill entry and only needed resources.",
+    "Ask only for missing information that changes the route. Missing competing inputs stay missing; do not fabricate proposals, evidence, acceptance or completion.",
+    "Steps are conditional choices, not automatic invocation or execution. A missing document does not establish a missing decision. UI state selections are user-provided context, not verified acceptance.",
+    "Preserve user, host, home and project policy. Routing grants no new permission. Proceed within an already authorized task without re-asking permission merely to select the skill.",
+    "Supercharge, continuity, goal-packet compilation and Batman are optional explicit requests. A goal packet does not launch a goal; delegation and external actions retain their existing authority gates."
+  ],
+  "routes": [
+    {
+      "id": "rough-problem",
+      "title": "I have a rough problem",
+      "intent": "The problem, affected people or desired outcome is still vague.",
+      "entry_skill": "engos-design-frame-from-vague",
+      "why": "Clarify the problem before choosing a solution.",
+      "output": "A solution-free frame with outcome, appetite and answerable uncertainties.",
+      "steps": [
+        {
+          "id": "frame",
+          "label": "Frame the problem",
+          "skill": "engos-design-frame-from-vague",
+          "when": "The problem or outcome is not yet clear.",
+          "skip_when": "A current accepted frame already answers these questions.",
+          "output": "A solution-free frame with affected people, desired outcome, actual appetite and open questions.",
+          "next": "After the owner accepts the frame, specify a concrete change if acceptance needs definition, or choose a full shaping workshop if requested."
+        },
+        {
+          "id": "specify",
+          "label": "Define behavior and acceptance",
+          "skill": "engos-design-specify-change",
+          "when": "Feature behavior or acceptance is unclear.",
+          "skip_when": "Accepted requirements already cover this change.",
+          "output": "Requirements, observable acceptance checks, unchanged behavior and unresolved owner decisions.",
+          "next": "Once requirements are accepted, resolve any material technical choice; otherwise plan useful tasks or implement an already authorized bounded change."
+        }
+      ],
+      "prompt": "Help me clarify [problem or rough idea] for [people/context]. Identify the outcome, appetite and questions that matter before proposing a solution. Use what we already know; do not invent decisions.",
+      "next": "After the owner accepts the frame, specify a concrete change if acceptance needs definition, or choose a full shaping workshop if that is the requested job."
+    },
+    {
+      "id": "unclear-feature",
+      "title": "I know the feature, but not acceptance",
+      "intent": "The desired feature/change is identifiable, but its observable behavior or acceptance conditions are unclear.",
+      "entry_skill": "engos-design-specify-change",
+      "why": "Define what success means before breaking work down.",
+      "output": "Source-backed requirements, acceptance checks, unchanged behavior and open decisions.",
+      "steps": [
+        {
+          "id": "specify",
+          "label": "Define behavior and acceptance",
+          "skill": "engos-design-specify-change",
+          "when": "Feature behavior or acceptance is unclear.",
+          "skip_when": "Accepted requirements already cover this change.",
+          "output": "Requirements, observable acceptance checks, unchanged behavior and unresolved owner decisions.",
+          "next": "Once requirements are accepted, resolve any material technical choice; otherwise plan useful tasks or implement an already authorized bounded change."
+        },
+        {
+          "id": "architecture",
+          "label": "Resolve a material design choice",
+          "skill": "engos-design-architecture",
+          "when": "A material technical choice remains after requirements are understood.",
+          "skip_when": "No material design choice remains; a missing architecture document alone is not a reason to add this step.",
+          "output": "A justified design decision with alternatives, interfaces, failure modes, migration and rollback.",
+          "next": "Return requirement changes to their owner. Use accepted design for task planning only when breakdown helps, or for an already authorized bounded implementation."
+        },
+        {
+          "id": "plan",
+          "label": "Break accepted work into tasks",
+          "skill": "engos-design-plan-implementation",
+          "when": "Accepted scope benefits from several independently verifiable tasks.",
+          "skip_when": "The authorized change is already one bounded task, or an accepted task plan remains current.",
+          "output": "Verifiable tasks with dependencies, consumed and produced interfaces, checks, allowed writes and unresolved holds.",
+          "next": "Select the next authorized bounded slice; planning alone starts neither implementation nor a goal."
+        },
+        {
+          "id": "implement",
+          "label": "Implement one authorized slice",
+          "skill": "engos-delivery-implement-slice",
+          "when": "A bounded change and its edit/check authority are established.",
+          "skip_when": "The requested scope is analysis only, or the actual slice is already implemented.",
+          "output": "A focused patch, actual verification results and remaining limits for the authorized slice.",
+          "next": "Review the actual candidate as required. Keep subsequent repairs and hosted delivery within their existing authorization."
+        },
+        {
+          "id": "review",
+          "label": "Review the actual candidate",
+          "skill": "engos-quality-code-review",
+          "when": "A real diff, commit or candidate needs judgment under the applicable review rules.",
+          "skip_when": "The requested deliverable has no candidate, or valid review already covers the exact unchanged candidate; never waive a required review.",
+          "output": "Actionable findings tied to the exact candidate, with reviewed coverage and limits.",
+          "next": "Apply selected actionable comments only when authorized, then re-review. If no repairs remain, assess the requested delivery gate without inferring merge or publication authority."
+        }
+      ],
+      "prompt": "Define the behavior and acceptance conditions for [feature/change] from [notes/sources]. Preserve [existing behavior]. Reuse accepted decisions and make open questions explicit. Return a specification; do not implement yet.",
+      "next": "Once requirements are accepted, use architecture only for a remaining material decision; otherwise plan useful tasks or implement an already authorized bounded change."
+    },
+    {
+      "id": "competing-proposals",
+      "title": "I need to choose between proposals",
+      "intent": "Two or more actual proposals, drafts or sources disagree and a recommendation is wanted.",
+      "entry_skill": "engos-reconciliation-converge",
+      "why": "Compare the supplied alternatives and expose conflicts instead of blending incompatible ideas.",
+      "output": "An attributed comparison, trade-offs, rejected alternatives and a defensible recommendation.",
+      "steps": [
+        {
+          "id": "compare",
+          "label": "Reconcile actual alternatives",
+          "skill": "engos-reconciliation-converge",
+          "when": "Competing inputs and decision criteria are available.",
+          "skip_when": "The choice is already settled, or no competing inputs exist; request missing inputs instead of inventing alternatives.",
+          "output": "An attributed comparison, conflicts, trade-offs, rejected alternatives and one defensible recommendation.",
+          "next": "The owner resolves the decision. Carry the accepted choice to architecture, specification or planning only if that work remains."
+        }
+      ],
+      "prompt": "Compare [actual proposal A] and [actual proposal B] using [decision criteria]. Explain conflicts, trade-offs and rejected ideas, then recommend one. If an input is missing, ask for it rather than inventing its content.",
+      "next": "Carry the accepted decision to architecture, specification or planning only if that work remains; a recommendation does not make the human decision."
+    },
+    {
+      "id": "shape-up",
+      "title": "I want a full Shape Up workshop",
+      "intent": "The user explicitly wants guided framing, research, shaping and pitch preparation through a human betting decision.",
+      "entry_skill": "engos-design-shaping",
+      "why": "Keep stage evidence and human decisions with the shaping conductor.",
+      "output": "A reviewed shaping bundle and an explicit human betting decision or hold.",
+      "steps": [
+        {
+          "id": "frame",
+          "label": "Frame the problem and appetite",
+          "skill": "engos-design-shaping",
+          "when": "A full workshop is requested and current G0/G1 framing evidence plus actual engineering acceptance are not established.",
+          "skip_when": "The current frame, real appetite, G0/G1 evidence and required human acceptance are established.",
+          "output": "A solution-free frame, actual appetite, G0/G1 evidence and recorded human acceptance status.",
+          "next": "Begin Research only after current framing gates, engineering agreement and required answers are established. An explicit frame-only request stops at its accepted boundary."
+        },
+        {
+          "id": "research",
+          "label": "Resolve material uncertainties",
+          "skill": "engos-design-shaping",
+          "when": "The accepted frame has material questions or lacks current G2 research evidence.",
+          "skip_when": "Current G2 evidence resolves the relevant stage questions; never invent research.",
+          "output": "Source-backed findings that answer the stage questions, with coverage limits, unresolved uncertainties and current G2 evidence or hold.",
+          "next": "Shape a bounded solution only when current G2 prerequisites are met; material missing evidence remains in Research."
+        },
+        {
+          "id": "shape",
+          "label": "Shape a bounded solution",
+          "skill": "engos-design-shaping",
+          "when": "Accepted framing and current research support shaping within the actual appetite.",
+          "skip_when": "A current shaped solution and all required diagrams/contracts are ready for review.",
+          "output": "A bounded shaped candidate with required diagrams, interface and security contracts, risks and unresolved decisions.",
+          "next": "Carry the current packet to author audit and independent G3 review. Reopen Research or Framed when material uncertainty or scope changes require it."
+        },
+        {
+          "id": "pitch-review",
+          "label": "Review the shaped packet",
+          "skill": "engos-design-shaping",
+          "when": "The current shaped packet needs the conductor review route, independent review and G3 evidence.",
+          "skip_when": "Valid G3 evidence covers the unchanged packet; a standalone pitch review does not fabricate workshop receipts.",
+          "output": "Independent findings and repair dispositions tied to the shaped packet, with current G3 evidence or a review hold.",
+          "next": "Draft-only work stops at its accepted G3 boundary. Otherwise obtain actual team acceptance and complete approved target delivery before treating the package as ready for betting."
+        },
+        {
+          "id": "stage-gate",
+          "label": "Verify authorized delivery and stage readiness",
+          "skill": "engos-design-shaping",
+          "when": "Betting is in scope and approved targets or current G4 evidence remain incomplete.",
+          "skip_when": "Draft-only scope stops at its accepted boundary, or required targets and current G4 evidence are already verified.",
+          "output": "Verified saved-target readback and current G4 evidence, or a concrete delivery hold.",
+          "next": "After current G3 evidence, actual team acceptance and applicable G4 checks, the human owner bets, sends back, abandons or splits; only accepted and authorized scope can hand off."
+        }
+      ],
+      "prompt": "Guide a full Shape Up workshop for [problem] within [actual appetite]. Resume at the first unaccepted stage. Carry real framing, research, shaping and pitch evidence through the required reviews and gates; leave the betting decision to the human owner.",
+      "next": "After current G3 evidence, actual team acceptance and applicable G4 delivery checks, the human owner bets, sends back, abandons or splits. Only accepted and authorized build scope can hand off; the conductor preserves all earlier stage gates."
+    },
+    {
+      "id": "small-change",
+      "title": "I have a small, clear change",
+      "intent": "The behavior, scope and repair or implementation boundary are already clear.",
+      "entry_skill": "engos-delivery-implement-slice",
+      "why": "One bounded change needs no fresh workshop or elaborate planning chain.",
+      "output": "A focused patch, actual checks and remaining limits.",
+      "steps": [
+        {
+          "id": "implement",
+          "label": "Implement one authorized slice",
+          "skill": "engos-delivery-implement-slice",
+          "when": "A bounded change and its edit/check authority are established.",
+          "skip_when": "The requested scope is analysis only, or the actual slice is already implemented.",
+          "output": "A focused patch, actual verification results and remaining limits for the authorized slice.",
+          "next": "Review the actual candidate as required. Keep subsequent repairs and hosted delivery within their existing authorization."
+        },
+        {
+          "id": "review",
+          "label": "Review the actual candidate",
+          "skill": "engos-quality-code-review",
+          "when": "A real diff, commit or candidate needs judgment under the applicable review rules.",
+          "skip_when": "The requested deliverable has no candidate, or valid review already covers the exact unchanged candidate; never waive a required review.",
+          "output": "Actionable findings tied to the exact candidate, with reviewed coverage and limits.",
+          "next": "Apply selected actionable comments only when authorized, then re-review. If no repairs remain, assess the requested delivery gate without inferring merge or publication authority."
+        }
+      ],
+      "prompt": "Fix [specific issue] in [allowed scope], preserving [existing behavior]. Make this bounded change and run the relevant authorized checks. Report the patch, results and remaining limits; stop at [delivery boundary].",
+      "next": "Review the actual candidate as required. Use GitOps readiness only for the requested merge/release boundary; do not infer publication authority."
+    },
+    {
+      "id": "unexplained-failure",
+      "title": "Something fails and I do not know why",
+      "intent": "Observed behavior differs from expectation and the cause is not supported by evidence.",
+      "entry_skill": "engos-debug-diagnose-failure",
+      "why": "Establish a cause or bounded unknown before choosing a repair.",
+      "output": "Reproduction, discriminating observations, a supported cause or unknown, and a narrow repair handoff.",
+      "steps": [
+        {
+          "id": "diagnose",
+          "label": "Explain the failure",
+          "skill": "engos-debug-diagnose-failure",
+          "when": "The cause or safe repair boundary is unknown.",
+          "skip_when": "Evidence already establishes the scoped cause and repair boundary.",
+          "output": "Reproduction and discriminating evidence supporting a scoped cause or honest unknown, plus the proposed repair boundary.",
+          "next": "Implement a supported bounded repair when authorized; otherwise stop with the cause or missing observation. A passing retry alone proves neither cause nor fix."
+        },
+        {
+          "id": "implement",
+          "label": "Implement one authorized slice",
+          "skill": "engos-delivery-implement-slice",
+          "when": "A bounded change and its edit/check authority are established.",
+          "skip_when": "The requested scope is analysis only, or the actual slice is already implemented.",
+          "output": "A focused patch, actual verification results and remaining limits for the authorized slice.",
+          "next": "Review the actual candidate as required. Keep subsequent repairs and hosted delivery within their existing authorization."
+        },
+        {
+          "id": "review",
+          "label": "Review the actual candidate",
+          "skill": "engos-quality-code-review",
+          "when": "A real diff, commit or candidate needs judgment under the applicable review rules.",
+          "skip_when": "The requested deliverable has no candidate, or valid review already covers the exact unchanged candidate; never waive a required review.",
+          "output": "Actionable findings tied to the exact candidate, with reviewed coverage and limits.",
+          "next": "Apply selected actionable comments only when authorized, then re-review. If no repairs remain, assess the requested delivery gate without inferring merge or publication authority."
+        }
+      ],
+      "prompt": "Investigate [failure]. Expected: [behavior]. Observed: [behavior/log]. Use [scope/budget] to distinguish likely causes and report evidence, uncertainty and the narrow repair boundary. Diagnose only unless repair is already explicitly in my request.",
+      "next": "Use the supported repair boundary for implementation when authorized. A passing retry alone proves neither cause nor fix."
+    },
+    {
+      "id": "accepted-work",
+      "title": "I have accepted work to plan",
+      "intent": "Accepted requirements or design need a useful task breakdown.",
+      "entry_skill": "engos-design-plan-implementation",
+      "why": "Reuse accepted artifacts and preserve the existing tracker.",
+      "output": "Verifiable tasks with dependencies, interfaces, checks, allowed writes and holds.",
+      "steps": [
+        {
+          "id": "plan",
+          "label": "Break accepted work into tasks",
+          "skill": "engos-design-plan-implementation",
+          "when": "Accepted scope benefits from several independently verifiable tasks.",
+          "skip_when": "The authorized change is already one bounded task, or an accepted task plan remains current.",
+          "output": "Verifiable tasks with dependencies, consumed and produced interfaces, checks, allowed writes and unresolved holds.",
+          "next": "Select the next authorized bounded slice; planning alone starts neither implementation nor a goal."
+        },
+        {
+          "id": "implement",
+          "label": "Implement one authorized slice",
+          "skill": "engos-delivery-implement-slice",
+          "when": "A bounded change and its edit/check authority are established.",
+          "skip_when": "The requested scope is analysis only, or the actual slice is already implemented.",
+          "output": "A focused patch, actual verification results and remaining limits for the authorized slice.",
+          "next": "Review the actual candidate as required. Keep subsequent repairs and hosted delivery within their existing authorization."
+        },
+        {
+          "id": "review",
+          "label": "Review the actual candidate",
+          "skill": "engos-quality-code-review",
+          "when": "A real diff, commit or candidate needs judgment under the applicable review rules.",
+          "skip_when": "The requested deliverable has no candidate, or valid review already covers the exact unchanged candidate; never waive a required review.",
+          "output": "Actionable findings tied to the exact candidate, with reviewed coverage and limits.",
+          "next": "Apply selected actionable comments only when authorized, then re-review. If no repairs remain, assess the requested delivery gate without inferring merge or publication authority."
+        }
+      ],
+      "prompt": "Break [accepted requirements/design] into useful verifiable tasks in our existing format. Preserve the accepted revision, dependencies and unresolved holds. Planning grants no new execution permission.",
+      "next": "Select the next authorized bounded slice. Skip task planning when the next change is already sufficiently bounded."
+    },
+    {
+      "id": "technical-decision",
+      "title": "I need a technical design decision",
+      "intent": "A concrete interface, data model or system choice remains unresolved.",
+      "entry_skill": "engos-design-architecture",
+      "why": "Answer the material design question against established constraints.",
+      "output": "A justified design with alternatives, interfaces, failure modes, migration and rollback.",
+      "steps": [
+        {
+          "id": "architecture",
+          "label": "Resolve a material design choice",
+          "skill": "engos-design-architecture",
+          "when": "A material technical choice remains after requirements are understood.",
+          "skip_when": "No material design choice remains; a missing architecture document alone is not a reason to add this step.",
+          "output": "A justified design decision with alternatives, interfaces, failure modes, migration and rollback.",
+          "next": "Return requirement changes to their owner. Use accepted design for task planning only when breakdown helps, or for an already authorized bounded implementation."
+        },
+        {
+          "id": "plan",
+          "label": "Break accepted work into tasks",
+          "skill": "engos-design-plan-implementation",
+          "when": "Accepted scope benefits from several independently verifiable tasks.",
+          "skip_when": "The authorized change is already one bounded task, or an accepted task plan remains current.",
+          "output": "Verifiable tasks with dependencies, consumed and produced interfaces, checks, allowed writes and unresolved holds.",
+          "next": "Select the next authorized bounded slice; planning alone starts neither implementation nor a goal."
+        }
+      ],
+      "prompt": "Decide [technical question] against [accepted requirements and constraints]. Compare real options and their interface, failure, migration and rollback implications. Keep requirements decisions with their owner.",
+      "next": "Return requirement changes to their owner; plan accepted work only when a task breakdown helps."
+    },
+    {
+      "id": "review-diff",
+      "title": "I have a diff to review",
+      "intent": "The requested deliverable is judgment of an actual diff, commit or pull/merge request.",
+      "entry_skill": "engos-quality-code-review",
+      "why": "Review the supplied candidate directly instead of rebuilding its upstream process.",
+      "output": "Actionable findings tied to the exact candidate, with coverage and limits.",
+      "steps": [
+        {
+          "id": "review",
+          "label": "Review the actual candidate",
+          "skill": "engos-quality-code-review",
+          "when": "A real diff, commit or candidate needs judgment under the applicable review rules.",
+          "skip_when": "The requested deliverable has no candidate, or valid review already covers the exact unchanged candidate; never waive a required review.",
+          "output": "Actionable findings tied to the exact candidate, with reviewed coverage and limits.",
+          "next": "Apply selected actionable comments only when authorized, then re-review. If no repairs remain, assess the requested delivery gate without inferring merge or publication authority."
+        },
+        {
+          "id": "selected-feedback",
+          "label": "Apply selected review feedback",
+          "skill": "engos-delivery-address-code-review",
+          "when": "Actionable reviewer comments have been selected and their repair is authorized.",
+          "skip_when": "No actionable selected comments need repair, or the request is review only.",
+          "output": "Scoped fixes and checks with a disposition for every selected review comment.",
+          "next": "Return the changed candidate and comment dispositions for re-review; unresolved or unselected work is not silently completed."
+        }
+      ],
+      "prompt": "Review [exact diff/commit/PR/MR] for correctness, scope and regressions. Tie findings to the candidate and state coverage limits. Do not edit or post externally unless my request authorizes it.",
+      "next": "Selected actionable comments go to the feedback-repair job, then re-review; no broad refactor is implied."
+    },
+    {
+      "id": "review-pitch",
+      "title": "I have a pitch to review",
+      "intent": "The requested deliverable is assessment or improvement of a finished pitch.",
+      "entry_skill": "engos-audit-pitch-review",
+      "why": "Assess the real pitch without fabricating prior workshop stages.",
+      "output": "A scored pitch review, gaps, risks and betting-readiness recommendation.",
+      "steps": [
+        {
+          "id": "pitch-review",
+          "label": "Review the supplied pitch",
+          "skill": "engos-audit-pitch-review",
+          "when": "A pitch is available and needs assessment.",
+          "skip_when": "A current accepted review covers the unchanged pitch.",
+          "output": "A pitch assessment with evidence-backed gaps, risks and a betting-readiness recommendation.",
+          "next": "The owner resolves material gaps and makes the betting decision; review does not create workshop history or implementation authority."
+        }
+      ],
+      "prompt": "Review [pitch] against its problem, actual appetite, solution, risks and evidence. Identify gaps and improve the artifact within [scope]. Do not invent workshop history or a human betting decision.",
+      "next": "The owner resolves material gaps and makes the betting decision; a source review is not implementation or release evidence."
+    },
+    {
+      "id": "strengthen-artifact",
+      "title": "I explicitly want to strengthen an artifact",
+      "intent": "A prompt, plan or proposal needs an explicitly requested stress test.",
+      "entry_skill": "engos-meta-supercharge",
+      "why": "This optional job is selected only when explicitly requested.",
+      "output": "A stronger artifact with assumptions and failure modes.",
+      "steps": [
+        {
+          "id": "strengthen-artifact",
+          "label": "I explicitly want to strengthen an artifact",
+          "skill": "engos-meta-supercharge",
+          "when": "A prompt, plan or proposal needs an explicitly requested stress test.",
+          "skip_when": "The job was not explicitly requested, or a current accepted artifact already satisfies it.",
+          "output": "A stronger artifact with assumptions and failure modes.",
+          "next": "Use the improved artifact only within its existing authority."
+        }
+      ],
+      "prompt": "Strengthen [prompt/plan/proposal] for [goal] while preserving its scope and authority. Do not execute its target.",
+      "next": "Use the improved artifact only within its existing authority."
+    },
+    {
+      "id": "continue-investigation",
+      "title": "I explicitly need continuity",
+      "intent": "A long investigation needs a durable, source-backed handoff.",
+      "entry_skill": "engos-memory-context-continuity",
+      "why": "This optional job is selected only when explicitly requested.",
+      "output": "Verified context, decisions, pending work and evidence references.",
+      "steps": [
+        {
+          "id": "continue-investigation",
+          "label": "I explicitly need continuity",
+          "skill": "engos-memory-context-continuity",
+          "when": "A long investigation needs a durable, source-backed handoff.",
+          "skip_when": "The job was not explicitly requested, or a current accepted artifact already satisfies it.",
+          "output": "Verified context, decisions, pending work and evidence references.",
+          "next": "Resume from verified state; saved context is not proof that pending work completed."
+        }
+      ],
+      "prompt": "Preserve a resumable handoff for [investigation] in [authorized project location]. Distinguish verified facts, decisions and open work. Do not write global memory.",
+      "next": "Resume from verified state; saved context is not proof that pending work completed."
+    },
+    {
+      "id": "prepare-goal",
+      "title": "I explicitly want a goal packet",
+      "intent": "Reviewed intent needs a durable bounded goal/specification/verifier packet.",
+      "entry_skill": "engos-design-plan-to-goal",
+      "why": "This optional job is selected only when explicitly requested.",
+      "output": "A goal packet with trust, drift, budget and stop conditions.",
+      "steps": [
+        {
+          "id": "prepare-goal",
+          "label": "I explicitly want a goal packet",
+          "skill": "engos-design-plan-to-goal",
+          "when": "Reviewed intent needs a durable bounded goal/specification/verifier packet.",
+          "skip_when": "The job was not explicitly requested, or a current accepted artifact already satisfies it.",
+          "output": "A goal packet with trust, drift, budget and stop conditions.",
+          "next": "Launching the goal is a separate explicitly authorized action."
+        }
+      ],
+      "prompt": "Compile [reviewed plan] into a bounded goal/specification/verifier packet for [host and limits]. Prepare it only; do not launch the goal.",
+      "next": "Launching the goal is a separate explicitly authorized action."
+    },
+    {
+      "id": "controller-delivery",
+      "title": "I explicitly want Batman orchestration",
+      "intent": "The user explicitly selects the controller-led delivery protocol.",
+      "entry_skill": "engos-orchestration-batman",
+      "why": "This optional job is selected only when explicitly requested.",
+      "output": "Controller-owned delivery evidence and required independent reviews within authorized scope.",
+      "steps": [
+        {
+          "id": "controller-delivery",
+          "label": "I explicitly want Batman orchestration",
+          "skill": "engos-orchestration-batman",
+          "when": "The user explicitly selects the controller-led delivery protocol.",
+          "skip_when": "The job was not explicitly requested, or a current accepted artifact already satisfies it.",
+          "output": "Controller-owned delivery evidence and required independent reviews within authorized scope.",
+          "next": "Follow the authorized protocol and its stop conditions; never silently make this the default route."
+        }
+      ],
+      "prompt": "Use Batman orchestration for [accepted scope] within [allowed actions and budget]. Follow its required independent-review and delivery gates. Do not infer merge, release or installation authority beyond my request.",
+      "next": "Follow the authorized protocol and its stop conditions; never silently make this the default route."
+    }
+  ],
+  "source_job_map_ref": ".meta/skill-job-map.json",
+  "runtime_route_ref": ".kiro/steering/intent-routing.json"
+}
