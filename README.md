@@ -9,7 +9,7 @@ You do not need to memorize skill names or choose between a brief frame and a fu
 workshop yourself. The assistant uses your context and accepted work, explains
 its recommendation, and asks a focused outcome question only when the answer
 would materially change the route, with an Other/free-text answer path.
-`engos-orchestration-route-intent` provides intake across the current catalog,
+`engos-route-intent` provides intake across the current catalog,
 including nonengineering jobs. A clear direct task needs no new interview.
 
 The intake skill is an unreleased source addition. Check the package available in
@@ -60,29 +60,18 @@ first-party skills use `engos-*`. No proposed rename or alias is needed.
 
 ## Use this with AI
 
-From a trusted source checkout or verified distribution, replace the brackets:
+After installation and native discovery, say:
 
-> Help me achieve [outcome] in [project and authorized scope]. From this trusted
-> Core-Prompts root, read .kiro/steering/skill-routing.md and the source/runtime
-> routing data it names. Use docs/INTENT-ROUTING.md for examples when included.
-> For materially vague intent or depth, use the available
-> engos-orchestration-route-intent skill and current inventory; report a missing
-> package honestly. Recommend one first missing job and depth from my context.
-> Clear direct requests bypass redundant intake.
-> Explain the outcome and why it fits. If depth is materially unclear, describe
-> the relevant options, recommend one and ask a focused plain-language question;
-> offer Other/free text and reuse known answers rather than running a standard interview. Then do the work
-> already authorized and name the next conditional handoff. Read the available package's complete
-> SKILL.md and only needed resources. Follow my project, host and home policies.
-> Report missing inputs or evidence instead of inventing them. Do not treat a
-> route as new permission for execution, delegation, goals or external actions.
+> Use `engos-route-intent` to help me choose the next useful step for [situation].
+> Reuse the context and accepted work I supplied. Explain your recommendation and
+> ask only questions that would change the approach, using Other/free text.
+> Continue within [authorized scope].
 
-This is a copyable request, not installed global routing policy. Core-Prompts
-does not install a universal automatic Core-first router or replace your harness.
-Ordinary use in another project does not require Core-Prompts source-maintainer
-tools, UAC or its PR/MR workflow. A project owner can explicitly adopt a
-[portable instruction pointer](docs/INTENT-ROUTING.md#opt-in-from-a-consumer-project);
-documentation alone does not activate it. [First successful use](docs/GETTING-STARTED.md).
+Native skill discovery may select it from an uncertain request without an explicit
+name. Clear direct work bypasses the interview. The [contained usage guide](docs/INTENT-ROUTING.md#use-the-contained-skill-package)
+explains explicit invocation and tool support. No external repository, global-rule
+activation or service is required. Core supplies the skill and its resources;
+your project and harness retain their workflow and permissions.
 
 ## Install or refresh your setup
 

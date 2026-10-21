@@ -2865,107 +2865,6 @@
       "advisory_only": true
     },
     {
-      "slug": "engos-orchestration-route-intent",
-      "display_name": "Find the Right Job and Next Step",
-      "capability_type": "skill",
-      "summary": "Interpret a user's task across the current Core-Prompts catalog, recommend the first useful job and depth, ask only consequential missing questions with a free-text Other option, and prepare conditional handoffs without granting new authority. Use for vague requests, uncertain skill choice or workflow continuation across any supported domain; skip redundant intake for clear direct tasks.",
-      "role": "workflow",
-      "domain_tags": [
-        "routing",
-        "prompting",
-        "engos",
-        "orchestration",
-        "route",
-        "intent"
-      ],
-      "required_inputs": [
-        "Requested result, current context and known unresolved decisions.",
-        "Supplied sources, actual artifacts and existing accepted work at their revisions.",
-        "Scope, authority, constraints and effort limits already stated by the user or",
-        "A trusted Core-Prompts catalog root resolved by the host or user; optional explicit",
-        "Current catalog observations and applicable relationship rows, with their binding"
-      ],
-      "expected_outputs": [
-        "Recommended result and depth, exact selected skill, and a context-based reason.",
-        "Expected next artifact and the relevant input or acceptance holds.",
-        "Already authorized action to continue, or the one focused question with an Other",
-        "The next conditional handoff, if useful, with its trigger and stopping boundary."
-      ],
-      "tool_policy": {
-        "scope": "uac_intake_only",
-        "allowed": [
-          "deterministic classification",
-          "metadata publication",
-          "surface generation"
-        ],
-        "forbidden": [
-          "orchestration",
-          "delegation decisions",
-          "runtime execution control"
-        ],
-        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
-      },
-      "install_target": {
-        "recommended": "repo_local",
-        "confidence": 0.88,
-        "confirmation_required_for_apply": true,
-        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
-        "supported": [
-          "global",
-          "repo_local",
-          "both"
-        ]
-      },
-      "emitted_surfaces": {
-        "codex": [
-          "codex_skill"
-        ],
-        "gemini": [
-          "gemini_skill"
-        ],
-        "claude": [
-          "claude_skill"
-        ],
-        "kiro": [
-          "kiro_skill"
-        ],
-        "grok": [
-          "grok_skill"
-        ]
-      },
-      "confidence": 1.0,
-      "review_status": "ready_for_orchestrator_review",
-      "overlap_candidates": [
-        "engos-orchestration-batman"
-      ],
-      "relationship_suggestions": [],
-      "quality_status": "structural_ready",
-      "benchmark_profile": "default",
-      "preferred_use_cases": [
-        "AI-assisted capability selection",
-        "deterministic prompt uplift review"
-      ],
-      "artifact_conventions": [
-        "ssot/<slug>.md",
-        ".meta/capabilities/<slug>.json",
-        "reports/quality-reviews/<slug>/LATEST.md"
-      ],
-      "invocation_style": "assistant_first_but_scriptable",
-      "requires_human_confirmation": true,
-      "org_graph": {
-        "org_role": "analyst",
-        "reports_to_suggestions": [],
-        "delegates_to_suggestions": [],
-        "collaborates_with_suggestions": [
-          "review",
-          "routing"
-        ],
-        "authority_tier": "advisory",
-        "work_graph_impact": "Adds or updates a skill capability with route profile None."
-      },
-      "advisory_only": true
-    },
-    {
       "slug": "engos-quality-code-review",
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "capability_type": "skill",
@@ -3568,6 +3467,102 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a both capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-route-intent",
+      "display_name": "Route Intent",
+      "capability_type": "skill",
+      "summary": "Choose a starting skill when the desired outcome, next step or needed depth is unclear. Route across the current Core-Prompts catalog, ask material questions with Other/free text, and explain conditional handoffs. Skip intake for clear direct tasks or a named skill.",
+      "role": "workflow",
+      "domain_tags": [
+        "routing",
+        "engos",
+        "route",
+        "intent"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-orchestration-batman"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "routing"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
       },
       "advisory_only": true
     },

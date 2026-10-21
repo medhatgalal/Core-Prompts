@@ -218,8 +218,20 @@ def plan(repo: Path, target: Path, request: dict):
             selection |= {k for k, pkg in current.items() if pkg['provider'] == p and pkg['kind'] == 'skill'}
     if profile_selection is not None:
         selection |= profile_selection
-    missing_selected = {k for k in selection - set(current) if not catalog.retired_key(k)}
-    # Explicitly retired identities disappear only under a catalog retirement.
+    # A declared rename may reach receipt inspection, but its old selection and
+    # ownership remain until the existing transaction retires it successfully.
+    renamed_selected = {}
+    for k in selection - set(current):
+        parts = k.split(':')
+        if len(parts) == 3:
+            provider, kind, slug = parts
+            mapped = catalog.SUCCESSORS.get(slug)
+            next_key = providers.key(provider, kind, mapped) if mapped else None
+            if mapped != slug and next_key in current:
+                renamed_selected[k] = next_key
+    missing_selected = {k for k in selection - set(current)
+                        if not catalog.retired_key(k) and k not in renamed_selected}
+    # Other missing source identities still require explicit retirement.
     if missing_selected:
         raise ValueError('SOURCE_SCOPE_REMOVED: ' + ', '.join(sorted(missing_selected)))
     observations, preserved, blockers, actions, outcomes = {}, [], [], [], []
@@ -260,10 +272,12 @@ def plan(repo: Path, target: Path, request: dict):
         files, error = _observe(target, list(roots), observations)
         if not files and not error:
             k = providers.key(provider, kind, slug)
-            if k in selection and catalog.retired_key(k) and in_scope(provider, kind, slug):
+            mapped_slug = renamed_selected[k].split(':', 2)[2] if k in renamed_selected else slug
+            if (k in selection and (catalog.retired_key(k) or k in renamed_selected)
+                    and in_scope(provider, kind, mapped_slug, slug)):
                 assessed_keys.add(k)
                 preserved.append(dict(package=k, provider=provider, kind=kind, slug=slug,
-                                      roots=list(roots), reason='selected retired package is missing; ownership retained for repair'))
+                                      roots=list(roots), reason='selected package is missing; ownership retained for repair'))
             continue
         k = providers.key(provider, kind, slug)
         present_keys.add(k)
@@ -311,7 +325,7 @@ def plan(repo: Path, target: Path, request: dict):
             skill_key = providers.key(provider, 'skill', skill_slug) if skill_slug else None
             if skill_key in current:
                 next_slug, newkey = skill_slug, skill_key
-        eligible = (mode != 'sync' or (newkey or k) in selection
+        eligible = (mode != 'sync' or (newkey or k) in selection or k in renamed_selected
                     or retiring_agent or (next_slug is None and catalog.retired_key(k)))
         eligible = eligible and in_scope(provider,kind,next_slug,slug)
         if profile_selection is not None and kind == 'skill' and newkey not in profile_selection:
@@ -560,6 +574,17 @@ def plan(repo: Path, target: Path, request: dict):
             selection.discard(k)
             next_packages.pop(k, None)
         outcomes.append(dict(package=k,status='retired-agent-with-preserved-skill' if k in retirement_only else 'retired' if k not in current else 'managed',historical=[s.get('releases',[]) for s in discovered.get(k,[])]))
+
+    # A scoped rename must not retire a shared root still owned under the old
+    # identity by another reader, even when that reader accepts the full catalog.
+    for k, sources in to_retire.items():
+        if k in blocked_keys:
+            continue
+        for old in sources:
+            old_key = providers.key(old['provider'], old['kind'], old['slug'])
+            if (old_key in renamed_selected and old['roots'][0].startswith('.agents/skills/')
+                    and any(p['roots'] == old['roots'] for p in next_packages.values())):
+                blockers.append('SHARED_SURFACE_POLICY_CONFLICT: renamed shared package retains an unmigrated owner; update its selected readers together')
 
     # Refresh existing co-owner receipts when a scoped update changes their
     # shared tree. Do not enroll a provider that the user has not selected.

@@ -2,7 +2,7 @@
 
 Describe the result you want and what you already have. The assistant should
 recommend both a useful starting job and how far to take it, explain the reason,
-and name the next artifact. The available `engos-orchestration-route-intent` skill
+and name the next artifact. The available `engos-route-intent` skill
 provides that intake across the current catalog, including nonengineering jobs.
 You do not need to memorize skill names or decide
 whether your request counts as "lightweight shaping" or "full Shape Up".
@@ -171,89 +171,61 @@ Converge is directly useful when you supply competing inputs; it is not a compul
 hop between ordinary stages. Audit, incident, documentation, presentation and other
 jobs remain available through the [full job map](SKILL-JOB-MAP.md).
 
-## A copyable request for any assistant
+## Use the contained skill package
 
-Replace the brackets and provide a trusted Core-Prompts root if the assistant
-does not already have this guidance:
+After installation and native discovery, invoke the current skill explicitly:
 
-```text
-Outcome: [what I want]
-Context and existing accepted work: [inputs, decisions, design, plan or patch]
-Authorized scope: [inspection, specific edits/checks, or other allowed actions]
+| Host | Explicit invocation |
+| --- | --- |
+| Codex CLI/IDE | `$engos-route-intent` followed by the task |
+| Grok | `/engos-route-intent` followed by the task |
+| Claude Code | `/engos-route-intent` followed by the task |
 
-Use the available Core-Prompts skills when they fit this request. Read
-<CORE_ROOT>/.kiro/steering/skill-routing.md and resolve the routing data it
-names for this source checkout or verified runtime. Human docs are optional
-when the installed support root does not include them.
-For materially vague intent or depth, use the available
-engos-orchestration-route-intent skill and current resource inventory. Report
-an unavailable package honestly and use only a bounded manual fallback.
-Clear direct requests bypass redundant intake.
-Recommend one first missing job and the needed depth from my intent, supplied
-context and accepted work. Explain the result and why it fits before naming the
-skill. Do not ask me to choose a framework. If an unanswered question would
-materially change the route or depth, explain the relevant outcome options,
-recommend one and ask a focused question using an available question tool or
-inline choices. Every question must offer Other/free text. Reuse known answers;
-do not run a standard interview or infer new permission from a recommendation.
-Then proceed with the work already authorized above and give the next
-conditional handoff. A recommendation is not additional permission.
+You can also ask in plain language:
 
-Confirm the package this session can actually use. Read its complete SKILL.md
-and only the resources needed for this job. Preserve my project, host and
-home policies and existing review/approval gates. Do not invent missing inputs,
-completed stages or new permission. Do not launch a chain of skills or a goal
-just because the route mentions a next step.
-```
+> Use Core-Prompts to help me choose the next useful step for [situation]. Reuse
+> the context and accepted work I supplied. If a missing answer would change the
+> approach, explain the options, recommend one, and ask a focused question with
+> Other/free text. Continue only within [authorized scope].
 
-This is a plain-language request, not a provider CLI flag. If you prefer a named
-skill, keep using the documented host selector: Codex uses `$<skill-name>` and
-Grok uses `/<skill-name>`. Other hosts use their current supported skill interface;
-check session discovery rather than borrowing invocation syntax from another
-provider. [Discovery and troubleshooting](GETTING-STARTED.md#verify-discovery-on-your-host).
+A harness may select the skill implicitly from its name and description. That is
+native discovery behavior, not an always-on global router or a guarantee that
+all vague prompts activate it. Use explicit selection when you want to be certain
+which skill you requested. If it is unavailable, report that and use a bounded
+manual fallback; do not pretend it was installed or invoked.
 
-## Opt in from a consumer project
+Core-Prompts contains the skill, resources, question-tool reference, inspector,
+examples and its own routing policy. No other repository, home-global instruction
+change or running service is required to use the package. Ordinary use follows
+the user's project rules; it does not require Core source-maintainer UAC, Git or
+PR/MR steps. A source checkout is needed only for source maintenance.
 
-The guide is portable, but its presence does not install a global router.
-Core-Prompts' root `AGENTS.md` points at the policy for Core-Prompts work. Installing
-skill packages or opening an HTML page does not prove that another project's
-harness has loaded that pointer.
+## Questions and actual tool support
 
-For a one-off session, paste the request above or explicitly provide the policy
-and its routing data. Human docs and the visual guide can help when available;
-they are not prerequisites for using an installed support root. For continuing use, a project owner can add a short pointer to the
-project instruction file that their harness actually supports, such as `AGENTS.md`
-where supported. Use a trusted, version-identified source checkout or verified
-distribution as `<CORE_ROOT>`; keep it separate from the project being worked on.
-A sample opt-in pointer is:
+The skill asks only when an unanswered question changes the next useful result,
+input or depth. It uses a suitable question tool exposed in the current session,
+with an inline A/B/C plus Other fallback. Clear requests skip the interview.
+Native Other support counts; the skill must follow the actual tool schema rather
+than invent names or payloads from a provider label.
 
-```text
-This project opts into Core-Prompts intent routing when its skills fit the task.
-Trusted Core-Prompts root: <CORE_ROOT>.
-For Core skill selection, read <CORE_ROOT>/.kiro/steering/skill-routing.md
-and use the source or runtime routing data it names. Human docs are optional;
-do not require them in an installed support root. Apply this project's rules
-and applicable host/home policies. This
-pointer grants no additional actions and does not make every task a Core task.
-```
+The conditional [question-tool reference](../sources/capability-resources/engos-route-intent/references/question-tools.md)
+documents Codex, Grok Build and Claude Code mechanisms, their limitations and how
+to inspect actual support. The catalog inspector inspects skills, not question
+tools. Documentation, tool exposure, invocation, displayed UI and a returned
+answer are separate evidence. Source-guided examples do not prove native calls.
 
-The project owner chooses that integration; this change does not edit consumer,
-home or provider configurations. Dotfiles remains the owner of home-global rules.
-Ordinary use in a consumer project follows that project's workflow, not
-Core-Prompts' source-maintenance UAC/worktree/PR/MR prerequisites.
-
-Kiro's [official steering documentation](https://kiro.dev/docs/steering/) describes
-workspace steering and always-included `AGENTS.md`; custom agents require explicit
-steering resources. Therefore a custom agent's effective resource list must be
-checked separately. This guide does not claim global autoloading or modify it.
+This source update renames the earlier unreleased
+`engos-orchestration-route-intent` package to `engos-route-intent`; there is one
+canonical skill, not a second alias. A normal upgrade must preview any owned old
+package migration and preserve customized or unrecognized content. No live
+installation or automatic cleanup follows from reading this guide.
 
 ## Where this guidance lives
 
 - [Routing policy pointer](../.kiro/steering/skill-routing.md): when to invoke the
   available intake skill, clear-task bypass and authority boundaries.
-- `engos-orchestration-route-intent`: the adaptive intake contract, read-only
-  current-catalog inspector, intake-method resource and conditional relationship
-  table. Resolve its actual package through the session's inventory; source
+- `engos-route-intent`: the compact intake contract, conditional question-tool/intake/relationship references,
+  read-only catalog inspector and conditional relationship table. Resolve its actual package through the session's inventory; source
   presence alone does not prove availability or effective loading.
 - [Compact route catalog](../.meta/intent-routing.json): shared descriptive data
   for common route cards and model lookup; not an executable classifier.

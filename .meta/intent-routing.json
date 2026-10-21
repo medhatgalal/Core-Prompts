@@ -19,14 +19,14 @@
       "id": "guided-intake",
       "title": "Other — help me find the right job",
       "intent": "The desired job, starting point or useful depth is uncertain; describe it in your own words.",
-      "entry_skill": "engos-orchestration-route-intent",
+      "entry_skill": "engos-route-intent",
       "why": "The assistant interprets the current context across the whole catalog rather than making you choose a framework.",
       "output": "One justified next job and depth, or a focused question with Other/free text.",
       "steps": [
         {
           "id": "intake",
           "label": "Clarify the useful next job",
-          "skill": "engos-orchestration-route-intent",
+          "skill": "engos-route-intent",
           "when": "A missing answer would materially change the next result or depth.",
           "skip_when": "The direct task or selected skill is already clear.",
           "output": "A context-based recommendation, expected artifact and necessary clarification.",

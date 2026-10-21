@@ -56,6 +56,21 @@ separate observations. See [recovery](#recover-an-installation) for the exact
 transaction rollback path. Source-only work or an installation hold stops before
 apply; refreshing the checkout alone changes no live skills or schedules.
 
+### Unreleased intake skill rename
+
+The source-only `engos-orchestration-route-intent` package is now
+`engos-route-intent`; this is one skill, not an added alias. It was not part of
+v1.17.1. A saved selection with a valid ownership receipt can migrate the exact
+old identity during sync. Preview first: customized or unrecognized copies remain
+preserved for explicit review, and a missing selected copy needs repair rather
+than silently losing its ownership record.
+
+Codex and Gemini can share a physical skill root. Upgrade its selected readers
+together; a scoped rename that would leave another reader with a stale old receipt
+is blocked. Successful migration replaces the old package and its supporting
+files, updates receipts and keeps the transaction journal for guarded rollback.
+This source change performs no live install or scheduled update itself.
+
 ### Copyable AI upgrade handoff
 
 > Inspect this trusted Core-Prompts checkout and my selected installation scope.

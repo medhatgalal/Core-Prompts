@@ -3,7 +3,7 @@
 Start with one real outcome, not a skill or framework name. The assistant uses
 your intent, available artifacts and accepted work to recommend a first job and
 the depth needed to produce the result. The available
-`engos-orchestration-route-intent` skill applies this method across the current
+`engos-route-intent` skill applies this method across the current
 catalog. It asks a focused question only when an unknown would materially change
 the route, always offering Other/free text. Use the [intent guide](INTENT-ROUTING.md) or
 [portable visual guide](guide/index.html) when you are unsure where to start;
@@ -37,9 +37,9 @@ report that and use only a bounded manual fallback; do not claim it was loaded
 or install it automatically.
 See [how intake adapts](INTENT-ROUTING.md#let-the-assistant-recommend-how-far-to-go).
 Routing itself is not a new approval gate or additional execution permission.
-For another project, use a one-off request or an explicitly adopted
-[project instruction pointer](INTENT-ROUTING.md#opt-in-from-a-consumer-project);
-this repository's docs do not configure every harness globally.
+Use the [contained package](INTENT-ROUTING.md#use-the-contained-skill-package)
+through native discovery or explicit selection in any supported project. It does
+not require another repository or home-global instruction changes.
 
 If the requested job requires independent review, expect a real separate reviewer
 and the skill's repair cycle. If that support is unavailable, the dependent review

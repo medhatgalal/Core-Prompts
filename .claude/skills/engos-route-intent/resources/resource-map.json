@@ -1,0 +1,25 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "intake": [
+      "references/intake-method.md"
+    ],
+    "relationships": [
+      "references/relationship-method.md",
+      "routing-relations.json"
+    ],
+    "catalog_inspection": [
+      "scripts/inspect_catalog.py"
+    ],
+    "question_tools": [
+      "references/question-tools.md"
+    ]
+  },
+  "dependencies": {
+    "scripts/inspect_catalog.py": [
+      "references/relationship-method.md",
+      "routing-relations.json"
+    ]
+  }
+}

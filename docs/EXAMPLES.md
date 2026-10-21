@@ -18,7 +18,7 @@ Each current skill example uses the same pattern:
 
 These examples show intended routing, not measured model behavior. The assistant
 chooses one starting job, explains why and proceeds within the request's existing
-authority. See [intent routing](INTENT-ROUTING.md) for the policy and consumer opt-in.
+authority. See [intent routing](INTENT-ROUTING.md) for the contained invocation and question-tool guidance.
 
 | Say what you need | Expected first job and handoff |
 | --- | --- |
@@ -37,7 +37,7 @@ not required stages added to every example.
 ## Intake adapts to what is already known
 
 These are illustrative decisions, not executed routing tests. The available
-`engos-orchestration-route-intent` skill recommends a depth from supplied context
+`engos-route-intent` skill recommends a depth from supplied context
 across the current catalog. Clear tasks bypass redundant intake; every question
 includes Other/free text.
 
