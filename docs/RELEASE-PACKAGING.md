@@ -47,12 +47,15 @@ Before each release build, verify and record the preceding published release on
 both providers. Its tag object and commit must agree. Set that exact tag as the
 comparison baseline and keep it set for every rebuild, including after merge.
 
-For the prepared v1.17.1 release, compare against published v1.17.0. Both providers
-were verified to have tag object `7f8c0d641a960c49bea1cb766b7b2c925aaacdd2`
-pointing to commit `d76f1ff2761348b7fc7ed8a11f438765a6065c39`:
+For the prepared v1.18.0 release, compare against published v1.17.1. Verify the
+baseline tag object and commit on both providers before accepting the build.
+The prior publication receipt and local tag record tag object
+`5f1b8249496bef60765e1741c4ed78b22a6b77d7` pointing to commit
+`86d9f51159a3a3dfdc7660a6872bc776f8f639b5`; this is historical/local evidence,
+not a substitute for fresh remote parity. Reverify both providers before release:
 
 ```bash
-export CORE_PROMPTS_RELEASE_BASE_REF=v1.17.0
+export CORE_PROMPTS_RELEASE_BASE_REF=v1.17.1
 bin/capability-fabric build
 ```
 
@@ -229,7 +232,7 @@ When using `validate --with-cli`, native validator results also honor error-outp
 
 ## Recommended Release Order
 
-The v1.17.1 preparation does not authorize merge or these publication steps. The
+The v1.18.0 preparation alone does not authorize merge or these publication steps. The
 [publication and live-rollout hold](#publication-and-live-rollout-hold) must be
 resolved before creating or pushing matching tags. The target is the future
 reviewed release-preparation merge SHA with exact-SHA hosted checks and parity,
@@ -303,7 +306,7 @@ do not transfer to Antigravity; see the [unresolved root qualification](INSTALL-
 ### Qualified adoption scope
 
 Published v1.17.0 established the 36-skill catalog under the qualified
-source-package and controlled-upgrade scope below. Prepared v1.17.1 retains that
+source-package and controlled-upgrade scope below. Published v1.17.1 retains that
 catalog and skill names, membership and agent-surface boundaries. It clarifies
 the existing implementation planner's unknown completion state and exact inline
 plan binding; that wording change requires its own scoped native confirmation.
@@ -311,7 +314,10 @@ The landed installer fixes address shallow shared-root observation, shared-reade
 consent for entrypoints in empty directories, exact missing-owned Grok recovery,
 and its descriptor, publication, durability and FIFO safeguards. The earlier
 qualified adoption evidence is retained with its original limits; it does not
-substitute for v1.17.1 candidate checks or waive or regrade any native test.
+substitute for current candidate checks or waive or regrade any native test.
+Prepared v1.18.0 adds `engos-route-intent` as the 37th skill, with contained routing,
+on-demand references and receipt-owned rename support. Catalog growth does not
+expand saved concrete membership or establish installation, discovery or task success.
 Historical native acceptance remains **18/25**, with the original cells and criteria unchanged.
 No new native provider run or universal provider acceptance is claimed.
 

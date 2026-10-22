@@ -160,6 +160,14 @@ help interchange but do not require a new document system. Existing issue and
 tracker formats remain valid. A schema or graph check proves declared structure,
 not approval, behavioral correctness or completion.
 
+For a long investigation that must survive session or worktree changes, use
+`engos-memory-context-continuity`. Its bundled state helper resolves the canonical
+`~/.analyze-context/<project>/<task-id>/` directory outside the repository; recover
+the exact task's context, todo and insights files before continuing. Keep one
+writer and checkpoint meaningful progress. Mark completion only after every TODO
+is checked and insights contains the final summary; leave completed files in
+place until later user-approved cleanup.
+
 ## Troubleshooting
 
 | Symptom | Next useful check |

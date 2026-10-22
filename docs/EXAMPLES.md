@@ -2126,12 +2126,12 @@ graph does not grant execution approval, and a clean rerun alone does not prove
 a reported bug is fixed. Package availability is source evidence; native use and
 helper effectiveness require separate evidence.
 
-Published v1.17.0 offers a 36-skill catalog compared with v1.16.5's 32. Prepared
-v1.17.1 retains that catalog and adds installer fixes. These examples do not assert
-v1.17.1 publication or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
+Published v1.17.1 retains v1.17.0's 36-skill catalog and adds installer fixes.
+Prepared v1.18.0 adds `engos-route-intent` as the 37th skill. These examples do not
+assert v1.18.0 publication, installed parity or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
 catalog adopts all current and future skills; curated policy adds named skills.
 Use [the install-profile commands and shared-root consent rules](INSTALL-PROFILES.md#choose-future-skill-membership).
-A refreshed helper inside one of the 36 packages is a resource update, not a new
+A refreshed helper inside an existing package is a resource update, not a new
 catalog addition. Customized and third-party packages remain protected. The v1.16.3
 Gemini mapping relies on archived byte-equivalence evidence for canonical `.codex/skills`
 source identities before a receipt can cover the shared `.agents/skills` layout; see
