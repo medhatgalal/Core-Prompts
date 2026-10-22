@@ -1,7 +1,9 @@
 # auto-research source assessment
 
 ## Imported Sources
-- `/Users/medhat.galal/Desktop/Core-Prompts/.planning/candidates/engos-optimization-auto-research/engos-optimization-auto-research.md`
+- Maintainer-local authoring candidate `engos-optimization-auto-research.md` (historical import; candidate not distributed).
+
+The historical intake record remains in Git history. Current canonical entry: `ssot/engos-optimization-auto-research.md`.
 
 ## Benchmarks
 - 8 Best Prompt Libraries You Should Explore for Unlimited Prompts: //duckduckgo.com/l/?uddg=https%3A%2F%2Fmedium.com%2Ftowards%2Dagi%2Fthe%2Dbest%2Dprompt%2Dlibraries%2Dyou%2Dshould%2Dexplore%2Dfor%2Dyour%2Dai%2Dprojects%2D12f5c8423623&amp;rut=2ac6f061f7839ddb7d9528308964edaccc11fb6aa273bfe00c0f752307620a89 — 8 Best Prompt Libraries You Should Explore for Unlimited Prompts When it comes to prompt engineering and leveraging AI tools like ChatGPT, MidJourney, or Google
