@@ -1,7 +1,7 @@
 # pulse source assessment
 
 ## Imported Sources
-- `/Users/scott.parrish/repo/Core-Prompts/ssot/engos-triage-my-inbox-chat-pulse.md`
+- Repository entry `ssot/engos-triage-my-inbox-chat-pulse.md`, imported from an earlier maintainer checkout.
 
 ## Benchmarks
 - chrisneagu/FTC-Skystone-Dark-Angels-Romania-2020: https://github.com/chrisneagu/FTC-Skystone-Dark-Angels-Romania-2020 — NOTICE This repository contains the public FTC SDK for the SKYSTONE (2019-2020) competition season. If you are looking for the current season's FTC SDK software
