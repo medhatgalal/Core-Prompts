@@ -12,7 +12,7 @@ would materially change the route, with an Other/free-text answer path.
 `engos-route-intent` provides intake across the current catalog,
 including nonengineering jobs. A clear direct task needs no new interview.
 
-The intake skill is an unreleased source addition. Check the package available in
+The intake skill is included in the prepared v1.18.0 source. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 
@@ -108,6 +108,13 @@ Invoke `engos-orchestration-batman` explicitly when you want its controller-led
 delivery protocol. Keep ordinary planning with `engos-design-plan-implementation`;
 use `engos-design-plan-to-goal` for a separately wanted durable goal/spec/verifier
 packet. Compiling a packet does not start a goal. [Longer work](docs/SKILL-FLOWS.md#long-horizon-and-repeatable-work).
+
+For resumable investigations, use `engos-memory-context-continuity` and its bundled
+state helper to resolve one context, todo and insights set under
+`~/.analyze-context/<project>/<task-id>/`, outside every checkout. Keep one writer
+per task; branch and worktree paths are metadata only. Checkpoint before context
+loss or worktree cleanup, and retain completed files until later user-approved
+cleanup. See the [continuity example](docs/EXAMPLES.md#engos-memory-context-continuity).
 
 ## Source, installation and release are separate
 

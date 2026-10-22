@@ -1,11 +1,14 @@
-## Unreleased
+## v1.18.0 - 2026-10-22
 
-- Rename the unreleased intake owner to `engos-route-intent`, consolidate repeated instructions into conditional resources, document actual question-tool support, and keep use contained in Core-Prompts. No Dotfiles integration, global activation, release or live installation is included.
+Preparation date; tagging, publication and live installation require verified
+release gates and exact-target evidence. This entry does not claim publication
+or installed parity. See the [release gates](docs/RELEASE-PACKAGING.md#publication-and-live-rollout-hold).
 
-- Add `engos-route-intent`: catalog-wide adaptive intake, outcome-based recommendations, question-tool/inline Other answers, and conditional sequence, iteration, return and parallel handoffs. Its read-only inspector observes current metadata and flags stale relationship bindings; no automatic dispatch, global routing configuration or live installation is included.
-
-- Add intent-first skill selection for vague problems, competing proposals, full Shape Up, planning, repairs and reviews. Keep existing skill names and accepted work, with explicit consumer opt-in and conditional handoffs.
-- Bundle an offline interactive guide, static overview, routing catalog and AI integration instructions; validate generated guide consistency in both CI providers. No hosting activation or live installation is included.
+- Add `engos-route-intent` as the 37th skill: catalog-wide adaptive intake and outcome-based recommendations, with conditional sequence, iteration, return and parallel handoffs. Routing stays contained in Core-Prompts; no Dotfiles integration or global activation is introduced.
+- Load intake, question-tool and relationship references on demand. Use the current host's actual question-tool contract with Other/free-text support, falling back inline when needed; installation does not supply a question tool or prove native invocation.
+- Inspect current catalog metadata and relationship bindings without automatic dispatch. Stale relationships remain unverified while valid new or updated skills stay selectable. Preserve accepted work and explicit consumer opt-in.
+- Rename the unreleased `engos-orchestration-route-intent` identity to `engos-route-intent` without an alias. Preview receipt-owned migration, preserve customized or unrecognized copies, and require shared-reader consent and guarded rollback.
+- Bundle the offline interactive guide, static overview, routing catalog and AI integration instructions, with guide consistency checks in both CI providers. Packaging does not activate hosting or change scheduled update timing.
 
 ## v1.17.1 - 2026-10-17
 

@@ -56,12 +56,12 @@ separate observations. See [recovery](#recover-an-installation) for the exact
 transaction rollback path. Source-only work or an installation hold stops before
 apply; refreshing the checkout alone changes no live skills or schedules.
 
-### Unreleased intake skill rename
+### Intake skill rename in prepared v1.18.0
 
-The source-only `engos-orchestration-route-intent` package is now
-`engos-route-intent`; this is one skill, not an added alias. It was not part of
-v1.17.1. A saved selection with a valid ownership receipt can migrate the exact
-old identity during sync. Preview first: customized or unrecognized copies remain
+The unreleased `engos-orchestration-route-intent` identity becomes
+`engos-route-intent` in prepared v1.18.0; this is one skill, not an added alias.
+Neither identity was part of v1.17.1. A saved selection with a valid ownership
+receipt can migrate the exact old identity during sync. Preview first: customized or unrecognized copies remain
 preserved for explicit review, and a missing selected copy needs repair rather
 than silently losing its ownership record.
 
@@ -70,6 +70,12 @@ together; a scoped rename that would leave another reader with a stale old recei
 is blocked. Successful migration replaces the old package and its supporting
 files, updates receipts and keeps the transaction journal for guarded rollback.
 This source change performs no live install or scheduled update itself.
+
+For the current authorized 36 → 37 rollout, preview the explicit addition of
+`engos-route-intent` to each selected curated reader. Keep curated membership
+policy and existing schedule timing; adding this skill does not opt readers into
+future catalog additions. Verify exact package and receipt parity after apply;
+prepared release metadata alone does not establish that outcome.
 
 ### Copyable AI upgrade handoff
 
@@ -244,10 +250,11 @@ trusted catalog or an existing valid ownership receipt, not a target-authored
 manifest. The catalog covers 56 pinned release versions; the historical 24-skill
 population is one fixture, not a limit on supported current capabilities.
 
-The v1.17.1 preparation does not add v1.17.0 to that pinned historical catalog.
+The v1.18.0 preparation does not extend that pinned historical catalog to
+v1.17.0 or v1.17.1.
 A valid existing ownership receipt remains the route for receipt-owned upgrades.
 Without one, an installed package must match an already pinned historical identity;
-v1.17.0 provenance or equality with current source alone does not authorize adoption.
+v1.17.0/v1.17.1 provenance or equality with current source alone does not authorize adoption.
 Unrecognized packages and runtime files retain their existing preservation/blocking
 behavior. This preparation makes no broader receiptless-migration claim.
 
@@ -272,8 +279,8 @@ requires it. Replacement files are verified before predecessor files are removed
 
 The v1.15.0 retirement (2026-09-15) covers all 11 first-party named-agent variants
 on Codex, Gemini, Claude, and Kiro (44 entrypoints). The v1.16.5 release contains
-32 skills; published v1.17.0 and prepared v1.17.1 contain 36. These versions retain
-skills-only distribution; catalog growth alone does not expand a saved concrete
+32 skills; published v1.17.0 and v1.17.1 contain 36, and prepared v1.18.0 contains
+37. These versions retain skills-only distribution; catalog growth alone does not expand a saved concrete
 selection (see [future skill membership](#choose-future-skill-membership)).
 The existing historical catalog and ownership receipts identify the affected
 packages; no second registry is needed. A recognized owned retired agent maps
