@@ -19046,7 +19046,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "6986cb72ea2845fa0694f2a27aa092d45704d7021e92516c6630856af74a0732",
+          "effective_sha256": "d0165126c63556cc116f32cb8b598092903c1c6b55a34c567ae0145500a95a03",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -19109,7 +19109,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 47,
                   "end_line": 52,
-                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
+                  "sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf"
                 }
               }
             ]
@@ -19128,7 +19128,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 34,
                   "end_line": 36,
-                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
+                  "sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf"
                 }
               },
               {
@@ -19138,7 +19138,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 72,
                   "end_line": 76,
-                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
+                  "sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf"
                 }
               },
               {
@@ -19148,7 +19148,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 78,
                   "end_line": 78,
-                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
+                  "sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf"
                 }
               }
             ]
@@ -19163,7 +19163,7 @@
                   "path": "ssot/engos-reconciliation-converge.md",
                   "start_line": 72,
                   "end_line": 76,
-                  "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
+                  "sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf"
                 }
               }
             ]
@@ -19176,12 +19176,20 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-reconciliation-converge.md",
-            "ssot_sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5",
-            "effective_sha256": "6986cb72ea2845fa0694f2a27aa092d45704d7021e92516c6630856af74a0732",
+            "ssot_sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf",
+            "effective_sha256": "d0165126c63556cc116f32cb8b598092903c1c6b55a34c567ae0145500a95a03",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
                 "sha256": "17c7b3acb92bcc69f26ca5ccac1fde6b43c9020791adb49170a79e1e3a50a516"
+              },
+              {
+                "path": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+                "sha256": "54e5144670e0417522eab5052cb046fc80d80652c0af6d3eee209b82bcf17260"
+              },
+              {
+                "path": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+                "sha256": "894001d0fcc2c48a9cc1be24ceca96fffbb06ab70669d38f7ad88401743b8ce0"
               }
             ],
             "extractor_version": "source-clauses.v1",
@@ -19201,7 +19209,7 @@
               "works_on"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "d1c6042750cf4e74f10df035dbd31429893c7c54efbc16d2b21a46ba83373778"
+            "mapping_sha256": "113f1a1d6b833b57c0109af9e6e64651b5110a595504ea70be5b4debbc011ee0"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -19631,7 +19639,7 @@
           "provenance": {
             "ssot_path": "ssot/engos-route-intent.md",
             "ssot_sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f",
-            "effective_sha256": "4093a5c1b83dbf69f72d899d7f329a19ac0dbb1c21f500f288b467c80beddbc1",
+            "effective_sha256": "c8799e35ca0e3d7f75d681f85dbd538b2c1a01d784f334b0c45b2559c17cab23",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-route-intent/references/intake-method.md",
@@ -19643,7 +19651,7 @@
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/routing-relations.json",
-                "sha256": "02ed7b00451cfca1c7a4357ca80fba7cdb1736005d6adb3240acec988db1fe5f"
+                "sha256": "e88d41768ccf179404ddddbd139b9f72746657a131166d1715f3c60a83fc207c"
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/scripts/inspect_catalog.py",
@@ -19728,7 +19736,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "dce70f3b3482f4e9c1795d6e0c919c918dd72e7b2a61489f22194b2566f91c69"
+            "mapping_sha256": "503fe14f21cb36043dfdcc78ae4ce429592f836836679fee826ec0b5763ca6ea"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -21524,7 +21532,9 @@
       ".grok/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".grok/skills/engos-reconciliation-converge/resources/capability.json",
       ".grok/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".grok/skills/engos-reconciliation-converge/resources/references/numerical-checks.md",
       ".grok/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".grok/skills/engos-reconciliation-converge/resources/scripts/check_linear.py",
       ".grok/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".grok/skills/engos-route-intent/resources/capability.json",
       ".grok/skills/engos-route-intent/resources/references/agy-intake.md",
@@ -21775,7 +21785,9 @@
       ".codex/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".codex/skills/engos-reconciliation-converge/resources/capability.json",
       ".codex/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".codex/skills/engos-reconciliation-converge/resources/references/numerical-checks.md",
       ".codex/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".codex/skills/engos-reconciliation-converge/resources/scripts/check_linear.py",
       ".codex/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".codex/skills/engos-route-intent/resources/capability.json",
       ".codex/skills/engos-route-intent/resources/references/agy-intake.md",
@@ -22027,7 +22039,9 @@
       ".gemini/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".gemini/skills/engos-reconciliation-converge/resources/capability.json",
       ".gemini/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".gemini/skills/engos-reconciliation-converge/resources/references/numerical-checks.md",
       ".gemini/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".gemini/skills/engos-reconciliation-converge/resources/scripts/check_linear.py",
       ".gemini/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".gemini/skills/engos-route-intent/resources/capability.json",
       ".gemini/skills/engos-route-intent/resources/references/agy-intake.md",
@@ -22279,7 +22293,9 @@
       ".claude/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".claude/skills/engos-reconciliation-converge/resources/capability.json",
       ".claude/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".claude/skills/engos-reconciliation-converge/resources/references/numerical-checks.md",
       ".claude/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".claude/skills/engos-reconciliation-converge/resources/scripts/check_linear.py",
       ".claude/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".claude/skills/engos-route-intent/resources/capability.json",
       ".claude/skills/engos-route-intent/resources/references/agy-intake.md",
@@ -22531,7 +22547,9 @@
       ".kiro/skills/engos-quality-testing-review/resources/scripts/load_module.py",
       ".kiro/skills/engos-reconciliation-converge/resources/capability.json",
       ".kiro/skills/engos-reconciliation-converge/resources/examples/source-conflict.md",
+      ".kiro/skills/engos-reconciliation-converge/resources/references/numerical-checks.md",
       ".kiro/skills/engos-reconciliation-converge/resources/resource-map.json",
+      ".kiro/skills/engos-reconciliation-converge/resources/scripts/check_linear.py",
       ".kiro/skills/engos-reconciliation-converge/resources/scripts/load_module.py",
       ".kiro/skills/engos-route-intent/resources/capability.json",
       ".kiro/skills/engos-route-intent/resources/references/agy-intake.md",
