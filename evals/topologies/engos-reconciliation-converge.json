@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-reconciliation-converge",
-  "ssot_sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5",
+  "ssot_sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -43,16 +43,28 @@
     "engos-reconciliation-converge:L67:00d8595edbcf",
     "engos-reconciliation-converge:L68:57e6b1d178f1",
     "engos-reconciliation-converge:L99:8196306b3005",
-    "engos-reconciliation-converge:L139:b08323849156",
-    "engos-reconciliation-converge:L200:fac7308fc753",
-    "engos-reconciliation-converge:L204:283e7be539f4",
-    "engos-reconciliation-converge:L207:32659bf6e33c",
-    "engos-reconciliation-converge:L211:420f35be46a1",
-    "engos-reconciliation-converge:L215:ee18a182fff0",
+    "engos-reconciliation-converge:L126:c2d2541e8bb4",
+    "engos-reconciliation-converge:L127:cd48c8757993",
+    "engos-reconciliation-converge:L128:3be16a5ebd7f",
+    "engos-reconciliation-converge:L135:d57033ab4bc3",
+    "engos-reconciliation-converge:L143:b08323849156",
+    "engos-reconciliation-converge:L205:fac7308fc753",
+    "engos-reconciliation-converge:L209:283e7be539f4",
+    "engos-reconciliation-converge:L212:32659bf6e33c",
+    "engos-reconciliation-converge:L216:420f35be46a1",
+    "engos-reconciliation-converge:L220:ee18a182fff0",
     "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md:L3:a609e8416a8f",
-    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md:L5:2dcfe536aa83"
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md:L5:2dcfe536aa83",
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L4:7243cccfef69",
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L14:47c7f325dc46",
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L18:f0e390920e39",
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L25:5ee77244d828",
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L59:b91afc8b2b08",
+    "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L98:80fc1b12a037"
   ],
-  "resources": [],
+  "resources": [
+    "- Before reporting any numerical total, difference, range, threshold, probability or universal sensitivity claim, load the numerical-check route from resources/resource-map.json and verify the actual inputs with a reproducible calculation or complete explicit symbolic proof. This applies when you choose MCDA yourself, not only when the user supplies numbers. Read the observed result; do not invent a verification receipt."
+  ],
   "handoffs": [],
   "protected_invariants": [
     {
@@ -186,112 +198,162 @@
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L138:9175f6ed1836",
+      "id": "engos-reconciliation-converge:L126:c2d2541e8bb4",
       "heading": "The Prompt (paste into the target AI)",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 146,
+      "source_line": 134,
+      "sha256": "c2d2541e8bb4856bff298db7ea0754bd4148800ac6ed32a627f97d978d81c425",
+      "text": "- Before reporting any numerical total, difference, range, threshold, probability or universal sensitivity claim, load the numerical-check route from resources/resource-map.json and verify the actual inputs with a reproducible calculation or complete explicit symbolic proof. This applies when you choose MCDA yourself, not only when the user supplies numbers. Read the observed result; do not invent a verification receipt.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L127:cd48c8757993",
+      "heading": "The Prompt (paste into the target AI)",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 135,
+      "sha256": "cd48c87579935803ba89e5d8599eae119bd1a40cbc589b3e3fe94700aad8afb5",
+      "text": "- Bind the score scale/direction, weights, normalization, assumptions, admissible domain and tie/strict-boundary treatment. Check the entire declared domain for universal claims; a few scenarios or samples cannot prove them. Preserve counterexamples and do not extend a proof beyond its scores and constraints.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L128:3be16a5ebd7f",
+      "heading": "The Prompt (paste into the target AI)",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 136,
+      "sha256": "3be16a5ebd7f4d750d09ee0f8317f5d7b19160ccf399e0279ee36bafc9f3465c",
+      "text": "- Use the bundled exact linear checker for supported point scores or closed bounded-simplex claims; use a suitable verified method for other models. If unsupported, unavailable or unverified, omit unsupported numerical certainty and give a qualified qualitative comparison or state the dependent numerical claim unverified. Do not invent weights or arithmetic solely to satisfy defaults; proposed scores/weights remain explicit assumptions, not accepted preferences or empirical evidence. Hard requirements remain separate eligibility gates.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L135:d57033ab4bc3",
+      "heading": "The Prompt (paste into the target AI)",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 143,
+      "sha256": "d57033ab4bc388aec22eed58c0ee3c450e44a8e19653e6f095f10bbec4e6da99",
+      "text": "- A probability claim needs an explicit supported distribution/model and actual calculation or simulation evidence, with method, sample size/seed when relevant and uncertainty. Do not call a sampled weight fraction a real-world success probability, fabricate a simulation, or turn qualitative scenarios into universal numerical guarantees. The numerical-check helper does not compute probabilities.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L142:9175f6ed1836",
+      "heading": "The Prompt (paste into the target AI)",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 150,
       "sha256": "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
       "text": "11) Ask the user for a choice when taste/judgment is required.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L139:b08323849156",
+      "id": "engos-reconciliation-converge:L143:b08323849156",
       "heading": "The Prompt (paste into the target AI)",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 147,
+      "source_line": 151,
       "sha256": "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
       "text": "- Do not assume preferences.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L142:05772d0999a4",
+      "id": "engos-reconciliation-converge:L146:05772d0999a4",
       "heading": "The Prompt (paste into the target AI)",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 150,
+      "source_line": 154,
       "sha256": "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
       "text": "PAUSE when user input is required.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L146:a3db8fcf819c",
+      "id": "engos-reconciliation-converge:L150:a3db8fcf819c",
       "heading": "The Prompt (paste into the target AI)",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 154,
+      "source_line": 158,
       "sha256": "a3db8fcf819c40a996f15b851d4f52176e7bc36937540ccc5ce139af56801a42",
       "text": "- Keeps only the strongest elements",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L200:fac7308fc753",
+      "id": "engos-reconciliation-converge:L205:fac7308fc753",
       "heading": "Recommendation Artifact Review",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 208,
+      "source_line": 213,
       "sha256": "fac7308fc753e7364810b482102da1e7e819381425febf8aedd509d7ef140b6b",
       "text": "Existing domain checks, source rules, uncertainty labels, required artifact contents and permission boundaries remain mandatory. Producing an artifact includes its domain observations or findings; the independent review findings below are a separate list of defects in that artifact. Required output formats apply to the writer's artifact, not coordinator dispatches or reviewer findings. Completing an author checklist or assigning an author score does not accept the artifact. This review does not replace another workflow's approval, identity, path-fit or bounded return protocol, and grants no wider execution authority.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L204:283e7be539f4",
+      "id": "engos-reconciliation-converge:L209:283e7be539f4",
       "heading": "Three Roles",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 212,
+      "source_line": 217,
       "sha256": "283e7be539f472b9be3611179d19aa6dcb47a7d6be2764415c7e007a45e1dd1d",
       "text": "- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L205:dea1be25a70c",
+      "id": "engos-reconciliation-converge:L210:dea1be25a70c",
       "heading": "Three Roles",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 213,
+      "source_line": 218,
       "sha256": "dea1be25a70cb9c3b76aec16b97d9fbc43e09d315850ca53a095b5979399cdeb",
       "text": "- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L207:32659bf6e33c",
+      "id": "engos-reconciliation-converge:L212:32659bf6e33c",
       "heading": "Three Roles",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 215,
+      "source_line": 220,
       "sha256": "32659bf6e33c011c3144f25db8d302cc6162072c987fd8cf23e4b4a1c5b5a84c",
       "text": "Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L211:420f35be46a1",
+      "id": "engos-reconciliation-converge:L216:420f35be46a1",
       "heading": "Finding and Repair Cycle",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 219,
+      "source_line": 224,
       "sha256": "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
       "text": "2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L213:ddb7354cd7f7",
+      "id": "engos-reconciliation-converge:L218:ddb7354cd7f7",
       "heading": "Finding and Repair Cycle",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 221,
+      "source_line": 226,
       "sha256": "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
       "text": "4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-reconciliation-converge:L215:ee18a182fff0",
+      "id": "engos-reconciliation-converge:L220:ee18a182fff0",
       "heading": "Finding and Repair Cycle",
       "source": "ssot/engos-reconciliation-converge.md",
-      "source_line": 223,
+      "source_line": 228,
       "sha256": "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
       "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:L232:42a14abba217",
+      "heading": "Numerical Check Resource",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "source_line": 240,
+      "sha256": "42a14abba2175418b03c0406e162f5fd27738e6170cf0620a05281b62155c5ff",
+      "text": "The helper reads exact JSON from stdin or an existing file, writes only its result",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -314,6 +376,236 @@
       "text": "Hardening the wording of proposal A alone can use SuperCharge. Showing that one prompt handles this conflict more reliably requires an Auto-Research comparison with frozen cases and independent evaluation; source counts or fewer calls do not establish benefit. The existing Converge writer/reviewer/coordinator contract still applies to substantial outputs.",
       "kind": "invariant",
       "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L20:9de710563645",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 20,
+      "sha256": "9de710563645bcc66e0da4e45d21e965af4c1b94b28edbed132a1160d383f66c",
+      "text": "def fields(value, required, optional=()):",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L21:eb0dbc5803aa",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 21,
+      "sha256": "eb0dbc5803aa063ba1d3b8d0184bafd23507de4c03dd3e0c577ec209892d4b23",
+      "text": "if not isinstance(value, dict) or not set(required) <= value.keys() or set(value) - set(required) - set(optional):",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L27:3d1d7b49e990",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 27,
+      "sha256": "3d1d7b49e990222f9fb24e972975e27c6afba04fe7a1b7cc96383e0d7026b2e7",
+      "text": "raise ContractError(\"numbers must be exact integers, fixed decimals or rational strings\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L39:7ffe7141d7cc",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 39,
+      "sha256": "7ffe7141d7cca37e9b2ad041ef0a881b67f9637c313db6eeeb9aab1721f10acb",
+      "text": "raise ContractError(\"vector length must match criteria\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L81:2a4887b6169f",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 81,
+      "sha256": "2a4887b6169fc68e60076c608f5f66d7f82c6c61fe3303c602024d9ea8b483b0",
+      "text": "raise ContractError(\"criteria must be 1 to 32 unique nonempty names\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L86:79d5c467b1ec",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 86,
+      "sha256": "79d5c467b1ec28c66f0cd7908d5e350dae8870dd6b94d76e44f38159b67b8533",
+      "text": "raise ContractError(\"scores must name 2 to 32 alternatives\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L92:386315b4f763",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 92,
+      "sha256": "386315b4f763ab809daa33d1df5022f5052e19b155e569017faf4a9cab297aca",
+      "text": "\"scope\": \"Declared higher-is-better linear scores only; no preference, empirical or probability evidence.\"}",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L96:db1db38aa33e",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 96,
+      "sha256": "db1db38aa33e6ad42dc73424a234a588420ba09bcf1280394b60aefae03ddafb",
+      "text": "raise ContractError(\"point weights must be nonnegative and sum exactly to one\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L112:38b0ad8eb99d",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 112,
+      "sha256": "38b0ad8eb99dc781d06ff36f822962362d3f8175106137e8be4071329ee8855d",
+      "text": "raise ContractError(\"only a closed bounded_simplex domain is supported\")",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py:L131:4c8884a5def8",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "source_line": 131,
+      "sha256": "4c8884a5def8fe9e8f53b1e90e43370dffd96abe041dc8d6db7f24548d9ff378",
+      "text": "\"certificate_scope\": \"Exact linear min/max only on the stated closed bounded simplex.\"}",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L4:7243cccfef69",
+      "heading": "root",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 4,
+      "sha256": "7243cccfef690596ae98d67f1a7b0960cf288d396f87c5611325b592ed9e15e3",
+      "text": "supplies them. Qualitative comparisons do not require invented numerical inputs.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L14:47c7f325dc46",
+      "heading": "Claim and evidence contract",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 14,
+      "sha256": "47c7f325dc46082f9fe16e2d1b8b125bcc040538024bac7eb7d2ce3e255048b4",
+      "text": "or complete explicit symbolic proof. Read the observed result; do not substitute",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L16:bfde930391a3",
+      "heading": "Claim and evidence contract",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 16,
+      "sha256": "bfde930391a3503eeef75e4e3b69c704006440aedcc073b26a9ee6e0c9a02d0e",
+      "text": "counterexamples and ties. A few scenarios prove only those scenarios; a universal",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L18:f0e390920e39",
+      "heading": "Claim and evidence contract",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 18,
+      "sha256": "f0e390920e3965aa0091df92c25f624767943ff820b8ff9ae81f5fc36d0a3763",
+      "text": "bounds and tie treatment. Do not extend a proof beyond its input scores/constraints.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L25:5ee77244d828",
+      "heading": "Claim and evidence contract",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 25,
+      "sha256": "5ee77244d828c05820ce5e86c6933f0babf929cca258f6f522e13d8f6cbd76e5",
+      "text": "numerical claim unverified. Do not silently change the model, enlarge the domain,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L35:b2ff7dfdfe6a",
+      "heading": "Portable helper, including read-only stdin use",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 35,
+      "sha256": "b2ff7dfdfe6ae8a76b33493483e999beee614d74babc090afec1feb7db84af4a",
+      "text": "## Portable helper, including read-only stdin use",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L45:3b4cfcbbb27a",
+      "heading": "Portable helper, including read-only stdin use",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 45,
+      "sha256": "3b4cfcbbb27a2a9ab5735a466562fca5a4f2d98854a1c684976dc8c7b31731fd",
+      "text": "Use the absolute helper path when cwd must remain your project. `--input FILE`",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L55:cf0cf0430e51",
+      "heading": "Portable helper, including read-only stdin use",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 55,
+      "sha256": "cf0cf0430e517a0dac3413b48aa0d3832012497ef57c8a6df0874647621e6cbf",
+      "text": "The only domain is `{\"type\":\"bounded_simplex\",\"lower\":[...],\"upper\":[...]}`:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L59:b91afc8b2b08",
+      "heading": "Portable helper, including read-only stdin use",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 59,
+      "sha256": "b91afc8b2b085c9ce24d8fe2d07faee23d7c44b707feed47571a7041bdc7134c",
+      "text": "Point weights must separately be nonnegative and sum exactly to one; they do not",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L67:d87719cb71b7",
+      "heading": "Portable helper, including read-only stdin use",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 67,
+      "sha256": "d87719cb71b74d09947a7a38ad12d3a7f8808f7f0487e90f6e74f491413b5e10",
+      "text": "characters are unsupported. Scores may be negative and must already use the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L81:71d464a13474",
+      "heading": "Reading the certificate",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 81,
+      "sha256": "71d464a13474a1f7b97a01dc4b7058a91a664bff9c3e8b82dbdcbb95bcf78ed0",
+      "text": "It reports `proved_over_declared_domain` only when the minimum is nonnegative for",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L96:02c536b5a17f",
+      "heading": "Reading the certificate",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 96,
+      "sha256": "02c536b5a17f7d8164d42603c04fc3dc27aa12d4d3e8909262cd10b03d21dc29",
+      "text": "`-(score(left)-score(right))`. This covers only independent closed interval bounds",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-reconciliation-converge:sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md:L98:80fc1b12a037",
+      "heading": "Reading the certificate",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "source_line": 98,
+      "sha256": "80fc1b12a0370e3f3835f7497cfdaa183f5d75467e9803a8c330d306c8d12713",
+      "text": "scores and probabilistic models are unsupported. Do not approximate them with a",
+      "kind": "invariant",
+      "mapped_to": []
     }
   ],
   "risk_tiers": {
@@ -324,15 +616,23 @@
   "source_references": [
     {
       "path": "ssot/engos-reconciliation-converge.md",
-      "sha256": "a55e6c178b50a65a817f3b35c87e1c3d1bf4eeabdc3f7a78592d9e15f04724b5"
+      "sha256": "3cb84c9506ffa916a51746901557a582df660e92cde30512636b8e57fd6917cf"
     },
     {
       "path": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
       "sha256": "17c7b3acb92bcc69f26ca5ccac1fde6b43c9020791adb49170a79e1e3a50a516"
     },
     {
+      "path": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "sha256": "54e5144670e0417522eab5052cb046fc80d80652c0af6d3eee209b82bcf17260"
+    },
+    {
+      "path": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "sha256": "894001d0fcc2c48a9cc1be24ceca96fffbb06ab70669d38f7ad88401743b8ce0"
+    },
+    {
       "path": "sources/capability-resources/engos-reconciliation-converge/resource-map.json",
-      "sha256": "38da21a17c537bfb958c2fa204db7695f31b8c812e6adf9f9a9d1759a8c31d9c"
+      "sha256": "76b80c39443ee55d2efbd260dfb0d1650524ef32ad4a4fff9614350199997ba1"
     }
   ],
   "known_ambiguities": [],
@@ -345,11 +645,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 26,
+    "total": 54,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "bd1ba6f47d3fcb29460a6c7db360aec8687833df903f000b764b6f55dd6eb06c"
+  "resource_bundle_sha256": "62ca425494a58e339a4adf0c600ceaff82d9781aa2354a3fa8615c1704428fd8"
 }

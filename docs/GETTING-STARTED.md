@@ -181,6 +181,13 @@ shadows the global package and identify which bytes the session loaded. Explicit
 reading a package can support a manual workflow; it does not prove native discovery.
 A successful package recovery likewise does not prove discovery or task success.
 
+For a numerical proposal comparison, Converge explains the score/weight assumptions
+and verifies reported calculations. A universal “wins for all weights” claim needs
+a proof over a stated domain, not a few favorable scenarios. Its optional
+[exact linear checker](CLI-REFERENCE.md#converge-numerical-checks) accepts stdin
+without creating files. Unsupported models retain qualified qualitative conclusions;
+calculation accuracy does not establish your preferences or measured success.
+
 ## What success looks like
 
 You can identify the skill used, its effective package, the requested artifact

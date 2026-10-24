@@ -19,6 +19,10 @@
     "00d8595edbcfe6a6680d0eb0867e752edbaf1e4d8aa2a6fafb34b6aca9770fb8",
     "57e6b1d178f18cd57b54e0c07fe1c2f6f38e50b577feefc0671ec11f87245426",
     "8196306b3005ff113b62a447d8bdfc6249f968c15a3bc5b7a28f8eadbe266301",
+    "c2d2541e8bb4856bff298db7ea0754bd4148800ac6ed32a627f97d978d81c425",
+    "cd48c87579935803ba89e5d8599eae119bd1a40cbc589b3e3fe94700aad8afb5",
+    "3be16a5ebd7f4d750d09ee0f8317f5d7b19160ccf399e0279ee36bafc9f3465c",
+    "d57033ab4bc388aec22eed58c0ee3c450e44a8e19653e6f095f10bbec4e6da99",
     "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
     "b083238491563b2a681a8d6413a9e9fd2d1ed8398bec0ec56599d55d55b9f136",
     "05772d0999a475fbdaebb079e042eeeb27fedea1fb8a64626670928f83e7abac",
@@ -30,8 +34,32 @@
     "420f35be46a1e2897db9a15706174ebb232e5c4ec39ec538a64eeab0e9adfe80",
     "ddb7354cd7f77d788c2dbbbe162d7d65f9699f0123127b140402db5149370349",
     "ee18a182fff070e270d8848d35b7ce527647fed86ac15c70c9814cdb3ca9e93d",
+    "42a14abba2175418b03c0406e162f5fd27738e6170cf0620a05281b62155c5ff",
     "a609e8416a8fb334d3e5590b0238ba90f4cfaaa177ecc5448e9c4e7cc7683e45",
-    "2dcfe536aa83dc3117c41bebba00787928bedf005976cc157404fc0e6e3ca967"
+    "2dcfe536aa83dc3117c41bebba00787928bedf005976cc157404fc0e6e3ca967",
+    "9de710563645bcc66e0da4e45d21e965af4c1b94b28edbed132a1160d383f66c",
+    "eb0dbc5803aa063ba1d3b8d0184bafd23507de4c03dd3e0c577ec209892d4b23",
+    "3d1d7b49e990222f9fb24e972975e27c6afba04fe7a1b7cc96383e0d7026b2e7",
+    "7ffe7141d7cca37e9b2ad041ef0a881b67f9637c313db6eeeb9aab1721f10acb",
+    "2a4887b6169fc68e60076c608f5f66d7f82c6c61fe3303c602024d9ea8b483b0",
+    "79d5c467b1ec28c66f0cd7908d5e350dae8870dd6b94d76e44f38159b67b8533",
+    "386315b4f763ab809daa33d1df5022f5052e19b155e569017faf4a9cab297aca",
+    "db1db38aa33e6ad42dc73424a234a588420ba09bcf1280394b60aefae03ddafb",
+    "38b0ad8eb99dc781d06ff36f822962362d3f8175106137e8be4071329ee8855d",
+    "4c8884a5def8fe9e8f53b1e90e43370dffd96abe041dc8d6db7f24548d9ff378",
+    "7243cccfef690596ae98d67f1a7b0960cf288d396f87c5611325b592ed9e15e3",
+    "47c7f325dc46082f9fe16e2d1b8b125bcc040538024bac7eb7d2ce3e255048b4",
+    "bfde930391a3503eeef75e4e3b69c704006440aedcc073b26a9ee6e0c9a02d0e",
+    "f0e390920e3965aa0091df92c25f624767943ff820b8ff9ae81f5fc36d0a3763",
+    "5ee77244d828c05820ce5e86c6933f0babf929cca258f6f522e13d8f6cbd76e5",
+    "b2ff7dfdfe6ae8a76b33493483e999beee614d74babc090afec1feb7db84af4a",
+    "3b4cfcbbb27a2a9ab5735a466562fca5a4f2d98854a1c684976dc8c7b31731fd",
+    "cf0cf0430e517a0dac3413b48aa0d3832012497ef57c8a6df0874647621e6cbf",
+    "b91afc8b2b085c9ce24d8fe2d07faee23d7c44b707feed47571a7041bdc7134c",
+    "d87719cb71b74d09947a7a38ad12d3a7f8808f7f0487e90f6e74f491413b5e10",
+    "71d464a13474a1f7b97a01dc4b7058a91a664bff9c3e8b82dbdcbb95bcf78ed0",
+    "02c536b5a17f7d8164d42603c04fc3dc27aa12d4d3e8909262cd10b03d21dc29",
+    "80fc1b12a0370e3f3835f7497cfdaa183f5d75467e9803a8c330d306c8d12713"
   ],
   "editable_behavior": [],
   "primary_outcome": {
@@ -129,6 +157,26 @@
       "text": "Hard constraint: Do NOT create a \u201cFrankenstein\u201d merge. If elements do not fit cleanly, surface the conflict and ask the user to choose."
     },
     {
+      "sha256": "c2d2541e8bb4856bff298db7ea0754bd4148800ac6ed32a627f97d978d81c425",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "- Before reporting any numerical total, difference, range, threshold, probability or universal sensitivity claim, load the numerical-check route from resources/resource-map.json and verify the actual inputs with a reproducible calculation or complete explicit symbolic proof. This applies when you choose MCDA yourself, not only when the user supplies numbers. Read the observed result; do not invent a verification receipt."
+    },
+    {
+      "sha256": "cd48c87579935803ba89e5d8599eae119bd1a40cbc589b3e3fe94700aad8afb5",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "- Bind the score scale/direction, weights, normalization, assumptions, admissible domain and tie/strict-boundary treatment. Check the entire declared domain for universal claims; a few scenarios or samples cannot prove them. Preserve counterexamples and do not extend a proof beyond its scores and constraints."
+    },
+    {
+      "sha256": "3be16a5ebd7f4d750d09ee0f8317f5d7b19160ccf399e0279ee36bafc9f3465c",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "- Use the bundled exact linear checker for supported point scores or closed bounded-simplex claims; use a suitable verified method for other models. If unsupported, unavailable or unverified, omit unsupported numerical certainty and give a qualified qualitative comparison or state the dependent numerical claim unverified. Do not invent weights or arithmetic solely to satisfy defaults; proposed scores/weights remain explicit assumptions, not accepted preferences or empirical evidence. Hard requirements remain separate eligibility gates."
+    },
+    {
+      "sha256": "d57033ab4bc388aec22eed58c0ee3c450e44a8e19653e6f095f10bbec4e6da99",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "- A probability claim needs an explicit supported distribution/model and actual calculation or simulation evidence, with method, sample size/seed when relevant and uncertainty. Do not call a sampled weight fraction a real-world success probability, fabricate a simulation, or turn qualitative scenarios into universal numerical guarantees. The numerical-check helper does not compute probabilities."
+    },
+    {
       "sha256": "9175f6ed183695f5f16fd5267b6c4d8aba1130eef6e879ae70a1e46f020aae87",
       "source": "ssot/engos-reconciliation-converge.md",
       "text": "11) Ask the user for a choice when taste/judgment is required."
@@ -184,6 +232,11 @@
       "text": "6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow."
     },
     {
+      "sha256": "42a14abba2175418b03c0406e162f5fd27738e6170cf0620a05281b62155c5ff",
+      "source": "ssot/engos-reconciliation-converge.md",
+      "text": "The helper reads exact JSON from stdin or an existing file, writes only its result"
+    },
+    {
       "sha256": "a609e8416a8fb334d3e5590b0238ba90f4cfaaa177ecc5448e9c4e7cc7683e45",
       "source": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
       "text": "Illustrative inputs: proposal A at revision a1 requires immediate erasure; proposal B at revision b1 requires retaining the same records for 30 days. Preserve both supplied locators and mark the policy decision owner unknown. The overlap is the same data lifecycle; the conflict is incompatible retention. Do not promise both. Present consequences, request the unresolved policy choice, and record which proposal or claim is rejected under the chosen criterion. A recommendation can remain conditional without inventing the owner or acceptance. This is a constructed routing example, not legal guidance or observed source evidence."
@@ -192,6 +245,121 @@
       "sha256": "2dcfe536aa83dc3117c41bebba00787928bedf005976cc157404fc0e6e3ca967",
       "source": "sources/capability-resources/engos-reconciliation-converge/examples/source-conflict.md",
       "text": "Hardening the wording of proposal A alone can use SuperCharge. Showing that one prompt handles this conflict more reliably requires an Auto-Research comparison with frozen cases and independent evaluation; source counts or fewer calls do not establish benefit. The existing Converge writer/reviewer/coordinator contract still applies to substantial outputs."
+    },
+    {
+      "sha256": "9de710563645bcc66e0da4e45d21e965af4c1b94b28edbed132a1160d383f66c",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "def fields(value, required, optional=()):"
+    },
+    {
+      "sha256": "eb0dbc5803aa063ba1d3b8d0184bafd23507de4c03dd3e0c577ec209892d4b23",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "if not isinstance(value, dict) or not set(required) <= value.keys() or set(value) - set(required) - set(optional):"
+    },
+    {
+      "sha256": "3d1d7b49e990222f9fb24e972975e27c6afba04fe7a1b7cc96383e0d7026b2e7",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "raise ContractError(\"numbers must be exact integers, fixed decimals or rational strings\")"
+    },
+    {
+      "sha256": "7ffe7141d7cca37e9b2ad041ef0a881b67f9637c313db6eeeb9aab1721f10acb",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "raise ContractError(\"vector length must match criteria\")"
+    },
+    {
+      "sha256": "2a4887b6169fc68e60076c608f5f66d7f82c6c61fe3303c602024d9ea8b483b0",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "raise ContractError(\"criteria must be 1 to 32 unique nonempty names\")"
+    },
+    {
+      "sha256": "79d5c467b1ec28c66f0cd7908d5e350dae8870dd6b94d76e44f38159b67b8533",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "raise ContractError(\"scores must name 2 to 32 alternatives\")"
+    },
+    {
+      "sha256": "386315b4f763ab809daa33d1df5022f5052e19b155e569017faf4a9cab297aca",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "\"scope\": \"Declared higher-is-better linear scores only; no preference, empirical or probability evidence.\"}"
+    },
+    {
+      "sha256": "db1db38aa33e6ad42dc73424a234a588420ba09bcf1280394b60aefae03ddafb",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "raise ContractError(\"point weights must be nonnegative and sum exactly to one\")"
+    },
+    {
+      "sha256": "38b0ad8eb99dc781d06ff36f822962362d3f8175106137e8be4071329ee8855d",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "raise ContractError(\"only a closed bounded_simplex domain is supported\")"
+    },
+    {
+      "sha256": "4c8884a5def8fe9e8f53b1e90e43370dffd96abe041dc8d6db7f24548d9ff378",
+      "source": "sources/capability-resources/engos-reconciliation-converge/scripts/check_linear.py",
+      "text": "\"certificate_scope\": \"Exact linear min/max only on the stated closed bounded simplex.\"}"
+    },
+    {
+      "sha256": "7243cccfef690596ae98d67f1a7b0960cf288d396f87c5611325b592ed9e15e3",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "supplies them. Qualitative comparisons do not require invented numerical inputs."
+    },
+    {
+      "sha256": "47c7f325dc46082f9fe16e2d1b8b125bcc040538024bac7eb7d2ce3e255048b4",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "or complete explicit symbolic proof. Read the observed result; do not substitute"
+    },
+    {
+      "sha256": "bfde930391a3503eeef75e4e3b69c704006440aedcc073b26a9ee6e0c9a02d0e",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "counterexamples and ties. A few scenarios prove only those scenarios; a universal"
+    },
+    {
+      "sha256": "f0e390920e3965aa0091df92c25f624767943ff820b8ff9ae81f5fc36d0a3763",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "bounds and tie treatment. Do not extend a proof beyond its input scores/constraints."
+    },
+    {
+      "sha256": "5ee77244d828c05820ce5e86c6933f0babf929cca258f6f522e13d8f6cbd76e5",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "numerical claim unverified. Do not silently change the model, enlarge the domain,"
+    },
+    {
+      "sha256": "b2ff7dfdfe6ae8a76b33493483e999beee614d74babc090afec1feb7db84af4a",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "## Portable helper, including read-only stdin use"
+    },
+    {
+      "sha256": "3b4cfcbbb27a2a9ab5735a466562fca5a4f2d98854a1c684976dc8c7b31731fd",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "Use the absolute helper path when cwd must remain your project. `--input FILE`"
+    },
+    {
+      "sha256": "cf0cf0430e517a0dac3413b48aa0d3832012497ef57c8a6df0874647621e6cbf",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "The only domain is `{\"type\":\"bounded_simplex\",\"lower\":[...],\"upper\":[...]}`:"
+    },
+    {
+      "sha256": "b91afc8b2b085c9ce24d8fe2d07faee23d7c44b707feed47571a7041bdc7134c",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "Point weights must separately be nonnegative and sum exactly to one; they do not"
+    },
+    {
+      "sha256": "d87719cb71b74d09947a7a38ad12d3a7f8808f7f0487e90f6e74f491413b5e10",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "characters are unsupported. Scores may be negative and must already use the"
+    },
+    {
+      "sha256": "71d464a13474a1f7b97a01dc4b7058a91a664bff9c3e8b82dbdcbb95bcf78ed0",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "It reports `proved_over_declared_domain` only when the minimum is nonnegative for"
+    },
+    {
+      "sha256": "02c536b5a17f7d8164d42603c04fc3dc27aa12d4d3e8909262cd10b03d21dc29",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "`-(score(left)-score(right))`. This covers only independent closed interval bounds"
+    },
+    {
+      "sha256": "80fc1b12a0370e3f3835f7497cfdaa183f5d75467e9803a8c330d306c8d12713",
+      "source": "sources/capability-resources/engos-reconciliation-converge/references/numerical-checks.md",
+      "text": "scores and probabilistic models are unsupported. Do not approximate them with a"
     }
   ],
   "review_status": "draft"
