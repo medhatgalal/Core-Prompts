@@ -76,7 +76,7 @@ workflow. It changes no model defaults, permissions or provider settings. It is
 not a native question UI. Inside an existing AGY chat, ask for the routing skill
 normally and use exposed question tools or inline Other/free text; do not launch
 another AGY process to retrofit flags. [Examples](EXAMPLES.md#antigravity-bounded-intake)
-and the [complete adapter contract](../sources/capability-resources/engos-route-intent/references/agy-intake.md)
+and the [complete adapter contract](../.gemini/skills/engos-route-intent/resources/references/agy-intake.md)
 explain output, interruption, scope and known evidence limits.
 [Upgrade and rollback](INSTALL-PROFILES.md#upgrade-the-antigravity-intake-resource)
 remain separate from invoking the command.

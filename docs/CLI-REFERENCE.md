@@ -42,7 +42,7 @@ with fixed plan, sandbox, sibling-root, stream-JSON and bundled-schema arguments
 no model/default-setting override or arbitrary flags are accepted. Stdout/stderr
 remain native streams. Exit 124 is timeout; 2 is local input/package/runtime setup
 failure; native failures propagate. It creates no global CLI or output file.
-[Full contract](../sources/capability-resources/engos-route-intent/references/agy-intake.md)
+[Full contract](../.gemini/skills/engos-route-intent/resources/references/agy-intake.md)
 and [first-use examples](GETTING-STARTED.md#antigravity-headless-intake).
 
 ## Engineering report CLI
