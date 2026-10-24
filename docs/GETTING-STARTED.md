@@ -46,6 +46,41 @@ and the skill's repair cycle. If that support is unavailable, the dependent revi
 gate remains incomplete. Neither a named package nor an author's checklist proves
 independent review. [Direct and delegated examples](EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).
 
+## Antigravity headless intake
+
+After verifying/upgrading the existing `engos-route-intent` package, put your
+complete request in a UTF-8 `request.txt`. Include the intended bounded result,
+read-only scope and known facts. From the project you want AGY to read, run one
+of these alternatives:
+
+```bash
+python3 "$HOME/.gemini/config/skills/engos-route-intent/resources/scripts/agy_intake.py" --prompt-file request.txt
+```
+
+Or send the same bytes through standard input:
+
+```bash
+python3 "$HOME/.gemini/config/skills/engos-route-intent/resources/scripts/agy_intake.py" < request.txt
+```
+
+Requires Python 3.11+, POSIX and a separately configured `agy` on PATH. The helper
+passes the request unchanged, supplies the bundled schema and sibling skill root,
+and preserves the complete native JSON stream. Inspect its final `selected_skill`,
+`route_reason`, `bounded_result`, `unresolved_facts`, `questions` and
+`awaiting_answer`. A clear bounded request should produce a result without an
+interview; a material unknown permits one atomic question with Other/free text,
+then stops. Native completion is not proof that these semantic requirements passed.
+
+This mode has a total 240-second limit and does not run the selected downstream
+workflow. It changes no model defaults, permissions or provider settings. It is
+not a native question UI. Inside an existing AGY chat, ask for the routing skill
+normally and use exposed question tools or inline Other/free text; do not launch
+another AGY process to retrofit flags. [Examples](EXAMPLES.md#antigravity-bounded-intake)
+and the [complete adapter contract](../.gemini/skills/engos-route-intent/resources/references/agy-intake.md)
+explain output, interruption, scope and known evidence limits.
+[Upgrade and rollback](INSTALL-PROFILES.md#upgrade-the-antigravity-intake-resource)
+remain separate from invoking the command.
+
 ## Returning from the 32-skill catalog
 
 Four new jobs make everyday selection more precise:

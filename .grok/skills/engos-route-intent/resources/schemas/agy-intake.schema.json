@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Caller question budget applies to ALL visible assistant output, including progress text, rationale, results and unresolved facts: request at most ONE independently answerable fact or decision. A compound sentence still counts as multiple requests. If the supplied facts permit the requested bounded result, deliver it directly with no intake question. Record remaining uncertainty only as declarative unresolved facts without asking, directing, inviting or assigning their resolution. Otherwise ask one material question, offer Other / free text for THAT SAME question, and stop awaiting the answer. No additional request may appear in any other field or visible text. Do not invent decisions, execute downstream work, or hide questions after generation. Follow the original read-only discovery and full-contract requirements.",
+  "properties": {
+    "selected_skill": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The skill selected through native discovery; no owner is prescribed by this schema."
+    },
+    "route_reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Concise route and depth rationale. Declarative only; no question or request."
+    },
+    "bounded_result": {
+      "type": "string",
+      "description": "Useful bounded response supported by the original user facts. Preserve the selected contract and acceptance requirements within the requested scope. No clarification requests here. If awaiting an answer, only a brief provisional route is appropriate; do not produce the downstream artifact. Do not assert an acceptance example or expected result that chooses a value for an unresolved acceptance boundary. Keep such dependent examples explicitly conditional; otherwise express only the already supplied invariant. Unresolved assumptions must not contradict normative requirements or examples."
+    },
+    "unresolved_facts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "description": "One declarative unresolved fact and its effect, with no question, invitation, imperative, or assignment to provide/resolve/confirm it. Do not invent its value."
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 1,
+      "description": "Empty when a useful bounded result can be given directly. Otherwise exactly one material question requesting exactly one independently answerable fact or decision. Do not combine facts with and, or append future requests.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Exactly one independently answerable material fact or decision. No second request, even in a subordinate clause."
+          },
+          "other_free_text": {
+            "type": "string",
+            "enum": [
+              "Other / free text"
+            ]
+          }
+        },
+        "required": [
+          "text",
+          "other_free_text"
+        ]
+      }
+    },
+    "awaiting_answer": {
+      "type": "boolean",
+      "description": "True exactly when questions contains one item: end the response and wait for the human. False when questions is empty and bounded_result delivers the requested result."
+    },
+    "toolAction": {
+      "type": "string",
+      "description": "Optional native completion action description. Declarative only; no question, request or decision."
+    },
+    "toolSummary": {
+      "type": "string",
+      "description": "Optional native completion summary. Declarative only; no question, request or decision."
+    }
+  },
+  "required": [
+    "selected_skill",
+    "route_reason",
+    "bounded_result",
+    "unresolved_facts",
+    "questions",
+    "awaiting_answer"
+  ]
+}

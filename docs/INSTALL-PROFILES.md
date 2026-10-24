@@ -497,6 +497,32 @@ native probe before installation or migration is recommended. A changelog headin
 or historical version label does not establish the running executable's version.
 Do not reinterpret historical Gemini CLI evidence as Antigravity acceptance.
 
+### Upgrade the Antigravity intake resource
+
+The optional [headless intake command](GETTING-STARTED.md#antigravity-headless-intake)
+is a resource of the existing `engos-route-intent` skill. A normal authorized
+upgrade refreshes that package; it adds no skill, agent, global launcher or
+installer setting. Use the [verified-main procedure](#upgrade-from-verified-main-before-the-next-release)
+for accepted source ahead of a release. Record the source commit: an unchanged
+version label does not make that source snapshot identical to a published tag.
+No new tag, release or scheduled timing change follows from this resource update.
+
+Preview using the existing saved selection/profile, then inspect the exact
+physical write set and ownership before applying that plan. Retain all selected
+readers and existing curated membership; Codex/Gemini shared-root changes need
+the existing joint-reader handling. Preserve customized packages, Addy links,
+provider configuration and cron entries. An unexpected change or preserved old
+routing package is a concrete gap, not complete installed parity. After apply,
+compare the installed helper/schema/reference and entrypoint with the reviewed
+merged package and record the installation transaction. Verify native effective
+loading separately, including project-local overrides.
+
+The resource is covered by normal transactional ownership and
+[guarded rollback](#recover-an-installation). Preview the recorded transaction's
+rollback before applying it; later user edits can block restoration. Do not
+replace custom launchers, edit ownership receipts or manually remove packages.
+Installing this resource does not rewrite an active AGY session's launch flags.
+
 ### Temporary manual use from a checkout
 
 If the effective global destination has not been verified for your host/version,

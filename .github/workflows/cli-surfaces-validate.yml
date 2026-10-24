@@ -34,7 +34,7 @@ jobs:
           tests/test_batman_contract.py::BatmanContractTests::test_batman_routing_fitness_remains_advisory_and_explicit_only
           tests/test_eval_pilot.py::test_static_pilot_validator_fails_when_a_protected_marker_disappears
           tests/test_public_docs_contract.py::test_readme_skill_count_matches_generated_manifest
-          tests/test_intent_guide.py tests/test_intent_routing_resources.py
+          tests/test_intent_guide.py tests/test_intent_routing_resources.py tests/test_agy_intake.py
           tests/test_uac_import.py::test_same_slug_descriptor_preserves_curated_metadata_when_quality_text_differs
           tests/test_uac_import.py::test_same_slug_descriptor_refreshes_bound_explicit_description
       - name: Verify resource delivery and capability modernization

@@ -1,3 +1,7 @@
+## Unreleased
+
+- Bundle an optional Antigravity headless intake launcher and question-budget schema inside the existing `engos-route-intent` skill. Preserve exact request/native output, inherited provider defaults, permissions, and bounded process cleanup; add no skill, agent, global wrapper or settings change. Document installed invocation, ordinary-chat limits and transactional upgrade/rollback. Source integration, installed parity and native acceptance remain separate evidence; no release or schedule change is implied.
+
 ## v1.18.0 - 2026-10-22
 
 Preparation date; tagging, publication and live installation require verified

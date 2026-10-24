@@ -73,6 +73,12 @@ explains explicit invocation and tool support. No external repository, global-ru
 activation or service is required. Core supplies the skill and its resources;
 your project and harness retain their workflow and permissions.
 
+For Antigravity from a terminal, the same skill also bundles an optional
+[one-turn headless intake command](docs/GETTING-STARTED.md#antigravity-headless-intake).
+Supply your request once; inspect the native structured result or one question
+with Other/free text. It adds no global command, interactive question UI or
+settings change. An already running AGY chat keeps its current tools and flags.
+
 ## Install or refresh your setup
 
 If the skill is already available, try it before changing setup. Otherwise use

@@ -6038,7 +6038,7 @@
     },
     "engos-route-intent": {
       "primary_job": "Recommend one first missing job and appropriate depth, explain the context-based\nreason and expected artifact, then continue already authorized work with the\nreceiving skill. Name a next handoff only when useful. Selected owners retain their\nexecution, review and acceptance contracts; routing is not proof of completion.",
-      "use_when": "Use for vague intent, uncertain skill choice or a continuation whose next owner is\nunclear. Clear bounded work and explicitly selected skills bypass redundant intake.\nA plain-language request for framing, research and a reviewed team-decision proposal\ncan select shaping without the words \u201cShape Up.\u201d Do not recursively invoke this\nrouter or invent aliases, agents or provider invocation syntax.",
+      "use_when": "Use for vague intent, uncertain skill choice or a continuation whose next owner is\nunclear. Clear bounded work and explicitly selected skills bypass redundant intake.\nA plain-language request for framing, research and a reviewed team-decision proposal\ncan select shaping without the words \u201cShape Up.\u201d Do not recursively invoke this\nrouter or invent aliases, agents or provider invocation syntax.\nFor an explicitly requested Antigravity headless intake, an external caller can\nuse the bundled `agy_intake` resource route. Never automatically self-launch it\nfrom an existing AGY chat; ordinary interactive routing keeps the workflow below.",
       "works_on": "Start with the request, conversation, supplied artifacts and host-provided skill\ninventory. Reuse known outcomes, accepted revisions, uncertainty, scope, authority\nand effort limits. No complete form or repository is required. Use an established\ntrusted root or effective package path when available; ask for a root only if it\ncannot be resolved from supplied context and is necessary for the current task.\nKeep reported acceptance, artifact presence and verified acceptance distinct.",
       "main_output": "For a small task, give a brief recommendation: outcome/depth, skill, reason,\nexpected artifact, real hold or authorized next action, and a conditional handoff\nif useful. Ask a question only when Workflow step 4 applies, with Other/free text.\nFor continuation, add the needed relationship kind, trigger, input/output and stop.\nKeep inventory hashes and binding details in supporting evidence when needed; use\nthe project's existing artifact/tracker format instead of imposing new sidecars.",
       "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
@@ -6058,9 +6058,9 @@
               "heading": "Workflow",
               "source": {
                 "path": "ssot/engos-route-intent.md",
-                "start_line": 43,
-                "end_line": 76,
-                "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                "start_line": 46,
+                "end_line": 79,
+                "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
               }
             }
           ]
@@ -6077,9 +6077,9 @@
               "heading": "Constraints",
               "source": {
                 "path": "ssot/engos-route-intent.md",
-                "start_line": 126,
-                "end_line": 134,
-                "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                "start_line": 147,
+                "end_line": 155,
+                "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
               }
             }
           ]
@@ -6094,17 +6094,17 @@
                 "path": "ssot/engos-route-intent.md",
                 "start_line": 12,
                 "end_line": 15,
-                "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
               }
             },
             {
-              "text": "Use for vague intent, uncertain skill choice or a continuation whose next owner is\nunclear. Clear bounded work and explicitly selected skills bypass redundant intake.\nA plain-language request for framing, research and a reviewed team-decision proposal\ncan select shaping without the words \u201cShape Up.\u201d Do not recursively invoke this\nrouter or invent aliases, agents or provider invocation syntax.",
+              "text": "Use for vague intent, uncertain skill choice or a continuation whose next owner is\nunclear. Clear bounded work and explicitly selected skills bypass redundant intake.\nA plain-language request for framing, research and a reviewed team-decision proposal\ncan select shaping without the words \u201cShape Up.\u201d Do not recursively invoke this\nrouter or invent aliases, agents or provider invocation syntax.\nFor an explicitly requested Antigravity headless intake, an external caller can\nuse the bundled `agy_intake` resource route. Never automatically self-launch it\nfrom an existing AGY chat; ordinary interactive routing keeps the workflow below.",
               "heading": "Invocation Hints",
               "source": {
                 "path": "ssot/engos-route-intent.md",
                 "start_line": 26,
-                "end_line": 30,
-                "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                "end_line": 33,
+                "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
               }
             }
           ]
@@ -6117,8 +6117,8 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-route-intent.md",
-          "ssot_sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029",
-          "effective_sha256": "9f74706e4352e2ccba1711a2e9be40b0f0ace46e285dfde35b9da1fab57366c9",
+          "ssot_sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f",
+          "effective_sha256": "4093a5c1b83dbf69f72d899d7f329a19ac0dbb1c21f500f288b467c80beddbc1",
           "resources": [
             {
               "path": "sources/capability-resources/engos-route-intent/references/intake-method.md",
@@ -6139,6 +6139,18 @@
             {
               "path": "sources/capability-resources/engos-route-intent/references/question-tools.md",
               "sha256": "073812adaf6ae79d118414a5816815b449d0026ab8b08066ca631d723c29b285"
+            },
+            {
+              "path": "sources/capability-resources/engos-route-intent/schemas/agy-intake.schema.json",
+              "sha256": "a0e3f04327459fdf2d0faff2d187f5fece8e0b2579a4edcfe78d26bbf6ef70de"
+            },
+            {
+              "path": "sources/capability-resources/engos-route-intent/references/agy-intake.md",
+              "sha256": "88be36a7b21ae2dce4869e8cb85cb9c14e4d9257b9d3dfb0ea696ec863a5d05d"
+            },
+            {
+              "path": "sources/capability-resources/engos-route-intent/scripts/agy_intake.py",
+              "sha256": "4ba2f45e97e84b827b7d417d1a14d45757ed5133024c69007764d31ca03ab039"
             }
           ],
           "extractor_version": "source-clauses.v1",
@@ -6152,19 +6164,19 @@
                   "path": "ssot/engos-route-intent.md",
                   "start_line": 19,
                   "end_line": 22,
-                  "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                  "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
                 }
               }
             ],
             "use_when": [
               {
-                "text": "Use for vague intent, uncertain skill choice or a continuation whose next owner is\nunclear. Clear bounded work and explicitly selected skills bypass redundant intake.\nA plain-language request for framing, research and a reviewed team-decision proposal\ncan select shaping without the words \u201cShape Up.\u201d Do not recursively invoke this\nrouter or invent aliases, agents or provider invocation syntax.",
+                "text": "Use for vague intent, uncertain skill choice or a continuation whose next owner is\nunclear. Clear bounded work and explicitly selected skills bypass redundant intake.\nA plain-language request for framing, research and a reviewed team-decision proposal\ncan select shaping without the words \u201cShape Up.\u201d Do not recursively invoke this\nrouter or invent aliases, agents or provider invocation syntax.\nFor an explicitly requested Antigravity headless intake, an external caller can\nuse the bundled `agy_intake` resource route. Never automatically self-launch it\nfrom an existing AGY chat; ordinary interactive routing keeps the workflow below.",
                 "heading": "Invocation Hints",
                 "source": {
                   "path": "ssot/engos-route-intent.md",
                   "start_line": 26,
-                  "end_line": 30,
-                  "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                  "end_line": 33,
+                  "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
                 }
               }
             ],
@@ -6174,9 +6186,9 @@
                 "heading": "Required Inputs",
                 "source": {
                   "path": "ssot/engos-route-intent.md",
-                  "start_line": 34,
-                  "end_line": 39,
-                  "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                  "start_line": 37,
+                  "end_line": 42,
+                  "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
                 }
               }
             ],
@@ -6186,9 +6198,9 @@
                 "heading": "Required Output",
                 "source": {
                   "path": "ssot/engos-route-intent.md",
-                  "start_line": 98,
-                  "end_line": 103,
-                  "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029"
+                  "start_line": 119,
+                  "end_line": 124,
+                  "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f"
                 }
               }
             ]
@@ -6203,7 +6215,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "c8070228b8718746578605268423cc1108412546b9618b9e6f1dc5ade9d2f5d7"
+          "mapping_sha256": "dce70f3b3482f4e9c1795d6e0c919c918dd72e7b2a61489f22194b2566f91c69"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -7660,7 +7672,7 @@
       "source_at_revision": {
         "status": "present",
         "path": "ssot/engos-route-intent.md",
-        "sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029",
+        "sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f",
         "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
       },
       "generated_package_at_revision": {
@@ -7764,7 +7776,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "a8c672615c341d9b4b257b8d9d2ab3eedf201c70ca396defb2c2177a0d066b96",
+    "skills_sha256": "d489bf543f8973771bd217103481ae9ec1f7cc0c03a7c58065afee1ecac173d3",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -7939,9 +7951,9 @@
         "mapping_sha256": "d1c6042750cf4e74f10df035dbd31429893c7c54efbc16d2b21a46ba83373778"
       },
       "engos-route-intent": {
-        "ssot_sha256": "cd87b612b62e215373a10d913940a1164a9f2693750de27011dfec6305004029",
-        "effective_sha256": "9f74706e4352e2ccba1711a2e9be40b0f0ace46e285dfde35b9da1fab57366c9",
-        "mapping_sha256": "c8070228b8718746578605268423cc1108412546b9618b9e6f1dc5ade9d2f5d7"
+        "ssot_sha256": "e56e2cc61ab6a58b7eea9060873cd8d2b20fb0db182ad8e82cc40273f547474f",
+        "effective_sha256": "4093a5c1b83dbf69f72d899d7f329a19ac0dbb1c21f500f288b467c80beddbc1",
+        "mapping_sha256": "dce70f3b3482f4e9c1795d6e0c919c918dd72e7b2a61489f22194b2566f91c69"
       },
       "engos-triage-my-inbox-chat-pulse": {
         "ssot_sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",
