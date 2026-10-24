@@ -12,7 +12,7 @@
       "descriptor_sha256": "6a67c472dab2acd4f044bca773938bd737e9dd9d7be26d4f0c4ef5d764fc3a7d"
     },
     "engos-audit-feature-status": {
-      "summary": "Audit a feature’s stated scope against code, tests, configuration, specifications, tickets, and Git history, then report completion states, drift, gaps, and shipping priorities. Use for feature readiness; do not use for repository-wide health or Git-only activity reports.",
+      "summary": "Audit a feature\u2019s stated scope against code, tests, configuration, specifications, tickets, and Git history, then report completion states, drift, gaps, and shipping priorities. Use for feature readiness; do not use for repository-wide health or Git-only activity reports.",
       "descriptor_sha256": "53fc6e003955bc22bdfa7998d498755a8b856d9ad9d905fffe9be1b71abb6613"
     },
     "engos-audit-opex-incident-review": {
@@ -137,7 +137,7 @@
     },
     "engos-reconciliation-converge": {
       "summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
-      "descriptor_sha256": "c9dceaeb52db963a3749da92aee4b65935b69817e93edab559dc26499d0d3f80"
+      "descriptor_sha256": "8defc29d84872bdd9394510d38c24b6dd4ee2e739179a22363432bb295bdc047"
     },
     "engos-triage-my-inbox-chat-pulse": {
       "summary": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
@@ -524,7 +524,7 @@
         },
         {
           "slug": "engos-reconciliation-converge",
-          "descriptor_sha256": "c9dceaeb52db963a3749da92aee4b65935b69817e93edab559dc26499d0d3f80",
+          "descriptor_sha256": "8defc29d84872bdd9394510d38c24b6dd4ee2e739179a22363432bb295bdc047",
           "contract_ref": "ssot/engos-reconciliation-converge.md"
         }
       ],

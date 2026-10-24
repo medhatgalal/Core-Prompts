@@ -127,12 +127,16 @@ Hard constraint: Do NOT create a “Frankenstein” merge. If elements do not fi
    - Ranking
    - Sensitivity (what changes if weights change)
    - The dominant trade-offs
+   - Before reporting any numerical total, difference, range, threshold, probability or universal sensitivity claim, load the numerical-check route from resources/resource-map.json and verify the actual inputs with a reproducible calculation or complete explicit symbolic proof. This applies when you choose MCDA yourself, not only when the user supplies numbers. Read the observed result; do not invent a verification receipt.
+   - Bind the score scale/direction, weights, normalization, assumptions, admissible domain and tie/strict-boundary treatment. Check the entire declared domain for universal claims; a few scenarios or samples cannot prove them. Preserve counterexamples and do not extend a proof beyond its scores and constraints.
+   - Use the bundled exact linear checker for supported point scores or closed bounded-simplex claims; use a suitable verified method for other models. If unsupported, unavailable or unverified, omit unsupported numerical certainty and give a qualified qualitative comparison or state the dependent numerical claim unverified. Do not invent weights or arithmetic solely to satisfy defaults; proposed scores/weights remain explicit assumptions, not accepted preferences or empirical evidence. Hard requirements remain separate eligibility gates.
 
 === PHASE 4: ROBUSTNESS (if /scenarios or /montecarlo enabled) ===
 8) Identify key uncertainties and levers.
 9) Explore plausible futures (scenarios) OR run Monte Carlo-style simulation:
    - Output outcome ranges and failure modes
    - Identify which alternatives are robust vs fragile
+   - A probability claim needs an explicit supported distribution/model and actual calculation or simulation evidence, with method, sample size/seed when relevant and uncertainty. Do not call a sampled weight fraction a real-world success probability, fabricate a simulation, or turn qualitative scenarios into universal numerical guarantees. The numerical-check helper does not compute probabilities.
 
 === PHASE 5: CONFLICT RESOLUTION (if /conflicts enabled; always do for major conflicts) ===
 10) List each material conflict as a decision point:
@@ -192,6 +196,7 @@ A strong convergence result should:
 | --- | --- |
 | Conflict visibility | Material disagreements are surfaced explicitly |
 | Decision quality | The recommendation explains why one path wins |
+| Numerical evidence | Reported arithmetic is verified; sensitivity/probability claims retain their full model, domain, proof limits and counterexamples |
 | Trade-off clarity | Gains, losses, and second-order effects are visible |
 | Output completeness | Final proposal, rationale, muted ideas, and risks are all present |
 | Boundary clarity | The capability stays synthesis-focused and does not claim orchestration authority |
@@ -221,6 +226,19 @@ Use actual separate participants. If they or their resumed contexts are unavaila
 ## Source Conflict Example Resource
 
 For a worked source-attribution example, load route source-conflict from resources/resource-map.json and read resources/examples/source-conflict.md. Resolve these paths from the active skill resource root; obtain the complete example before claiming it was used. This optional example does not replace the domain workflow or independent recommendation review, and a missing example does not authorize inventing source evidence.
+
+
+## Numerical Check Resource
+
+When numerical comparison claims are proposed, including self-selected MCDA, load
+route numerical-check from resources/resource-map.json and its complete dependencies:
+resources/references/numerical-checks.md and resources/scripts/check_linear.py.
+The helper reads exact JSON from stdin or an existing file, writes only its result
+to stdout, and checks linear scores/closed bounded-simplex inequalities with exact
+rational witnesses and certificates. It is not a general optimizer or simulation.
+Ordinary qualitative asks, human preferences, source attribution, caller-imposed
+bounded returns and the existing independent recommendation review retain their
+scope. A numerical check does not accept the proposal or authorize further work.
 
 
 Capability resource: `resources/capability.json`

@@ -45,6 +45,23 @@ failure; native failures propagate. It creates no global CLI or output file.
 [Full contract](../.gemini/skills/engos-route-intent/resources/references/agy-intake.md)
 and [first-use examples](GETTING-STARTED.md#antigravity-headless-intake).
 
+## Converge numerical checks
+
+From the effective Converge skill directory, check an existing model JSON file:
+
+```bash
+python3 -B resources/scripts/check_linear.py --input comparison.json
+```
+
+Omit `--input` to supply the exact JSON on stdin without creating a file. The
+[shipped numerical guide](../.gemini/skills/engos-reconciliation-converge/resources/references/numerical-checks.md)
+contains a complete copyable stdin example. Python 3.11+ standard library only;
+the helper writes one JSON result, never source files. It checks exact weighted
+totals and pairwise `>`/`>=` claims on closed bounded-simplex domains. Exit 0
+includes a disproved claim with a counterexample; inspect `claim.outcome`.
+Exit 2 is unsupported/invalid input. It is not an optimizer for general constraints,
+a probability simulator, a preference source or proposal acceptance.
+
 ## Engineering report CLI
 
 The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.

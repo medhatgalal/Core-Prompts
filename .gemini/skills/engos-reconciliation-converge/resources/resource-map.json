@@ -4,7 +4,14 @@
   "routes": {
     "source-conflict": [
       "examples/source-conflict.md"
+    ],
+    "numerical-check": [
+      "references/numerical-checks.md"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "references/numerical-checks.md": [
+      "scripts/check_linear.py"
+    ]
+  }
 }

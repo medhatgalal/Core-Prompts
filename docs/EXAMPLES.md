@@ -1171,6 +1171,22 @@ Follow with:
 
 > Now use `engos-quality-code-review` on the fix commit before I push it back for reviewer verification.
 
+### Verified numerical comparison
+
+> Compare these proposals using the supplied evidence. If you choose numerical
+> scores, label assumptions, verify the totals, and test any sensitivity claim
+> over its stated weight domain. Preserve ties and counterexamples. Do not invent
+> acceptance, run a simulation without evidence, or change my preferences.
+
+For example, two illustrative alternatives with scores North=(4,2), South=(2,4)
+have totals 3.5 and 2.5 at weights (0.75,0.25). North is at least as good throughout
+the explicitly constrained domain w1>=0.5, w2>=0, w1+w2=1, but ties at (0.5,0.5).
+A strict “always wins” claim is false on that same domain. These are mathematical
+facts about stated assumptions, not evidence that either proposal works in practice.
+The [bundled numerical guide](../.gemini/skills/engos-reconciliation-converge/resources/references/numerical-checks.md)
+shows the exact stdin check and its limits. Ordinary qualitative comparison needs
+no manufactured score table, and substantial proposals retain independent review.
+
 ### `engos-reconciliation-converge`
 
 Use when:

@@ -58,6 +58,11 @@ even when a curated relationship is missing or stale. It is a lookup aid; read t
 entry and selected resources before using it. `loopy` retains its upstream name;
 first-party skills use `engos-*`. No proposed rename or alias is needed.
 
+For competing proposals, Converge distinguishes source-supported preferences from
+illustrative scores. Its [numerical comparison checks](docs/EXAMPLES.md#verified-numerical-comparison)
+verify arithmetic and scoped sensitivity claims, preserve ties/counterexamples,
+and fall back to qualified qualitative reasoning when a model cannot be checked.
+
 ## Use this with AI
 
 After installation and native discovery, say:
