@@ -200,6 +200,21 @@ change or running service is required to use the package. Ordinary use follows
 the user's project rules; it does not require Core source-maintainer UAC, Git or
 PR/MR steps. A source checkout is needed only for source maintenance.
 
+## Optional Antigravity headless entrypoint
+
+If you want one terminal invocation without choosing among skill names, use the
+[installed intake resource](GETTING-STARTED.md#antigravity-headless-intake). It is
+part of the same `engos-route-intent` package and supports one schema-guided
+bounded result or one material question and stop. The request and complete native
+output remain unchanged. Its native plan/sandbox flags preserve host permissions;
+they do not establish a read-only tool allowlist or successful routing.
+
+This optional launch mode does not change the interactive method above. A skill
+cannot add flags or a native question interface to a running AGY conversation;
+use that conversation's real question tools or inline Other/free text. The
+[adapter reference](../sources/capability-resources/engos-route-intent/references/agy-intake.md)
+records the exact transport, timeout, recursion boundary and evidence limits.
+
 ## Questions and actual tool support
 
 The skill asks only when an unanswered question changes the next useful result,

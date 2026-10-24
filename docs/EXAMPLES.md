@@ -103,6 +103,36 @@ write-set, coordination, role-independence and authority evidence; the router do
 not spawn workers or execute the graph. A report-to-presentation handoff remains
 conditional on the user actually wanting that output.
 
+## Antigravity bounded intake
+
+Use the [installed helper](GETTING-STARTED.md#antigravity-headless-intake) from a
+terminal with one complete request. For example, `request.txt` could contain:
+
+> Read-only intake/result only. Discover the appropriate current skill and read
+> its complete contract and required resources. Draft a short specification from
+> these facts: title search is case-insensitive; sorting and access rules stay
+> unchanged. Whether search matches whole titles or partial titles is unresolved.
+> Give only the supported bounded specification and declarative open facts. Do
+> not edit files, execute downstream work or invent the missing acceptance rule.
+
+Expect a specification route and a bounded result without a redundant interview.
+Case-insensitivity can be specified directly. A partial-title acceptance example
+must remain explicitly conditional on the unresolved match rule; it cannot
+silently choose that rule. Zero native exit status alone does not validate this.
+
+An ambiguous request instead could read:
+
+> Read-only intake/result only. Use the current routing skill and required
+> contracts. Our handoffs keep confusing people, and I am unsure what would help
+> first. Recommend a starting outcome and ask at most one material question with
+> Other/free text if needed. Do not execute a downstream workflow.
+
+Expect a first-result question when its answer changes the route, with
+`awaiting_answer: true`; unresolved facts and metadata must add no further ask.
+The process ends, leaving the actual answer to the user. This headless adapter
+has no interactive answer loop and does not demonstrate native question UI.
+An already running AGY chat uses its current tools or inline questions instead.
+
 ## Everyday requests: before and now
 
 These are illustrative requests and expected outputs, not executed tests. Each

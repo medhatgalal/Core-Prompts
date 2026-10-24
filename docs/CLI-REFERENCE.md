@@ -29,6 +29,22 @@ that helper assembles resource context, not implementation or test execution.
 No receipt is needed for an ordinary small request. See the
 [bounded implementation example](EXAMPLES.md#engos-delivery-implement-slice).
 
+## Antigravity intake resource
+
+```bash
+python3 "$HOME/.gemini/config/skills/engos-route-intent/resources/scripts/agy_intake.py" --prompt-file request.txt
+```
+
+Omit `--prompt-file` to read a redirected UTF-8 request from stdin. The only other
+option, `--timeout-seconds`, lowers the total default 240-second input/setup/native
+budget. Requires Python 3.11+ and POSIX. This package-local helper invokes `agy`
+with fixed plan, sandbox, sibling-root, stream-JSON and bundled-schema arguments;
+no model/default-setting override or arbitrary flags are accepted. Stdout/stderr
+remain native streams. Exit 124 is timeout; 2 is local input/package/runtime setup
+failure; native failures propagate. It creates no global CLI or output file.
+[Full contract](../sources/capability-resources/engos-route-intent/references/agy-intake.md)
+and [first-use examples](GETTING-STARTED.md#antigravity-headless-intake).
+
 ## Engineering report CLI
 
 The installed `eng-report` launcher uses `~/.core-prompts-updater/scripts/eng-report.py`, so it survives source-checkout cleanup. It implements `run`; inspect `eng-report run --help` for its flags. Select a configured repository using `--config FILE --name NAME`, collect metrics using `--json`, and render using `--narrative-file FILE --output DIR`. JSON mode leaves the report directory and HTML/JavaScript artifacts untouched, but may fetch configured Git repositories. `--repo`, `--drive`, `--open`, and notification flags are not executable options. Ask `engos-audit-engineering-progress` for configuration, uploads, browser opening, or authorized notifications. Its terminal skill help starts no workflow.

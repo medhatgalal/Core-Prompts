@@ -28,6 +28,9 @@ unclear. Clear bounded work and explicitly selected skills bypass redundant inta
 A plain-language request for framing, research and a reviewed team-decision proposal
 can select shaping without the words “Shape Up.” Do not recursively invoke this
 router or invent aliases, agents or provider invocation syntax.
+For an explicitly requested Antigravity headless intake, an external caller can
+use the bundled `agy_intake` resource route. Never automatically self-launch it
+from an existing AGY chat; ordinary interactive routing keeps the workflow below.
 
 ## Required Inputs
 
@@ -75,6 +78,23 @@ Keep reported acceptance, artifact presence and verified acceptance distinct.
    A new answer, finding or source revision may change the owner. Preserve prior
    states and explain the trigger; never label a proposed transition executed.
 
+## Optional Antigravity headless intake
+
+An external terminal/controller may request one bounded intake/result turn using
+`resources/scripts/agy_intake.py`. Read the `agy_intake` route for its exact input,
+output and lifecycle contract. In that mode, give a supported bounded result or
+ask at most one atomic material question with Other/free text and stop. Count
+requests across all visible assistant fields, including metadata; keep unresolved
+facts declarative and acceptance examples conditional on unresolved boundaries.
+Read selected full contracts/resources and retain human decisions. Do not execute
+downstream work or reinterpret an unanswered question as permission.
+
+The launcher preserves the request and raw native output, inherits provider
+defaults, and adds no question UI or semantic validation. Native completion is
+not acceptance; plan/sandbox flags alone do not prove read-only behavior. This
+optional mode does not change ordinary interactive routing or install launch flags
+into an existing host. Never use it recursively from an AGY conversation.
+
 ## On-Demand Resources
 
 The entry is sufficient for a clear direct task. Do not read every reference or
@@ -83,6 +103,7 @@ run a catalog scan as a startup ritual. For a needed route, read
 
 | Need | Resource route / guidance |
 | --- | --- |
+| Explicit external Antigravity headless intake/result call | `agy_intake`: `scripts/agy_intake.py`, schema and invocation reference |
 | Extra help distinguishing an ambiguous outcome or depth | `intake`: `references/intake-method.md` |
 | A needed clarification requires checking the available question interface | `question_tools`: `references/question-tools.md` |
 | Rely on a cross-owner, repeated, return or parallel relationship | `relationships`: `references/relationship-method.md` and the applicable `routing-relations.json` rows |

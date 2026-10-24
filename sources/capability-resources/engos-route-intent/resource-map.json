@@ -14,12 +14,19 @@
     ],
     "question_tools": [
       "references/question-tools.md"
+    ],
+    "agy_intake": [
+      "scripts/agy_intake.py"
     ]
   },
   "dependencies": {
     "scripts/inspect_catalog.py": [
       "references/relationship-method.md",
       "routing-relations.json"
+    ],
+    "scripts/agy_intake.py": [
+      "schemas/agy-intake.schema.json",
+      "references/agy-intake.md"
     ]
   }
 }
