@@ -94,6 +94,10 @@ defaults, and adds no question UI or semantic validation. Native completion is
 not acceptance; plan/sandbox flags alone do not prove read-only behavior. This
 optional mode does not change ordinary interactive routing or install launch flags
 into an existing host. Never use it recursively from an AGY conversation.
+Cleanup retries denied signals only for its owned process group within the total
+budget. Unverified cleanup is reported explicitly: preserve a primary nonzero
+status, or change an otherwise successful status to local failure 2. Permission
+denial is not proof of absence; cleanup does not override permissions.
 
 ## On-Demand Resources
 

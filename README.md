@@ -12,7 +12,8 @@ would materially change the route, with an Other/free-text answer path.
 `engos-route-intent` provides intake across the current catalog,
 including nonengineering jobs. A clear direct task needs no new interview.
 
-The intake skill is included in the prepared v1.18.0 source. Check the package available in
+The intake skill ships in v1.18.0; the v1.18.1 cleanup patch is prepared with
+publication still gated on native acceptance and release checks. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 
@@ -83,6 +84,8 @@ For Antigravity from a terminal, the same skill also bundles an optional
 Supply your request once; inspect the native structured result or one question
 with Other/free text. It adds no global command, interactive question UI or
 settings change. An already running AGY chat keeps its current tools and flags.
+An incomplete owned-process cleanup is now an explicit failure, never a silent
+success; see the installed adapter contract for status handling.
 
 ## Install or refresh your setup
 

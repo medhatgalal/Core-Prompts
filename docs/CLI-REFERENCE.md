@@ -41,7 +41,9 @@ budget. Requires Python 3.11+ and POSIX. This package-local helper invokes `agy`
 with fixed plan, sandbox, sibling-root, stream-JSON and bundled-schema arguments;
 no model/default-setting override or arbitrary flags are accepted. Stdout/stderr
 remain native streams. Exit 124 is timeout; 2 is local input/package/runtime setup
-failure; native failures propagate. It creates no global CLI or output file.
+failure or incomplete cleanup after an otherwise successful native result; native
+nonzero/timeout/interruption codes are preserved with an additive cleanup warning
+when needed. It creates no global CLI or output file.
 [Full contract](../.gemini/skills/engos-route-intent/resources/references/agy-intake.md)
 and [first-use examples](GETTING-STARTED.md#antigravity-headless-intake).
 

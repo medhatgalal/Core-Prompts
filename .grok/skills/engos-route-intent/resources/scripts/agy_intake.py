@@ -85,27 +85,55 @@ def invocation(request: str) -> list[str]:
             "--json-schema", schema, "-p", request]
 
 
-def signal_group(child: subprocess.Popen, signum: int) -> bool:
+def signal_group(child: subprocess.Popen, signum: int) -> str:
+    """Only ESRCH proves absence; a permission denial remains an error state."""
     try:
         os.killpg(child.pid, signum)
-        return True
+        return "sent"
     except ProcessLookupError:
-        return False
+        return "absent"
+    except PermissionError:
+        return "denied"
 
 
-def stop_group(child: subprocess.Popen, signum: int, deadline: float) -> None:
-    """Only target our session; clean descendants even if the group leader exits."""
-    if not signal_group(child, signum):
-        child.wait()
-        return
-    until = min(deadline, time.monotonic() + CLEANUP_SECONDS)
-    while time.monotonic() < until:
-        child.poll()
-        if not signal_group(child, 0):
-            break
-        time.sleep(min(0.02, max(0, until - time.monotonic())))
-    signal_group(child, signal.SIGKILL)
-    child.wait()
+def stop_group(child: subprocess.Popen, signum: int, deadline: float) -> str | None:
+    """Bounded cleanup of the fixed group created by start_new_session=True.
+
+    Retry denied signals/probes within this budget; never select another group
+    or infer absence from EPERM. poll() reaps the direct child without waiting.
+    """
+    started = time.monotonic()
+    end = min(deadline, started + CLEANUP_SECONDS)
+    force_at = started + max(0, end - started) / 2
+    sent = None
+    absent = False
+    denied = set()
+    while True:
+        now = time.monotonic()
+        requested = signum if now < force_at else signal.SIGKILL
+        if not absent and sent != requested:
+            result = signal_group(child, requested)
+            if result == "absent":
+                absent = True
+            elif result == "sent":
+                sent = requested
+            else:
+                denied.add(int(requested))
+        if not absent:
+            result = signal_group(child, 0)
+            absent = result == "absent"
+            if result == "denied":
+                denied.add(0)
+        reaped = child.poll() is not None
+        if absent and reaped:
+            return None
+        remaining = end - time.monotonic()
+        if remaining <= 0:
+            detail = "group absence unverified" if not absent else "direct child reaping unverified"
+            if denied:
+                detail += "; permission denied for signals " + ",".join(map(str, sorted(denied)))
+            return detail
+        time.sleep(min(0.02, remaining))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -119,6 +147,7 @@ def main(argv: list[str] | None = None) -> int:
     interrupted: list[int] = []
     previous = {}
     child = None
+    result_code = 2
 
     def remember_signal(signum, _frame):
         if not interrupted:
@@ -134,7 +163,7 @@ def main(argv: list[str] | None = None) -> int:
         request = read_request(args.prompt_file, deadline, interrupted)
         command = invocation(request)
         if interrupted:
-            return 128 + interrupted[0]
+            raise InterruptedError
         # Reserve cleanup inside the overall deadline, including short test budgets.
         stop_at = deadline - min(CLEANUP_SECONDS, args.timeout_seconds / 4)
         if time.monotonic() >= stop_at:
@@ -145,32 +174,44 @@ def main(argv: list[str] | None = None) -> int:
                                  env=env, start_new_session=True)
         while True:
             if interrupted:
-                return 128 + interrupted[0]
+                raise InterruptedError
             code = child.poll()
             if code is not None:
-                return code if code >= 0 else 128 - code
+                result_code = code if code >= 0 else 128 - code
+                break
             remaining = stop_at - time.monotonic()
             if remaining <= 0:
                 raise TimeoutError
             time.sleep(min(0.05, remaining))
     except TimeoutError:
         print("agy-intake: total time budget expired", file=sys.stderr)
-        return 124
+        result_code = 124
     except InterruptedError:
-        return 128 + interrupted[0] if interrupted else 130
+        result_code = 128 + interrupted[0] if interrupted else 130
     except IntakeError as exc:
         print(f"agy-intake: {exc}", file=sys.stderr)
-        return 2
+        result_code = 2
     except (OSError, UnicodeError, ValueError):
         # Do not echo request/schema contents from exception messages.
         print("agy-intake: invalid input, package or runtime; check UTF-8 input, bundled schema and agy on PATH", file=sys.stderr)
-        return 2
+        result_code = 2
     finally:
-        if child is not None:
-            # poll() may reap the leader while descendants still own our streams.
-            stop_group(child, interrupted[0] if interrupted else signal.SIGTERM, deadline)
-        for signum, handler in previous.items():
-            signal.signal(signum, handler)
+        cleanup_problem = None
+        try:
+            if child is not None:
+                cleanup_problem = stop_group(child, interrupted[0] if interrupted else signal.SIGTERM, deadline)
+        except Exception as exc:
+            # Preserve the primary result and avoid exposing exception payloads.
+            cleanup_problem = "cleanup inspection failed (" + type(exc).__name__ + ")"
+        finally:
+            for signum, handler in previous.items():
+                signal.signal(signum, handler)
+        if cleanup_problem:
+            print(f"agy-intake: cleanup incomplete; original_status={result_code}; "
+                  f"native_status={getattr(child, 'returncode', None)}; {cleanup_problem}", file=sys.stderr)
+            if result_code == 0:
+                result_code = 2
+    return result_code
 
 
 if __name__ == "__main__":

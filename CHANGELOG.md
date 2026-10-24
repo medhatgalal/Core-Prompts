@@ -1,4 +1,13 @@
-## Unreleased
+## v1.18.1 - 2026-10-24
+
+Prepared patch release; source and deterministic verification do not establish
+publication or native acceptance. Tagging/publication remain conditional on the
+original vague and supplied-proposal comparison AGY cases (`agy-2-vague` and
+`agy-3-competing-ideas`) passing their unchanged acceptance criteria,
+plus the normal exact-head/main CI, package and parity gates. No tag is created
+by this preparation.
+
+- Bound Antigravity intake cleanup after signal/probe permission denial. Retry only the owned process group within the existing budget, preserve primary nonzero outcomes, report unverified cleanup explicitly, and restore signal handlers even when cleanup inspection fails. An otherwise successful result becomes local failure 2 when cleanup cannot be verified. The native denial's OS cause remains unknown; no permission override or native retry is added.
 
 - Require reproducible numerical evidence for Converge totals, sensitivity thresholds and probability claims, including self-selected MCDA. Bundle an exact linear score/bounded-simplex checker with rational witnesses and scoped certificates; retain qualitative fallback, human preferences, source attribution and independent review. This is an existing-skill source update, not a new skill, agent, release or native acceptance claim.
 

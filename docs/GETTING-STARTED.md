@@ -70,6 +70,9 @@ and preserves the complete native JSON stream. Inspect its final `selected_skill
 `awaiting_answer`. A clear bounded request should produce a result without an
 interview; a material unknown permits one atomic question with Other/free text,
 then stops. Native completion is not proof that these semantic requirements passed.
+A `cleanup incomplete` diagnostic means process-group absence or child reaping
+was not verified within the budget. Preserve that failure: a primary nonzero code
+stays nonzero, and an otherwise successful result returns local failure 2.
 
 This mode has a total 240-second limit and does not run the selected downstream
 workflow. It changes no model defaults, permissions or provider settings. It is

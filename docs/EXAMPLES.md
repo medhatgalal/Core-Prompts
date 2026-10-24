@@ -119,6 +119,9 @@ Expect a specification route and a bounded result without a redundant interview.
 Case-insensitivity can be specified directly. A partial-title acceptance example
 must remain explicitly conditional on the unresolved match rule; it cannot
 silently choose that rule. Zero native exit status alone does not validate this.
+If cleanup cannot verify its owned group is gone and direct child reaped, retain
+the explicit cleanup warning and failure status; do not call the run successful
+or retry it outside the authorized run budget.
 
 An ambiguous request instead could read:
 
@@ -2173,8 +2176,8 @@ a reported bug is fixed. Package availability is source evidence; native use and
 helper effectiveness require separate evidence.
 
 Published v1.17.1 retains v1.17.0's 36-skill catalog and adds installer fixes.
-Prepared v1.18.0 adds `engos-route-intent` as the 37th skill. These examples do not
-assert v1.18.0 publication, installed parity or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
+Published v1.18.0 added `engos-route-intent` as the 37th skill; prepared v1.18.1
+retains that catalog. These examples do not establish installed parity or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
 catalog adopts all current and future skills; curated policy adds named skills.
 Use [the install-profile commands and shared-root consent rules](INSTALL-PROFILES.md#choose-future-skill-membership).
 A refreshed helper inside an existing package is a resource update, not a new

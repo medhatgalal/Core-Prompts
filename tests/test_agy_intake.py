@@ -241,3 +241,119 @@ def test_normal_leader_exit_cleans_term_ignoring_descendant_and_inherited_stream
     finally:
         if descendant and is_running(descendant): os.kill(descendant, signal.SIGKILL)
         unrelated.terminate(); unrelated.wait()
+
+
+@pytest.fixture
+def cleanup_module():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("agy_cleanup_contract", RESOURCES / "scripts/agy_intake.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+class CleanupChild:
+    pid = 12345
+    returncode = None
+    def poll(self):
+        return self.returncode
+    def wait(self, *args, **kwargs):
+        raise AssertionError("cleanup must never use a blocking wait")
+
+
+@pytest.mark.parametrize("denied_signal", [signal.SIGTERM, 0, signal.SIGKILL])
+def test_transient_denial_is_retried_not_assumed_absent(cleanup_module, monkeypatch, denied_signal):
+    m = cleanup_module; child = CleanupChild(); clock = [0.0]; denied = [0]; calls = []
+    def killpg(group, signum):
+        calls.append((group, signum))
+        if signum == denied_signal and denied[0] < 3:
+            denied[0] += 1
+            raise PermissionError("injected startup permission denial")
+        if child.returncode is not None:
+            raise ProcessLookupError
+        if signum == signal.SIGKILL:
+            child.returncode = -signal.SIGKILL
+    monkeypatch.setattr(m.os, "killpg", killpg)
+    monkeypatch.setattr(m.time, "monotonic", lambda: clock[0])
+    monkeypatch.setattr(m.time, "sleep", lambda seconds: clock.__setitem__(0, clock[0] + seconds))
+    assert m.stop_group(child, signal.SIGTERM, .5) is None
+    assert denied[0] == 3
+    assert all(group == child.pid for group, _ in calls)
+    assert child.returncode is not None and clock[0] <= .5
+
+
+@pytest.mark.parametrize("denied_signal", [None, 0])
+def test_never_permitted_cleanup_is_bounded_and_not_success(cleanup_module, monkeypatch, denied_signal):
+    m = cleanup_module; child = CleanupChild(); clock = [0.0]; calls = []
+    def killpg(group, signum):
+        calls.append((group, signum))
+        if denied_signal is None or signum == denied_signal:
+            raise PermissionError("injected persistent denial")
+        if signum == signal.SIGKILL: child.returncode = -9
+    monkeypatch.setattr(m.os, "killpg", killpg)
+    monkeypatch.setattr(m.time, "monotonic", lambda: clock[0])
+    monkeypatch.setattr(m.time, "sleep", lambda seconds: clock.__setitem__(0, clock[0] + seconds))
+    problem = m.stop_group(child, signal.SIGTERM, .1)
+    assert "unverified" in problem and "permission denied" in problem
+    assert clock[0] <= .1 and all(group == child.pid for group, _ in calls)
+
+
+def test_absent_group_with_unreaped_child_never_waits_forever(cleanup_module, monkeypatch):
+    m = cleanup_module; child = CleanupChild(); clock = [0.0]; calls = []
+    def absent(group, signum):
+        calls.append((group, signum)); raise ProcessLookupError
+    monkeypatch.setattr(m.os, "killpg", absent)
+    monkeypatch.setattr(m.time, "monotonic", lambda: clock[0])
+    monkeypatch.setattr(m.time, "sleep", lambda seconds: clock.__setitem__(0, clock[0] + seconds))
+    assert "reaping unverified" in m.stop_group(child, signal.SIGTERM, .1)
+    assert clock[0] <= .1 and len(calls) == 1
+
+
+@pytest.mark.parametrize("primary", [0, 9, 124, 130, 143])
+@pytest.mark.parametrize("unexpected", [False, True])
+def test_cleanup_failure_preserves_primary_failure_and_restores_handlers(cleanup_module, monkeypatch, capsys, primary, unexpected):
+    m = cleanup_module; child = CleanupChild()
+    child.returncode = primary if primary in (0, 9) else None
+    before = {sig: signal.getsignal(sig) for sig in (signal.SIGINT, signal.SIGTERM)}
+    monkeypatch.setattr(m, "read_request", lambda *args: "bounded request")
+    monkeypatch.setattr(m, "invocation", lambda *args: ["fake-native"])
+    def spawn(*args, **kwargs):
+        assert kwargs["start_new_session"] and kwargs["shell"] is False
+        if primary in (130, 143): os.kill(os.getpid(), primary - 128)
+        return child
+    def fail_cleanup(*args):
+        if unexpected: raise RuntimeError("private exception payload must not be echoed")
+        return "group absence unverified; permission denied for signals 0,15"
+    monkeypatch.setattr(m.subprocess, "Popen", spawn)
+    monkeypatch.setattr(m, "stop_group", fail_cleanup)
+    result = m.main(["--timeout-seconds", ".04"])
+    assert result == (2 if primary == 0 else primary)
+    captured = capsys.readouterr()
+    assert "cleanup incomplete" in captured.err and f"original_status={primary}" in captured.err
+    assert "Traceback" not in captured.err and "private exception payload" not in captured.err
+    assert captured.out == ""
+    assert {sig: signal.getsignal(sig) for sig in before} == before
+
+
+def test_real_owned_process_recovers_from_denied_probe_without_touching_unrelated(cleanup_module, monkeypatch):
+    m = cleanup_module
+    child = subprocess.Popen([sys.executable, "-c", "import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);print('ready',flush=True);time.sleep(10)"],
+                             stdout=subprocess.PIPE, start_new_session=True)
+    unrelated = subprocess.Popen([sys.executable, "-c", "import time;time.sleep(10)"])
+    original = m.signal_group; denied = [0]; calls = []
+    def transient(proc, signum):
+        calls.append(proc.pid)
+        if signum == 0 and denied[0] < 3:
+            denied[0] += 1
+            return "denied"
+        return original(proc, signum)
+    try:
+        assert child.stdout.readline() == b"ready\n"
+        monkeypatch.setattr(m, "signal_group", transient)
+        assert m.stop_group(child, signal.SIGTERM, time.monotonic() + .5) is None
+        assert denied[0] == 3 and child.poll() is not None
+        assert unrelated.poll() is None and all(pid == child.pid for pid in calls)
+    finally:
+        if child.poll() is None: child.kill()
+        child.wait(timeout=2)
+        unrelated.terminate(); unrelated.wait(timeout=2)
