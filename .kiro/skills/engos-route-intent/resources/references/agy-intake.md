@@ -55,7 +55,7 @@ metadata; unresolved facts are declarative. Acceptance examples that depend on
 an unresolved boundary stay conditional. Read the selected full skill and required
 resources, retain human decisions, and do not execute downstream work in this turn.
 
-Exit zero means native process completion, not semantic acceptance. The launcher
+Exit zero means native process completion with observed cleanup, not semantic acceptance. The launcher
 does not grade, filter, repair or certify output. Inspect all visible assistant
 text and native actions before making a behavioral claim. A complete trace of
 actual contract/resource reads is separate from a model's claimed read receipt.
@@ -75,11 +75,24 @@ native execution and reserved cleanup. `--timeout-seconds` may lower it, never
 increase it. Timeout exits 124; invalid input/package/runtime setup exits 2.
 Native nonzero status is retained; signals return 128 plus the signal number.
 The launcher creates an owned process group, forwards SIGINT/SIGTERM to it, and
-terminates remaining group members on every exit, including when the native
-leader has already exited, and reaps its direct child without targeting other jobs.
-Terminated descendants are reaped by the operating system. Native exit status is
-preserved when cleanup follows normal completion.
+attempts to terminate remaining group members on every exit, including when the
+native leader has already exited, and verifies direct-child reaping without
+targeting other jobs. Terminated descendants are reaped by the operating system.
+Native exit status is preserved when cleanup verifies completion; incomplete
+cleanup has the explicit failure behavior below.
 It creates no output files; explicitly redirect/capture streams when needed.
+
+Cleanup distinguishes a sent signal, a missing group (ESRCH), and a denied
+signal/probe (EPERM). It retries transient denials only on its fixed owned group,
+using the remaining cleanup budget for termination, forced termination and
+nonblocking child reaping. It never treats denial as absence or signals another
+group. If group absence or direct-child reaping remains unverified at the deadline,
+stderr adds a concise `cleanup incomplete` diagnostic with the original status.
+A primary nonzero native/timeout/interruption status is preserved; an otherwise
+successful status becomes local failure 2. Unexpected cleanup errors use the same
+failure reporting, and the original signal handlers are restored. No unbounded
+wait or permission override is used. This does not establish the OS cause of a
+denial or promise permission restoration. Native stdout/stderr are not filtered.
 
 Do not automatically launch this helper from an existing AGY conversation. Its
 child environment marker `CORE_PROMPTS_AGY_INTAKE_ACTIVE` blocks adapter-descendant

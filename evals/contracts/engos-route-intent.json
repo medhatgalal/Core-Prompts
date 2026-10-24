@@ -26,6 +26,7 @@
     "2921dd841fafb2c1e3094174da158093903ba36cc8af18d3ab3c193e10468ffd",
     "e23128cbaaca897e973d36c4e66d41166236485a47ea384583adc5e79d1f72ae",
     "3deab548c026d2cd6ae05396e9e968207eaad761625dbe881356e483c77b90eb",
+    "602df22c06e68fa54c74adad9f077c96b2315c08a7a2881c19906d398704c883",
     "ce11c562ceea782f450a67de6a4a4d7b971941a94149b3a1d97eb174b4a8a71f",
     "0d5bc7dbcbe20af21ae425262c9d639b37f8e56ae20a5d8570b3a9c889d16cd8",
     "ba4090f2b92d5c3aa3989b3af42dc0839efe20ef225c0b693d5e0a71c719d382",
@@ -148,11 +149,14 @@
     "63315bd33523bdf9339786c04babae8de9d26df2247e97acdf8d2fc4882c882c",
     "defd3fa0a2144a31393e11905d554c2bde35b8e3ccc0fa68531c696856ab6554",
     "c0f3523a6c8027063f4b6e4206190b30712ed891ca7b477d8deaaa225ce6b02a",
+    "a4e82eb91fcd2e68502139e6fbd58cc12b77116863f7f0439a213ef8864af047",
+    "f32fc0757bab846c81b4e2c909836f0a2a86e9a14521dec062be4f8eb46edd11",
     "9cb2501ec0588c36939fc584708efba31b911da1c698067ae885e0d99b490216",
     "055c718eeb73b40af591abb4c0c9ea4c40d7e0b3c88b9f748f0582b79ad53ee5",
     "80a4ff7e4bcd643355e35135253a8d02c6df049d388da1be491e996d5b19f618",
     "b030207b1a740fcbd0b1b3ba6a5db918fbd95491fd3c48d81f53e9a4a5546c1e",
-    "a1298135df073a4c14cccb192c112e8dd5934fc7c3ffc257e9d1000fc6acce1c",
+    "b6feeec09cb2740b1c26e12875f9b8122e4feed7202bb48e334a9b652a40d20e",
+    "479d84fabbb41aabd65aed8cb82ed9447cb49a5738e1ea9c4186416c2de0e8da",
     "a08fff3904c1c52f20890b917350eff066519897a789f413405c0ab7df545cda"
   ],
   "editable_behavior": [],
@@ -284,6 +288,11 @@
       "sha256": "3deab548c026d2cd6ae05396e9e968207eaad761625dbe881356e483c77b90eb",
       "source": "ssot/engos-route-intent.md",
       "text": "into an existing host. Never use it recursively from an AGY conversation."
+    },
+    {
+      "sha256": "602df22c06e68fa54c74adad9f077c96b2315c08a7a2881c19906d398704c883",
+      "source": "ssot/engos-route-intent.md",
+      "text": "Cleanup retries denied signals only for its owned process group within the total"
     },
     {
       "sha256": "ce11c562ceea782f450a67de6a4a4d7b971941a94149b3a1d97eb174b4a8a71f",
@@ -896,6 +905,16 @@
       "text": "native execution and reserved cleanup. `--timeout-seconds` may lower it, never"
     },
     {
+      "sha256": "a4e82eb91fcd2e68502139e6fbd58cc12b77116863f7f0439a213ef8864af047",
+      "source": "sources/capability-resources/engos-route-intent/references/agy-intake.md",
+      "text": "signal/probe (EPERM). It retries transient denials only on its fixed owned group,"
+    },
+    {
+      "sha256": "f32fc0757bab846c81b4e2c909836f0a2a86e9a14521dec062be4f8eb46edd11",
+      "source": "sources/capability-resources/engos-route-intent/references/agy-intake.md",
+      "text": "nonblocking child reaping. It never treats denial as absence or signals another"
+    },
+    {
       "sha256": "9cb2501ec0588c36939fc584708efba31b911da1c698067ae885e0d99b490216",
       "source": "sources/capability-resources/engos-route-intent/references/agy-intake.md",
       "text": "Do not automatically launch this helper from an existing AGY conversation. Its"
@@ -916,9 +935,14 @@
       "text": "raise IntakeError(\"request must be nonempty UTF-8 without NUL bytes\")"
     },
     {
-      "sha256": "a1298135df073a4c14cccb192c112e8dd5934fc7c3ffc257e9d1000fc6acce1c",
+      "sha256": "b6feeec09cb2740b1c26e12875f9b8122e4feed7202bb48e334a9b652a40d20e",
       "source": "sources/capability-resources/engos-route-intent/scripts/agy_intake.py",
-      "text": "\"\"\"Only target our session; clean descendants even if the group leader exits.\"\"\""
+      "text": "\"\"\"Only ESRCH proves absence; a permission denial remains an error state.\"\"\""
+    },
+    {
+      "sha256": "479d84fabbb41aabd65aed8cb82ed9447cb49a5738e1ea9c4186416c2de0e8da",
+      "source": "sources/capability-resources/engos-route-intent/scripts/agy_intake.py",
+      "text": "Retry denied signals/probes within this budget; never select another group"
     },
     {
       "sha256": "a08fff3904c1c52f20890b917350eff066519897a789f413405c0ab7df545cda",

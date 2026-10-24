@@ -47,17 +47,22 @@ Before each release build, verify and record the preceding published release on
 both providers. Its tag object and commit must agree. Set that exact tag as the
 comparison baseline and keep it set for every rebuild, including after merge.
 
-For the prepared v1.18.0 release, compare against published v1.17.1. Verify the
-baseline tag object and commit on both providers before accepting the build.
-The prior publication receipt and local tag record tag object
-`5f1b8249496bef60765e1741c4ed78b22a6b77d7` pointing to commit
-`86d9f51159a3a3dfdc7660a6872bc776f8f639b5`; this is historical/local evidence,
-not a substitute for fresh remote parity. Reverify both providers before release:
+For the prepared v1.18.1 patch, compare against published v1.18.0. The
+controller verified both providers at preparation: tag object
+`07259eb5a636d04688c12da89e3196ba5ff2a9a2` points to commit
+`66507aa201ea6cac59d35fd99d38d19c085b95d3`. Reverify remote parity before
+publication; this recorded preparation evidence is not a permanent live check.
 
 ```bash
-export CORE_PROMPTS_RELEASE_BASE_REF=v1.17.1
+export CORE_PROMPTS_RELEASE_BASE_REF=v1.18.0
 bin/capability-fabric build
 ```
+
+v1.18.1 publication is additionally held until the original vague and supplied-proposal comparison AGY
+cases (`agy-2-vague` and `agy-3-competing-ideas`) meet their unchanged acceptance criteria with the reviewed cleanup repair.
+Retain failed/incomplete runs and their consumed reservations. Deterministic tests,
+prepared version bytes and successful source delivery do not waive that gate.
+Do not tag or publish solely because the package can be built.
 
 For another release, replace that value with its verified preceding published
 tag. The generator supports this explicit baseline and otherwise selects the
@@ -232,7 +237,7 @@ When using `validate --with-cli`, native validator results also honor error-outp
 
 ## Recommended Release Order
 
-The v1.18.0 preparation alone does not authorize merge or these publication steps. The
+The v1.18.1 preparation alone does not authorize merge or these publication steps. The
 [publication and live-rollout hold](#publication-and-live-rollout-hold) must be
 resolved before creating or pushing matching tags. The target is the future
 reviewed release-preparation merge SHA with exact-SHA hosted checks and parity,
@@ -315,9 +320,11 @@ consent for entrypoints in empty directories, exact missing-owned Grok recovery,
 and its descriptor, publication, durability and FIFO safeguards. The earlier
 qualified adoption evidence is retained with its original limits; it does not
 substitute for current candidate checks or waive or regrade any native test.
-Prepared v1.18.0 adds `engos-route-intent` as the 37th skill, with contained routing,
+Published v1.18.0 added `engos-route-intent` as the 37th skill, with contained routing,
 on-demand references and receipt-owned rename support. Catalog growth does not
 expand saved concrete membership or establish installation, discovery or task success.
+Prepared v1.18.1 retains these 37 skill identities; cleanup and numerical-resource
+repairs have separate current acceptance gates.
 Historical native acceptance remains **18/25**, with the original cells and criteria unchanged.
 No new native provider run or universal provider acceptance is claimed.
 
