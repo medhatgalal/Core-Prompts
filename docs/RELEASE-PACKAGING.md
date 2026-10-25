@@ -13,11 +13,23 @@ Source archives include `docs/INTENT-ROUTING.md`, `docs/GUIDE-HOSTING.md`, the o
 
 ## Local Release Gate
 
+Source-checkout validation uses `python3 scripts/validation_environment.py` to
+check required tools and existing CI Python dependencies without installing them.
+Both CI providers explicitly pass `--install-python-deps` at their existing
+provisioning stage, then run the six environment controls before the original
+regression stages. GitLab retains full strict schema validation; GitHub retains
+`--strict --skip-schema`.
+
+For local tests, pass `--pytest` followed by the normal pytest arguments. The
+launcher uses the same Python interpreter, runs from its own checkout, checks
+pytest's effective temporary-directory settings before collection, and returns
+the pytest exit status. This helper is source-only; installed bundles do not need it.
+
 Before any generator or source-generating test, verify the committed runtime
 inventory without rebuilding it:
 
 ```bash
-python3 -m pytest -q tests/test_install_bundle.py
+python3 scripts/validation_environment.py --pytest -q tests/test_install_bundle.py
 python3 scripts/build-install-runtime.py --check
 python3 scripts/build-legacy-catalog.py --check
 ```
@@ -29,10 +41,18 @@ diff; a successful build cannot prove the prior committed inventory was valid.
 First verify the comparison baseline and run the release build described below. The full test suite includes archive tests that require the generated `dist/consumer-shell` views. On a clean committed checkout, validate the checked-in surfaces before that build, as CI does.
 
 ```bash
-env -u CORE_PROMPTS_RELEASE_BASE_REF python3 -m pytest -q
+env -u CORE_PROMPTS_RELEASE_BASE_REF python3 scripts/validation_environment.py --pytest -q
 bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
 ```
+
+An explicit pytest `--basetemp` must put cache-test fixtures under `/private/tmp`
+or Python's resolved temporary root, matching the existing cache policy. To use a
+task-owned directory elsewhere, create its parent first and set `TMPDIR` to that
+parent for the test command only; choose a disposable child for `--basetemp`.
+The launcher also checks pytest `addopts` and `PYTEST_DEBUG_TEMPROOT`, without
+changing global settings or cache ownership checks. Without `--pytest`,
+`--basetemp PATH` checks only the proposed path.
 
 Keep the verified release-base override for actual release builds. The test suite
 creates isolated Git repositories with their own tags; the per-command `env -u`

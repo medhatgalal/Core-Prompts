@@ -1,3 +1,7 @@
+## Unreleased
+
+- Share source-validation environment preparation across local pytest runs and both CI providers, with actionable prerequisite failures and temporary-root checks before test collection; preserve existing dependency specifications, stage order and release-test coverage.
+
 ## v1.18.1 - 2026-10-24
 
 Historical preparation record: tagging/publication was conditional on the
