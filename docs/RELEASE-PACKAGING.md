@@ -41,16 +41,45 @@ setting intact. During uncommitted release preparation, stage the intended new
 source and generated resource files before testing: package fixtures enumerate
 Git-tracked paths. Inspect the staged scope before running the gate.
 
+## Release acceptance record
+
+The [scope rules](../.kiro/steering/repo-workflow.md#scope-rules) and
+[verification expectations](../.kiro/steering/repo-workflow.md#verification-expectations)
+remain the standing policy. For each release, its actual existing per-run
+acceptance and approval record is the place to find the agreed completion basis.
+Retain its established location (for example, a run's `PLAN.md` and reviewed-release
+record under `reports/`, when applicable) and link to that record from the PR/MR
+within its existing disclosure boundary. Keep private evidence private and use
+permitted summaries or references in public release notes.
+
+The record identifies the exact source revision and comparison baseline, scoped
+deliverable, required evidence and its results, accepted publication basis and
+actual authority reference, terminal state, and links to checks, review, approval
+and delivery receipts. At closeout, label earlier checkpoints as historical and
+point to the final record. Preparation, publication and any in-scope installation
+have separate evidence; a change to the accepted basis needs its actual authorized
+decision recorded, not an inferred waiver from a successful build.
+
+| Completion description | What the run record establishes |
+| --- | --- |
+| Package-qualified completion | The authorized source/package deliverable met its required checks, integrity, parity and publication evidence. Native or comparative limitations remain explicit; package delivery does not establish those outcomes. |
+| Behavior-qualified completion | The declared behavioral acceptance criteria also have valid evidence bound to the assessed revision, cases and runtime. This supports only that tested scope, and does not itself establish publication or installation. |
+| Required-evidence hold | Evidence required by the accepted basis is missing, failed or invalid, or necessary authority is absent. The dependent action remains held; preserve confirmed failures and incomplete results. |
+
+These descriptions explain the recorded basis; they do not create alternative
+release gates or authorize publication. Follow the [publication and live-rollout
+hold](#publication-and-live-rollout-hold) and the run's actual scope and approvals.
+
 ## Release comparison baseline
 
 Before each release build, verify and record the preceding published release on
 both providers. Its tag object and commit must agree. Set that exact tag as the
 comparison baseline and keep it set for every rebuild, including after merge.
 
-For the prepared v1.18.1 patch, compare against published v1.18.0. The
-controller verified both providers at preparation: tag object
+Historical v1.18.1 preparation example: the comparison baseline was published
+v1.18.0. The controller verified both providers at preparation: tag object
 `07259eb5a636d04688c12da89e3196ba5ff2a9a2` points to commit
-`66507aa201ea6cac59d35fd99d38d19c085b95d3`. Reverify remote parity before
+`66507aa201ea6cac59d35fd99d38d19c085b95d3`. For a future release, reverify remote parity before
 publication; this recorded preparation evidence is not a permanent live check.
 
 ```bash
@@ -58,11 +87,18 @@ export CORE_PROMPTS_RELEASE_BASE_REF=v1.18.0
 bin/capability-fabric build
 ```
 
-v1.18.1 publication is additionally held until the original vague and supplied-proposal comparison AGY
-cases (`agy-2-vague` and `agy-3-competing-ideas`) meet their unchanged acceptance criteria with the reviewed cleanup repair.
-Retain failed/incomplete runs and their consumed reservations. Deterministic tests,
-prepared version bytes and successful source delivery do not waive that gate.
-Do not tag or publish solely because the package can be built.
+**Historical v1.18.1 decision:** preparation originally held publication until the
+vague and supplied-proposal comparison AGY cases (`agy-2-vague` and
+`agy-3-competing-ideas`) met their unchanged acceptance criteria with the reviewed
+cleanup repair. On 2026-10-24, the owner explicitly approved a qualified
+source/package publication basis for revision
+`b7e6ec809e4833e520cdce74bab59e0bb0e0e83e`; publication and asset verification on both
+providers subsequently completed. See the [primary release notes](https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/releases/v1.18.1)
+and [mirror release notes](https://github.com/medhatgalal/Core-Prompts/releases/tag/v1.18.1)
+for that dated basis and its limits. The vague case remains incomplete and the
+Converge case unrun; original criteria, grades, failures and consumed reservations
+remain unchanged. This release-specific decision superseded its preparation hold,
+not the standing checks or the acceptance basis of a future release.
 
 For another release, replace that value with its verified preceding published
 tag. The generator supports this explicit baseline and otherwise selects the
@@ -237,11 +273,11 @@ When using `validate --with-cli`, native validator results also honor error-outp
 
 ## Recommended Release Order
 
-The v1.18.1 preparation alone does not authorize merge or these publication steps. The
-[publication and live-rollout hold](#publication-and-live-rollout-hold) must be
-resolved before creating or pushing matching tags. The target is the future
-reviewed release-preparation merge SHA with exact-SHA hosted checks and parity,
-not the earlier source-main commit or this unmerged preparation branch.
+For each future release, use its [acceptance record](#release-acceptance-record)
+and resolve the [publication and live-rollout hold](#publication-and-live-rollout-hold)
+before creating or pushing matching tags. Preparation alone does not authorize
+merge or publication. The target is the reviewed release-preparation merge SHA
+with exact-SHA hosted checks and parity.
 
 1. run the local release gate
 2. push the branch and wait for GitHub Actions and GitLab CI to go green

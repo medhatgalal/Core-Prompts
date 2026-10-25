@@ -1,11 +1,18 @@
 ## v1.18.1 - 2026-10-24
 
-Prepared patch release; source and deterministic verification do not establish
-publication or native acceptance. Tagging/publication remain conditional on the
+Historical preparation record: tagging/publication was conditional on the
 original vague and supplied-proposal comparison AGY cases (`agy-2-vague` and
 `agy-3-competing-ideas`) passing their unchanged acceptance criteria,
-plus the normal exact-head/main CI, package and parity gates. No tag is created
-by this preparation.
+plus the normal exact-head/main CI, package and parity gates. Preparation alone
+created no tag and established neither publication nor native acceptance.
+
+Subsequently published on both providers on 2026-10-24 from
+`b7e6ec809e4833e520cdce74bab59e0bb0e0e83e` with an explicit owner-approved qualified
+source/package basis and verified assets. See the [primary release notes](https://gitlab.appian-stratus.com/medhat.galal/core-prompts/-/releases/v1.18.1)
+and [mirror release notes](https://github.com/medhatgalal/Core-Prompts/releases/tag/v1.18.1).
+That dated decision superseded the preparation-only native publication requirement;
+the vague case remains incomplete, Converge remains unrun, and original criteria
+and grades are unchanged. The preparation change descriptions below remain historical.
 
 - Bound Antigravity intake cleanup after signal/probe permission denial. Retry only the owned process group within the existing budget, preserve primary nonzero outcomes, report unverified cleanup explicitly, and restore signal handlers even when cleanup inspection fails. An otherwise successful result becomes local failure 2 when cleanup cannot be verified. The native denial's OS cause remains unknown; no permission override or native retry is added.
 
