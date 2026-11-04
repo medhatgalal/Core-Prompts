@@ -1471,6 +1471,31 @@ Follow with:
 
 > Now generate the handoff summary for the next Incident Commander.
 
+### `engos-operations-daily-update`
+
+Use when:
+
+- an org keeps its daily status in one shared Google Doc, one tab per initiative
+- a leader wants their update drafted from their own Jira, Git, chat and meetings
+- the doc owner closes out the day and sends readers a short summary
+
+Why this skill first:
+
+- start here for a recurring shared status doc; nothing is written until the person says "publish", and nothing is sent until they say "send"
+
+Ask:
+
+> /engos-operations-daily-update
+
+Expected output:
+
+- a draft section for each tab the person updates, with sources linked and guesses listed separately
+- the question "Publish?"; the doc changes only after "publish"
+
+Follow with:
+
+> /engos-operations-daily-update close
+
 ### `engos-meta-instruction-editor`
 
 Preview status: available for auditable editing, but not behaviorally promoted. Material meaning changes receive independent review; behavioral claims need independent evaluation.

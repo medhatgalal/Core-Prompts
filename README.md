@@ -113,7 +113,7 @@ provide the recovery path.
 
 ## Skills, workers and larger delivery
 
-The current generated surfaces contain `37` skills and no shipped named-agent configurations.
+The current generated surfaces contain `38` skills and no shipped named-agent configurations.
 Use the same skill in your main session or supply it and required resources to a
 real independent worker when requested or required by its contract. A second
 answer from the same author does not establish independent review. [Examples](docs/EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).

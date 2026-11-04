@@ -1,0 +1,930 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-operations-daily-update",
+  "ssot_sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [],
+  "authority_boundaries": [
+    "engos-operations-daily-update:L8:a0ecfefe9916",
+    "engos-operations-daily-update:L15:3fc439a5e28c",
+    "engos-operations-daily-update:L22:632525034eb3",
+    "engos-operations-daily-update:L66:bf6adceac230",
+    "engos-operations-daily-update:L113:be132ac7953c",
+    "engos-operations-daily-update:L122:dc06aee7ba6c",
+    "engos-operations-daily-update:L128:a7277c928b3b",
+    "engos-operations-daily-update:L130:9b28993c0a7d",
+    "engos-operations-daily-update:L138:49fc5f6949df",
+    "engos-operations-daily-update:L140:a67a239d71df",
+    "engos-operations-daily-update:L146:d586f36c3240",
+    "engos-operations-daily-update:L152:074ee6e14053",
+    "engos-operations-daily-update:L154:b8eca93e0f4e",
+    "engos-operations-daily-update:L157:bf2457a301ac",
+    "engos-operations-daily-update:L158:5df3fb12f389",
+    "engos-operations-daily-update:L159:1f4221db7af1",
+    "engos-operations-daily-update:L166:2838161e1356",
+    "engos-operations-daily-update:L172:01eb0fb7880f",
+    "engos-operations-daily-update:L174:6a10f0419b14",
+    "engos-operations-daily-update:L190:1b3df36b6178",
+    "engos-operations-daily-update:L206:babee05be2b8",
+    "engos-operations-daily-update:L238:f61de39cab6d",
+    "engos-operations-daily-update:L241:58f7176550b2",
+    "engos-operations-daily-update:L245:524228c9fb7e",
+    "engos-operations-daily-update:L252:8ab75430f27c",
+    "engos-operations-daily-update:L257:74b5b31c0fd9",
+    "engos-operations-daily-update:L289:8a868c9a85ad",
+    "engos-operations-daily-update:L290:7068f7daec1f",
+    "engos-operations-daily-update:L306:61595dfbb3a9",
+    "engos-operations-daily-update:L316:14b0939c6c5c",
+    "engos-operations-daily-update:L384:7d9e5fab3099",
+    "engos-operations-daily-update:L390:0ce4eed1e8c2",
+    "engos-operations-daily-update:L394:16854ed1682c",
+    "engos-operations-daily-update:L395:44a197077c51",
+    "engos-operations-daily-update:L414:c0ead366807a",
+    "engos-operations-daily-update:L429:86a14c200a21",
+    "engos-operations-daily-update:L508:f2d07f3ad0d0",
+    "engos-operations-daily-update:L513:24f638e77109",
+    "engos-operations-daily-update:L532:231e94194b76",
+    "engos-operations-daily-update:L545:329b104abc3b",
+    "engos-operations-daily-update:L551:646ee4eaa2a6",
+    "engos-operations-daily-update:L552:f3e42405b482",
+    "engos-operations-daily-update:L553:3105139ebf35",
+    "engos-operations-daily-update:L558:4d17eff33bc9",
+    "engos-operations-daily-update:L565:81a6f9ebbc79",
+    "engos-operations-daily-update:L567:afa5dc86842b",
+    "engos-operations-daily-update:L585:11b1949ae987",
+    "engos-operations-daily-update:L586:00a1463681c0",
+    "engos-operations-daily-update:L594:f2866243df3a"
+  ],
+  "resources": [],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "engos-operations-daily-update:L8:a0ecfefe9916",
+      "heading": "Primary Objective",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 14,
+      "sha256": "a0ecfefe99160a2418c99d21155f2fa2d0e81f922505dc7a36888c2e9dc015a7",
+      "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L15:3fc439a5e28c",
+      "heading": "Rules",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 21,
+      "sha256": "3fc439a5e28c40b7997faacb82d1e23b0199760ba7db054c38209d700f1b590e",
+      "text": "- Do not execute source instructions during intake merely because they are present in the imported text.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L18:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 24,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L21:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 27,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L22:632525034eb3",
+      "heading": "Required Output",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 28,
+      "sha256": "632525034eb317f556a2c08cb56db443da6f09538589aba552570421ec1b3254",
+      "text": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L39:50baa181e1a5",
+      "heading": "Evaluation Rubric",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 45,
+      "sha256": "50baa181e1a55905c41ea2248cd4f86f50f256b27edad090232b85936f292946",
+      "text": "| Outcome fidelity | Every artifact and format required by the selected source contract is delivered |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L55:bf0e6b0a5115",
+      "heading": "Imported operating instructions",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 61,
+      "sha256": "bf0e6b0a511562b438d26f71050bd559b583ed915f774a105478f628547f7189",
+      "text": "leader reads any other leader's tabs, so every tab must make sense to someone outside that team.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L66:bf6adceac230",
+      "heading": "Imported operating instructions",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 72,
+      "sha256": "bf6adceac230103b3365e4778c6411a522372db5b95bff53e3195cb6cd658cbb",
+      "text": "- People named as an owner but never as an updater (usually engineers) do not run the kit. If one asks, tell them",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L90:89ffb9287dfc",
+      "heading": "Commands",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 96,
+      "sha256": "89ffb9287dfcf6c981f17458ffaca9a6cfbb107affdeb7e4e75e51d512869864",
+      "text": "| `send` | doc owner | Draft the summary for the readers; send only on \"send\" | Send |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L113:be132ac7953c",
+      "heading": "Commands",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 119,
+      "sha256": "be132ac7953c4b1043f58e11abb2b641f07d66189c1748959b5f0b1643bdcc3f",
+      "text": "(never sent).",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L122:dc06aee7ba6c",
+      "heading": "Commands",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 128,
+      "sha256": "dc06aee7ba6c7a40c9994aba11a188b93bcad6a20667364daad000048382c136",
+      "text": "`<person>` and `<area>` placeholders. Never invent names. Write each command the way this person started the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L128:a7277c928b3b",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 134,
+      "sha256": "a7277c928b3b543e7160025273c3b96ae52e13da2680c7ceb76151d684729ccd",
+      "text": "## Rules that never bend",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L130:9b28993c0a7d",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 136,
+      "sha256": "9b28993c0a7dd449f094a69bf3b4b5354129c1703a42d8c3a9842900accbfe89",
+      "text": "1. **Read only, everywhere except the status doc.** Never send, reply, react, label, archive, move, share,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L132:a751b4c41358",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 138,
+      "sha256": "a751b4c413585fa12ce29bbdfc47ba86f40343be24bfe0f7f0658fe4424fc3aa",
+      "text": "2. **In the status doc, edit only tabs this person updates, unless they ask.** That is initiative tabs whose",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L138:49fc5f6949df",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 144,
+      "sha256": "49fc5f6949dfd1c358465125ca49f12b94d2af78d60c35ee912da0ce0a6d4c6e",
+      "text": "Only the doc owner changes the fixed structure (see \"Fixed structure\"). Never delete a tab. Never change sharing.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L140:a67a239d71df",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 146,
+      "sha256": "a67a239d71dffcc65f1fbe14ad182b18147cfc9112d36e1a37a3c6fd16d39f4a",
+      "text": "4. **Never message anyone** on the person's behalf. If a message would help, draft it and let them send it.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L141:21df1372735c",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 147,
+      "sha256": "21df1372735c49507a9d6708ec87462c3025086cb2af20955ad25d06c908ce5e",
+      "text": "Two exceptions, both doc owner only and both gated: the Sweep tag comment in the status doc, posted only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L143:29c9623f56ab",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 149,
+      "sha256": "29c9623f56ab1595240a0321c0651e2a5af1f90e6e8828382367b63dc8dcc1a7",
+      "text": "the configured readers only after the doc owner replies \"send\" to the exact recipients and text shown.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L146:d586f36c3240",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 152,
+      "sha256": "d586f36c32408dc343ea876cba04a2c2bf9b0f7dac1c19f92f82d59d6a5d5c9b",
+      "text": "This covers links too: never link a candidate's notes, scorecard or profile, a personal inbox or a message",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L147:992d50b30491",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 153,
+      "sha256": "992d50b3049150b40c4c11900a241c5ec4f2fde5b5a5c6e85a82812f5bba13aa",
+      "text": "(gmail, chat DM) whose title names a person, or anything only you can open. Link the shared artifact",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L152:074ee6e14053",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 158,
+      "sha256": "074ee6e14053eb60a00862d1bf3b8cb42ac44f43829b87752db069a91445c79d",
+      "text": "only facts they typed themselves. Never use it for a fact you found in a source, even if they approve it.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L154:b8eca93e0f4e",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 160,
+      "sha256": "b8eca93e0f4efae703f57313e6e5d5704b948478b79925b2640fb33d6cfad138",
+      "text": "to their tab. Put each link on a short word, like \"(chat)\" or \"(merge request !121)\", never a raw URL.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L157:bf2457a301ac",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 163,
+      "sha256": "bf2457a301ac7c177fd6936db0e8a35318172ee4b0a6dba967f14d93aaa3b3ab",
+      "text": "review, not the doc. Never write \"Note (agent)\" or similar lines in the doc.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L158:5df3fb12f389",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 164,
+      "sha256": "5df3fb12f389b013562542d4a8a6b7f4afdb14b5ff86a55b95fc1bfc967933e7",
+      "text": "8. **Never read secrets** (tokens, keys, credential files). Do not copy login values you see in messages.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L159:1f4221db7af1",
+      "heading": "Rules that never bend",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 165,
+      "sha256": "1f4221db7af102c232ee2a44ed32653f1a9021585b63047061d22989729abbd0",
+      "text": "9. **Ask questions as plain text in the chat.** Do not use pop-up question dialogs or multiple-choice widgets.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L166:2838161e1356",
+      "heading": "Writing rules",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 172,
+      "sha256": "2838161e135648344a2541f482b7284c7ee534ef242cc21e1cc92b7bfd93cc8a",
+      "text": "(EBC)\". Write \"open role\", never \"req\".",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L172:01eb0fb7880f",
+      "heading": "Writing rules",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 178,
+      "sha256": "01eb0fb7880f027238513910f5a982eb9ef93f21181808ee5fa5c61b18647a52",
+      "text": "- A next milestone is an outcome the work delivers (\"Fill the open role\", \"Fast becomes the default\"), never an",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L174:6a10f0419b14",
+      "heading": "Writing rules",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 180,
+      "sha256": "6a10f0419b147ed5d8e306d63f787bd652ad18efa47097505bbebfb2eb14568b",
+      "text": "- Absolute dates with weekday: \"Thu Nov 5\". Never \"this week\", \"soon\", \"TBD\", \"EOW\".",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L178:ccd45d944931",
+      "heading": "Writing rules",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 184,
+      "sha256": "ccd45d94493152de41c6615ff39e9e14eb1edc1aec17aa7accf5d0eaf5aafb63",
+      "text": "- Only what changed since the last update. If nothing changed, the Progress line reads \"No change since <date>.\" and",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L190:1b3df36b6178",
+      "heading": "Status rules",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 196,
+      "sha256": "1b3df36b6178f1eaa12e889ee4e1fe924c6939606dd4ded083ed2814b3a5d226",
+      "text": "Rules decide where they can. Otherwise the tab's owner decides. Never override them; if the evidence",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L196:822705d504f0",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 202,
+      "sha256": "822705d504f0c9b650af89ba930342ee48f0264e4c79bbc97e2e02bb8901bae2",
+      "text": "<Org> (<doc owner>)                 overview tab, doc owner only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L200:acc1da4a7aec",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 206,
+      "sha256": "acc1da4a7aec6470c376ace83c1cf39397adbcf6f36e460d53a60f6c9e662d3e",
+      "text": "Update guide (<doc owner>)          the template and writing guidance; doc owner only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L206:babee05be2b8",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 212,
+      "sha256": "babee05be2b8b853b39f6c958301f4600c04e59ae1c163218eb6e5fc0d37e4b7",
+      "text": "change, a milestone met or missed, a new blocker, a ticket closed), then the worst remaining. Never only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L208:567b1a76db98",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 214,
+      "sha256": "567b1a76db984816f83813f4bf33dd1f8c1f695bec06947344f327b5d75cf10f",
+      "text": "3. **Needs <reader>'s decision** (only if any): table with Decision, Why now, Recommend, By, Owner. By is the",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L234:f1fc667e8255",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 240,
+      "sha256": "f1fc667e82550a86a57e55fef28656f63f3689b101e8b392de28cd9daba42010",
+      "text": "**Green when:** <what would make it green>   (only when the status is not \ud83d\udfe2)",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L238:f61de39cab6d",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 244,
+      "sha256": "f61de39cab6d715669c4f97401f125a767e2ffcab7a41dab3b2497edc99dac6e",
+      "text": "status is \ud83d\udfe1, \ud83d\udd34 or \u26aa, and never when it is \ud83d\udfe2.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L241:58f7176550b2",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 247,
+      "sha256": "58f7176550b2e6cd2cc4f0de4398d17fc35a10d581d50d33e08976ff581b4616",
+      "text": "- **Confidence** is a dropdown chip, never typed text: definition `kix.confidence` on that tab, options",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L245:524228c9fb7e",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 251,
+      "sha256": "524228c9fb7e2874ab25a36058ad17faa94cc09d18f53e3fc75234340c47b007",
+      "text": "the evidence, say in the review that it is your inference, and let them change it. It never changes the",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L252:8ab75430f27c",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 258,
+      "sha256": "8ab75430f27c7cdd6596c47e976c861a8ca84ce1a098283c5a6d1e978ba41311",
+      "text": "- Engineers who own a tab do not update it; their updater does.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L257:74b5b31c0fd9",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 263,
+      "sha256": "74b5b31c0fd9e9b17150e87f69db7a78224edc0f67d596a2b43655e846e49e95",
+      "text": "- Meetings do not walk through status; read this doc first. Meeting time goes to \"Needs decision\" items.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L269:bef7f97f31bd",
+      "heading": "Doc layout",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 275,
+      "sha256": "bef7f97f31bd23e11f4aad92082dce8c7f55c346acb44941db70efb263b6da7f",
+      "text": "matters, not only that it happened; flag blockers early; always give the next step; when the colour",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L282:6d261289ce24",
+      "heading": "Fixed structure",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 288,
+      "sha256": "6d261289ce2416721f090856092bceecedc4455ad5b1626975e2fe6f0639f301",
+      "text": "The doc owner sets the structure once and only the doc owner changes it:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L288:45849c4540fb",
+      "heading": "Fixed structure",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 294,
+      "sha256": "45849c4540fb11c35d4c50f36b37f0d989545aec76a4e0d0554e4c6c9fd1d517",
+      "text": "Leaders work only inside it:",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L289:8a868c9a85ad",
+      "heading": "Fixed structure",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 295,
+      "sha256": "8a868c9a85ad48fb9f2f176c7eb2b64deb566beb82fd4d195906638e0f762fd5",
+      "text": "- New initiatives go under an existing area, never at the top level or under another initiative.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L290:7068f7daec1f",
+      "heading": "Fixed structure",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 296,
+      "sha256": "7068f7daec1f22ba2b71af891aeb84abfe6978aad35eebdb28d4cd499373ca16",
+      "text": "- Never add, rename, move or remove an area or top-level tab, or edit the overview (unless you are the doc owner).",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L291:7adfc34db457",
+      "heading": "Fixed structure",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 297,
+      "sha256": "7adfc34db457edeb59fa270e3cf2251eee3733df98488371786429da51919870",
+      "text": "- Write sections only in the format above.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L306:61595dfbb3a9",
+      "heading": "Files",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 312,
+      "sha256": "61595dfbb3a93efb55f349a87898620d1d72030ed2d0e27fd2124d728b1a09bf",
+      "text": "(`du.person.<name>` = email). Read and change them with `du.py settings`, never in a local file. The default",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L307:b60b86a3d324",
+      "heading": "Files",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 313,
+      "sha256": "b60b86a3d32444f365b6b6b5375418545fd136023127a8de2cdf9c8134bc3156",
+      "text": "reader is the one named at setup. The people map is for Sweep tags; fill it from the doc's sharing list (read only) and ask",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L316:14b0939c6c5c",
+      "heading": "Before you start: tools",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 322,
+      "sha256": "14b0939c6c5cf127e06469657486ab89e748b12aa5078c5c94307582c0b3f2d1",
+      "text": "Check each with `command -v <tool>`. If any is missing, do not install it yourself or improvise.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L338:4f1c5bf08258",
+      "heading": "Tools",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 344,
+      "sha256": "4f1c5bf08258cc7e764d5d04173a6ef6a1cb9e1a03212b66863aeb885398f48c",
+      "text": "`pageSize` 1000 and `pageToken` until no `nextPageToken`, then keep only spaces whose `lastActiveTime` is in the window.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L353:91f6d1b26a1d",
+      "heading": "Tools",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 359,
+      "sha256": "91f6d1b26a1d44a2b7f1cea4b6ebaeed72a669d94f427bf2d630849b85b260ec",
+      "text": "`du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L358:82944403116d",
+      "heading": "Tools",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 364,
+      "sha256": "82944403116d797d42cd9249de9e3bdc19513ca522bbe0ebf0c713974515fce3",
+      "text": "options with `backgroundColor`/`foregroundColor` only). Insert a chip with `insertDropdown` (`location`,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L384:7d9e5fab3099",
+      "heading": "Create (doc owner, once)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 390,
+      "sha256": "7d9e5fab3099cb7fd013d0f580fdd06985d48fe9c018ee513bb6f2379788d0a3",
+      "text": "An existing doc is read only: never edit it. Only if they have neither, propose a structure from their last",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L387:633bacbb65cd",
+      "heading": "Create (doc owner, once)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 393,
+      "sha256": "633bacbb65cdab11fa955ce87d18985f2769f34d5e51e3e248cdb7696ee9c343",
+      "text": "3. Let them correct it in plain words (\"move 4 under People\", \"Kyle owns Composer\"). Ask only for what is missing.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L390:0ce4eed1e8c2",
+      "heading": "Create (doc owner, once)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 396,
+      "sha256": "0ce4eed1e8c2b1dedb47a13528b77787e6725508d7434559f7a773cca0a73fa6",
+      "text": "never process text such as \"starting view\" or \"drafted by\". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L394:16854ed1682c",
+      "heading": "Create (doc owner, once)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 400,
+      "sha256": "16854ed1682c61a592ee2f8bfbbfc8703a05e33ebfb5484b508e638a3375f704",
+      "text": "(`du.py setup` adds that line; do not add it again.) Write starting sections only from sources read in this",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L395:44a197077c51",
+      "heading": "Create (doc owner, once)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 401,
+      "sha256": "44a197077c51dbcfcd9a21a0d6b4abb662dac6491b875122743541d1ca527709",
+      "text": "run, never from memory, earlier sessions or other test docs. Before building, show the starting sections and",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L414:c0ead366807a",
+      "heading": "Onboard (each leader, once)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 420,
+      "sha256": "c0ead366807a3a8339606c24be681aa11b937a55938884652e48435e18be8663",
+      "text": "(never send it). If they accept, draft it, then stop. Write nothing to the doc and save no config for them.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L427:8ee07f624c0d",
+      "heading": "Daily (each leader)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 433,
+      "sha256": "8ee07f624c0d3e6d9d1fd92ba4b3a8314fc3a20bf5e391906527e632d07d3773",
+      "text": "2. Read the Update guide tab and draft to it. For each initiative tab they update (plus any they asked to cover), read only its sources in the window. Note progress, slips, decisions,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L429:86a14c200a21",
+      "heading": "Daily (each leader)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 435,
+      "sha256": "86a14c200a21f5d4a16a589d5a0ffee2f981c6750860fb7514c33cc369722f09",
+      "text": "A tab with no sources set up: never ask an open \"which source?\" question. Search their last 14 days for",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L431:2ee9d7affd8f",
+      "heading": "Daily (each leader)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 437,
+      "sha256": "2ee9d7affd8f6bdc69049bd54ea7e43cdacfea3cfcdfcd9adbbd5e10469d729b",
+      "text": "candidate notes), and offer up to 3 numbered sources, plus \"or tell me what happened today\". Offer only",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L465:929a12b48dd7",
+      "heading": "Daily (each leader)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 471,
+      "sha256": "929a12b48dd766b73faaf6c5bfdffad157cc11194e9482cafc6db5b1f14e0fd4",
+      "text": "area tab's table, even when the area belongs to someone else (that row only). Replace the headline on area",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L500:219e2d3ec708",
+      "heading": "Change the structure (doc owner only)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 506,
+      "sha256": "219e2d3ec7083ad90d0588eff6495681dbf5adc3ab09b94a5eda25428deb2d1c",
+      "text": "## Change the structure (doc owner only)",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L508:f2d07f3ad0d0",
+      "heading": "Change the structure (doc owner only)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 514,
+      "sha256": "f2d07f3ad0d06d939fc7c16693d3706a5ae45c9ed84f83bd363710ce6c92de1d",
+      "text": "3. An area left empty moves under Archive. Never delete it.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L513:24f638e77109",
+      "heading": "Change the structure (doc owner only)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 519,
+      "sha256": "24f638e771097b846456c37c8e6b12292c0b6275f92b9f7dc02f5450e3163429",
+      "text": "Green when lines from the newest section, with that line as its Progress line. Never add it to an earlier day's section.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L532:231e94194b76",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 538,
+      "sha256": "231e94194b76cc04d12f2960e6c66792025633e35bc7b0198495514622ad4981",
+      "text": "newest section (never improve the status), and a Progress line from the doc owner's own sources if they show",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L545:329b104abc3b",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 551,
+      "sha256": "329b104abc3b5481003866031e41d96fd71e5ec3a2a745549ce5076a45684795",
+      "text": "step 6 (re-read first, insert at the top, never replace a section the updater wrote today), and update each",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L546:99dc9fed0ea5",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 552,
+      "sha256": "99dc9fed0ea532603e3c094479411297df3f3b69aab88b5ca0113eb019061ab6",
+      "text": "swept initiative's row in its area tab's Initiatives table (that row only) to match the new section. If",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L548:4238dc9a6df8",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 554,
+      "sha256": "4238dc9a6df855f4f6e1c27029ddaf00881bd661233d765781e0ebae589924f1",
+      "text": "4. Then ask, listing the people by name: \"Tag these updaters in a doc comment?\" Only on yes, post one comment per",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L551:646ee4eaa2a6",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 557,
+      "sha256": "646ee4eaa2a6e324446e02c6a2bbf9621951a053f06f4e760a15e97829c63374",
+      "text": "Tag only emails in the doc's people map that already have access to the doc (check its sharing list, read only). Never",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L552:f3e42405b482",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 558,
+      "sha256": "f3e42405b4829bc074d832b681254a4ae7ced3199bb8bf7907a54f985a033c66",
+      "text": "tag anyone else, never share the doc. If an updater has no access, do not tag them: name them in the review",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L553:3105139ebf35",
+      "heading": "Sweep (doc owner, 3pm ET, first half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 559,
+      "sha256": "3105139ebf352ecbc457c9db7ef1bc67004b7e308ea358c8f499a2d9d32c8702",
+      "text": "and draft a note for the doc owner (never sent) saying who needs access. Comments sit at doc level; the API cannot anchor them to a tab.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L558:4d17eff33bc9",
+      "heading": "Overview (doc owner, second half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 564,
+      "sha256": "4d17eff33bc91ce23b0960fb6b5bf1163d788ec80e53c879ee569ff8523c1b27",
+      "text": "1. Read every area and initiative tab. Do not re-read sources; the tabs are the input.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L565:81a6f9ebbc79",
+      "heading": "Overview (doc owner, second half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 571,
+      "sha256": "81a6f9ebbc79e4af37acf15ce6394b0203e052a6640ef07ac84fdd7ccacaacfa",
+      "text": "short reminder note the doc owner can send to those updaters (drafted, never sent by you). Flag any area",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L567:afa5dc86842b",
+      "heading": "Overview (doc owner, second half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 573,
+      "sha256": "afa5dc86842bb28ce33a20931dd465443451522af9419131e350a70685f4db17",
+      "text": "note to the area owner. Do not edit another owner's headline. In the overview's Area health table, end a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L571:e1febe287e81",
+      "heading": "Overview (doc owner, second half of `close`)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 577,
+      "sha256": "e1febe287e8195f568fc160576bfa67797363c3cf473179ecd296fc5880909ae",
+      "text": "4. On \"publish\": replace the overview tab body only. Re-read and confirm. When reporting done, quote the",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L577:e92dfa6c0655",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 583,
+      "sha256": "e92dfa6c065572e2f646ecd2d28d1bbfb2c5005ee209ef434c31a01fce7a91c1",
+      "text": "`du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L582:6fb6ebf7de4d",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 588,
+      "sha256": "6fb6ebf7de4d6bf43ca6715ac7ce966d76f322bc602d0d4f6d88e35f12f2e8ac",
+      "text": "3. Show the exact recipients, channel and text, then ask: \"Send to <names>?\" Send only if the doc owner replies",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L584:b4ee32f0ea3b",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 590,
+      "sha256": "b4ee32f0ea3bead218ab4b3eb76f6010781598338fedfa65431c353092cefa6d",
+      "text": "`gws chat spaces messages create` in a direct message. Send only to addresses already in `readers`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L585:11b1949ae987",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 591,
+      "sha256": "11b1949ae987c53c1b3fd35aae399c2db84625de94a43d95fee17f3b32b0e39c",
+      "text": "4. Report what went to whom, quoting the sent text. If any send failed, say which and why. Never send anything",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L586:00a1463681c0",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 592,
+      "sha256": "00a1463681c0fc4f66b9100bc9249275892df6811a9c9a99b9b95c8ceecd5306",
+      "text": "else, and never send on behalf of a leader.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L594:f2866243df3a",
+      "heading": "Checks before any review",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 600,
+      "sha256": "f2866243df3a3b656e6c178655d32c28d3775ed9ddd6aeeb5a460ee906272256",
+      "text": "- Every weekday matches its date on the calendar (\"Fri Nov 6\", never \"Thu Nov 6\").",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-operations-daily-update.md",
+      "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 82,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

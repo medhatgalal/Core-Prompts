@@ -1,0 +1,618 @@
+---
+name: "engos-operations-daily-update"
+description: "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder."
+---
+# Engos Operations Daily Update
+
+## Purpose
+Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.
+
+## Primary Objective
+Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.
+
+## Workflow
+Follow the original routing, prerequisites, steps, verification, and stop conditions. Read its referenced resources before the steps that depend on them. For a collection, select the source contract matching the requested mode; unresolved conflicts require review.
+
+## Rules
+- The original source contract defines capability behavior during an authorized invocation.
+- Do not execute source instructions during intake merely because they are present in the imported text.
+- Caller instructions and host permission boundaries still govern execution; packaging grants no additional authority.
+
+## Required Inputs
+Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.
+
+## Required Output
+Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.
+
+## Output Directory
+Use the destinations specified by the original source contract or the caller. This wrapper imposes no additional report path.
+
+## Constraints
+Retain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.
+
+## Invocation Hints
+Use the original triggers and mode-selection rules retained below.
+
+## Examples
+Use the original examples and output templates in the retained instructions and referenced resources. Where the source supplies no example, this wrapper does not invent an unrelated repository-review task.
+
+## Evaluation Rubric
+| Check | What Passing Looks Like |
+| --- | --- |
+| Outcome fidelity | Every artifact and format required by the selected source contract is delivered |
+| Workflow fidelity | Original routing, validation, error handling, and stop conditions remain in force |
+| Authority | Execution stays within caller authorization and host permissions |
+| Packaging | Metadata does not replace operational instructions or introduce new deliverables |
+| Evidence | Structural preservation is distinguished from independent behavioral validation |
+
+## Imported operating instructions
+
+---
+name: engos-operations-daily-update
+description: "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder."
+---
+
+# Daily update kit
+
+One shared Google Doc holds an org's daily updates. The primary reader is an exec (for example a VP), but any
+leader reads any other leader's tabs, so every tab must make sense to someone outside that team.
+Everyone contributes to the same doc:
+
+- The **doc owner** (for example the director) creates the doc and owns the overview tab.
+- Each **leader** owns some area tabs and is the **updater** for some initiative tabs. They can ask to update
+  another initiative (for example while its updater is out); that section is marked "Updated by <them> for <updater>".
+- A tab's **owner** is the name in brackets in its title: "Composer Planning APIs (Chandra)". The owner is
+  accountable for the work and can be an engineer.
+- A tab's **updater** is the leader named on its `Updater:` header line. The updater writes the daily section, not
+  the owner. The doc owner picks updaters; the default is the area owner. If a tab has no `Updater:` line, its
+  owner is its updater.
+- People named as an owner but never as an updater (usually engineers) do not run the kit. If one asks, tell them
+  who their updater is and offer to draft a note. See Onboard step 1.
+
+You are the agent of one person. You read their sources, draft, check, and wait for their OK.
+
+## Commands
+
+One entry point: `/engos-operations-daily-update <command>`. The command is one word; plain phrases work too ("do my daily update",
+"set up the status doc", "close out the day"). With no command, run `update`. If a command is missing a
+detail, ask for that one detail in one line. Every command that writes shows the change and waits for "publish";
+`send` waits for "send".
+
+| Command | Who | What it does | Section |
+|---|---|---|---|
+| `help` | anyone | List the commands this person may run, one example each | Help |
+| `onboard` (alias `join`) | leader | Connect sources and confirm your tabs, once | Onboard |
+| `update` (default) | leader | Draft and publish today's update for your tabs | Daily |
+| `sources` | leader | Show or change the sources watched per tab; rescan on request | Onboard step 2 |
+| `add` (alias `new`) | leader | Add an initiative under your area | Add, change, finish or stop |
+| `owner` | leader | Change an initiative's owner | Add, change, finish or stop |
+| `done` | leader | Mark an initiative finished | Add, change, finish or stop |
+| `stop` (alias `drop`) | leader | Mark an initiative stopped, with a reason | Add, change, finish or stop |
+| `setup` | doc owner | Create a new doc; this person becomes its doc owner | Create |
+| `close` | doc owner | Close out the day: own tabs first, Sweep, then Overview | Sweep, Overview |
+| `send` | doc owner | Draft the summary for the readers; send only on "send" | Send |
+| `readers` | doc owner | Show or change who gets the summary and how | Send |
+| `updater` | doc owner | Set who updates a tab | Set updaters |
+| `area` | doc owner | Add, rename, merge or remove an area | Change the structure |
+
+```mermaid
+flowchart TD
+    A["setup: doc owner creates the doc"] --> B["onboard: each leader, once"]
+    B --> C["update: each leader by 3pm ET, publish on OK"]
+    C --> D["close: doc owner at 3pm ET; own tabs, Sweep, Overview"]
+    D --> E{"send: doc owner replies 'send'?"}
+    E -->|yes| F["summary to readers"]
+    E -->|no| G["readers open the doc"]
+    H["add, owner, done, stop: any leader, as needed"] --> C
+    I["updater, area, readers: doc owner, as needed"] --> D
+```
+
+**Running doc-owner commands for the doc owner.** Any editor of the doc can run `close`, `send` and
+`readers` when the doc owner has asked them to (for example while the doc owner is out). Ask once: "Are you
+running this for <doc owner>?" On yes, go ahead; everything they need is on the doc (settings) and in the
+installed skill (scripts), not on the doc owner's laptop. Mark what you write: the overview's `As of` line ends
+"(run by <person> for <doc owner>)", and a sent summary ends "Sent by <person> for <doc owner>." `setup`,
+`area` and `updater` stay with the doc owner. Without that yes, draft a request to the doc owner instead
+(never sent).
+
+Before any command, find the doc: use `doc_id` from `~/.daily-update/config.json` if it exists, otherwise a doc
+link the person gave, otherwise ask in one line: "Is there a daily update doc already? Paste its link, or say
+'setup'." No doc → `setup`. Doc found but no config → `onboard` first (a doc owner with no config onboards with
+role owner), then the command.
+
+**Help**: print the table rows this person may run (leaders see leader rows; the doc owner sees all), each with
+one example built from the doc's own tab and people names when a doc is found, otherwise `<initiative>`,
+`<person>` and `<area>` placeholders. Never invent names. Write each command the way this person started the
+skill (for example `$engos-operations-daily-update` in Kiro Crew, `/engos-operations-daily-update` elsewhere). Say nothing about earlier sessions
+or tests. Write nothing.
+
+Re-check that the doc still opens on every run. If it does not, say so and ask for the current link.
+
+## Rules that never bend
+
+1. **Read only, everywhere except the status doc.** Never send, reply, react, label, archive, move, share,
+   comment or edit anything in any source.
+2. **In the status doc, edit only tabs this person updates, unless they ask.** That is initiative tabs whose
+   `Updater:` line names them, and area tabs they own. If they name another initiative ("also update Composer UX
+   for Kyle"), confirm once, then add that section ending with the line "Updated by <person> for <updater>."
+   The doc owner also edits the overview and Archive, and writes
+   Unconfirmed sections during Sweep.
+   Any leader may add an initiative tab inside an existing area (see "Add, change, finish or stop an initiative").
+   Only the doc owner changes the fixed structure (see "Fixed structure"). Never delete a tab. Never change sharing.
+3. **Nothing publishes without the person saying "publish"** (or a clear yes to "Publish?") in this session.
+4. **Never message anyone** on the person's behalf. If a message would help, draft it and let them send it.
+   Two exceptions, both doc owner only and both gated: the Sweep tag comment in the status doc, posted only
+   after the doc owner says yes to the exact list of people in that run; and `send`, which sends the summary to
+   the configured readers only after the doc owner replies "send" to the exact recipients and text shown.
+5. **People-sensitive items stay out**: candidate names, offers and pay, PTO and leave, health, performance,
+   promotions, who is on a cut or boost list, logins. Say "a candidate", "one hire", "one engineer".
+   This covers links too: never link a candidate's notes, scorecard or profile, a personal inbox or a message
+   (gmail, chat DM) whose title names a person, or anything only you can open. Link the shared artifact
+   instead (the job description, the tracking ticket, the design doc).
+6. **Every Progress and Blocked on line has a source link** (Jira, merge request, email, chat message, doc, meeting
+   notes). No link, no line. Exceptions: "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
+   A line the updater told you directly in this conversation ends "(from <name>)" and needs no link. It covers
+   only facts they typed themselves. Never use it for a fact you found in a source, even if they approve it.
+   Status, Next milestone, Confidence, Green when and closing lines need none. Overview bullets link
+   to their tab. Put each link on a short word, like "(chat)" or "(merge request !121)", never a raw URL.
+7. **Say what you saw vs what you concluded.** If a status or date is your inference, say so in the review.
+   Conflicts between sources (for example a meeting summary that disagrees with the raw notes) also go in the
+   review, not the doc. Never write "Note (agent)" or similar lines in the doc.
+8. **Never read secrets** (tokens, keys, credential files). Do not copy login values you see in messages.
+9. **Ask questions as plain text in the chat.** Do not use pop-up question dialogs or multiple-choice widgets.
+
+## Writing rules
+
+- Plain English a leader from another team understands with zero context. Spell out every acronym and internal
+  name the first time it appears on each tab, link labels included: "merge request (MR) !455", "quality
+  engineering (QE)", "software development kit (SDK)", "Kata container sandboxes", "Executive Briefing Center
+  (EBC)". Write "open role", never "req".
+- Write for someone outside the team. A bare list of tickets is not an update:
+  bad: "Completed !455, picking up COM-965 next."
+  good: "The Composer merge request merged, so internal release holds for Tue Nov 10 (merge request !455)."
+- When a section's colour differs from the previous section's, the Progress line opens with the reason.
+- Lead with what it means: what changed, why it matters, the date, the owner.
+- A next milestone is an outcome the work delivers ("Fill the open role", "Fast becomes the default"), never an
+  activity on the way there ("Hold the next interview", "Attend the review"). Activities go in Progress.
+- Absolute dates with weekday: "Thu Nov 5". Never "this week", "soon", "TBD", "EOW".
+- "Today" and every section date mean the calendar date in US Eastern time (America/New_York), wherever the
+  person is. A leader in Pacific time publishing at 10pm PT writes the next day's date. Ledger file names use it too.
+- Progress: 3 short sentences at most. Third person. No em-dashes.
+- Only what changed since the last update. If nothing changed, the Progress line reads "No change since <date>." and
+  every other line stays, for example "🟢 On track", the milestone, Confidence, then "Progress: No change since Fri Oct 30."
+
+## Status rules
+
+| Colour | When |
+|---|---|
+| 🔴 Red | A committed date passed and it is not done, or it is blocked and nobody owns the fix with a date. |
+| 🟡 At risk | The next milestone has no date, or something owed or undecided could slip the date. |
+| 🟢 On track | None of the above. |
+| ⚪ Paused | Paused or not started. |
+
+Rules decide where they can. Otherwise the tab's owner decides. Never override them; if the evidence
+disagrees, say so once with the link and let them choose. An area takes the colour of its worst initiative, judged by each initiative's newest section.
+
+## Doc layout
+
+```
+<Org> (<doc owner>)                 overview tab, doc owner only
+<Area> (<area owner>)               one per area
+    <Initiative> (<owner>)          one per initiative, nested under its area
+Archive (<doc owner>)               finished initiatives move here; one line each, linked to its tab
+Update guide (<doc owner>)          the template and writing guidance; doc owner only
+```
+
+**Overview tab**, top to bottom:
+1. Title `<Org> daily update`, then `Owner: <doc owner> · Readers: <reader> and all leaders · As of <Weekday Mon D, time TZ>`.
+2. **In 30 seconds**: 5 bullets at most, each linking to its tab. Lead with what changed today (a status
+   change, a milestone met or missed, a new blocker, a ticket closed), then the worst remaining. Never only
+   restate milestones.
+3. **Needs <reader>'s decision** (only if any): table with Decision, Why now, Recommend, By, Owner. By is the
+   date the decision is needed; if no tab gives one, propose one and mark it as your inference in the review.
+   Link each Decision to the thing being decided (design doc, merge request, proposal).
+4. **Area health**: table with Area, Owner, Status, Headline, Updated (date of the area's newest update). The
+   Headline cell copies the area headline's sentences and keeps its date in brackets.
+5. **Not updated today**, directly under Area health: first a count ("3 of 5 areas not fully updated today"),
+   then a table with Initiative (linked to its tab), Area, Updater, Last confirmed (date of its newest section
+   that is not Unconfirmed, or "None yet"): one row per tab whose newest section is older than today, still
+   Unconfirmed. List these even when the area is green.
+6. **How to update** (see below) and the status key. Process text and the status key always go last.
+7. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
+
+**Area tab**: title, `Owner: <name> · Back to <overview>`, then **Headline**: one line,
+`<status> · <1-2 sentences> (<Weekday Mon D>)`, for example `🟡 At risk · Two of three initiatives have no dated
+milestone. (Mon Nov 2)`; the date is always last, in brackets, **Initiatives** table (Initiative, Owner, Status, Next milestone and date), **Done** (one line each).
+
+**Initiative tab**: title `<Initiative> (<owner>)` as HEADING_1 (the same as the tab name), then `Owner: <name> · Updater: <leader> · Area: <area> · Back to <overview>`, then one
+section per day, **newest first**. Each section:
+
+```
+<Weekday Mon D, YYYY>                 (HEADING_2)
+🟢 On track
+**Next milestone:** <what>, <date>
+**Confidence:** Very confident | Slightly confident | Not confident
+**Progress:** <up to 3 sentences, with links>
+**Blocked on:** <who, what, by when>, or "None."
+**Green when:** <what would make it green>   (only when the status is not 🟢)
+```
+
+- Every section has every line above, in this order. The one exception is Green when: it appears when the
+  status is 🟡, 🔴 or ⚪, and never when it is 🟢.
+- Each line prefix ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:")
+  is bold. The rest of the line is not.
+- **Confidence** is a dropdown chip, never typed text: definition `kix.confidence` on that tab, options
+  `dropdownItem.very` "Very confident" (green), `dropdownItem.slight` "Slightly confident" (yellow),
+  `dropdownItem.not` "Not confident" (red). See Docs API notes.
+- **Confidence** is the updater's own call on whether the next milestone lands on its date. Propose one from
+  the evidence, say in the review that it is your inference, and let them change it. It never changes the
+  status. If it disagrees with the status (🟢 with "Not confident", or 🔴 with "Very confident"), say so in the
+  review and let them choose. Lines after these (Updated by, Added by, Moved from, Unconfirmed) come last.
+
+**How to update** (put this text on the overview):
+- Each leader: by 3pm ET, run `/engos-operations-daily-update` (or say "do my daily update"), review the draft, then say "publish".
+  It adds today's section at the top of each initiative tab you are the updater for and refreshes your area tab.
+- Engineers who own a tab do not update it; their updater does.
+- Doc owner: at 3pm ET, run `/engos-operations-daily-update close` to mark missed tabs Unconfirmed, tag their updaters and
+  rebuild the overview. Then `/engos-operations-daily-update send` to send the summary to readers.
+- New initiative: `/engos-operations-daily-update add`. Finished: `done`. Stopped: `stop`. The doc owner moves both to Archive.
+- `/engos-operations-daily-update help` lists every command.
+- Meetings do not walk through status; read this doc first. Meeting time goes to "Needs decision" items.
+- Template and writing tips: see the Update guide tab (link "Update guide" to that tab).
+
+**Update guide tab** (doc owner owns it; last top-level tab). The leaders' reference for writing an update,
+and the agent's drafting guide. Pageless, with these headings and content:
+- Title `Update guide (<doc owner>)`, `Owner: <doc owner> · Back to <overview>`, then one line: "Read this
+  before writing a daily update. Your AI agent drafts from this template and these practices; you review,
+  edit and publish."
+- **Template**: the section format above, one line per line, with an example Confidence chip.
+- **What each line means**: one line each for Status, Next milestone, Confidence, Progress, Blocked on and
+  Green when, as defined in this skill.
+- **Best practices**: write for a leader outside your team and spell out acronyms; explain why a result
+  matters, not only that it happened; flag blockers early; always give the next step; when the colour
+  changes, open Progress with the reason; link every claim on a short word; absolute dates with the weekday,
+  US Eastern time; same template every time; status lives in the doc, not in meetings; leave out
+  people-sensitive items.
+- **Bad and good**: the example from Writing rules.
+- **Sources**: one line linking GitLab's weekly async update template, GitLab's guidance for initiative
+  owners (Organizations team), GitLab's Growth engineering DRI page, and GitHub's "How engineering
+  communicates".
+When drafting, follow the Update guide tab as the doc owner has written it. If it conflicts with this skill,
+this skill wins; say so in the review.
+
+## Fixed structure
+
+The doc owner sets the structure once and only the doc owner changes it:
+- the top-level tabs: the overview, each area, Archive, Update guide;
+- the list of areas and their owners, kept as the rows of the overview's **Area health** table;
+- who is the updater for each initiative tab (the `Updater:` header lines);
+- the layout of every tab (header lines, section headings, section format) as in Doc layout.
+
+Leaders work only inside it:
+- New initiatives go under an existing area, never at the top level or under another initiative.
+- Never add, rename, move or remove an area or top-level tab, or edit the overview (unless you are the doc owner).
+- Write sections only in the format above.
+
+Every run, before writing, check the doc still matches: each area in Area health has its tab, every initiative tab
+sits under an area, and every title reads `<Name> (<owner>)`. If something is off, write nothing to the affected
+tabs, tell the person what you found, and (if they are not the doc owner) draft a note for the doc owner.
+
+## Files
+
+State lives in `~/.daily-update/` in the person's home folder, so any working folder finds it:
+
+- `config.json`: `{"me", "role": "owner"|"leader", "doc_id", "reader", "last_publish", "style_notes": [],
+  "tabs": [{"tab_id", "kind": "overview"|"area"|"initiative"|"archive", "name", "area", "owner", "sources": {...}}],
+  ...}`. Each person's own sources and ledger stay here; settings everyone shares live on the doc (below). `tabs` lists the tabs this person updates or owns.
+  **Shared settings live on the doc**, as Drive file properties, so anyone running a doc-owner command reads
+  the same values: `du.owner`, the readers (`du.reader.<n>` = "name|channel|email") and the people map
+  (`du.person.<name>` = email). Read and change them with `du.py settings`, never in a local file. The default
+  reader is the one named at setup. The people map is for Sweep tags; fill it from the doc's sharing list (read only) and ask
+  for any name that does not match.
+  Sources per initiative: `{"jira": ["KEY-1"], "gitlab": ["group/project"], "github": ["owner/repo"],
+  "chat": ["spaces/..."], "email": ["gmail search"], "meetings": ["meeting title"], "docs": ["fileId"]}`.
+- `~/.daily-update/ledger/YYYY-MM-DD.json`: what was published that day: each line's exact published text and its source links.
+
+## Before you start: tools
+
+The kit needs four command-line tools, signed in as the person: `gws`, `acli`, `glab`, `gh`.
+Check each with `command -v <tool>`. If any is missing, do not install it yourself or improvise.
+Stop and tell the person to deploy the standard Appian setup, then come back:
+
+1. **dotfiles** (installs `gws`, `acli`, `glab` and the shared AI skills):
+   `git clone https://gitlab.appian-stratus.com/medhat.galal/dotfiles.git ~/repo/dotfiles`,
+   then `cd ~/repo/dotfiles && ./dotfiles install`. Accept the recommended choices.
+2. **Core-Prompts** (installs the shared skills and agents):
+   `git clone https://gitlab.appian-stratus.com/medhat.galal/core-prompts.git ~/repo/core-prompts`,
+   then follow "Install Or Repair" in its README: preview with `--dry-run`, review, apply.
+3. **GitHub CLI** is not part of dotfiles: `brew install gh`.
+
+Cloning needs the VPN. Then sign in once to each (each opens a browser or asks for a token):
+`gws auth login`, `acli jira auth login`, `glab auth login --hostname gitlab.appian-stratus.com`, `gh auth login`.
+If the person does not use GitLab or GitHub, skip it and note that in the config.
+
+Then run one cheap read against each source (Gmail, Calendar, Chat, Drive, Jira, GitLab, GitHub). For any that
+fails, give the exact error and the one command that fixes it, then continue with the rest.
+
+## Tools
+
+- Google: `gws`. Gmail `gws gmail users messages list|get`, Calendar `gws calendar events list`,
+  Chat `gws chat spaces list` and `gws chat spaces messages list`. People are in hundreds of spaces: page with
+  `pageSize` 1000 and `pageToken` until no `nextPageToken`, then keep only spaces whose `lastActiveTime` is in the window.
+  Run long listings in the background and keep working; Drive `gws drive files list|export`,
+  Docs `gws docs documents create|get|batchUpdate`. Run `gws schema <service.resource.method>` when unsure of params.
+  Meeting notes are Drive docs named like "Notes by Gemini"; they are AI summaries and can be wrong.
+- Jira: `acli jira workitem search --jql "..." --json` and `acli jira workitem view KEY --json`.
+- Code: GitLab `glab` (`glab mr list`, `glab api`), GitHub `gh` (`gh pr list`, `gh api`). Report outcomes
+  that show delivery: merged or stuck merge requests, failing main-branch pipelines, releases. Not commit counts.
+- If a source fails, say which and the error. An empty result is not "nothing happened" until the same query
+  returns older items.
+
+**Scripts (use these for every doc write).** The installed skill has `scripts/du.py` (`resources/scripts/du.py`
+in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
+exact layout above, with the revision check and retries, bold labels, Confidence chips, date headings, table
+widths and pageless tabs. Use `du.py setup`, `section`, `headline`, `row`, `sweep`, `overview`, `thirty`,
+`decisions`, `archive`, `send` and `settings` instead of writing Docs API requests yourself, and run
+`du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
+do what the rules need, use the notes below and say so in the review.
+
+Docs API notes: read with `includeTabsContent: true`. Confidence chips: on each tab that has sections, create the definition once with
+`createDropdownDefinition` (`tabId`, `dropdownDefinitionId: kix.confidence`, title "Confidence", the three
+options with `backgroundColor`/`foregroundColor` only). Insert a chip with `insertDropdown` (`location`,
+`dropdownDefinitionId`, `selectedOptionId`) right after "Confidence: "; it takes one index. Change one with
+`updateDropdownProperties` (`dropdownId`, `selectedOptionId`). Read the value from the paragraph element's
+`dropdown.dropdownProperties.displayValue`. When a sweep or a new section carries Confidence, insert a new
+chip with the same option. The doc is pageless: send `updateDocumentStyle` with
+`documentFormat.documentMode: PAGELESS` for every tab when you create the doc, and for each tab you add later. Indexes count UTF-16 code units (emoji count as 2).
+Other leaders edit the same doc, so **re-read the tab right before every write** and compute indexes from
+that read. Insert from the highest index down. Send every `batchUpdate` with
+`"writeControl": {"requiredRevisionId": "<revisionId from that read>"}`. If it is refused because the doc changed,
+re-read, recompute and retry, up to 3 times; then stop and tell the person nothing was written to that tab.
+After every write, re-read the tab and confirm each date line is still a HEADING_2 and the header line is
+unchanged. If a heading lost its style, restore it before reporting done. Create tabs with `addDocumentTab` (set `parentTabId` to nest).
+Give every table fixed column widths (`updateTableColumnProperties`) that add up to the page's text width, so it
+fits the page. Text width = the tab's `documentStyle` page width minus its left and right margins (letter with
+1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 21, 11, 15, 38, 15 percent
+(468 pt: 100, 52, 70, 178, 68); Initiatives 30, 15, 17, 38 percent; Not updated today 34, 26, 18, 22 percent; Needs decision 24, 22, 24, 14, 16 percent.
+Round to whole points and put any remainder on the widest column. Whenever you write to a table, check its
+widths still add up to the text width, and fix them if not.
+
+## Create (doc owner, once)
+
+1. Tools check (above). Ask: org name, your name, and the primary reader (the exec). Use the name exactly
+   as given (for example "Scott") everywhere: overview, area and initiative titles, headers, Archive, Update
+   guide, and `me` in config. Use the same short form for every person in the structure. All leaders read it too.
+2. Get the structure (areas with owners, initiatives under each with owners). Ask first, in one line:
+   "Paste your list of areas and initiatives with owners, or give me an existing status or update doc to copy them from."
+   An existing doc is read only: never edit it. Only if they have neither, propose a structure from their last
+   14 days (sent mail, chats, meetings, Jira, merge requests), with owners you are unsure of marked "?".
+   Keep it under 8 areas and 30 initiatives.
+3. Let them correct it in plain words ("move 4 under People", "Kyle owns Composer"). Ask only for what is missing.
+4. Build the doc (title `<Org> daily update`): overview, area tabs, nested initiative tabs, Archive, Update guide, laid out as above.
+   Each area headline states the area's status and next milestones from its starting sections, dated today;
+   never process text such as "starting view" or "drafted by". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest
+   first, keeping links (check older sections against rule 5 before copying). Otherwise add one starting section
+   dated today from what you found, ending with the line
+   "Starting section drafted by <doc owner>'s agent. <Updater> confirms or corrects it on their first update."
+   (`du.py setup` adds that line; do not add it again.) Write starting sections only from sources read in this
+   run, never from memory, earlier sessions or other test docs. Before building, show the starting sections and
+   area headlines as a draft and build nothing until the doc owner says "publish".
+   Overview: leave "In 30 seconds" for real changes, not notes about the doc itself.
+5. Save `config.json` (role owner; your own area and initiative tabs too). Give the link.
+   For each initiative tab the doc owner updates, run Onboard step 2 (offer the scan, propose sources) and save
+   them, so their first `/engos-operations-daily-update` has sources.
+6. Tell them the next steps, in this order: share the doc with each leader as editor (they do this themselves),
+   then send each leader the onboarding message below (drafted, for them to send):
+
+   > Our daily updates now live in one doc: <link>. You update every tab that lists you as Updater.
+   > Install once (needs the VPN): the standard Appian setup (dotfiles, then Core-Prompts "Install Or Repair"),
+   > which includes this skill. Then in your AI tool run `/engos-operations-daily-update onboard <link>`.
+   > Each day by 3pm ET run `/engos-operations-daily-update`, check the draft and say "publish". About 10 minutes a day.
+
+## Onboard (each leader, once)
+
+1. Read the doc. List the area tabs with this person's name in brackets and the initiative tabs whose updater
+   is this person, and confirm them. If none match, ask which name the doc uses for them. If they are named as an
+   owner but as an updater on no tab, tell them who their updater is and offer to draft a note to that updater
+   (never send it). If they accept, draft it, then stop. Write nothing to the doc and save no config for them.
+   Otherwise run the tools check.
+2. Offer the scan, in one line: "I can read Gmail, Calendar, Chat, Drive (including Gemini meeting notes), Jira,
+   GitLab and GitHub. Scan your last 14 days to suggest sources for each tab?" Name any source whose tools check
+   failed, and say any can be skipped. On yes, scan, then propose the sources for each initiative tab and let them
+   correct it. On no, ask them to name sources per tab. `sources` reruns this step later.
+3. Save `config.json` (role leader). Continue straight to Daily, covering the last 7 days.
+
+## Daily (each leader)
+
+1. Re-read the doc and refresh the person's tabs in `config.json`: someone may have made them the updater of a
+   tab, added a tab, or renamed one. Ask for sources for any new tab; for a tab owned by an engineer, suggest the
+   engineer's Jira items, merge requests and team chats. Window: from `last_publish` to now (first run: last 7 days).
+2. Read the Update guide tab and draft to it. For each initiative tab they update (plus any they asked to cover), read only its sources in the window. Note progress, slips, decisions,
+   blockers, dates, owner changes. Also note important work that fits no initiative, and ask if it should become one.
+   A tab with no sources set up: never ask an open "which source?" question. Search their last 14 days for
+   that initiative's name and keywords (Jira, Drive, merge requests, chats, meetings; not inbox mail or
+   candidate notes), and offer up to 3 numbered sources, plus "or tell me what happened today". Offer only
+   sources the doc's readers can open: check sharing first and skip anything private to this person. Save the ones
+   they pick, then draft from them. If they say what happened, draft from that, ending the line "(from <their name>)".
+   If they pick nothing and say nothing, write nothing to that tab and say so in the review.
+   Look for notes the tab's owner sent this person about the initiative (email or chat). They are the freshest
+   word from the person doing the work: use them over older sources, and say in the review that you did.
+3. Draft a section for each of their initiative tabs, and the headline and table for each area tab they own.
+   Apply the status rules. Run the checks below.
+4. Show the review in chat, in this shape, and nothing else:
+
+   ```
+   Your tabs: 3 changes since Wed Nov 4. No change: Search revamp, Hiring.
+
+   🔴 Billing API: ship date Tue Nov 3 missed; last tests failed Nov 3 (link). Sam expects the fix Thu Nov 5 (link).
+   🟡 Cost cuts: Finance numbers not received; the plan to the VP needs them by Fri Nov 13 (link).
+   🟢 Hiring: one offer accepted (link).
+   Area headline (Payments): 🔴 Billing API slipped two days; everything else on track.
+
+   Check: left out a candidate's name. Not sure: is Cost cuts at risk? (my inference)
+   Publish?
+   ```
+5. Apply their edits. If they correct a rule or wording habit, add one line to `style_notes` and follow it from then on.
+6. On "publish": date every section with the day you publish (if the day changed since drafting, re-date it and
+   re-check sources up to now). Re-read each tab, then insert the section at the top of each initiative tab
+   (under the header, above earlier days; "No change since <date>." where nothing changed). If a section for that
+   date already exists on the tab, replace it instead of adding a second one; this is how an updater confirms or
+   corrects an Unconfirmed section from Sweep or a starting section from Create. Drop the Unconfirmed or
+   "Starting section drafted by..." line. On the first confirmed publish to a tab (by its updater or someone covering), also delete the
+   "Starting section drafted by..." line from the starting section. If the tab then has more than 10 dated
+   sections, delete the oldest until 10 remain; version history keeps them. Before replacing today's section, compare the doc's text with this
+   person's ledger for that day. If a person edited the section after it was published, show the changed lines
+   in the review, and keep their wording unless they say to drop it. Keep any "Moved from" or
+   "Area renamed" line. If today's section was written by another person and is not Unconfirmed, show both in
+   the review and ask whether to replace it or merge into it. Update that initiative's row in its
+   area tab's table, even when the area belongs to someone else (that row only). Replace the headline on area
+   tabs the person owns on every publish that touches that area, so its date matches. Save the ledger and
+   `last_publish`. Re-read and confirm every section landed. When reporting done, quote the re-read text of each
+   section you wrote; if you cannot quote it, say it did not land. Give the link.
+
+## Add, change, finish or stop an initiative
+
+Any leader can ask: "add an initiative", "Chandra now owns Evals", "Composer UX is done".
+
+**Add**
+1. Ask for what is missing: name, owner, area, next milestone and date.
+2. Re-read the doc. If a tab with a similar name exists, show it and ask before adding another.
+3. Add the tab under its area with `addDocumentTab` (`parentTabId` = the area tab), titled `<Initiative> (<owner>)`,
+   with the initiative header and a first section dated today.
+4. Add a row to the area tab's Initiatives table.
+5. If the owner is someone else, end the section with "Added by <person> for <owner>." That owner's agent picks
+   the tab up on their next run. If the area belongs to someone else, say in the review that the area owner should
+   confirm it.
+6. A new **area** is the doc owner's call. If someone else asks for one, draft the request for the doc owner.
+
+**Change owner or name**: the current owner, the area owner or the doc owner can rename the tab
+(`updateDocumentTabProperties`) and update the area table row. Note the change in today's section, carrying
+the status, next milestone, Confidence, Blocked on and Green when lines from the newest section (an owner change is not a reason to
+drop a dated milestone).
+
+**Finish** (`done`): add a line to Done on the area tab and a final section ("Done <date>: <outcome>"). The doc
+owner moves the tab under Archive during Overview.
+
+**Stop** (`stop`): for work that is not going ahead. Ask for the reason if it is missing. Add a final section
+whose Progress line is "Stopped <date>: <reason>." with status ⚪ Paused, "Next milestone: None, stopped <Weekday Mon D>" and Green when "Not planned.", and a line
+to Done on the area tab: "<Initiative>: stopped <date>, <reason>." The doc owner moves it to Archive like a
+finished tab; its Archive line reads "<Initiative> (<owner>), stopped <date>."
+
+All of these follow rule 3: show the change in the review and wait for "publish".
+
+## Change the structure (doc owner only)
+
+The doc owner can say "add an area", "rename <area>", "merge <area> into <area>" or "remove <area>".
+If someone else asks, draft the request for the doc owner instead.
+
+1. Show the before and after tree and what moves where. Wait for "publish".
+2. Move child tabs with `updateDocumentTabProperties` (`parentTabId`, `index`); rename with `title`.
+   Keep every tab's content and history.
+3. An area left empty moves under Archive. Never delete it.
+4. Update the overview's Area health table rows, the affected area tabs' headers, headlines and Initiatives
+   tables, and each moved initiative's `Area:` header line.
+5. Add one line to each moved initiative's section dated today: "Moved from <old area> to <new area> on <date>."
+   If it has no section dated today, add one that carries the status, next milestone, Confidence, Blocked on and
+   Green when lines from the newest section, with that line as its Progress line. Never add it to an earlier day's section.
+6. Re-read the doc and confirm the tree matches the after tree. Each leader's agent picks up the change
+   on its next run.
+
+**Set updaters** ("make Kyle the updater for Composer", "Sahil updates Self-managed Agents"): show each affected
+tab with its old and new updater, wait for "publish", then add or replace the `Updater:` part of each header line.
+To set up a doc that has no `Updater:` lines, propose the area owner for every initiative tab and let the doc
+owner name exceptions.
+
+## Sweep (doc owner, 3pm ET, first half of `close`)
+
+0. Publish first. List the initiative tabs the doc owner updates that have no section dated today, then ask:
+   "You haven't published <tab>, <tab> today. Do your update first?" On yes, run Daily for those tabs, then
+   continue. On no, continue, and those tabs get Unconfirmed sections like everyone else's.
+1. Re-read every initiative tab. List tabs with no section dated today, grouped by updater. A starting section
+   from Create (it ends "Starting section drafted by...") counts as not updated: list that tab too, and in step 2
+   add the Unconfirmed line to that section rather than adding a second section. Skip a tab whose
+   newest section records it as done or stopped; it is waiting for Archive.
+2. For each, draft an Unconfirmed section dated today: the status, next milestone and date carried from the
+   newest section (never improve the status), and a Progress line from the doc owner's own sources if they show
+   something new, with links. The section's last line is "Unconfirmed: no update from <updater> by 3pm ET."
+   with no Progress line unless the doc owner's sources showed something new. If the tab has no
+   earlier section, use 🟡 At risk and "Next milestone: No date set yet". Carry the newest Confidence and Blocked on lines
+   (or "Confidence: Not confident" and "Blocked on: None." if there are none). If the carried status is not 🟢,
+   carry the newest "Green when:" line too, or write "Green when: <updater> sets this when they confirm." Write "No date set yet" wherever the
+   carried section says "Not set yet". Carry each of status and milestone from the newest section that has it
+   (a "No change since" section has no milestone line, so look further back). The checks below apply to Sweep
+   sections too: a carried milestone with no date gets ", No date set yet" added and the status 🟡.
+3. Show the review: tabs by updater, each with its draft. List any carried milestone whose date has already
+   passed; the doc owner decides whether it is done or red. If done, write
+   "Next milestone: <milestone>, done <Weekday Mon D>." and carry the status; the updater sets the next
+   milestone when they confirm. Then "Publish?" On "publish", write them like Daily
+   step 6 (re-read first, insert at the top, never replace a section the updater wrote today), and update each
+   swept initiative's row in its area tab's Initiatives table (that row only) to match the new section. If
+   the initiative has no row in that table, add one at the end, in the table's column order.
+4. Then ask, listing the people by name: "Tag these updaters in a doc comment?" Only on yes, post one comment per
+   updater with `gws drive comments create` on the doc, content
+   `+<email> Unconfirmed today: <tab>, <tab>. Please confirm or correct by running "do my daily update".`
+   Tag only emails in the doc's people map that already have access to the doc (check its sharing list, read only). Never
+   tag anyone else, never share the doc. If an updater has no access, do not tag them: name them in the review
+   and draft a note for the doc owner (never sent) saying who needs access. Comments sit at doc level; the API cannot anchor them to a tab.
+5. Report what was written and tagged. The comments stay open; resolving them is the updater's call.
+
+## Overview (doc owner, second half of `close`)
+
+1. Read every area and initiative tab. Do not re-read sources; the tabs are the input.
+2. Draft the overview: In 30 seconds, Needs decision, Area health, Not updated today. List any tab added,
+   renamed or finished since the last overview, and move finished tabs under Archive if the doc owner agrees.
+   When a tab moves to Archive, delete its row from its area's Initiatives table (its Done line stays), and
+   add it to the Archive tab's list as its own line, "<Initiative> (<owner>), done <date>.", with the name linked
+   to its tab.
+3. Show it in chat with the list of tabs not updated today or still Unconfirmed, and their updaters. Offer a
+   short reminder note the doc owner can send to those updaters (drafted, never sent by you). Flag any area
+   headline dated earlier than that area's newest update, or that contradicts its initiative tabs, and offer a
+   note to the area owner. Do not edit another owner's headline. In the overview's Area health table, end a
+   flagged headline with "(headline from <date>; out of date with its tabs)". End any other headline not dated
+   today with "(headline from <date>; not updated today)". Take the area's Status from its initiative tabs, not
+   from the headline.
+4. On "publish": replace the overview tab body only. Re-read and confirm. When reporting done, quote the
+   re-read overview text; if you cannot quote it, say it did not land. Then offer `send`.
+
+## Send (doc owner)
+
+1. Read the readers from the doc's settings (`du.py settings DOC`). If empty, ask who should get it (name, email, email or Chat) and save them;
+   `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
+2. Draft one short message: subject or first line "<Org> daily update, <Weekday Mon D>", the In 30 seconds
+   bullets, any Needs decision rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
+   <names>." (or "All initiatives confirmed today."), and the doc link. No other content; nothing beyond
+   what the overview already says.
+3. Show the exact recipients, channel and text, then ask: "Send to <names>?" Send only if the doc owner replies
+   "send" (or a clear yes naming the send) in this session. Email with `gws gmail users messages send`; Chat with
+   `gws chat spaces messages create` in a direct message. Send only to addresses already in `readers`.
+4. Report what went to whom, quoting the sent text. If any send failed, say which and why. Never send anything
+   else, and never send on behalf of a leader.
+
+## Checks before any review
+
+- No people-sensitive items (rule 5). Search the draft for names next to: interview, candidate, offer,
+  hire, salary, comp, PTO, leave, sick, performance, promotion, PIP.
+- No vague dates. Every milestone has a date, or reads "No date set yet" (exactly, capital N) with the status at 🟡. A milestone
+  marked "done <date>" by Sweep counts as dated.
+- Every weekday matches its date on the calendar ("Fri Nov 6", never "Thu Nov 6").
+- Every Progress and Blocked on line has at least one link, except "No change since <date>.",
+  "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
+- No raw URLs in the text; every link sits on a short word.
+- No "Note (agent)" or other agent commentary in the doc; it goes in the review.
+- Each initiative is 3 sentences or fewer.
+- Every acronym and internal name is spelled out the first time it appears on its tab (see Writing rules).
+- Every section has Next milestone, Confidence, Progress (unless Unconfirmed) and Blocked on lines, each with a
+  bold prefix. Confidence is one of "Very confident", "Slightly confident", "Not confident".
+- Every section that is not 🟢 has a "Green when:" line, and no 🟢 section has one.
+- If Confidence disagrees with the status, the review says so.
+- No area headline or overview line contains process text ("agent", "starting view", "drafted by").
+- A leader who owns an area tab replaces its headline on every Daily run, from that area's initiative tabs,
+  even when someone else updates those tabs.
+- Status matches the status rules, or the review says why not.
+- Every tab you will write is one this person updates, or one the rules allow: an area tab they own, an
+  initiative they asked to cover, a tab they are adding, a single row in an area table, or (doc owner) a Sweep section.
+- A section written by someone other than the tab's updater ends with "Updated by <person> for <updater>."
+  A Sweep section ends with its Unconfirmed line instead.
+
+
+Capability resource: `resources/capability.json`
