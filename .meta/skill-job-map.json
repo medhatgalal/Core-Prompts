@@ -4356,6 +4356,143 @@
         ]
       }
     },
+    "engos-operations-daily-update": {
+      "primary_job": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+      "use_when": "Use the original triggers and mode-selection rules retained below.",
+      "works_on": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
+      "main_output": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+      "routing_question": "Does this request directly require engos-operations-daily-update?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": [
+            {
+              "text": "Follow the original routing, prerequisites, steps, verification, and stop conditions. Read its referenced resources before the steps that depend on them. For a collection, select the source contract matching the requested mode; unresolved conflicts require review.",
+              "heading": "Workflow",
+              "source": {
+                "path": "ssot/engos-operations-daily-update.md",
+                "start_line": 17,
+                "end_line": 17,
+                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+              }
+            }
+          ]
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "Retain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.",
+              "heading": "Constraints",
+              "source": {
+                "path": "ssot/engos-operations-daily-update.md",
+                "start_line": 34,
+                "end_line": 34,
+                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": []
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-operations-daily-update",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-operations-daily-update.md",
+          "ssot_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+          "effective_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+          "resources": [],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-operations-daily-update.md",
+                  "start_line": 14,
+                  "end_line": 14,
+                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "Use the original triggers and mode-selection rules retained below.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-operations-daily-update.md",
+                  "start_line": 37,
+                  "end_line": 37,
+                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-operations-daily-update.md",
+                  "start_line": 25,
+                  "end_line": 25,
+                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-operations-daily-update.md",
+                  "start_line": 28,
+                  "end_line": 28,
+                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "authority",
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "126e37fbb32a1d81f3a7c27a7b514e483a1084e2945885e33c4f25c7274eaf30"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.authority",
+          "job_contract.not_for",
+          "implicit_activation_eligibility",
+          "negative_examples"
+        ]
+      }
+    },
     "engos-operations-ic-assistant": {
       "primary_job": "Keep an Incident Commander on the declared incident process without taking command decisions.",
       "use_when": "An active incident needs phase tracking, prompts, artifact checks, and missed-step warnings.",
@@ -7361,6 +7498,41 @@
         "evidence": "per_run_report_required"
       }
     },
+    "engos-operations-daily-update": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-operations-daily-update.md",
+        "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-operations-daily-update/",
+          "gemini": ".gemini/skills/engos-operations-daily-update/",
+          "claude": ".claude/skills/engos-operations-daily-update/",
+          "kiro": ".kiro/skills/engos-operations-daily-update/",
+          "grok": ".grok/skills/engos-operations-daily-update/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
     "engos-operations-ic-assistant": {
       "source_at_revision": {
         "status": "present",
@@ -7784,7 +7956,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "ddf650d579cf757dc2da48d3d9c364ff00cdf60e00726578bdfa154f2bea2526",
+    "skills_sha256": "d96204aca3408ab47220740ba29d7cdb9359943c2d346478961948438ee6b604",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -7912,6 +8084,11 @@
         "ssot_sha256": "65be626e073f50d28be83b488817c326a853dc92937d5d0a8c0478b1f1c6eb00",
         "effective_sha256": "990d1f437e4398fea96a2a4742724c20f90b3cffae84f1e3ed038635e67f7091",
         "mapping_sha256": "1e3b0164c6920d7638c57d865beb1f873d7126439f43e1bcb1fcceb87ff5bef8"
+      },
+      "engos-operations-daily-update": {
+        "ssot_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+        "effective_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+        "mapping_sha256": "126e37fbb32a1d81f3a7c27a7b514e483a1084e2945885e33c4f25c7274eaf30"
       },
       "engos-operations-ic-assistant": {
         "ssot_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",

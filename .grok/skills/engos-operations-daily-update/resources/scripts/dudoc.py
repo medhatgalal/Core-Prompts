@@ -1,0 +1,411 @@
+"""Doc read/write helpers for the daily-update skill. The agent writes the words; these write the layout.
+
+Safety: every write goes through `batch()`. It refuses the docs in PROTECTED, read from the person's own
+`~/.daily-update/protected.json` ({"<doc id>": "<label>"}; no file means none), and with DU_TEST=1 it also
+refuses any doc whose title does not start with "E2E TEST". Every write carries the revision it was based on,
+so a doc changed by someone else is never overwritten. Reads are always allowed.
+"""
+import datetime as dt
+import json
+import os
+import re
+import subprocess
+
+
+def _protected():
+    path = os.path.expanduser("~/.daily-update/protected.json")
+    try:
+        with open(path) as f:
+            return {str(k): str(v) for k, v in json.load(f).items()}
+    except FileNotFoundError:
+        return {}
+
+
+PROTECTED = _protected()
+
+
+def _skill_name():
+    """The installed skill's folder name, so doc text shows the command people actually type.
+    Layouts: <skill>/scripts/ (this repo) and <skill>/resources/scripts/ (Core-Prompts bundles)."""
+    parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if os.path.basename(parent) == "resources":
+        parent = os.path.dirname(parent)
+    return os.path.basename(parent)
+
+
+SKILL_NAME = _skill_name()
+CMD = "/" + SKILL_NAME
+TEST_TITLE_PREFIX = "E2E TEST"
+YEAR = 2026
+STATUSES = {"🔴": "🔴 Red", "🟡": "🟡 At risk", "🟢": "🟢 On track", "⚪": "⚪ Paused"}
+RANK = {"🔴": 0, "🟡": 1, "🟢": 2, "⚪": 3}
+MONTHS = {m: i + 1 for i, m in enumerate(
+    ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])}
+WD = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+DATE_RE = re.compile(r"\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})\b")
+HEADING_RE = re.compile(r"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (\w{3}) (\d{1,2}), (\d{4})$")
+
+
+# ---------- gws ----------
+
+def gws(*args, body=None):
+    cmd = ["gws", *args]
+    if body is not None:
+        cmd += ["--json", json.dumps(body)]
+    p = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+    if p.returncode != 0:
+        raise RuntimeError(f"gws failed: {' '.join(args[:4])}\n{p.stderr[-2000:]}")
+    out = p.stdout.strip()
+    return json.loads(out) if out else {}
+
+
+def read_doc(doc_id):
+    return gws("docs", "documents", "get", "--params",
+               json.dumps({"documentId": doc_id, "includeTabsContent": True}))
+
+
+def batch(doc_id, requests, doc=None):
+    if doc_id in PROTECTED:
+        raise SystemExit(f"REFUSED: {PROTECTED[doc_id]} is protected while the skill is in testing.")
+    doc = doc or read_doc(doc_id)
+    if os.environ.get("DU_TEST") and not doc.get("title", "").startswith(TEST_TITLE_PREFIX):
+        raise SystemExit(f"REFUSED (DU_TEST): doc title {doc.get('title')!r} does not start with {TEST_TITLE_PREFIX!r}.")
+    if not requests:
+        return {}
+    # Skill rule: refuse the write if anyone changed the doc since this read.
+    body = {"requests": requests, "writeControl": {"requiredRevisionId": doc["revisionId"]}}
+    return gws("docs", "documents", "batchUpdate", "--params", json.dumps({"documentId": doc_id}), body=body)
+
+
+def pageless(doc_id, tab_ids):
+    """Skill rule: every tab is pageless."""
+    batch(doc_id, [{"updateDocumentStyle": {"tabId": t, "documentStyle": {"documentFormat": {"documentMode": "PAGELESS"}},
+                                            "fields": "documentFormat"}} for t in tab_ids])
+
+
+GUIDE = "Update guide"
+CONF_DEF = "kix.confidence"
+
+
+def _rgb(r, g, b):
+    return {"color": {"rgbColor": {"red": r, "green": g, "blue": b}}}
+
+
+CONF_OPTS = [("dropdownItem.very", "Very confident", _rgb(.85, .95, .85), _rgb(.08, .40, .15)),
+             ("dropdownItem.slight", "Slightly confident", _rgb(.99, .92, .70), _rgb(.45, .30, 0)),
+             ("dropdownItem.not", "Not confident", _rgb(.98, .84, .84), _rgb(.65, .10, .10))]
+
+
+def chipify(doc_id, tab_ids=None):
+    """Skill rule: every Confidence value is a dropdown chip (definition kix.confidence on its tab).
+    Turns any plain-text Confidence value into a chip, creating the tab's definition if missing."""
+    doc = read_doc(doc_id)
+    by_value = {v: o for o, v, _, _ in CONF_OPTS}
+    reqs = []
+    for t, _ in all_tabs(doc):
+        tid = t["tabProperties"]["tabId"]
+        if tab_ids is not None and tid not in tab_ids:
+            continue
+        hits = []
+        for e in t["documentTab"]["body"]["content"]:
+            if "paragraph" not in e:
+                continue
+            els = e["paragraph"]["elements"]
+            txt = para_text(e["paragraph"]).rstrip("\n")
+            if txt.startswith("Confidence:") and not any("dropdown" in r for r in els):
+                val = txt[len("Confidence:"):].strip()
+                if val not in by_value:
+                    continue
+                start = e["startIndex"] + utf16("Confidence: ")
+                hits.append((start, e["endIndex"] - 1, by_value[val]))
+        if not hits:
+            continue
+        if CONF_DEF not in t["documentTab"].get("dropdownDefinitions", {}):
+            reqs.append({"createDropdownDefinition": {"tabId": tid, "dropdownDefinition": {
+                "dropdownDefinitionId": CONF_DEF, "dropdownDefinitionProperties": {"title": "Confidence", "options": [
+                    {"optionId": o, "displayValue": v, "textStyle": {"backgroundColor": bg, "foregroundColor": fg}}
+                    for o, v, bg, fg in CONF_OPTS]}}}})
+        for start, end, opt in sorted(hits, reverse=True):
+            if end > start:
+                reqs.append({"deleteContentRange": {"range": {"startIndex": start, "endIndex": end, "tabId": tid}}})
+            reqs.append({"insertDropdown": {"location": {"index": start, "tabId": tid},
+                                            "dropdownDefinitionId": CONF_DEF, "selectedOptionId": opt}})
+    batch(doc_id, reqs, doc)
+    return len([r for r in reqs if "insertDropdown" in r])
+
+
+PREFIXES = ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:")
+CONFIDENCE = ("Very confident", "Slightly confident", "Not confident")
+DEFAULT_CONF = {"🟢": "Very confident", "🟡": "Slightly confident", "🔴": "Not confident", "⚪": "Slightly confident"}
+
+
+def normalize(lines, carry=None):
+    """Skill section format. `lines` starts with the date heading or the status line.
+    Order: status, Next milestone, Confidence, Progress, Blocked on, Green when (only when not green), then the
+    closing lines (Updated by, Added by, Moved from, Unconfirmed). `carry` is a Section to take missing lines from."""
+    head = [lines[0]] if HEADING_RE.match(lines[0]) else []
+    body = lines[len(head):]
+    raw_status = next(l for l in body if l[:1] in STATUSES)
+    status = STATUSES.get(raw_status.strip(), raw_status)  # a bare "🟡" becomes "🟡 At risk"
+    get = lambda p: next((l for l in body if l.startswith(p)), None) or (carry and carry.line(p))
+    ms, conf, prog = get("Next milestone:"), get("Confidence:"), next((l for l in body if l.startswith("Progress:")), None)
+    if ms:
+        ms = re.sub(r"(?i)no date set yet", "No date set yet", ms)
+    blk, gw = get("Blocked on:"), get("Green when:")
+    tail = [l for l in body if l != raw_status and not l.startswith(PREFIXES)] + \
+           [l for l in body if l.startswith("Unconfirmed:")]
+    tail = list(dict.fromkeys(tail))  # a closing line written twice appears once
+    if not any(l.startswith("Confidence:") for l in body) and carry is not None and carry.status != status[:1]:
+        conf = None
+    out = [status, ms, conf or f"Confidence: {DEFAULT_CONF[status[:1]]}"]
+    if prog:
+        out.append(prog)
+    out.append(blk or "Blocked on: None.")
+    if status[:1] != "🟢":
+        out.append(gw or "Green when: the updater sets this when they confirm.")
+    return head + out + tail
+
+
+def repair_headings(doc_id):
+    """Skill rule: after a write, every date line must still be a HEADING_2. Restores any that are not."""
+    doc = read_doc(doc_id)
+    reqs, fixed = [], []
+    for t, _ in all_tabs(doc):
+        for e in t["documentTab"]["body"]["content"]:
+            if "paragraph" in e and HEADING_RE.match(para_text(e["paragraph"]).strip()) \
+                    and e["paragraph"]["paragraphStyle"].get("namedStyleType") != "HEADING_2":
+                reqs.append({"updateParagraphStyle": {
+                    "range": {"startIndex": e["startIndex"], "endIndex": e["endIndex"], "tabId": t["tabProperties"]["tabId"]},
+                    "paragraphStyle": {"namedStyleType": "HEADING_2"}, "fields": "namedStyleType"}})
+                fixed.append(f"{t['tabProperties']['title']}: {para_text(e['paragraph']).strip()}")
+    batch(doc_id, reqs, doc)
+    return fixed
+
+
+# ---------- dates ----------
+
+def parse_date(wd, mon, day, year=YEAR):
+    return dt.date(int(year), MONTHS[mon], int(day))
+
+
+def label(d, year=False):
+    s = f"{WD[d.weekday()]} {d.strftime('%b')} {d.day}"
+    return f"{s}, {d.year}" if year else s
+
+
+def dates_in(text):
+    """All 'Fri Nov 6' style dates in text: list of (matched text, date, weekday_ok)."""
+    out = []
+    for m in DATE_RE.finditer(text):
+        d = parse_date(*m.groups())
+        out.append((m.group(0), d, WD[d.weekday()] == m.group(1)))
+    return out
+
+
+# ---------- doc model ----------
+
+def utf16(s):
+    return len(s.encode("utf-16-le")) // 2
+
+
+def para_text(p):
+    """Paragraph text; a dropdown chip reads as its selected value."""
+    return "".join(r.get("textRun", {}).get("content", "") or
+                   r.get("dropdown", {}).get("dropdownProperties", {}).get("displayValue", "") for r in p["elements"])
+
+
+def cell_text(c):
+    return "".join(para_text(x["paragraph"]) for x in c["content"] if "paragraph" in x).strip()
+
+
+def all_tabs(doc):
+    def walk(ts, parent=None):
+        for t in ts:
+            yield t, parent
+            yield from walk(t.get("childTabs", []), t)
+    return list(walk(doc["tabs"]))
+
+
+def title_parts(title):
+    m = re.match(r"^(.*) \((.*)\)$", title)
+    return (m.group(1), m.group(2)) if m else (title, None)
+
+
+class Section:
+    def __init__(self, date, heading_el):
+        self.date, self.heading_el, self.lines = date, heading_el, []
+
+    def line(self, prefix):
+        return next((t for t, _ in self.lines if t.startswith(prefix)), None)
+
+    @property
+    def status(self):
+        return next((t[0] for t, _ in self.lines if t[:1] in STATUSES), None)
+
+    @property
+    def milestone(self):
+        m = self.line("Next milestone:")
+        return m[len("Next milestone:"):].strip() if m else None
+
+    @property
+    def unconfirmed(self):
+        return any(t.startswith("Unconfirmed:") for t, _ in self.lines)
+
+    @property
+    def no_change(self):
+        return any(t.startswith("No change since") for t, _ in self.lines)
+
+
+class Initiative:
+    def __init__(self, tab, parent):
+        p = tab["tabProperties"]
+        self.tab_id, self.title = p["tabId"], p["title"]
+        self.name, self.owner = title_parts(self.title)
+        self.area_title = parent["tabProperties"]["title"]
+        self.area_name, self.area_owner = title_parts(self.area_title)
+        self.body = tab["documentTab"]["body"]["content"]
+        self.header, self.sections = None, []
+        cur = None
+        for e in self.body:
+            if "paragraph" not in e:
+                continue
+            txt = para_text(e["paragraph"]).rstrip("\n")
+            style = e["paragraph"]["paragraphStyle"].get("namedStyleType")
+            m = HEADING_RE.match(txt)
+            if style == "HEADING_2" and m:
+                cur = Section(parse_date(*m.groups()), e)
+                self.sections.append(cur)
+            elif cur is not None:
+                if txt.strip():
+                    cur.lines.append((txt, e))
+            elif txt.startswith("Owner:"):
+                self.header = txt
+        self.updater = self.owner
+        if self.header:
+            m = re.search(r"Updater: ([^·]+)", self.header)
+            if m:
+                self.updater = m.group(1).strip()
+
+    def newest(self, attr=None):
+        for s in self.sections:
+            if attr is None or getattr(s, attr):
+                return s
+        return None
+
+    def first_heading_index(self):
+        return self.sections[0].heading_el["startIndex"] if self.sections else self.body[-1]["endIndex"] - 1
+
+
+class Area:
+    def __init__(self, tab):
+        p = tab["tabProperties"]
+        self.tab_id, self.title = p["tabId"], p["title"]
+        self.name, self.owner = title_parts(self.title)
+        self.body = tab["documentTab"]["body"]["content"]
+        self.headline = None
+        after = False
+        for e in self.body:
+            if "paragraph" in e:
+                txt = para_text(e["paragraph"]).strip()
+                if txt == "Headline":
+                    after = True
+                elif after and txt:
+                    self.headline = txt
+                    after = False
+        self.table = next((e for e in self.body if "table" in e
+                           and cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Initiative"), None)
+
+    def rows(self):
+        if not self.table:
+            return []
+        return [[cell_text(c) for c in r["tableCells"]] for r in self.table["table"]["tableRows"][1:]]
+
+
+def model(doc):
+    inits, areas, overview, archive = [], {}, None, None
+    for t, parent in all_tabs(doc):
+        title = t["tabProperties"]["title"]
+        if parent is None:
+            if overview is None:
+                overview = t
+            elif title.startswith(GUIDE):
+                continue
+            elif title.startswith("Archive"):
+                archive = t
+            else:
+                areas[title] = Area(t)
+        elif not parent["tabProperties"]["title"].startswith(("Archive", GUIDE)):
+            inits.append(Initiative(t, parent))
+    return overview, areas, inits
+
+
+def tab_url(doc_id, tab_id):
+    return f"https://docs.google.com/document/d/{doc_id}/edit?tab={tab_id}"
+
+
+def milestone_dated(ms):
+    return ms is not None and (bool(DATE_RE.search(ms)) or "No date set yet" in ms)
+
+
+def milestone_date(ms):
+    """The milestone's own due date (ignores a trailing 'done <date>')."""
+    if not ms:
+        return None
+    core = re.split(r", done ", ms)[0]
+    found = dates_in(core)
+    return found[-1][1] if found else None
+
+
+def worst(statuses):
+    s = [x for x in statuses if x]
+    return min(s, key=lambda x: RANK[x]) if s else None
+
+
+# ---------- overview title, used for every "Back to <overview>" link ----------
+
+def overview_title(doc):
+    first = next(e for e in doc["tabs"][0]["documentTab"]["body"]["content"] if "paragraph" in e)
+    return para_text(first["paragraph"]).strip() or doc.get("title", "")
+
+
+# ---------- shared settings: stored on the doc itself (Drive file properties) ----------
+# Anyone with edit access reads and writes the same values, so whoever runs close/send on the doc owner's
+# behalf has the readers and people without the doc owner's laptop.
+
+def settings_get(doc_id):
+    props = gws("drive", "files", "get", "--params",
+                json.dumps({"fileId": doc_id, "fields": "properties", "supportsAllDrives": True})).get("properties", {})
+    readers, people = [], {}
+    for k in sorted(props):
+        if k.startswith("du.reader."):
+            name, channel, email = (props[k].split("|") + ["", ""])[:3]
+            readers.append({"name": name, "channel": channel, "email": email})
+        elif k.startswith("du.person."):
+            people[k[len("du.person."):]] = props[k]
+    return {"owner": props.get("du.owner", ""), "readers": readers, "people": people}
+
+
+def settings_set(doc_id, owner=None, readers=None, people=None):
+    """Replace the given parts. Drive keeps each key+value under 124 bytes, so values stay short."""
+    cur = gws("drive", "files", "get", "--params",
+              json.dumps({"fileId": doc_id, "fields": "properties", "supportsAllDrives": True})).get("properties", {})
+    props = {}
+    if owner is not None:
+        props["du.owner"] = owner
+    if readers is not None:
+        props.update({k: None for k in cur if k.startswith("du.reader.")})
+        for n, r in enumerate(readers, 1):
+            props[f"du.reader.{n}"] = f"{r['name']}|{r.get('channel', 'email')}|{r['email']}"
+    if people is not None:
+        props.update({k: None for k in cur if k.startswith("du.person.")})
+        for name, email in people.items():
+            props[f"du.person.{name}"] = email
+    if os.environ.get("DU_TEST"):
+        title = gws("drive", "files", "get", "--params", json.dumps({"fileId": doc_id, "fields": "name"})).get("name", "")
+        if not title.startswith(TEST_TITLE_PREFIX):
+            raise SystemExit("REFUSED (DU_TEST): settings write to a non-test doc.")
+    if doc_id in PROTECTED:
+        raise SystemExit(f"REFUSED: {PROTECTED[doc_id]} is protected while the skill is in testing.")
+    gws("drive", "files", "update", "--params", json.dumps({"fileId": doc_id, "fields": "properties",
+                                                            "supportsAllDrives": True}), body={"properties": props})
+    return settings_get(doc_id)

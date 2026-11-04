@@ -1,0 +1,225 @@
+"""Create mode and overview/area helpers for E2E TEST docs (test tooling, not part of the skill)."""
+import json
+
+import dudoc as du
+import modes as m
+
+GREY = {"color": {"rgbColor": {"red": 0.45, "green": 0.45, "blue": 0.45}}}
+
+
+def text_width(tab):
+    ds = tab["documentTab"]["documentStyle"]
+    return ds["pageSize"]["width"]["magnitude"] - ds["marginLeft"]["magnitude"] - ds["marginRight"]["magnitude"]
+
+
+def widths(tw, shares):
+    w = [round(tw * s / 100) for s in shares]
+    w[shares.index(max(shares))] += tw - sum(w)
+    return w
+
+
+def add_table(doc_id, tab_id, at, rows, shares):
+    """Insert a table at index `at`, fill it, bold the header row, set widths from the tab's page."""
+    du.batch(doc_id, [{"insertTable": {"rows": len(rows), "columns": len(rows[0]),
+                                       "location": {"index": at, "tabId": tab_id}}}])
+    doc = du.read_doc(doc_id)
+    tab = m.find_tab(doc, tab_id)
+    tbl = min((e for e in tab["documentTab"]["body"]["content"] if "table" in e and e["startIndex"] >= at - 1),
+              key=lambda e: e["startIndex"])
+    cells = [(c["content"][0]["startIndex"], v) for r, vals in zip(tbl["table"]["tableRows"], rows)
+             for c, v in zip(r["tableCells"], vals)]
+    du.batch(doc_id, [{"insertText": {"location": {"index": s, "tabId": tab_id}, "text": v}}
+                      for s, v in sorted(cells, reverse=True) if v], doc)
+    doc = du.read_doc(doc_id)
+    tab = m.find_tab(doc, tab_id)
+    tbl = min((e for e in tab["documentTab"]["body"]["content"] if "table" in e and e["startIndex"] >= at - 1),
+              key=lambda e: e["startIndex"])
+    reqs = [{"updateTextStyle": {"range": {"startIndex": c["startIndex"], "endIndex": c["endIndex"] - 1, "tabId": tab_id},
+                                 "textStyle": {"bold": True}, "fields": "bold"}}
+            for c in tbl["table"]["tableRows"][0]["tableCells"] if c["endIndex"] - 1 > c["startIndex"]]
+    for i, w in enumerate(widths(text_width(tab), shares)):
+        reqs.append({"updateTableColumnProperties": {"tableStartLocation": {"index": tbl["startIndex"], "tabId": tab_id},
+                     "columnIndices": [i], "tableColumnProperties": {"widthType": "FIXED_WIDTH",
+                     "width": {"magnitude": w, "unit": "PT"}}, "fields": "width,widthType"}})
+    du.batch(doc_id, reqs, doc)
+
+
+def anchor_index(doc_id, tab_id, after_heading):
+    """Start index of the empty paragraph right after a heading (where a table goes)."""
+    tab = m.find_tab(du.read_doc(doc_id), tab_id)
+    paras = [e for e in tab["documentTab"]["body"]["content"] if "paragraph" in e]
+    i = next(k for k, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == after_heading)
+    return paras[i + 1]["startIndex"]
+
+
+def create(title, org, owner, reader, structure, day):
+    """Create mode step 4. structure: [(area, area_owner, [(name, owner, updater, status, milestone, progress, word, url, extra)])]"""
+    doc = du.gws("docs", "documents", "create", body={"title": title})
+    did = doc["documentId"]
+    ov = "t.0"
+    reqs = [{"updateDocumentTabProperties": {"tabProperties": {"tabId": ov, "title": f"{org} ({owner})"}, "fields": "title"}}]
+    for k, (area, aown, _) in enumerate(structure):
+        reqs.append({"addDocumentTab": {"tabProperties": {"title": f"{area} ({aown})", "index": k + 1}}})
+    reqs.append({"addDocumentTab": {"tabProperties": {"title": f"Archive ({owner})", "index": len(structure) + 1}}})
+    r = du.batch(did, reqs)
+    ids = [x["addDocumentTab"]["tabProperties"]["tabId"] for x in r["replies"] if "addDocumentTab" in x]
+    area_ids, archive_id = ids[:-1], ids[-1]
+    otitle = f"{org} daily update"
+    back = (1, otitle, du.tab_url(did, ov))
+    inits = {}
+    for (area, aown, items), aid in zip(structure, area_ids):
+        r = du.batch(did, [{"addDocumentTab": {"tabProperties": {"title": f"{n} ({o})", "parentTabId": aid, "index": k}}}
+                           for k, (n, o, *_) in enumerate(items)])
+        for (n, *_), x in zip(items, r["replies"]):
+            inits[n] = x["addDocumentTab"]["tabProperties"]["tabId"]
+        # area tab
+        worst = du.worst(it[3] for it in items)
+        nxt = "; ".join(f"{n}: {ms}" for n, o, u, s, ms, *_ in items[:2])
+        hl = f"{du.STATUSES[worst]} · Next up: {nxt}. ({du.label(day)})"
+        lines = [f"{area} ({aown})", f"Owner: {aown} · Back to {otitle}", "Headline", hl,
+                 "Initiatives", "", "Done", "No initiatives finished yet."]
+        st = ["HEADING_1", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT"]
+        du.batch(did, m._paras(aid, 1, lines, st, [back]))
+        add_table(did, aid, anchor_index(did, aid, "Initiatives"),
+                  [["Initiative", "Owner", "Status", "Next milestone and date"]] +
+                  [[n, o, du.STATUSES[s], ms] for n, o, u, s, ms, *_ in items], [30, 15, 17, 38])
+        # initiative tabs
+        for n, o, u, s, ms, prog, word, url, extra in items:
+            extra = [x for x in extra if not x.startswith("Starting section drafted by")]  # added once, below
+            sec = m.section_lines(day, s, ms, prog, list(extra) +
+                                  [f"Starting section drafted by {owner}'s agent. {u} confirms or corrects it on their first update."])
+            if not prog:  # no source: no Progress line
+                sec = [x for x in sec if not x.startswith("Progress:")]
+            sec = du.normalize(sec)
+            lines = [f"{n} ({o})", f"Owner: {o} · Updater: {u} · Area: {area} · Back to {otitle}"] + sec + [""]
+            st = ["HEADING_1", "NORMAL_TEXT", "HEADING_2"] + ["NORMAL_TEXT"] * (len(sec))
+            links = [(1, otitle, du.tab_url(did, ov))]
+            # `word` is either one link word (with `url`) or a list of [word, url] pairs (url None)
+            pairs = [(word, url)] if url else [tuple(p) for p in (word or [])]
+            if prog:
+                pk = next(k for k, x in enumerate(lines) if x.startswith("Progress:"))
+                links += [(pk, w, u) for w, u in pairs]
+            du.batch(did, m._paras(inits[n], 1, lines, st, links))
+    # archive
+    du.batch(did, m._paras(archive_id, 1, [f"Archive ({owner})", f"Owner: {owner} · Back to {otitle}",
+                                           "Finished initiatives move here.", "None yet."],
+                           ["HEADING_1", "NORMAL_TEXT", "NORMAL_TEXT", "NORMAL_TEXT"], [back]))
+    # overview
+    lines = [f"{org} daily update", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET",
+             "In 30 seconds", "🟢 Doc created; leaders start updating on their next run.",
+             "Area health", "", "Not updated today", "Overview not built yet.",
+             "How to update",
+             f"Each leader: by 3pm ET, run {du.CMD} (or say \"do my daily update\"), review the draft, then say \"publish\". It adds today's section at the top of each initiative tab you update and refreshes your area tab.",
+             "Engineers who own a tab do not update it; their updater does.",
+             f"Doc owner: at 3pm ET, run {du.CMD} close to mark missed tabs Unconfirmed, tag their updaters and rebuild the overview. Then {du.CMD} send to send the summary to readers.",
+             f"New initiative: {du.CMD} add. Finished: done. Stopped: stop. The doc owner moves both to Archive.",
+             f"{du.CMD} help lists every command.",
+             "Meetings do not walk through status; read this doc first. Meeting time goes to \"Needs decision\" items.",
+             "Template and writing tips: see the Update guide tab.",
+             "Status key",
+             "🔴 Red: a committed date passed and it is not done, or blocked with no owned fix and date.",
+             "🟡 At risk: next milestone has no date, or something owed or undecided could slip the date.",
+             "🟢 On track: none of the above.",
+             "⚪ Paused: paused or not started.",
+             "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."]
+    st = ["TITLE", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT",
+          "HEADING_2"] + ["NORMAL_TEXT"] * 7 + ["HEADING_2"] + ["NORMAL_TEXT"] * 5
+    du.batch(did, m._paras(ov, 1, lines, st))
+    tab = m.find_tab(du.read_doc(did), ov)
+    last = [e for e in tab["documentTab"]["body"]["content"] if "paragraph" in e][-2]
+    du.batch(did, [{"updateTextStyle": {"range": {"startIndex": last["startIndex"], "endIndex": last["endIndex"] - 1, "tabId": ov},
+                                        "textStyle": {"foregroundColor": GREY, "fontSize": {"magnitude": 9, "unit": "PT"}},
+                                        "fields": "foregroundColor,fontSize"}}])
+    du.pageless(did, [t["tabProperties"]["tabId"] for t, _ in du.all_tabs(du.read_doc(did))])
+    import guide
+    gid = guide.add_guide(did, owner)
+    link_guide_line(did, gid)
+    def cell(items):
+        nxt = "; ".join(f"{n}: {ms}" for n, o, u, s, ms, *_ in items[:2])
+        return f"Next up: {nxt}. ({du.label(day)})"
+    add_table(did, ov, anchor_index(did, ov, "Area health"), [["Area", "Owner", "Status", "Headline", "Updated"]] +
+              [[a, ao, du.STATUSES[du.worst(it[3] for it in items)], cell(items), du.label(day)]
+               for a, ao, items in structure], [21, 11, 15, 38, 15])
+    # In 30 seconds: up to 5 initiatives, worst first, each linked to its tab
+    allinits = [(it[3], f"{it[0]} ({it[1]})", f"next milestone {it[4]}.") for _, _, items in structure for it in items]
+    allinits.sort(key=lambda x: du.RANK[x[0]])
+    set_thirty_seconds(did, allinits[:5])
+    du.chipify(did)
+    du.repair_headings(did)
+    return did
+
+
+def set_headline(doc_id, area_title, text):
+    """Replace the area tab's headline paragraph (area owner only)."""
+    import re
+    # Format: "<status> · <sentences> (<date>)". Fix a "." or "," written where the "·" belongs.
+    text = re.sub(r"^((?:🔴 Red|🟡 At risk|🟢 On track|⚪ Paused))\s*[.,:;]?\s+(?!·)", r"\1 · ", text)
+    doc = du.read_doc(doc_id)
+    area = du.model(doc)[1][area_title]
+    paras = [e for e in area.body if "paragraph" in e]
+    i = next(k for k, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == "Headline")
+    p = paras[i + 1]
+    du.batch(doc_id, [{"deleteContentRange": {"range": {"startIndex": p["startIndex"], "endIndex": p["endIndex"] - 1, "tabId": area.tab_id}}},
+                      {"insertText": {"location": {"index": p["startIndex"], "tabId": area.tab_id}, "text": text}}], doc)
+
+
+def set_thirty_seconds(doc_id, bullets):
+    """bullets: [(status, tab_title, rest)] -> '🔴 <name>: rest' with the name linked to its tab."""
+    doc = du.read_doc(doc_id)
+    ov = du.model(doc)[0]
+    paras = [e for e in ov["documentTab"]["body"]["content"] if "paragraph" in e]
+    i = next(k for k, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == "In 30 seconds")
+    j = next(k for k in range(i + 1, len(paras)) if paras[k]["paragraph"]["paragraphStyle"].get("namedStyleType") == "HEADING_2")
+    start, end = paras[i]["endIndex"], paras[j]["startIndex"]
+    tabs = {t["tabProperties"]["title"]: t["tabProperties"]["tabId"] for t, _ in du.all_tabs(doc)}
+    lines, links = [], []
+    for k, (s, title, rest) in enumerate(bullets):
+        name = du.title_parts(title)[0]
+        lines.append(f"{s} {name}: {rest}")
+        links.append((k, name, du.tab_url(doc_id, tabs[title])))
+    reqs = [{"deleteContentRange": {"range": {"startIndex": start, "endIndex": end, "tabId": "t.0"}}}]
+    reqs += m._paras("t.0", start, lines, ["NORMAL_TEXT"] * len(lines), links)
+    du.batch(doc_id, reqs, doc)
+
+
+def set_decisions(doc_id, reader, rows, links=()):
+    """Overview 'Needs <reader>'s decision' table, added above Area health when there are any."""
+    doc = du.read_doc(doc_id)
+    ov = du.model(doc)[0]
+    head = f"Needs {reader}'s decision"
+    paras = [e for e in ov["documentTab"]["body"]["content"] if "paragraph" in e]
+    if not any(du.para_text(e["paragraph"]).strip() == head for e in paras):
+        ah = next(e for e in paras if du.para_text(e["paragraph"]).strip() == "Area health")
+        du.batch(doc_id, m._paras("t.0", ah["startIndex"], [head, ""], ["HEADING_2", "NORMAL_TEXT"]), doc)
+        add_table(doc_id, "t.0", anchor_index(doc_id, "t.0", head),
+                  [["Decision", "Why now", "Recommend", "By", "Owner"]] + rows, [24, 22, 24, 14, 16])
+    # Link each Decision cell to the thing being decided.
+    doc = du.read_doc(doc_id)
+    ov = du.model(doc)[0]
+    tbl = next(e for e in ov["documentTab"]["body"]["content"]
+               if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Decision")
+    reqs = []
+    for r, url in zip(tbl["table"]["tableRows"][1:], links):
+        c = r["tableCells"][0]
+        reqs.append({"updateTextStyle": {"range": {"startIndex": c["startIndex"] + 1, "endIndex": c["endIndex"] - 1,
+                                                   "tabId": "t.0"},
+                                         "textStyle": {"link": {"url": url}}, "fields": "link"}})
+    du.batch(doc_id, reqs, doc)
+
+
+def link_guide_line(doc_id, guide_tab_id):
+    """Put the 'Template and writing tips' line under How to update (add it if missing) and link 'Update guide'."""
+    doc = du.read_doc(doc_id)
+    ov = du.model(doc)[0]
+    paras = [e for e in ov["documentTab"]["body"]["content"] if "paragraph" in e]
+    line = "Template and writing tips: see the Update guide tab."
+    p = next((e for e in paras if du.para_text(e["paragraph"]).strip() == line), None)
+    if p is None:
+        sk = next(e for e in paras if du.para_text(e["paragraph"]).strip() == "Status key")
+        du.batch(doc_id, m._paras("t.0", sk["startIndex"], [line], ["NORMAL_TEXT"]), doc)
+        doc = du.read_doc(doc_id)
+        paras = [e for e in du.model(doc)[0]["documentTab"]["body"]["content"] if "paragraph" in e]
+        p = next(e for e in paras if du.para_text(e["paragraph"]).strip() == line)
+    s = p["startIndex"] + du.utf16(line[:line.index("Update guide")])
+    du.batch(doc_id, [{"updateTextStyle": {"range": {"startIndex": s, "endIndex": s + du.utf16("Update guide"), "tabId": "t.0"},
+                                           "textStyle": {"link": {"url": du.tab_url(doc_id, guide_tab_id)}}, "fields": "link"}}], doc)

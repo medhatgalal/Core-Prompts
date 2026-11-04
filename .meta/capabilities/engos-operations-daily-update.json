@@ -1,0 +1,476 @@
+{
+  "slug": "engos-operations-daily-update",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
+      "role": "workflow",
+      "domain_tags": [
+        "engos",
+        "operations",
+        "daily",
+        "update"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-operations-daily-update.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-operations-daily-update.md",
+        "policy_rule_id": "ssot.engos-operations-daily-update",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "Engos Operations Daily Update"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [
+        "engos-operations-ic-assistant"
+      ],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "engos",
+        "operations"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile None."
+    }
+  },
+  "display_name": "Engos Operations Daily Update",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-operations-daily-update",
+  "shared_summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-operations-daily-update",
+        "strategy": "candidate_seed",
+        "group": "new_or_untracked",
+        "baseline_path": null,
+        "selected_commit": null,
+        "richness_score": 8,
+        "line_count": 618,
+        "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+        "equivalent_commits": [],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [],
+        "historical_proof": {},
+        "source": "candidate_seed",
+        "verified_by_git_history": false,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": null,
+          "baseline_slug": "engos-operations-daily-update"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 8,
+        "candidate_richness": 8,
+        "baseline_operational_score": 4,
+        "candidate_operational_score": 4,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
+  "consumption_hints": {
+    "preferred_use_cases": [
+      "AI-assisted capability selection",
+      "deterministic prompt uplift review"
+    ],
+    "artifact_conventions": [
+      "ssot/<slug>.md",
+      ".meta/capabilities/<slug>.json",
+      "reports/quality-reviews/<slug>/LATEST.md"
+    ],
+    "invocation_style": "assistant_first_but_scriptable",
+    "requires_human_confirmation": true
+  },
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
+  "historical_baseline": {
+    "slug": "engos-operations-daily-update",
+    "strategy": "candidate_seed",
+    "group": "new_or_untracked",
+    "baseline_path": null,
+    "selected_commit": null,
+    "richness_score": 8,
+    "line_count": 618,
+    "reason": "No registry entry or git history available; use the candidate as the provisional seed baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [],
+    "historical_proof": {},
+    "source": "candidate_seed",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation",
+        "| Command |"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+    "use_when": "Use the original triggers and mode-selection rules retained below.",
+    "works_on": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
+    "main_output": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+    "authority": "No authority beyond the canonical SSOT and the user's explicit request.",
+    "routing_question": "Does this request directly require engos-operations-daily-update?",
+    "nearest_neighbors": [],
+    "shape": "unclassified_new_skill",
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": [
+          {
+            "text": "Follow the original routing, prerequisites, steps, verification, and stop conditions. Read its referenced resources before the steps that depend on them. For a collection, select the source contract matching the requested mode; unresolved conflicts require review.",
+            "heading": "Workflow",
+            "source": {
+              "path": "ssot/engos-operations-daily-update.md",
+              "start_line": 17,
+              "end_line": 17,
+              "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+            }
+          }
+        ]
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "Retain the original scope, ownership, approval gates, tool limits, and failure behavior. The sidecar descriptor and inferred relationships are advisory packaging metadata, not a competing source of task instructions.",
+            "heading": "Constraints",
+            "source": {
+              "path": "ssot/engos-operations-daily-update.md",
+              "start_line": 34,
+              "end_line": 34,
+              "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-operations-daily-update",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-operations-daily-update.md",
+        "ssot_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+        "effective_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/engos-operations-daily-update.md",
+                "start_line": 14,
+                "end_line": 14,
+                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "Use the original triggers and mode-selection rules retained below.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-operations-daily-update.md",
+                "start_line": 37,
+                "end_line": 37,
+                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "Use the inputs, schemas, defaults, and clarification rules declared by the original source contract.",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-operations-daily-update.md",
+                "start_line": 25,
+                "end_line": 25,
+                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-operations-daily-update.md",
+                "start_line": 28,
+                "end_line": 28,
+                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "authority",
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "126e37fbb32a1d81f3a7c27a7b514e483a1084e2945885e33c4f25c7274eaf30"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.authority",
+        "job_contract.not_for",
+        "implicit_activation_eligibility",
+        "negative_examples"
+      ]
+    }
+  }
+}
