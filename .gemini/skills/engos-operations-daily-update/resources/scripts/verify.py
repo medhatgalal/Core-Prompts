@@ -203,7 +203,11 @@ def main():
             check(f"overview: {ar.name} headline marked not updated today",
                   row[3].endswith(f"(headline from {du.label(hl_date)}; not updated today)"), row[3][-70:])
         else:
-            check(f"overview: {ar.name} unflagged headline ends with its date", hl_date is None or row[3].endswith(f"({du.label(hl_date)})"), row[3][-40:])
+            # The agent may also flag a headline whose text contradicts its tabs (a stopped milestone it still
+            # names); dates and colour cannot show that, so the flagged wording is accepted here too.
+            check(f"overview: {ar.name} unflagged headline ends with its date",
+                  hl_date is None or row[3].endswith(f"({du.label(hl_date)})")
+                  or row[3].endswith(f"(headline from {du.label(hl_date)}; out of date with its tabs)"), row[3][-40:])
         for m, d, ok in du.dates_in(" ".join(row)):
             check(f"overview: weekday matches '{m}' ({ar.name})", ok)
         if any(not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed for i in mine):

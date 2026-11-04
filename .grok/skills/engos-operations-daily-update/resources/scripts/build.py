@@ -1,5 +1,6 @@
 """Create mode and overview/area helpers for E2E TEST docs (test tooling, not part of the skill)."""
 import json
+import os
 
 import dudoc as du
 import modes as m
@@ -54,6 +55,19 @@ def anchor_index(doc_id, tab_id, after_heading):
 
 def create(title, org, owner, reader, structure, day):
     """Create mode step 4. structure: [(area, area_owner, [(name, owner, updater, status, milestone, progress, word, url, extra)])]"""
+    # Check every link before anything is created, so a bad link refuses cleanly and leaves no half-built doc.
+    missing = []
+    for _, _, items in structure:
+        for n, o, u, s, ms, prog, word, url, extra in items:
+            pairs = [(word, url)] if url else [tuple(p) for p in (word or [])]
+            for w, _u in pairs:
+                if not prog or w not in prog:
+                    missing.append(f"{n}: link word {w!r} is not in its Progress text")
+    if missing:
+        raise SystemExit("REFUSED: nothing created. Put each link word in its Progress line, for example "
+                         "\"(Jira COM-1168)\", then run setup again:\n  " + "\n  ".join(missing))
+    if os.environ.get("DU_TEST") and not title.startswith(du.TEST_TITLE_PREFIX):
+        raise SystemExit(f"REFUSED (DU_TEST): title {title!r} does not start with {du.TEST_TITLE_PREFIX!r}. Nothing created.")
     doc = du.gws("docs", "documents", "create", body={"title": title})
     did = doc["documentId"]
     ov = "t.0"
