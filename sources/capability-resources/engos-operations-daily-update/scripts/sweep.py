@@ -188,10 +188,12 @@ def main():
                     print(f"NOT TAGGED {upd}: no access to the doc. Draft note for {a.owner} (not sent): "
                           f"\"{upd} needs access to the daily update doc to confirm: {tabs}.\"")
                 continue
-            if du.read_doc(a.doc_id)["title"].startswith(du.TEST_TITLE_PREFIX) and a.doc_id not in du.PROTECTED:
+            if a.doc_id not in du.PROTECTED:  # --tag is the doc owner's yes; access was checked above
                 du.gws("drive", "comments", "create", "--params", json.dumps({"fileId": a.doc_id, "fields": "id,content"}),
                        body={"content": f"+{email} Unconfirmed today: {tabs}. Please confirm or correct by running \"do my daily update\"."})
                 print(f"TAGGED {upd} <{email}>: {tabs}")
+            else:
+                print(f"NOT TAGGED {upd}: this doc is protected. Nothing posted.")
 
     # Re-read and quote (Daily step 6 rule).
     doc = du.read_doc(a.doc_id)

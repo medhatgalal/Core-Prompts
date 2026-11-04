@@ -405,8 +405,8 @@ widths still add up to the text width, and fix them if not.
    then send each leader the onboarding message below (drafted, for them to send):
 
    > Our daily updates now live in one doc: <link>. You update every tab that lists you as Updater.
-   > Install once (needs the VPN): `git clone git@gitlab.appian-stratus.com:scott.parrish/daily-update.git ~/repo/daily-update`
-   > then `cd ~/repo/daily-update && ./install.sh`. Then in your AI tool run `/engos-operations-daily-update onboard <link>`.
+   > Install once (needs the VPN): the standard Appian setup (dotfiles, then Core-Prompts "Install Or Repair"),
+   > which includes this skill. Then in your AI tool run `/engos-operations-daily-update onboard <link>`.
    > Each day by 3pm ET run `/engos-operations-daily-update`, check the draft and say "publish". About 10 minutes a day.
 
 ## Onboard (each leader, once)
@@ -577,7 +577,7 @@ owner name exceptions.
 ## Send (doc owner)
 
 1. Read the readers from the doc's settings (`du.py settings DOC`). If empty, ask who should get it (name, email, email or Chat) and save them;
-   `readers add|remove <name> <email> <channel>` changes the list.
+   `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
 2. Draft one short message: subject or first line "<Org> daily update, <Weekday Mon D>", the In 30 seconds
    bullets, any Needs decision rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
    <names>." (or "All initiatives confirmed today."), and the doc link. No other content; nothing beyond

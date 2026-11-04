@@ -195,8 +195,13 @@ def parse_date(wd, mon, day, year=None):
     """A section heading carries its year. A 'Fri Jan 8' style date does not: it is the nearest such date
     to ref_date(), so in December "Fri Jan 8" means next January. The weekday is not used to pick the year,
     so a wrong weekday still shows up as one."""
+    if mon not in MONTHS:
+        return None
     if year:
-        return dt.date(int(year), MONTHS[mon], int(day))
+        try:
+            return dt.date(int(year), MONTHS[mon], int(day))
+        except ValueError:
+            return None
     ref = ref_date()
     cands = []
     for y in (ref.year - 1, ref.year, ref.year + 1):
@@ -204,7 +209,7 @@ def parse_date(wd, mon, day, year=None):
             cands.append(dt.date(y, MONTHS[mon], int(day)))
         except ValueError:  # Feb 29 in a non-leap year
             pass
-    return min(cands, key=lambda c: abs((c - ref).days))
+    return min(cands, key=lambda c: abs((c - ref).days)) if cands else None  # no such date (Apr 31): None
 
 
 def label(d, year=False):
@@ -217,7 +222,8 @@ def dates_in(text):
     out = []
     for m in DATE_RE.finditer(text):
         d = parse_date(*m.groups())
-        out.append((m.group(0), d, WD[d.weekday()] == m.group(1)))
+        # A date that does not exist (Sun Apr 31) is reported like a wrong weekday instead of crashing.
+        out.append((m.group(0), d, d is not None and WD[d.weekday()] == m.group(1)))
     return out
 
 
@@ -291,7 +297,7 @@ class Initiative:
             txt = para_text(e["paragraph"]).rstrip("\n")
             style = e["paragraph"]["paragraphStyle"].get("namedStyleType")
             m = HEADING_RE.match(txt)
-            if style == "HEADING_2" and m:
+            if style == "HEADING_2" and m and parse_date(*m.groups()):
                 cur = Section(parse_date(*m.groups()), e)
                 self.sections.append(cur)
             elif cur is not None:

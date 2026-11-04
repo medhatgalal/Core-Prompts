@@ -4369,7 +4369,7 @@
       "portfolio_action": "draft_new_skill_pending_review",
       "routing_fitness": {
         "schema_version": "RoutingFitness.v1",
-        "mapping_status": "source_derived_draft",
+        "mapping_status": "stale",
         "task_phases": {
           "kind": "source_conditions",
           "clauses": [
@@ -4380,7 +4380,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 17,
                 "end_line": 17,
-                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
               }
             }
           ]
@@ -4399,7 +4399,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 34,
                 "end_line": 34,
-                "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
               }
             }
           ]
@@ -4416,8 +4416,8 @@
         },
         "provenance": {
           "ssot_path": "ssot/engos-operations-daily-update.md",
-          "ssot_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
-          "effective_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+          "ssot_sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
+          "effective_sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
           "resources": [],
           "extractor_version": "source-clauses.v1",
           "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -4430,7 +4430,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 14,
                   "end_line": 14,
-                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                  "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
                 }
               }
             ],
@@ -4442,7 +4442,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 37,
                   "end_line": 37,
-                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                  "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
                 }
               }
             ],
@@ -4454,7 +4454,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 25,
                   "end_line": 25,
-                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                  "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
                 }
               }
             ],
@@ -4466,7 +4466,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 28,
                   "end_line": 28,
-                  "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+                  "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
                 }
               }
             ]
@@ -4481,7 +4481,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "126e37fbb32a1d81f3a7c27a7b514e483a1084e2945885e33c4f25c7274eaf30"
+          "mapping_sha256": "68d946653d6fdd033d8b54a794b606d724336c33261f2f8e7806d93de45030f7"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -7502,7 +7502,7 @@
       "source_at_revision": {
         "status": "present",
         "path": "ssot/engos-operations-daily-update.md",
-        "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+        "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
         "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
       },
       "generated_package_at_revision": {
@@ -7956,7 +7956,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "d96204aca3408ab47220740ba29d7cdb9359943c2d346478961948438ee6b604",
+    "skills_sha256": "e03ea65e5178adf8e731448481f227d8d2f60783fb70feb3fc2dbb19044c9a2b",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -8086,9 +8086,9 @@
         "mapping_sha256": "1e3b0164c6920d7638c57d865beb1f873d7126439f43e1bcb1fcceb87ff5bef8"
       },
       "engos-operations-daily-update": {
-        "ssot_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
-        "effective_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
-        "mapping_sha256": "126e37fbb32a1d81f3a7c27a7b514e483a1084e2945885e33c4f25c7274eaf30"
+        "ssot_sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
+        "effective_sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
+        "mapping_sha256": "68d946653d6fdd033d8b54a794b606d724336c33261f2f8e7806d93de45030f7"
       },
       "engos-operations-ic-assistant": {
         "ssot_sha256": "2d01884b2ef835f3c9b4ab841ef09066d0a27c4fcb9828c093ab5583e4bcebe0",
