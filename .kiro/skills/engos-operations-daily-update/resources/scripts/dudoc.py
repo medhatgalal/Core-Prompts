@@ -36,7 +36,6 @@ def _skill_name():
 SKILL_NAME = _skill_name()
 CMD = "/" + SKILL_NAME
 TEST_TITLE_PREFIX = "E2E TEST"
-YEAR = 2026
 STATUSES = {"🔴": "🔴 Red", "🟡": "🟡 At risk", "🟢": "🟢 On track", "⚪": "⚪ Paused"}
 RANK = {"🔴": 0, "🟡": 1, "🟢": 2, "⚪": 3}
 MONTHS = {m: i + 1 for i, m in enumerate(
@@ -184,8 +183,28 @@ def repair_headings(doc_id):
 
 # ---------- dates ----------
 
-def parse_date(wd, mon, day, year=YEAR):
-    return dt.date(int(year), MONTHS[mon], int(day))
+def ref_date():
+    """The day yearless dates are read against: DU_TODAY (YYYY-MM-DD, tests) or today in US Eastern time."""
+    if os.environ.get("DU_TODAY"):
+        return dt.date.fromisoformat(os.environ["DU_TODAY"])
+    from zoneinfo import ZoneInfo
+    return dt.datetime.now(ZoneInfo("America/New_York")).date()
+
+
+def parse_date(wd, mon, day, year=None):
+    """A section heading carries its year. A 'Fri Jan 8' style date does not: it is the nearest such date
+    to ref_date(), so in December "Fri Jan 8" means next January. The weekday is not used to pick the year,
+    so a wrong weekday still shows up as one."""
+    if year:
+        return dt.date(int(year), MONTHS[mon], int(day))
+    ref = ref_date()
+    cands = []
+    for y in (ref.year - 1, ref.year, ref.year + 1):
+        try:
+            cands.append(dt.date(y, MONTHS[mon], int(day)))
+        except ValueError:  # Feb 29 in a non-leap year
+            pass
+    return min(cands, key=lambda c: abs((c - ref).days))
 
 
 def label(d, year=False):

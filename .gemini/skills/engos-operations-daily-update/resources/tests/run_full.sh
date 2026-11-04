@@ -3,6 +3,8 @@
 # Prints the doc id, then rule results (verify.py) and reader issues (usability.py).
 cd "$(dirname "$0")"
 export DU_TEST=1
+# The test days are fixed in Nov 2026; read their yearless dates against that week, whatever today is.
+export DU_TODAY=2026-11-09
 SK=../scripts
 EMAIL=${DU_TEST_EMAIL:-$(gws gmail users getProfile --params '{"userId":"me"}' 2>/dev/null | python3 -c "import json,sys;print(json.load(sys.stdin)[\"emailAddress\"])")}
 export DU_TEST_EMAIL="$EMAIL"
