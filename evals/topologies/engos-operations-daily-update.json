@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-operations-daily-update",
-  "ssot_sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3",
+  "ssot_sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -840,6 +840,16 @@
       "mapped_to": []
     },
     {
+      "id": "engos-operations-daily-update:L577:e92dfa6c0655",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 583,
+      "sha256": "e92dfa6c065572e2f646ecd2d28d1bbfb2c5005ee209ef434c31a01fce7a91c1",
+      "text": "`du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-operations-daily-update:L582:6fb6ebf7de4d",
       "heading": "Send (doc owner)",
       "source": "ssot/engos-operations-daily-update.md",
@@ -898,7 +908,7 @@
   "source_references": [
     {
       "path": "ssot/engos-operations-daily-update.md",
-      "sha256": "bb728b9d1685f8cc08ae1caab5223f711a49d2e8b6691c44b59d78cdf2790af3"
+      "sha256": "31167b0b03ff32a28f64d5c5854119d4a7c60679205c8893488aa35423e1fe43"
     }
   ],
   "known_ambiguities": [],
@@ -911,7 +921,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 81,
+    "total": 82,
     "mapped": 0,
     "waived": 0
   },
