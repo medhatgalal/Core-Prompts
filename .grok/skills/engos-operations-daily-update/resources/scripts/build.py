@@ -11,7 +11,7 @@ GUIDE_LINE = "Template: see the Update guide tab."
 HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
           "Doc owner: at 3pm ET, `close` the day, then `send` the summary.",
-          "Changes: `add` a new initiative; `done` or `stop` to end one. `help` lists all.",
+          "Changes: `add` or `discover` new initiatives; `done` or `stop` to end one. `help` lists all.",
           "Meetings: read this doc first; spend meeting time on \"decisions or help needed\".",
           GUIDE_LINE]
 

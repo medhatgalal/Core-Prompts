@@ -88,6 +88,7 @@ detail, ask for that one detail in one line. Every command that writes shows the
 | `update` (default) | leader | Draft and publish today's update for your tabs | Daily |
 | `sources` | leader | Show or change the sources watched per tab; rescan on request | Onboard step 2 |
 | `add` (alias `new`) | leader | Add an initiative under your area | Add, change, finish or stop |
+| `discover` (alias `scan`) | leader | Find recurring work no tab covers; add the ones you pick | Discover |
 | `owner` | leader | Change an initiative's owner | Add, change, finish or stop |
 | `done` | leader | Mark an initiative finished | Add, change, finish or stop |
 | `stop` (alias `drop`) | leader | Mark an initiative stopped, with a reason | Add, change, finish or stop |
@@ -106,7 +107,7 @@ flowchart TD
     D --> E{"send: doc owner replies 'send'?"}
     E -->|yes| F["summary to readers"]
     E -->|no| G["readers open the doc"]
-    H["add, owner, done, stop: any leader, as needed"] --> C
+    H["add, discover, owner, done, stop: any leader, as needed"] --> C
     I["updater, area, readers: doc owner, as needed"] --> D
 ```
 
@@ -273,7 +274,7 @@ monospace font):
 - **Leaders**: by 3pm ET, run `/engos-operations-daily-update`, review, say "publish".
 - **Tab owners**: your updater updates your tab.
 - **Doc owner**: at 3pm ET, `close` the day, then `send` the summary.
-- **Changes**: `add` a new initiative; `done` or `stop` to end one. `help` lists all.
+- **Changes**: `add` or `discover` new initiatives; `done` or `stop` to end one. `help` lists all.
 - **Meetings**: read this doc first; spend meeting time on "decisions or help needed".
 - **Template**: see the Update guide tab (link "Update guide" to that tab).
 
@@ -319,7 +320,7 @@ tabs, tell the person what you found, and (if they are not the doc owner) draft 
 
 State lives in `~/.daily-update/` in the person's home folder, so any working folder finds it:
 
-- `config.json`: `{"me", "role": "owner"|"leader", "doc_id", "reader", "last_publish", "style_notes": [],
+- `config.json`: `{"me", "role": "owner"|"leader", "doc_id", "reader", "last_publish", "last_discover", "style_notes": [],
   "tabs": [{"tab_id", "kind": "overview"|"area"|"initiative"|"archive", "name", "area", "owner", "sources": {...}}],
   ...}`. Each person's own sources and ledger stay here; settings everyone shares live on the doc (below). `tabs` lists the tabs this person updates or owns.
   **Shared settings live on the doc**, as Drive file properties, so anyone running a doc-owner command reads
@@ -368,7 +369,7 @@ fails, give the exact error and the one command that fixes it, then continue wit
 **Scripts (use these for every doc write).** The installed skill has `scripts/du.py` (`resources/scripts/du.py`
 in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
 exact layout above, with the revision check and retries, bold labels, Confidence chips, date headings, table
-widths and pageless tabs. Use `du.py setup`, `section`, `today`, `headline`, `row`, `sweep`, `overview`, `thirty`,
+widths and pageless tabs. Use `du.py setup`, `section`, `today`, `add`, `dedupe`, `headline`, `row`, `sweep`, `overview`, `thirty`,
 `decisions`, `archive`, `send` and `settings` instead of writing Docs API requests yourself, and run
 `du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
@@ -510,8 +511,8 @@ Any leader can ask: "add an initiative", "Chandra now owns Evals", "Composer UX 
 **Add**
 1. Ask for what is missing: name, owner, area, next milestone and date.
 2. Re-read the doc. If a tab with a similar name exists, show it and ask before adding another.
-3. Add the tab under its area with `addDocumentTab` (`parentTabId` = the area tab), titled `<Initiative> (<owner>)`,
-   with the initiative header and a first section dated today.
+3. Add the tab under its area (`du.py add`, which uses `addDocumentTab` with `parentTabId` = the area tab), titled
+   `<Initiative> (<owner>)`, with the initiative header and a first section dated today.
 4. Add a row to the area tab's Initiatives table.
 5. If the owner is someone else, end the section with "Added by <person> for <owner>." That owner's agent picks
    the tab up on their next run. If the area belongs to someone else, say in the review that the area owner should
@@ -532,6 +533,39 @@ to Done on the area tab: "<Initiative>: stopped <date>, <reason>." The doc owner
 finished tab; its Archive line reads "<Initiative> (<owner>), stopped <date>."
 
 All of these follow rule 3: show the change in the review and wait for "publish".
+
+## Discover (any leader)
+
+Finds recurring work that no initiative tab covers. A leader scans their own areas; the doc owner may scan all.
+
+1. Window: the last 7 days (14 on the person's first `discover`), or the window they name. Read email, Chat,
+   Drive, Gemini meeting notes, Jira and GitLab and GitHub merge requests. Look for recurring work with a goal,
+   an owner or a date.
+2. Dedupe with `du.py dedupe DOC CANDIDATES.json` (read only; `[{"name", "links": [urls], "sources": {...}}]`).
+   It compares each candidate with the initiative tabs (the similar-name check `add` uses), every tab's saved
+   sources in `config.json` and the links already in the doc. A match with a tab becomes "add as a source to
+   <tab>", a source that tab already watches is "already covered", and anything in Archive is dropped.
+3. Show the review, one block per candidate that is new or a source to add, then "Add which?":
+
+   ```
+   1. Composer Telemetry · area Composer · owner Joo · updater Kyle
+      Seen: weekly telemetry review notes Mon Nov 2 and Thu Nov 5 (meeting notes); Jira COM-1201 opened Tue Nov 3.
+      Inferred: an ongoing initiative with no tab.
+      Next milestone: No date set yet.
+      Sources to save: jira COM-1201; meetings "Telemetry review".
+      Dedupe: no similar tab, no matching source or link.
+   2. Add as a source to Evals (Goldberg): GitLab composer-evals merge requests !610, !614.
+   Dropped: Team Restructure is in Archive.
+   ```
+   Keep what you saw (where and when) apart from what you inferred. Give a next milestone with a date only when
+   a source states one; otherwise "No date set yet". Write nothing until the person picks.
+4. For each pick, run the Add steps with `du.py add DOC "<area title>" INIT.json` (refuses when a similar tab
+   exists; rerun with `--new` only after the person confirms it is different), and save the suggested sources
+   for that tab in `config.json`. A pick that is a source to add only updates `config.json`. A new area is the
+   doc owner's call; for anyone else, draft the request to the doc owner. Save `last_discover` in `config.json`.
+
+Every rule applies: link only sources anyone can open (private labels otherwise), no people-sensitive items or
+names, never message anyone, and nothing is written before the pick and "publish".
 
 ## Change the structure (doc owner only)
 
@@ -604,7 +638,9 @@ owner name exceptions.
    flagged headline with "(headline from <date>; out of date with its tabs)". End any other headline not dated
    today with "(headline from <date>; not updated today)". Other headline cells carry no date. Take the area's Status from its initiative tabs, not
    from the headline.
-4. On "publish": replace the overview tab body only. Re-read and confirm. When reporting done, quote the
+4. If today is a Friday, or `last_discover` in `config.json` is missing or more than 7 days old, end the
+   review with one line: "Run discover?" Never run it unasked.
+5. On "publish": replace the overview tab body only. Re-read and confirm. When reporting done, quote the
    re-read overview text; if you cannot quote it, say it did not land. Then offer `send`.
 
 ## Send (doc owner)

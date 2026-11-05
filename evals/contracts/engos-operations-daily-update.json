@@ -72,6 +72,12 @@
     "3671c238a9adb662e7e313379a43b3338dd4ec3a81cc1565699a0d1d429f00cf",
     "929a12b48dd766b73faaf6c5bfdffad157cc11194e9482cafc6db5b1f14e0fd4",
     "e073071c0f62bcad23db93bac38f9d6dc43d501c30124f976fcbccd480c8faf4",
+    "b6228c1f4addfb3b2bf5d6042287713bf4daa2b88bc9fa2a62c5093a8ab28643",
+    "0f88e7c4063c16e3c16f77d36a152212c6eda4192b895d677ddb0e15d661ef13",
+    "7f42902f61a89fbf9911cd0002321a67d4837077e893309a21fc233c16fd5325",
+    "ccfb3572b7fd834c6f700ceb68d57d1f229cbba08a269e179710ce033f5c97f4",
+    "42f528161f40b94d26fa75ae9895e314f819fd98b31526101524f80b01a1a9f5",
+    "96efd6553300b69d44df6fb0df32de8cb3b9f41b1f052b6603ec00bfb4202f63",
     "219e2d3ec7083ad90d0588eff6495681dbf5adc3ab09b94a5eda25428deb2d1c",
     "f2d07f3ad0d06d939fc7c16693d3706a5ae45c9ed84f83bd363710ce6c92de1d",
     "24f638e771097b846456c37c8e6b12292c0b6275f92b9f7dc02f5450e3163429",
@@ -85,7 +91,8 @@
     "4d17eff33bc91ce23b0960fb6b5bf1163d788ec80e53c879ee569ff8523c1b27",
     "81a6f9ebbc79e4af37acf15ce6394b0203e052a6640ef07ac84fdd7ccacaacfa",
     "afa5dc86842bb28ce33a20931dd465443451522af9419131e350a70685f4db17",
-    "e1febe287e8195f568fc160576bfa67797363c3cf473179ecd296fc5880909ae",
+    "0fce8a2facd62f8e1ee79e84e10402567b864cdccf203044f9f39c0063147100",
+    "5764f66eab9fd1e815fe8bb87492c49536494352b766ca68434e0babc8196b34",
     "e92dfa6c065572e2f646ecd2d28d1bbfb2c5005ee209ef434c31a01fce7a91c1",
     "6fb6ebf7de4d6bf43ca6715ac7ce966d76f322bc602d0d4f6d88e35f12f2e8ac",
     "b4ee32f0ea3bead218ab4b3eb76f6010781598338fedfa65431c353092cefa6d",
@@ -454,6 +461,36 @@
       "text": "newest section of every initiative in that area, never append to the old headline. Save the ledger and"
     },
     {
+      "sha256": "b6228c1f4addfb3b2bf5d6042287713bf4daa2b88bc9fa2a62c5093a8ab28643",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "2. Dedupe with `du.py dedupe DOC CANDIDATES.json` (read only; `[{\"name\", \"links\": [urls], \"sources\": {...}}]`)."
+    },
+    {
+      "sha256": "0f88e7c4063c16e3c16f77d36a152212c6eda4192b895d677ddb0e15d661ef13",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "Keep what you saw (where and when) apart from what you inferred. Give a next milestone with a date only when"
+    },
+    {
+      "sha256": "7f42902f61a89fbf9911cd0002321a67d4837077e893309a21fc233c16fd5325",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "exists; rerun with `--new` only after the person confirms it is different), and save the suggested sources"
+    },
+    {
+      "sha256": "ccfb3572b7fd834c6f700ceb68d57d1f229cbba08a269e179710ce033f5c97f4",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "for that tab in `config.json`. A pick that is a source to add only updates `config.json`. A new area is the"
+    },
+    {
+      "sha256": "42f528161f40b94d26fa75ae9895e314f819fd98b31526101524f80b01a1a9f5",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "Every rule applies: link only sources anyone can open (private labels otherwise), no people-sensitive items or"
+    },
+    {
+      "sha256": "96efd6553300b69d44df6fb0df32de8cb3b9f41b1f052b6603ec00bfb4202f63",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "names, never message anyone, and nothing is written before the pick and \"publish\"."
+    },
+    {
       "sha256": "219e2d3ec7083ad90d0588eff6495681dbf5adc3ab09b94a5eda25428deb2d1c",
       "source": "ssot/engos-operations-daily-update.md",
       "text": "## Change the structure (doc owner only)"
@@ -519,9 +556,14 @@
       "text": "note to the area owner. Do not edit another owner's headline. In the overview's Area health table, end a"
     },
     {
-      "sha256": "e1febe287e8195f568fc160576bfa67797363c3cf473179ecd296fc5880909ae",
+      "sha256": "0fce8a2facd62f8e1ee79e84e10402567b864cdccf203044f9f39c0063147100",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "4. On \"publish\": replace the overview tab body only. Re-read and confirm. When reporting done, quote the"
+      "text": "review with one line: \"Run discover?\" Never run it unasked."
+    },
+    {
+      "sha256": "5764f66eab9fd1e815fe8bb87492c49536494352b766ca68434e0babc8196b34",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "5. On \"publish\": replace the overview tab body only. Re-read and confirm. When reporting done, quote the"
     },
     {
       "sha256": "e92dfa6c065572e2f646ecd2d28d1bbfb2c5005ee209ef434c31a01fce7a91c1",

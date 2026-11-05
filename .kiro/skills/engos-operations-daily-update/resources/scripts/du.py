@@ -8,6 +8,8 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py setup STRUCTURE.json                 create the doc; prints its id
   du.py section DOC TAB_TITLE SECTION.json   write today's section on one initiative tab
   du.py today DOC TAB_TITLE YYYY-MM-DD       print that day's section as SECTION.json (read only), to re-summarize
+  du.py add DOC AREA_TITLE INIT.json [--new]  add an initiative tab, its first section and its area-table row
+  du.py dedupe DOC CANDIDATES.json [CONFIG]   discover step 2 (read only): new, add as a source, covered, or archived
   du.py headline DOC AREA_TITLE "<status> · <sentences> (<Weekday Mon D>)"
   du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
   du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
@@ -136,6 +138,81 @@ def cmd_today(a):
     print(json.dumps(out, ensure_ascii=False, indent=1))
 
 
+def section_lines(spec):
+    """SECTION.json -> (lines starting with the date heading, links as (line_no, word, url))."""
+    day = dt.date.fromisoformat(spec["date"])
+    lines = [du.label(day, True), du.STATUSES[spec["status"]], f"Next milestone: {spec['milestone']}",
+             f"Confidence: {spec.get('confidence', du.DEFAULT_CONF[spec['status']])}"]
+    if spec.get("progress"):
+        lines.append(f"Progress: {spec['progress']}")
+    lines.append(f"Blocked on: {spec.get('blocked') or 'None.'}")
+    if spec["status"] != "🟢" and spec.get("green_when"):
+        lines.append(f"Green when: {spec['green_when']}")
+    lines += spec.get("extra", [])
+    prog_k = next((k for k, x in enumerate(lines) if x.startswith("Progress:")), None)
+    return lines, ([(prog_k, w, u) for w, u in spec.get("links", [])] if prog_k is not None else [])
+
+
+def cmd_add(a):
+    """Add steps 2-5: refuse a similar name unless --new, then the tab, its first section and the area row.
+    INIT.json: SECTION.json plus "name", "owner", optional "updater" (default the area owner) and "author"."""
+    doc_id, area_title, spec = a[0], a[1], load(a[2])
+    doc = du.read_doc(doc_id)
+    area = du.model(doc)[1].get(area_title)
+    if area is None:
+        raise SystemExit(f"REFUSED: no area tab {area_title!r}. A new area is the doc owner's call. Nothing written.")
+    near = [t for t in m.similar(doc, spec["name"]) if t != area_title]
+    if near and "--new" not in a:
+        raise SystemExit(f"REFUSED: similar tabs exist: {near}. Ask the person; rerun with --new only if it is different.")
+    spec["milestone"] = re.sub(r"(?i)no date set yet", "No date set yet", spec["milestone"])
+    if spec.get("author") and spec["author"] != spec["owner"]:
+        spec.setdefault("extra", []).append(f"Added by {spec['author']} for {spec['owner']}.")
+    lines, links = section_lines(spec)
+    tid = m.add_initiative(doc_id, area.tab_id, spec["name"], spec["owner"], spec.get("updater") or area.owner,
+                           area.name, lines, links)
+    m.set_row(doc_id, area.tab_id, spec["name"], [spec["name"], spec["owner"], du.STATUSES[spec["status"]], spec["milestone"]])
+    du.repair_headings(doc_id)
+    init = next(i for i in du.model(du.read_doc(doc_id))[2] if i.tab_id == tid)
+    print(("ADDED " if init.sections else "DID NOT LAND ") + init.title)
+    for t, _ in (init.sections[0].lines if init.sections else []):
+        print("  " + t)
+
+
+def cmd_dedupe(a):
+    """Discover step 2, read only. CANDIDATES.json: [{"name", "links": [urls], "sources": {"jira": [...], ...}}]."""
+    import verify
+    doc_id, cands = a[0], load(a[1])
+    cfg_path = a[2] if len(a) > 2 else os.path.expanduser("~/.daily-update/config.json")
+    cfg = json.load(open(cfg_path)) if os.path.exists(cfg_path) else {}
+    doc = du.read_doc(doc_id)
+    _, _, inits = du.model(doc)
+    archive = next((t for t, p in du.all_tabs(doc) if p is None and t["tabProperties"]["title"].startswith("Archive")), None)
+    archived = [du.Initiative(c, archive) for c in archive.get("childTabs", [])] if archive else []
+
+    def tab_links(i):
+        return {u for _, u in verify.links_in(i.body)}
+
+    def norm(v):
+        return str(v).strip().lower()
+    saved = {t.get("name"): {norm(v) for vs in t.get("sources", {}).values() for v in vs} for t in cfg.get("tabs", [])}
+    for c in cands:
+        want = {norm(v) for vs in c.get("sources", {}).values() for v in vs}
+        links = set(c.get("links", []))
+        words = {w.lower() for w in re.findall(r"\w{4,}", c["name"])} - {"composer", "agent", "agents"}
+
+        def same(i):
+            return words & {w.lower() for w in re.findall(r"\w{4,}", i.name)}
+        hit = next((i for i in inits if want & saved.get(i.name, set())), None)
+        if hit:
+            verdict = f"already covered: a saved source of {hit.title}"
+        else:
+            hit = next((i for i in inits if same(i) or links & tab_links(i)), None)
+            arch = next((i for i in archived if same(i) or links & tab_links(i)), None)
+            verdict = (f"add as a source to {hit.title}" if hit else
+                       f"drop: in Archive ({arch.title})" if arch else "new")
+        print(json.dumps({"name": c["name"], "verdict": verdict}, ensure_ascii=False))
+
+
 def cmd_headline(a):
     import build
     build.set_headline(a[0], a[1], a[2])
@@ -222,7 +299,7 @@ def main():
         print(__doc__)
         return
     cmd, a = sys.argv[1], sys.argv[2:]
-    if a and a[0] in du.PROTECTED and cmd not in ("check", "settings", "today"):
+    if a and a[0] in du.PROTECTED and cmd not in ("check", "settings", "today", "dedupe"):
         raise SystemExit(f"REFUSED: {du.PROTECTED[a[0]]} is protected while the skill is in testing. Nothing written.")
     if cmd == "sweep":
         sys.exit(run("sweep.py", a[0], a[1], "--owner", *a[2:]))
