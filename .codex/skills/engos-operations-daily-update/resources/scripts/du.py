@@ -19,8 +19,9 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py check DOC YYYY-MM-DD                 rule and reader checks on the doc
 
 SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...", "confidence": "Slightly confident",
-  "progress": "... (chat).", "blocked": "None.", "green_when": "...", "extra": ["Updated by X for Y."],
-  "links": [["chat", "https://..."]], "author": "Kyle", "cover_for": null}
+  "progress": "... (Jira COM-994).", "blocked": "None.", "green_when": "...", "extra": ["Updated by X for Y."],
+  "links": [["Jira COM-994", "https://..."]], "author": "Kyle", "cover_for": null}
+  A line drawn only from email, chat or meeting notes ends "(email)", "(chat)" or "(meeting notes)" with no link.
 STRUCTURE.json: {"org": "Automation", "owner": "Scott", "reader": "Medhat", "date": "YYYY-MM-DD",
   "areas": [{"name": "Composer", "owner": "Kyle", "initiatives": [
     {"name": "Composer Evals", "owner": "Goldberg", "updater": "Kyle", "status": "🟡",

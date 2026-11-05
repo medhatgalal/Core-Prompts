@@ -45,7 +45,7 @@ def content(owner, overview_url, otitle):
         ("Flag blockers early, before they become critical.", N),
         ("Always give the next step, even if it is tentative.", N),
         ("When the colour changes, open Progress with the reason.", N),
-        ("Link every claim, on a short word like (chat) or (merge request !455), never a raw URL.", N),
+        ("Link every claim to a source anyone in the company can open, on a short word like (Jira COM-994) or (merge request !455), never a raw URL. Never link email, chat or meeting notes; end that line \"(email)\", \"(chat)\" or \"(meeting notes)\" with no link.", N),
         ("Use absolute dates with the weekday. \"Today\" means US Eastern time.", N),
         ("Use the same template every time so readers can scan across tabs.", N),
         ("Status lives here, not in meetings. Read the doc before a meeting; meeting time goes to decisions.", N),

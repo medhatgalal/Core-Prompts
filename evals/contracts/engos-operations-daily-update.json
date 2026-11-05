@@ -24,10 +24,12 @@
     "a67a239d71dffcc65f1fbe14ad182b18147cfc9112d36e1a37a3c6fd16d39f4a",
     "21df1372735c49507a9d6708ec87462c3025086cb2af20955ad25d06c908ce5e",
     "29c9623f56ab1595240a0321c0651e2a5af1f90e6e8828382367b63dc8dcc1a7",
-    "d586f36c32408dc343ea876cba04a2c2bf9b0f7dac1c19f92f82d59d6a5d5c9b",
-    "992d50b3049150b40c4c11900a241c5ec4f2fde5b5a5c6e85a82812f5bba13aa",
+    "527b10a2aef779059549fda26a1f061a94f754024a5a73e903bed53a5f49c49f",
+    "74ff20b3810da3957079934735e938242aa6e6349c2f5e0048f6b041b286473d",
+    "672b55c5783cacaffb242d31393da0c37b89fc10f330416aa9c6c6eb4d41e02d",
+    "ec575ecc9822a048a21c0b16acc0bd0ab4928ebdebf6be6b809734fb0299a4aa",
     "074ee6e14053eb60a00862d1bf3b8cb42ac44f43829b87752db069a91445c79d",
-    "b8eca93e0f4efae703f57313e6e5d5704b948478b79925b2640fb33d6cfad138",
+    "784b4ef9372d9d3e2a450dd4a78ab044e1aef01b4262feace6524e3723c04e8f",
     "bf2457a301ac7c177fd6936db0e8a35318172ee4b0a6dba967f14d93aaa3b3ab",
     "5df3fb12f389b013562542d4a8a6b7f4afdb14b5ff86a55b95fc1bfc967933e7",
     "1f4221db7af102c232ee2a44ed32653f1a9021585b63047061d22989729abbd0",
@@ -44,8 +46,6 @@
     "f61de39cab6d715669c4f97401f125a767e2ffcab7a41dab3b2497edc99dac6e",
     "58f7176550b2e6cd2cc4f0de4398d17fc35a10d581d50d33e08976ff581b4616",
     "524228c9fb7e2874ab25a36058ad17faa94cc09d18f53e3fc75234340c47b007",
-    "8ab75430f27c7cdd6596c47e976c861a8ca84ce1a098283c5a6d1e978ba41311",
-    "74b5b31c0fd9e9b17150e87f69db7a78224edc0f67d596a2b43655e846e49e95",
     "bef7f97f31bd23e11f4aad92082dce8c7f55c346acb44941db70efb263b6da7f",
     "6d261289ce2416721f090856092bceecedc4455ad5b1626975e2fe6f0639f301",
     "45849c4540fb11c35d4c50f36b37f0d989545aec76a4e0d0554e4c6c9fd1d517",
@@ -64,9 +64,10 @@
     "16854ed1682c61a592ee2f8bfbbfc8703a05e33ebfb5484b508e638a3375f704",
     "44a197077c51dbcfcd9a21a0d6b4abb662dac6491b875122743541d1ca527709",
     "c0ead366807a3a8339606c24be681aa11b937a55938884652e48435e18be8663",
+    "c1b466c90358b70c0edb87f8151580fc3e943c99a264aa1fb0cd09792e00c127",
     "8ee07f624c0d3e6d9d1fd92ba4b3a8314fc3a20bf5e391906527e632d07d3773",
     "86a14c200a21f5d4a16a589d5a0ffee2f981c6750860fb7514c33cc369722f09",
-    "2ee9d7affd8f6bdc69049bd54ea7e43cdacfea3cfcdfcd9adbbd5e10469d729b",
+    "b7b38041d68971d0f3dfe6ecc7867ecdfe62eab4ace7fb6ce34cde6791f1f55f",
     "929a12b48dd766b73faaf6c5bfdffad157cc11194e9482cafc6db5b1f14e0fd4",
     "219e2d3ec7083ad90d0588eff6495681dbf5adc3ab09b94a5eda25428deb2d1c",
     "f2d07f3ad0d06d939fc7c16693d3706a5ae45c9ed84f83bd363710ce6c92de1d",
@@ -210,14 +211,24 @@
       "text": "the configured readers only after the doc owner replies \"send\" to the exact recipients and text shown."
     },
     {
-      "sha256": "d586f36c32408dc343ea876cba04a2c2bf9b0f7dac1c19f92f82d59d6a5d5c9b",
+      "sha256": "527b10a2aef779059549fda26a1f061a94f754024a5a73e903bed53a5f49c49f",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "This covers links too: never link a candidate's notes, scorecard or profile, a personal inbox or a message"
+      "text": "This covers links too: never link a candidate's notes, scorecard or profile. Link the shared artifact"
     },
     {
-      "sha256": "992d50b3049150b40c4c11900a241c5ec4f2fde5b5a5c6e85a82812f5bba13aa",
+      "sha256": "74ff20b3810da3957079934735e938242aa6e6349c2f5e0048f6b041b286473d",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "(gmail, chat DM) whose title names a person, or anything only you can open. Link the shared artifact"
+      "text": "6. **Link only sources anyone in the company can open**: Drive and Docs files shared to the appian.com domain"
+    },
+    {
+      "sha256": "672b55c5783cacaffb242d31393da0c37b89fc10f330416aa9c6c6eb4d41e02d",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "org can see. Never link Gmail messages, Chat messages, DMs or spaces, Gemini meeting notes, or a Drive file"
+    },
+    {
+      "sha256": "ec575ecc9822a048a21c0b16acc0bd0ab4928ebdebf6be6b809734fb0299a4aa",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "Every Progress and Blocked on line ends with its source: a link, or, when the line comes only from private"
     },
     {
       "sha256": "074ee6e14053eb60a00862d1bf3b8cb42ac44f43829b87752db069a91445c79d",
@@ -225,9 +236,9 @@
       "text": "only facts they typed themselves. Never use it for a fact you found in a source, even if they approve it."
     },
     {
-      "sha256": "b8eca93e0f4efae703f57313e6e5d5704b948478b79925b2640fb33d6cfad138",
+      "sha256": "784b4ef9372d9d3e2a450dd4a78ab044e1aef01b4262feace6524e3723c04e8f",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "to their tab. Put each link on a short word, like \"(chat)\" or \"(merge request !121)\", never a raw URL."
+      "text": "to their tab. Put each link on a short word, like \"(Jira COM-994)\" or \"(merge request !121)\", never a raw URL."
     },
     {
       "sha256": "bf2457a301ac7c177fd6936db0e8a35318172ee4b0a6dba967f14d93aaa3b3ab",
@@ -308,16 +319,6 @@
       "sha256": "524228c9fb7e2874ab25a36058ad17faa94cc09d18f53e3fc75234340c47b007",
       "source": "ssot/engos-operations-daily-update.md",
       "text": "the evidence, say in the review that it is your inference, and let them change it. It never changes the"
-    },
-    {
-      "sha256": "8ab75430f27c7cdd6596c47e976c861a8ca84ce1a098283c5a6d1e978ba41311",
-      "source": "ssot/engos-operations-daily-update.md",
-      "text": "- Engineers who own a tab do not update it; their updater does."
-    },
-    {
-      "sha256": "74b5b31c0fd9e9b17150e87f69db7a78224edc0f67d596a2b43655e846e49e95",
-      "source": "ssot/engos-operations-daily-update.md",
-      "text": "- Meetings do not walk through status; read this doc first. Meeting time goes to \"Needs decision\" items."
     },
     {
       "sha256": "bef7f97f31bd23e11f4aad92082dce8c7f55c346acb44941db70efb263b6da7f",
@@ -410,6 +411,11 @@
       "text": "(never send it). If they accept, draft it, then stop. Write nothing to the doc and save no config for them."
     },
     {
+      "sha256": "c1b466c90358b70c0edb87f8151580fc3e943c99a264aa1fb0cd09792e00c127",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "restricted docs) may be saved for drafting, but are never linked (rule 6). `sources` reruns this step later."
+    },
+    {
       "sha256": "8ee07f624c0d3e6d9d1fd92ba4b3a8314fc3a20bf5e391906527e632d07d3773",
       "source": "ssot/engos-operations-daily-update.md",
       "text": "2. Read the Update guide tab and draft to it. For each initiative tab they update (plus any they asked to cover), read only its sources in the window. Note progress, slips, decisions,"
@@ -420,9 +426,9 @@
       "text": "A tab with no sources set up: never ask an open \"which source?\" question. Search their last 14 days for"
     },
     {
-      "sha256": "2ee9d7affd8f6bdc69049bd54ea7e43cdacfea3cfcdfcd9adbbd5e10469d729b",
+      "sha256": "b7b38041d68971d0f3dfe6ecc7867ecdfe62eab4ace7fb6ce34cde6791f1f55f",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "candidate notes), and offer up to 3 numbered sources, plus \"or tell me what happened today\". Offer only"
+      "text": "may be offered and saved for drafting, but are never linked (rule 6). Save the ones"
     },
     {
       "sha256": "929a12b48dd766b73faaf6c5bfdffad157cc11194e9482cafc6db5b1f14e0fd4",

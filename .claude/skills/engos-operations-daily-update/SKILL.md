@@ -146,15 +146,20 @@ Re-check that the doc still opens on every run. If it does not, say so and ask f
    the configured readers only after the doc owner replies "send" to the exact recipients and text shown.
 5. **People-sensitive items stay out**: candidate names, offers and pay, PTO and leave, health, performance,
    promotions, who is on a cut or boost list, logins. Say "a candidate", "one hire", "one engineer".
-   This covers links too: never link a candidate's notes, scorecard or profile, a personal inbox or a message
-   (gmail, chat DM) whose title names a person, or anything only you can open. Link the shared artifact
+   This covers links too: never link a candidate's notes, scorecard or profile. Link the shared artifact
    instead (the job description, the tracking ticket, the design doc).
-6. **Every Progress and Blocked on line has a source link** (Jira, merge request, email, chat message, doc, meeting
-   notes). No link, no line. Exceptions: "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
+6. **Link only sources anyone in the company can open**: Drive and Docs files shared to the appian.com domain
+   or to anyone with the link, and Jira issues, GitLab merge requests and GitHub pull requests in projects the
+   org can see. Never link Gmail messages, Chat messages, DMs or spaces, Gemini meeting notes, or a Drive file
+   with restricted sharing. Private sources are still read for drafting; no private names or details from them
+   go into the doc.
+   Every Progress and Blocked on line ends with its source: a link, or, when the line comes only from private
+   sources, an unlinked label "(email)", "(chat)" or "(meeting notes)". The ledger keeps the private link
+   locally for audit. Exceptions: "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
    A line the updater told you directly in this conversation ends "(from <name>)" and needs no link. It covers
    only facts they typed themselves. Never use it for a fact you found in a source, even if they approve it.
    Status, Next milestone, Confidence, Green when and closing lines need none. Overview bullets link
-   to their tab. Put each link on a short word, like "(chat)" or "(merge request !121)", never a raw URL.
+   to their tab. Put each link on a short word, like "(Jira COM-994)" or "(merge request !121)", never a raw URL.
 7. **Say what you saw vs what you concluded.** If a status or date is your inference, say so in the review.
    Conflicts between sources (for example a meeting summary that disagrees with the raw notes) also go in the
    review, not the doc. Never write "Note (agent)" or similar lines in the doc.
@@ -249,16 +254,14 @@ section per day, **newest first**. Each section:
   status. If it disagrees with the status (🟢 with "Not confident", or 🔴 with "Very confident"), say so in the
   review and let them choose. Lines after these (Updated by, Added by, Moved from, Unconfirmed) come last.
 
-**How to update** (put this text on the overview):
-- Each leader: by 3pm ET, run `/engos-operations-daily-update` (or say "do my daily update"), review the draft, then say "publish".
-  It adds today's section at the top of each initiative tab you are the updater for and refreshes your area tab.
-- Engineers who own a tab do not update it; their updater does.
-- Doc owner: at 3pm ET, run `/engos-operations-daily-update close` to mark missed tabs Unconfirmed, tag their updaters and
-  rebuild the overview. Then `/engos-operations-daily-update send` to send the summary to readers.
-- New initiative: `/engos-operations-daily-update add`. Finished: `done`. Stopped: `stop`. The doc owner moves both to Archive.
-- `/engos-operations-daily-update help` lists every command.
-- Meetings do not walk through status; read this doc first. Meeting time goes to "Needs decision" items.
-- Template and writing tips: see the Update guide tab (link "Update guide" to that tab).
+**How to update** (put this text on the overview as bullets; each label is bold and each command is in a
+monospace font):
+- **Leaders**: by 3pm ET, run `/engos-operations-daily-update`, review, say "publish".
+- **Tab owners**: your updater updates your tab.
+- **Doc owner**: at 3pm ET, `close` the day, then `send` the summary.
+- **Changes**: `add` a new initiative; `done` or `stop` to end one. `help` lists all.
+- **Meetings**: read this doc first; spend meeting time on "Needs decision".
+- **Template**: see the Update guide tab (link "Update guide" to that tab).
 
 **Update guide tab** (doc owner owns it; last top-level tab). The leaders' reference for writing an update,
 and the agent's drafting guide. Pageless, with these headings and content:
@@ -270,7 +273,8 @@ and the agent's drafting guide. Pageless, with these headings and content:
   Green when, as defined in this skill.
 - **Best practices**: write for a leader outside your team and spell out acronyms; explain why a result
   matters, not only that it happened; flag blockers early; always give the next step; when the colour
-  changes, open Progress with the reason; link every claim on a short word; absolute dates with the weekday,
+  changes, open Progress with the reason; link every claim on a short word, to a source anyone can open
+  (private sources get an unlinked "(email)", "(chat)" or "(meeting notes)"); absolute dates with the weekday,
   US Eastern time; same template every time; status lives in the doc, not in meetings; leave out
   people-sensitive items.
 - **Bad and good**: the example from Writing rules.
@@ -319,13 +323,12 @@ The kit needs four command-line tools, signed in as the person: `gws`, `acli`, `
 Check each with `command -v <tool>`. If any is missing, do not install it yourself or improvise.
 Stop and tell the person to deploy the standard Appian setup, then come back:
 
-1. **dotfiles** (installs `gws`, `acli`, `glab` and the shared AI skills):
+1. **dotfiles** (installs `gws`, `acli`, `glab`, `gh` and the shared AI skills):
    `git clone https://gitlab.appian-stratus.com/medhat.galal/dotfiles.git ~/repo/dotfiles`,
    then `cd ~/repo/dotfiles && ./dotfiles install`. Accept the recommended choices.
 2. **Core-Prompts** (installs the shared skills and agents):
    `git clone https://gitlab.appian-stratus.com/medhat.galal/core-prompts.git ~/repo/core-prompts`,
    then follow "Install Or Repair" in its README: preview with `--dry-run`, review, apply.
-3. **GitHub CLI** is not part of dotfiles: `brew install gh`.
 
 Cloning needs the VPN. Then sign in once to each (each opens a browser or asks for a token):
 `gws auth login`, `acli jira auth login`, `glab auth login --hostname gitlab.appian-stratus.com`, `gh auth login`.
@@ -419,7 +422,8 @@ widths still add up to the text width, and fix them if not.
 2. Offer the scan, in one line: "I can read Gmail, Calendar, Chat, Drive (including Gemini meeting notes), Jira,
    GitLab and GitHub. Scan your last 14 days to suggest sources for each tab?" Name any source whose tools check
    failed, and say any can be skipped. On yes, scan, then propose the sources for each initiative tab and let them
-   correct it. On no, ask them to name sources per tab. `sources` reruns this step later.
+   correct it. On no, ask them to name sources per tab. Private sources (inbox mail, chats, meeting notes,
+   restricted docs) may be saved for drafting, but are never linked (rule 6). `sources` reruns this step later.
 3. Save `config.json` (role leader). Continue straight to Daily, covering the last 7 days.
 
 ## Daily (each leader)
@@ -431,8 +435,8 @@ widths still add up to the text width, and fix them if not.
    blockers, dates, owner changes. Also note important work that fits no initiative, and ask if it should become one.
    A tab with no sources set up: never ask an open "which source?" question. Search their last 14 days for
    that initiative's name and keywords (Jira, Drive, merge requests, chats, meetings; not inbox mail or
-   candidate notes), and offer up to 3 numbered sources, plus "or tell me what happened today". Offer only
-   sources the doc's readers can open: check sharing first and skip anything private to this person. Save the ones
+   candidate notes), and offer up to 3 numbered sources, plus "or tell me what happened today". Private sources
+   may be offered and saved for drafting, but are never linked (rule 6). Save the ones
    they pick, then draft from them. If they say what happened, draft from that, ending the line "(from <their name>)".
    If they pick nothing and say nothing, write nothing to that tab and say so in the review.
    Look for notes the tab's owner sent this person about the initiative (email or chat). They are the freshest
@@ -595,8 +599,9 @@ owner name exceptions.
 - No vague dates. Every milestone has a date, or reads "No date set yet" (exactly, capital N) with the status at 🟡. A milestone
   marked "done <date>" by Sweep counts as dated.
 - Every weekday matches its date on the calendar ("Fri Nov 6", never "Thu Nov 6").
-- Every Progress and Blocked on line has at least one link, except "No change since <date>.",
-  "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
+- Every Progress and Blocked on line has at least one link or ends "(email)", "(chat)" or "(meeting notes)",
+  except "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
+- No link points to Gmail, Chat, Gemini notes, or a Drive file not shared to the domain or anyone with the link.
 - No raw URLs in the text; every link sits on a short word.
 - No "Note (agent)" or other agent commentary in the doc; it goes in the review.
 - Each initiative is 3 sentences or fewer.
