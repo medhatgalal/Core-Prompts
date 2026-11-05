@@ -2201,8 +2201,8 @@ a reported bug is fixed. Package availability is source evidence; native use and
 helper effectiveness require separate evidence.
 
 Published v1.17.1 retains v1.17.0's 36-skill catalog and adds installer fixes.
-Published v1.18.0 added `engos-route-intent` as the 37th skill; prepared v1.18.1
-retains that catalog. These examples do not establish installed parity or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
+Published v1.18.0 added `engos-route-intent` as the 37th skill; published v1.18.1
+retains that catalog. v1.19.0 adds `engos-operations-daily-update` as the 38th skill. These examples do not establish installed parity or new native acceptance; see [release scope and holds](RELEASE-PACKAGING.md#program-adoption-readiness). Ordinary sync preserves a concrete saved selection. Explicit full
 catalog adopts all current and future skills; curated policy adds named skills.
 Use [the install-profile commands and shared-root consent rules](INSTALL-PROFILES.md#choose-future-skill-membership).
 A refreshed helper inside an existing package is a resource update, not a new
