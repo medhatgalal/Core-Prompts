@@ -365,7 +365,7 @@ fails, give the exact error and the one command that fixes it, then continue wit
 **Scripts (use these for every doc write).** The installed skill has `scripts/du.py` (`resources/scripts/du.py`
 in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
 exact layout above, with the revision check and retries, bold labels, Confidence chips, date headings, table
-widths and pageless tabs. Use `du.py setup`, `section`, `headline`, `row`, `sweep`, `overview`, `thirty`,
+widths and pageless tabs. Use `du.py setup`, `section`, `today`, `headline`, `row`, `sweep`, `overview`, `thirty`,
 `decisions`, `archive`, `send` and `settings` instead of writing Docs API requests yourself, and run
 `du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
@@ -443,6 +443,9 @@ widths still add up to the text width, and fix them if not.
 1. Re-read the doc and refresh the person's tabs in `config.json`: someone may have made them the updater of a
    tab, added a tab, or renamed one. Ask for sources for any new tab; for a tab owned by an engineer, suggest the
    engineer's Jira items, merge requests and team chats. Window: from `last_publish` to now (first run: last 7 days).
+   If a tab already has a section dated today, that section is the starting point for the tab: read it with
+   `du.py today DOC "<tab title>" <date>` and compare it with this person's ledger for today. Lines someone edited
+   by hand since the publish count as today's facts and are kept.
 2. Read the Update guide tab and draft to it. For each initiative tab they update (plus any they asked to cover), read only its sources in the window. Note progress, slips, decisions,
    blockers, dates, owner changes. Also note important work that fits no initiative, and ask if it should become one.
    A tab with no sources set up: never ask an open "which source?" question. Search their last 14 days for
@@ -455,6 +458,12 @@ widths still add up to the text width, and fix them if not.
    word from the person doing the work: use them over older sources, and say in the review that you did.
 3. Draft a section for each of their initiative tabs, and the headline and table for each area tab they own.
    Apply the status rules. Run the checks below.
+   Same-day re-run (today's section exists): write one section for the whole day, Progress 3 sentences at most.
+   Start from today's section and the new evidence from the window. Add new facts. Replace facts that changed
+   ("in review" became "merged", a date moved, a blocker cleared). Delete facts that are obsolete or superseded.
+   Re-check the status, Next milestone, Confidence, Blocked on and Green when against all of today's evidence,
+   not only the new. Every other rule still holds: links only to sources anyone can open, private labels,
+   "(from <name>)", people-sensitive items, and hand edits kept unless the updater drops them.
 4. Show the review in chat, in this shape, and nothing else:
 
    ```
@@ -468,6 +477,9 @@ widths still add up to the text width, and fix them if not.
    Check: left out a candidate's name. Not sure: is Cost cuts at risk? (my inference)
    Publish?
    ```
+
+   On a same-day re-run, put under each changed tab what changed against the published section, one short line
+   each: "Added: ...", "Replaced: <old> -> <new>", "Removed: ... (why)".
 5. Apply their edits. If they correct a rule or wording habit, add one line to `style_notes` and follow it from then on.
 6. On "publish": date every section with the day you publish (if the day changed since drafting, re-date it and
    re-check sources up to now). Re-read each tab, then insert the section at the top of each initiative tab
@@ -480,9 +492,11 @@ widths still add up to the text width, and fix them if not.
    person's ledger for that day. If a person edited the section after it was published, show the changed lines
    in the review, and keep their wording unless they say to drop it. Keep any "Moved from" or
    "Area renamed" line. If today's section was written by another person and is not Unconfirmed, show both in
-   the review and ask whether to replace it or merge into it. Update that initiative's row in its
+   the review and ask whether to replace it or merge into it. A merge follows the add, replace and delete steps
+   in step 3. Update that initiative's row in its
    area tab's table, even when the area belongs to someone else (that row only). Replace the headline on area
-   tabs the person owns on every publish that touches that area, so its date matches. Save the ledger and
+   tabs the person owns on every publish that touches that area, so its date matches: re-summarize it from the
+   newest section of every initiative in that area, never append to the old headline. Save the ledger and
    `last_publish`. Re-read and confirm every section landed. When reporting done, quote the re-read text of each
    section you wrote; if you cannot quote it, say it did not land. Give the link.
 

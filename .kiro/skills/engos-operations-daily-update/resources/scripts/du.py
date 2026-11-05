@@ -7,6 +7,7 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
 
   du.py setup STRUCTURE.json                 create the doc; prints its id
   du.py section DOC TAB_TITLE SECTION.json   write today's section on one initiative tab
+  du.py today DOC TAB_TITLE YYYY-MM-DD       print that day's section as SECTION.json (read only), to re-summarize
   du.py headline DOC AREA_TITLE "<status> · <sentences> (<Weekday Mon D>)"
   du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
   du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
@@ -111,6 +112,30 @@ def cmd_section(a):
         print("  " + t)
 
 
+def cmd_today(a):
+    """Daily step 1 on a same-day re-run: today's published section, links included, as the starting draft."""
+    doc_id, title, day = a[0], a[1], dt.date.fromisoformat(a[2])
+    tid = tab_of(doc_id, title)
+    init = next(i for i in du.model(du.read_doc(doc_id))[2] if i.tab_id == tid)
+    s = next((x for x in init.sections if x.date == day), None)
+    if s is None:
+        print(json.dumps(None))
+        return
+    keys = {"Next milestone:": "milestone", "Confidence:": "confidence", "Progress:": "progress",
+            "Blocked on:": "blocked", "Green when:": "green_when"}
+    out = {"date": day.isoformat(), "status": s.status, "extra": [], "links": []}
+    for t, el in s.lines:
+        k = next((p for p in keys if t.startswith(p)), None)
+        if k:
+            out[keys[k]] = t[len(k):].strip()
+            if k == "Progress:":
+                out["links"] = [[r["textRun"]["content"], r["textRun"]["textStyle"]["link"]["url"]]
+                                for r in el["paragraph"]["elements"] if r.get("textRun", {}).get("textStyle", {}).get("link")]
+        elif t[:1] not in du.STATUSES:
+            out["extra"].append(t)
+    print(json.dumps(out, ensure_ascii=False, indent=1))
+
+
 def cmd_headline(a):
     import build
     build.set_headline(a[0], a[1], a[2])
@@ -197,7 +222,7 @@ def main():
         print(__doc__)
         return
     cmd, a = sys.argv[1], sys.argv[2:]
-    if a and a[0] in du.PROTECTED and cmd not in ("check", "settings"):
+    if a and a[0] in du.PROTECTED and cmd not in ("check", "settings", "today"):
         raise SystemExit(f"REFUSED: {du.PROTECTED[a[0]]} is protected while the skill is in testing. Nothing written.")
     if cmd == "sweep":
         sys.exit(run("sweep.py", a[0], a[1], "--owner", *a[2:]))
