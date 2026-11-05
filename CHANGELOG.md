@@ -1,4 +1,8 @@
-## Unreleased
+## v1.19.0 - 2026-11-05
+
+Owner-authorized tag (Medhat Galal, 2026-11-05) from the release-preparation merge.
+Publication on each provider is recorded by its own release notes; this entry
+does not claim installed parity or native acceptance.
 
 - Add the `engos-operations-daily-update` skill: one shared Google Doc for an org's daily status, where each leader's agent drafts their update from their own sources and publishes only on their "publish", and the doc owner closes out the day and sends a reader summary only on "send". Imported through UAC with the source operating instructions preserved in order; bundled scripts and live-doc tests are byte-identical to the source repository (`scott.parrish/daily-update`). Skill surface only; no agent. Behavioral status remains pending in Core-Prompts terms; the source repository's live-doc test run is external evidence.
 

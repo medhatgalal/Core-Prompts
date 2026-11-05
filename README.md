@@ -12,8 +12,8 @@ would materially change the route, with an Other/free-text answer path.
 `engos-route-intent` provides intake across the current catalog,
 including nonengineering jobs. A clear direct task needs no new interview.
 
-The intake skill ships in v1.18.0; the v1.18.1 cleanup patch is prepared with
-publication still gated on native acceptance and release checks. Check the package available in
+The intake skill ships in v1.18.0 and its cleanup patch in v1.18.1; v1.19.0 adds
+`engos-operations-daily-update`. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 
