@@ -1,3 +1,13 @@
+## v1.19.1 - 2026-11-05
+
+Tag authorized by Scott Parrish (doc owner of the daily update) on 2026-11-05.
+Publication is recorded by the GitLab release notes; this entry does not claim
+installed parity or native acceptance.
+
+- `engos-operations-daily-update` never links private sources. The status doc links only what anyone in the company can open: Drive files shared to the domain or anyone with the link, and Jira, GitLab and GitHub items. Gmail, Chat, Gemini meeting notes and restricted Drive files are still read for drafting, but a line drawn only from them ends with an unlinked "(email)", "(chat)" or "(meeting notes)", and the private link stays in the local ledger. `verify.py` passes those labels and fails any Gmail or Chat link and any Drive link without domain or anyone-with-the-link sharing (read only).
+- The overview's "How to update" is now one short bullet per role (Leaders, Tab owners, Doc owner, Changes, Meetings, Template) with bold labels and commands in a monospace font. New docs get this layout; existing docs keep their text until rebuilt.
+- Setup no longer asks for a separate `brew install gh`; dotfiles installs the GitHub CLI.
+
 ## v1.19.0 - 2026-11-05
 
 Owner-authorized tag (Medhat Galal, 2026-11-05) from the release-preparation merge.

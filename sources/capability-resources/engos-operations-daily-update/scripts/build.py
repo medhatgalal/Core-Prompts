@@ -6,6 +6,14 @@ import dudoc as du
 import modes as m
 
 GREY = {"color": {"rgbColor": {"red": 0.45, "green": 0.45, "blue": 0.45}}}
+GUIDE_LINE = "Template: see the Update guide tab."
+# Overview "How to update": one bullet per role. The text before ":" is bold; `backticked` words are monospace.
+HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
+          "Tab owners: your updater updates your tab.",
+          "Doc owner: at 3pm ET, `close` the day, then `send` the summary.",
+          "Changes: `add` a new initiative; `done` or `stop` to end one. `help` lists all.",
+          "Meetings: read this doc first; spend meeting time on \"Needs decision\".",
+          GUIDE_LINE]
 
 
 def text_width(tab):
@@ -122,14 +130,7 @@ def create(title, org, owner, reader, structure, day):
     lines = [f"{org} daily update", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET",
              "In 30 seconds", "🟢 Doc created; leaders start updating on their next run.",
              "Area health", "", "Not updated today", "Overview not built yet.",
-             "How to update",
-             f"Each leader: by 3pm ET, run {du.CMD} (or say \"do my daily update\"), review the draft, then say \"publish\". It adds today's section at the top of each initiative tab you update and refreshes your area tab.",
-             "Engineers who own a tab do not update it; their updater does.",
-             f"Doc owner: at 3pm ET, run {du.CMD} close to mark missed tabs Unconfirmed, tag their updaters and rebuild the overview. Then {du.CMD} send to send the summary to readers.",
-             f"New initiative: {du.CMD} add. Finished: done. Stopped: stop. The doc owner moves both to Archive.",
-             f"{du.CMD} help lists every command.",
-             "Meetings do not walk through status; read this doc first. Meeting time goes to \"Needs decision\" items.",
-             "Template and writing tips: see the Update guide tab.",
+             "How to update"] + [x.replace("`", "") for x in HOW_TO] + [
              "Status key",
              "🔴 Red: a committed date passed and it is not done, or blocked with no owned fix and date.",
              "🟡 At risk: next milestone has no date, or something owed or undecided could slip the date.",
@@ -137,13 +138,14 @@ def create(title, org, owner, reader, structure, day):
              "⚪ Paused: paused or not started.",
              "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."]
     st = ["TITLE", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT",
-          "HEADING_2"] + ["NORMAL_TEXT"] * 7 + ["HEADING_2"] + ["NORMAL_TEXT"] * 5
+          "HEADING_2"] + ["NORMAL_TEXT"] * len(HOW_TO) + ["HEADING_2"] + ["NORMAL_TEXT"] * 5
     du.batch(did, m._paras(ov, 1, lines, st))
     tab = m.find_tab(du.read_doc(did), ov)
     last = [e for e in tab["documentTab"]["body"]["content"] if "paragraph" in e][-2]
     du.batch(did, [{"updateTextStyle": {"range": {"startIndex": last["startIndex"], "endIndex": last["endIndex"] - 1, "tabId": ov},
                                         "textStyle": {"foregroundColor": GREY, "fontSize": {"magnitude": 9, "unit": "PT"}},
                                         "fields": "foregroundColor,fontSize"}}])
+    style_how_to(did, ov)
     du.pageless(did, [t["tabProperties"]["tabId"] for t, _ in du.all_tabs(du.read_doc(did))])
     import guide
     gid = guide.add_guide(did, owner)
@@ -221,12 +223,34 @@ def set_decisions(doc_id, reader, rows, links=()):
     du.batch(doc_id, reqs, doc)
 
 
+def style_how_to(doc_id, tab_id):
+    """Make the How to update lines bullets, bold each label, and set each command in a monospace font."""
+    doc = du.read_doc(doc_id)
+    paras = {du.para_text(e["paragraph"]).strip(): e for e in m.find_tab(doc, tab_id)["documentTab"]["body"]["content"]
+             if "paragraph" in e}
+    found = [(paras[x.replace("`", "")], x) for x in HOW_TO]
+    reqs = [{"createParagraphBullets": {"range": {"startIndex": found[0][0]["startIndex"],
+                                                  "endIndex": found[-1][0]["endIndex"] - 1, "tabId": tab_id},
+                                        "bulletPreset": "BULLET_DISC_CIRCLE_SQUARE"}}]
+    for p, marked in found:
+        pos = p["startIndex"]
+        reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + du.utf16(marked[:marked.index(":") + 1]),
+                                                   "tabId": tab_id}, "textStyle": {"bold": True}, "fields": "bold"}})
+        for k, part in enumerate(marked.split("`")):
+            if k % 2:  # inside backticks
+                reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + du.utf16(part), "tabId": tab_id},
+                                                 "textStyle": {"weightedFontFamily": {"fontFamily": "Roboto Mono"}},
+                                                 "fields": "weightedFontFamily"}})
+            pos += du.utf16(part)
+    du.batch(doc_id, reqs, doc)
+
+
 def link_guide_line(doc_id, guide_tab_id):
-    """Put the 'Template and writing tips' line under How to update (add it if missing) and link 'Update guide'."""
+    """Put the 'Template' line under How to update (add it if missing) and link 'Update guide'."""
     doc = du.read_doc(doc_id)
     ov = du.model(doc)[0]
     paras = [e for e in ov["documentTab"]["body"]["content"] if "paragraph" in e]
-    line = "Template and writing tips: see the Update guide tab."
+    line = GUIDE_LINE
     p = next((e for e in paras if du.para_text(e["paragraph"]).strip() == line), None)
     if p is None:
         sk = next(e for e in paras if du.para_text(e["paragraph"]).strip() == "Status key")

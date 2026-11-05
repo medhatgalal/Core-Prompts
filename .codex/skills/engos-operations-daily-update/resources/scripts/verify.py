@@ -36,6 +36,59 @@ def check(name, ok, detail=""):
     results.append((name, bool(ok), detail))
 
 
+# Rule 6: link only what anyone in the company can open. A line from private sources ends with one of these labels.
+PRIVATE_LABEL = r"\((?:email|chat|meeting notes)\)\.?$"
+DRIVE_ID = re.compile(r"(?:docs\.google\.com/(?:document|spreadsheets|presentation|forms)/d/|drive\.google\.com/"
+                      r"(?:file/d/|open\?id=|drive/folders/))([\w-]{20,})")
+_sharing = {}
+
+
+def links_in(content):
+    """(word, url) for every linked run in these body elements, tables included."""
+    for e in content:
+        if "paragraph" in e:
+            for r in e["paragraph"]["elements"]:
+                url = r.get("textRun", {}).get("textStyle", {}).get("link", {}).get("url")
+                if url:
+                    yield r["textRun"]["content"].strip(), url
+        for row in e.get("table", {}).get("tableRows", []):
+            for c in row["tableCells"]:
+                yield from links_in(c["content"])
+
+
+def link_problem(url, own_id):
+    """Why this link is not one anyone in the company can open, or None. Reads Drive sharing only."""
+    if re.search(r"//(?:mail|chat)\.google\.com/", url):
+        return "points to Gmail or Chat"
+    m = DRIVE_ID.search(url)
+    if not m or m.group(1) == own_id:  # not a Drive file, or a tab of the status doc itself
+        return None
+    fid = m.group(1)
+    if fid not in _sharing:
+        q = {"fileId": fid, "fields": "name,permissions(type,role)", "supportsAllDrives": True}
+        try:
+            f = du.gws("drive", "files", "get", "--params", json.dumps(q))
+            perms = f.get("permissions")
+            if perms is None:  # Drive leaves this out for shared-drive files; ask the permissions list instead
+                q["fields"] = "permissions(type,role)"
+                perms = du.gws("drive", "permissions", "list", "--params", json.dumps(q)).get("permissions", [])
+            if "Notes by Gemini" in f.get("name", ""):
+                _sharing[fid] = "is Gemini meeting notes"
+            elif any(p.get("type") in ("domain", "anyone") for p in perms):
+                _sharing[fid] = None
+            else:
+                _sharing[fid] = "Drive file not shared to the domain or anyone with the link"
+        except RuntimeError:
+            _sharing[fid] = "Drive sharing could not be read"
+    return _sharing[fid]
+
+
+def check_links(tag, content, own_id):
+    for word, url in links_in(content):
+        why = link_problem(url, own_id)
+        check(f"{tag}: link '{word[:30]}' opens for anyone in the company", why is None, why)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("doc_id")
@@ -75,7 +128,8 @@ def main():
             for t, el in s.lines:
                 if t.startswith(("Progress:", "Blocked on:")) and not re.search(r"No update from|No change since|Blocked on: None\.|Moved from .+ on |\(from [A-Z][\w .'-]*\)\.?$", t):
                     has = any(r.get("textRun", {}).get("textStyle", {}).get("link") for r in el["paragraph"]["elements"])
-                    check(f"{tag}: '{t[:30]}...' has a link", has)
+                    check(f"{tag}: '{t[:30]}...' has a link or a private-source label", has or re.search(PRIVATE_LABEL, t))
+            check_links(tag, [el for _, el in s.lines], a.doc_id)
             if s.unconfirmed:
                 check(f"{tag}: Unconfirmed line is last", texts[-1].startswith("Unconfirmed:"))
             conf_el = next((el for t, el in s.lines if t.startswith("Confidence:")), None)
@@ -167,6 +221,9 @@ def main():
 
     # ---- overview: Area health and Not updated today ----
     body = ov["documentTab"]["body"]["content"]
+    check_links("overview", body, a.doc_id)
+    for ar in areas.values():
+        check_links(ar.title, ar.body, a.doc_id)
     table = next(e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Area")
     health = {du.cell_text(r["tableCells"][0]): [du.cell_text(c) for c in r["tableCells"]] for r in table["table"]["tableRows"][1:]}
     full = "\n".join(du.para_text(e["paragraph"]) for e in body if "paragraph" in e)
