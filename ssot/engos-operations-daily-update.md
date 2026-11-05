@@ -216,21 +216,32 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
 2. **In 30 seconds**: 5 bullets at most, each linking to its tab. Lead with what changed today (a status
    change, a milestone met or missed, a new blocker, a ticket closed), then the worst remaining. Never only
    restate milestones.
-3. **Needs <reader>'s decision** (only if any): table with Decision, Why now, Recommend, By, Owner. By is the
-   date the decision is needed; if no tab gives one, propose one and mark it as your inference in the review.
-   Link each Decision to the thing being decided (design doc, merge request, proposal).
-4. **Area health**: table with Area, Owner, Status, Headline, Updated (date of the area's newest update). The
-   Headline cell copies the area headline's sentences and keeps its date in brackets.
-5. **Not updated today**, directly under Area health: first a count ("3 of 5 areas not fully updated today"),
+3. **Area health**: table with Area, Owner, Status, Headline, Updated (date of the area's newest update). The
+   Status cell stacks a count per colour of that area's initiatives, one line each, in the order 🔴, 🟡, 🟢, ⚪,
+   leaving out zero counts ("🟡 1" over "🟢 4"); the top colour is the area's colour. The Headline cell copies
+   the area headline's sentences without its date, since Updated carries it; flagged headlines keep their flag.
+4. **Not updated today**, directly under Area health: first a count ("3 of 5 areas not fully updated today"),
    then a table with Initiative (linked to its tab), Area, Updater, Last confirmed (date of its newest section
    that is not Unconfirmed, or "None yet"): one row per tab whose newest section is older than today, still
    Unconfirmed. List these even when the area is green.
-6. **How to update** (see below) and the status key. Process text and the status key always go last.
-7. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
+5. **Exec leadership: decisions or help needed** (only if any): table with Decision or help needed, Why now,
+   Recommend, By, Owner. By is the date it is needed; if no tab gives one, propose one and mark it as your
+   inference in the review. Link each row to the thing being decided (design doc, merge request, proposal).
+6. **Next 2 weeks**: table with Date, Commitment (the milestone without its date), Initiative (linked to its
+   tab), Status (full label, "🟢 On track"): one row per initiative, not done or stopped, whose newest Next
+   milestone date falls from today through today + 14 days, by date and then worst first. With no rows, one
+   line: "No dated commitments in the next 2 weeks."
+7. **How to update** (see below) and the status key. Process text and the status key always go last.
+8. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
+
+`du.py overview DOC DATE TIME --publish` rewrites everything below In 30 seconds in this order, keeping the
+decisions rows, so it also moves an older overview to this layout.
 
 **Area tab**: title, `Owner: <name> · Back to <overview>`, then **Headline**: one line,
-`<status> · <1-2 sentences> (<Weekday Mon D>)`, for example `🟡 At risk · Two of three initiatives have no dated
-milestone. (Mon Nov 2)`; the date is always last, in brackets, **Initiatives** table (Initiative, Owner, Status, Next milestone and date), **Done** (one line each).
+`<status> · <sentence> (<Weekday Mon D>)`, for example `🟡 At risk · Everything is on track except the new
+Composer experience, which ships Tue Nov 17 only if three blocking defects are fixed. (Thu Nov 5)`; the date is
+always last, in brackets. The sentence (two at most) says what the area's state means, leading with the biggest
+risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone and date), **Done** (one line each).
 
 **Initiative tab**: title `<Initiative> (<owner>)` as HEADING_1 (the same as the tab name), then `Owner: <name> · Updater: <leader> · Area: <area> · Back to <overview>`, then one
 section per day, **newest first**. Each section:
@@ -263,7 +274,7 @@ monospace font):
 - **Tab owners**: your updater updates your tab.
 - **Doc owner**: at 3pm ET, `close` the day, then `send` the summary.
 - **Changes**: `add` a new initiative; `done` or `stop` to end one. `help` lists all.
-- **Meetings**: read this doc first; spend meeting time on "Needs decision".
+- **Meetings**: read this doc first; spend meeting time on "decisions or help needed".
 - **Template**: see the Update guide tab (link "Update guide" to that tab).
 
 **Update guide tab** (doc owner owns it; last top-level tab). The leaders' reference for writing an update,
@@ -378,8 +389,8 @@ After every write, re-read the tab and confirm each date line is still a HEADING
 unchanged. If a heading lost its style, restore it before reporting done. Create tabs with `addDocumentTab` (set `parentTabId` to nest).
 Give every table fixed column widths (`updateTableColumnProperties`) that add up to the page's text width, so it
 fits the page. Text width = the tab's `documentStyle` page width minus its left and right margins (letter with
-1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 21, 11, 15, 38, 15 percent
-(468 pt: 100, 52, 70, 178, 68); Initiatives 30, 15, 17, 38 percent; Not updated today 34, 26, 18, 22 percent; Needs decision 24, 22, 24, 14, 16 percent.
+1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 22, 10, 11, 43, 14 percent
+(540 pt: 119, 54, 59, 232, 76); Initiatives 30, 15, 17, 38 percent; Not updated today 34, 26, 18, 22 percent; decisions or help needed 24, 22, 24, 14, 16 percent; Next 2 weeks 16, 44, 26, 14 percent.
 Round to whole points and put any remainder on the widest column. Whenever you write to a table, check its
 widths still add up to the text width, and fix them if not.
 
@@ -395,8 +406,9 @@ widths still add up to the text width, and fix them if not.
    Keep it under 8 areas and 30 initiatives.
 3. Let them correct it in plain words ("move 4 under People", "Kyle owns Composer"). Ask only for what is missing.
 4. Build the doc (title `<Org> daily update`): overview, area tabs, nested initiative tabs, Archive, Update guide, laid out as above.
-   Each area headline states the area's status and next milestones from its starting sections, dated today;
-   never process text such as "starting view" or "drafted by". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest
+   Each area headline follows the Area tab headline rule, from its starting sections, dated today (after
+   setup, replace the script's starting headline with `du.py headline`); never process text such as
+   "starting view" or "drafted by". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest
    first, keeping links (check older sections against rule 5 before copying). Otherwise add one starting section
    dated today from what you found, ending with the line
    "Starting section drafted by <doc owner>'s agent. <Updater> confirms or corrects it on their first update."
@@ -566,7 +578,7 @@ owner name exceptions.
 ## Overview (doc owner, second half of `close`)
 
 1. Read every area and initiative tab. Do not re-read sources; the tabs are the input.
-2. Draft the overview: In 30 seconds, Needs decision, Area health, Not updated today. List any tab added,
+2. Draft the overview: In 30 seconds, Area health, Not updated today, decisions or help needed, Next 2 weeks. List any tab added,
    renamed or finished since the last overview, and move finished tabs under Archive if the doc owner agrees.
    When a tab moves to Archive, delete its row from its area's Initiatives table (its Done line stays), and
    add it to the Archive tab's list as its own line, "<Initiative> (<owner>), done <date>.", with the name linked
@@ -576,7 +588,7 @@ owner name exceptions.
    headline dated earlier than that area's newest update, or that contradicts its initiative tabs, and offer a
    note to the area owner. Do not edit another owner's headline. In the overview's Area health table, end a
    flagged headline with "(headline from <date>; out of date with its tabs)". End any other headline not dated
-   today with "(headline from <date>; not updated today)". Take the area's Status from its initiative tabs, not
+   today with "(headline from <date>; not updated today)". Other headline cells carry no date. Take the area's Status from its initiative tabs, not
    from the headline.
 4. On "publish": replace the overview tab body only. Re-read and confirm. When reporting done, quote the
    re-read overview text; if you cannot quote it, say it did not land. Then offer `send`.
@@ -586,7 +598,7 @@ owner name exceptions.
 1. Read the readers from the doc's settings (`du.py settings DOC`). If empty, ask who should get it (name, email, email or Chat) and save them;
    `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
 2. Draft one short message: subject or first line "<Org> daily update, <Weekday Mon D>", the In 30 seconds
-   bullets, any Needs decision rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
+   bullets, any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
    <names>." (or "All initiatives confirmed today."), and the doc link. No other content; nothing beyond
    what the overview already says.
 3. Show the exact recipients, channel and text, then ask: "Send to <names>?" Send only if the doc owner replies

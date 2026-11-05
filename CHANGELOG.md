@@ -1,3 +1,12 @@
+## v1.19.2 - 2026-11-05
+
+Tag authorized by Scott Parrish on 2026-11-05. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update` overview layout, approved by Scott on the live doc: sections run In 30 seconds, Area health, Not updated today, "Exec leadership: decisions or help needed" (renamed from "Needs <reader>'s decision", first column "Decision or help needed"), a new "Next 2 weeks" table of dated commitments built from the tabs, How to update, Status key.
+- Area health's Status cell stacks per-colour counts ("🟡 1" over "🟢 4"); its Headline cell drops the repeated date, since Updated carries it. Column shares are now 22/10/11/43/14. Area headlines are one sentence on what the area's state means, not a list of initiatives.
+- `du.py overview DOC DATE TIME --publish` rebuilds everything below In 30 seconds, keeping the decisions rows, so an older overview moves to this layout. `verify.py` and `usability.py` check the new order, counts, widths and Next 2 weeks rows.
+
 ## v1.19.1 - 2026-11-05
 
 Tag authorized by Scott Parrish (doc owner of the daily update) on 2026-11-05.

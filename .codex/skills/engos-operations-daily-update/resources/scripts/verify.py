@@ -26,9 +26,10 @@ def _tester():
         return ""
 results = []
 # Column shares from SKILL.md "Docs API notes", keyed by the header row.
-SHARES = {("Area", "Owner", "Status", "Headline", "Updated"): [21, 11, 15, 38, 15],
+SHARES = {("Area", "Owner", "Status", "Headline", "Updated"): [22, 10, 11, 43, 14],
+          ("Date", "Commitment", "Initiative", "Status"): [16, 44, 26, 14],
           ("Initiative", "Owner", "Status", "Next milestone and date"): [30, 15, 17, 38],
-          ("Decision", "Why now", "Recommend", "By", "Owner"): [24, 22, 24, 14, 16],
+          (du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): [24, 22, 24, 14, 16],
           ("Initiative", "Area", "Updater", "Last confirmed"): [34, 26, 18, 22]}
 
 
@@ -247,6 +248,8 @@ def main():
             continue
         want = du.worst(i.newest("status").status for i in mine if i.newest("status"))
         check(f"overview: {ar.name} status from its tabs", row[2][:1] == want, (row[2], want))
+        counts = du.status_counts(r[2][:1] for r in ar.rows())
+        check(f"overview: {ar.name} status counts match its Initiatives table", row[2] == counts, (row[2], counts))
         hl_dates = du.dates_in(ar.headline or "")
         hl_date = hl_dates[-1][1] if hl_dates else None
         confirmed = [s.date for i in mine for s in i.sections if not s.unconfirmed]
@@ -262,8 +265,8 @@ def main():
         else:
             # The agent may also flag a headline whose text contradicts its tabs (a stopped milestone it still
             # names); dates and colour cannot show that, so the flagged wording is accepted here too.
-            check(f"overview: {ar.name} unflagged headline ends with its date",
-                  hl_date is None or row[3].endswith(f"({du.label(hl_date)})")
+            check(f"overview: {ar.name} unflagged headline has no repeated date (Updated carries it)",
+                  not re.search(r"\((Mon|Tue|Wed|Thu|Fri|Sat|Sun) \w{3} \d{1,2}\)$", row[3])
                   or row[3].endswith(f"(headline from {du.label(hl_date)}; out of date with its tabs)"), row[3][-40:])
         for m, d, ok in du.dates_in(" ".join(row)):
             check(f"overview: weekday matches '{m}' ({ar.name})", ok)
@@ -289,12 +292,34 @@ def main():
                       f"points to {want}")
     check("overview: stale count", f"{stale_areas} of {len(areas)} areas not fully updated today" in full)
     paras = [du.para_text(e["paragraph"]).strip() for e in body if "paragraph" in e]
-    heads = [p for p in paras if p in ("Area health", "Not updated today", "How to update", "Status key")]
+    order = ["In 30 seconds", "Area health", "Not updated today", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"]
+    heads = [p for p in paras if p in order]
     styles = {du.para_text(e["paragraph"]).strip(): e["paragraph"]["paragraphStyle"].get("namedStyleType") for e in body if "paragraph" in e}
-    for hname in ("In 30 seconds", "Area health", "Not updated today", "How to update", "Status key"):
-        check(f"overview: '{hname}' is a heading", styles.get(hname) == "HEADING_2", styles.get(hname))
-    check("overview: order Area health, Not updated today, How to update, Status key",
-          heads == ["Area health", "Not updated today", "How to update", "Status key"], heads)
+    for hname in order:
+        if hname in heads or hname != du.DECISIONS_HEAD:  # the decisions section appears only when there are any
+            check(f"overview: '{hname}' is a heading", styles.get(hname) == "HEADING_2", styles.get(hname))
+    check("overview: sections in order " + ", ".join(order) + " (decisions only if any)",
+          heads == [h for h in order if h != du.DECISIONS_HEAD or h in heads], heads)
+    check("overview: no old 'Needs ... decision' heading", not any(re.match(r"Needs .*decision", p) for p in paras))
+
+    # ---- Next 2 weeks: one row per open initiative with a milestone in the next 14 days ----
+    want = [(du.label(d), i.name, du.STATUSES[st]) for d, _, i, st in du.next_two_weeks(inits, today)]
+    n2 = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Date"), None)
+    got_rows = n2["table"]["tableRows"][1:] if n2 else []
+    got = [(du.cell_text(r["tableCells"][0]), du.cell_text(r["tableCells"][2]), du.cell_text(r["tableCells"][3])) for r in got_rows]
+    check("overview: Next 2 weeks rows match the tabs (date, initiative, status)", sorted(got) == sorted(want),
+          {"missing": sorted(set(want) - set(got)), "extra": sorted(set(got) - set(want))})
+    dates = [du.dates_in(g[0])[0][1] if du.dates_in(g[0]) else None for g in got]
+    check("overview: Next 2 weeks sorted by date", None not in dates and dates == sorted(dates), [g[0] for g in got])
+    if not want:
+        check("overview: Next 2 weeks says there are none", "No dated commitments in the next 2 weeks." in paras)
+    for r in got_rows:
+        c = r["tableCells"][2]
+        url = next((x["textRun"]["textStyle"]["link"]["url"] for p in c["content"] if "paragraph" in p
+                    for x in p["paragraph"]["elements"] if x.get("textRun", {}).get("textStyle", {}).get("link")), "")
+        name = du.cell_text(c)
+        check(f"overview: Next 2 weeks '{name}' links to its tab", "?tab=" in url and tab_by_id.get(url.split("?tab=")[1]) == name, url[-30:])
+        check(f"overview: Next 2 weeks '{name}' commitment has no date in it", not du.dates_in(du.cell_text(r["tableCells"][1])))
 
     for t, _ in du.all_tabs(doc):
         mode = t["documentTab"].get("documentStyle", {}).get("documentFormat", {}).get("documentMode")

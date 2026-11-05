@@ -10,9 +10,9 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py headline DOC AREA_TITLE "<status> · <sentences> (<Weekday Mon D>)"
   du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
   du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
-  du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]
+  du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]   rebuild everything below "In 30 seconds"
   du.py thirty DOC BULLETS.json              In 30 seconds: [["🟡","<Tab title>","rest"], ...]
-  du.py decisions DOC READER ROWS.json [LINKS.json]
+  du.py decisions DOC READER ROWS.json [LINKS.json]   "Exec leadership: decisions or help needed" table
   du.py archive DOC TAB_TITLE "done Mon Nov 9"
   du.py send DOC [--confirmed]               draft the reader summary; --confirmed sends it
   du.py settings DOC [--owner NAME] [--readers JSON] [--people JSON]   show or set settings stored on the doc
@@ -134,7 +134,7 @@ def cmd_thirty(a):
 def cmd_decisions(a):
     import build
     build.set_decisions(a[0], a[1], load(a[2]), load(a[3]) if len(a) > 3 else ())
-    print("Needs decision written")
+    print("Decisions table written")
 
 
 def cmd_archive(a):

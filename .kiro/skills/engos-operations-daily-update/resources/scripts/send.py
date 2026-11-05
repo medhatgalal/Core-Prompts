@@ -23,11 +23,11 @@ def draft(doc_id, readers):
             break
         if du.para_text(e["paragraph"]).strip():
             bullets.append(du.para_text(e["paragraph"]).strip())
-    dec = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Decision"), None)
+    dec = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == du.DECISIONS_COL), None)
     decisions = [[du.cell_text(c) for c in r["tableCells"]] for r in dec["table"]["tableRows"][1:]] if dec else []
     lines = [f"{title}, {day}", ""] + bullets
     if decisions:
-        lines += ["", "Needs your decision:"] + [f"- {d[0]} (by {d[3]})" for d in decisions]
+        lines += ["", "Decisions or help needed:"] + [f"- {d[0]} (by {d[3]})" for d in decisions]
     inits = du.model(doc)[2]
     today = du.dates_in(asof)[0][1]
     open_ = [i.name for i in inits if not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed

@@ -12,7 +12,7 @@ HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
           "Doc owner: at 3pm ET, `close` the day, then `send` the summary.",
           "Changes: `add` a new initiative; `done` or `stop` to end one. `help` lists all.",
-          "Meetings: read this doc first; spend meeting time on \"Needs decision\".",
+          "Meetings: read this doc first; spend meeting time on \"decisions or help needed\".",
           GUIDE_LINE]
 
 
@@ -126,36 +126,15 @@ def create(title, org, owner, reader, structure, day):
     du.batch(did, m._paras(archive_id, 1, [f"Archive ({owner})", f"Owner: {owner} · Back to {otitle}",
                                            "Finished initiatives move here.", "None yet."],
                            ["HEADING_1", "NORMAL_TEXT", "NORMAL_TEXT", "NORMAL_TEXT"], [back]))
-    # overview
+    # overview: title, owner line and In 30 seconds here; overview.rebuild writes everything below them
     lines = [f"{org} daily update", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET",
-             "In 30 seconds", "🟢 Doc created; leaders start updating on their next run.",
-             "Area health", "", "Not updated today", "Overview not built yet.",
-             "How to update"] + [x.replace("`", "") for x in HOW_TO] + [
-             "Status key",
-             "🔴 Red: a committed date passed and it is not done, or blocked with no owned fix and date.",
-             "🟡 At risk: next milestone has no date, or something owed or undecided could slip the date.",
-             "🟢 On track: none of the above.",
-             "⚪ Paused: paused or not started.",
-             "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."]
-    st = ["TITLE", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT",
-          "HEADING_2"] + ["NORMAL_TEXT"] * len(HOW_TO) + ["HEADING_2"] + ["NORMAL_TEXT"] * 5
-    du.batch(did, m._paras(ov, 1, lines, st))
-    tab = m.find_tab(du.read_doc(did), ov)
-    last = [e for e in tab["documentTab"]["body"]["content"] if "paragraph" in e][-2]
-    du.batch(did, [{"updateTextStyle": {"range": {"startIndex": last["startIndex"], "endIndex": last["endIndex"] - 1, "tabId": ov},
-                                        "textStyle": {"foregroundColor": GREY, "fontSize": {"magnitude": 9, "unit": "PT"}},
-                                        "fields": "foregroundColor,fontSize"}}])
-    style_how_to(did, ov)
+             "In 30 seconds", "🟢 Doc created; leaders start updating on their next run.", "Area health"]
+    du.batch(did, m._paras(ov, 1, lines, ["TITLE", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2"]))
     du.pageless(did, [t["tabProperties"]["tabId"] for t, _ in du.all_tabs(du.read_doc(did))])
     import guide
-    gid = guide.add_guide(did, owner)
-    link_guide_line(did, gid)
-    def cell(items):
-        nxt = "; ".join(f"{n}: {ms}" for n, o, u, s, ms, *_ in items[:2])
-        return f"Next up: {nxt}. ({du.label(day)})"
-    add_table(did, ov, anchor_index(did, ov, "Area health"), [["Area", "Owner", "Status", "Headline", "Updated"]] +
-              [[a, ao, du.STATUSES[du.worst(it[3] for it in items)], cell(items), du.label(day)]
-               for a, ao, items in structure], [21, 11, 15, 38, 15])
+    import overview
+    guide.add_guide(did, owner)
+    overview.rebuild(did, day, "4:00 PM ET")
     # In 30 seconds: up to 5 initiatives, worst first, each linked to its tab
     allinits = [(it[3], f"{it[0]} ({it[1]})", f"next milestone {it[4]}.") for _, _, items in structure for it in items]
     allinits.sort(key=lambda x: du.RANK[x[0]])
@@ -199,23 +178,26 @@ def set_thirty_seconds(doc_id, bullets):
 
 
 def set_decisions(doc_id, reader, rows, links=()):
-    """Overview 'Needs <reader>'s decision' table, added above Area health when there are any."""
+    """Overview 'Exec leadership: decisions or help needed' table, added above Next 2 weeks when there are any.
+    `reader` is kept for the command line; the heading no longer names a reader."""
     doc = du.read_doc(doc_id)
     ov = du.model(doc)[0]
-    head = f"Needs {reader}'s decision"
+    head = du.DECISIONS_HEAD
     paras = [e for e in ov["documentTab"]["body"]["content"] if "paragraph" in e]
     if not any(du.para_text(e["paragraph"]).strip() == head for e in paras):
-        ah = next(e for e in paras if du.para_text(e["paragraph"]).strip() == "Area health")
-        du.batch(doc_id, m._paras("t.0", ah["startIndex"], [head, ""], ["HEADING_2", "NORMAL_TEXT"]), doc)
+        nx = next(e for e in paras if du.para_text(e["paragraph"]).strip() in (du.NEXT_HEAD, "How to update"))
+        du.batch(doc_id, m._paras("t.0", nx["startIndex"], [head, ""], ["HEADING_2", "NORMAL_TEXT"]), doc)
         add_table(doc_id, "t.0", anchor_index(doc_id, "t.0", head),
-                  [["Decision", "Why now", "Recommend", "By", "Owner"]] + rows, [24, 22, 24, 14, 16])
+                  [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + rows, [24, 22, 24, 14, 16])
     # Link each Decision cell to the thing being decided.
     doc = du.read_doc(doc_id)
     ov = du.model(doc)[0]
     tbl = next(e for e in ov["documentTab"]["body"]["content"]
-               if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Decision")
+               if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == du.DECISIONS_COL)
     reqs = []
     for r, url in zip(tbl["table"]["tableRows"][1:], links):
+        if not url:
+            continue
         c = r["tableCells"][0]
         reqs.append({"updateTextStyle": {"range": {"startIndex": c["startIndex"] + 1, "endIndex": c["endIndex"] - 1,
                                                    "tabId": "t.0"},
