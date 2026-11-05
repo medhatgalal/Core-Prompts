@@ -149,6 +149,55 @@ def agent_skill_dependencies(package, repo):
             if isinstance(r, str) and r.startswith('skill://') and '*' not in r]
 
 
+def _decoded_strings(content, config_rel):
+    """Scan JSON/TOML agent configs by their decoded string values.
+
+    Raw text keeps escape sequences such as `\\n` and `\\"`, so a URI followed
+    by one looked like an unresolvable backslash path and blocked every
+    retirement. Returns None for other or unparsable configs.
+    """
+    suffix = Path(config_rel).suffix
+    try:
+        data = json.loads(content) if suffix == '.json' else tomllib.loads(content) if suffix == '.toml' else None
+    except (ValueError, tomllib.TOMLDecodeError, RecursionError):
+        return None
+    if data is None:
+        return None
+    strings, stack = [], [data]
+    while stack:
+        item = stack.pop()
+        if isinstance(item, dict):
+            strings.extend(k for k in item if isinstance(k, str)); stack.extend(item.values())
+        elif isinstance(item, list):
+            stack.extend(item)
+        elif isinstance(item, str):
+            strings.append(item)
+    return '\n'.join(strings)
+
+
+def _uri_refs(content, config_rel):
+    """URIs to resolve, erring towards more candidates (more preservation).
+
+    Parsed JSON/TOML: decoded strings keep the backslash guard; raw text is
+    still scanned (TOML comments, duplicate JSON keys) but cut at the escape
+    backslash. Each percent-decoded URI is also tried without trailing prose
+    punctuation.
+    """
+    pattern = r'(?:file|skill)://([^\s\"\'<>`]+)'
+    decoded = _decoded_strings(content, config_rel)
+    if decoded is None:
+        refs = re.findall(pattern, content)
+    else:
+        refs = [*re.findall(pattern, decoded), *(r.split('\\', 1)[0] for r in re.findall(pattern, content))]
+    out = []
+    for ref in refs:
+        ref = unquote(ref)
+        for candidate in (ref, ref.rstrip('.,;:!?)]}')):
+            if candidate and candidate not in out:
+                out.append(candidate)
+    return out
+
+
 def references_removed_files(content, config_rel, target, removed, replacement=()):
     """Conservatively resolve file/skill URIs, directories and glob resources.
 
@@ -158,9 +207,7 @@ def references_removed_files(content, config_rel, target, removed, replacement=(
     """
     if any(rel in content for rel in removed):
         return True
-    refs = re.findall(r'(?:file|skill)://([^\s\"\'<>`]+)', content)
-    for raw in refs:
-        raw=unquote(raw)
+    for raw in _uri_refs(content, config_rel):
         if '${' in raw or '$' in raw or '\\' in raw:
             return True  # unresolved local references cannot authorize retirement
         if raw.startswith('~/'):

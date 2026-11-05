@@ -251,6 +251,47 @@ def test_custom_agent_glob_and_directory_dependencies_preserve_legacy(installati
     assert not any(a['path']==old for a in plan['actions'])
 
 
+@pytest.mark.parametrize('rel,content',[
+    # Kiro's stock agent-builder example: prompt text whose URIs end at JSON escapes.
+    ('.kiro/agents/builder.json', json.dumps({'name':'builder','prompt':'1. file://path/to/subsystem/\n2. "file://appian-libraries/agent/"'})),
+    ('.codex/agents/helper.toml', 'developer_instructions = "See file://docs/guide/\\nthen \\"file://notes/\\""\n'),
+])
+def test_escaped_unrelated_uri_in_agent_config_does_not_block_retirement(installation,rel,content):
+    repo,target=installation
+    old='.kiro/skills/architecture/SKILL.md'
+    put(target,old,'kiro-architecture-skill\n')
+    put(target,rel,content)
+    plan=planner.plan(repo,target,{'mode':'repair','providers':['kiro'],'runtime':False})
+    assert not any('depends on legacy' in p['reason'] for p in plan['preserved'])
+    assert any(a['path']==old and a['op']=='remove' for a in plan['actions'])
+
+
+@pytest.mark.parametrize('rel,content',[
+    ('.kiro/agents/custom.json', json.dumps({'prompt':'Use file://.kiro/skills/architecture/**\nfirst'})),
+    ('.kiro/agents/custom.json', json.dumps({'prompt':'Use file://C:\\skills\\architecture'})),
+    ('.kiro/agents/custom.json', '{"prompt": "file://somewhere/\\n" not valid json'),
+    ('.codex/agents/custom.toml', 'developer_instructions = "Use file://${HOME}/.kiro/skills/architecture\\n"\n'),
+    # Found in adversarial review: prose punctuation, comments, duplicate keys, deep nesting.
+    ('.kiro/agents/custom.json', json.dumps({'prompt':'Read file://.kiro/skills/architecture.\nthen'})),
+    ('.kiro/agents/custom.json', json.dumps({'prompt':'Read file://../skills/architecture),\nthen'})),
+    ('.codex/agents/custom.toml', 'developer_instructions = "file://~/.kiro/skills/architecture.\\nok"\n'),
+    ('.codex/agents/custom.toml', '# file://.kiro/skills/architecture\nname = "x"\n'),
+    ('.kiro/agents/custom.json', '{"prompt": "file://.kiro/skills/architecture", "prompt": "other"}'),
+    ('.claude/agents/custom.md', 'Read file://.kiro/skills/architecture.\n'),
+    ('.kiro/agents/custom.json', json.dumps({'prompt':'Use file://.kiro/skills/architecture!\nok'})),
+    ('.kiro/agents/custom.json', json.dumps({'prompt':'Use file://.kiro/skills/architecture%2E\nok'})),
+    ('.codex/agents/custom.toml', 'x = ' + '[' * 600 + ']' * 600 + '\nprompt = "file://somewhere/\\n"\n'),
+])
+def test_decoded_agent_config_still_preserves_real_or_unresolved_dependencies(installation,rel,content):
+    repo,target=installation
+    old='.kiro/skills/architecture/SKILL.md'
+    put(target,old,'kiro-architecture-skill\n')
+    put(target,rel,content)
+    plan=planner.plan(repo,target,{'mode':'repair','providers':['kiro'],'runtime':False})
+    assert any('depends on legacy' in p['reason'] for p in plan['preserved'])
+    assert not any(a['path']==old for a in plan['actions'])
+
+
 def test_release_polling_retains_preserved_installation_attention(tmp_path):
     import importlib.util
     spec=importlib.util.spec_from_file_location('updater_attention',ROOT/'scripts/update-core-prompts.py')
