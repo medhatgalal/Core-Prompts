@@ -144,9 +144,11 @@ def main():
                 issues.append(f"overview table has process text: '{row[:80]}'")
             if head[0] == "Area":
                 hl = vals[3]
-                if not hl.endswith(f"({du.label(today)})") and "(headline from " not in hl:
-                    issues.append(f"Area health: {vals[0]} headline is not from today and not flagged: '{hl[-40:]}'")
-            if head[0] == "Decision":
+                if re.search(r"\((Mon|Tue|Wed|Thu|Fri|Sat|Sun) \w{3} \d{1,2}\)$", hl):
+                    issues.append(f"Area health: {vals[0]} headline repeats its date; the Updated column carries it: '{hl[-40:]}'")
+                if vals[4] != du.label(today) and "(headline from " not in hl:
+                    issues.append(f"Area health: {vals[0]} is not updated today and its headline is not flagged: '{hl[-40:]}'")
+            if head[0] == du.DECISIONS_COL:
                 if not any(x.get("textRun", {}).get("textStyle", {}).get("link")
                            for p in r["tableCells"][0]["content"] if "paragraph" in p for x in p["paragraph"]["elements"]):
                     issues.append(f"Decision '{vals[0]}' has no link to what is being decided")

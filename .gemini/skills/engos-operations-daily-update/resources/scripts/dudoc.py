@@ -83,6 +83,9 @@ def pageless(doc_id, tab_ids):
 
 
 GUIDE = "Update guide"
+DECISIONS_HEAD = "Exec leadership: decisions or help needed"
+DECISIONS_COL = "Decision or help needed"
+NEXT_HEAD = "Next 2 weeks"
 CONF_DEF = "kix.confidence"
 
 
@@ -384,6 +387,38 @@ def milestone_date(ms):
 def worst(statuses):
     s = [x for x in statuses if x]
     return min(s, key=lambda x: RANK[x]) if s else None
+
+
+def status_counts(statuses):
+    """Area health Status cell: one line per colour, worst first, zero counts left out ("🟡 1\\n🟢 4")."""
+    s = [x for x in statuses if x]
+    return "\n".join(f"{c} {s.count(c)}" for c in RANK if s.count(c))
+
+
+def commitment(ms):
+    """A milestone without its date: 'Pilot live, Fri Nov 13' -> 'Pilot live'."""
+    core = re.split(r", done ", ms)[0]
+    found = list(DATE_RE.finditer(core))
+    if found:
+        f = found[-1]
+        core = core[:f.start()].rstrip(" ,;:") + core[f.end():]
+    return re.sub(r"\s+(by|on|due)$", "", core.strip(" ,;:."))
+
+
+def next_two_weeks(inits, today):
+    """Overview 'Next 2 weeks': (date, commitment, initiative, status) for each open initiative whose newest
+    Next milestone falls from today through today + 14 days; by date, then worst first."""
+    rows = []
+    for i in inits:
+        s = i.newest("milestone")
+        prog = (i.sections[0].line("Progress:") or "") if i.sections else ""
+        if not s or ", done " in s.milestone or prog.startswith(("Progress: Done ", "Progress: Stopped ")):
+            continue
+        d = milestone_date(s.milestone)
+        if d and today <= d <= today + dt.timedelta(days=14):
+            st = i.newest("status")
+            rows.append((d, commitment(s.milestone), i, st.status if st else "🟡"))
+    return sorted(rows, key=lambda r: (r[0], RANK[r[3]]))
 
 
 # ---------- overview title, used for every "Back to <overview>" link ----------
