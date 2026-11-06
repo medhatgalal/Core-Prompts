@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.6 - 2026-11-06
+
+Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - Installer: a kept ("preserved") record for a customized or legacy-dependency conflict is dropped once every file it protects is gone. Before, such records were carried forward forever when the files were removed outside the installer, and kept the release watch on "attention-required". Records that flag a missing installed package are unchanged.
 - `engos-quality-code-review` adds three scope checks taken from a field-customized copy: a removal test for each change ("If I removed this change, would the commit message still be accurate?"; if yes, the change is out of scope), escalation thresholds (over 200 changed lines with a message under two sentences; more than 5 files for one named feature; new classes or abstractions in a bug-fix commit), and a per-severity count at the start of Findings. Severity names and the findings schema are unchanged. The `engos-delivery-implement-slice` neighbor binding is refreshed for the new source digest; its cited lines are unchanged.
