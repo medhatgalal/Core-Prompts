@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.8 - 2026-11-06
+
+Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - `engos-orchestration-crew` v1.1: hand-offs to the user now go in `user-entry.md` instead of `scott-entry.md`, and a Kiro Crew adapter joins the harness adapters (members as `session_create` sessions, `monitor_start` wakes at 600 seconds, deny-by-default agent JSON for read-only roles). The adapter comes from the KiroCrew app's bundled docs and code and has not run a crew. No other method text changed.
 - Add the `engos-orchestration-crew` skill (`help`, `design`, `launch`, `status`, `end`): design, launch and oversee a multi-agent crew (lead, workers, fresh verifiers, a safety watch and a drift auditor) that runs a long job against acceptance criteria fixed up front, with change control. Imported through UAC from Scott Parrish's Claude Code `crew-orchestrate` skill with the method, roles, rules, gates and end steps unchanged; the Claude Code Desktop platform facts move verbatim into a Harness adapters section beside short adapters for Kiro, Codex, Gemini CLI and a generic fallback. The non-Claude adapters come from each tool's help and documentation and are marked where unconfirmed; none has run a crew. Skill surface only; no agent. Behavioral status remains pending.
