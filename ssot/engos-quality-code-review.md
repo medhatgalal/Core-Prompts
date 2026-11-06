@@ -116,7 +116,7 @@ Every substantial response must include:
 - `Recommended Fixes`
 - `Merge Readiness`
 
-Keep these six sections. In `Commit Under Review`, include the bound target and coverage. In `Findings`, use the fields and evidence links in `resources/schemas/findings.schema.json`; an empty findings list supports a clean verdict only after the declared target is fully reviewed. Include `review_status`, `unreviewed`, and the verdict in `Merge Readiness`. Render these fields inline for chat; when a machine-readable review artifact is requested, write a `Findings.v1` JSON record alongside any requested narrative. Do not write files solely because the schema exists.
+Keep these six sections. In `Commit Under Review`, include the bound target and coverage. Start `Findings` with a count per severity so the reader can triage before the detail. In `Findings`, use the fields and evidence links in `resources/schemas/findings.schema.json`; an empty findings list supports a clean verdict only after the declared target is fully reviewed. Include `review_status`, `unreviewed`, and the verdict in `Merge Readiness`. Render these fields inline for chat; when a machine-readable review artifact is requested, write a `Findings.v1` JSON record alongside any requested narrative. Do not write files solely because the schema exists.
 
 ## Review Process
 ### 1. Capture the Commit
@@ -190,6 +190,11 @@ Look for:
 - no unnecessary abstractions, patterns, or file spread
 - a diff size proportionate to the stated task
 
+**Scope Test**
+For each change, ask: "If I removed this change, would the commit message still be accurate?"
+If yes, the message does not describe the change, so it is out of scope and belongs in a separate commit.
+If no, the change is part of what the message describes.
+
 **Scope Alignment Checklist**
 - [ ] changes are strictly limited to what the commit message describes
 - [ ] no "while I'm here" changes or opportunistic cleanup
@@ -207,6 +212,11 @@ Look for:
 - [ ] small bug fixes remain small and targeted
 - [ ] if the diff is large but the commit message is simple, treat that as a review risk
 - [ ] ask whether the work could have been split into smaller focused commits
+
+**Escalate Scope Review When**
+- the diff exceeds 200 changed lines and the commit message is under two sentences
+- more than 5 files change and the message names a single feature
+- new classes or abstractions appear and the message says it fixes a bug
 
 **Red Flags**
 - commit says "fix typo" but touches many files

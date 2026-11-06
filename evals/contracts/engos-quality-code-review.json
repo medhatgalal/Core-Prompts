@@ -19,7 +19,7 @@
     "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "c34906b1f1c3c14200786d7b39a7be48ac5a703827301490b4f5a4403f82b6e1",
-    "9d9cd6962f973812e778f6317ab40ad4d6c8074815648ee6134b4f7e86bea22b",
+    "37819a0014ef31fdb3f04f5f6a29cdb3b5a523fee6541152492cc5d3630649fe",
     "9d9d4b37c95a1577af793ab9d76aef1d03e7b14f8fb6a751553617356b70fec1",
     "98bfc94daf8dffbc3dbf995caf30bd570ff22273f4f88ddec139a6201efa0210",
     "04ffdc5e73508647ca1481cdf8f59eaa7025ec4ba604f3d2ab18522fa00bf538",
@@ -258,9 +258,9 @@
       "text": "Every substantial response must include:"
     },
     {
-      "sha256": "9d9cd6962f973812e778f6317ab40ad4d6c8074815648ee6134b4f7e86bea22b",
+      "sha256": "37819a0014ef31fdb3f04f5f6a29cdb3b5a523fee6541152492cc5d3630649fe",
       "source": "ssot/engos-quality-code-review.md",
-      "text": "Keep these six sections. In `Commit Under Review`, include the bound target and coverage. In `Findings`, use the fields and evidence links in `resources/schemas/findings.schema.json`; an empty findings list supports a clean verdict only after the declared target is fully reviewed. Include `review_status`, `unreviewed`, and the verdict in `Merge Readiness`. Render these fields inline for chat; when a machine-readable review artifact is requested, write a `Findings.v1` JSON record alongside any requested narrative. Do not write files solely because the schema exists."
+      "text": "Keep these six sections. In `Commit Under Review`, include the bound target and coverage. Start `Findings` with a count per severity so the reader can triage before the detail. In `Findings`, use the fields and evidence links in `resources/schemas/findings.schema.json`; an empty findings list supports a clean verdict only after the declared target is fully reviewed. Include `review_status`, `unreviewed`, and the verdict in `Merge Readiness`. Render these fields inline for chat; when a machine-readable review artifact is requested, write a `Findings.v1` JSON record alongside any requested narrative. Do not write files solely because the schema exists."
     },
     {
       "sha256": "9d9d4b37c95a1577af793ab9d76aef1d03e7b14f8fb6a751553617356b70fec1",
