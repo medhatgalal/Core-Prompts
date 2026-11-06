@@ -7,6 +7,10 @@ import modes as m
 
 GREY = {"color": {"rgbColor": {"red": 0.45, "green": 0.45, "blue": 0.45}}}
 GUIDE_LINE = "Template: see the Update guide tab."
+# Overview table column shares, percent of the text width.
+AREA_SHARES = [18, 9, 11, 50, 12]
+DECISION_SHARES = [30, 18, 24, 16, 12]
+NEXT_SHARES = [20, 66, 14]
 # Overview "How to update": one bullet per role. The text before ":" is bold; `backticked` words are monospace.
 HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
@@ -28,7 +32,7 @@ def widths(tw, shares):
 
 
 def add_table(doc_id, tab_id, at, rows, shares):
-    """Insert a table at index `at`, fill it, bold the header row, set widths from the tab's page."""
+    """Insert a table at index `at`, fill it, bold the header row, left-align every cell, set widths from the tab's page."""
     du.batch(doc_id, [{"insertTable": {"rows": len(rows), "columns": len(rows[0]),
                                        "location": {"index": at, "tabId": tab_id}}}])
     doc = du.read_doc(doc_id)
@@ -46,6 +50,9 @@ def add_table(doc_id, tab_id, at, rows, shares):
     reqs = [{"updateTextStyle": {"range": {"startIndex": c["startIndex"], "endIndex": c["endIndex"] - 1, "tabId": tab_id},
                                  "textStyle": {"bold": True}, "fields": "bold"}}
             for c in tbl["table"]["tableRows"][0]["tableCells"] if c["endIndex"] - 1 > c["startIndex"]]
+    reqs += [{"updateParagraphStyle": {"range": {"startIndex": c["startIndex"], "endIndex": c["endIndex"] - 1, "tabId": tab_id},
+                                       "paragraphStyle": {"alignment": "START"}, "fields": "alignment"}}
+             for r in tbl["table"]["tableRows"] for c in r["tableCells"]]
     for i, w in enumerate(widths(text_width(tab), shares)):
         reqs.append({"updateTableColumnProperties": {"tableStartLocation": {"index": tbl["startIndex"], "tabId": tab_id},
                      "columnIndices": [i], "tableColumnProperties": {"widthType": "FIXED_WIDTH",
@@ -126,19 +133,14 @@ def create(title, org, owner, reader, structure, day):
     du.batch(did, m._paras(archive_id, 1, [f"Archive ({owner})", f"Owner: {owner} · Back to {otitle}",
                                            "Finished initiatives move here.", "None yet."],
                            ["HEADING_1", "NORMAL_TEXT", "NORMAL_TEXT", "NORMAL_TEXT"], [back]))
-    # overview: title, owner line and In 30 seconds here; overview.rebuild writes everything below them
-    lines = [f"{org} daily update", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET",
-             "In 30 seconds", "🟢 Doc created; leaders start updating on their next run.", "Area health"]
-    du.batch(did, m._paras(ov, 1, lines, ["TITLE", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2"]))
+    # overview: title and owner line here; overview.rebuild writes everything below them
+    lines = [f"{org} daily update", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET"]
+    du.batch(did, m._paras(ov, 1, lines, ["TITLE", "NORMAL_TEXT"]))
     du.pageless(did, [t["tabProperties"]["tabId"] for t, _ in du.all_tabs(du.read_doc(did))])
     import guide
     import overview
     guide.add_guide(did, owner)
     overview.rebuild(did, day, "4:00 PM ET")
-    # In 30 seconds: up to 5 initiatives, worst first, each linked to its tab
-    allinits = [(it[3], f"{it[0]} ({it[1]})", f"next milestone {it[4]}.") for _, _, items in structure for it in items]
-    allinits.sort(key=lambda x: du.RANK[x[0]])
-    set_thirty_seconds(did, allinits[:5])
     du.chipify(did)
     du.repair_headings(did)
     return did
@@ -158,25 +160,6 @@ def set_headline(doc_id, area_title, text):
                       {"insertText": {"location": {"index": p["startIndex"], "tabId": area.tab_id}, "text": text}}], doc)
 
 
-def set_thirty_seconds(doc_id, bullets):
-    """bullets: [(status, tab_title, rest)] -> '🔴 <name>: rest' with the name linked to its tab."""
-    doc = du.read_doc(doc_id)
-    ov = du.model(doc)[0]
-    paras = [e for e in ov["documentTab"]["body"]["content"] if "paragraph" in e]
-    i = next(k for k, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == "In 30 seconds")
-    j = next(k for k in range(i + 1, len(paras)) if paras[k]["paragraph"]["paragraphStyle"].get("namedStyleType") == "HEADING_2")
-    start, end = paras[i]["endIndex"], paras[j]["startIndex"]
-    tabs = {t["tabProperties"]["title"]: t["tabProperties"]["tabId"] for t, _ in du.all_tabs(doc)}
-    lines, links = [], []
-    for k, (s, title, rest) in enumerate(bullets):
-        name = du.title_parts(title)[0]
-        lines.append(f"{s} {name}: {rest}")
-        links.append((k, name, du.tab_url(doc_id, tabs[title])))
-    reqs = [{"deleteContentRange": {"range": {"startIndex": start, "endIndex": end, "tabId": "t.0"}}}]
-    reqs += m._paras("t.0", start, lines, ["NORMAL_TEXT"] * len(lines), links)
-    du.batch(doc_id, reqs, doc)
-
-
 def set_decisions(doc_id, reader, rows, links=()):
     """Overview 'Exec leadership: decisions or help needed' table, added above Next 2 weeks when there are any.
     `reader` is kept for the command line; the heading no longer names a reader."""
@@ -188,7 +171,7 @@ def set_decisions(doc_id, reader, rows, links=()):
         nx = next(e for e in paras if du.para_text(e["paragraph"]).strip() in (du.NEXT_HEAD, "How to update"))
         du.batch(doc_id, m._paras("t.0", nx["startIndex"], [head, ""], ["HEADING_2", "NORMAL_TEXT"]), doc)
         add_table(doc_id, "t.0", anchor_index(doc_id, "t.0", head),
-                  [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + rows, [24, 22, 24, 14, 16])
+                  [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + rows, DECISION_SHARES)
     # Link each Decision cell to the thing being decided.
     doc = du.read_doc(doc_id)
     ov = du.model(doc)[0]

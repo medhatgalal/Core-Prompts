@@ -209,31 +209,28 @@ Archive (<doc owner>)               finished initiatives move here; one line eac
 Update guide (<doc owner>)          the template and writing guidance; doc owner only
 ```
 
-**Overview tab**, top to bottom:
+**Overview tab**, top to bottom. Every overview table cell is left-aligned.
 1. Title `<Org> daily update`, then `Owner: <doc owner> · Readers: <reader> and all leaders · As of <Weekday Mon D, time TZ>`.
-2. **In 30 seconds**: 5 bullets at most, each linking to its tab. Lead with what changed today (a status
-   change, a milestone met or missed, a new blocker, a ticket closed), then the worst remaining. Never only
-   restate milestones.
-3. **Area health**: table with Area, Owner, Status, Headline, Updated (date of the area's newest update). The
-   Status cell stacks a count per colour of that area's initiatives, one line each, in the order 🔴, 🟡, 🟢, ⚪,
-   leaving out zero counts ("🟡 1" over "🟢 4"); the top colour is the area's colour. The Headline cell copies
-   the area headline's sentences without its date, since Updated carries it; flagged headlines keep their flag.
-4. **Not updated today**, directly under Area health: first a count ("3 of 5 areas not fully updated today"),
-   then a table with Initiative (linked to its tab), Area, Updater, Last confirmed (date of its newest section
-   that is not Unconfirmed, or "None yet"): one row per tab whose newest section is older than today, still
-   Unconfirmed. List these even when the area is green.
-5. **Exec leadership: decisions or help needed** (only if any): table with Decision or help needed, Why now,
+2. **Area health**: table with Area (linked to its tab), Owner, Status, Headline, Updated (date of the area's
+   newest update; this column shows which areas are not updated today). The Status cell stacks a count per
+   colour of that area's initiatives, one line each, in the order 🔴, 🟡, 🟢, ⚪, leaving out zero counts
+   ("🟡 1" over "🟢 4"); the top colour is the area's colour. The Headline cell copies the area headline's
+   sentences without its date, since Updated carries it; flagged headlines keep their flag. Phrases in it that
+   name an initiative link to that initiative's tab.
+3. **Exec leadership: decisions or help needed** (only if any): table with Decision or help needed, Why now,
    Recommend, By, Owner. By is the date it is needed; if no tab gives one, propose one and mark it as your
-   inference in the review. Link each row to the thing being decided (design doc, merge request, proposal).
-6. **Next 2 weeks**: table with Date, Commitment (the milestone without its date), Initiative (linked to its
-   tab), Status (full label, "🟢 On track"): one row per initiative, not done or stopped, whose newest Next
-   milestone date falls from today through today + 14 days, by date and then worst first. With no rows, one
-   line: "No dated commitments in the next 2 weeks."
-7. **How to update** (see below) and the status key. Process text and the status key always go last.
-8. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
+   inference in the review. Link each row to the thing being decided (its tab, design doc, merge request, proposal).
+4. **Next 2 weeks**: table with Date, Commitment (the milestone without its date, linked to its initiative's
+   tab), Status (the emoji, "🟢"): one row per initiative, not done or stopped, whose newest Next milestone date
+   falls from today through today + 14 days, by date and then worst first. With no rows, one line: "No dated
+   commitments in the next 2 weeks."
+5. **How to update** (see below) and the status key. Process text and the status key always go last.
+6. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
 
-`du.py overview DOC DATE TIME --publish` rewrites everything below In 30 seconds in this order, keeping the
-decisions rows, so it also moves an older overview to this layout.
+There is no "In 30 seconds" or "Not updated today" section. `du.py overview DOC DATE TIME --publish` rewrites
+everything below the "As of" line in this order. It keeps the decisions rows and their links, keeps headline
+links whose phrase is still there, links initiative names in headlines, and keeps a Next 2 weeks row's wording
+and link while its date and initiative are unchanged. It also moves an older overview to this layout.
 
 **Area tab**: title, `Owner: <name> · Back to <overview>`, then **Headline**: one line,
 `<status> · <sentence> (<Weekday Mon D>)`, for example `🟡 At risk · Everything is on track except the new
@@ -256,8 +253,8 @@ section per day, **newest first**. Each section:
 
 - Every section has every line above, in this order. The one exception is Green when: it appears when the
   status is 🟡, 🔴 or ⚪, and never when it is 🟢.
-- Each line prefix ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:")
-  is bold. The rest of the line is not.
+- Each line prefix ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:",
+  "Updated by", "Added by") is bold. The rest of the line is not.
 - **Confidence** is a dropdown chip, never typed text: definition `kix.confidence` on that tab, options
   `dropdownItem.very` "Very confident" (green), `dropdownItem.slight` "Slightly confident" (yellow),
   `dropdownItem.not` "Not confident" (red). See Docs API notes.
@@ -366,7 +363,7 @@ fails, give the exact error and the one command that fixes it, then continue wit
 **Scripts (use these for every doc write).** The installed skill has `scripts/du.py` (`resources/scripts/du.py`
 in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
 exact layout above, with the revision check and retries, bold labels, Confidence chips, date headings, table
-widths and pageless tabs. Use `du.py setup`, `section`, `today`, `add`, `dedupe`, `headline`, `row`, `sweep`, `overview`, `thirty`,
+widths and pageless tabs. Use `du.py setup`, `section`, `today`, `add`, `dedupe`, `headline`, `row`, `sweep`, `overview`,
 `decisions`, `archive`, `send` and `settings` instead of writing Docs API requests yourself, and run
 `du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
@@ -387,8 +384,8 @@ After every write, re-read the tab and confirm each date line is still a HEADING
 unchanged. If a heading lost its style, restore it before reporting done. Create tabs with `addDocumentTab` (set `parentTabId` to nest).
 Give every table fixed column widths (`updateTableColumnProperties`) that add up to the page's text width, so it
 fits the page. Text width = the tab's `documentStyle` page width minus its left and right margins (letter with
-1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 22, 10, 11, 43, 14 percent
-(540 pt: 119, 54, 59, 232, 76); Initiatives 30, 15, 17, 38 percent; Not updated today 34, 26, 18, 22 percent; decisions or help needed 24, 22, 24, 14, 16 percent; Next 2 weeks 16, 44, 26, 14 percent.
+1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 18, 9, 11, 50, 12 percent
+(540 pt: 97, 49, 59, 270, 65); Initiatives 30, 15, 17, 38 percent; decisions or help needed 30, 18, 24, 16, 12 percent; Next 2 weeks 20, 66, 14 percent.
 Round to whole points and put any remainder on the widest column. Whenever you write to a table, check its
 widths still add up to the text width, and fix them if not.
 
@@ -413,7 +410,6 @@ widths still add up to the text width, and fix them if not.
    (`du.py setup` adds that line; do not add it again.) Write starting sections only from sources read in this
    run, never from memory, earlier sessions or other test docs. Before building, show the starting sections and
    area headlines as a draft and build nothing until the doc owner says "publish".
-   Overview: leave "In 30 seconds" for real changes, not notes about the doc itself.
 5. Save `config.json` (role owner; your own area and initiative tabs too). Give the link.
    For each initiative tab the doc owner updates, run Onboard step 2 (offer the scan, propose sources) and save
    them, so their first `/engos-operations-daily-update` has sources.
@@ -623,7 +619,7 @@ owner name exceptions.
 ## Overview (doc owner, second half of `close`)
 
 1. Read every area and initiative tab. Do not re-read sources; the tabs are the input.
-2. Draft the overview: In 30 seconds, Area health, Not updated today, decisions or help needed, Next 2 weeks. List any tab added,
+2. Draft the overview: Area health, decisions or help needed, Next 2 weeks. List any tab added,
    renamed or finished since the last overview, and move finished tabs under Archive if the doc owner agrees.
    When a tab moves to Archive, delete its row from its area's Initiatives table (its Done line stays), and
    add it to the Archive tab's list as its own line, "<Initiative> (<owner>), done <date>.", with the name linked
@@ -644,8 +640,8 @@ owner name exceptions.
 
 1. Read the readers from the doc's settings (`du.py settings DOC`). If empty, ask who should get it (name, email, email or Chat) and save them;
    `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
-2. Draft one short message: subject or first line "<Org> daily update, <Weekday Mon D>", the In 30 seconds
-   bullets, any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
+2. Draft one short message: subject or first line "<Org> daily update, <Weekday Mon D>", one line per
+   Area health row ("<area colour> <Area>: <Headline>"), any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
    <names>." (or "All initiatives confirmed today."), and the doc link. No other content; nothing beyond
    what the overview already says.
 3. Show the exact recipients, channel and text, then ask: "Send to <names>?" Send only if the doc owner replies

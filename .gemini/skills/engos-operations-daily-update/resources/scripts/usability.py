@@ -152,28 +152,6 @@ def main():
                 if not any(x.get("textRun", {}).get("textStyle", {}).get("link")
                            for p in r["tableCells"][0]["content"] if "paragraph" in p for x in p["paragraph"]["elements"]):
                     issues.append(f"Decision '{vals[0]}' has no link to what is being decided")
-    paras = [e for e in body if "paragraph" in e]
-    i30 = next(k for k, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == "In 30 seconds")
-    bullets = []
-    for e in paras[i30 + 1:]:
-        if e["paragraph"]["paragraphStyle"].get("namedStyleType") == "HEADING_2":
-            break
-        if du.para_text(e["paragraph"]).strip():
-            bullets.append(e)
-    if not 1 <= len(bullets) <= 5:
-        issues.append(f"In 30 seconds has {len(bullets)} bullets (want 1-5)")
-    for e in bullets:
-        t = du.para_text(e["paragraph"]).strip()
-        if process(t):
-            issues.append(f"In 30 seconds has process text: '{t[:70]}'")
-        if not any(r.get("textRun", {}).get("textStyle", {}).get("link") for r in e["paragraph"]["elements"]):
-            issues.append(f"In 30 seconds bullet has no tab link: '{t[:60]}'")
-        if len(t.split()) > 28:
-            issues.append(f"In 30 seconds bullet over 28 words: '{t[:60]}'")
-    order = [du.para_text(e["paragraph"]).strip()[:1] for e in bullets]
-    if order != sorted(order, key=lambda x: du.RANK.get(x, 9)):
-        issues.append(f"In 30 seconds is not worst first: {order}")
-
     # ---- archive: one linked line per finished initiative ----
     if archive:
         aparas = [e for e in archive["documentTab"]["body"]["content"] if "paragraph" in e]

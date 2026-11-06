@@ -14,6 +14,7 @@ import json
 import re
 import sys
 
+import build
 import dudoc as du
 
 # Test isolation: the only address a test doc may be shared with or tag. DU_TEST_EMAIL, else the signed-in gws user.
@@ -26,11 +27,10 @@ def _tester():
         return ""
 results = []
 # Column shares from SKILL.md "Docs API notes", keyed by the header row.
-SHARES = {("Area", "Owner", "Status", "Headline", "Updated"): [22, 10, 11, 43, 14],
-          ("Date", "Commitment", "Initiative", "Status"): [16, 44, 26, 14],
+SHARES = {("Area", "Owner", "Status", "Headline", "Updated"): build.AREA_SHARES,
+          ("Date", "Commitment", "Status"): build.NEXT_SHARES,
           ("Initiative", "Owner", "Status", "Next milestone and date"): [30, 15, 17, 38],
-          (du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): [24, 22, 24, 14, 16],
-          ("Initiative", "Area", "Updater", "Last confirmed"): [34, 26, 18, 22]}
+          (du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): build.DECISION_SHARES}
 
 
 def check(name, ok, detail=""):
@@ -145,7 +145,7 @@ def main():
             seen = [p for t, _ in s.lines for p in du.PREFIXES[:5] if t.startswith(p)]
             check(f"{tag}: lines in skill order", seen == order, seen)
             for t, el in s.lines:
-                p = next((x for x in du.PREFIXES if t.startswith(x)), None)
+                p = next((x for x in du.BOLD_PREFIXES if t.startswith(x)), None)
                 if p:
                     first = el["paragraph"]["elements"][0]
                     tr = first.get("textRun", {})
@@ -220,7 +220,7 @@ def main():
             for m, d, ok in du.dates_in(" ".join(r)):
                 check(f"{ar.name} table: weekday matches '{m}'", ok)
 
-    # ---- overview: Area health and Not updated today ----
+    # ---- overview: Area health ----
     body = ov["documentTab"]["body"]["content"]
     check_links("overview", body, a.doc_id)
     for ar in areas.values():
@@ -231,21 +231,18 @@ def main():
     full += "\n".join(" ".join(v) for v in health.values())
     check("overview: no 'tabs updated since' wording", "tabs updated since" not in full)
     check(f"overview: As of {du.label(today)}", f"As of {du.label(today, True)}" in full)
-    stale_areas = 0
-    nut_tbl = next((e for e in body if "table" in e and tuple(du.cell_text(c) for c in e["table"]["tableRows"][0]["tableCells"])
-                    == ("Initiative", "Area", "Updater", "Last confirmed")), None)
-    nut = {du.cell_text(r["tableCells"][0]): [du.cell_text(c) for c in r["tableCells"]]
-           for r in nut_tbl["table"]["tableRows"][1:]} if nut_tbl else {}
-    for r in (nut_tbl["table"]["tableRows"][1:] if nut_tbl else []):
-        has = any(x.get("textRun", {}).get("textStyle", {}).get("link")
-                  for p in r["tableCells"][0]["content"] if "paragraph" in p for x in p["paragraph"]["elements"])
-        check(f"overview: Not updated '{du.cell_text(r['tableCells'][0])}' links to its tab", has)
+    tab_by_id = {t["tabProperties"]["tabId"]: du.title_parts(t["tabProperties"]["title"])[0] for t, _ in du.all_tabs(doc)}
+
+    def link_tabs(cell):
+        return [tab_by_id.get(u.split("?tab=")[1]) for _, u in links_in(cell["content"]) if "?tab=" in u]
+    area_rows = {du.cell_text(r["tableCells"][0]): r for r in table["table"]["tableRows"][1:]}
     for ar in areas.values():
         mine = [i for i in inits if i.area_title == ar.title]
         row = health.get(ar.name)
         check(f"overview: Area health row for {ar.name}", row is not None)
         if not row:
             continue
+        check(f"overview: Area health '{ar.name}' links to its tab", ar.name in link_tabs(area_rows[ar.name]["tableCells"][0]))
         want = du.worst(i.newest("status").status for i in mine if i.newest("status"))
         check(f"overview: {ar.name} status from its tabs", row[2][:1] == want, (row[2], want))
         counts = du.status_counts(r[2][:1] for r in ar.rows())
@@ -254,6 +251,7 @@ def main():
         hl_date = hl_dates[-1][1] if hl_dates else None
         confirmed = [s.date for i in mine for s in i.sections if not s.unconfirmed]
         newest = max(confirmed + ([hl_date] if hl_date else []), default=None)
+        check(f"overview: {ar.name} Updated is its newest update", row[4] == (du.label(newest) if newest else "Not yet"), row[4])
         hl_status = (ar.headline or "")[:1]
         flagged = (hl_date and newest and hl_date < newest) or (hl_status in du.STATUSES and hl_status != want)
         if flagged:
@@ -270,16 +268,6 @@ def main():
                   or row[3].endswith(f"(headline from {du.label(hl_date)}; out of date with its tabs)"), row[3][-40:])
         for m, d, ok in du.dates_in(" ".join(row)):
             check(f"overview: weekday matches '{m}' ({ar.name})", ok)
-        if any(not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed for i in mine):
-            stale_areas += 1
-            for i in mine:
-                if not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed:
-                    check(f"overview: Not updated today lists {i.name}", i.name in nut, sorted(nut))
-                    if i.name in nut:
-                        lc = next((s for s in i.sections if not s.unconfirmed), None)
-                        check(f"overview: {i.name} last confirmed", nut[i.name][3] == (du.label(lc.date) if lc else "None yet"), nut[i.name])
-                        check(f"overview: {i.name} updater", nut[i.name][2] == i.updater, nut[i.name])
-    tab_by_id = {t["tabProperties"]["tabId"]: du.title_parts(t["tabProperties"]["title"])[0] for t, _ in du.all_tabs(doc)}
     for e in body:
         if "paragraph" not in e:
             continue
@@ -290,9 +278,9 @@ def main():
                 want = tab_by_id.get(url.split("?tab=")[1])
                 check(f"overview: link on '{tr['content'].strip()}' points to that tab", tr["content"].strip() == want,
                       f"points to {want}")
-    check("overview: stale count", f"{stale_areas} of {len(areas)} areas not fully updated today" in full)
     paras = [du.para_text(e["paragraph"]).strip() for e in body if "paragraph" in e]
-    order = ["In 30 seconds", "Area health", "Not updated today", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"]
+    check("overview: no 'In 30 seconds' or 'Not updated today' section", not {"In 30 seconds", "Not updated today"} & set(paras))
+    order = ["Area health", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"]
     heads = [p for p in paras if p in order]
     styles = {du.para_text(e["paragraph"]).strip(): e["paragraph"]["paragraphStyle"].get("namedStyleType") for e in body if "paragraph" in e}
     for hname in order:
@@ -303,10 +291,12 @@ def main():
     check("overview: no old 'Needs ... decision' heading", not any(re.match(r"Needs .*decision", p) for p in paras))
 
     # ---- Next 2 weeks: one row per open initiative with a milestone in the next 14 days ----
-    want = [(du.label(d), i.name, du.STATUSES[st]) for d, _, i, st in du.next_two_weeks(inits, today)]
+    # The initiative is the tab its Commitment links to; Status is the bare emoji.
+    want = [(du.label(d), i.name, st) for d, _, i, st in du.next_two_weeks(inits, today)]
     n2 = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Date"), None)
     got_rows = n2["table"]["tableRows"][1:] if n2 else []
-    got = [(du.cell_text(r["tableCells"][0]), du.cell_text(r["tableCells"][2]), du.cell_text(r["tableCells"][3])) for r in got_rows]
+    got = [(du.cell_text(r["tableCells"][0]), (link_tabs(r["tableCells"][1]) or [None])[0], du.cell_text(r["tableCells"][2]))
+           for r in got_rows]
     check("overview: Next 2 weeks rows match the tabs (date, initiative, status)", sorted(got) == sorted(want),
           {"missing": sorted(set(want) - set(got)), "extra": sorted(set(got) - set(want))})
     dates = [du.dates_in(g[0])[0][1] if du.dates_in(g[0]) else None for g in got]
@@ -314,12 +304,15 @@ def main():
     if not want:
         check("overview: Next 2 weeks says there are none", "No dated commitments in the next 2 weeks." in paras)
     for r in got_rows:
-        c = r["tableCells"][2]
-        url = next((x["textRun"]["textStyle"]["link"]["url"] for p in c["content"] if "paragraph" in p
-                    for x in p["paragraph"]["elements"] if x.get("textRun", {}).get("textStyle", {}).get("link")), "")
-        name = du.cell_text(c)
-        check(f"overview: Next 2 weeks '{name}' links to its tab", "?tab=" in url and tab_by_id.get(url.split("?tab=")[1]) == name, url[-30:])
+        name = du.cell_text(r["tableCells"][1])[:40]
+        check(f"overview: Next 2 weeks '{name}' links to its tab", link_tabs(r["tableCells"][1]))
         check(f"overview: Next 2 weeks '{name}' commitment has no date in it", not du.dates_in(du.cell_text(r["tableCells"][1])))
+    for e in body:
+        for r in e.get("table", {}).get("tableRows", []):
+            for c in r["tableCells"]:
+                bad = [p["paragraph"]["paragraphStyle"].get("alignment") for p in c["content"]
+                       if "paragraph" in p and p["paragraph"]["paragraphStyle"].get("alignment") != "START"]
+                check(f"overview: cell '{du.cell_text(c)[:30]}' is left-aligned", not bad, bad)
 
     for t, _ in du.all_tabs(doc):
         mode = t["documentTab"].get("documentStyle", {}).get("documentFormat", {}).get("documentMode")

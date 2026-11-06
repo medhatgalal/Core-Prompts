@@ -13,8 +13,7 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py headline DOC AREA_TITLE "<status> · <sentences> (<Weekday Mon D>)"
   du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
   du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
-  du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]   rebuild everything below "In 30 seconds"
-  du.py thirty DOC BULLETS.json              In 30 seconds: [["🟡","<Tab title>","rest"], ...]
+  du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]   rebuild the overview below its "As of" line
   du.py decisions DOC READER ROWS.json [LINKS.json]   "Exec leadership: decisions or help needed" table
   du.py archive DOC TAB_TITLE "done Mon Nov 9"
   du.py send DOC [--confirmed]               draft the reader summary; --confirmed sends it
@@ -225,12 +224,6 @@ def cmd_row(a):
     vals[3] = re.sub(r"(?i)no date set yet", "No date set yet", vals[3])
     m.set_row(doc_id, tab_of(doc_id, area_title), vals[0], vals)
     print("ROW", du.model(du.read_doc(doc_id))[1][area_title].rows())
-
-
-def cmd_thirty(a):
-    import build
-    build.set_thirty_seconds(a[0], load(a[1]))
-    print("In 30 seconds written")
 
 
 def cmd_decisions(a):
