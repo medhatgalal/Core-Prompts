@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.4 - 2026-11-06
+
+Tag authorized by Scott Parrish on 2026-11-05. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - Installer: repair no longer saves agent entries the source does not ship. In v1.19.3, an old Claude or Gemini `analyze-context`, `resolve-conflict` or `threader` agent was mapped to a never-built `engos-*` agent. That name was saved in the install selection, and every later repair or sync then stopped with `SOURCE_SCOPE_REMOVED`, including scheduled updates. Repair now selects only agents the source ships, and drops already-saved agent entries that were never installed. A selected package that is actually installed still blocks until it is explicitly retired.
 
