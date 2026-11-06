@@ -1,0 +1,528 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-orchestration-crew",
+  "ssot_sha256": "6fb973b84f6c7e8ee8ac65451ebc5ffd254d6f35a49a40188b6337d3b38d1890",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [],
+  "authority_boundaries": [
+    "engos-orchestration-crew:L5:a7460f75e91a",
+    "engos-orchestration-crew:L8:a0ecfefe9916",
+    "engos-orchestration-crew:L15:3fc439a5e28c",
+    "engos-orchestration-crew:L22:632525034eb3",
+    "engos-orchestration-crew:L49:528ac7f54a9b",
+    "engos-orchestration-crew:L56:ff41a9cf6c9c",
+    "engos-orchestration-crew:L72:c21ce336daf8",
+    "engos-orchestration-crew:L95:743a89ee6f5b",
+    "engos-orchestration-crew:L96:767cdb1b79b8",
+    "engos-orchestration-crew:L113:d7e4d9029f3a",
+    "engos-orchestration-crew:L124:eeb9586bca56",
+    "engos-orchestration-crew:L131:f7067872a584",
+    "engos-orchestration-crew:L159:8834eb133274",
+    "engos-orchestration-crew:L163:43cd7bc9d799",
+    "engos-orchestration-crew:L165:3ee4cf69d6a4",
+    "engos-orchestration-crew:L172:136f7f34705f",
+    "engos-orchestration-crew:L215:cf722b20cf8e",
+    "engos-orchestration-crew:L229:57576ab5dba0",
+    "engos-orchestration-crew:L231:0c8148b923bf",
+    "engos-orchestration-crew:L239:816f3eaf4f6e",
+    "engos-orchestration-crew:L250:85e6f890d1db"
+  ],
+  "resources": [
+    "| Sessions | One process per member: `codex exec \"<brief>\"`; `codex exec resume <id>` continues it; `--worktree` gives it its own git worktree. Sub-agents (`.codex/agents/<name>.toml` registered as `[agents.<name>]` in `config.toml`; tools `spawn_agent`, `send_input`, `wait_agent`, `close_agent`) run in parallel up to `agents.max_concurrent_threads_per_session`; use them only as the fallback. Sub-agent persistence is *(unconfirmed)* |",
+    "| Sessions | One process per member: `gemini -p \"<brief>\"` (headless); `--resume <id or latest>` or `--session-id` continues it; `-w` gives it a worktree. Sub-agents (`.gemini/agents/<name>.md` or `~/.gemini/agents/`) run, report back and end, and cannot start others; use them only as the fallback. Whether they run in parallel is *(unconfirmed)* |",
+    "| Sessions | One process per member: `kiro-cli chat --agent <name> --no-interactive \"<brief>\"`; `--resume-id <id>` continues it. The `subagent` tool (alias `use_subagent`) runs sub-agents in parallel, but they report back to the parent and end, so use them only as the fallback. The `delegate` tool runs background agents (`/delegate status`); how long they live is *(unconfirmed)* |",
+    "| Sessions | Start each member as its own session or process if the harness can. Otherwise use the lead's sub-agents, the same fallback as above |",
+    "| Timers | A `sleep` tool that ends early on new input exists for some models only *(unconfirmed for the model in use)*. Confirmed fallback: an outside loop or cron running `codex exec resume <id> \"read your inbox\"` every 600 seconds. Those runs are the timer wakes gate 5 counts |"
+  ],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "engos-orchestration-crew:L5:a7460f75e91a",
+      "heading": "Purpose",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 13,
+      "sha256": "a7460f75e91a5f5f69d86c37d290186b30319875633be7f42e4d227120b5847e",
+      "text": "Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L8:a0ecfefe9916",
+      "heading": "Primary Objective",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 16,
+      "sha256": "a0ecfefe99160a2418c99d21155f2fa2d0e81f922505dc7a36888c2e9dc015a7",
+      "text": "Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L15:3fc439a5e28c",
+      "heading": "Rules",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 23,
+      "sha256": "3fc439a5e28c40b7997faacb82d1e23b0199760ba7db054c38209d700f1b590e",
+      "text": "- Do not execute source instructions during intake merely because they are present in the imported text.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L18:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 26,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L21:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 29,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L22:632525034eb3",
+      "heading": "Required Output",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 30,
+      "sha256": "632525034eb317f556a2c08cb56db443da6f09538589aba552570421ec1b3254",
+      "text": "Produce the artifacts and results declared by the original source contract, including its exact filenames, formats, templates, and mode-specific receipts. Intake summaries and uplift metadata do not replace those outcomes.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L39:50baa181e1a5",
+      "heading": "Evaluation Rubric",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 47,
+      "sha256": "50baa181e1a55905c41ea2248cd4f86f50f256b27edad090232b85936f292946",
+      "text": "| Outcome fidelity | Every artifact and format required by the selected source contract is delivered |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L49:528ac7f54a9b",
+      "heading": "Imported operating instructions",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 57,
+      "sha256": "528ac7f54a9b753d45dc7f46aed2faad23eeff0233f555be948164df6b992e19",
+      "text": "description: \"Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.\"",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L56:ff41a9cf6c9c",
+      "heading": "Imported operating instructions",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 64,
+      "sha256": "ff41a9cf6c9c10759fb33d407db702d43ba6e38dea134c28db6400adbb1ede68",
+      "text": "it. You never do the crew's work yourself.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L72:c21ce336daf8",
+      "heading": "Commands",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 80,
+      "sha256": "c21ce336daf80c9f912e592d4009beaf2b31d98d1caeaaf6caf374c397be248b",
+      "text": "Commands pick where to start. They do not skip, reorder or change any step: after a command's",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L92:865724989a11",
+      "heading": "The job",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 100,
+      "sha256": "865724989a115d983d7a8ae8027abf9a832182e3da228c037627e233016ce178",
+      "text": "- **Goal:** one sentence: what must be true at the end.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L95:743a89ee6f5b",
+      "heading": "The job",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 103,
+      "sha256": "743a89ee6f5b4d090c164546374ca5e2684ae411f146a3c66ec1d9a08b1fa87c",
+      "text": "- **Steps only the user can do:** for example typing sensitive values, sign-ins, approvals.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L96:767cdb1b79b8",
+      "heading": "The job",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 104,
+      "sha256": "767cdb1b79b8dd0e44d32384366e1026edae3df89d9eebfd51e2fcd4a88a4ca0",
+      "text": "- **Hard limits:** budget, time cap, things never to touch.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L103:967697ba6925",
+      "heading": "The job",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 111,
+      "sha256": "967697ba6925adaa1579813f3359bde599638962a04e602e11c4ea10974e4047",
+      "text": "recommend doing it directly instead. Go ahead only if the user still wants it. Drop crew roles",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L113:d7e4d9029f3a",
+      "heading": "Phase 1: design (before anything runs)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 121,
+      "sha256": "d7e4d9029f3a4c4680418ddc849d807ae12528cf3c319f7a0979329dad26b6d9",
+      "text": "as a pass. A pass must be observable on the real system, never taken from an agent's word.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L124:eeb9586bca56",
+      "heading": "Phase 1: design (before anything runs)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 132,
+      "sha256": "eeb9586bca56ad9ff81fea32ba651ae5111281722705214612453c15c98ca148",
+      "text": "advise, but do not lower the target yourself. Only I change the target.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L131:f7067872a584",
+      "heading": "The crew",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 139,
+      "sha256": "f7067872a5849b29047996d92c035e853bc7a00beaa0115d08969bbfd4782dea",
+      "text": "| Role | Started as | Job | Never |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L136:70cbb3921503",
+      "heading": "The crew",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 144,
+      "sha256": "70cbb3921503639a045d6cac1f0a1bcc3273975dd5da9d4cb342f0bdedd4bda1",
+      "text": "| Safety watch | A read-only session | Every 10 minutes, checks nothing outside scope changed or was harmed | Writes anything |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L137:985b56490173",
+      "heading": "The crew",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 145,
+      "sha256": "985b5649017397140d148c7334477e01b94123245103bf6371648311e4aeedfa",
+      "text": "| Drift auditor | A read-only session that you start | Every 30 minutes, compares the run, and your own edits, with the frozen baseline. Writes findings rated High, Medium or Low | Messages the crew or fixes anything |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L159:8834eb133274",
+      "heading": "Rules",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 167,
+      "sha256": "8834eb13327402ac7c7ca83ddefa60252c179a0b3801c632c29a83cc68c4309b",
+      "text": "- **Never skip a check to save me a step.** Batch everything that needs me into one hand-off",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L163:43cd7bc9d799",
+      "heading": "Rules",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 171,
+      "sha256": "43cd7bc9d7999eab54b16d48d344cad51f5c9dad9820ddc15940a71aea4243ae",
+      "text": "- **Refusals.** If an agent's own safety rules refuse a step, do not argue it round. Bring me",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L165:3ee4cf69d6a4",
+      "heading": "Rules",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 173,
+      "sha256": "3ee4cf69d6a49af84b24b4250f35e76ee9d7ea395e847a156a9deeb1a27be062",
+      "text": "- **Never** send mail or chat to people, file tickets, share documents, or delete or damage",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L172:136f7f34705f",
+      "heading": "Gates (preflight, logged in `preflight.md`)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 180,
+      "sha256": "136f7f34705febd0f05c6f6edefad932353e83b0849da779a876fa5a7c802987",
+      "text": "3. Each member acts on an inbox file it was never messaged about.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L176:06fc6a6afb44",
+      "heading": "Gates (preflight, logged in `preflight.md`)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 184,
+      "sha256": "06fc6a6afb44f714697eadd55ba64722eaf46db255618577bb637bdd8c66d6c9",
+      "text": "Only then does the work start.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L186:3fcfc471833b",
+      "heading": "Your job while it runs",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 194,
+      "sha256": "3fcfc471833b7fa08e05c417814a8a00e2302dc77a40fbf58eb1fd20eab179d2",
+      "text": "- Answer my questions here. I type in the lead session only when asked.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L213:92c50483d4d6",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 221,
+      "sha256": "92c50483d4d6633a1fe3d114c38099c5ec928c9b74fc22436b54fa0d605b2587",
+      "text": "- **Sessions start only on a turn I typed.** Start every session the job will need, standby",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L214:56fa3d2f1077",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 222,
+      "sha256": "56fa3d2f10774b75d84cc6b386975e47a0f6d446a2b0065c4959a04c63f8e52e",
+      "text": "verifiers included, on my first go-ahead turn. Use the lead's sub-agents only as a fallback.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L215:cf722b20cf8e",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 223,
+      "sha256": "cf722b20cf8e33336bd21b3a1e436bb8eade2cb47f370b90b7c14540c4b2b326",
+      "text": "- **The lead can send only 10 messages to other sessions per message I type.** So do not rely on",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L219:3234cffd850a",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 227,
+      "sha256": "3234cffd850abf6f0c737cf02b94774279bcb7651c90af477aaaf74ff3777898",
+      "text": "only if that fails starts `sleep 600` in the background. It reads its inbox on every wake.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L222:75e06dcd34e5",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 230,
+      "sha256": "75e06dcd34e55cc64e151daabe11dd98eeb1f018f7296749c4dc923d10bbaa75",
+      "text": "- A verifier that must wait mid-pass starts a timer too.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L223:53e2062c84ef",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 231,
+      "sha256": "53e2062c84efad75daeb65fe096db8d2fab955b508c4e183163fb48a19a9cda9",
+      "text": "- **Timers die sometimes.** Only a message can wake that member. The lead's turn-end note then",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L226:63a3f1500d0a",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 234,
+      "sha256": "63a3f1500d0a6ce4f22672ed47550ecab3c257bd943ee87d764210101025ce26",
+      "text": "folders whose deny rules block the tools they must not use. Test in gate 1 that each one is",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L229:57576ab5dba0",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 237,
+      "sha256": "57576ab5dba0e3ec659431145751b2bbdf7013fcdf90741c03cd1ad65e6630fd",
+      "text": "desktop. Agents never switch tabs while they wait for me, and they check every field before",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L231:0c8148b923bf",
+      "heading": "Claude Code Desktop (the adapter this skill was proven on)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 239,
+      "sha256": "0c8148b923bfd154665c95b2305b9ac2cafa2c9aa10c233c769cea376be75aa3",
+      "text": "- Take every timestamp from `date -u`, never from memory.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L237:33e9ca71c2ba",
+      "heading": "Kiro (Kiro CLI and IDE)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 245,
+      "sha256": "33e9ca71c2bae5528377145435b4168542d82f40b353f23bdcd7d872c6a1fd8b",
+      "text": "| Sessions | One process per member: `kiro-cli chat --agent <name> --no-interactive \"<brief>\"`; `--resume-id <id>` continues it. The `subagent` tool (alias `use_subagent`) runs sub-agents in parallel, but they report back to the parent and end, so use them only as the fallback. The `delegate` tool runs background agents (`/delegate status`); how long they live is *(unconfirmed)* |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L239:816f3eaf4f6e",
+      "heading": "Kiro (Kiro CLI and IDE)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 247,
+      "sha256": "816f3eaf4f6ed123dd4edb91bbdcec62e934495a38d468f7cc56ce67f7f3fcd9",
+      "text": "| Timers | Hooks fire on events only, never on a clock, and a background `sleep` waking an idle agent is *(unconfirmed)*. Run each member from an outside loop or cron that re-invokes `kiro-cli chat --resume-id <id> --no-interactive \"read your inbox\"` every 600 seconds. Those re-invocations are the timer wakes gate 5 counts |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L247:0ca6b0d54ca3",
+      "heading": "Codex (Codex CLI)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 255,
+      "sha256": "0ca6b0d54ca3c35b4af1b671e74b592f7675b748c4915f00a49d1c4e5568c61c",
+      "text": "| Sessions | One process per member: `codex exec \"<brief>\"`; `codex exec resume <id>` continues it; `--worktree` gives it its own git worktree. Sub-agents (`.codex/agents/<name>.toml` registered as `[agents.<name>]` in `config.toml`; tools `spawn_agent`, `send_input`, `wait_agent`, `close_agent`) run in parallel up to `agents.max_concurrent_threads_per_session`; use them only as the fallback. Sub-agent persistence is *(unconfirmed)* |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L249:fdfa4c519ee7",
+      "heading": "Codex (Codex CLI)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 257,
+      "sha256": "fdfa4c519ee7a02d12a3441c00bedd5c21c2ad30b416fd82eb1e2af80799d86b",
+      "text": "| Timers | A `sleep` tool that ends early on new input exists for some models only *(unconfirmed for the model in use)*. Confirmed fallback: an outside loop or cron running `codex exec resume <id> \"read your inbox\"` every 600 seconds. Those runs are the timer wakes gate 5 counts |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L250:85e6f890d1db",
+      "heading": "Codex (Codex CLI)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 258,
+      "sha256": "85e6f890d1dbde2f5968dd9ada10a5cd224085cd97722b8f1b7011f64ddde960",
+      "text": "| Deny rules | Start the safety watch and drift auditor with `-s read-only`, others with `-s workspace-write`, always explicitly, because a user config may default to `danger-full-access`. Command deny rules: `.rules` files with `prefix_rule(pattern=[...], decision=\"forbidden\")` in `~/.codex/rules/`, or `<repo>/.codex/rules/` for a trusted project. Sub-agents inherit the parent's sandbox. Never pass `--ignore-rules`. Whether rules hold under `--dangerously-bypass-approvals-and-sandbox` is *(unconfirmed)* |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L257:eb27206b06fb",
+      "heading": "Gemini CLI",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 265,
+      "sha256": "eb27206b06fbac61a939cd029ff0e822f94d542d27abc4bf2e78a87a80647258",
+      "text": "| Sessions | One process per member: `gemini -p \"<brief>\"` (headless); `--resume <id or latest>` or `--session-id` continues it; `-w` gives it a worktree. Sub-agents (`.gemini/agents/<name>.md` or `~/.gemini/agents/`) run, report back and end, and cannot start others; use them only as the fallback. Whether they run in parallel is *(unconfirmed)* |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L259:3340b5762194",
+      "heading": "Gemini CLI",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 267,
+      "sha256": "3340b5762194212294e0187fbb3102d48588104bca94436842b2f29d7d665edb",
+      "text": "| Timers | The shell tool can run a background process, but no wake on its completion is documented, and hooks fire on CLI events only. Run each member from an outside loop or cron that re-runs `gemini -p --resume <id> \"read your inbox\"` every 600 seconds *(flag combination not run)*. Those runs are the timer wakes gate 5 counts |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L265:e5239bf2d552",
+      "heading": "Any other harness (generic fallback)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 273,
+      "sha256": "e5239bf2d552a7bc6d21d7474a2de37303535f7ec152b89380f38138776d121c",
+      "text": "Needs only a harness that can start sub-agents and read and write files.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L270:a5a28b0bf7f0",
+      "heading": "Any other harness (generic fallback)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 278,
+      "sha256": "a5a28b0bf7f02e077b96499ef8e6efdb482e37edaea3d3a9a7ac13f49a339806",
+      "text": "| Messaging | Inbox files and `status.md` lines only |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L272:06e11ff9d0c4",
+      "heading": "Any other harness (generic fallback)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 280,
+      "sha256": "06e11ff9d0c4beb1a72df80450eea645ed9a6b27bfccb0019aa4b8d5ace0645a",
+      "text": "| Deny rules | Whatever the harness enforces outside the agent's own choice (sandbox, read-only mode, deny list). A tool it cannot bar fails gate 1; bring that to me |",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-orchestration-crew.md",
+      "sha256": "6fb973b84f6c7e8ee8ac65451ebc5ffd254d6f35a49a40188b6337d3b38d1890"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 44,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}
