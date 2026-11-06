@@ -60,3 +60,25 @@ def test_html_report_still_renders(report_config: Path, tmp_path: Path) -> None:
     assert 'feat: add fixture' in (output / 'fixture.html').read_text()
     assert (output / '_index.html').is_file()
     assert (output / 'eng-report-modal.js').is_file()
+
+
+@pytest.mark.parametrize('present,expected', [
+    (('stable',), 'stable'),
+    (('legacy',), 'legacy'),
+    (('stable', 'legacy'), 'stable'),
+])
+def test_default_config_lives_outside_the_retired_skill_folder(
+    report_config: Path, tmp_path: Path, present: tuple, expected: str,
+) -> None:
+    # The stable path survives retirement of the old Kiro `eng-report` skill
+    # folder; the legacy path still works for existing installs.
+    home = tmp_path / 'home'
+    paths = {'stable': home / '.config/core-prompts/eng-report/config.yaml',
+             'legacy': home / '.kiro/skills/eng-report/config.yaml'}
+    for name in present:
+        paths[name].parent.mkdir(parents=True)
+        paths[name].write_text(report_config.read_text().replace('name: fixture', f'name: {name}'))
+    result = subprocess.run([sys.executable, str(SCRIPT), 'run', '--since', '2000-01-01',
+                             '--output', str(tmp_path / 'out'), '--json'],
+                            text=True, capture_output=True, check=True, env={'HOME': str(home), 'PATH': '/usr/bin:/bin'})
+    assert [row['name'] for row in json.loads(result.stdout)] == [expected]

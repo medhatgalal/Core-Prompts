@@ -44,6 +44,7 @@ First verify the comparison baseline and run the release build described below. 
 env -u CORE_PROMPTS_RELEASE_BASE_REF python3 scripts/validation_environment.py --pytest -q
 bin/capability-fabric validate --strict
 python3 scripts/smoke-clis.py
+bin/capability-eval compile --all --check
 ```
 
 An explicit pytest `--basetemp` must put cache-test fixtures under `/private/tmp`

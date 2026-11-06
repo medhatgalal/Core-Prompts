@@ -2615,7 +2615,9 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         result['detail'] = 'SSOT, descriptor, draft evaluation contracts, and generated surfaces landed; validation passed.'
     else:
         result['status'] = 'apply_failed_validation'
-        result['detail'] = 'Repo changes were written, but build or validation failed. Review the recorded outputs before deploy.'
+        result['detail'] = ('Repo changes were written, but build or validation failed. Review the recorded outputs before deploy. '
+                            'After fixing the build, run bin/capability-eval compile --all --write and then --check; '
+                            'apply compiles evals only when its own build succeeds.')
     return result
 
 
