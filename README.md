@@ -15,7 +15,8 @@ including nonengineering jobs. A clear direct task needs no new interview.
 The intake skill ships in v1.18.0 and its cleanup patch in v1.18.1; v1.19.0 adds
 `engos-operations-daily-update` and v1.19.1, v1.19.2 and v1.19.5 update it; v1.19.3 and v1.19.4 fix
 installer bugs that left renamed skills unmigrated or blocked later updates; v1.19.6
-clears stale installer records and adds scope checks to `engos-quality-code-review`. Check the package available in
+clears stale installer records and adds scope checks to `engos-quality-code-review`; v1.19.7
+moves the `eng-report` config out of the retired skill folder. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 

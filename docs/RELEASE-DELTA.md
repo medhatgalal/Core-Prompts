@@ -3,7 +3,7 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.19.5@d870b4a6aa60885db606ea2fe5334ba776eb1f59 .meta/manifest.json`
+- Comparison basis: `git:v1.19.6@6a14c07f89c4ee0badb00585cafed8e648219434 .meta/manifest.json`
 - New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capability records: `0`

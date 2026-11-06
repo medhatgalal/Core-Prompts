@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.7 - 2026-11-06
+
+Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - `engos-audit-engineering-progress` / `eng-report`: the default config moves to `~/.config/core-prompts/eng-report/config.yaml`, outside any skill folder, so the old Kiro `eng-report` skill can retire without taking the configuration with it. An existing `~/.kiro/skills/eng-report/config.yaml` is still read when the new path does not exist.
 - `bin/uac apply`: when its own build fails, the result now says to run `bin/capability-eval compile --all --write` and `--check` after fixing the build; apply only compiles evals when its build succeeds. The local release gate in `docs/RELEASE-PACKAGING.md` adds `bin/capability-eval compile --all --check`, matching CI.
