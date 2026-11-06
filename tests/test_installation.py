@@ -292,6 +292,60 @@ def test_decoded_agent_config_still_preserves_real_or_unresolved_dependencies(in
     assert not any(a['path']==old for a in plan['actions'])
 
 
+def _legacy_agent_without_emitted_successor(repo, target):
+    """Recognized old gemini `resolve-conflict` agent; the source ships only the skill."""
+    slug='engos-delivery-resolve-conflict'
+    for provider in ('codex','gemini'):
+        put(repo,f'.{provider}/skills/{slug}/SKILL.md','current skill\n')
+    manifest=json.loads((repo/'.meta/manifest.json').read_text())
+    manifest['ssot_sources'].append({'slug':slug,'expected_surface_names':['codex_skill','gemini_skill']})
+    put(repo,'.meta/manifest.json',json.dumps(manifest))
+    path=repo/'.meta/install-profiles/legacy-installations.json'
+    data=json.loads(path.read_text())
+    rel,token='.gemini/agents/resolve-conflict.md','gemini-resolve-conflict-agent'
+    data['identities'][token]={'sha256':hashlib.sha256(b'legacy agent\n').hexdigest(),'mode':0o644}
+    data['packages'].append(dict(provider='gemini',kind='agent',slug='resolve-conflict',
+        successor=catalog.successor('gemini','agent','resolve-conflict'),
+        roots=[rel,'.gemini/agents/resources/resolve-conflict'],files={rel:token},releases=['v1.12.2']))
+    put(repo,str(path.relative_to(repo)),json.dumps(data));install_bundle.build(repo)
+    put(target,rel,'legacy agent\n')
+    return slug, rel
+
+
+def test_unemitted_agent_successor_is_not_selected_and_replan_succeeds(installation):
+    repo,target=installation
+    slug,rel=_legacy_agent_without_emitted_successor(repo,target)
+    plan=planner.plan(repo,target,{'mode':'repair','providers':['gemini'],'runtime':False})
+    assert f'gemini:agent:{slug}' not in plan['selection']
+    execute(repo,target,mode='repair',providers=['gemini'],runtime=False)
+    assert f'gemini:agent:{slug}' not in planner.read_state(target)['selection']
+    planner.plan(repo,target,{'mode':'repair','runtime':False})
+    planner.plan(repo,target,{'mode':'sync','runtime':False})
+    assert (target/rel).read_text()=='legacy agent\n'
+
+
+def test_saved_unowned_agent_selection_heals_but_owned_removal_still_blocks(installation):
+    repo,target=installation
+    execute(repo,target,mode='install',providers=['gemini'],runtime=False)
+    state_path=target/planner.STATE
+    state=json.loads(state_path.read_text())
+    # v1.19.3 could persist an agent key it never installed.
+    state['selection']=sorted(state['selection']+['gemini:agent:engos-memory-threader'])
+    state['preserved']=state.get('preserved',[])+[{'package':'gemini:agent:engos-memory-threader','reason':'stale'}]
+    state_path.write_text(json.dumps(state))
+    plan=planner.plan(repo,target,{'mode':'sync','runtime':False})
+    assert 'gemini:agent:engos-memory-threader' not in plan['selection']
+    assert not any(p.get('package')=='gemini:agent:engos-memory-threader' for p in plan['installation_preserved'])
+    # An owned package whose source disappeared still requires explicit retirement.
+    owned=next(k for k in state['packages'] if k.startswith('gemini:skill:'))
+    manifest=json.loads((repo/'.meta/manifest.json').read_text())
+    manifest['ssot_sources']=[]
+    put(repo,'.meta/manifest.json',json.dumps(manifest));install_bundle.build(repo)
+    with pytest.raises(ValueError,match='SOURCE_SCOPE_REMOVED'):
+        planner.plan(repo,target,{'mode':'sync','runtime':False})
+    assert owned in json.loads(state_path.read_text())['packages']
+
+
 def test_release_polling_retains_preserved_installation_attention(tmp_path):
     import importlib.util
     spec=importlib.util.spec_from_file_location('updater_attention',ROOT/'scripts/update-core-prompts.py')
