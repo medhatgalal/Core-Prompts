@@ -315,7 +315,9 @@ retirement above retains the custom skill and removes the agent. An unresolved
 reference from another agent still preserves the affected predecessor. JSON and TOML
 agent definitions are checked by their decoded string values, so a JSON or TOML
 escape such as `\n` or `\"` after a `file://` URI is not read as an unresolved
-path; an unparsable definition is checked as raw text. Codex registration changes preserve unrelated custom
+path; an unparsable definition is checked as raw text. Repair selects an agent successor only when
+the source ships it; a saved agent selection that was never installed is dropped
+rather than blocking later plans. Codex registration changes preserve unrelated custom
 configuration; conflicts preserve affected agents. Third-party packages remain
 with their own installers. In particular, an existing unreceipted third-party
 Loopy copy is not adopted merely because its bytes match the bundled package.

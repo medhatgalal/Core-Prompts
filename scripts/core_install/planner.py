@@ -229,6 +229,14 @@ def plan(repo: Path, target: Path, request: dict):
             next_key = providers.key(provider, kind, mapped) if mapped else None
             if mapped != slug and next_key in current:
                 renamed_selected[k] = next_key
+    # v1.19.3 could save a first-party agent successor it never installed;
+    # with nothing owned there is nothing to retire, so drop it instead of
+    # blocking. Unknown names still block below.
+    dropped_unowned = {k for k in selection - set(current)
+                       if k.split(':')[1:2] == ['agent'] and k not in previous['packages']
+                       and k.split(':')[-1] in catalog.SUCCESSORS.values()
+                       and not catalog.retired_key(k) and k not in renamed_selected}
+    selection -= dropped_unowned
     missing_selected = {k for k in selection - set(current)
                         if not catalog.retired_key(k) and k not in renamed_selected}
     # Other missing source identities still require explicit retirement.
@@ -339,7 +347,9 @@ def plan(repo: Path, target: Path, request: dict):
         if known and eligible:
             record = dict(known, roots=list(roots), files=files, successor=next_slug)
             discovered.setdefault(newkey or k, []).append(record)
-            if newkey:
+            # Enroll only a successor this source ships. Old agents may map to
+            # agent successors that were never emitted (skills-only catalog).
+            if newkey and (kind != 'agent' or newkey in current):
                 selection.add(newkey)
         elif not known and eligible:
             preserved.append(dict(package=newkey or k,provider=provider,kind=kind,slug=slug,roots=list(roots),
@@ -654,7 +664,8 @@ def plan(repo: Path, target: Path, request: dict):
                     actions.append(dict(op='write',path=rel,before=before,after=after,content=base64.b64encode(content).decode()))
             except (OSError,ValueError) as exc:
                 preserved.append(dict(package=package,roots=[rel],reason=str(exc)))
-    installation_preserved = [p for p in previous.get('preserved',[]) if p.get('package') not in assessed_keys] + preserved
+    installation_preserved = [p for p in previous.get('preserved',[])
+                              if p.get('package') not in assessed_keys | dropped_unowned] + preserved
     prospective=dict(schema=3 if policy or previous['schema'] == 3 else 2,owner='Core-Prompts',selection=sorted(selection),packages=next_packages,
                      runtime=runtime,registrations=registrations,source_version=(repo/'VERSION').read_text().strip(),
                      catalog_sha256=identity(repo/catalog.CATALOG_PATH)['sha256'],preserved=installation_preserved)
