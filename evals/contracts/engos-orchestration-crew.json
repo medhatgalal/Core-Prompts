@@ -42,6 +42,9 @@
     "0c8148b923bfd154665c95b2305b9ac2cafa2c9aa10c233c769cea376be75aa3",
     "33e9ca71c2bae5528377145435b4168542d82f40b353f23bdcd7d872c6a1fd8b",
     "816f3eaf4f6ed123dd4edb91bbdcec62e934495a38d468f7cc56ce67f7f3fcd9",
+    "3e5ba43c39b3fa5e8092c671f0e7b371d60c4d01f5ab5ad421d2c069c859cfb6",
+    "aad8d91dd0553820da867722044de9ff2b56babdb8db30d2a7c4eccf81ed4770",
+    "23f0ed5ada0e501cfe3a7987ec534b68750b71a66ec3aef0da103255b3a48c83",
     "0ca6b0d54ca3c35b4af1b671e74b592f7675b748c4915f00a49d1c4e5568c61c",
     "fdfa4c519ee7a02d12a3441c00bedd5c21c2ad30b416fd82eb1e2af80799d86b",
     "85e6f890d1dbde2f5968dd9ada10a5cd224085cd97722b8f1b7011f64ddde960",
@@ -260,6 +263,21 @@
       "sha256": "816f3eaf4f6ed123dd4edb91bbdcec62e934495a38d468f7cc56ce67f7f3fcd9",
       "source": "ssot/engos-orchestration-crew.md",
       "text": "| Timers | Hooks fire on events only, never on a clock, and a background `sleep` waking an idle agent is *(unconfirmed)*. Run each member from an outside loop or cron that re-invokes `kiro-cli chat --resume-id <id> --no-interactive \"read your inbox\"` every 600 seconds. Those re-invocations are the timer wakes gate 5 counts |"
+    },
+    {
+      "sha256": "3e5ba43c39b3fa5e8092c671f0e7b371d60c4d01f5ab5ad421d2c069c859cfb6",
+      "source": "ssot/engos-orchestration-crew.md",
+      "text": "| Sessions | One `session_create(agent=<name>, model=<model>, message=\"<brief>\")` per member. Each opens a sidebar tab that lasts until it is closed. Invoke this skill in a message as `$engos-orchestration-crew`. `spawn_run` sub-agents run in parallel but answer and exit, and have no session key, so they cannot keep a timer or use session tools; use them only as the fallback |"
+    },
+    {
+      "sha256": "aad8d91dd0553820da867722044de9ff2b56babdb8db30d2a7c4eccf81ed4770",
+      "source": "ssot/engos-orchestration-crew.md",
+      "text": "| Messaging | Inbox files and `status.md` lines. `session_send(target, message)` can nudge a member and `session_read_message` reads one back. The stock `kirocrew-team-lead` agent allows `session_create`, `session_read_message` and `session_status`, but not `session_send`. `send_message` goes to the user (Slack, DM, dashboard), never to crew members |"
+    },
+    {
+      "sha256": "23f0ed5ada0e501cfe3a7987ec534b68750b71a66ec3aef0da103255b3a48c83",
+      "source": "ssot/engos-orchestration-crew.md",
+      "text": "| Deny rules | A custom agent JSON per role with `toolsSettings` (`shell.denyByDefault`, `deniedCommands`, `write.fallbackAction: \"deny\"`), enforced at Kiro Crew's pre-tool-use gate. The stock `kirocrew--readonly` agent is for side turns only and cannot be started as a member |"
     },
     {
       "sha256": "0ca6b0d54ca3c35b4af1b671e74b592f7675b748c4915f00a49d1c4e5568c61c",

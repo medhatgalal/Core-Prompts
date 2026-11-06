@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-orchestration-crew",
-  "ssot_sha256": "6fb973b84f6c7e8ee8ac65451ebc5ffd254d6f35a49a40188b6337d3b38d1890",
+  "ssot_sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -46,9 +46,11 @@
     "engos-orchestration-crew:L229:57576ab5dba0",
     "engos-orchestration-crew:L231:0c8148b923bf",
     "engos-orchestration-crew:L239:816f3eaf4f6e",
-    "engos-orchestration-crew:L250:85e6f890d1db"
+    "engos-orchestration-crew:L250:aad8d91dd055",
+    "engos-orchestration-crew:L262:85e6f890d1db"
   ],
   "resources": [
+    "| Sessions | One `session_create(agent=<name>, model=<model>, message=\"<brief>\")` per member. Each opens a sidebar tab that lasts until it is closed. Invoke this skill in a message as `$engos-orchestration-crew`. `spawn_run` sub-agents run in parallel but answer and exit, and have no session key, so they cannot keep a timer or use session tools; use them only as the fallback |",
     "| Sessions | One process per member: `codex exec \"<brief>\"`; `codex exec resume <id>` continues it; `--worktree` gives it its own git worktree. Sub-agents (`.codex/agents/<name>.toml` registered as `[agents.<name>]` in `config.toml`; tools `spawn_agent`, `send_input`, `wait_agent`, `close_agent`) run in parallel up to `agents.max_concurrent_threads_per_session`; use them only as the fallback. Sub-agent persistence is *(unconfirmed)* |",
     "| Sessions | One process per member: `gemini -p \"<brief>\"` (headless); `--resume <id or latest>` or `--session-id` continues it; `-w` gives it a worktree. Sub-agents (`.gemini/agents/<name>.md` or `~/.gemini/agents/`) run, report back and end, and cannot start others; use them only as the fallback. Whether they run in parallel is *(unconfirmed)* |",
     "| Sessions | One process per member: `kiro-cli chat --agent <name> --no-interactive \"<brief>\"`; `--resume-id <id>` continues it. The `subagent` tool (alias `use_subagent`) runs sub-agents in parallel, but they report back to the parent and end, so use them only as the fallback. The `delegate` tool runs background agents (`/delegate status`); how long they live is *(unconfirmed)* |",
@@ -418,80 +420,110 @@
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L247:0ca6b0d54ca3",
+      "id": "engos-orchestration-crew:L249:3e5ba43c39b3",
+      "heading": "Kiro Crew (the KiroCrew app)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 257,
+      "sha256": "3e5ba43c39b3fa5e8092c671f0e7b371d60c4d01f5ab5ad421d2c069c859cfb6",
+      "text": "| Sessions | One `session_create(agent=<name>, model=<model>, message=\"<brief>\")` per member. Each opens a sidebar tab that lasts until it is closed. Invoke this skill in a message as `$engos-orchestration-crew`. `spawn_run` sub-agents run in parallel but answer and exit, and have no session key, so they cannot keep a timer or use session tools; use them only as the fallback |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L250:aad8d91dd055",
+      "heading": "Kiro Crew (the KiroCrew app)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 258,
+      "sha256": "aad8d91dd0553820da867722044de9ff2b56babdb8db30d2a7c4eccf81ed4770",
+      "text": "| Messaging | Inbox files and `status.md` lines. `session_send(target, message)` can nudge a member and `session_read_message` reads one back. The stock `kirocrew-team-lead` agent allows `session_create`, `session_read_message` and `session_status`, but not `session_send`. `send_message` goes to the user (Slack, DM, dashboard), never to crew members |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L252:23f0ed5ada0e",
+      "heading": "Kiro Crew (the KiroCrew app)",
+      "source": "ssot/engos-orchestration-crew.md",
+      "source_line": 260,
+      "sha256": "23f0ed5ada0e501cfe3a7987ec534b68750b71a66ec3aef0da103255b3a48c83",
+      "text": "| Deny rules | A custom agent JSON per role with `toolsSettings` (`shell.denyByDefault`, `deniedCommands`, `write.fallbackAction: \"deny\"`), enforced at Kiro Crew's pre-tool-use gate. The stock `kirocrew--readonly` agent is for side turns only and cannot be started as a member |",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-orchestration-crew:L259:0ca6b0d54ca3",
       "heading": "Codex (Codex CLI)",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 255,
+      "source_line": 267,
       "sha256": "0ca6b0d54ca3c35b4af1b671e74b592f7675b748c4915f00a49d1c4e5568c61c",
       "text": "| Sessions | One process per member: `codex exec \"<brief>\"`; `codex exec resume <id>` continues it; `--worktree` gives it its own git worktree. Sub-agents (`.codex/agents/<name>.toml` registered as `[agents.<name>]` in `config.toml`; tools `spawn_agent`, `send_input`, `wait_agent`, `close_agent`) run in parallel up to `agents.max_concurrent_threads_per_session`; use them only as the fallback. Sub-agent persistence is *(unconfirmed)* |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L249:fdfa4c519ee7",
+      "id": "engos-orchestration-crew:L261:fdfa4c519ee7",
       "heading": "Codex (Codex CLI)",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 257,
+      "source_line": 269,
       "sha256": "fdfa4c519ee7a02d12a3441c00bedd5c21c2ad30b416fd82eb1e2af80799d86b",
       "text": "| Timers | A `sleep` tool that ends early on new input exists for some models only *(unconfirmed for the model in use)*. Confirmed fallback: an outside loop or cron running `codex exec resume <id> \"read your inbox\"` every 600 seconds. Those runs are the timer wakes gate 5 counts |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L250:85e6f890d1db",
+      "id": "engos-orchestration-crew:L262:85e6f890d1db",
       "heading": "Codex (Codex CLI)",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 258,
+      "source_line": 270,
       "sha256": "85e6f890d1dbde2f5968dd9ada10a5cd224085cd97722b8f1b7011f64ddde960",
       "text": "| Deny rules | Start the safety watch and drift auditor with `-s read-only`, others with `-s workspace-write`, always explicitly, because a user config may default to `danger-full-access`. Command deny rules: `.rules` files with `prefix_rule(pattern=[...], decision=\"forbidden\")` in `~/.codex/rules/`, or `<repo>/.codex/rules/` for a trusted project. Sub-agents inherit the parent's sandbox. Never pass `--ignore-rules`. Whether rules hold under `--dangerously-bypass-approvals-and-sandbox` is *(unconfirmed)* |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L257:eb27206b06fb",
+      "id": "engos-orchestration-crew:L269:eb27206b06fb",
       "heading": "Gemini CLI",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 265,
+      "source_line": 277,
       "sha256": "eb27206b06fbac61a939cd029ff0e822f94d542d27abc4bf2e78a87a80647258",
       "text": "| Sessions | One process per member: `gemini -p \"<brief>\"` (headless); `--resume <id or latest>` or `--session-id` continues it; `-w` gives it a worktree. Sub-agents (`.gemini/agents/<name>.md` or `~/.gemini/agents/`) run, report back and end, and cannot start others; use them only as the fallback. Whether they run in parallel is *(unconfirmed)* |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L259:3340b5762194",
+      "id": "engos-orchestration-crew:L271:3340b5762194",
       "heading": "Gemini CLI",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 267,
+      "source_line": 279,
       "sha256": "3340b5762194212294e0187fbb3102d48588104bca94436842b2f29d7d665edb",
       "text": "| Timers | The shell tool can run a background process, but no wake on its completion is documented, and hooks fire on CLI events only. Run each member from an outside loop or cron that re-runs `gemini -p --resume <id> \"read your inbox\"` every 600 seconds *(flag combination not run)*. Those runs are the timer wakes gate 5 counts |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L265:e5239bf2d552",
+      "id": "engos-orchestration-crew:L277:e5239bf2d552",
       "heading": "Any other harness (generic fallback)",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 273,
+      "source_line": 285,
       "sha256": "e5239bf2d552a7bc6d21d7474a2de37303535f7ec152b89380f38138776d121c",
       "text": "Needs only a harness that can start sub-agents and read and write files.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L270:a5a28b0bf7f0",
+      "id": "engos-orchestration-crew:L282:a5a28b0bf7f0",
       "heading": "Any other harness (generic fallback)",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 278,
+      "source_line": 290,
       "sha256": "a5a28b0bf7f02e077b96499ef8e6efdb482e37edaea3d3a9a7ac13f49a339806",
       "text": "| Messaging | Inbox files and `status.md` lines only |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-orchestration-crew:L272:06e11ff9d0c4",
+      "id": "engos-orchestration-crew:L284:06e11ff9d0c4",
       "heading": "Any other harness (generic fallback)",
       "source": "ssot/engos-orchestration-crew.md",
-      "source_line": 280,
+      "source_line": 292,
       "sha256": "06e11ff9d0c4beb1a72df80450eea645ed9a6b27bfccb0019aa4b8d5ace0645a",
       "text": "| Deny rules | Whatever the harness enforces outside the agent's own choice (sandbox, read-only mode, deny list). A tool it cannot bar fails gate 1; bring that to me |",
       "kind": "invariant",
@@ -506,7 +538,7 @@
   "source_references": [
     {
       "path": "ssot/engos-orchestration-crew.md",
-      "sha256": "6fb973b84f6c7e8ee8ac65451ebc5ffd254d6f35a49a40188b6337d3b38d1890"
+      "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
     }
   ],
   "known_ambiguities": [],
@@ -519,7 +551,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 44,
+    "total": 47,
     "mapped": 0,
     "waived": 0
   },

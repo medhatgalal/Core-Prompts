@@ -129,7 +129,7 @@ packet. Compiling a packet does not start a goal. [Longer work](docs/SKILL-FLOWS
 Use `engos-orchestration-crew` (`help`, `design`, `launch`, `status`, `end`) to design,
 launch and oversee a long multi-agent job (an A/B evaluation, QA, an audit or a migration)
 against acceptance criteria fixed up front, with fresh verifiers, a drift auditor and change
-control. Its harness adapters cover Claude Code Desktop, Kiro, Codex, Gemini CLI and a generic fallback.
+control. Its harness adapters cover Claude Code Desktop, Kiro, Kiro Crew, Codex, Gemini CLI and a generic fallback.
 
 For resumable investigations, use `engos-memory-context-continuity` and its bundled
 state helper to resolve one context, todo and insights set under

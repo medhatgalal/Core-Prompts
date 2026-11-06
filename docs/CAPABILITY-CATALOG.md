@@ -301,7 +301,7 @@ Generated from canonical manifest and descriptor metadata. Use this page to see 
 - Type: `skill`
 - Install target: `global`
 - Supported CLIs: `claude, codex, gemini, grok, kiro`
-- Version: `v1.0`
+- Version: `v1.1`
 - Summary: Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.
 
 ### Feature Status — Deep Completeness Analysis
