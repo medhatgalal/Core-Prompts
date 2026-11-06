@@ -2,9 +2,9 @@
 name: "engos-orchestration-crew"
 description: "Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks."
 capability_type: "skill"
-version: "v1.0"
+version: "v1.1"
 install_target: "global"
-version: "v1.0"
+version: "v1.1"
 ---
 
 # Engos Orchestration Crew
@@ -55,7 +55,7 @@ Use the original examples and output templates in the retained instructions and 
 ---
 name: "engos-orchestration-crew"
 description: "Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks."
-version: "v1.0"
+version: "v1.1"
 ---
 # Crew orchestration
 
@@ -166,7 +166,7 @@ Claude Code Desktop adapter work in every harness.
   same method in each, and every wait for me is left out of the timings.
 - **Never skip a check to save me a step.** Batch everything that needs me into one hand-off
   instead.
-- **Hand-offs to me** go in a `scott-entry.md` file: exactly what to type, where, and what not to
+- **Hand-offs to me** go in a `user-entry.md` file: exactly what to type, where, and what not to
   click. I type `entered` in that member's session when done.
 - **Refusals.** If an agent's own safety rules refuse a step, do not argue it round. Bring me
   options, and treat that step the same everywhere.
@@ -247,6 +247,18 @@ gate 1 before relying on them.
 | Timers | Hooks fire on events only, never on a clock, and a background `sleep` waking an idle agent is *(unconfirmed)*. Run each member from an outside loop or cron that re-invokes `kiro-cli chat --resume-id <id> --no-interactive "read your inbox"` every 600 seconds. Those re-invocations are the timer wakes gate 5 counts |
 | Deny rules | One agent JSON per role in `.kiro/agents/` or `~/.kiro/agents/`: `tools`, `allowedTools`, `toolsSettings.shell.deniedCommands` (deny is checked before allow), `toolsSettings.write.deniedPaths`. A `preToolUse` hook that exits with code 2 blocks the call. Whether 2.x deny lists hold under `--trust-all-tools` is *(unconfirmed)*, so prefer the hook. In V3, `permissions.rules` deny always wins |
 | Model | Pin it with the agent JSON `model` field or `--model`; `kiro-cli chat --list-models` lists them. With `model: "auto"` a member may not know its model, so report the pinned name. A command that prints the active model mid-session is *(unconfirmed)* |
+
+### Kiro Crew (the KiroCrew app)
+
+From the app's bundled docs and code; not yet run in a crew.
+
+| Need | Mechanism |
+|---|---|
+| Sessions | One `session_create(agent=<name>, model=<model>, message="<brief>")` per member. Each opens a sidebar tab that lasts until it is closed. Invoke this skill in a message as `$engos-orchestration-crew`. `spawn_run` sub-agents run in parallel but answer and exit, and have no session key, so they cannot keep a timer or use session tools; use them only as the fallback |
+| Messaging | Inbox files and `status.md` lines. `session_send(target, message)` can nudge a member and `session_read_message` reads one back. The stock `kirocrew-team-lead` agent allows `session_create`, `session_read_message` and `session_status`, but not `session_send`. `send_message` goes to the user (Slack, DM, dashboard), never to crew members |
+| Timers | Each member arms its own `monitor_start(message="read your inbox", interval_secs=600, ...)`. It wakes in the same conversation, one loop per session, 24 cycles by default and 1000 at most, so set `max_cycles` or `max_runtime_secs` to cover the run. It is refused in cron, webhook and sub-agent sessions. `cron_add` and `HEARTBEAT.md` run in sessions of their own, so they cannot wake a member |
+| Deny rules | A custom agent JSON per role with `toolsSettings` (`shell.denyByDefault`, `deniedCommands`, `write.fallbackAction: "deny"`), enforced at Kiro Crew's pre-tool-use gate. The stock `kirocrew--readonly` agent is for side turns only and cannot be started as a member |
+| Model | Pin it with `model` on `session_create`. The lead reads each member's model and effort with `session_read_message`. A member reading its own model is *(unconfirmed)* |
 
 ### Codex (Codex CLI)
 
