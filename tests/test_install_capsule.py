@@ -67,7 +67,9 @@ def test_capsule_ignores_sibling_modules_and_isolates_instances(tmp_path, monkey
     assert first.installation_plan(None, None, None) == "first"
     assert second.installation_plan(None, None, None) == "second"
     assert first.installation_plan(None, None, None) == "first"
-    assert sorted(p.name for p in tmp_path.iterdir()) == ["__pycache__", "one.py", "two.py"]
+    # The capsule must not extract modules beside itself; Python's own bytecode
+    # cache may or may not appear depending on PYTHONDONTWRITEBYTECODE.
+    assert sorted(p.name for p in tmp_path.iterdir() if p.name != "__pycache__") == ["one.py", "two.py"]
 
 
 def test_cli_dispatch_is_lazy_and_preserves_legacy_arguments(tmp_path):

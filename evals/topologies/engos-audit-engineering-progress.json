@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-audit-engineering-progress",
-  "ssot_sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29",
+  "ssot_sha256": "5e9902d3affb99c1e82e6042ecbcb78ab5bd7d9854ed4880fc33f4a3450ac11a",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -36,6 +36,7 @@
     "engos-audit-engineering-progress:L48:247b41e99ff2",
     "engos-audit-engineering-progress:L103:d03fa22f48be",
     "engos-audit-engineering-progress:L145:52e985ce39b3",
+    "engos-audit-engineering-progress:L156:72da7d2cc3e2",
     "engos-audit-engineering-progress:L274:3a4a475b672d",
     "engos-audit-engineering-progress:L287:6e56ead7fa75",
     "engos-audit-engineering-progress:L324:4f05ad30b4b3",
@@ -172,6 +173,16 @@
       "mapped_to": []
     },
     {
+      "id": "engos-audit-engineering-progress:L141:0eea497b0eaf",
+      "heading": "Usage",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 146,
+      "sha256": "0eea497b0eaf5a7f0948a4591f381b9bfb7629bb5706e9e623c0780b695d2c6a",
+      "text": "| `--config FILE` | Configuration file; default `~/.config/core-prompts/eng-report/config.yaml`, or the legacy `~/.kiro/skills/eng-report/config.yaml` when only that exists |",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
       "id": "engos-audit-engineering-progress:L145:52e985ce39b3",
       "heading": "Usage",
       "source": "ssot/engos-audit-engineering-progress.md",
@@ -179,6 +190,16 @@
       "sha256": "52e985ce39b3a0afe88f80fc9260c2ef4c39cf3dc3c09627eaacd202da4fbaea",
       "text": "| `--json` | Print metrics JSON to stdout; do not create or overwrite HTML/JavaScript report artifacts or create the output directory |",
       "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-audit-engineering-progress:L156:72da7d2cc3e2",
+      "heading": "Configuration",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "source_line": 161,
+      "sha256": "72da7d2cc3e292f9ab38de65f1111695f9c2b0e68da92381992f81e4c43c83b7",
+      "text": "Config lives at `~/.config/core-prompts/eng-report/config.yaml`, outside any skill folder, so retiring an old skill never removes it. An existing `~/.kiro/skills/eng-report/config.yaml` is still read when the new path does not exist; to migrate, move it to the new path.",
+      "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
@@ -420,7 +441,7 @@
   "source_references": [
     {
       "path": "ssot/engos-audit-engineering-progress.md",
-      "sha256": "c89b815c182161cde0f17ea686e5ffb9c12d405dceb9ccffbdb90c5e63023b29"
+      "sha256": "5e9902d3affb99c1e82e6042ecbcb78ab5bd7d9854ed4880fc33f4a3450ac11a"
     }
   ],
   "known_ambiguities": [],
@@ -433,7 +454,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 36,
+    "total": 38,
     "mapped": 0,
     "waived": 0
   },

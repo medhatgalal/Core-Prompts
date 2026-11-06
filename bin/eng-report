@@ -30,7 +30,8 @@ Commands:
   run --json              Output metrics JSON (no HTML)
 
 Options:
-  --config FILE           Config file (default: ~/.kiro/skills/eng-report/config.yaml)
+  --config FILE           Config file (default: ~/.config/core-prompts/eng-report/config.yaml;
+                          falls back to ~/.kiro/skills/eng-report/config.yaml)
   --no-index              Skip _index.html generation
 
 Examples:

@@ -142,7 +142,7 @@ eng-report run --config <config.yaml> --name <entry-name> --since "2 weeks ago" 
 
 | CLI option | Meaning |
 | --- | --- |
-| `--config FILE` | Configuration file; default `~/.kiro/skills/eng-report/config.yaml` |
+| `--config FILE` | Configuration file; default `~/.config/core-prompts/eng-report/config.yaml`, or the legacy `~/.kiro/skills/eng-report/config.yaml` when only that exists |
 | `--name NAME` | Select a configured entry by its exact name |
 | `--since DATE` | Override start date; otherwise config `local.window`, default `1 week ago` |
 | `--output DIR` | Report directory; default `/tmp/YYYY-MM-DD/` |
@@ -157,7 +157,7 @@ eng-report run --config <config.yaml> --name <entry-name> --since "2 weeks ago" 
 
 ## Configuration
 
-Config lives at `~/.kiro/skills/eng-report/config.yaml`.
+Config lives at `~/.config/core-prompts/eng-report/config.yaml`, outside any skill folder, so retiring an old skill never removes it. An existing `~/.kiro/skills/eng-report/config.yaml` is still read when the new path does not exist; to migrate, move it to the new path.
 
 There are two types of entries: **repo entries** (single repo) and **group entries** (multiple repos, aggregated).
 
@@ -268,7 +268,7 @@ Interactive first-time setup. Reads current `config.yaml` if it exists.
       - "Filter by org unit? Enter tribe/group name or leave blank for whole repo:"
       - If tribe entered: call `sync-authors` immediately to resolve members from Home MCP
    e. Repeat until user enters blank for repo name
-6. Write `config.yaml`
+6. Write `config.yaml` to `~/.config/core-prompts/eng-report/config.yaml`
 7. Offer to run `sync-authors` now to resolve all org memberships: "Resolve team memberships from Home MCP now? (y/n)"
    - If yes: run `sync-authors` workflow for all scoped entries
 8. Validate git access: for each `remote:` URL, run `git ls-remote <url> HEAD` — warn if unreachable

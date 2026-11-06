@@ -24,7 +24,11 @@ def _esc(s: str) -> str:
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
-DEFAULT_CONFIG = Path.home() / ".kiro" / "skills" / "eng-report" / "config.yaml"
+# Kept outside any skill folder so retiring the old Kiro `eng-report` skill
+# never takes the user's configuration with it. The legacy path still works.
+STABLE_CONFIG = Path.home() / ".config" / "core-prompts" / "eng-report" / "config.yaml"
+LEGACY_CONFIG = Path.home() / ".kiro" / "skills" / "eng-report" / "config.yaml"
+DEFAULT_CONFIG = LEGACY_CONFIG if LEGACY_CONFIG.exists() and not STABLE_CONFIG.exists() else STABLE_CONFIG
 DEFAULT_OUTPUT_DIR = Path("/tmp") / date.today().isoformat()
 BOT_PATTERNS = re.compile(
     r"^(appian\s+ci|.*-ops|.*-automation|root|hudson-.*|process\s+foundations)",

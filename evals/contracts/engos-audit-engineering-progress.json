@@ -18,7 +18,9 @@
     "eab8a3de4245dcf32cfed8d445912b48c2e4cce4f7967a7db5a2f6ab06721ccd",
     "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
     "6eaa2c46a6e6068ba40f4fb63f5f496cdf75d73da513636c4faf2fbcb42c9f78",
+    "0eea497b0eaf5a7f0948a4591f381b9bfb7629bb5706e9e623c0780b695d2c6a",
     "52e985ce39b3a0afe88f80fc9260c2ef4c39cf3dc3c09627eaacd202da4fbaea",
+    "72da7d2cc3e292f9ab38de65f1111695f9c2b0e68da92381992f81e4c43c83b7",
     "26c2ba108386d488ea162e74c5bd6948d6a67b665d92abb61e7af5b721f23552",
     "3a4a475b672d37b0885661bfacbce55566349db8a2686da2a8b8a616d7e4b50d",
     "6e56ead7fa758e8f097156f4a90f46dfd065e64768174443e62c99b139c3b6fa",
@@ -136,9 +138,19 @@
       "text": "The generated report must keep all visible metrics traceable to git data and must not include invented Jira counts, story points, PR review timings, or unverified external facts."
     },
     {
+      "sha256": "0eea497b0eaf5a7f0948a4591f381b9bfb7629bb5706e9e623c0780b695d2c6a",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "text": "| `--config FILE` | Configuration file; default `~/.config/core-prompts/eng-report/config.yaml`, or the legacy `~/.kiro/skills/eng-report/config.yaml` when only that exists |"
+    },
+    {
       "sha256": "52e985ce39b3a0afe88f80fc9260c2ef4c39cf3dc3c09627eaacd202da4fbaea",
       "source": "ssot/engos-audit-engineering-progress.md",
       "text": "| `--json` | Print metrics JSON to stdout; do not create or overwrite HTML/JavaScript report artifacts or create the output directory |"
+    },
+    {
+      "sha256": "72da7d2cc3e292f9ab38de65f1111695f9c2b0e68da92381992f81e4c43c83b7",
+      "source": "ssot/engos-audit-engineering-progress.md",
+      "text": "Config lives at `~/.config/core-prompts/eng-report/config.yaml`, outside any skill folder, so retiring an old skill never removes it. An existing `~/.kiro/skills/eng-report/config.yaml` is still read when the new path does not exist; to migrate, move it to the new path."
     },
     {
       "sha256": "26c2ba108386d488ea162e74c5bd6948d6a67b665d92abb61e7af5b721f23552",
