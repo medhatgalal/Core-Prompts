@@ -7,6 +7,114 @@
   ],
   "capabilities": [
     {
+      "slug": "engos-audit-change-impact",
+      "display_name": "Change Impact Rollup",
+      "capability_type": "skill",
+      "summary": "Roll up an org's merged and open GitLab and GitHub changes for a time window into a fact-checked, business-impact report: each bullet states its likely impact (inference) and what changed (fact) with links. The roster is the reporting tree in the Appian Home org chart. Use for what-did-my-org-ship-and-why-it-matters updates; do not use for git metrics dashboards, Jira or chat status reports, or code review.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "audit",
+        "change",
+        "impact"
+      ],
+      "required_inputs": [
+        "A time window. The default is `--since 1w`.",
+        "A roster root. The default is the person running the skill; resolve their Home username.",
+        "Optional `--include` and `--exclude` lists, `--first AREA`, and `--doc DOC_ID`.",
+        "The source flags in Usage, when the defaults do not fit the person's org."
+      ],
+      "expected_outputs": [
+        "**Title:** `<Org or root name> change rollup: <window label>`. Add \" (not fact-checked)\" with `--quick`.",
+        "**Sections, in order:**",
+        "**Executive summary.** What this is, the window, the areas, who is counted (from `roster-check` `people_counted`), the counts table from `cia.py counts`, and a short note on how to read the bullets: Impact is inference, What changed is fact. Facts only. No meta comments such as \"draft for\".",
+        "**Headlines.** Three to six business-impact headlines.",
+        "**One section per area.** Use these subsections as `##` headings, and leave out any that are empty: Customer impact (merged); Reliability, security and cost (merged); Quality or evals (merged), where relevant; In flight (open); Groundwork.",
+        "How this was checked.",
+        "Roster source, sources and the GitLab host.",
+        "Unmapped people and confirmed name-based matches.",
+        "Personal-sandbox namespaces excluded.",
+        "Fact-check verdict counts from `cia.py tally`, or \"not fact-checked (--quick)\".",
+        "Link-check allowances with their reasons.",
+        "What was not checked: release, deployment and live toggle state. Also that GitLab only shows the MRs the runner can see.",
+        "What was left out.",
+        "**In chat:**",
+        "the link and the counts",
+        "the corrections the fact-check made that mattered",
+        "unmapped people",
+        "any decision the person needs to make",
+        "**Impact:** <likely business or customer effect, one line, inference>.",
+        "**What changed:** <facts from the MRs/PRs and diffs>.",
+        "**Limits:** <toggle off by default, not on main, dev only, etc.> (only when true)",
+        "[project!123](url), [repo#456](url)"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-audit-code-health",
       "display_name": "Codebase Health Audit \u2014 Brownfield Structural Risk Report",
       "capability_type": "skill",

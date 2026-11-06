@@ -4,13 +4,13 @@ These counts compare selected capability metadata in `.meta/manifest.json`. They
 
 - Baseline status: `available`
 - Comparison basis: `git:v1.19.6@6a14c07f89c4ee0badb00585cafed8e648219434 .meta/manifest.json`
-- New capabilities: `0`
+- New capabilities: `1`
 - Removed capabilities: `0`
 - Changed capability records: `0`
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- none
+- `engos-audit-change-impact` — Change Impact Rollup
 
 ## Removed Capabilities
 - none

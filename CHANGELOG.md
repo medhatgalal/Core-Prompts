@@ -1,3 +1,7 @@
+## Unreleased
+
+- Add the `engos-audit-change-impact` skill: rolls up an org's merged and open GitLab and GitHub changes for a configurable window (default one week) into a fact-checked, business-impact Google Doc. The roster comes from the Appian Home org chart; each bullet separates likely impact (inference) from what changed (fact) and links its sources. Subcommands: `help`, `run`, `roster` and `verify`. Bundled scripts compute every count and check every link (state, window, roster author).
+
 ## v1.19.7 - 2026-11-06
 
 Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab
