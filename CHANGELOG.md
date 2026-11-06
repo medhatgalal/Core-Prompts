@@ -1,3 +1,7 @@
+## Unreleased
+
+- Installer: an unrelated JSON or TOML agent with `file://` text in its prompt no longer blocks every renamed-skill migration. The dependency check read raw file text, so a JSON escape such as `\n` or `\"` after a URI looked like an unresolvable path and kept all predecessors. Seen with Kiro's stock `agent-builder.json`: old skills stayed and their `engos-*` successors were never installed on any provider. JSON and TOML agents are now checked by their decoded strings; real, glob, `$`-variable and backslash references still preserve, and unparsable files keep the raw-text check.
+
 ## v1.19.2 - 2026-11-05
 
 Tag authorized by Scott Parrish on 2026-11-05. Publication is recorded by the GitLab
