@@ -13,7 +13,8 @@ would materially change the route, with an Other/free-text answer path.
 including nonengineering jobs. A clear direct task needs no new interview.
 
 The intake skill ships in v1.18.0 and its cleanup patch in v1.18.1; v1.19.0 adds
-`engos-operations-daily-update` and v1.19.1 and v1.19.2 update it. Check the package available in
+`engos-operations-daily-update` and v1.19.1 and v1.19.2 update it; v1.19.3 fixes an installer
+bug that left renamed skills unmigrated. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 
