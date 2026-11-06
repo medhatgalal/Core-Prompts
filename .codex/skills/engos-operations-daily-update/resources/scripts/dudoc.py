@@ -137,6 +137,7 @@ def chipify(doc_id, tab_ids=None):
 
 
 PREFIXES = ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:")
+BOLD_PREFIXES = PREFIXES + ("Updated by", "Added by")  # line starts written bold
 CONFIDENCE = ("Very confident", "Slightly confident", "Not confident")
 DEFAULT_CONF = {"🟢": "Very confident", "🟡": "Slightly confident", "🔴": "Not confident", "⚪": "Slightly confident"}
 

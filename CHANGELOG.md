@@ -1,3 +1,13 @@
+## v1.19.5 - 2026-11-06
+
+Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update` overview layout Scott approved on the live doc (2026-11-05): no "In 30 seconds" or "Not updated today" section (the Area health Updated column shows which areas are behind). Sections run Area health, "Exec leadership: decisions or help needed", Next 2 weeks (Date, Commitment, Status emoji; the commitment links to its initiative tab), How to update, Status key. The header line reads "Owner: <doc owner> · Readers: <reader> and all leaders · As of <date>, <time>". Every overview table cell is left-aligned; new shares are Area health 18/9/11/50/12, decisions 30/18/24/16/12, Next 2 weeks 20/66/14.
+- `du.py overview --publish` (run by close) rebuilds everything below the "As of" line and moves older overviews to this layout. It keeps decisions rows with their phrase links, keeps Area health headline links whose phrase is still there and links initiative names in headlines, and keeps a Next 2 weeks row's wording and link while its date and initiative are unchanged. `du.py thirty` is removed.
+- `du.py check` no longer crashes on this layout: `verify.py` reads the 3-column Next 2 weeks table (initiative from the commitment link) and checks left alignment, area links and the Updated column; `usability.py` drops the In 30 seconds checks. `send` builds its summary from the Area health rows.
+- "Updated by" and "Added by" line prefixes on initiative tabs are written bold, like the other prefixes.
+
 ## v1.19.4 - 2026-11-06
 
 Tag authorized by Scott Parrish on 2026-11-05. Publication is recorded by the GitLab

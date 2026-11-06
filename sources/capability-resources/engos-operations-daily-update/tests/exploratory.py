@@ -237,25 +237,12 @@ def day2(doc):
 
 
 def overview1(doc):
-    build.set_thirty_seconds(doc, [
-        ("🟡", "Composer Resiliency (Joo)", "the shared cache design needs your approval by Wed Nov 11."),
-        ("🟡", "Composer Evals (Goldberg)", "the first full nightly run moved a day, to Tue Nov 10."),
-        ("🟡", "Composer UX (AlexD)", "Product has not started release sign-off for Fri Nov 13."),
-        ("🟢", "Federated Agent Studio (Nima)", "all 5 smoke tests pass; the partner pilot is set for Fri Nov 20."),
-        ("🟢", "Dev MCP / Tools (Akhilesh)", "the software development kit port finished; Jake's hackathon is Tue Nov 17."),
-    ])
     build.set_decisions(doc, "Medhat", [["Approve the shared cache design", "Joo's cache work is waiting on it",
                                         "Approve it, with Scott", "Wed Nov 11", "Scott"]], [L("doc/cache-design")])
 
 
 def overview2(doc):
-    build.set_thirty_seconds(doc, [
-        ("🟡", "Composer Resiliency (Joo)", "the shared cache design still needs your approval by Wed Nov 11; Sahil now updates this tab."),
-        ("🟡", "Composer Evals (Goldberg)", "the flaky suite is fixed and the first nightly run is tonight, 8pm ET."),
-        ("🟡", "Composer UX (Chandra)", "Chandra now owns it; Product sign-off is still due Fri Nov 13."),
-        ("🟢", "Composer Telemetry (Joo)", "new initiative; the dashboard goes live Fri Nov 20."),
-        ("🟢", "Team Restructure (Kui)", "done Mon Nov 9; both teams now work in the new structure."),
-    ])
+    pass  # the overview has no hand-written part beyond decisions, kept from overview1
 
 
 if __name__ == "__main__":

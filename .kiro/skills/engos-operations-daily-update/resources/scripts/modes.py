@@ -20,7 +20,7 @@ def _paras(tab_id, at, lines, styles, links=()):
                                               "paragraphStyle": {"namedStyleType": st}, "fields": "namedStyleType"}})
         reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + n, "tabId": tab_id},
                                          "textStyle": {}, "fields": "bold,italic,link"}})
-        p = next((x for x in du.PREFIXES if ln.startswith(x)), None)
+        p = next((x for x in du.BOLD_PREFIXES if ln.startswith(x)), None)
         if p:
             reqs.append({"updateTextStyle": {"range": {"startIndex": pos, "endIndex": pos + du.utf16(p), "tabId": tab_id},
                                              "textStyle": {"bold": True}, "fields": "bold"}})

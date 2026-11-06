@@ -3,9 +3,11 @@
   python3 overview.py DOC_ID 2026-11-06 "4:00 PM ET"            # review only
   python3 overview.py DOC_ID 2026-11-06 "4:00 PM ET" --publish
 
-Rewrites the "As of" line and everything below "In 30 seconds": Area health, Not updated today, the
-decisions table (rows kept as they are), Next 2 weeks, How to update, Status key and the grey line. That also
-moves an older overview to this layout. Leaves "In 30 seconds" alone: that is a judgement call the agent makes.
+Rewrites the "As of" line and everything below it: Area health, the decisions table (rows and their links kept
+as they are), Next 2 weeks, How to update, Status key and the grey line. That also moves an older overview to
+this layout (its "In 30 seconds" and "Not updated today" sections go). Area health headline links are kept
+where their phrase is still in the headline; any initiative name in a headline links to its tab. A Next 2 weeks
+row whose date and initiative are unchanged keeps its wording and links; a new row is the milestone without its date.
 """
 import argparse
 import datetime as dt
@@ -45,22 +47,33 @@ def area_view(area, inits, today):
         cell = f"{sentence} (headline from {du.label(hl_date)}; not updated today)"
     else:
         cell = sentence  # the Updated column carries the date
-    stale = [i for i in mine if not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed]
     return {"area": area, "status": status, "counts": du.status_counts(statuses), "cell": cell, "updated": updated,
-            "reasons": reasons, "stale": stale}
+            "reasons": reasons}
 
 
-def link_col(doc_id, tid, first_cell, col, urls):
-    """Link column `col` of the table whose header starts with `first_cell`, one url per body row."""
-    doc = du.read_doc(doc_id)
-    tbl = next(e for e in du.model(doc)[0]["documentTab"]["body"]["content"]
-               if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == first_cell)
-    reqs = []
-    for r, url in zip(tbl["table"]["tableRows"][1:], urls):
-        c = r["tableCells"][col]
-        reqs.append({"updateTextStyle": {"range": {"startIndex": c["startIndex"] + 1, "endIndex": c["endIndex"] - 1, "tabId": tid},
-                                         "textStyle": {"link": {"url": url}}, "fields": "link"}})
-    du.batch(doc_id, reqs, doc)
+def cell_links(cell):
+    """(phrase, url) for each linked run in a table cell."""
+    return [(x["textRun"]["content"].strip(), x["textRun"]["textStyle"]["link"]["url"])
+            for p in cell["content"] if "paragraph" in p for x in p["paragraph"]["elements"]
+            if x.get("textRun", {}).get("textStyle", {}).get("link", {}).get("url")]
+
+
+def link_phrase(tid, cell, phrase, url, reqs):
+    """Link the first `phrase` in a table cell to `url`. False when the phrase is not there."""
+    for p in cell["content"] if phrase else []:
+        for x in p.get("paragraph", {}).get("elements", []):
+            t = x.get("textRun", {}).get("content", "")
+            k = t.find(phrase)
+            if k >= 0:
+                s = x["startIndex"] + du.utf16(t[:k])
+                reqs.append({"updateTextStyle": {"range": {"startIndex": s, "endIndex": s + du.utf16(phrase), "tabId": tid},
+                                                 "textStyle": {"link": {"url": url}}, "fields": "link"}})
+                return True
+    return False
+
+
+def tables_by_head(tab):
+    return {du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]): e for e in tab["documentTab"]["body"]["content"] if "table" in e}
 
 
 def rebuild(doc_id, today, time):
@@ -70,19 +83,25 @@ def rebuild(doc_id, today, time):
     views = [area_view(ar, inits, today) for ar in areas.values()]
     body = ov["documentTab"]["body"]["content"]
 
-    # Keep the decisions rows (old "Decision" or new header) and each row's link.
-    dec = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0])
-                in ("Decision", du.DECISIONS_COL)), None)
-    decisions, dec_links = [], []
-    for r in (dec["table"]["tableRows"][1:] if dec else []):
-        decisions.append([du.cell_text(c) for c in r["tableCells"]])
-        dec_links.append(next((x["textRun"]["textStyle"]["link"]["url"] for p in r["tableCells"][0]["content"] if "paragraph" in p
-                               for x in p["paragraph"]["elements"] if x.get("textRun", {}).get("textStyle", {}).get("link", {}).get("url")), None))
+    # Keep the decisions rows (old "Decision" or new header) with their links, and the Area health headline links.
+    old = tables_by_head(ov)
+    dec = old.get(du.DECISIONS_COL) or old.get("Decision")
+    rows = dec["table"]["tableRows"][1:] if dec else []
+    decisions = [[du.cell_text(c) for c in r["tableCells"]] for r in rows]
+    dec_links = [cell_links(r["tableCells"][0]) for r in rows]
+    hl_links = {du.cell_text(r["tableCells"][0]): cell_links(r["tableCells"][3])
+                for r in (old["Area"]["table"]["tableRows"][1:] if "Area" in old else [])}
+    # A Next 2 weeks row whose date and linked tab are unchanged keeps its wording and links.
+    kept = {}
+    for r in (old["Date"]["table"]["tableRows"][1:] if "Date" in old else []):
+        links = cell_links(r["tableCells"][1])
+        tabs = [u.split("?tab=")[1] for _, u in links if "?tab=" in u]
+        if tabs:
+            kept[(du.cell_text(r["tableCells"][0]), tabs[0])] = (du.cell_text(r["tableCells"][1]), links)
 
-    # Delete everything from the first heading after "In 30 seconds" to the end; update the "As of" line.
+    # Delete everything from the first heading to the end; update the "As of" line.
     paras = [e for e in body if "paragraph" in e]
-    i30 = next(k for k, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == "In 30 seconds")
-    first = next((e for e in paras[i30 + 1:] if e["paragraph"]["paragraphStyle"].get("namedStyleType") == "HEADING_2"), None)
+    first = next((e for e in paras if e["paragraph"]["paragraphStyle"].get("namedStyleType") == "HEADING_2"), None)
     start, end = (first["startIndex"] if first else body[-1]["endIndex"] - 1), body[-1]["endIndex"] - 1
     asof = next(e for e in paras if "As of" in du.para_text(e["paragraph"]))
     asof_txt = du.para_text(asof["paragraph"]).rstrip("\n")
@@ -94,13 +113,12 @@ def rebuild(doc_id, today, time):
     du.batch(doc_id, reqs, doc)
 
     # Write the sections, then the tables into their empty paragraphs.
-    stale = [(i, v) for v in views for i in v["stale"]]
-    count = f"{sum(1 for v in views if v['stale'])} of {len(views)} areas not fully updated today."
-    nxt = du.next_two_weeks(inits, today)
-    lines = (["Area health", "", "Not updated today", count] + ([""] if stale else []) +
+    nxt = [(d, *kept.get((du.label(d), i.tab_id), (c, [(c, du.tab_url(doc_id, i.tab_id))])), st)
+           for d, c, i, st in du.next_two_weeks(inits, today)]
+    lines = (["Area health", ""] + ([du.DECISIONS_HEAD, ""] if decisions else []) +
              [du.NEXT_HEAD, "" if nxt else "No dated commitments in the next 2 weeks.", "How to update"] +
              [x.replace("`", "") for x in build.HOW_TO] + ["Status key"] + KEY + [GREY_LINE])
-    heads = {"Area health", "Not updated today", du.NEXT_HEAD, "How to update", "Status key"}
+    heads = {"Area health", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"}
     doc = du.read_doc(doc_id)
     at = m.find_tab(doc, tid)["documentTab"]["body"]["content"][-1]["startIndex"]
     reqs = m._paras(tid, at, lines, ["HEADING_2" if x in heads else "NORMAL_TEXT" for x in lines])
@@ -113,20 +131,13 @@ def rebuild(doc_id, today, time):
     build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, "Area health"),
                     [["Area", "Owner", "Status", "Headline", "Updated"]] +
                     [[v["area"].name, v["area"].owner, v["counts"], v["cell"], du.label(v["updated"]) if v["updated"] else "Not yet"]
-                     for v in views], [22, 10, 11, 43, 14])
-    if stale:
-        def last_confirmed(i):
-            s = next((x for x in i.sections if not x.unconfirmed), None)
-            return du.label(s.date) if s else "None yet"
-        build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, count), [["Initiative", "Area", "Updater", "Last confirmed"]] +
-                        [[i.name, v["area"].name, i.updater, last_confirmed(i)] for i, v in stale], [34, 26, 18, 22])
-        link_col(doc_id, tid, "Initiative", 0, [du.tab_url(doc_id, i.tab_id) for i, _ in stale])
-    if nxt:
-        build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, du.NEXT_HEAD), [["Date", "Commitment", "Initiative", "Status"]] +
-                        [[du.label(d), c, i.name, du.STATUSES[st]] for d, c, i, st in nxt], [16, 44, 26, 14])
-        link_col(doc_id, tid, "Date", 2, [du.tab_url(doc_id, i.tab_id) for _, _, i, _ in nxt])
+                     for v in views], build.AREA_SHARES)
     if decisions:
-        build.set_decisions(doc_id, None, decisions, dec_links)
+        build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, du.DECISIONS_HEAD),
+                        [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + decisions, build.DECISION_SHARES)
+    if nxt:
+        build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, du.NEXT_HEAD), [["Date", "Commitment", "Status"]] +
+                        [[du.label(d), c, st] for d, c, _, st in nxt], build.NEXT_SHARES)
 
     build.style_how_to(doc_id, tid)
     doc = du.read_doc(doc_id)
@@ -139,6 +150,26 @@ def rebuild(doc_id, today, time):
     du.batch(doc_id, [{"updateTextStyle": {"range": {"startIndex": grey["startIndex"], "endIndex": grey["endIndex"] - 1, "tabId": tid},
                                            "textStyle": {"foregroundColor": build.GREY, "fontSize": {"magnitude": 9, "unit": "PT"}},
                                            "fields": "foregroundColor,fontSize"}}], doc)
+
+    # Links: each area name and headline phrase, decision and commitment to its tab.
+    doc = du.read_doc(doc_id)
+    new = tables_by_head(m.find_tab(doc, tid))
+    reqs = []
+    for r, v in zip(new["Area"]["table"]["tableRows"][1:], views):
+        ar = v["area"]
+        link_phrase(tid, r["tableCells"][0], ar.name, du.tab_url(doc_id, ar.tab_id), reqs)
+        names = [(i.name, du.tab_url(doc_id, i.tab_id)) for i in inits if i.area_title == ar.title]
+        done = set()
+        for phrase, url in hl_links.get(ar.name, []) + names:
+            if phrase not in done and link_phrase(tid, r["tableCells"][3], phrase, url, reqs):
+                done.add(phrase)
+    for r, links in zip(new[du.DECISIONS_COL]["table"]["tableRows"][1:] if decisions else [], dec_links):
+        for phrase, url in links:
+            link_phrase(tid, r["tableCells"][0], phrase, url, reqs)
+    for r, (_, _, links, _) in zip(new["Date"]["table"]["tableRows"][1:] if nxt else [], nxt):
+        for phrase, url in links:
+            link_phrase(tid, r["tableCells"][1], phrase, url, reqs)
+    du.batch(doc_id, reqs, doc)
 
 
 def main():
@@ -153,16 +184,14 @@ def main():
     doc = du.read_doc(a.doc_id)
     ov, areas, inits = du.model(doc)
     views = [area_view(ar, inits, today) for ar in areas.values()]
-    n_stale = sum(1 for v in views if v["stale"])
 
     print(f"OVERVIEW REVIEW {du.label(today, True)}")
     for v in views:
         print(f"  {v['area'].name}: {v['counts'].replace(chr(10), ' ')} | {v['cell']}")
         if v["reasons"]:
             print(f"     FLAG: {'; '.join(v['reasons'])}. Offer a note to {v['area'].owner} (drafted, not sent).")
-    print(f"  Not updated today: {n_stale} of {len(views)} areas")
     for d, c, i, st in du.next_two_weeks(inits, today):
-        print(f"  Next 2 weeks: {du.label(d)} | {c} | {i.name} | {du.STATUSES[st]}")
+        print(f"  Next 2 weeks: {du.label(d)} | {c} ({i.name}) | {st}")
     if not a.publish:
         print("\nPublish? (re-run with --publish)")
         return
