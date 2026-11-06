@@ -1,3 +1,7 @@
+## Unreleased
+
+- Installer: a kept ("preserved") record for a customized or legacy-dependency conflict is dropped once every file it protects is gone. Before, such records were carried forward forever when the files were removed outside the installer, and kept the release watch on "attention-required". Records that flag a missing installed package are unchanged.
+
 ## v1.19.5 - 2026-11-06
 
 Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab

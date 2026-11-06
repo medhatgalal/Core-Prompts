@@ -346,6 +346,26 @@ def test_saved_unowned_agent_selection_heals_but_owned_removal_still_blocks(inst
     assert owned in json.loads(state_path.read_text())['packages']
 
 
+def test_carried_conflict_records_clear_only_when_their_files_are_gone(installation):
+    repo,target=installation
+    execute(repo,target,mode='install',providers=['kiro'],runtime=False)
+    put(target,'.kiro/skills/still-here/SKILL.md','my edits\n')
+    state_path=target/planner.STATE
+    state=json.loads(state_path.read_text())
+    custom='unrecognized, partial, or customized package'
+    state['preserved']=state.get('preserved',[])+[
+        {'package':'kiro:skill:gone','roots':['.kiro/skills/gone'],'reason':custom},
+        {'package':'kiro:agent:gone','roots':['.kiro/agents/gone.json'],'reason':'preserved agent depends on legacy files: .kiro/agents/gone.json'},
+        {'package':'kiro:skill:still-here','roots':['.kiro/skills/still-here'],'reason':custom},
+        {'package':'kiro:skill:owned-missing','roots':['.kiro/skills/owned-missing'],'reason':'owned package is missing; repair explicitly before updating'},
+        {'package':'kiro:skill:no-reason','roots':['.kiro/skills/no-reason'],'reason':None},
+    ]
+    state_path.write_text(json.dumps(state))
+    carried={p['package'] for p in planner.plan(repo,target,{'mode':'sync','runtime':False})['installation_preserved']}
+    assert 'kiro:skill:gone' not in carried and 'kiro:agent:gone' not in carried
+    assert {'kiro:skill:still-here','kiro:skill:owned-missing','kiro:skill:no-reason'} <= carried
+
+
 def test_release_polling_retains_preserved_installation_attention(tmp_path):
     import importlib.util
     spec=importlib.util.spec_from_file_location('updater_attention',ROOT/'scripts/update-core-prompts.py')

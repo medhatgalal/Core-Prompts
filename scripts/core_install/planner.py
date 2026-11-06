@@ -4,6 +4,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import os
 import re
 import tomllib
 from pathlib import Path
@@ -664,8 +665,23 @@ def plan(repo: Path, target: Path, request: dict):
                     actions.append(dict(op='write',path=rel,before=before,after=after,content=base64.b64encode(content).decode()))
             except (OSError,ValueError) as exc:
                 preserved.append(dict(package=package,roots=[rel],reason=str(exc)))
+    def _conflict_files_gone(record):
+        # A customized or legacy-dependency conflict protects files on disk;
+        # once all of them are gone (e.g. removed by hand) nothing is left to
+        # protect. Missing-owned-package records keep their repair signal.
+        reason, roots = record.get('reason'), record.get('roots')
+        if not isinstance(reason, str) or not (reason == 'unrecognized, partial, or customized package'
+                or reason.startswith('preserved agent depends on legacy files:')):
+            return False
+        if not isinstance(roots, list) or not roots:
+            return False
+        try:
+            return not any(os.path.lexists(safe(target, r)) for r in roots)
+        except (OSError, ValueError):
+            return False
     installation_preserved = [p for p in previous.get('preserved',[])
-                              if p.get('package') not in assessed_keys | dropped_unowned] + preserved
+                              if p.get('package') not in assessed_keys | dropped_unowned
+                              and not _conflict_files_gone(p)] + preserved
     prospective=dict(schema=3 if policy or previous['schema'] == 3 else 2,owner='Core-Prompts',selection=sorted(selection),packages=next_packages,
                      runtime=runtime,registrations=registrations,source_version=(repo/'VERSION').read_text().strip(),
                      catalog_sha256=identity(repo/catalog.CATALOG_PATH)['sha256'],preserved=installation_preserved)
