@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Add the `engos-orchestration-crew` skill (`help`, `design`, `launch`, `status`, `end`): design, launch and oversee a multi-agent crew (lead, workers, fresh verifiers, a safety watch and a drift auditor) that runs a long job against acceptance criteria fixed up front, with change control. Imported through UAC from Scott Parrish's Claude Code `crew-orchestrate` skill with the method, roles, rules, gates and end steps unchanged; the Claude Code Desktop platform facts move verbatim into a Harness adapters section beside short adapters for Kiro, Codex, Gemini CLI and a generic fallback. The non-Claude adapters come from each tool's help and documentation and are marked where unconfirmed; none has run a crew. Skill surface only; no agent. Behavioral status remains pending.
 - Add the `engos-audit-change-impact` skill: rolls up an org's merged and open GitLab and GitHub changes for a configurable window (default one week) into a fact-checked, business-impact Google Doc. The roster comes from the Appian Home org chart; each bullet separates likely impact (inference) from what changed (fact) and links its sources. Subcommands: `help`, `run`, `roster` and `verify`. Bundled scripts compute every count and check every link (state, window, roster author).
 
 ## v1.19.7 - 2026-11-06

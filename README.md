@@ -116,7 +116,7 @@ provide the recovery path.
 
 ## Skills, workers and larger delivery
 
-The current generated surfaces contain `39` skills and no shipped named-agent configurations.
+The current generated surfaces contain `40` skills and no shipped named-agent configurations.
 Use the same skill in your main session or supply it and required resources to a
 real independent worker when requested or required by its contract. A second
 answer from the same author does not establish independent review. [Examples](docs/EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).
@@ -125,6 +125,11 @@ Invoke `engos-orchestration-batman` explicitly when you want its controller-led
 delivery protocol. Keep ordinary planning with `engos-design-plan-implementation`;
 use `engos-design-plan-to-goal` for a separately wanted durable goal/spec/verifier
 packet. Compiling a packet does not start a goal. [Longer work](docs/SKILL-FLOWS.md#long-horizon-and-repeatable-work).
+
+Use `engos-orchestration-crew` (`help`, `design`, `launch`, `status`, `end`) to design,
+launch and oversee a long multi-agent job (an A/B evaluation, QA, an audit or a migration)
+against acceptance criteria fixed up front, with fresh verifiers, a drift auditor and change
+control. Its harness adapters cover Claude Code Desktop, Kiro, Codex, Gemini CLI and a generic fallback.
 
 For resumable investigations, use `engos-memory-context-continuity` and its bundled
 state helper to resolve one context, todo and insights set under

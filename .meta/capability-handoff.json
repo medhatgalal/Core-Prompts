@@ -3069,6 +3069,102 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-orchestration-crew",
+      "display_name": "Engos Orchestration Crew",
+      "capability_type": "skill",
+      "summary": "Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "orchestration",
+        "crew"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-orchestration-batman"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-quality-code-review",
       "display_name": "Commit Review \u2014 Git Commit Quality Gate",
       "capability_type": "skill",
