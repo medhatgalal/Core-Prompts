@@ -1,3 +1,10 @@
+## v1.20.0 - 2026-11-07
+
+Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: breaking. Commands are now `<noun> <verb>` (`doc`, `area`, `initiative`, `person`, `reader`, `source`, `section`, `day`, `discover`) with the same verbs everywhere (`list`, `show`, `add`, `set-*`, `remove`). New: `list` and `show` for areas, initiatives, people, readers and sources; the initiative lifecycle (`pause`, `resume`, `done`, `stop`, `reopen`, `archive`) with a refused-move check; `initiative rename`, `move`, `set-owner`, `set-updater`; `area add`, `rename`, `set-owner`, `merge`, `remove`; `reader add`, `remove`, `set-channel`; `person set-email`; local `source add` and `remove`. Writes check the rules, print a PLAN, and write nothing under `--dry-run`; reads take `--json`. The old command names (`setup`, `onboard`, `add`, `owner`, `done`, `stop`, `updater`, `readers`, `sources`, `area`, `settings`, `dedupe`, `today`, `lint`, `headline`, `row`) are removed with no aliases: use `doc create`, `doc join`, `initiative add`, `initiative set-owner`, `initiative done`, `initiative stop`, `initiative set-updater`, `reader`, `source`, `area`, `person`, `discover check`, `section show`, `section lint` and `area set-headline`. `area remove` and `area merge` now list the moved area on the Archive tab.
+
 ## v1.19.12 - 2026-11-07
 
 Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
