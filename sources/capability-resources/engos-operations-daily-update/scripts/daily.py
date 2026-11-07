@@ -68,6 +68,9 @@ def checks(lines, links, known_names=(), prev=None):
         probs.append("warn: no next milestone; it will be listed under Missing a plan")
     elif not du.milestone_date(ms_text) and ", done " not in ms_text:
         probs.append("warn: next milestone has no date; it will be listed under Missing a plan")
+    if ms_text and du.milestone_date(ms_text) and len(du.commitment(ms_text)) > du.LONG_MILESTONE:
+        probs.append(f"warn: next milestone is long ({len(du.commitment(ms_text))} characters); say the outcome in a few "
+                     f"words, so it reads well in the overview: '{du.commitment(ms_text)[:70]}'")
     if prev is not None and ms_text and prev.milestone:
         d_now, d_prev = du.milestone_date(ms_text), du.milestone_date(prev.milestone)
         later = [d for _, d, ok in du.dates_in(prog) if ok and d and d_now and d > d_now]

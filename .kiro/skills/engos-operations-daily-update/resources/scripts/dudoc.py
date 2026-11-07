@@ -391,23 +391,18 @@ def status_counts(statuses):
     return "\n".join(f"{c} {s.count(c)}" for c in RANK if s.count(c))
 
 
+LONG_MILESTONE = 60  # characters, without the date: longer gets a WARN asking for a shorter wording
+
+
 def commitment(ms):
-    """A milestone without its date: 'Pilot live, Fri Nov 13' -> 'Pilot live'. A long one is cut to a short
-    label for the overview: a spelled-out name keeps only its short form, then the label stops before its
-    first qualifying phrase ("for ...", "on ...", "so ...")."""
+    """A milestone without its date, exactly as written: 'Pilot live, Fri Nov 13' -> 'Pilot live'.
+    Never shortened here: a long milestone is reworded in its section (the pre-publish check warns)."""
     core = re.split(r", done ", ms)[0]
     found = list(DATE_RE.finditer(core))
     if found:
         f = found[-1]
         core = core[:f.start()].rstrip(" ,;:") + core[f.end():]
-    core = re.sub(r"\s+(by|on|due)$", "", core.strip(" ,;:."))
-    if len(core) > 50:
-        core = re.sub(r"\b[A-Z][\w-]*(?: [\w-]+){1,6} \(([A-Z][A-Za-z0-9 ./-]{1,12})\)", r"\1", core)
-    if len(core) > 50:
-        cut = [m.start() for m in re.finditer(r" (?:for|on|in|so|with|so that|because) |, ", core) if m.start() >= 15]
-        if cut:
-            core = core[:cut[0]]
-    return core
+    return re.sub(r"\s+(by|on|due)$", "", core.strip(" ,;:."))
 
 
 def next_two_weeks(inits, today):
