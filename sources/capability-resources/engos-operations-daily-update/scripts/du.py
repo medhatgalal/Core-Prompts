@@ -299,6 +299,13 @@ def main():
         print(__doc__)
         return
     cmd, a = sys.argv[1], sys.argv[2:]
+    if cmd != "sync":
+        # Back up and restore before any command, at most every 10 minutes. Output goes to stderr so
+        # commands that print JSON stay parseable; a Drive problem never stops the command.
+        import backup
+        r = backup.auto()
+        if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):
+            print(backup.report(r), file=sys.stderr)
     if a and a[0] in du.PROTECTED and cmd not in ("check", "settings", "today", "dedupe"):
         raise SystemExit(f"REFUSED: {du.PROTECTED[a[0]]} is protected while the skill is in testing. Nothing written.")
     if cmd == "sweep":

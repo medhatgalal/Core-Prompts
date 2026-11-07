@@ -331,8 +331,8 @@ State lives in `~/.daily-update/` in the person's home folder, so any working fo
 
 **Drive backup.** The local files stay primary, and a private copy lives in the person's own My Drive under
 `.engos/automation-daily-updates/` (`config.json`, `protected.json`, `ledger/`), with `.engos/README.md`
-asking people not to delete, move or share the folder. Run `du.py sync` at the start of every command and
-again after every save of `config.json` or a ledger file. It creates the folders and README when missing,
+asking people not to delete, move or share the folder. Every `du.py` command syncs first on its own, at most
+once every 10 minutes; also run `du.py sync` after every save of `config.json` or a ledger file. Sync creates the folders and README when missing,
 backs up what changed, and restores any file that is missing or older on this laptop, so a new or rebuilt
 laptop picks up its sources and ledger on the first run. Never share the folder: its files point at the
 person's own email and chats. If Drive cannot be reached, `sync` says the backup was skipped; say so in one

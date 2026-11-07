@@ -73,6 +73,17 @@ def main():
         check("other machine picks up the newer Drive copy", r["restored"] == ["config.json"] and
               md5(os.path.join(b, "config.json")) == md5(os.path.join(a, "config.json")), json.dumps(r))
 
+        backup.HOME = a
+        stamp = os.path.join(a, ".last-sync")
+        if os.path.exists(stamp):
+            os.remove(stamp)
+        first = backup.auto()
+        second = backup.auto()
+        later = backup.auto(now=time.time() + backup.THROTTLE + 5)
+        check("auto-sync runs when due", first is not None and first["status"] == "ok", json.dumps(first))
+        check("auto-sync skips within 10 minutes", second is None, json.dumps(second))
+        check("auto-sync runs again after 10 minutes", later is not None and later["status"] == "ok", json.dumps(later))
+
         before = md5(os.path.join(a, "config.json"))
         backup.HOME = a
         os.environ["GWS_BIN"] = "/usr/bin/false"

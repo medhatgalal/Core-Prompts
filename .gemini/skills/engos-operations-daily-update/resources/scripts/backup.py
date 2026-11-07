@@ -21,6 +21,7 @@ import hashlib
 import json
 import os
 import subprocess
+import time
 
 HOME = os.environ.get("DU_HOME") or os.path.expanduser("~/.daily-update")
 ROOT = os.environ.get("DU_BACKUP_ROOT") or ".engos"
@@ -190,6 +191,29 @@ def sync():
     except Offline as e:
         result.update(status="skipped", error=str(e))
     return result
+
+
+THROTTLE = 600  # seconds between automatic syncs
+
+
+def auto(now=None):
+    """Run sync() at most once every THROTTLE seconds. Returns the result, or None when it was not due.
+    Every du.py command calls this first, so a new laptop restores its files without the agent remembering."""
+    if os.environ.get("DU_TEST") or os.environ.get("DU_NO_SYNC"):
+        return None
+    stamp = os.path.join(HOME, ".last-sync")
+    now = now or time.time()
+    try:
+        if now - os.path.getmtime(stamp) < THROTTLE:
+            return None
+    except OSError:
+        pass
+    r = sync()
+    if r["status"] == "ok":
+        os.makedirs(HOME, exist_ok=True)
+        open(stamp, "w").close()
+        os.utime(stamp, (now, now))
+    return r
 
 
 def report(r):
