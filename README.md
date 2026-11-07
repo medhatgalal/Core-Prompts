@@ -18,7 +18,8 @@ installer bugs that left renamed skills unmigrated or blocked later updates; v1.
 clears stale installer records and adds scope checks to `engos-quality-code-review`; v1.19.7
 moves the `eng-report` config out of the retired skill folder; v1.19.8 adds
 `engos-audit-change-impact` and `engos-orchestration-crew`; v1.19.9 backs up
-`engos-operations-daily-update` files to each person's Google Drive. Check the package available in
+`engos-operations-daily-update` files to each person's Google Drive; v1.19.10 gives it calmer
+status colours, a Missing a plan table and a pre-publish check. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 
