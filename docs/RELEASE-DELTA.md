@@ -3,15 +3,14 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.19.7@0b52d0bb69a03887fa53299a3a026a815ea05bc2 .meta/manifest.json`
-- New capabilities: `2`
+- Comparison basis: `git:v1.19.8@ff5223f99daf89a9f8590dd5a041dd2a6f5f5433 .meta/manifest.json`
+- New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capability records: `0`
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- `engos-audit-change-impact` — Change Impact Rollup
-- `engos-orchestration-crew` — Engos Orchestration Crew
+- none
 
 ## Removed Capabilities
 - none

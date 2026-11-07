@@ -19,6 +19,8 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py send DOC [--confirmed]               draft the reader summary; --confirmed sends it
   du.py settings DOC [--owner NAME] [--readers JSON] [--people JSON]   show or set settings stored on the doc
   du.py check DOC YYYY-MM-DD                 rule and reader checks on the doc
+  du.py sync                                 back up ~/.daily-update to My Drive/.engos/automation-daily-updates,
+                                             restoring any file that is missing or older locally
 
 SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...", "confidence": "Slightly confident",
   "progress": "... (Jira COM-994).", "blocked": "None.", "green_when": "...", "extra": ["Updated by X for Y."],
@@ -73,7 +75,7 @@ def cmd_setup(a):
                     i.get("links") or ([i["link"]] if i.get("link") else []), None, i.get("extra", []))
                    for i in ar["initiatives"]])
                  for ar in s["areas"]]
-    title = s.get("title") or f"{s['org']} daily update"
+    title = s.get("title") or f"{s['org']} Daily Updates"
     did = build.create(title, s["org"], s["owner"], s["reader"], structure, dt.date.fromisoformat(s["date"]))
     du.settings_set(did, owner=s["owner"], readers=s.get("readers", []), people=s.get("people", {}))
     from zoneinfo import ZoneInfo
@@ -279,6 +281,11 @@ def cmd_settings(a):
     print(json.dumps(du.settings_set(doc_id, **kw) if kw else du.settings_get(doc_id), indent=1))
 
 
+def cmd_sync(a):
+    import backup
+    print(backup.report(backup.sync()))
+
+
 def cmd_check(a):
     doc_id, day = a[0], a[1]
     started = (dt.datetime.utcnow() - dt.timedelta(minutes=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -292,6 +299,13 @@ def main():
         print(__doc__)
         return
     cmd, a = sys.argv[1], sys.argv[2:]
+    if cmd != "sync":
+        # Back up and restore before any command, at most every 10 minutes. Output goes to stderr so
+        # commands that print JSON stay parseable; a Drive problem never stops the command.
+        import backup
+        r = backup.auto()
+        if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):
+            print(backup.report(r), file=sys.stderr)
     if a and a[0] in du.PROTECTED and cmd not in ("check", "settings", "today", "dedupe"):
         raise SystemExit(f"REFUSED: {du.PROTECTED[a[0]]} is protected while the skill is in testing. Nothing written.")
     if cmd == "sweep":
