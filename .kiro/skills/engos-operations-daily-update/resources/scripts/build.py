@@ -11,6 +11,8 @@ GUIDE_LINE = "Template: see the Update guide tab."
 AREA_SHARES = [18, 9, 11, 50, 12]
 DECISION_SHARES = [30, 18, 24, 16, 12]
 NEXT_SHARES = [20, 66, 14]
+MISSING_SHARES = [34, 14, 28, 24]
+INIT_SHARES = [30, 15, 17, 38]
 # Overview "How to update": one bullet per role. The text before ":" is bold; `backticked` words are monospace.
 HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
@@ -29,6 +31,40 @@ def widths(tw, shares):
     w = [round(tw * s / 100) for s in shares]
     w[shares.index(max(shares))] += tw - sum(w)
     return w
+
+
+def fit_tables(doc_id):
+    """Skill rule: every table's columns add up to the tab's text width in the skill's split. Fixes any that drift."""
+    import dudoc
+    kinds = {("Area", "Owner", "Status", "Headline", "Updated"): AREA_SHARES, ("Date", "Commitment", "Status"): NEXT_SHARES,
+             ("Initiative", "Owner", "Status", "Next milestone and date"): INIT_SHARES,
+             ("Initiative", "Owner", "What's missing", "Since"): MISSING_SHARES,
+             (dudoc.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): DECISION_SHARES}
+    doc = du.read_doc(doc_id)
+    fixed = []
+    for tab, _ in du.all_tabs(doc):
+        tid = tab["tabProperties"]["tabId"]
+        reqs = []
+        for e in tab["documentTab"]["body"]["content"]:
+            if "table" not in e:
+                continue
+            kind = tuple(du.cell_text(c) for c in e["table"]["tableRows"][0]["tableCells"])
+            shares = kinds.get(kind)
+            if not shares:
+                continue
+            want = widths(text_width(tab), shares)
+            have = [c.get("width", {}).get("magnitude", 0) for c in e["table"].get("tableStyle", {}).get("tableColumnProperties", [])]
+            if len(have) == len(want) and all(abs(a - b) <= 1 for a, b in zip(have, want)):
+                continue
+            fixed.append(f"{tab['tabProperties']['title']}: {kind[0]} table {have} -> {want}")
+            for i, w in enumerate(want):
+                reqs.append({"updateTableColumnProperties": {"tableStartLocation": {"index": e["startIndex"], "tabId": tid},
+                             "columnIndices": [i], "tableColumnProperties": {"widthType": "FIXED_WIDTH",
+                             "width": {"magnitude": w, "unit": "PT"}}, "fields": "width,widthType"}})
+        if reqs:
+            du.batch(doc_id, reqs, doc)
+            doc = du.read_doc(doc_id)
+    return fixed
 
 
 def add_table(doc_id, tab_id, at, rows, shares):

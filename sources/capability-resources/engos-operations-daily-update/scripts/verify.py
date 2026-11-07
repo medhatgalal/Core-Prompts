@@ -29,7 +29,8 @@ results = []
 # Column shares from SKILL.md "Docs API notes", keyed by the header row.
 SHARES = {("Area", "Owner", "Status", "Headline", "Updated"): build.AREA_SHARES,
           ("Date", "Commitment", "Status"): build.NEXT_SHARES,
-          ("Initiative", "Owner", "Status", "Next milestone and date"): [30, 15, 17, 38],
+          ("Initiative", "Owner", "Status", "Next milestone and date"): build.INIT_SHARES,
+          ("Initiative", "Owner", "What's missing", "Since"): build.MISSING_SHARES,
           (du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): build.DECISION_SHARES}
 
 

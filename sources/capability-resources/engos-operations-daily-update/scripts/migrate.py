@@ -179,6 +179,8 @@ def run(doc_id, publish=False, overrides=None):
     print("Update guide: rewrite to the new template" + (" (done)" if publish and rewrite_guide(doc_id) else ""))
     if publish:
         du.repair_headings(doc_id)
+        for f in build.fit_tables(doc_id):
+            print("Table widths fixed: " + f)
         left = [(i.title, du.label(s.date)) for i in all_initiatives(du.read_doc(doc_id)) for s in i.sections
                 if s.line("Confidence:")]
         print("RE-READ: Confidence lines left:", left or "none")

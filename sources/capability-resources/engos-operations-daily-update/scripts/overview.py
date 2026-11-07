@@ -24,7 +24,6 @@ KEY = ["🔴 Red: a committed date passed and it is not done, or it is blocked a
        "A missing date is not a colour: Missing a plan lists every open initiative without a dated next milestone."]
 MISSING_HEAD = "Missing a plan"
 MISSING_NONE = "Every open initiative has a dated next milestone."
-MISSING_SHARES = [34, 14, 28, 24]
 GREY_LINE = "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
 
 
@@ -129,8 +128,12 @@ def rebuild(doc_id, today, time):
     du.batch(doc_id, reqs, doc)
 
     # Write the sections, then the tables into their empty paragraphs.
-    nxt = [(d, *kept.get((du.label(d), i.tab_id), (c, [(c, du.tab_url(doc_id, i.tab_id))])), st)
-           for d, c, i, st in du.next_two_weeks(inits, today)]
+    def row(d, c, i):
+        k = kept.get((du.label(d), i.tab_id))
+        if k and len(k[0]) <= 50:  # kept wording, unless it is an old over-long label
+            return k
+        return c, [(c, du.tab_url(doc_id, i.tab_id))]
+    nxt = [(d, *row(d, c, i), st) for d, c, i, st in du.next_two_weeks(inits, today)]
     missing = du.missing_plan(inits, today)
     lines = (["Area health", "", MISSING_HEAD, "" if missing else MISSING_NONE] + ([du.DECISIONS_HEAD, ""] if decisions else []) +
              [du.NEXT_HEAD, "" if nxt else "No dated commitments in the next 2 weeks.", "How to update"] +
@@ -151,7 +154,7 @@ def rebuild(doc_id, today, time):
                      for v in views], build.AREA_SHARES)
     if missing:
         build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, MISSING_HEAD), [missing_header()] +
-                        [missing_cells(i, what, since, today) for i, what, since in missing], MISSING_SHARES)
+                        [missing_cells(i, what, since, today) for i, what, since in missing], build.MISSING_SHARES)
     if decisions:
         build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, du.DECISIONS_HEAD),
                         [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + decisions, build.DECISION_SHARES)
@@ -160,6 +163,7 @@ def rebuild(doc_id, today, time):
                         [[du.label(d), c, st] for d, c, _, st in nxt], build.NEXT_SHARES)
 
     build.style_how_to(doc_id, tid)
+    build.fit_tables(doc_id)
     doc = du.read_doc(doc_id)
     gid = next((t["tabProperties"]["tabId"] for t, p in du.all_tabs(doc) if p is None and t["tabProperties"]["title"].startswith(du.GUIDE)), None)
     if gid:
