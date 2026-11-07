@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.12 - 2026-11-07
+
+Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - `engos-operations-daily-update`: a stopped initiative's milestone ("None, stopped Sat Nov 7") now splits into Next milestone "None" and Date "stopped Sat Nov 7" in the area table, the same way a done milestone does. Before, "stopped" landed in the Next milestone column. Issue 6. Tests: two new `rules_test.py` checks (both fail on v1.19.11).
 
