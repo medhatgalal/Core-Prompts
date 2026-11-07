@@ -20,7 +20,7 @@ moves the `eng-report` config out of the retired skill folder; v1.19.8 adds
 `engos-audit-change-impact` and `engos-orchestration-crew`; v1.19.9 backs up
 `engos-operations-daily-update` files to each person's Google Drive; v1.19.10 gives it calmer
 status colours, a Missing a plan table and a pre-publish check; v1.19.11 stops it shortening
-milestone wording. Check the package available in
+milestone wording; v1.19.12 fixes how a stopped initiative shows in its area table. Check the package available in
 your session; pulling source, publishing a release and updating a live installation
 are separate steps. Missing intake support uses the documented manual fallback.
 
