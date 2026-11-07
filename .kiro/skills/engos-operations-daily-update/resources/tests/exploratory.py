@@ -197,11 +197,11 @@ def day1(doc):
                 sec("🟢", "Org-wide rollout decision, Fri Nov 13", "Kui sent the Enterprise Automation names (chat).",
                     ["Confidence: Not confident"]),
                 [(2, "chat", L("chat/ccp/27"))], FRI)
-    print("   Scott: keep 🟢 and Not confident (the names are in, but legal review may slip). Publish.")
+    print("   Scott: the names are in, but legal review may slip the date, so 🟡 with no Confidence line. Publish.")
     try_publish(doc, "Scott", "Claude Code Pilot (Scott)",
-                sec("🟢", "Org-wide rollout decision, Fri Nov 13", "Kui sent the Enterprise Automation names (chat).",
-                    ["Confidence: Not confident"]),
-                [(2, "chat", L("chat/ccp/27"))], FRI, confirm_mismatch=True)
+                sec("🟡", "Org-wide rollout decision, Fri Nov 13", "Kui sent the Enterprise Automation names (chat).",
+                    ["Green when: legal review signs off by Fri Nov 13."]),
+                [(2, "chat", L("chat/ccp/27"))], FRI)
     build.set_headline(doc, "Automation-wide (Scott)",
                        "🟡 At risk · Chennai onboarding is one VPN token short of the Wed Nov 11 date; one open role is filled. (Fri Nov 6)")
     step("Kui", '"do my daily update" (area tab only: AI Platform headline from Akhilesh\'s tabs)')

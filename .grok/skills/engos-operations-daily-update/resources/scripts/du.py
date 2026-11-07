@@ -2,7 +2,7 @@
 """daily-update doc tool. The agent decides the words; this writes them in the skill's exact layout.
 
 Every write re-reads the doc, sends the revision it read (a doc changed by someone else is refused, then
-retried up to 3 times), restores date headings, makes Confidence a chip, and prints the re-read text.
+retried up to 3 times), restores date headings, and prints the re-read text. `section` checks the draft first.
 Nothing here messages anyone except `send --confirmed`, which the agent runs only after the person said "send".
 
   du.py setup STRUCTURE.json                 create the doc; prints its id
@@ -10,7 +10,7 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py today DOC TAB_TITLE YYYY-MM-DD       print that day's section as SECTION.json (read only), to re-summarize
   du.py add DOC AREA_TITLE INIT.json [--new]  add an initiative tab, its first section and its area-table row
   du.py dedupe DOC CANDIDATES.json [CONFIG]   discover step 2 (read only): new, add as a source, covered, or archived
-  du.py headline DOC AREA_TITLE "<status> · <sentences> (<Weekday Mon D>)"
+  du.py headline DOC AREA_TITLE "<sentences> (<Weekday Mon D>)"   no colour; a leading one is removed
   du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
   du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
   du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]   rebuild the overview below its "As of" line
@@ -18,13 +18,17 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py archive DOC TAB_TITLE "done Mon Nov 9"
   du.py send DOC [--confirmed]               draft the reader summary; --confirmed sends it
   du.py settings DOC [--owner NAME] [--readers JSON] [--people JSON]   show or set settings stored on the doc
+  du.py lint DOC TAB_TITLE SECTION.json      the pre-publish check (read only): WARN lines go in the review,
+                                             BLOCK lines must be fixed; section runs the same check and refuses on BLOCK
   du.py check DOC YYYY-MM-DD                 rule and reader checks on the doc
   du.py sync                                 back up ~/.daily-update to My Drive/.engos/automation-daily-updates,
                                              restoring any file that is missing or older locally
 
-SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...", "confidence": "Slightly confident",
-  "progress": "... (Jira COM-994).", "blocked": "None.", "green_when": "...", "extra": ["Updated by X for Y."],
+SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...",
+  "progress": "... (Jira COM-994).", "blocked": "None.", "green_when": "...", "extra": [],
   "links": [["Jira COM-994", "https://..."]], "author": "Kyle", "cover_for": null}
+  Links go on the Progress or Blocked on line that cites them. When "author" is not the tab's updater, set
+  "cover_for" to the updater; the "Updated by <author> for <updater>." line is added for you.
   A line drawn only from email, chat or meeting notes ends "(email)", "(chat)" or "(meeting notes)" with no link.
 STRUCTURE.json: {"org": "Automation", "owner": "Scott", "reader": "Medhat", "date": "YYYY-MM-DD",
   "areas": [{"name": "Composer", "owner": "Kyle", "initiatives": [
@@ -85,20 +89,49 @@ def cmd_setup(a):
     print(did)
 
 
+def _review(doc_id, title, spec):
+    """Build the section and run the skill's checks against the tab's previous section (read only)."""
+    import daily
+    lines, links = section_lines(spec)
+    tid = tab_of(doc_id, title)
+    init = next(i for i in du.model(du.read_doc(doc_id))[2] if i.tab_id == tid)
+    day = dt.date.fromisoformat(spec["date"])
+    prev = next((x for x in init.sections if x.date < day), None)
+    author, cover = spec.get("author"), spec.get("cover_for")
+    if author and author != init.updater:
+        if cover != init.updater:
+            raise SystemExit(f"REFUSED: {author} is not the updater of {title} ({init.updater} is). "
+                             f"Set \"cover_for\": \"{init.updater}\" only if they asked to cover it. Nothing written.")
+        line = f"Updated by {author} for {init.updater}."
+        if line not in lines:
+            lines.append(line)
+    body = lines[1:]
+    _, areas, inits = du.model(du.read_doc(doc_id))
+    people = {p for i in inits for p in (i.owner, i.updater) if p} | {a.owner for a in areas.values() if a.owner}
+    probs = daily.checks(body, [(k - 1, w, u) for k, w, u in links], known_names=sorted(people), prev=prev)
+    return tid, lines, links, probs
+
+
+def cmd_lint(a):
+    """The pre-publish check, read only: prints warnings (shown in the review) and problems that block."""
+    doc_id, title, spec = a[0], a[1], load(a[2])
+    _, lines, _, probs = _review(doc_id, title, spec)
+    print("\n".join("  " + x for x in lines))
+    for p in probs:
+        print(("WARN  " + p[len("warn: "):]) if p.startswith("warn:") else ("BLOCK " + p))
+    print("OK: nothing blocks publishing." if not [p for p in probs if not p.startswith("warn:")] else
+          "NOT READY: fix the BLOCK lines before publishing.")
+
+
 def cmd_section(a):
     doc_id, title, spec = a[0], a[1], load(a[2])
     day = dt.date.fromisoformat(spec["date"])
-    lines = [du.label(day, True), du.STATUSES[spec["status"]], f"Next milestone: {spec['milestone']}",
-             f"Confidence: {spec.get('confidence', du.DEFAULT_CONF[spec['status']])}"]
-    if spec.get("progress"):
-        lines.append(f"Progress: {spec['progress']}")
-    lines.append(f"Blocked on: {spec.get('blocked') or 'None.'}")
-    if spec["status"] != "🟢" and spec.get("green_when"):
-        lines.append(f"Green when: {spec['green_when']}")
-    lines += spec.get("extra", [])
-    prog_k = next((k for k, x in enumerate(lines) if x.startswith("Progress:")), None)
-    links = [(prog_k, w, u) for w, u in spec.get("links", [])] if prog_k is not None else []
-    tid = tab_of(doc_id, title)
+    tid, lines, links, probs = _review(doc_id, title, spec)
+    hard = [p for p in probs if not p.startswith("warn:")]
+    if hard:
+        raise SystemExit("REFUSED: " + "; ".join(hard) + ". Nothing written.")
+    for p in probs:
+        print("WARN " + p[len("warn: "):])
     for attempt in range(3):
         try:
             m.write_section(doc_id, tid, lines, links)
@@ -124,34 +157,41 @@ def cmd_today(a):
     if s is None:
         print(json.dumps(None))
         return
-    keys = {"Next milestone:": "milestone", "Confidence:": "confidence", "Progress:": "progress",
-            "Blocked on:": "blocked", "Green when:": "green_when"}
+    keys = {"Next milestone:": "milestone", "Progress:": "progress", "Blocked on:": "blocked", "Green when:": "green_when"}
     out = {"date": day.isoformat(), "status": s.status, "extra": [], "links": []}
     for t, el in s.lines:
         k = next((p for p in keys if t.startswith(p)), None)
         if k:
             out[keys[k]] = t[len(k):].strip()
-            if k == "Progress:":
-                out["links"] = [[r["textRun"]["content"], r["textRun"]["textStyle"]["link"]["url"]]
-                                for r in el["paragraph"]["elements"] if r.get("textRun", {}).get("textStyle", {}).get("link")]
-        elif t[:1] not in du.STATUSES:
+            if k in ("Progress:", "Blocked on:"):
+                out["links"] += [[r["textRun"]["content"], r["textRun"]["textStyle"]["link"]["url"]]
+                                 for r in el["paragraph"]["elements"] if r.get("textRun", {}).get("textStyle", {}).get("link")]
+        elif t[:1] not in du.STATUSES and not t.startswith("Confidence:"):
             out["extra"].append(t)
     print(json.dumps(out, ensure_ascii=False, indent=1))
 
 
 def section_lines(spec):
-    """SECTION.json -> (lines starting with the date heading, links as (line_no, word, url))."""
+    """SECTION.json -> (lines starting with the date heading, links as (line_no, word, url)).
+    Each link goes on the Progress or Blocked on line that cites its word, "(Jira COM-994)", else that names it."""
     day = dt.date.fromisoformat(spec["date"])
-    lines = [du.label(day, True), du.STATUSES[spec["status"]], f"Next milestone: {spec['milestone']}",
-             f"Confidence: {spec.get('confidence', du.DEFAULT_CONF[spec['status']])}"]
+    lines = [du.label(day, True), du.STATUSES[spec["status"]], f"Next milestone: {spec['milestone']}"]
     if spec.get("progress"):
         lines.append(f"Progress: {spec['progress']}")
     lines.append(f"Blocked on: {spec.get('blocked') or 'None.'}")
     if spec["status"] != "🟢" and spec.get("green_when"):
         lines.append(f"Green when: {spec['green_when']}")
     lines += spec.get("extra", [])
-    prog_k = next((k for k, x in enumerate(lines) if x.startswith("Progress:")), None)
-    return lines, ([(prog_k, w, u) for w, u in spec.get("links", [])] if prog_k is not None else [])
+    cand = [k for k, x in enumerate(lines) if x.startswith(("Progress:", "Blocked on:"))]
+    links, used = [], set()
+    for w, u in spec.get("links", []):
+        k = next((k for k in cand if f"({w})" in lines[k] and (k, w) not in used), None)
+        if k is None:
+            k = next((k for k in cand if w in lines[k] and (k, w) not in used), None)
+        if k is not None:
+            used.add((k, w))
+            links.append((k, w, u))
+    return lines, links
 
 
 def cmd_add(a):

@@ -14495,11 +14495,14 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "30936768",
+            "selected_commit": "bfdc20e1",
             "richness_score": 8,
-            "line_count": 690,
+            "line_count": 700,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
             "equivalent_commits": [
+              "51f4e3bf",
+              "b3825ec6",
+              "30936768",
               "0bd1422f",
               "8d1bb45d",
               "fd0c9077",
@@ -14555,7 +14558,7 @@
                 "candidate_operational_score": 4,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "30936768",
+              "baseline_commit": "bfdc20e1",
               "baseline_slug": "engos-operations-daily-update"
             },
             {
@@ -14606,7 +14609,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb",
+          "effective_sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -14678,7 +14681,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 17,
                   "end_line": 17,
-                  "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                  "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
                 }
               }
             ]
@@ -14697,7 +14700,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 34,
                   "end_line": 34,
-                  "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                  "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
                 }
               }
             ]
@@ -14714,8 +14717,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-operations-daily-update.md",
-            "ssot_sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb",
-            "effective_sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb",
+            "ssot_sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620",
+            "effective_sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -14728,7 +14731,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 14,
                     "end_line": 14,
-                    "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                    "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
                   }
                 }
               ],
@@ -14740,7 +14743,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 37,
                     "end_line": 37,
-                    "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                    "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
                   }
                 }
               ],
@@ -14752,7 +14755,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 25,
                     "end_line": 25,
-                    "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                    "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
                   }
                 }
               ],
@@ -14764,7 +14767,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 28,
                     "end_line": 28,
-                    "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                    "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
                   }
                 }
               ]
@@ -14779,7 +14782,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "f40e89926d582ee0d666fdee2faa1fe5c3f2ca7291a1cb5b17471e5044f20c48"
+            "mapping_sha256": "d6e6f16190676f2a033adf68aba97df6bdbd16fb6ec85869cae5bc9e424227ba"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -22918,6 +22921,7 @@
       ".grok/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/guide.py",
+      ".grok/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/modes.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/overview.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/send.py",
@@ -22928,6 +22932,7 @@
       ".grok/skills/engos-operations-daily-update/resources/tests/backup_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".grok/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".grok/skills/engos-operations-ic-assistant/resources/capability.json",
       ".grok/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -23193,6 +23198,7 @@
       ".codex/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/guide.py",
+      ".codex/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/modes.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/overview.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/send.py",
@@ -23203,6 +23209,7 @@
       ".codex/skills/engos-operations-daily-update/resources/tests/backup_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".codex/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".codex/skills/engos-operations-ic-assistant/resources/capability.json",
       ".codex/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -23469,6 +23476,7 @@
       ".gemini/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/guide.py",
+      ".gemini/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/modes.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/overview.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/send.py",
@@ -23479,6 +23487,7 @@
       ".gemini/skills/engos-operations-daily-update/resources/tests/backup_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".gemini/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".gemini/skills/engos-operations-ic-assistant/resources/capability.json",
       ".gemini/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -23745,6 +23754,7 @@
       ".claude/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/guide.py",
+      ".claude/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/modes.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/overview.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/send.py",
@@ -23755,6 +23765,7 @@
       ".claude/skills/engos-operations-daily-update/resources/tests/backup_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".claude/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".claude/skills/engos-operations-ic-assistant/resources/capability.json",
       ".claude/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",
@@ -24021,6 +24032,7 @@
       ".kiro/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/guide.py",
+      ".kiro/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/modes.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/overview.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/send.py",
@@ -24031,6 +24043,7 @@
       ".kiro/skills/engos-operations-daily-update/resources/tests/backup_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".kiro/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".kiro/skills/engos-operations-ic-assistant/resources/capability.json",
       ".kiro/skills/engos-operations-ic-assistant/resources/appian-incident-runbook.md",

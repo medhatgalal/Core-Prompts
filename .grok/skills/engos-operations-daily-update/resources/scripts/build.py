@@ -11,6 +11,9 @@ GUIDE_LINE = "Template: see the Update guide tab."
 AREA_SHARES = [18, 9, 11, 50, 12]
 DECISION_SHARES = [30, 18, 24, 16, 12]
 NEXT_SHARES = [20, 66, 14]
+MISSING_SHARES = [34, 14, 28, 24]
+INIT_SHARES = [26, 12, 15, 31, 16]
+INIT_SHARES_OLD = [30, 15, 17, 38]
 # Overview "How to update": one bullet per role. The text before ":" is bold; `backticked` words are monospace.
 HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
@@ -29,6 +32,40 @@ def widths(tw, shares):
     w = [round(tw * s / 100) for s in shares]
     w[shares.index(max(shares))] += tw - sum(w)
     return w
+
+
+def fit_tables(doc_id):
+    """Skill rule: every table's columns add up to the tab's text width in the skill's split. Fixes any that drift."""
+    import dudoc
+    kinds = {("Area", "Owner", "Status", "Headline", "Updated"): AREA_SHARES, ("Date", "Commitment", "Status"): NEXT_SHARES,
+             tuple(du.INIT_HEAD): INIT_SHARES, tuple(du.INIT_HEAD_OLD): INIT_SHARES_OLD,
+             ("Initiative", "Owner", "What's missing", "Since"): MISSING_SHARES,
+             (dudoc.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): DECISION_SHARES}
+    doc = du.read_doc(doc_id)
+    fixed = []
+    for tab, _ in du.all_tabs(doc):
+        tid = tab["tabProperties"]["tabId"]
+        reqs = []
+        for e in tab["documentTab"]["body"]["content"]:
+            if "table" not in e:
+                continue
+            kind = tuple(du.cell_text(c) for c in e["table"]["tableRows"][0]["tableCells"])
+            shares = kinds.get(kind)
+            if not shares:
+                continue
+            want = widths(text_width(tab), shares)
+            have = [c.get("width", {}).get("magnitude", 0) for c in e["table"].get("tableStyle", {}).get("tableColumnProperties", [])]
+            if len(have) == len(want) and all(abs(a - b) <= 1 for a, b in zip(have, want)):
+                continue
+            fixed.append(f"{tab['tabProperties']['title']}: {kind[0]} table {have} -> {want}")
+            for i, w in enumerate(want):
+                reqs.append({"updateTableColumnProperties": {"tableStartLocation": {"index": e["startIndex"], "tabId": tid},
+                             "columnIndices": [i], "tableColumnProperties": {"widthType": "FIXED_WIDTH",
+                             "width": {"magnitude": w, "unit": "PT"}}, "fields": "width,widthType"}})
+        if reqs:
+            du.batch(doc_id, reqs, doc)
+            doc = du.read_doc(doc_id)
+    return fixed
 
 
 def add_table(doc_id, tab_id, at, rows, shares):
@@ -104,14 +141,14 @@ def create(title, org, owner, reader, structure, day):
         # area tab
         worst = du.worst(it[3] for it in items)
         nxt = "; ".join(f"{n}: {ms}" for n, o, u, s, ms, *_ in items[:2])
-        hl = f"{du.STATUSES[worst]} · Next up: {nxt}. ({du.label(day)})"
+        hl = f"Next up: {nxt}. ({du.label(day)})"
         lines = [f"{area} ({aown})", f"Owner: {aown} · Back to {otitle}", "Headline", hl,
                  "Initiatives", "", "Done", "No initiatives finished yet."]
         st = ["HEADING_1", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT"]
         du.batch(did, m._paras(aid, 1, lines, st, [back]))
         add_table(did, aid, anchor_index(did, aid, "Initiatives"),
-                  [["Initiative", "Owner", "Status", "Next milestone and date"]] +
-                  [[n, o, du.STATUSES[s], ms] for n, o, u, s, ms, *_ in items], [30, 15, 17, 38])
+                  [du.INIT_HEAD] +
+                  [du.row_cells([n, o, du.STATUSES[s], ms], 5) for n, o, u, s, ms, *_ in items], INIT_SHARES)
         # initiative tabs
         for n, o, u, s, ms, prog, word, url, extra in items:
             extra = [x for x in extra if not x.startswith("Starting section drafted by")]  # added once, below
@@ -141,16 +178,20 @@ def create(title, org, owner, reader, structure, day):
     import overview
     guide.add_guide(did, owner)
     overview.rebuild(did, day, "4:00 PM ET")
-    du.chipify(did)
     du.repair_headings(did)
     return did
 
 
-def set_headline(doc_id, area_title, text):
-    """Replace the area tab's headline paragraph (area owner only)."""
+def strip_colour(text):
     import re
-    # Format: "<status> · <sentences> (<date>)". Fix a "." or "," written where the "·" belongs.
-    text = re.sub(r"^((?:🔴 Red|🟡 At risk|🟢 On track|⚪ Paused))\s*[.,:;]?\s+(?!·)", r"\1 · ", text)
+    return re.sub(r"^\s*(?:🔴|🟡|🟢|⚪)\s*(?:Red|At risk|On track|Paused)?\s*[·.,:;-]?\s*", "", text or "")
+
+
+def set_headline(doc_id, area_title, text):
+    """Replace the area tab's headline paragraph (area owner only).
+    Format: "<sentences> (<Weekday Mon D>)". The headline carries no colour: the area's colour comes from its
+    initiatives. A leading colour ("🟡 At risk · ") is removed."""
+    text = strip_colour(text)
     doc = du.read_doc(doc_id)
     area = du.model(doc)[1][area_title]
     paras = [e for e in area.body if "paragraph" in e]

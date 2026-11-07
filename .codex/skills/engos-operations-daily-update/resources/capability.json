@@ -172,11 +172,14 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "30936768",
+        "selected_commit": "bfdc20e1",
         "richness_score": 8,
-        "line_count": 690,
+        "line_count": 700,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "51f4e3bf",
+          "b3825ec6",
+          "30936768",
           "0bd1422f",
           "8d1bb45d",
           "fd0c9077",
@@ -232,7 +235,7 @@
             "candidate_operational_score": 4,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "30936768",
+          "baseline_commit": "bfdc20e1",
           "baseline_slug": "engos-operations-daily-update"
         },
         {
@@ -283,7 +286,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb",
+      "effective_sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -386,7 +389,7 @@
               "path": "ssot/engos-operations-daily-update.md",
               "start_line": 17,
               "end_line": 17,
-              "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+              "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
             }
           }
         ]
@@ -405,7 +408,7 @@
               "path": "ssot/engos-operations-daily-update.md",
               "start_line": 34,
               "end_line": 34,
-              "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+              "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
             }
           }
         ]
@@ -422,8 +425,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-operations-daily-update.md",
-        "ssot_sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb",
-        "effective_sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb",
+        "ssot_sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620",
+        "effective_sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -436,7 +439,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 14,
                 "end_line": 14,
-                "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
               }
             }
           ],
@@ -448,7 +451,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 37,
                 "end_line": 37,
-                "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
               }
             }
           ],
@@ -460,7 +463,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 25,
                 "end_line": 25,
-                "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
               }
             }
           ],
@@ -472,7 +475,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 28,
                 "end_line": 28,
-                "sha256": "02871357e8ab35bfe6e5f11cabd27f82747305acf285a952e406b27f643beceb"
+                "sha256": "6eb87dcc7c7185fd0e6ad558ac54d754fecf147cd9ba11c51faba6cfdab05620"
               }
             }
           ]
@@ -487,7 +490,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "f40e89926d582ee0d666fdee2faa1fe5c3f2ca7291a1cb5b17471e5044f20c48"
+        "mapping_sha256": "d6e6f16190676f2a033adf68aba97df6bdbd16fb6ec85869cae5bc9e424227ba"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

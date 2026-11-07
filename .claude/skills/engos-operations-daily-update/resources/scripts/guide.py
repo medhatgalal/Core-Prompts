@@ -1,6 +1,6 @@
 """The 'Update guide' tab: template plus writing guidance. Text mirrors SKILL.md "Update guide tab".
 
-  python3 guide.py DOC_ID [OWNER]     # add the tab to an E2E TEST doc (after Archive), pageless, with chips
+  python3 guide.py DOC_ID [OWNER]     # add the tab to an E2E TEST doc (after Archive), pageless
 """
 import sys
 
@@ -25,16 +25,15 @@ def content(owner, overview_url, otitle):
         ("<Weekday Mon D, YYYY>  (date heading)", N),
         ("🟢 On track  |  🟡 At risk  |  🔴 Red  |  ⚪ Paused", N),
         ("Next milestone: <one thing>, <Weekday Mon D>", N),
-        ("Confidence: Very confident", N),
         ("Progress: <up to 3 sentences on what changed and why it matters, each with a link>", N),
         ("Blocked on: <who, what, by when>, or None.", N),
         ("Green when: <the one thing that would make it green>  (only when not 🟢)", N),
         ("What each line means", H2),
-        ("Status: set by the rules in the overview's status key, not by feel. A passed date is red; no date is at risk.", N),
-        ("Next milestone: one outcome and one date with its weekday. Never \"this week\", \"soon\" or \"TBD\"; "
-         "write \"No date set yet\" and the status becomes 🟡.", N),
-        ("Confidence: your own call on whether the milestone lands on its date. Pick it from the dropdown. "
-         "It never changes the status; if the two disagree, say why in Progress.", N),
+        ("Status: your call on one question, will the next milestone land on its date? Yes is 🟢. No, or it waits "
+         "on another team, is 🟡. A passed date, or a blocker nobody owns, is 🔴. Paused or not started is ⚪.", N),
+        ("Next milestone: one outcome and one date with its weekday. Never \"this week\", \"soon\" or \"TBD\". "
+         "With no date yet, write \"No date set yet\": the colour stays your call, and the overview lists it under "
+         "Missing a plan until it has a date.", N),
         ("Progress: only what changed since the last update. Lead with what it means. If nothing changed, "
          "write \"No change since <date>.\"", N),
         ("Blocked on: name who, what and by when, so someone can act on it. Write \"None.\" when nothing is blocking.", N),
@@ -57,11 +56,12 @@ def content(owner, overview_url, otitle):
         ("Adapted from GitLab's weekly async update template, GitLab's guidance for initiative owners, GitLab's "
          "Growth engineering DRI page, and GitHub's How engineering communicates.", N),
     ]
+    src = next(k for k, r in enumerate(rows) if r[0].startswith("Adapted from"))
     links = [(1, otitle, overview_url),
-             (34, "weekly async update template", GITLAB_ASYNC),
-             (34, "guidance for initiative owners", GITLAB_DRI),
-             (34, "Growth engineering DRI page", GITLAB_GROWTH),
-             (34, "How engineering communicates", GITHUB_COMMS)]
+             (src, "weekly async update template", GITLAB_ASYNC),
+             (src, "guidance for initiative owners", GITLAB_DRI),
+             (src, "Growth engineering DRI page", GITLAB_GROWTH),
+             (src, "How engineering communicates", GITHUB_COMMS)]
     return [r[0] for r in rows], [r[1] for r in rows], links
 
 
@@ -75,12 +75,11 @@ def add_guide(doc_id, owner="Scott"):
     du.pageless(doc_id, [tid])
     lines, styles, links = content(owner, du.tab_url(doc_id, "t.0"), du.overview_title(du.read_doc(doc_id)))
     reqs = m._paras(tid, 1, lines, styles, links)
-    k = next(i for i, x in enumerate(lines) if x.startswith("Status: set"))
+    k = next(i for i, x in enumerate(lines) if x.startswith("Status: "))
     at = 1 + sum(du.utf16(x) + 1 for x in lines[:k])
     reqs.append({"updateTextStyle": {"range": {"startIndex": at, "endIndex": at + 7, "tabId": tid},
                                      "textStyle": {"bold": True}, "fields": "bold"}})
     du.batch(doc_id, reqs)
-    du.chipify(doc_id, [tid])
     return tid
 
 

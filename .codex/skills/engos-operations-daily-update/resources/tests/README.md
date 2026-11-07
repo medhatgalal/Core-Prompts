@@ -24,6 +24,7 @@ Docs listed in `~/.daily-update/protected.json` are never written.
 | `run_full.sh` | The full run described above |
 | `exploratory.py` | Creates the doc and plays day one, including traps (vague dates, candidate names, raw links, editing another person's tab) |
 | `day_mon_nov9.py` | Day two: add, move, cover, finish, and three refusals |
+| `rules_test.py` | Offline: status rules, pre-publish check (warn vs block), stale-date check, Missing a plan, short labels, migration colour mapping |
 | `backup_test.py` | Drive backup: first backup, no bounce, restore on a clean machine, newer side wins, Drive outage. Uses a throwaway "E2E TEST .engos" folder and trashes it after |
 
 When a skill rule changes, change the matching script and add a check to `verify.py`. Confirm the new check

@@ -24,52 +24,88 @@ def et_date(local_dt):
     return local_dt.astimezone(ET).date()
 
 
-def checks(lines, links, known_names=()):
-    """Return the problems the skill's 'Checks before any review' would find in one drafted section."""
+MOVED = re.compile(r"\b(mov(e|ed|es|ing)|postpon\w*|push(ed)? (back|out|to)|delay\w*|slip\w*|reschedul\w*|now due)\b", re.I)
+
+
+NOT_SENSITIVE = re.compile(r"\brelease candidates?\b|\bcandidate (cut|build|branch|list)\b|\boffers? (the|a|an|to)\b", re.I)
+DATEISH = re.compile(r"\b(release|date|deadline|milestone|launch|ship\w*|freeze|cut|go-live)\b", re.I)
+
+
+def _about_a_date(text, mv, milestone_day):
+    """A 'moved' word is about timing when a later date or a timing word sits within 60 characters of it."""
+    window = text[max(0, mv.start() - 60):mv.end() + 60]
+    later = [d for _, d, ok in du.dates_in(window) if ok and d and milestone_day and d > milestone_day]
+    return bool(later or DATEISH.search(window))
+
+
+def checks(lines, links, known_names=(), prev=None):
+    """The skill's 'Checks before any review' for one drafted section.
+    Returns problems. A problem starting "warn:" is shown in the review before "Publish?" and does not block;
+    every other problem blocks the write. `prev` is the tab's previous Section, for the stale-date check."""
     probs = []
     status = next((l[:1] for l in lines if l[:1] in du.STATUSES), None)
     ms = next((l for l in lines if l.startswith("Next milestone:")), None)
+    ms_text = ms[len("Next milestone:"):].strip() if ms else None
+    prog = next((l for l in lines if l.startswith("Progress:")), "")
     body = " ".join(lines)
     for l in lines:
         for sent in re.split(r"(?<=[.;])\s+", l):
-            if SENSITIVE.search(sent) and (NAME.search(sent) or any(n in sent for n in known_names)):
-                probs.append(f"people-sensitive: '{sent}'")
+            plain = NOT_SENSITIVE.sub("", sent)
+            if not SENSITIVE.search(plain):
+                continue
+            if any(re.search(rf"\b{re.escape(n)}\b", plain) for n in known_names):
+                probs.append(f"people-sensitive: '{sent}'")  # a person in the doc next to a sensitive word
+            elif NAME.search(plain):
+                probs.append(f"warn: check for people-sensitive detail: '{sent[:90]}'")
     if VAGUE.search(body):
         probs.append(f"vague date: '{VAGUE.search(body).group(0)}'")
     for mtxt, d, ok in du.dates_in(body):
         if not ok:
-            probs.append(f"weekday wrong: '{mtxt}' is a {du.WD[d.weekday()]}")
-    if ms and not du.milestone_dated(ms[len('Next milestone:'):]):
-        probs.append("milestone has no date")
-    if ms and "No date set yet" in ms and status == "🟢":
-        probs.append("No date set yet must be 🟡")
+            probs.append(f"weekday wrong: '{mtxt}' is a {du.WD[d.weekday()] if d else 'not a real date'}")
+    if any(l.startswith("Confidence:") for l in lines):
+        probs.append("Confidence line: sections no longer carry Confidence")
+    if not ms or not ms_text or re.match(r"(?i)none\b", ms_text) and "stopped" not in ms_text.lower():
+        probs.append("warn: no next milestone; it will be listed under Missing a plan")
+    elif not du.milestone_date(ms_text) and ", done " not in ms_text:
+        probs.append("warn: next milestone has no date; it will be listed under Missing a plan")
+    if prev is not None and ms_text and prev.milestone:
+        d_now, d_prev = du.milestone_date(ms_text), du.milestone_date(prev.milestone)
+        later = [d for _, d, ok in du.dates_in(prog) if ok and d and d_now and d > d_now]
+        hit = next((mv for mv in MOVED.finditer(prog) if _about_a_date(prog, mv, d_now)), None)
+        if d_now and d_now == d_prev and hit:
+            probs.append(f"warn: milestone date {du.label(d_now)} is carried from {du.label(prev.date)}, but Progress "
+                         f"says something moved ('{hit.group(0)}'); confirm the date")
+        elif d_now and d_now == d_prev and later:
+            probs.append(f"warn: milestone date {du.label(d_now)} is carried from {du.label(prev.date)}, but Progress "
+                         f"names a later date ({du.label(later[0])}); confirm the date")
     if status != "🟢" and not any(l.startswith("Green when:") for l in lines):
         probs.append("not green but no Green when line")
     if any("sets this when they confirm" in l for l in lines):
-        probs.append("placeholder Green when: write what would make it green")
+        probs.append("warn: placeholder Green when: write what would make it green")
     if status == "🟢" and any(l.startswith("Green when:") for l in lines):
         probs.append("green section has a Green when line")
-    conf = next((l[len("Confidence: "):] for l in lines if l.startswith("Confidence:")), None)
-    if conf not in du.CONFIDENCE:
-        probs.append(f"confidence missing or not one of {du.CONFIDENCE}")
-    if (status == "🟢" and conf == "Not confident") or (status == "🔴" and conf == "Very confident"):
-        probs.append(f"review: status {status} but confidence '{conf}'; ask the person which is right")
     if not any(l.startswith("Blocked on:") for l in lines):
         probs.append("no Blocked on line")
-    short = re.search(r"\b(MR|QE|SDK|reqs?)\b|Kata(?! container)", body)
+    short = next((m for m in re.finditer(r"\b(MR|QE|SDK|reqs?)\b|Kata(?! container)", body)
+                  if f"({m.group(0)})" not in body), None)
     if short:
-        probs.append(f"unexplained shorthand: '{short.group(0)}'")
+        probs.append(f"warn: unexplained shorthand: '{short.group(0)}'")
     if re.search(r"https?://", body):
         probs.append("raw URL in text")
     if re.search(r"Note \(agent", body):
         probs.append("agent note in doc")
     for k, l in enumerate(lines):
-        if l.startswith(("Progress:", "Blocked on:")) and not re.search(r"No (change since|update from)|Blocked on: None\.|Moved from .+ on ", l):
+        if l.startswith(("Progress:", "Blocked on:")) and not re.search(
+                r"No (change since|update from)|Blocked on: None\.|Moved from .+ on |\((email|chat|meeting notes)\)\.?$|\(from [A-Z][\w .'-]*\)\.?$", l):
             if not any(i == k for i, _, _ in links):
-                probs.append(f"no link on line: '{l[:40]}'")
-            if len(re.findall(r"[.!?](\s|$)", l)) > 3:
-                probs.append("Progress over 3 sentences")
+                probs.append(f"no link or source label on line: '{l[:40]}'")
+        if l.startswith("Progress:") and len(re.findall(r"[.!?](\s|$)", l)) > 3:
+            probs.append("Progress over 3 sentences")
     return probs
+
+
+def blocking(probs):
+    return [p for p in probs if not p.startswith(("warn:", "review:"))]
 
 
 def updater_tabs(doc, person):
@@ -124,10 +160,7 @@ def publish(doc_id, person, tab_title, lines, links, day, cover_for=None, replac
         lines = lines + [f"Updated by {person} for {init.updater}."]
     norm = du.normalize(lines, carry=init.sections[0] if init.sections else None)
     links, lines = m.relink(lines, norm, links), norm
-    if not confirm_mismatch:
-        probs = checks(lines, links, known_names=["Priya"])
-    else:
-        probs = [p for p in checks(lines, links, known_names=["Priya"]) if not p.startswith("review:")]
+    probs = blocking(checks(lines, links, known_names=["Priya"], prev=init.sections[0] if init.sections else None))
     if probs:
         raise ValueError(probs)
     same = next((s for s in init.sections if s.date == day), None)

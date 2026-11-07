@@ -162,7 +162,7 @@ Re-check that the doc still opens on every run. If it does not, say so and ask f
    locally for audit. Exceptions: "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
    A line the updater told you directly in this conversation ends "(from <name>)" and needs no link. It covers
    only facts they typed themselves. Never use it for a fact you found in a source, even if they approve it.
-   Status, Next milestone, Confidence, Green when and closing lines need none. Overview bullets link
+   Status, Next milestone, Green when and closing lines need none. Overview bullets link
    to their tab. Put each link on a short word, like "(Jira COM-994)" or "(merge request !121)", never a raw URL.
 7. **Say what you saw vs what you concluded.** If a status or date is your inference, say so in the review.
    Conflicts between sources (for example a meeting summary that disagrees with the raw notes) also go in the
@@ -188,17 +188,22 @@ Re-check that the doc still opens on every run. If it does not, say so and ask f
   person is. A leader in Pacific time publishing at 10pm PT writes the next day's date. Ledger file names use it too.
 - Progress: 3 short sentences at most. Third person. No em-dashes.
 - Only what changed since the last update. If nothing changed, the Progress line reads "No change since <date>." and
-  every other line stays, for example "🟢 On track", the milestone, Confidence, then "Progress: No change since Fri Oct 30."
+  every other line stays, for example "🟢 On track", the milestone, then "Progress: No change since Fri Oct 30."
 
 ## Status rules
 
 | Colour | When |
 |---|---|
-| 🔴 Red | A committed date passed and it is not done, or it is blocked and nobody owns the fix with a date. |
-| 🟡 At risk | The next milestone has no date, or something owed or undecided could slip the date. |
-| 🟢 On track | None of the above. |
+| 🔴 Red | A committed date passed and it is not done, or it is blocked and nobody owns the fix. |
+| 🟡 At risk | The updater does not expect the next milestone to land on its date, or it waits on another team. |
+| 🟢 On track | The updater expects the next milestone to land on its date. |
 | ⚪ Paused | Paused or not started. |
 
+The colour answers one question for a reader outside the team: will the next milestone land on its date?
+An open question or an undecided detail is not a reason for 🟡 on its own; say it in Progress. A missing date
+or a missing next milestone is not a colour either: it is a planning gap, listed on the overview under
+**Missing a plan** until it is fixed. Propose the colour from the evidence, say in the review that it is your
+inference, and let the updater change it.
 Rules decide where they can. Otherwise the tab's owner decides. Never override them; if the evidence
 disagrees, say so once with the link and let them choose. An area takes the colour of its worst initiative, judged by each initiative's newest section.
 
@@ -220,15 +225,20 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
    ("🟡 1" over "🟢 4"); the top colour is the area's colour. The Headline cell copies the area headline's
    sentences without its date, since Updated carries it; flagged headlines keep their flag. Phrases in it that
    name an initiative link to that initiative's tab.
-3. **Exec leadership: decisions or help needed** (only if any): table with Decision or help needed, Why now,
+3. **Missing a plan**: table with Initiative (linked to its tab), Owner, What's missing ("No next milestone" or
+   "Milestone has no date") and Since (the first day of the unbroken run of sections without a dated
+   milestone; over 14 days reads "<date> (over 2 weeks)"). One row per open initiative: done, stopped and
+   paused (⚪) initiatives are left out. With no rows, one line: "Every open initiative has a dated next milestone."
+4. **Exec leadership: decisions or help needed** (only if any): table with Decision or help needed, Why now,
    Recommend, By, Owner. By is the date it is needed; if no tab gives one, propose one and mark it as your
    inference in the review. Link each row to the thing being decided (its tab, design doc, merge request, proposal).
-4. **Next 2 weeks**: table with Date, Commitment (the milestone without its date, linked to its initiative's
-   tab), Status (the emoji, "🟢"): one row per initiative, not done or stopped, whose newest Next milestone date
+5. **Next 2 weeks**: table with Date, Commitment (the milestone without its date, cut to a short label,
+   linked to its initiative's tab), Status (the emoji, "🟢"): one row per initiative, not done or stopped, whose newest Next milestone date
    falls from today through today + 14 days, by date and then worst first. With no rows, one line: "No dated
    commitments in the next 2 weeks."
-5. **How to update** (see below) and the status key. Process text and the status key always go last.
-6. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
+6. **How to update** (see below) and the status key, which ends "A missing date is not a colour: Missing a
+   plan lists every open initiative without a dated next milestone." Process text and the status key always go last.
+7. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
 
 There is no "In 30 seconds" or "Not updated today" section. `du.py overview DOC DATE TIME --publish` rewrites
 everything below the "As of" line in this order. It keeps the decisions rows and their links, keeps headline
@@ -236,10 +246,12 @@ links whose phrase is still there, links initiative names in headlines, and keep
 and link while its date and initiative are unchanged. It also moves an older overview to this layout.
 
 **Area tab**: title, `Owner: <name> · Back to <overview>`, then **Headline**: one line,
-`<status> · <sentence> (<Weekday Mon D>)`, for example `🟡 At risk · Everything is on track except the new
-Composer experience, which ships Tue Nov 17 only if three blocking defects are fixed. (Thu Nov 5)`; the date is
-always last, in brackets. The sentence (two at most) says what the area's state means, leading with the biggest
-risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone and date), **Done** (one line each).
+`<sentence> (<Weekday Mon D>)`, for example `Everything is on track except the new Composer experience, which
+ships Tue Nov 17 only if three blocking defects are fixed. (Thu Nov 5)`; the date is always last, in brackets.
+The headline carries no colour: the area's colour is the worst of its initiatives, shown in its table and on the
+overview, so a hand-written colour could only repeat it or contradict it. The sentence (two at most) says what the area's state means, leading with the biggest
+risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone, Date; the Date cell holds the
+milestone's date, "No date set yet" or "done <date>", so a missing date shows in its own column), **Done** (one line each).
 
 **Initiative tab**: title `<Initiative> (<owner>)` as HEADING_1 (the same as the tab name), then `Owner: <name> · Updater: <leader> · Area: <area> · Back to <overview>`, then one
 section per day, **newest first**. Each section:
@@ -248,7 +260,6 @@ section per day, **newest first**. Each section:
 <Weekday Mon D, YYYY>                 (HEADING_2)
 🟢 On track
 **Next milestone:** <what>, <date>
-**Confidence:** Very confident | Slightly confident | Not confident
 **Progress:** <up to 3 sentences, with links>
 **Blocked on:** <who, what, by when>, or "None."
 **Green when:** <what would make it green>   (only when the status is not 🟢)
@@ -256,15 +267,10 @@ section per day, **newest first**. Each section:
 
 - Every section has every line above, in this order. The one exception is Green when: it appears when the
   status is 🟡, 🔴 or ⚪, and never when it is 🟢.
-- Each line prefix ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:",
+- Each line prefix ("Next milestone:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:",
   "Updated by", "Added by") is bold. The rest of the line is not.
-- **Confidence** is a dropdown chip, never typed text: definition `kix.confidence` on that tab, options
-  `dropdownItem.very` "Very confident" (green), `dropdownItem.slight` "Slightly confident" (yellow),
-  `dropdownItem.not` "Not confident" (red). See Docs API notes.
-- **Confidence** is the updater's own call on whether the next milestone lands on its date. Propose one from
-  the evidence, say in the review that it is your inference, and let them change it. It never changes the
-  status. If it disagrees with the status (🟢 with "Not confident", or 🔴 with "Very confident"), say so in the
-  review and let them choose. Lines after these (Updated by, Added by, Moved from, Unconfirmed) come last.
+- There is no Confidence line: the colour carries the updater's call on whether the date holds. Lines after
+  these (Updated by, Added by, Moved from, Unconfirmed) come last.
 
 **How to update** (put this text on the overview as bullets; each label is bold and each command is in a
 monospace font):
@@ -280,8 +286,8 @@ and the agent's drafting guide. Pageless, with these headings and content:
 - Title `Update guide (<doc owner>)`, `Owner: <doc owner> · Back to <overview>`, then one line: "Read this
   before writing a daily update. Your AI agent drafts from this template and these practices; you review,
   edit and publish."
-- **Template**: the section format above, one line per line, with an example Confidence chip.
-- **What each line means**: one line each for Status, Next milestone, Confidence, Progress, Blocked on and
+- **Template**: the section format above, one line per line.
+- **What each line means**: one line each for Status, Next milestone, Progress, Blocked on and
   Green when, as defined in this skill.
 - **Best practices**: write for a leader outside your team and spell out acronyms; explain why a result
   matters, not only that it happened; flag blockers early; always give the next step; when the colour
@@ -374,19 +380,16 @@ fails, give the exact error and the one command that fixes it, then continue wit
 
 **Scripts (use these for every doc write).** The installed skill has `scripts/du.py` (`resources/scripts/du.py`
 in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
-exact layout above, with the revision check and retries, bold labels, Confidence chips, date headings, table
+exact layout above, with the revision check and retries, bold labels, date headings, table
 widths and pageless tabs. Use `du.py setup`, `section`, `today`, `add`, `dedupe`, `headline`, `row`, `sweep`, `overview`,
-`decisions`, `archive`, `send`, `settings` and `sync` instead of writing Docs API requests yourself, and run
+`decisions`, `archive`, `send`, `settings`, `sync` and `lint` instead of writing Docs API requests yourself, and run
 `du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
 
-Docs API notes: read with `includeTabsContent: true`. Confidence chips: on each tab that has sections, create the definition once with
-`createDropdownDefinition` (`tabId`, `dropdownDefinitionId: kix.confidence`, title "Confidence", the three
-options with `backgroundColor`/`foregroundColor` only). Insert a chip with `insertDropdown` (`location`,
-`dropdownDefinitionId`, `selectedOptionId`) right after "Confidence: "; it takes one index. Change one with
-`updateDropdownProperties` (`dropdownId`, `selectedOptionId`). Read the value from the paragraph element's
-`dropdown.dropdownProperties.displayValue`. When a sweep or a new section carries Confidence, insert a new
-chip with the same option. The doc is pageless: send `updateDocumentStyle` with
+Docs API notes: read with `includeTabsContent: true`. A doc from before v1.19.10 still has Confidence lines
+(dropdown chips) and the old colours. The doc owner runs `python3 migrate.py DOC` from the scripts folder: it
+shows every change and, with `--publish`, recolours every section, removes the Confidence lines, splits each area's "Next milestone and
+date" column into Next milestone and Date, and rewrites the Update guide. The doc is pageless: send `updateDocumentStyle` with
 `documentFormat.documentMode: PAGELESS` for every tab when you create the doc, and for each tab you add later. Indexes count UTF-16 code units (emoji count as 2).
 Other leaders edit the same doc, so **re-read the tab right before every write** and compute indexes from
 that read. Insert from the highest index down. Send every `batchUpdate` with
@@ -397,7 +400,7 @@ unchanged. If a heading lost its style, restore it before reporting done. Create
 Give every table fixed column widths (`updateTableColumnProperties`) that add up to the page's text width, so it
 fits the page. Text width = the tab's `documentStyle` page width minus its left and right margins (letter with
 1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 18, 9, 11, 50, 12 percent
-(540 pt: 97, 49, 59, 270, 65); Initiatives 30, 15, 17, 38 percent; decisions or help needed 30, 18, 24, 16, 12 percent; Next 2 weeks 20, 66, 14 percent.
+(540 pt: 97, 49, 59, 270, 65); Initiatives 26, 12, 15, 31, 16 percent; Missing a plan 34, 14, 28, 24 percent; decisions or help needed 30, 18, 24, 16, 12 percent; Next 2 weeks 20, 66, 14 percent.
 Round to whole points and put any remainder on the widest column. Whenever you write to a table, check its
 widths still add up to the text width, and fix them if not.
 
@@ -466,11 +469,15 @@ widths still add up to the text width, and fix them if not.
    Look for notes the tab's owner sent this person about the initiative (email or chat). They are the freshest
    word from the person doing the work: use them over older sources, and say in the review that you did.
 3. Draft a section for each of their initiative tabs, and the headline and table for each area tab they own.
-   Apply the status rules. Run the checks below.
+   Apply the status rules. Re-derive every milestone date from this run's sources; never carry a date only
+   because the last section had it. Run the checks below, then run `du.py lint DOC "<tab title>" SECTION.json`
+   for each section: put every WARN line in the review (a missing date, a missing milestone, or a date carried
+   while Progress says something moved), and fix every BLOCK line before showing it. `du.py section` runs the
+   same check and refuses to write a section with a BLOCK problem.
    Same-day re-run (today's section exists): write one section for the whole day, Progress 3 sentences at most.
    Start from today's section and the new evidence from the window. Add new facts. Replace facts that changed
    ("in review" became "merged", a date moved, a blocker cleared). Delete facts that are obsolete or superseded.
-   Re-check the status, Next milestone, Confidence, Blocked on and Green when against all of today's evidence,
+   Re-check the status, Next milestone, Blocked on and Green when against all of today's evidence,
    not only the new. Every other rule still holds: links only to sources anyone can open, private labels,
    "(from <name>)", people-sensitive items, and hand edits kept unless the updater drops them.
 4. Show the review in chat, in this shape, and nothing else:
@@ -481,9 +488,10 @@ widths still add up to the text width, and fix them if not.
    🔴 Billing API: ship date Tue Nov 3 missed; last tests failed Nov 3 (link). Sam expects the fix Thu Nov 5 (link).
    🟡 Cost cuts: Finance numbers not received; the plan to the VP needs them by Fri Nov 13 (link).
    🟢 Hiring: one offer accepted (link).
-   Area headline (Payments): 🔴 Billing API slipped two days; everything else on track.
+   Area headline (Payments): Billing API slipped two days; everything else on track.
 
-   Check: left out a candidate's name. Not sure: is Cost cuts at risk? (my inference)
+   Check: left out a candidate's name. Warn: Hiring has no date (goes under Missing a plan).
+   Not sure: is Cost cuts at risk? (my inference)
    Publish?
    ```
 
@@ -526,7 +534,7 @@ Any leader can ask: "add an initiative", "Chandra now owns Evals", "Composer UX 
 
 **Change owner or name**: the current owner, the area owner or the doc owner can rename the tab
 (`updateDocumentTabProperties`) and update the area table row. Note the change in today's section, carrying
-the status, next milestone, Confidence, Blocked on and Green when lines from the newest section (an owner change is not a reason to
+the status, next milestone, Blocked on and Green when lines from the newest section (an owner change is not a reason to
 drop a dated milestone).
 
 **Finish** (`done`): add a line to Done on the area tab and a final section ("Done <date>: <outcome>"). The doc
@@ -584,7 +592,7 @@ If someone else asks, draft the request for the doc owner instead.
 4. Update the overview's Area health table rows, the affected area tabs' headers, headlines and Initiatives
    tables, and each moved initiative's `Area:` header line.
 5. Add one line to each moved initiative's section dated today: "Moved from <old area> to <new area> on <date>."
-   If it has no section dated today, add one that carries the status, next milestone, Confidence, Blocked on and
+   If it has no section dated today, add one that carries the status, next milestone, Blocked on and
    Green when lines from the newest section, with that line as its Progress line. Never add it to an earlier day's section.
 6. Re-read the doc and confirm the tree matches the after tree. Each leader's agent picks up the change
    on its next run.
@@ -607,12 +615,12 @@ owner name exceptions.
    newest section (never improve the status), and a Progress line from the doc owner's own sources if they show
    something new, with links. The section's last line is "Unconfirmed: no update from <updater> by 3pm ET."
    with no Progress line unless the doc owner's sources showed something new. If the tab has no
-   earlier section, use 🟡 At risk and "Next milestone: No date set yet". Carry the newest Confidence and Blocked on lines
-   (or "Confidence: Not confident" and "Blocked on: None." if there are none). If the carried status is not 🟢,
+   earlier section, use 🟡 At risk and "Next milestone: No date set yet". Carry the newest Blocked on line
+   (or "Blocked on: None." if there is none). If the carried status is not 🟢,
    carry the newest "Green when:" line too, or write "Green when: <updater> sets this when they confirm." Write "No date set yet" wherever the
    carried section says "Not set yet". Carry each of status and milestone from the newest section that has it
    (a "No change since" section has no milestone line, so look further back). The checks below apply to Sweep
-   sections too: a carried milestone with no date gets ", No date set yet" added and the status 🟡.
+   sections too: a carried milestone with no date gets ", No date set yet" added; the status is carried as it is.
 3. Show the review: tabs by updater, each with its draft. List any carried milestone whose date has already
    passed; the doc owner decides whether it is done or red. If done, write
    "Next milestone: <milestone>, done <Weekday Mon D>." and carry the status; the updater sets the next
@@ -631,7 +639,7 @@ owner name exceptions.
 ## Overview (doc owner, second half of `close`)
 
 1. Read every area and initiative tab. Do not re-read sources; the tabs are the input.
-2. Draft the overview: Area health, decisions or help needed, Next 2 weeks. List any tab added,
+2. Draft the overview: Area health, Missing a plan, decisions or help needed, Next 2 weeks. List any tab added,
    renamed or finished since the last overview, and move finished tabs under Archive if the doc owner agrees.
    When a tab moves to Archive, delete its row from its area's Initiatives table (its Done line stays), and
    add it to the Archive tab's list as its own line, "<Initiative> (<owner>), done <date>.", with the name linked
@@ -654,7 +662,8 @@ owner name exceptions.
    `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
 2. Draft one short message: subject or first line "<Org> Daily Updates, <Weekday Mon D>", one line per
    Area health row ("<area colour> <Area>: <Headline>"), any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
-   <names>." (or "All initiatives confirmed today."), and the doc link. No other content; nothing beyond
+   <names>." (or "All initiatives confirmed today."), one line "<N> initiatives are missing a plan: <names>."
+   (or "Every open initiative has a dated next milestone."), and the doc link. No other content; nothing beyond
    what the overview already says.
 3. Show the exact recipients, channel and text, then ask: "Send to <names>?" Send only if the doc owner replies
    "send" (or a clear yes naming the send) in this session. Email with `gws gmail users messages send`; Chat with
@@ -666,8 +675,11 @@ owner name exceptions.
 
 - No people-sensitive items (rule 5). Search the draft for names next to: interview, candidate, offer,
   hire, salary, comp, PTO, leave, sick, performance, promotion, PIP.
-- No vague dates. Every milestone has a date, or reads "No date set yet" (exactly, capital N) with the status at 🟡. A milestone
+- No vague dates. Every milestone has a date, or reads "No date set yet" (exactly, capital N); an undated
+  one is a WARN for the review and is listed under Missing a plan, and does not change the colour. A milestone
   marked "done <date>" by Sweep counts as dated.
+- No stale dates. When a milestone date is unchanged from the previous section while Progress says something
+  moved, or names a later date, ask the updater to confirm the date (a WARN from `lint`).
 - Every weekday matches its date on the calendar ("Fri Nov 6", never "Thu Nov 6").
 - Every Progress and Blocked on line has at least one link or ends "(email)", "(chat)" or "(meeting notes)",
   except "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
@@ -676,10 +688,9 @@ owner name exceptions.
 - No "Note (agent)" or other agent commentary in the doc; it goes in the review.
 - Each initiative is 3 sentences or fewer.
 - Every acronym and internal name is spelled out the first time it appears on its tab (see Writing rules).
-- Every section has Next milestone, Confidence, Progress (unless Unconfirmed) and Blocked on lines, each with a
-  bold prefix. Confidence is one of "Very confident", "Slightly confident", "Not confident".
+- Every section has Next milestone, Progress (unless Unconfirmed) and Blocked on lines, each with a
+  bold prefix, and no Confidence line.
 - Every section that is not 🟢 has a "Green when:" line, and no 🟢 section has one.
-- If Confidence disagrees with the status, the review says so.
 - No area headline or overview line contains process text ("agent", "starting view", "drafted by").
 - A leader who owns an area tab replaces its headline on every Daily run, from that area's initiative tabs,
   even when someone else updates those tabs.

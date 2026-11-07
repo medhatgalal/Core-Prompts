@@ -33,9 +33,6 @@ def draft(init, today, owner, decisions):
         if not du.milestone_dated(ms):
             ms += ", No date set yet"
             notes.append("carried milestone had no date")
-        if "No date set yet" in ms and status == "🟢":
-            status = "🟡"
-            notes.append("no date -> 🟡")
         due = du.milestone_date(ms)
         if due and due < today and ", done " not in ms:
             choice = decisions.get(init.name)
@@ -47,7 +44,6 @@ def draft(init, today, owner, decisions):
     ms_line = f"Next milestone: {ms}"
     find = lambda p: next((t for s in init.sections for t, _ in s.lines if t.startswith(p)), None)
     lines = [du.label(today, year=True), du.STATUSES[status], ms_line,
-             find("Confidence:") or "Confidence: Not confident",
              find("Blocked on:") or "Blocked on: None."]
     if status != "🟢":
         lines.append(find("Green when:") or f"Green when: {init.updater} sets this when they confirm.")
@@ -69,6 +65,7 @@ def row_values(init, lines):
 def set_cells(area, row_idx, values):
     """Requests replacing each cell's text in one table row, highest index first."""
     row = area.table["table"]["tableRows"][row_idx]
+    values = du.row_cells(values, len(row["tableCells"]))
     reqs = []
     for cell, val in reversed(list(zip(row["tableCells"], values))):
         start = cell["content"][0]["startIndex"]
@@ -146,8 +143,6 @@ def main():
             du.batch(a.doc_id, reqs, doc)
             continue
         du.batch(a.doc_id, section_requests(fresh, lines), doc)
-
-    du.chipify(a.doc_id, [i.tab_id for i, _, _ in drafts.values()])
 
     # Area table rows: update the swept row only; add it if missing.
     for title, (init, lines, _) in drafts.items():
