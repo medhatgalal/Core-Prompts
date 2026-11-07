@@ -117,8 +117,6 @@ def main():
             if not s.no_change:
                 ms = s.milestone
                 check(f"{tag}: milestone dated or 'No date set yet'", du.milestone_dated(ms), ms)
-                if ms and "No date set yet" in ms:
-                    check(f"{tag}: no date -> not green", s.status != "🟢", s.status)
             for t in texts:
                 for m, d, ok in du.dates_in(t):
                     check(f"{tag}: weekday matches '{m}'", ok)
@@ -133,16 +131,11 @@ def main():
             check_links(tag, [el for _, el in s.lines], a.doc_id)
             if s.unconfirmed:
                 check(f"{tag}: Unconfirmed line is last", texts[-1].startswith("Unconfirmed:"))
-            conf_el = next((el for t, el in s.lines if t.startswith("Confidence:")), None)
-            check(f"{tag}: Confidence is a dropdown chip",
-                  conf_el and any(r.get("dropdown", {}).get("dropdownProperties", {}).get("dropdownDefinitionId") == du.CONF_DEF
-                                  for r in conf_el["paragraph"]["elements"]))
-            conf = s.line("Confidence:")
-            check(f"{tag}: Confidence line", conf and conf[len("Confidence: "):] in du.CONFIDENCE, conf)
+            check(f"{tag}: no Confidence line", not s.line("Confidence:"))
             check(f"{tag}: Blocked on line", s.line("Blocked on:"))
             check(f"{tag}: Green when only when not green", bool(s.line("Green when:")) == (s.status != "🟢"))
-            order = [p for p in du.PREFIXES[:5] if s.line(p)]
-            seen = [p for t, _ in s.lines for p in du.PREFIXES[:5] if t.startswith(p)]
+            order = [p for p in du.PREFIXES[:4] if s.line(p)]
+            seen = [p for t, _ in s.lines for p in du.PREFIXES[:4] if t.startswith(p)]
             check(f"{tag}: lines in skill order", seen == order, seen)
             for t, el in s.lines:
                 p = next((x for x in du.BOLD_PREFIXES if t.startswith(x)), None)
@@ -280,7 +273,7 @@ def main():
                       f"points to {want}")
     paras = [du.para_text(e["paragraph"]).strip() for e in body if "paragraph" in e]
     check("overview: no 'In 30 seconds' or 'Not updated today' section", not {"In 30 seconds", "Not updated today"} & set(paras))
-    order = ["Area health", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"]
+    order = ["Area health", "Missing a plan", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"]
     heads = [p for p in paras if p in order]
     styles = {du.para_text(e["paragraph"]).strip(): e["paragraph"]["paragraphStyle"].get("namedStyleType") for e in body if "paragraph" in e}
     for hname in order:
@@ -289,6 +282,19 @@ def main():
     check("overview: sections in order " + ", ".join(order) + " (decisions only if any)",
           heads == [h for h in order if h != du.DECISIONS_HEAD or h in heads], heads)
     check("overview: no old 'Needs ... decision' heading", not any(re.match(r"Needs .*decision", p) for p in paras))
+
+    # ---- Missing a plan: one row per open initiative without a dated next milestone ----
+    want_m = sorted(i.name for i, _, _ in du.missing_plan(inits, today))
+    mp = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Initiative"), None)
+    got_m = sorted(du.cell_text(r["tableCells"][0]) for r in (mp["table"]["tableRows"][1:] if mp else []))
+    check("overview: Missing a plan rows match the tabs", got_m == want_m,
+          {"missing": sorted(set(want_m) - set(got_m)), "extra": sorted(set(got_m) - set(want_m))})
+    if not want_m:
+        check("overview: Missing a plan says there are none", "Every open initiative has a dated next milestone." in paras)
+    for r in (mp["table"]["tableRows"][1:] if mp else []):
+        check(f"overview: Missing a plan '{du.cell_text(r['tableCells'][0])}' links to its tab", link_tabs(r["tableCells"][0]))
+    check("overview: status key says a missing date is not a colour",
+          any(p.startswith("A missing date is not a colour") for p in paras))
 
     # ---- Next 2 weeks: one row per open initiative with a milestone in the next 14 days ----
     # The initiative is the tab its Commitment links to; Status is the bare emoji.
@@ -322,9 +328,10 @@ def main():
     check("Update guide tab exists at the top level", len(guide) == 1)
     if guide:
         gtext = "\n".join(du.para_text(e["paragraph"]) for e in guide[0]["documentTab"]["body"]["content"] if "paragraph" in e)
-        for must in ("Template", "Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:",
-                     "Best practices", "Sources"):
+        for must in ("Template", "Next milestone:", "Progress:", "Blocked on:", "Green when:",
+                     "Best practices", "Sources", "Missing a plan"):
             check(f"Update guide has '{must}'", must in gtext)
+        check("Update guide has no Confidence line", "Confidence:" not in gtext)
         ov_txt = "\n".join(du.para_text(e["paragraph"]) for e in ov["documentTab"]["body"]["content"] if "paragraph" in e)
         check("overview How to update points to the Update guide", "Update guide" in ov_txt)
 

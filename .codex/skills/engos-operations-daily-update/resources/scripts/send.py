@@ -31,6 +31,9 @@ def draft(doc_id, readers):
              or any(t.startswith("Starting section drafted by") for t, _ in i.sections[0].lines)]
     lines += ["", f"{len(open_)} of {len(inits)} initiatives not confirmed today: {', '.join(open_)}."
               if open_ else "All initiatives confirmed today."]
+    missing = du.missing_plan(inits, today)
+    lines += [f"{len(missing)} initiatives are missing a plan: {', '.join(i.name for i, _, _ in missing)}."
+              if missing else "Every open initiative has a dated next milestone."]
     lines += ["", f"Doc: https://docs.google.com/document/d/{doc_id}/edit"]
     return lines
 

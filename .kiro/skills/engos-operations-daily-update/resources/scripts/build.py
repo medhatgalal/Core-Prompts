@@ -141,7 +141,6 @@ def create(title, org, owner, reader, structure, day):
     import overview
     guide.add_guide(did, owner)
     overview.rebuild(did, day, "4:00 PM ET")
-    du.chipify(did)
     du.repair_headings(did)
     return did
 

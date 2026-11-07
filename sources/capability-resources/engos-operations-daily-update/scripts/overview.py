@@ -17,10 +17,14 @@ import build
 import dudoc as du
 import modes as m
 
-KEY = ["🔴 Red: a committed date passed and it is not done, or blocked with no owned fix and date.",
-       "🟡 At risk: next milestone has no date, or something owed or undecided could slip the date.",
-       "🟢 On track: none of the above.",
-       "⚪ Paused: paused or not started."]
+KEY = ["🔴 Red: a committed date passed and it is not done, or it is blocked and nobody owns the fix.",
+       "🟡 At risk: the updater does not expect the next milestone to land on its date, or it waits on another team.",
+       "🟢 On track: the updater expects the next milestone to land on its date.",
+       "⚪ Paused: paused or not started.",
+       "A missing date is not a colour: Missing a plan lists every open initiative without a dated next milestone."]
+MISSING_HEAD = "Missing a plan"
+MISSING_NONE = "Every open initiative has a dated next milestone."
+MISSING_SHARES = [34, 14, 28, 24]
 GREY_LINE = "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
 
 
@@ -49,6 +53,18 @@ def area_view(area, inits, today):
         cell = sentence  # the Updated column carries the date
     return {"area": area, "status": status, "counts": du.status_counts(statuses), "cell": cell, "updated": updated,
             "reasons": reasons}
+
+
+def missing_header():
+    return ["Initiative", "Owner", "What's missing", "Since"]
+
+
+def missing_cells(i, what, since, today):
+    """'Since' carries how long it has gone unfixed; over two weeks is marked."""
+    if since is None:
+        return [i.name, i.owner, what, "Not yet"]
+    old = (today - since).days > 14
+    return [i.name, i.owner, what, du.label(since) + (" (over 2 weeks)" if old else "")]
 
 
 def cell_links(cell):
@@ -115,10 +131,11 @@ def rebuild(doc_id, today, time):
     # Write the sections, then the tables into their empty paragraphs.
     nxt = [(d, *kept.get((du.label(d), i.tab_id), (c, [(c, du.tab_url(doc_id, i.tab_id))])), st)
            for d, c, i, st in du.next_two_weeks(inits, today)]
-    lines = (["Area health", ""] + ([du.DECISIONS_HEAD, ""] if decisions else []) +
+    missing = du.missing_plan(inits, today)
+    lines = (["Area health", "", MISSING_HEAD, "" if missing else MISSING_NONE] + ([du.DECISIONS_HEAD, ""] if decisions else []) +
              [du.NEXT_HEAD, "" if nxt else "No dated commitments in the next 2 weeks.", "How to update"] +
              [x.replace("`", "") for x in build.HOW_TO] + ["Status key"] + KEY + [GREY_LINE])
-    heads = {"Area health", du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"}
+    heads = {"Area health", MISSING_HEAD, du.DECISIONS_HEAD, du.NEXT_HEAD, "How to update", "Status key"}
     doc = du.read_doc(doc_id)
     at = m.find_tab(doc, tid)["documentTab"]["body"]["content"][-1]["startIndex"]
     reqs = m._paras(tid, at, lines, ["HEADING_2" if x in heads else "NORMAL_TEXT" for x in lines])
@@ -132,6 +149,9 @@ def rebuild(doc_id, today, time):
                     [["Area", "Owner", "Status", "Headline", "Updated"]] +
                     [[v["area"].name, v["area"].owner, v["counts"], v["cell"], du.label(v["updated"]) if v["updated"] else "Not yet"]
                      for v in views], build.AREA_SHARES)
+    if missing:
+        build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, MISSING_HEAD), [missing_header()] +
+                        [missing_cells(i, what, since, today) for i, what, since in missing], MISSING_SHARES)
     if decisions:
         build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, du.DECISIONS_HEAD),
                         [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + decisions, build.DECISION_SHARES)
@@ -163,6 +183,8 @@ def rebuild(doc_id, today, time):
         for phrase, url in hl_links.get(ar.name, []) + names:
             if phrase not in done and link_phrase(tid, r["tableCells"][3], phrase, url, reqs):
                 done.add(phrase)
+    for r, (i, _, _) in zip(new["Initiative"]["table"]["tableRows"][1:] if missing else [], missing):
+        link_phrase(tid, r["tableCells"][0], i.name, du.tab_url(doc_id, i.tab_id), reqs)
     for r, links in zip(new[du.DECISIONS_COL]["table"]["tableRows"][1:] if decisions else [], dec_links):
         for phrase, url in links:
             link_phrase(tid, r["tableCells"][0], phrase, url, reqs)
@@ -190,6 +212,8 @@ def main():
         print(f"  {v['area'].name}: {v['counts'].replace(chr(10), ' ')} | {v['cell']}")
         if v["reasons"]:
             print(f"     FLAG: {'; '.join(v['reasons'])}. Offer a note to {v['area'].owner} (drafted, not sent).")
+    for i, what, since in du.missing_plan(inits, today):
+        print(f"  Missing a plan: {' | '.join(missing_cells(i, what, since, today))}")
     for d, c, i, st in du.next_two_weeks(inits, today):
         print(f"  Next 2 weeks: {du.label(d)} | {c} ({i.name}) | {st}")
     if not a.publish:

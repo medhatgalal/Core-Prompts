@@ -86,87 +86,38 @@ GUIDE = "Update guide"
 DECISIONS_HEAD = "Exec leadership: decisions or help needed"
 DECISIONS_COL = "Decision or help needed"
 NEXT_HEAD = "Next 2 weeks"
-CONF_DEF = "kix.confidence"
+CONF_DEF = "kix.confidence"  # legacy Confidence chips; migrate.py removes them
 
 
-def _rgb(r, g, b):
-    return {"color": {"rgbColor": {"red": r, "green": g, "blue": b}}}
-
-
-CONF_OPTS = [("dropdownItem.very", "Very confident", _rgb(.85, .95, .85), _rgb(.08, .40, .15)),
-             ("dropdownItem.slight", "Slightly confident", _rgb(.99, .92, .70), _rgb(.45, .30, 0)),
-             ("dropdownItem.not", "Not confident", _rgb(.98, .84, .84), _rgb(.65, .10, .10))]
-
-
-def chipify(doc_id, tab_ids=None):
-    """Skill rule: every Confidence value is a dropdown chip (definition kix.confidence on its tab).
-    Turns any plain-text Confidence value into a chip, creating the tab's definition if missing."""
-    doc = read_doc(doc_id)
-    by_value = {v: o for o, v, _, _ in CONF_OPTS}
-    reqs = []
-    for t, _ in all_tabs(doc):
-        tid = t["tabProperties"]["tabId"]
-        if tab_ids is not None and tid not in tab_ids:
-            continue
-        hits = []
-        for e in t["documentTab"]["body"]["content"]:
-            if "paragraph" not in e:
-                continue
-            els = e["paragraph"]["elements"]
-            txt = para_text(e["paragraph"]).rstrip("\n")
-            if txt.startswith("Confidence:") and not any("dropdown" in r for r in els):
-                val = txt[len("Confidence:"):].strip()
-                if val not in by_value:
-                    continue
-                start = e["startIndex"] + utf16("Confidence: ")
-                hits.append((start, e["endIndex"] - 1, by_value[val]))
-        if not hits:
-            continue
-        if CONF_DEF not in t["documentTab"].get("dropdownDefinitions", {}):
-            reqs.append({"createDropdownDefinition": {"tabId": tid, "dropdownDefinition": {
-                "dropdownDefinitionId": CONF_DEF, "dropdownDefinitionProperties": {"title": "Confidence", "options": [
-                    {"optionId": o, "displayValue": v, "textStyle": {"backgroundColor": bg, "foregroundColor": fg}}
-                    for o, v, bg, fg in CONF_OPTS]}}}})
-        for start, end, opt in sorted(hits, reverse=True):
-            if end > start:
-                reqs.append({"deleteContentRange": {"range": {"startIndex": start, "endIndex": end, "tabId": tid}}})
-            reqs.append({"insertDropdown": {"location": {"index": start, "tabId": tid},
-                                            "dropdownDefinitionId": CONF_DEF, "selectedOptionId": opt}})
-    batch(doc_id, reqs, doc)
-    return len([r for r in reqs if "insertDropdown" in r])
-
-
-PREFIXES = ("Next milestone:", "Confidence:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:")
+PREFIXES = ("Next milestone:", "Progress:", "Blocked on:", "Green when:", "Unconfirmed:", "Confidence:")
 BOLD_PREFIXES = PREFIXES + ("Updated by", "Added by")  # line starts written bold
-CONFIDENCE = ("Very confident", "Slightly confident", "Not confident")
-DEFAULT_CONF = {"🟢": "Very confident", "🟡": "Slightly confident", "🔴": "Not confident", "⚪": "Slightly confident"}
+CONFIDENCE = ("Very confident", "Slightly confident", "Not confident")  # legacy sections only (see migrate.py)
 
 
 def normalize(lines, carry=None):
     """Skill section format. `lines` starts with the date heading or the status line.
-    Order: status, Next milestone, Confidence, Progress, Blocked on, Green when (only when not green), then the
-    closing lines (Updated by, Added by, Moved from, Unconfirmed). `carry` is a Section to take missing lines from."""
+    Order: status, Next milestone, Progress, Blocked on, Green when (only when not green), then the closing
+    lines (Updated by, Added by, Moved from, Unconfirmed). `carry` is a Section to take missing lines from.
+    Confidence is no longer part of a section: any Confidence line is dropped."""
     head = [lines[0]] if HEADING_RE.match(lines[0]) else []
-    body = lines[len(head):]
+    body = [l for l in lines[len(head):] if not l.startswith("Confidence:")]
     raw_status = next(l for l in body if l[:1] in STATUSES)
     status = STATUSES.get(raw_status.strip(), raw_status)  # a bare "🟡" becomes "🟡 At risk"
     get = lambda p: next((l for l in body if l.startswith(p)), None) or (carry and carry.line(p))
-    ms, conf, prog = get("Next milestone:"), get("Confidence:"), next((l for l in body if l.startswith("Progress:")), None)
+    ms, prog = get("Next milestone:"), next((l for l in body if l.startswith("Progress:")), None)
     if ms:
         ms = re.sub(r"(?i)no date set yet", "No date set yet", ms)
     blk, gw = get("Blocked on:"), get("Green when:")
     tail = [l for l in body if l != raw_status and not l.startswith(PREFIXES)] + \
            [l for l in body if l.startswith("Unconfirmed:")]
     tail = list(dict.fromkeys(tail))  # a closing line written twice appears once
-    if not any(l.startswith("Confidence:") for l in body) and carry is not None and carry.status != status[:1]:
-        conf = None
-    out = [status, ms, conf or f"Confidence: {DEFAULT_CONF[status[:1]]}"]
+    out = [status, ms]
     if prog:
         out.append(prog)
     out.append(blk or "Blocked on: None.")
     if status[:1] != "🟢":
         out.append(gw or "Green when: the updater sets this when they confirm.")
-    return head + out + tail
+    return head + [x for x in out if x] + tail
 
 
 def repair_headings(doc_id):
@@ -397,13 +348,22 @@ def status_counts(statuses):
 
 
 def commitment(ms):
-    """A milestone without its date: 'Pilot live, Fri Nov 13' -> 'Pilot live'."""
+    """A milestone without its date: 'Pilot live, Fri Nov 13' -> 'Pilot live'. A long one is cut to a short
+    label for the overview: a spelled-out name keeps only its short form, then the label stops before its
+    first qualifying phrase ("for ...", "on ...", "so ...")."""
     core = re.split(r", done ", ms)[0]
     found = list(DATE_RE.finditer(core))
     if found:
         f = found[-1]
         core = core[:f.start()].rstrip(" ,;:") + core[f.end():]
-    return re.sub(r"\s+(by|on|due)$", "", core.strip(" ,;:."))
+    core = re.sub(r"\s+(by|on|due)$", "", core.strip(" ,;:."))
+    if len(core) > 50:
+        core = re.sub(r"\b[A-Z][\w-]*(?: [\w-]+){1,6} \(([A-Z][A-Za-z0-9 ./-]{1,12})\)", r"\1", core)
+    if len(core) > 50:
+        cut = [m.start() for m in re.finditer(r" (?:for|on|in|so|with|so that|because) |, ", core) if m.start() >= 15]
+        if cut:
+            core = core[:cut[0]]
+    return core
 
 
 def next_two_weeks(inits, today):
@@ -420,6 +380,35 @@ def next_two_weeks(inits, today):
             st = i.newest("status")
             rows.append((d, commitment(s.milestone), i, st.status if st else "🟡"))
     return sorted(rows, key=lambda r: (r[0], RANK[r[3]]))
+
+
+def missing_plan(inits, today):
+    """Overview 'Missing a plan': (initiative, what is missing, since) for each open initiative whose newest
+    section has no next milestone, or one with no date. Done, stopped and paused (⚪) initiatives are left out.
+    `since` is the oldest date of the unbroken run of newest sections that lack a dated milestone."""
+    rows = []
+    for i in inits:
+        if not i.sections:
+            rows.append((i, "No section yet", None))
+            continue
+        prog = i.sections[0].line("Progress:") or ""
+        st = i.newest("status")
+        if prog.startswith(("Progress: Done ", "Progress: Stopped ")) or (st and st.status == "⚪"):
+            continue
+        ms_sec = i.newest("milestone")
+        ms = ms_sec.milestone if ms_sec else None
+        if ms and (milestone_date(ms) or ", done " in ms):
+            continue
+        what = "Milestone has no date" if ms and not re.match(r"(?i)(none|no date set yet)\b", ms) else "No next milestone"
+        since = None
+        for s in i.sections:
+            if s.milestone is None and not s.no_change:
+                continue
+            if s.milestone and (milestone_date(s.milestone) or ", done " in s.milestone):
+                break
+            since = s.date
+        rows.append((i, what, since or i.sections[-1].date))
+    return sorted(rows, key=lambda r: (r[2] or today, r[0].name))
 
 
 # ---------- overview title, used for every "Back to <overview>" link ----------

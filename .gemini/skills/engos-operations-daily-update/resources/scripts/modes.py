@@ -67,7 +67,6 @@ def write_section(doc_id, tab_id, lines, links=(), between=None):
     du.batch(doc_id, reqs, doc)
     # A rewrite that still carries the starting line (the doc owner correcting a starting section) keeps it.
     tidy(doc_id, tab_id, keep_first=any(x.startswith("Starting section drafted by") for x in lines))
-    du.chipify(doc_id, [tab_id])
 
 
 def tidy(doc_id, tab_id, cap=10, keep_first=False):
@@ -111,7 +110,6 @@ def add_initiative(doc_id, area_tab_id, name, owner, updater, area_name, lines, 
     styles = ["HEADING_1", "NORMAL_TEXT", "HEADING_2"] + ["NORMAL_TEXT"] * (len(lines))
     lk = [(1, otitle, du.tab_url(doc_id, "t.0"))] + [(k + 2, w, u) for k, w, u in links]
     du.batch(doc_id, _paras(tab_id, 1, all_lines, styles, lk))
-    du.chipify(doc_id, [tab_id])
     return tab_id
 
 
