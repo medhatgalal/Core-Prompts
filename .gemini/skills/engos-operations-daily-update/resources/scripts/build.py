@@ -12,7 +12,8 @@ AREA_SHARES = [18, 9, 11, 50, 12]
 DECISION_SHARES = [30, 18, 24, 16, 12]
 NEXT_SHARES = [20, 66, 14]
 MISSING_SHARES = [34, 14, 28, 24]
-INIT_SHARES = [30, 15, 17, 38]
+INIT_SHARES = [26, 12, 15, 31, 16]
+INIT_SHARES_OLD = [30, 15, 17, 38]
 # Overview "How to update": one bullet per role. The text before ":" is bold; `backticked` words are monospace.
 HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
@@ -37,7 +38,7 @@ def fit_tables(doc_id):
     """Skill rule: every table's columns add up to the tab's text width in the skill's split. Fixes any that drift."""
     import dudoc
     kinds = {("Area", "Owner", "Status", "Headline", "Updated"): AREA_SHARES, ("Date", "Commitment", "Status"): NEXT_SHARES,
-             ("Initiative", "Owner", "Status", "Next milestone and date"): INIT_SHARES,
+             tuple(du.INIT_HEAD): INIT_SHARES, tuple(du.INIT_HEAD_OLD): INIT_SHARES_OLD,
              ("Initiative", "Owner", "What's missing", "Since"): MISSING_SHARES,
              (dudoc.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): DECISION_SHARES}
     doc = du.read_doc(doc_id)
@@ -146,8 +147,8 @@ def create(title, org, owner, reader, structure, day):
         st = ["HEADING_1", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT"]
         du.batch(did, m._paras(aid, 1, lines, st, [back]))
         add_table(did, aid, anchor_index(did, aid, "Initiatives"),
-                  [["Initiative", "Owner", "Status", "Next milestone and date"]] +
-                  [[n, o, du.STATUSES[s], ms] for n, o, u, s, ms, *_ in items], [30, 15, 17, 38])
+                  [du.INIT_HEAD] +
+                  [du.row_cells([n, o, du.STATUSES[s], ms], 5) for n, o, u, s, ms, *_ in items], INIT_SHARES)
         # initiative tabs
         for n, o, u, s, ms, prog, word, url, extra in items:
             extra = [x for x in extra if not x.startswith("Starting section drafted by")]  # added once, below

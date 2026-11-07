@@ -143,6 +143,20 @@ def main():
     check("a long milestone gets a short label", len(lab) <= 50 and "Dev MCP" in lab, lab)
     check("a short milestone keeps its words", du.commitment("Pilot live, Fri Nov 13") == "Pilot live")
 
+    # Separate Next milestone and Date columns.
+    sp = du.split_milestone
+    check("split a dated milestone", sp("Pilot live, Fri Nov 13") == ("Pilot live", "Fri Nov 13"))
+    check("split an undated milestone", sp("Work intake inbox, No date set yet") == ("Work intake inbox", "No date set yet"))
+    check("split a bare 'No date set yet'", sp("No date set yet") == ("None", "No date set yet"))
+    check("split keeps a note after no date", sp("Boost confirmed, No date set yet (waiting on Sanat)") ==
+          ("Boost confirmed", "No date set yet (waiting on Sanat)"))
+    check("split a done milestone", sp("Endpoints delivered, done Thu Nov 5") == ("Endpoints delivered", "done Thu Nov 5"))
+    check("row_cells makes five cells for the new table",
+          du.row_cells(["A", "Ann", "🟢 On track", "Ship, Mon Nov 9"], 5) == ["A", "Ann", "🟢 On track", "Ship", "Mon Nov 9"])
+    check("row_cells leaves an old four-column table alone", du.row_cells(["A", "Ann", "🟢", "Ship, Mon Nov 9"], 4)[3] == "Ship, Mon Nov 9")
+    check("a split row reads back as the full milestone",
+          du.milestone_date(du.Area.row_milestone(["A", "Ann", "🟢", "Ship", "Mon Nov 9"])) == D(2026, 11, 9))
+
     # Migration colour mapping.
     m = migrate.new_status
     check("yellow, slightly confident, not blocked -> green", m("🟡", "Slightly confident", "Blocked on: None.") == "🟢")

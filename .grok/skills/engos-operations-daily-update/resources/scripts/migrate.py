@@ -106,6 +106,42 @@ def to_requests(tab_id, plan):
     return out
 
 
+def split_table(doc_id, area):
+    """Give an old 4-column Initiatives table its own Date column: 'Next milestone and date' becomes
+    'Next milestone' and 'Date', and each row's milestone is split. Returns True when it changed the table."""
+    if not area.table or area.split:
+        return False
+    tid = area.tab_id
+    du.batch(doc_id, [{"insertTableColumn": {"tableCellLocation": {
+        "tableStartLocation": {"index": area.table["startIndex"], "tabId": tid}, "rowIndex": 0, "columnIndex": 3},
+        "insertRight": True}}])
+    doc = du.read_doc(doc_id)
+    ar = next(a for a in du.model(doc)[1].values() if a.tab_id == tid)
+    reqs = []
+    for k, r in enumerate(ar.table["table"]["tableRows"]):
+        c3, c4 = r["tableCells"][3], r["tableCells"][4]
+        old = du.cell_text(c3)
+        vals = ("Next milestone", "Date") if k == 0 else du.split_milestone(old)
+        for cell, val in ((c4, vals[1]), (c3, vals[0])):  # highest index first
+            s0, e0 = cell["content"][0]["startIndex"], cell["content"][-1]["endIndex"] - 1
+            if e0 > s0:
+                reqs.append({"deleteContentRange": {"range": {"startIndex": s0, "endIndex": e0, "tabId": tid}}})
+            reqs.append({"insertText": {"location": {"index": s0, "tabId": tid}, "text": val}})
+            reqs.append({"updateTextStyle": {"range": {"startIndex": s0, "endIndex": s0 + du.utf16(val), "tabId": tid},
+                                             "textStyle": {"bold": k == 0}, "fields": "bold"}})
+            reqs.append({"updateParagraphStyle": {"range": {"startIndex": s0, "endIndex": s0 + du.utf16(val) + 1, "tabId": tid},
+                                                  "paragraphStyle": {"alignment": "START"}, "fields": "alignment"}})
+    reqs.sort(key=lambda q: next(iter(q.values())).get("range", next(iter(q.values())).get("location", {})).get("startIndex",
+              next(iter(q.values())).get("location", {}).get("index", 0)), reverse=True)
+    du.batch(doc_id, _ordered(reqs), doc)
+    return True
+
+
+def _ordered(reqs):
+    """Requests grouped per cell are already highest-first; keep each cell's delete/insert/style together."""
+    return reqs
+
+
 def all_initiatives(doc):
     """Initiative tabs under areas and under Archive."""
     out = []
@@ -160,6 +196,13 @@ def run(doc_id, publish=False, overrides=None):
             plan2, _, _ = plan_tab(ii.tab_id, ii, overrides)
             du.batch(doc_id, to_requests(ii.tab_id, plan2), fresh)
     for ar in areas.values():
+        if ar.table and not ar.split:
+            print(f"{ar.title} table: split 'Next milestone and date' into 'Next milestone' and 'Date'")
+            if publish:
+                split_table(doc_id, ar)
+    if publish:
+        _, areas, _ = du.model(du.read_doc(doc_id))
+    for ar in areas.values():
         mine = [i for i in inits if i.area_title == ar.title]
         rows = {r[0]: r for r in ar.rows()}
         for i in mine:
@@ -168,7 +211,7 @@ def run(doc_id, publish=False, overrides=None):
             if r and want and r[2][:1] != want:
                 print(f"{ar.title} table: {i.name} {r[2][:1]} -> {want}")
                 if publish:
-                    m.set_row(doc_id, ar.tab_id, i.name, [r[0], r[1], du.STATUSES[want], r[3]])
+                    m.set_row(doc_id, ar.tab_id, i.name, [r[0], r[1], du.STATUSES[want], du.Area.row_milestone(r)])
         worst = du.worst([newest.get(i.title) for i in mine])
         hl = ar.headline or ""
         if worst and hl[:1] in du.STATUSES and hl[:1] != worst:

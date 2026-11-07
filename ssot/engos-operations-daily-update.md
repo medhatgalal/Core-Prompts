@@ -249,7 +249,8 @@ and link while its date and initiative are unchanged. It also moves an older ove
 `<status> · <sentence> (<Weekday Mon D>)`, for example `🟡 At risk · Everything is on track except the new
 Composer experience, which ships Tue Nov 17 only if three blocking defects are fixed. (Thu Nov 5)`; the date is
 always last, in brackets. The sentence (two at most) says what the area's state means, leading with the biggest
-risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone and date), **Done** (one line each).
+risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone, Date; the Date cell holds the
+milestone's date, "No date set yet" or "done <date>", so a missing date shows in its own column), **Done** (one line each).
 
 **Initiative tab**: title `<Initiative> (<owner>)` as HEADING_1 (the same as the tab name), then `Owner: <name> · Updater: <leader> · Area: <area> · Back to <overview>`, then one
 section per day, **newest first**. Each section:
@@ -386,7 +387,8 @@ do what the rules need, use the notes below and say so in the review.
 
 Docs API notes: read with `includeTabsContent: true`. A doc from before v1.19.10 still has Confidence lines
 (dropdown chips) and the old colours. The doc owner runs `python3 migrate.py DOC` from the scripts folder: it
-shows every change and, with `--publish`, recolours every section, removes the Confidence lines and rewrites the Update guide. The doc is pageless: send `updateDocumentStyle` with
+shows every change and, with `--publish`, recolours every section, removes the Confidence lines, splits each area's "Next milestone and
+date" column into Next milestone and Date, and rewrites the Update guide. The doc is pageless: send `updateDocumentStyle` with
 `documentFormat.documentMode: PAGELESS` for every tab when you create the doc, and for each tab you add later. Indexes count UTF-16 code units (emoji count as 2).
 Other leaders edit the same doc, so **re-read the tab right before every write** and compute indexes from
 that read. Insert from the highest index down. Send every `batchUpdate` with
@@ -397,7 +399,7 @@ unchanged. If a heading lost its style, restore it before reporting done. Create
 Give every table fixed column widths (`updateTableColumnProperties`) that add up to the page's text width, so it
 fits the page. Text width = the tab's `documentStyle` page width minus its left and right margins (letter with
 1in margins: 468 pt; 0.5in margins: 540 pt). Split it by these shares: Area health 18, 9, 11, 50, 12 percent
-(540 pt: 97, 49, 59, 270, 65); Initiatives 30, 15, 17, 38 percent; decisions or help needed 30, 18, 24, 16, 12 percent; Next 2 weeks 20, 66, 14 percent.
+(540 pt: 97, 49, 59, 270, 65); Initiatives 26, 12, 15, 31, 16 percent; Missing a plan 34, 14, 28, 24 percent; decisions or help needed 30, 18, 24, 16, 12 percent; Next 2 weeks 20, 66, 14 percent.
 Round to whole points and put any remainder on the widest column. Whenever you write to a table, check its
 widths still add up to the text width, and fix them if not.
 

@@ -29,7 +29,7 @@ results = []
 # Column shares from SKILL.md "Docs API notes", keyed by the header row.
 SHARES = {("Area", "Owner", "Status", "Headline", "Updated"): build.AREA_SHARES,
           ("Date", "Commitment", "Status"): build.NEXT_SHARES,
-          ("Initiative", "Owner", "Status", "Next milestone and date"): build.INIT_SHARES,
+          tuple(du.INIT_HEAD): build.INIT_SHARES,
           ("Initiative", "Owner", "What's missing", "Since"): build.MISSING_SHARES,
           (du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"): build.DECISION_SHARES}
 
@@ -159,6 +159,9 @@ def main():
                 if m:
                     check(f"{i.title}: 'Added by' names the owner", m.group(2) == i.owner, t)
     for ar in areas.values():
+        if ar.table:
+            head = [du.cell_text(c) for c in ar.table["table"]["tableRows"][0]["tableCells"]]
+            check(f"{ar.title}: Initiatives table has separate Next milestone and Date columns", head == du.INIT_HEAD, head)
         first = next((du.para_text(e["paragraph"]).strip() for e in ar.body if "paragraph" in e), "")
         check(f"{ar.title}: title line matches tab name", first == ar.title, first)
         check(f"{ar.title}: header Owner matches", any(du.para_text(e["paragraph"]).startswith(f"Owner: {ar.owner} ·")
@@ -204,11 +207,12 @@ def main():
                 st, ms_sec = i.newest("status"), i.newest("milestone")
                 check(f"{ar.name} table: {i.name} status matches tab", r[2][:1] == (st.status if st else None), (r[2], st and st.status))
                 if ms_sec:
+                    row_ms = du.Area.row_milestone(r)
                     want = du.milestone_date(ms_sec.milestone)
-                    got = du.milestone_date(r[3])
+                    got = du.milestone_date(row_ms)
                     check(f"{ar.name} table: {i.name} milestone date matches tab",
-                          want == got or ("No date set yet" in r[3] and "No date set yet" in ms_sec.milestone), (r[3], ms_sec.milestone))
-                if len(r) == 4:
+                          want == got or ("No date set yet" in row_ms and "No date set yet" in ms_sec.milestone), (row_ms, ms_sec.milestone))
+                if len(r) >= 4:
                     check(f"{ar.name} table: {i.name} owner", r[1] == i.owner, r[1])
         for _, r in rows.items():
             for m, d, ok in du.dates_in(" ".join(r)):

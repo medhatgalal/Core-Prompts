@@ -129,6 +129,7 @@ def set_row(doc_id, area_tab_id, name, values, new_name=None):
     else:
         ri = names.index(name) + 1
     row = area.table["table"]["tableRows"][ri]
+    values = du.row_cells(values, len(row["tableCells"]))
     reqs = []
     for cell, val in reversed(list(zip(row["tableCells"], values))):
         s, e = cell["content"][0]["startIndex"], cell["content"][-1]["endIndex"] - 1

@@ -300,6 +300,16 @@ class Area:
             return []
         return [[cell_text(c) for c in r["tableCells"]] for r in self.table["table"]["tableRows"][1:]]
 
+    @property
+    def split(self):
+        """True when the Initiatives table has separate Next milestone and Date columns (v1.19.10 and later)."""
+        return bool(self.table) and len(self.table["table"]["tableRows"][0]["tableCells"]) == 5
+
+    @staticmethod
+    def row_milestone(r):
+        """A row's milestone with its date, whichever table layout it comes from."""
+        return f"{r[3]}, {r[4]}" if len(r) >= 5 and r[4] else r[3]
+
 
 def model(doc):
     inits, areas, overview, archive = [], {}, None, None
@@ -321,6 +331,40 @@ def model(doc):
 
 def tab_url(doc_id, tab_id):
     return f"https://docs.google.com/document/d/{doc_id}/edit?tab={tab_id}"
+
+
+INIT_HEAD = ["Initiative", "Owner", "Status", "Next milestone", "Date"]
+INIT_HEAD_OLD = ["Initiative", "Owner", "Status", "Next milestone and date"]
+
+
+def split_milestone(ms):
+    """'Pilot live, Fri Nov 13' -> ('Pilot live', 'Fri Nov 13'); undated -> (what, 'No date set yet');
+    'Ship, Mon Nov 2, done Thu Nov 5.' -> ('Ship', 'Mon Nov 2, done Thu Nov 5')."""
+    ms = (ms or "").strip().rstrip(".")
+    if not ms or re.fullmatch(r"(?i)no date set yet", ms):
+        return ("None", "No date set yet")
+    m = re.search(r",?\s*no date set yet\b(.*)$", ms, re.I)
+    if m:
+        return (ms[:m.start()].strip(" ,"), "No date set yet" + m.group(1))
+    found = list(DATE_RE.finditer(ms))
+    if not found:
+        return (ms, "No date set yet")
+    first = found[0]
+    head = ms[:first.start()].rstrip(" ,;:")
+    when = ms[first.start():].strip()
+    m = re.search(r",?\s*done$", head)
+    if m:
+        head, when = head[:m.start()].rstrip(" ,"), "done " + when
+    head = re.sub(r"\s+(by|on|due)$", "", head)
+    return (head or ms, when)
+
+
+def row_cells(values, ncols):
+    """Initiatives-table cells from [name, owner, status, milestone with date], for a 4- or 5-column table."""
+    if ncols == 5 and len(values) == 4:
+        what, when = split_milestone(values[3])
+        return [values[0], values[1], values[2], what, when]
+    return list(values)
 
 
 def milestone_dated(ms):

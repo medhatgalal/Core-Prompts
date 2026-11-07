@@ -65,6 +65,7 @@ def row_values(init, lines):
 def set_cells(area, row_idx, values):
     """Requests replacing each cell's text in one table row, highest index first."""
     row = area.table["table"]["tableRows"][row_idx]
+    values = du.row_cells(values, len(row["tableCells"]))
     reqs = []
     for cell, val in reversed(list(zip(row["tableCells"], values))):
         start = cell["content"][0]["startIndex"]
