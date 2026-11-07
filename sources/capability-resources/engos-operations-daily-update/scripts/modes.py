@@ -211,7 +211,12 @@ def archive(doc_id, title, done_text):
     arch_id, tid = arch["tabProperties"]["tabId"], t["tabProperties"]["tabId"]
     delete_row(doc_id, parent["tabProperties"]["tabId"], du.title_parts(title)[0])
     move_tab(doc_id, tid, arch_id, len(arch.get("childTabs", [])))
-    line = f"{title}, {done_text}."
+    list_on_archive(doc_id, arch_id, tid, title, done_text)
+
+
+def list_on_archive(doc_id, arch_id, tab_id, title, text):
+    """One line on the Archive tab, "<title>, <text>.", with the title linked to its tab."""
+    line = f"{title}, {text}."
     try:
         replace_in_para(doc_id, arch_id, "None yet.", line)
     except LookupError:
@@ -222,4 +227,4 @@ def archive(doc_id, title, done_text):
              if "paragraph" in e and du.para_text(e["paragraph"]).startswith(line))
     du.batch(doc_id, [{"updateTextStyle": {"range": {"startIndex": p["startIndex"],
                                                      "endIndex": p["startIndex"] + du.utf16(title), "tabId": arch_id},
-                                           "textStyle": {"link": {"url": du.tab_url(doc_id, tid)}}, "fields": "link"}}], doc)
+                                           "textStyle": {"link": {"url": du.tab_url(doc_id, tab_id)}}, "fields": "link"}}], doc)

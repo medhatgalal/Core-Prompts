@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
 """daily-update doc tool. The agent decides the words; this writes them in the skill's exact layout.
 
-Every write re-reads the doc, sends the revision it read (a doc changed by someone else is refused, then
-retried up to 3 times), restores date headings, and prints the re-read text. `section` checks the draft first.
-Nothing here messages anyone except `send --confirmed`, which the agent runs only after the person said "send".
+    du.py <noun> <verb> [args] [--doc ID] [--json] [--dry-run] [--for-owner]
 
-  du.py setup STRUCTURE.json                 create the doc; prints its id
-  du.py section DOC TAB_TITLE SECTION.json   write today's section on one initiative tab
-  du.py today DOC TAB_TITLE YYYY-MM-DD       print that day's section as SECTION.json (read only), to re-summarize
-  du.py add DOC AREA_TITLE INIT.json [--new]  add an initiative tab, its first section and its area-table row
-  du.py dedupe DOC CANDIDATES.json [CONFIG]   discover step 2 (read only): new, add as a source, covered, or archived
-  du.py headline DOC AREA_TITLE "<sentences> (<Weekday Mon D>)"   no colour; a leading one is removed
-  du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
-  du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
-  du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]   rebuild the overview below its "As of" line
-  du.py decisions DOC READER ROWS.json [LINKS.json]   "Exec leadership: decisions or help needed" table
-  du.py archive DOC TAB_TITLE "done Mon Nov 9"
-  du.py send DOC [--confirmed]               draft the reader summary; --confirmed sends it
-  du.py settings DOC [--owner NAME] [--readers JSON] [--people JSON]   show or set settings stored on the doc
-  du.py lint DOC TAB_TITLE SECTION.json      the pre-publish check (read only): WARN lines go in the review,
-                                             BLOCK lines must be fixed; section runs the same check and refuses on BLOCK
-  du.py check DOC YYYY-MM-DD                 rule and reader checks on the doc
-  du.py sync                                 back up ~/.daily-update to My Drive/.engos/automation-daily-updates,
-                                             restoring any file that is missing or older locally
+Run `du.py --help`, or `du.py <noun> --help`, for the verbs. The grammar lives in cli.py; this file holds the
+engine each verb calls. Every write re-reads the doc, sends the revision it read (a doc changed by someone else
+is refused, then retried up to 3 times), restores date headings, and prints the re-read text. Writes take
+--dry-run: they print the PLAN and write nothing, so the agent can show it and wait for "publish".
+Nothing here messages anyone except `day send --confirmed`, run only after the person said "send".
+
+  doc        create STRUCTURE.json | show | check DATE | sync
+  area       list | show | add | rename | set-owner | set-headline | merge | remove
+  initiative list | show | add | rename | move | set-owner | set-updater
+             pause | resume | done | stop | reopen | archive
+  person     list | show | set-email
+  reader     list | add | remove | set-channel
+  source     list | add | remove                    (yours, local, never on the doc)
+  section    write TAB FILE | show TAB DATE | lint TAB FILE
+  day        sweep | overview | decisions | send    (doc owner, 3pm close-out)
+  discover   check FILE
+
+Initiative lifecycle:  open -> paused -> open;  open|paused -> done|stopped;  done|stopped -> open (reopen)
+or -> archived (terminal). Archive is normally proposed by `day overview`; the doc owner approves it.
 
 SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...",
   "progress": "... (Jira COM-994).", "blocked": "None.", "green_when": "...", "extra": [],
@@ -30,7 +29,8 @@ SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...",
   Links go on the Progress or Blocked on line that cites them. When "author" is not the tab's updater, set
   "cover_for" to the updater; the "Updated by <author> for <updater>." line is added for you.
   A line drawn only from email, chat or meeting notes ends "(email)", "(chat)" or "(meeting notes)" with no link.
-STRUCTURE.json: {"org": "Automation", "owner": "Scott", "reader": "Medhat", "date": "YYYY-MM-DD",
+INIT.json (initiative add): SECTION.json plus "name", "owner", optional "updater" (default the area owner).
+STRUCTURE.json (doc create): {"org": "Automation", "owner": "Scott", "reader": "Medhat", "date": "YYYY-MM-DD",
   "areas": [{"name": "Composer", "owner": "Kyle", "initiatives": [
     {"name": "Composer Evals", "owner": "Goldberg", "updater": "Kyle", "status": "🟡",
      "milestone": "...", "progress": "... (Jira COM-994).", "link": ["Jira COM-994", "https://..."],
@@ -285,7 +285,7 @@ def cmd_send(a):
     st = du.settings_get(doc_id)
     readers = st["readers"]
     if not readers:
-        raise SystemExit("No readers set. Run: du.py settings DOC --readers '[{\"name\":..,\"email\":..,\"channel\":\"email\"}]'")
+        raise SystemExit("No readers set. Run: du.py reader add NAME EMAIL --channel email")
     text = send.draft(doc_id, readers)
     subject, body = text[0], "\n".join(text[2:])
     print("RECIPIENTS: " + ", ".join(f"{r['name']} <{r['email']}> by {r['channel']}" for r in readers))
@@ -335,27 +335,8 @@ def cmd_check(a):
 
 
 def main():
-    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help", "help"):
-        print(__doc__)
-        return
-    cmd, a = sys.argv[1], sys.argv[2:]
-    if cmd != "sync":
-        # Back up and restore before any command, at most every 10 minutes. Output goes to stderr so
-        # commands that print JSON stay parseable; a Drive problem never stops the command.
-        import backup
-        r = backup.auto()
-        if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):
-            print(backup.report(r), file=sys.stderr)
-    if a and a[0] in du.PROTECTED and cmd not in ("check", "settings", "today", "dedupe"):
-        raise SystemExit(f"REFUSED: {du.PROTECTED[a[0]]} is protected while the skill is in testing. Nothing written.")
-    if cmd == "sweep":
-        sys.exit(run("sweep.py", a[0], a[1], "--owner", *a[2:]))
-    if cmd == "overview":
-        sys.exit(run("overview.py", *a))
-    fn = globals().get(f"cmd_{cmd}")
-    if not fn:
-        raise SystemExit(f"Unknown command {cmd!r}. Run du.py help.")
-    fn(a)
+    import cli
+    cli.main()
 
 
 if __name__ == "__main__":

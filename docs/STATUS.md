@@ -4,7 +4,7 @@ Generated from the latest build, validation, and smoke reports. This is the user
 
 - Overall health: `ok`
 - Capability count: `40`
-- Latest build: `2026-11-07T16:25:44.888424+00:00`
+- Latest build: `2026-11-07T18:58:57.336811+00:00`
 - Latest validation: `unknown`
 - Latest smoke: `unknown`
 
