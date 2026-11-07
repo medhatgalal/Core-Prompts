@@ -352,9 +352,9 @@ def split_milestone(ms):
     first = found[0]
     head = ms[:first.start()].rstrip(" ,;:")
     when = ms[first.start():].strip()
-    m = re.search(r",?\s*done$", head)
+    m = re.search(r",?\s*(done|stopped)$", head)
     if m:
-        head, when = head[:m.start()].rstrip(" ,"), "done " + when
+        head, when = head[:m.start()].rstrip(" ,"), f"{m.group(1)} " + when
     head = re.sub(r"\s+(by|on|due)$", "", head)
     return (head or ms, when)
 
