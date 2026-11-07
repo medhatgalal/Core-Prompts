@@ -210,7 +210,7 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
 ```
 
 **Overview tab**, top to bottom. Every overview table cell is left-aligned.
-1. Title `<Org> daily update`, then `Owner: <doc owner> · Readers: <reader> and all leaders · As of <Weekday Mon D, time TZ>`.
+1. Title `<Org> Daily Updates`, then `Owner: <doc owner> · Readers: <reader> and all leaders · As of <Weekday Mon D, time TZ>`.
 2. **Area health**: table with Area (linked to its tab), Owner, Status, Headline, Updated (date of the area's
    newest update; this column shows which areas are not updated today). The Status cell stacks a count per
    colour of that area's initiatives, one line each, in the order 🔴, 🟡, 🟢, ⚪, leaving out zero counts
@@ -326,6 +326,15 @@ State lives in `~/.daily-update/` in the person's home folder, so any working fo
   "chat": ["spaces/..."], "email": ["gmail search"], "meetings": ["meeting title"], "docs": ["fileId"]}`.
 - `~/.daily-update/ledger/YYYY-MM-DD.json`: what was published that day: each line's exact published text and its source links.
 
+**Drive backup.** The local files stay primary, and a private copy lives in the person's own My Drive under
+`.engos/automation-daily-updates/` (`config.json`, `protected.json`, `ledger/`), with `.engos/README.md`
+asking people not to delete, move or share the folder. Run `du.py sync` at the start of every command and
+again after every save of `config.json` or a ledger file. It creates the folders and README when missing,
+backs up what changed, and restores any file that is missing or older on this laptop, so a new or rebuilt
+laptop picks up its sources and ledger on the first run. Never share the folder: its files point at the
+person's own email and chats. If Drive cannot be reached, `sync` says the backup was skipped; say so in one
+line and carry on, never stop the run for it.
+
 ## Before you start: tools
 
 The kit needs four command-line tools, signed in as the person: `gws`, `acli`, `glab`, `gh`.
@@ -364,7 +373,7 @@ fails, give the exact error and the one command that fixes it, then continue wit
 in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
 exact layout above, with the revision check and retries, bold labels, Confidence chips, date headings, table
 widths and pageless tabs. Use `du.py setup`, `section`, `today`, `add`, `dedupe`, `headline`, `row`, `sweep`, `overview`,
-`decisions`, `archive`, `send` and `settings` instead of writing Docs API requests yourself, and run
+`decisions`, `archive`, `send`, `settings` and `sync` instead of writing Docs API requests yourself, and run
 `du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
 
@@ -400,7 +409,7 @@ widths still add up to the text width, and fix them if not.
    14 days (sent mail, chats, meetings, Jira, merge requests), with owners you are unsure of marked "?".
    Keep it under 8 areas and 30 initiatives.
 3. Let them correct it in plain words ("move 4 under People", "Kyle owns Composer"). Ask only for what is missing.
-4. Build the doc (title `<Org> daily update`): overview, area tabs, nested initiative tabs, Archive, Update guide, laid out as above.
+4. Build the doc (title `<Org> Daily Updates`): overview, area tabs, nested initiative tabs, Archive, Update guide, laid out as above.
    Each area headline follows the Area tab headline rule, from its starting sections, dated today (after
    setup, replace the script's starting headline with `du.py headline`); never process text such as
    "starting view" or "drafted by". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest
@@ -640,7 +649,7 @@ owner name exceptions.
 
 1. Read the readers from the doc's settings (`du.py settings DOC`). If empty, ask who should get it (name, email, email or Chat) and save them;
    `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
-2. Draft one short message: subject or first line "<Org> daily update, <Weekday Mon D>", one line per
+2. Draft one short message: subject or first line "<Org> Daily Updates, <Weekday Mon D>", one line per
    Area health row ("<area colour> <Area>: <Headline>"), any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
    <names>." (or "All initiatives confirmed today."), and the doc link. No other content; nothing beyond
    what the overview already says.

@@ -93,7 +93,7 @@ def create(title, org, owner, reader, structure, day):
     r = du.batch(did, reqs)
     ids = [x["addDocumentTab"]["tabProperties"]["tabId"] for x in r["replies"] if "addDocumentTab" in x]
     area_ids, archive_id = ids[:-1], ids[-1]
-    otitle = f"{org} daily update"
+    otitle = f"{org} Daily Updates"
     back = (1, otitle, du.tab_url(did, ov))
     inits = {}
     for (area, aown, items), aid in zip(structure, area_ids):
@@ -134,7 +134,7 @@ def create(title, org, owner, reader, structure, day):
                                            "Finished initiatives move here.", "None yet."],
                            ["HEADING_1", "NORMAL_TEXT", "NORMAL_TEXT", "NORMAL_TEXT"], [back]))
     # overview: title and owner line here; overview.rebuild writes everything below them
-    lines = [f"{org} daily update", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET"]
+    lines = [f"{org} Daily Updates", f"Owner: {owner} · Readers: {reader} and all leaders · As of {du.label(day, True)}, 4:00 PM ET"]
     du.batch(did, m._paras(ov, 1, lines, ["TITLE", "NORMAL_TEXT"]))
     du.pageless(did, [t["tabProperties"]["tabId"] for t, _ in du.all_tabs(du.read_doc(did))])
     import guide

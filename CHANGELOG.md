@@ -1,3 +1,7 @@
+## Unreleased
+
+- `engos-operations-daily-update`: back up each person's kit files to their own Google Drive. A new `du.py sync` keeps the local files (`~/.daily-update`) primary and copies `config.json`, `protected.json` and the ledger to a private `My Drive/.engos/automation-daily-updates/` folder, with `.engos/README.md` asking people not to delete, move or share it. The skill runs it at the start of every command and after each save, so a new or rebuilt laptop gets its sources and ledger back on the first run. When Drive cannot be reached, it reports the backup as skipped and the run continues. New docs are titled "<Org> Daily Updates" (was "<Org> daily update"), and the reader summary subject follows the doc title. `tests/backup_test.py` covers the first backup, no re-upload of unchanged files, restore on a clean machine, the newer side winning, and a Drive outage, in a throwaway Drive folder. Tracked in issue 1. Behavioral status remains pending.
+
 ## v1.19.8 - 2026-11-06
 
 Tag authorized by Scott Parrish on 2026-11-06. Publication is recorded by the GitLab
