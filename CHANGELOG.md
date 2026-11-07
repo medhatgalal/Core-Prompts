@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.11 - 2026-11-07
+
+Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - `engos-operations-daily-update`: the overview's Next 2 weeks shows each milestone exactly as its section words it (without its date) and never shortens it. v1.19.10 cut long milestones at their first "on", "for" or "in", which could leave a half sentence ("Composer's shared session store runs"). A milestone over 60 characters is now a pre-publish warning asking for a shorter wording that keeps the meaning. Tests: `rules_test.py` adds three checks (two fail on v1.19.10).
 
