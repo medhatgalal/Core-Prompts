@@ -1,4 +1,7 @@
-## Unreleased
+## v1.19.10 - 2026-11-07
+
+Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
 
 - `engos-operations-daily-update`: calmer, single-meaning status colours. 🟡 now means the updater does not expect the next milestone to land on its date, or it waits on another team; a missing date or an open question no longer turns a tab yellow. The Confidence line (and its dropdown chip) is gone: the colour carries that call. A new overview table, **Missing a plan**, lists every open initiative with no next milestone or no date (Initiative, Owner, What's missing, Since; over two weeks is marked), and the reader summary counts them. A pre-publish check (`du.py lint`, also run by `du.py section`) shows warnings in the review (no date, no milestone, a milestone date carried unchanged while Progress says something moved or names a later date) and blocks the write on rule breaks (raw URLs, missing source labels, people-sensitive words, vague dates, a Confidence line). Area headlines carry no colour (the area's colour comes from its initiatives). Area Initiatives tables get separate Next milestone and Date columns, so a missing date shows on its own. Fixes: covering for someone now adds the "Updated by" line; links can go on the Blocked on line; Next 2 weeks shows a short label for long milestones. `migrate.py` moves an existing doc to these rules (recolours every section, removes Confidence lines, rewrites the Update guide) after a review. Tests: `tests/rules_test.py` (27 offline checks, failing on v1.19.9) and the end-to-end suite. Tracked in issue 2. Behavioral status remains pending.
 
