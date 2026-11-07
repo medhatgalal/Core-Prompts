@@ -36,14 +36,11 @@ def area_view(area, inits, today):
     hl_dates = du.dates_in(hl)
     hl_date = hl_dates[-1][1] if hl_dates else None
     updated = max(confirmed + ([hl_date] if hl_date else []), default=None)
-    sentence = re.sub(r"^[🔴🟡🟢⚪] [^·]*· ", "", hl)
+    sentence = build.strip_colour(hl)
     sentence = re.sub(r"\s*\((Mon|Tue|Wed|Thu|Fri|Sat|Sun) \w{3} \d{1,2}\)$", "", sentence)
-    hl_status = hl[:1] if hl[:1] in du.STATUSES else None
     reasons = []
     if hl_date and updated and hl_date < updated:
         reasons.append(f"headline {du.label(hl_date)} older than newest update {du.label(updated)}")
-    if hl_status and hl_status != status:
-        reasons.append(f"headline says {hl_status}, tabs say {status}")
     if reasons:
         cell = f"{sentence} (headline from {du.label(hl_date) if hl_date else 'unknown date'}; out of date with its tabs)"
     elif hl_date and hl_date < today:

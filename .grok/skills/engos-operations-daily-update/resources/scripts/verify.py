@@ -250,8 +250,8 @@ def main():
         confirmed = [s.date for i in mine for s in i.sections if not s.unconfirmed]
         newest = max(confirmed + ([hl_date] if hl_date else []), default=None)
         check(f"overview: {ar.name} Updated is its newest update", row[4] == (du.label(newest) if newest else "Not yet"), row[4])
-        hl_status = (ar.headline or "")[:1]
-        flagged = (hl_date and newest and hl_date < newest) or (hl_status in du.STATUSES and hl_status != want)
+        check(f"{ar.title}: headline carries no colour", (ar.headline or "")[:1] not in du.STATUSES, (ar.headline or "")[:20])
+        flagged = hl_date and newest and hl_date < newest
         if flagged:
             check(f"overview: {ar.name} flagged headline wording",
                   row[3].endswith(f"(headline from {du.label(hl_date)}; out of date with its tabs)"), row[3][-70:])

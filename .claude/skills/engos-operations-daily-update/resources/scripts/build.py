@@ -141,7 +141,7 @@ def create(title, org, owner, reader, structure, day):
         # area tab
         worst = du.worst(it[3] for it in items)
         nxt = "; ".join(f"{n}: {ms}" for n, o, u, s, ms, *_ in items[:2])
-        hl = f"{du.STATUSES[worst]} · Next up: {nxt}. ({du.label(day)})"
+        hl = f"Next up: {nxt}. ({du.label(day)})"
         lines = [f"{area} ({aown})", f"Owner: {aown} · Back to {otitle}", "Headline", hl,
                  "Initiatives", "", "Done", "No initiatives finished yet."]
         st = ["HEADING_1", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT"]
@@ -182,11 +182,16 @@ def create(title, org, owner, reader, structure, day):
     return did
 
 
-def set_headline(doc_id, area_title, text):
-    """Replace the area tab's headline paragraph (area owner only)."""
+def strip_colour(text):
     import re
-    # Format: "<status> · <sentences> (<date>)". Fix a "." or "," written where the "·" belongs.
-    text = re.sub(r"^((?:🔴 Red|🟡 At risk|🟢 On track|⚪ Paused))\s*[.,:;]?\s+(?!·)", r"\1 · ", text)
+    return re.sub(r"^\s*(?:🔴|🟡|🟢|⚪)\s*(?:Red|At risk|On track|Paused)?\s*[·.,:;-]?\s*", "", text or "")
+
+
+def set_headline(doc_id, area_title, text):
+    """Replace the area tab's headline paragraph (area owner only).
+    Format: "<sentences> (<Weekday Mon D>)". The headline carries no colour: the area's colour comes from its
+    initiatives. A leading colour ("🟡 At risk · ") is removed."""
+    text = strip_colour(text)
     doc = du.read_doc(doc_id)
     area = du.model(doc)[1][area_title]
     paras = [e for e in area.body if "paragraph" in e]

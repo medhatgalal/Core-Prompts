@@ -7,7 +7,8 @@
 
 Every dated section on every initiative tab (Archive included) is recoloured by the new rule, its Confidence
 line (chip) is removed, and its Green when line kept only when the section is not green. Area table Status
-cells and the status at the start of each area headline follow the newest sections. The Update guide tab is
+cells follow the newest sections, and each area headline loses its colour (the area's colour comes from its
+initiatives). The Update guide tab is
 rewritten to the new template. The overview is rebuilt separately with overview.py (the doc owner's close).
 
 New colour, from what the section already says:
@@ -212,13 +213,11 @@ def run(doc_id, publish=False, overrides=None):
                 print(f"{ar.title} table: {i.name} {r[2][:1]} -> {want}")
                 if publish:
                     m.set_row(doc_id, ar.tab_id, i.name, [r[0], r[1], du.STATUSES[want], du.Area.row_milestone(r)])
-        worst = du.worst([newest.get(i.title) for i in mine])
         hl = ar.headline or ""
-        if worst and hl[:1] in du.STATUSES and hl[:1] != worst:
-            new_hl = re.sub(r"^[🔴🟡🟢⚪] [^·]*· ", f"{du.STATUSES[worst]} · ", hl)
-            print(f"{ar.title} headline: {hl[:1]} -> {worst}. CHECK the sentence still fits: {hl[:110]}")
+        if hl[:1] in du.STATUSES:
+            print(f"{ar.title} headline: remove its colour ({hl[:1]}); the area's colour comes from its initiatives")
             if publish:
-                build.set_headline(doc_id, ar.title, new_hl)
+                build.set_headline(doc_id, ar.title, build.strip_colour(hl))
     print("Update guide: rewrite to the new template" + (" (done)" if publish and rewrite_guide(doc_id) else ""))
     if publish:
         du.repair_headings(doc_id)

@@ -10,7 +10,7 @@ Nothing here messages anyone except `send --confirmed`, which the agent runs onl
   du.py today DOC TAB_TITLE YYYY-MM-DD       print that day's section as SECTION.json (read only), to re-summarize
   du.py add DOC AREA_TITLE INIT.json [--new]  add an initiative tab, its first section and its area-table row
   du.py dedupe DOC CANDIDATES.json [CONFIG]   discover step 2 (read only): new, add as a source, covered, or archived
-  du.py headline DOC AREA_TITLE "<status> · <sentences> (<Weekday Mon D>)"
+  du.py headline DOC AREA_TITLE "<sentences> (<Weekday Mon D>)"   no colour; a leading one is removed
   du.py row DOC AREA_TITLE ROW.json          set one Initiatives-table row (["name","owner","status","milestone"])
   du.py sweep DOC YYYY-MM-DD OWNER [--publish] [--decide "Name=red|done" ...]
   du.py overview DOC YYYY-MM-DD "4:00 PM ET" [--publish]   rebuild the overview below its "As of" line

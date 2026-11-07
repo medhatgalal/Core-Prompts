@@ -243,9 +243,10 @@ links whose phrase is still there, links initiative names in headlines, and keep
 and link while its date and initiative are unchanged. It also moves an older overview to this layout.
 
 **Area tab**: title, `Owner: <name> · Back to <overview>`, then **Headline**: one line,
-`<status> · <sentence> (<Weekday Mon D>)`, for example `🟡 At risk · Everything is on track except the new
-Composer experience, which ships Tue Nov 17 only if three blocking defects are fixed. (Thu Nov 5)`; the date is
-always last, in brackets. The sentence (two at most) says what the area's state means, leading with the biggest
+`<sentence> (<Weekday Mon D>)`, for example `Everything is on track except the new Composer experience, which
+ships Tue Nov 17 only if three blocking defects are fixed. (Thu Nov 5)`; the date is always last, in brackets.
+The headline carries no colour: the area's colour is the worst of its initiatives, shown in its table and on the
+overview, so a hand-written colour could only repeat it or contradict it. The sentence (two at most) says what the area's state means, leading with the biggest
 risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone, Date; the Date cell holds the
 milestone's date, "No date set yet" or "done <date>", so a missing date shows in its own column), **Done** (one line each).
 
@@ -484,7 +485,7 @@ widths still add up to the text width, and fix them if not.
    🔴 Billing API: ship date Tue Nov 3 missed; last tests failed Nov 3 (link). Sam expects the fix Thu Nov 5 (link).
    🟡 Cost cuts: Finance numbers not received; the plan to the VP needs them by Fri Nov 13 (link).
    🟢 Hiring: one offer accepted (link).
-   Area headline (Payments): 🔴 Billing API slipped two days; everything else on track.
+   Area headline (Payments): Billing API slipped two days; everything else on track.
 
    Check: left out a candidate's name. Warn: Hiring has no date (goes under Missing a plan).
    Not sure: is Cost cuts at risk? (my inference)

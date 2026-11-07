@@ -157,6 +157,12 @@ def main():
     check("a split row reads back as the full milestone",
           du.milestone_date(du.Area.row_milestone(["A", "Ann", "🟢", "Ship", "Mon Nov 9"])) == D(2026, 11, 9))
 
+    # Headlines carry no colour.
+    import build
+    check("a leading colour is removed from a headline",
+          build.strip_colour("🟡 At risk · Claude 5.5 is due Fri Nov 13. (Thu Nov 5)") == "Claude 5.5 is due Fri Nov 13. (Thu Nov 5)")
+    check("a headline without colour is unchanged", build.strip_colour("Plain (Fri Nov 6)") == "Plain (Fri Nov 6)")
+
     # Migration colour mapping.
     m = migrate.new_status
     check("yellow, slightly confident, not blocked -> green", m("🟡", "Slightly confident", "Blocked on: None.") == "🟢")
