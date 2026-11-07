@@ -20,6 +20,7 @@ import glob
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import time
 
@@ -129,9 +130,27 @@ def _download(remote, path):
     _gws("drive", "files", "get", "--params", json.dumps({"fileId": remote["id"], "alt": "media"}), out=tmp)
     if not os.path.isfile(tmp):
         raise Offline(f"download of {remote['name']} saved nothing")
+    try:
+        json.load(open(tmp))
+    except ValueError:
+        os.remove(tmp)
+        raise Offline(f"Drive copy of {remote['name']} is not valid JSON; kept the local file")
+    if os.path.isfile(path):
+        # Never lose the laptop's copy: keep it before the restore replaces it.
+        keep = os.path.join(HOME, ".before-restore", time.strftime("%Y%m%d-%H%M%S"), os.path.relpath(path, HOME))
+        os.makedirs(os.path.dirname(keep), exist_ok=True)
+        shutil.copy2(path, keep)
     os.replace(tmp, path)
     t = _ts(remote["modifiedTime"])
     os.utime(path, (t, t))
+
+
+def _valid(path):
+    try:
+        json.load(open(path))
+        return True
+    except (ValueError, OSError):
+        return False
 
 
 def _local_files():
@@ -152,6 +171,10 @@ def _sync_dir(folder_id, sub, local, result):
         path = local.get((sub, name)) or os.path.join(HOME, sub, name)
         r = remote.get(name)
         label = f"{sub}/{name}" if sub else name
+        if os.path.isfile(path) and not _valid(path):
+            # A broken local file never overwrites the Drive copy, and is left for the person to look at.
+            result["invalid"].append(label)
+            continue
         if not os.path.isfile(path):
             _download(r, path)
             result["restored"].append(label)
@@ -170,7 +193,7 @@ def _sync_dir(folder_id, sub, local, result):
 
 def sync():
     """Back up and restore. Returns {"status": "ok"|"skipped", "backed_up", "restored", "same", "error"}."""
-    result = {"status": "ok", "backed_up": [], "restored": [], "same": 0, "error": ""}
+    result = {"status": "ok", "backed_up": [], "restored": [], "same": 0, "invalid": [], "error": ""}
     try:
         root = _folder("root", ROOT)
         readme = _list(root, "README.md", folder=False)
@@ -222,6 +245,9 @@ def report(r):
     parts = [f"backed up {len(r['backed_up'])}", f"restored {len(r['restored'])}", f"unchanged {r['same']}"]
     lines = [f"BACKUP OK ({', '.join(parts)}) in My Drive/{ROOT}/{SUB}"]
     lines += [f"  backed up: {x}" for x in r["backed_up"]] + [f"  restored: {x}" for x in r["restored"]]
+    lines += [f"  NOT backed up (not valid JSON, fix it locally): {x}" for x in r.get("invalid", [])]
+    if r["restored"]:
+        lines.append(f"  replaced local copies kept in {os.path.join(HOME, '.before-restore')}")
     if r.get("readme"):
         lines.append(f"  README.md created in My Drive/{ROOT}")
     return "\n".join(lines)

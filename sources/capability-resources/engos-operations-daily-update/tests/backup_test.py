@@ -5,6 +5,7 @@ real .engos folder, and moves that folder to the trash at the end. Needs `gws` s
 
     python3 backup_test.py
 """
+import glob
 import hashlib
 import json
 import os
@@ -72,6 +73,27 @@ def main():
         r = machine(b)
         check("other machine picks up the newer Drive copy", r["restored"] == ["config.json"] and
               md5(os.path.join(b, "config.json")) == md5(os.path.join(a, "config.json")), json.dumps(r))
+
+        # Data-loss guards.
+        kept = glob.glob(os.path.join(b, ".before-restore", "*", "config.json"))
+        check("restore keeps the replaced local copy", len(kept) == 1 and
+              json.load(open(kept[0])) == {"me": "Tester", "tabs": []}, str(kept))
+        remote = backup._list(backup._folder(backup._folder("root", backup.ROOT), backup.SUB), "config.json", folder=False)[0]
+        revs = backup._gws("drive", "revisions", "list", "--params", json.dumps({"fileId": remote["id"]})).get("revisions", [])
+        check("Drive keeps the earlier version after an update", len(revs) >= 2, f"{len(revs)} revisions")
+
+        good = md5(os.path.join(a, "config.json"))
+        time.sleep(2)
+        open(os.path.join(b, "config.json"), "w").write('{"me": "Tester", "tabs": [')
+        r = machine(b)
+        check("a broken local file is not uploaded", r["invalid"] == ["config.json"] and r["backed_up"] == [],
+              json.dumps(r))
+        r = machine(a)
+        check("the good Drive copy survives a broken local file", r["restored"] == [] and
+              md5(os.path.join(a, "config.json")) == good, json.dumps(r))
+        check("the broken file is left for the person to fix",
+              open(os.path.join(b, "config.json")).read() == '{"me": "Tester", "tabs": [')
+        check("the report names the broken file", "NOT backed up" in backup.report(machine(b)))
 
         backup.HOME = a
         stamp = os.path.join(a, ".last-sync")
