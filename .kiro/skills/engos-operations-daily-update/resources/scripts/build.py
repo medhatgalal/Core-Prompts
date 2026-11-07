@@ -18,7 +18,7 @@ INIT_SHARES_OLD = [30, 15, 17, 38]
 HOW_TO = [f"Leaders: by 3pm ET, run `{du.CMD}`, review, say \"publish\".",
           "Tab owners: your updater updates your tab.",
           "Doc owner: at 3pm ET, `close` the day, then `send` the summary.",
-          "Changes: `add` or `discover` new initiatives; `done` or `stop` to end one. `help` lists all.",
+          "Changes: `initiative add` or `discover` new initiatives; `initiative done` or `initiative stop` to end one. `help` lists all.",
           "Meetings: read this doc first; spend meeting time on \"decisions or help needed\".",
           GUIDE_LINE]
 
@@ -117,7 +117,7 @@ def create(title, org, owner, reader, structure, day):
                     missing.append(f"{n}: link word {w!r} is not in its Progress text")
     if missing:
         raise SystemExit("REFUSED: nothing created. Put each link word in its Progress line, for example "
-                         "\"(Jira COM-1168)\", then run setup again:\n  " + "\n  ".join(missing))
+                         "\"(Jira COM-1168)\", then run doc create again:\n  " + "\n  ".join(missing))
     if os.environ.get("DU_TEST") and not title.startswith(du.TEST_TITLE_PREFIX):
         raise SystemExit(f"REFUSED (DU_TEST): title {title!r} does not start with {du.TEST_TITLE_PREFIX!r}. Nothing created.")
     doc = du.gws("docs", "documents", "create", body={"title": title})

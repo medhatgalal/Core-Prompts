@@ -4,7 +4,7 @@
   "layers": {
     "minimal": {
       "capability_type": "skill",
-      "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
+      "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
       "role": "workflow",
       "domain_tags": [
         "engos",
@@ -157,7 +157,7 @@
   "rubric_version": "capability-fabric.v0",
   "descriptor_version": "capability-fabric.descriptor.v0",
   "family_slug": "engos-operations-daily-update",
-  "shared_summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
+  "shared_summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
   "shared_constraints": [],
   "modes": [],
   "benchmark_sources": [],
@@ -390,7 +390,7 @@
               "path": "ssot/engos-operations-daily-update.md",
               "start_line": 17,
               "end_line": 17,
-              "sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48"
+              "sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b"
             }
           }
         ]
@@ -409,7 +409,7 @@
               "path": "ssot/engos-operations-daily-update.md",
               "start_line": 34,
               "end_line": 34,
-              "sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48"
+              "sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b"
             }
           }
         ]
@@ -426,8 +426,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-operations-daily-update.md",
-        "ssot_sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48",
-        "effective_sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48",
+        "ssot_sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b",
+        "effective_sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -440,7 +440,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 14,
                 "end_line": 14,
-                "sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48"
+                "sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b"
               }
             }
           ],
@@ -452,7 +452,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 37,
                 "end_line": 37,
-                "sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48"
+                "sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b"
               }
             }
           ],
@@ -464,7 +464,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 25,
                 "end_line": 25,
-                "sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48"
+                "sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b"
               }
             }
           ],
@@ -476,7 +476,7 @@
                 "path": "ssot/engos-operations-daily-update.md",
                 "start_line": 28,
                 "end_line": 28,
-                "sha256": "265ab8dde945604c932549188b9c8e6e1829705ba85cefff692db5310c9d7e48"
+                "sha256": "e1339548370d4b3fb31e47c8636d859f817efbc8d79b00f25f9e40da9db3d95b"
               }
             }
           ]
@@ -491,7 +491,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "4efe1800f7fa0a5a923394360162b051a412e921cd93c289d163f5e46a53472c"
+        "mapping_sha256": "6518faf154af5fddaad382bc16923f5deabe03627c5ac97e104dc5b3a8d486e0"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

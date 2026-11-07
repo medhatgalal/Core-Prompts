@@ -1,0 +1,995 @@
+"""Noun-verb command line for the daily-update kit.
+
+    du.py <noun> <verb> [args] [--doc ID] [--json] [--dry-run] [--for-owner]
+
+Nouns are the things in the model (doc, area, initiative, person, reader, source, section) plus `day`, the
+daily close-out cycle. Verbs are the same everywhere: list, show, add, set-*, remove, plus the initiative
+lifecycle (pause, resume, done, stop, reopen, archive).
+
+This module owns four things and nothing else:
+  1. the grammar (argparse; `du.py <noun> --help` lists the verbs),
+  2. the lifecycle table and who may do what (pure functions, tested offline in tests/cli_test.py),
+  3. reads (list, show), which never write,
+  4. writes, which check the rules first, print a PLAN, and write nothing under --dry-run.
+
+The Google Docs work itself stays in dudoc.py, modes.py and build.py.
+"""
+import argparse
+import datetime as dt
+import json
+import os
+import re
+import sys
+
+import dudoc as du
+import modes as m
+
+SOURCE_KINDS = ("jira", "gitlab", "github", "chat", "email", "meetings", "docs")
+PRIVATE_KINDS = ("chat", "email", "meetings")  # read for drafting, never linked (skill rule 6)
+CHANNELS = ("email", "chat")
+STATES = ("open", "paused", "done", "stopped", "archived")
+
+# verb -> (states it may start from, state it ends in). The single source of truth for the lifecycle.
+TRANSITIONS = {
+    "pause": ({"open"}, "paused"),
+    "resume": ({"paused"}, "open"),
+    "done": ({"open", "paused"}, "done"),
+    "stop": ({"open", "paused"}, "stopped"),
+    "reopen": ({"done", "stopped"}, "open"),
+    "archive": ({"done", "stopped"}, "archived"),
+}
+
+
+class Refused(SystemExit):
+    def __init__(self, why):
+        super().__init__(f"REFUSED: {why} Nothing written.")
+
+
+# ---------- pure rules (no doc, no network) ----------
+
+def canon(s):
+    return re.sub(r"\s+", " ", s or "").strip().lower()
+
+
+def same_person(a, b):
+    """'Scott' matches 'Scott Parrish': first names compare, case-insensitive."""
+    fa, fb = canon(a).split(" ")[0], canon(b).split(" ")[0]
+    return bool(fa) and fa == fb
+
+
+def state_of(init, archived=False):
+    """open, paused, done, stopped or archived. Read from the newest section, the way Sweep and Overview do."""
+    if archived:
+        return "archived"
+    if not init.sections:
+        return "open"
+    prog = init.sections[0].line("Progress:") or ""
+    if prog.startswith("Progress: Done "):
+        return "done"
+    if prog.startswith("Progress: Stopped "):
+        return "stopped"
+    st = init.newest("status")
+    return "paused" if st and st.status == "⚪" else "open"
+
+
+def check_transition(verb, state, name):
+    allowed, _ = TRANSITIONS[verb]
+    if state not in allowed:
+        raise Refused(f"cannot {verb} {name!r}: it is {state}; {verb} needs it to be {' or '.join(sorted(allowed))}.")
+
+
+def match_one(items, ref, key_name, label):
+    """Find one item by exact title or by name, ignoring case. Refuse when none or several match."""
+    hits = [x for x in items if canon(x.title) == canon(ref) or canon(getattr(x, "name", "")) == canon(ref)]
+    if len(hits) == 1:
+        return hits[0]
+    names = ", ".join(sorted(getattr(x, key_name) for x in items)) or "none"
+    if not hits:
+        raise Refused(f"no {label} named {ref!r}. Known: {names}.")
+    raise Refused(f"{ref!r} matches several {label}s: {', '.join(x.title for x in hits)}. Use the full title.")
+
+
+def check_reader(r):
+    if not r.get("name", "").strip():
+        raise Refused("a reader needs a name.")
+    if r.get("channel") not in CHANNELS:
+        raise Refused(f"a reader's channel is one of {', '.join(CHANNELS)}.")
+    if "@" not in r.get("email", ""):
+        raise Refused("a reader needs an email address.")
+
+
+def check_source(kind, ref):
+    if kind not in SOURCE_KINDS:
+        raise Refused(f"source kind is one of {', '.join(SOURCE_KINDS)}.")
+    if not ref.strip():
+        raise Refused("a source needs a reference (a Jira key, a repo, a space, a search).")
+
+
+# ---------- local config (sources live here, never on the doc) ----------
+
+def config_path():
+    return os.environ.get("DU_CONFIG") or os.path.expanduser("~/.daily-update/config.json")
+
+
+def load_config():
+    try:
+        with open(config_path()) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+
+def save_config(cfg):
+    os.makedirs(os.path.dirname(config_path()), exist_ok=True)
+    with open(config_path(), "w") as f:
+        json.dump(cfg, f, indent=1, ensure_ascii=False)
+    if not os.environ.get("DU_NO_SYNC"):
+        import backup
+        print(backup.report(backup.sync()), file=sys.stderr)
+
+
+# ---------- the doc, read once per command ----------
+
+class Ctx:
+    def __init__(self, doc_id):
+        self.id = doc_id
+        self.cfg = load_config()
+        self.me = self.cfg.get("me", "")
+        self.doc = du.read_doc(doc_id)
+        self.overview, self.areas, self.inits = du.model(self.doc)
+        self.archive = next((t for t, p in du.all_tabs(self.doc)
+                             if p is None and t["tabProperties"]["title"].startswith("Archive")), None)
+        kids = [du.Initiative(c, self.archive) for c in (self.archive or {}).get("childTabs", [])]
+        self.archived = [k for k in kids if "Area:" in (k.header or "")]
+        self.archived_areas = [k for k in kids if "Area:" not in (k.header or "")]
+        self._settings = None
+
+    @property
+    def settings(self):
+        if self._settings is None:
+            self._settings = du.settings_get(self.id)
+        return self._settings
+
+    @property
+    def owner(self):
+        return self.settings["owner"]
+
+    def state(self, init):
+        return state_of(init, archived=init in self.archived)
+
+    def everyone(self):
+        names = set(self.settings["people"])
+        for i in self.inits + self.archived:
+            names |= {i.owner, i.updater}
+        for a in self.areas.values():
+            names.add(a.owner)
+        names |= {r["name"] for r in self.settings["readers"]}
+        return {n for n in names if n}
+
+    def area_of(self, init):
+        return self.areas.get(init.area_title)
+
+    def init(self, ref, archived=False):
+        return match_one(self.inits + (self.archived if archived else []), ref, "name", "initiative")
+
+    def area(self, ref):
+        return match_one(list(self.areas.values()), ref, "name", "area")
+
+
+def resolve_doc(ns):
+    doc_id = ns.doc or load_config().get("doc_id")
+    if not doc_id:
+        raise SystemExit("No doc. Pass --doc ID, or run `du.py doc create` / `onboard` first.")
+    m_ = re.search(r"/document/d/([\w-]+)", doc_id)
+    return m_.group(1) if m_ else doc_id
+
+
+# ---------- who may do what ----------
+
+def need_owner(ctx, ns, what):
+    """Doc-owner commands. Any editor may run them for the doc owner with --for-owner (the agent asks first)."""
+    if getattr(ns, "for_owner", False) or same_person(ctx.me, ctx.owner):
+        return
+    raise Refused(f"{what} is the doc owner's ({ctx.owner}). Ask them, or run it for them with --for-owner "
+                  f"once they have said so.")
+
+
+def need_initiative_editor(ctx, ns, init, what):
+    """The tab's updater, its area owner or the doc owner."""
+    if getattr(ns, "for_owner", False):
+        return
+    allowed = [init.updater, init.area_owner, ctx.owner]
+    if not any(same_person(ctx.me, a) for a in allowed):
+        raise Refused(f"{what} on {init.title!r} is for {init.updater} (updater), {init.area_owner} (area owner) "
+                      f"or {ctx.owner} (doc owner). You are {ctx.me or 'not set up'}. Draft a note to them instead.")
+
+
+def need_area_editor(ctx, ns, area, what):
+    if getattr(ns, "for_owner", False) or any(same_person(ctx.me, a) for a in (area.owner, ctx.owner)):
+        return
+    raise Refused(f"{what} on {area.title!r} is for {area.owner} (area owner) or {ctx.owner} (doc owner).")
+
+
+# ---------- output ----------
+
+def table(ns, rows, cols):
+    """rows: list of dicts. --json prints them as they are; otherwise an aligned plain-text table."""
+    if getattr(ns, "json", False):
+        print(json.dumps(rows, ensure_ascii=False, indent=1))
+        return
+    if not rows:
+        print("(none)")
+        return
+    w = {c: max(len(c), *(len(str(r.get(c, ""))) for r in rows)) for c in cols}
+    print("  ".join(c.upper().ljust(w[c]) for c in cols))
+    for r in rows:
+        print("  ".join(str(r.get(c, "")).ljust(w[c]) for c in cols).rstrip())
+
+
+def card(ns, data):
+    if getattr(ns, "json", False):
+        print(json.dumps(data, ensure_ascii=False, indent=1))
+        return
+    for k, v in data.items():
+        if isinstance(v, (list, dict)) and v:
+            print(f"{k}:")
+            for x in (v.items() if isinstance(v, dict) else v):
+                print("  - " + (", ".join(f"{a}={b}" for a, b in x.items()) if isinstance(x, dict) else
+                                 " = ".join(map(str, x)) if isinstance(x, tuple) else str(x)))
+        else:
+            print(f"{k}: {v if v not in ([], {}) else '(none)'}")
+
+
+def apply(ns, plan, fn):
+    """Show the plan; write only when this is not a dry run. The agent shows the plan, waits for "publish",
+    then runs the same command without --dry-run."""
+    print("PLAN:")
+    for p in plan:
+        print("  " + p)
+    if ns.dry_run:
+        print("Dry run: nothing written.")
+        return False
+    fn()
+    print("DONE")
+    return True
+
+
+def today():
+    return du.ref_date()
+
+
+# ---------- shared write helpers ----------
+
+def row_for(init, name=None, owner=None):
+    ms = init.newest("milestone")
+    st = init.newest("status")
+    return [name or init.name, owner or init.owner, du.STATUSES[st.status if st else "🟡"], (ms.milestone if ms else "") or ""]
+
+
+def note(ctx, init, line):
+    """Record a change in today's section: add the line there, or write today's section that carries the
+    status, milestone, Blocked on and Green when from the newest one (an owner change never drops a date)."""
+    day = today()
+    fresh = next(i for i in du.model(du.read_doc(ctx.id))[2] if i.tab_id == init.tab_id)
+    if fresh.sections and fresh.sections[0].date == day:
+        m.insert_line_before(ctx.id, init.tab_id, "Unconfirmed:", line)
+        return
+    st = fresh.newest("status")
+    lines = [du.label(day, True), du.STATUSES[st.status if st else "🟡"], f"Progress: {line}"]
+    m.write_section(ctx.id, init.tab_id, lines, [])
+
+
+def set_header(ctx, tab_id, old, new):
+    m.replace_in_para(ctx.id, tab_id, old, new, startswith="Owner:")
+
+
+def done_lines(ctx, area):
+    """Paragraphs under the area tab's Done heading (read fresh)."""
+    tab = m.find_tab(du.read_doc(ctx.id), area.tab_id)
+    paras = [e for e in tab["documentTab"]["body"]["content"] if "paragraph" in e]
+    k = next((n for n, e in enumerate(paras) if du.para_text(e["paragraph"]).strip() == "Done"), None)
+    return [] if k is None else paras[k + 1:]
+
+
+PLACEHOLDER = "No initiatives finished yet."
+
+
+def add_done_line(ctx, area, line):
+    paras = done_lines(ctx, area)
+    if paras and du.para_text(paras[0]["paragraph"]).strip() == PLACEHOLDER:
+        m.replace_in_para(ctx.id, area.tab_id, PLACEHOLDER, line)
+        return
+    tab = m.find_tab(du.read_doc(ctx.id), area.tab_id)
+    at = tab["documentTab"]["body"]["content"][-1]["endIndex"] - 1
+    du.batch(ctx.id, m._paras(area.tab_id, at, [line], ["NORMAL_TEXT"]))
+
+
+def remove_done_line(ctx, area, name):
+    paras = done_lines(ctx, area)
+    hit = next((e for e in paras if du.para_text(e["paragraph"]).startswith(f"{name}:")), None)
+    if hit is None:
+        return
+    others = [e for e in paras if e is not hit and du.para_text(e["paragraph"]).strip()]
+    if others:
+        du.batch(ctx.id, [{"deleteContentRange": {"range": {"startIndex": hit["startIndex"], "endIndex": hit["endIndex"],
+                                                            "tabId": area.tab_id}}}])
+    else:
+        m.replace_in_para(ctx.id, area.tab_id, du.para_text(hit["paragraph"]).rstrip("\n"), PLACEHOLDER)
+
+
+# ---------- doc ----------
+
+def doc_create(ns):
+    import du as dumain
+    dumain.cmd_setup([ns.structure])
+
+
+def doc_show(ns):
+    ctx = Ctx(resolve_doc(ns))
+    counts = {s: sum(1 for i in ctx.inits if ctx.state(i) == s) for s in STATES if s != "archived"}
+    counts["archived"] = len(ctx.archived)
+    card(ns, {"doc": ctx.id, "title": ctx.doc.get("title", ""), "owner": ctx.owner, "me": ctx.me,
+              "role": "doc owner" if same_person(ctx.me, ctx.owner) else "leader",
+              "areas": len(ctx.areas), "initiatives": counts, "readers": len(ctx.settings["readers"])})
+
+
+def doc_check(ns):
+    import du as dumain
+    dumain.cmd_check([resolve_doc(ns), ns.date])
+
+
+def doc_sync(ns):
+    import du as dumain
+    dumain.cmd_sync([])
+
+
+# ---------- area ----------
+
+def area_rows(ctx):
+    rows = []
+    for a in ctx.areas.values():
+        kids = [i for i in ctx.inits if i.area_title == a.title]
+        by = {s: sum(1 for i in kids if ctx.state(i) == s) for s in STATES[:4]}
+        sts = [i.newest("status").status for i in kids if i.newest("status") and ctx.state(i) in ("open", "paused")]
+        rows.append({"area": a.name, "owner": a.owner, "open": by["open"], "paused": by["paused"],
+                     "finished": by["done"] + by["stopped"], "status": du.status_counts(sts).replace("\n", " "),
+                     "headline": a.headline or ""})
+    return rows
+
+
+def area_list(ns):
+    table(ns, area_rows(Ctx(resolve_doc(ns))), ["area", "owner", "open", "paused", "finished", "status"])
+
+
+def area_show(ns):
+    ctx = Ctx(resolve_doc(ns))
+    a = ctx.area(ns.name)
+    kids = [i for i in ctx.inits if i.area_title == a.title]
+    card(ns, {"area": a.name, "owner": a.owner, "headline": a.headline or "",
+              "initiatives": [{"name": i.name, "owner": i.owner, "updater": i.updater, "state": ctx.state(i)} for i in kids]})
+
+
+def area_add(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "adding an area")
+    if not ns.owner.strip():
+        raise Refused("an area needs an owner.")
+    if any(canon(a.name) == canon(ns.name) for a in ctx.areas.values()):
+        raise Refused(f"area {ns.name!r} already exists.")
+    title = f"{ns.name} ({ns.owner})"
+
+    def write():
+        import build
+        tops = ctx.doc["tabs"]
+        at = next((k for k, t in enumerate(tops) if t["tabProperties"]["title"].startswith("Archive")), len(tops))
+        r = du.batch(ctx.id, [{"addDocumentTab": {"tabProperties": {"title": title, "index": at}}}], ctx.doc)
+        tid = r["replies"][0]["addDocumentTab"]["tabProperties"]["tabId"]
+        du.pageless(ctx.id, [tid])
+        otitle = du.overview_title(du.read_doc(ctx.id))
+        lines = [title, f"Owner: {ns.owner} · Back to {otitle}", "Headline", f"No initiatives yet. ({du.label(today())})",
+                 "Initiatives", "", "Done", PLACEHOLDER]
+        st = ["HEADING_1", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT", "HEADING_2", "NORMAL_TEXT"]
+        du.batch(ctx.id, m._paras(tid, 1, lines, st, [(1, otitle, du.tab_url(ctx.id, "t.0"))]))
+        build.add_table(ctx.id, tid, build.anchor_index(ctx.id, tid, "Initiatives"), [du.INIT_HEAD], build.INIT_SHARES)
+        du.repair_headings(ctx.id)
+    if apply(ns, [f"Add area tab {title!r} above Archive.", "The overview's Area health table refreshes at `day overview`."], write):
+        print("ADDED " + title)
+
+
+def area_rename(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "renaming an area")
+    a = ctx.area(ns.name)
+    if any(canon(x.name) == canon(ns.new_name) for x in ctx.areas.values()):
+        raise Refused(f"area {ns.new_name!r} already exists.")
+    kids = [i for i in ctx.inits if i.area_title == a.title]
+
+    def write():
+        m.retitle(ctx.id, a.tab_id, f"{ns.new_name} ({a.owner})")
+        for k in kids:
+            set_header(ctx, k.tab_id, f"Area: {a.name}", f"Area: {ns.new_name}")
+            if k.sections:
+                note(ctx, k, f"Area renamed from {a.name} to {ns.new_name} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+    apply(ns, [f"Rename area {a.name!r} to {ns.new_name!r}.", f"Update the Area line on {len(kids)} initiative tab(s) "
+               "and note it in today's section on each."], write)
+
+
+def area_set_owner(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "changing an area's owner")
+    a = ctx.area(ns.name)
+    if canon(ns.person) == canon(a.owner):
+        raise Refused(f"area {a.name!r} is already owned by {a.owner}.")
+
+    def write():
+        m.retitle(ctx.id, a.tab_id, f"{a.name} ({ns.person})")
+        set_header(ctx, a.tab_id, f"Owner: {a.owner}", f"Owner: {ns.person}")
+    apply(ns, [f"Area {a.name!r}: owner {a.owner} -> {ns.person}.",
+               "Initiative updaters do not change; use `initiative set-updater` for those."], write)
+
+
+def area_set_headline(ns):
+    ctx = Ctx(resolve_doc(ns))
+    a = ctx.area(ns.name)
+    need_area_editor(ctx, ns, a, "the headline")
+    if not re.search(r"\((Mon|Tue|Wed|Thu|Fri|Sat|Sun) \w{3} \d{1,2}\)$", ns.text.strip()):
+        raise Refused("a headline ends with its date in brackets, like (Fri Nov 6).")
+
+    def write():
+        import build
+        build.set_headline(ctx.id, a.title, ns.text)
+    apply(ns, [f"Headline of {a.name!r}: {ns.text}"], write)
+
+
+def archive_area(ctx, a):
+    """Move an empty area under Archive and list it there, so the Archive tab accounts for every tab under it."""
+    arch = ctx.archive
+    aid = arch["tabProperties"]["tabId"]
+    m.move_tab(ctx.id, a.tab_id, aid, len(arch.get("childTabs", [])))
+    m.list_on_archive(ctx.id, aid, a.tab_id, a.title, f"removed {du.label(today())}")
+
+
+def area_remove(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "removing an area")
+    a = ctx.area(ns.name)
+    kids = [i for i in ctx.inits if i.area_title == a.title]
+    if kids:
+        raise Refused(f"area {a.name!r} still has {len(kids)} initiative(s): {', '.join(k.name for k in kids)}. "
+                      "Archive them or move them (`area merge`) first. An area is never deleted; this moves it under Archive.")
+
+    def write():
+        archive_area(ctx, a)
+    apply(ns, [f"Move area tab {a.title!r} under Archive and list it there. Its history stays."], write)
+
+
+def area_merge(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "merging areas")
+    src, dst = ctx.area(ns.name), ctx.area(ns.into)
+    if src.tab_id == dst.tab_id:
+        raise Refused("an area cannot merge into itself.")
+    kids = [i for i in ctx.inits if i.area_title == src.title]
+
+    def write():
+        for k in kids:
+            initiative_move_now(Ctx(ctx.id), ns, k.name, dst.name)
+        c2 = Ctx(ctx.id)
+        archive_area(c2, c2.area(src.name))
+    apply(ns, [f"Move {len(kids)} initiative(s) from {src.name!r} to {dst.name!r}: {', '.join(k.name for k in kids) or 'none'}.",
+               f"Move the empty area tab {src.title!r} under Archive."], write)
+
+
+# ---------- initiative ----------
+
+def init_rows(ctx, ns):
+    pool = ctx.inits + (ctx.archived if (getattr(ns, "state", None) == "archived" or getattr(ns, "all", False)) else [])
+    rows = []
+    for i in pool:
+        st = ctx.state(i)
+        if getattr(ns, "state", None) and st != ns.state:
+            continue
+        if ns.area and canon(i.area_name) != canon(ns.area):
+            continue
+        if ns.owner and not same_person(i.owner, ns.owner):
+            continue
+        if ns.updater and not same_person(i.updater, ns.updater):
+            continue
+        s, ms = i.newest("status"), i.newest("milestone")
+        what, when = du.split_milestone(ms.milestone) if ms else ("None", "No date set yet")
+        rows.append({"name": i.name, "area": i.area_name if i not in ctx.archived else "(archived)", "owner": i.owner,
+                     "updater": i.updater, "state": st, "status": du.STATUSES[s.status] if s else "", "milestone": what,
+                     "date": when})
+    return rows
+
+
+def initiative_list(ns):
+    table(ns, init_rows(Ctx(resolve_doc(ns)), ns), ["name", "area", "owner", "updater", "state", "status", "milestone", "date"])
+
+
+def initiative_show(ns):
+    ctx = Ctx(resolve_doc(ns))
+    i = ctx.init(ns.name, archived=True)
+    s = i.sections[0] if i.sections else None
+    card(ns, {"initiative": i.name, "area": i.area_name, "owner": i.owner, "updater": i.updater, "state": ctx.state(i),
+              "newest": du.label(s.date, True) if s else None, "lines": [t for t, _ in s.lines] if s else [],
+              "sources": next((t.get("sources", {}) for t in ctx.cfg.get("tabs", []) if canon(t.get("name")) == canon(i.name)), {})})
+
+
+def initiative_add(ns):
+    import du as dumain
+    ctx = Ctx(resolve_doc(ns))
+    area = ctx.area(ns.area)
+    if not any(same_person(ctx.me, a) for a in (area.owner, ctx.owner)) and not ns.for_owner:
+        print(f"NOTE: {area.name} belongs to {area.owner}; they should confirm this initiative.", file=sys.stderr)
+    args = [ctx.id, area.title, ns.file] + (["--new"] if ns.new else [])
+    if ns.dry_run:
+        spec = json.load(open(ns.file))
+        print("PLAN:")
+        print(f"  Add initiative {spec['name']!r} (owner {spec['owner']}, updater {spec.get('updater') or area.owner}) under {area.name!r},")
+        print("  with its first section and its row in the area table.")
+        near = [t for t in m.similar(ctx.doc, spec["name"]) if t != area.title]
+        print("  Similar tabs: " + (", ".join(near) if near else "none"))
+        print("Dry run: nothing written.")
+        return
+    dumain.cmd_add(args)
+
+
+def _update_row(ctx, i, **over):
+    fresh = next(x for x in du.model(du.read_doc(ctx.id))[2] if x.tab_id == i.tab_id)
+    area = next(a for a in du.model(du.read_doc(ctx.id))[1].values() if a.title == fresh.area_title)
+    m.set_row(ctx.id, area.tab_id, i.name, row_for(fresh, **over))
+
+
+def initiative_rename(ns):
+    ctx = Ctx(resolve_doc(ns))
+    i = ctx.init(ns.name)
+    need_initiative_editor(ctx, ns, i, "renaming")
+    if any(canon(x.name) == canon(ns.new_name) for x in ctx.inits + ctx.archived):
+        raise Refused(f"an initiative named {ns.new_name!r} already exists.")
+
+    def write():
+        m.retitle(ctx.id, i.tab_id, f"{ns.new_name} ({i.owner})")
+        _update_row_named(ctx, i, i.name, ns.new_name)
+        if i.sections:
+            note(ctx, i, f"Renamed from {i.name} to {ns.new_name} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+    apply(ns, [f"Rename {i.name!r} to {ns.new_name!r}: tab title, area table row, note in today's section."], write)
+
+
+def _update_row_named(ctx, i, old_name, new_name):
+    doc = du.read_doc(ctx.id)
+    fresh = next(x for x in du.model(doc)[2] if x.tab_id == i.tab_id)
+    area = next(a for a in du.model(doc)[1].values() if a.title == fresh.area_title)
+    m.set_row(ctx.id, area.tab_id, old_name, row_for(fresh, name=new_name))
+
+
+def initiative_set_owner(ns):
+    ctx = Ctx(resolve_doc(ns))
+    i = ctx.init(ns.name)
+    need_initiative_editor(ctx, ns, i, "changing the owner")
+    if not ns.person.strip():
+        raise Refused("an initiative needs an owner.")
+    if canon(ns.person) == canon(i.owner):
+        raise Refused(f"{i.name!r} is already owned by {i.owner}.")
+    warn = [] if ns.person in ctx.everyone() else [f"WARN: {ns.person!r} appears nowhere else in the doc. Check the spelling."]
+
+    def write():
+        m.retitle(ctx.id, i.tab_id, f"{i.name} ({ns.person})")
+        set_header(ctx, i.tab_id, f"Owner: {i.owner}", f"Owner: {ns.person}")
+        _update_row(ctx, i, owner=ns.person)
+        if i.sections:
+            note(ctx, i, f"Owner changed from {i.owner} to {ns.person} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+    apply(ns, [f"{i.name}: owner {i.owner} -> {ns.person}.", "Tab title, header, area table row and a note in today's section."] + warn, write)
+
+
+def initiative_set_updater(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "setting an updater")
+    i = ctx.init(ns.name)
+    if canon(ns.person) == canon(i.updater):
+        raise Refused(f"{i.name!r} is already updated by {i.updater}.")
+    people = {canon(k): v for k, v in ctx.settings["people"].items()}
+    if canon(ns.person) not in people:
+        raise Refused(f"{ns.person!r} is not in the people list, so they cannot be tagged or confirmed to have access. "
+                      f"Run `person set-email {ns.person} <email>` first.")
+
+    def write():
+        set_header(ctx, i.tab_id, f"Updater: {i.updater}", f"Updater: {ns.person}")
+    apply(ns, [f"{i.name}: updater {i.updater} -> {ns.person}.",
+               "Reminder: the new updater needs edit access to the doc (check its sharing list)."], write)
+
+
+def initiative_move_now(ctx, ns, name, area_name):
+    i, dst = ctx.init(name), ctx.area(area_name)
+    if i.area_title == dst.title:
+        raise Refused(f"{i.name!r} is already in {dst.name!r}.")
+    src = ctx.area_of(i)
+    m.move_tab(ctx.id, i.tab_id, dst.tab_id, len(m.find_tab(ctx.doc, dst.tab_id).get("childTabs", [])))
+    set_header(ctx, i.tab_id, f"Area: {i.area_name}", f"Area: {dst.name}")
+    if src and i.name in [r[0] for r in src.rows()]:
+        m.delete_row(ctx.id, src.tab_id, i.name)
+    m.set_row(ctx.id, dst.tab_id, i.name, row_for(i))
+    if i.sections:
+        note(ctx, i, f"Moved from {i.area_name} to {dst.name} on {du.label(today())}.")
+
+
+def initiative_move(ns):
+    ctx = Ctx(resolve_doc(ns))
+    i, dst = ctx.init(ns.name), ctx.area(ns.area)
+    need_initiative_editor(ctx, ns, i, "moving")
+    if i.area_title == dst.title:
+        raise Refused(f"{i.name!r} is already in {dst.name!r}.")
+    apply(ns, [f"Move {i.name!r} from {i.area_name!r} to {dst.name!r}: tab, Area line, both area tables, note in today's section."],
+          lambda: initiative_move_now(ctx, ns, ns.name, ns.area))
+
+
+def _lifecycle_spec(ctx, i, verb, ns):
+    """The section a lifecycle verb writes. Words come from the person (reason, outcome); the layout is the skill's."""
+    day = today()
+    lab = du.label(day)
+    me = ctx.me or ctx.owner
+    ms_sec, st_sec = i.newest("milestone"), i.newest("status")
+    ms = ms_sec.milestone if ms_sec else "No date set yet"
+    spec = {"date": day.isoformat(), "blocked": "None.", "links": [], "extra": [], "author": me,
+            "cover_for": None if same_person(me, i.updater) else i.updater}
+    if verb == "pause":
+        spec.update(status="⚪", milestone=ms, progress=f"Paused {lab}: {ns.reason}. (from {me})",
+                    green_when=f"{i.updater} sets this when work resumes.")
+    elif verb == "done":
+        spec.update(status="🟢", milestone=f"{du.commitment(ms)}, done {lab}", progress=f"Done {lab}: {ns.outcome}. (from {me})")
+    elif verb == "stop":
+        spec.update(status="⚪", milestone=f"None, stopped {lab}", progress=f"Stopped {lab}: {ns.reason}. (from {me})",
+                    green_when="Not planned.")
+    else:  # resume, reopen: the person gives the colour and the next milestone
+        if not ns.status or not ns.milestone:
+            raise Refused(f"{verb} needs --status (🟢, 🟡 or 🔴) and --milestone (with its date, or 'No date set yet').")
+        why = f"Reopened {lab}: {ns.reason}." if verb == "reopen" else f"Resumed {lab}."
+        spec.update(status=ns.status, milestone=ns.milestone, progress=f"{why} (from {me})")
+        if ns.status != "🟢" and ns.green_when:
+            spec["green_when"] = ns.green_when
+    return spec
+
+
+def initiative_lifecycle(ns):
+    import tempfile
+    import du as dumain
+    verb = ns.verb
+    ctx = Ctx(resolve_doc(ns))
+    i = ctx.init(ns.name, archived=(verb == "archive"))
+    need_initiative_editor(ctx, ns, i, verb) if verb != "archive" else need_owner(ctx, ns, "archiving")
+    check_transition(verb, ctx.state(i), i.name)
+    if verb == "archive":
+        s = i.sections[0]
+        text = f"{'done' if ctx.state(i) == 'done' else 'stopped'} {du.label(s.date)}"
+        apply(ns, [f"Move {i.title!r} under Archive, remove its area table row, list it on the Archive tab as {text!r}."],
+              lambda: dumain.cmd_archive([ctx.id, i.title, text]))
+        return
+    spec = _lifecycle_spec(ctx, i, verb, ns)
+    plan = [f"{i.name}: {ctx.state(i)} -> {TRANSITIONS[verb][1]}.", f"New section: {spec['status']} {spec['progress']}",
+            f"Next milestone: {spec['milestone']}"]
+    if verb in ("done", "stop"):
+        plan.append("Add a line to the area tab's Done list.")
+    if verb == "done":
+        plan.append("Colour is set to 🟢 for a finished initiative (my inference; change it if wrong).")
+
+    def write():
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
+            json.dump(spec, f, ensure_ascii=False)
+        try:
+            dumain.cmd_section([ctx.id, i.title, f.name])
+        finally:
+            os.unlink(f.name)
+        c2 = Ctx(ctx.id)
+        _update_row(c2, i)
+        area = c2.area_of(next(x for x in c2.inits if x.tab_id == i.tab_id))
+        lab = du.label(today())
+        if verb == "done":
+            add_done_line(c2, area, f"{i.name}: done {lab}, {ns.outcome}.")
+        elif verb == "stop":
+            add_done_line(c2, area, f"{i.name}: stopped {lab}, {ns.reason}.")
+        elif verb == "reopen":
+            remove_done_line(c2, area, i.name)
+    apply(ns, plan, write)
+
+
+# ---------- person ----------
+
+def person_rows(ctx):
+    rows = []
+    for n in sorted(ctx.everyone(), key=canon):
+        owns = [a.name for a in ctx.areas.values() if same_person(a.owner, n)]
+        own_i = [i.name for i in ctx.inits if same_person(i.owner, n)]
+        upd = [i.name for i in ctx.inits if same_person(i.updater, n)]
+        rd = any(same_person(r["name"], n) for r in ctx.settings["readers"])
+        rows.append({"person": n, "email": ctx.settings["people"].get(n, ""), "areas": len(owns), "owns": len(own_i),
+                     "updates": len(upd), "reader": "yes" if rd else "", "_owns": own_i, "_updates": upd, "_areas": owns})
+    return rows
+
+
+def person_list(ns):
+    rows = person_rows(Ctx(resolve_doc(ns)))
+    table(ns, [{k: v for k, v in r.items() if not k.startswith("_")} for r in rows],
+          ["person", "email", "areas", "owns", "updates", "reader"])
+
+
+def person_show(ns):
+    ctx = Ctx(resolve_doc(ns))
+    r = next((x for x in person_rows(ctx) if canon(x["person"]) == canon(ns.name)), None)
+    if r is None:
+        raise Refused(f"nobody named {ns.name!r} in the doc. Known: {', '.join(sorted(ctx.everyone()))}.")
+    card(ns, {"person": r["person"], "email": r["email"] or "(none; person set-email)", "owns areas": r["_areas"],
+              "owns initiatives": r["_owns"], "updates initiatives": r["_updates"], "reader": bool(r["reader"])})
+
+
+def person_set_email(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "the people list")
+    if "@" not in ns.email:
+        raise Refused("that is not an email address.")
+    people = dict(ctx.settings["people"])
+    people[ns.name] = ns.email
+    apply(ns, [f"{ns.name}: email {ctx.settings['people'].get(ns.name) or '(none)'} -> {ns.email}"],
+          lambda: du.settings_set(ctx.id, people=people))
+
+
+# ---------- reader ----------
+
+def reader_list(ns):
+    ctx = Ctx(resolve_doc(ns))
+    table(ns, ctx.settings["readers"], ["name", "channel", "email"])
+
+
+def reader_add(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "the readers")
+    r = {"name": ns.name, "channel": ns.channel, "email": ns.email}
+    check_reader(r)
+    cur = ctx.settings["readers"]
+    if any(canon(x["name"]) == canon(ns.name) for x in cur):
+        raise Refused(f"{ns.name!r} is already a reader. Use `reader set-channel`.")
+    apply(ns, [f"Readers: {[x['name'] for x in cur]} -> {[x['name'] for x in cur + [r]]}"],
+          lambda: du.settings_set(ctx.id, readers=cur + [r]))
+
+
+def reader_remove(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "the readers")
+    cur = ctx.settings["readers"]
+    keep = [x for x in cur if canon(x["name"]) != canon(ns.name)]
+    if len(keep) == len(cur):
+        raise Refused(f"{ns.name!r} is not a reader. Readers: {', '.join(x['name'] for x in cur) or 'none'}.")
+    apply(ns, [f"Readers: {[x['name'] for x in cur]} -> {[x['name'] for x in keep]}"],
+          lambda: du.settings_set(ctx.id, readers=keep))
+
+
+def reader_set_channel(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "the readers")
+    cur = ctx.settings["readers"]
+    hit = next((x for x in cur if canon(x["name"]) == canon(ns.name)), None)
+    if hit is None:
+        raise Refused(f"{ns.name!r} is not a reader.")
+    new = [dict(x, channel=ns.channel) if x is hit else x for x in cur]
+    check_reader(next(x for x in new if x["name"] == hit["name"]))
+    apply(ns, [f"{hit['name']}: channel {hit['channel']} -> {ns.channel}"], lambda: du.settings_set(ctx.id, readers=new))
+
+
+# ---------- source (local to this person; backed up to their own Drive, never on the doc) ----------
+
+def _my_tab(cfg, name):
+    tabs = cfg.get("tabs", [])
+    hit = [t for t in tabs if canon(t.get("name")) == canon(name) and t.get("kind") == "initiative"]
+    if not hit:
+        mine = ", ".join(t["name"] for t in tabs if t.get("kind") == "initiative") or "none"
+        raise Refused(f"{name!r} is not a tab you update. Yours: {mine}. Sources are saved only for your own tabs.")
+    return hit[0]
+
+
+def source_list(ns):
+    cfg = load_config()
+    rows = [{"initiative": t["name"], "kind": k, "ref": r, "private": "yes" if k in PRIVATE_KINDS else ""}
+            for t in cfg.get("tabs", []) if t.get("kind") == "initiative" and (not ns.name or canon(t["name"]) == canon(ns.name))
+            for k, refs in t.get("sources", {}).items() for r in refs]
+    table(ns, rows, ["initiative", "kind", "ref", "private"])
+
+
+def source_add(ns):
+    cfg = load_config()
+    check_source(ns.kind, ns.ref)
+    t = _my_tab(cfg, ns.name)
+    if ns.ref in t.setdefault("sources", {}).get(ns.kind, []):
+        print(f"Already saved: {ns.kind} {ns.ref} on {t['name']}.")
+        return
+    apply(ns, [f"{t['name']}: add {ns.kind} {ns.ref}" + (" (private: read for drafting, never linked)" if ns.kind in PRIVATE_KINDS else "")],
+          lambda: (t["sources"].setdefault(ns.kind, []).append(ns.ref), save_config(cfg)))
+
+
+def source_remove(ns):
+    cfg = load_config()
+    t = _my_tab(cfg, ns.name)
+    if ns.ref not in t.get("sources", {}).get(ns.kind, []):
+        raise Refused(f"{ns.kind} {ns.ref!r} is not saved on {t['name']}.")
+
+    def write():
+        t["sources"][ns.kind].remove(ns.ref)
+        if not t["sources"][ns.kind]:
+            del t["sources"][ns.kind]
+        save_config(cfg)
+    apply(ns, [f"{t['name']}: remove {ns.kind} {ns.ref}"], write)
+
+
+# ---------- section (the daily write; the agent supplies the words) ----------
+
+def section_write(ns):
+    import du as dumain
+    dumain.cmd_section([resolve_doc(ns), ns.tab, ns.file])
+
+
+def section_show(ns):
+    import du as dumain
+    dumain.cmd_today([resolve_doc(ns), ns.tab, ns.date])
+
+
+def section_lint(ns):
+    import du as dumain
+    dumain.cmd_lint([resolve_doc(ns), ns.tab, ns.file])
+
+
+# ---------- day (the close-out cycle, doc owner) ----------
+
+def _day_owner(ns):
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "closing out the day")
+    return ctx.id
+
+
+def day_sweep(ns):
+    """Preview by default (nothing written); --publish writes the Unconfirmed sections. --tag posts the comment
+    that tags the updaters, only after the doc owner said yes to the exact list."""
+    import du as dumain
+    ctx = Ctx(resolve_doc(ns))
+    need_owner(ctx, ns, "closing out the day")
+    args = [ctx.id, ns.date, "--owner", ctx.owner]
+    for d in ns.decide or []:
+        args += ["--decide", d]
+    if ns.publish:
+        args.append("--publish")
+    if ns.tag:
+        args += ["--tag", "--people", json.dumps(ctx.settings["people"])]
+    sys.exit(dumain.run("sweep.py", *args))
+
+
+def day_overview(ns):
+    import du as dumain
+    doc_id = _day_owner(ns)
+    sys.exit(dumain.run("overview.py", doc_id, ns.date, ns.time, *(["--publish"] if ns.publish else [])))
+
+
+def day_decisions(ns):
+    import du as dumain
+    dumain.cmd_decisions([_day_owner(ns), ns.reader, ns.rows] + ([ns.links] if ns.links else []))
+
+
+def day_send(ns):
+    import du as dumain
+    doc_id = _day_owner(ns)
+    dumain.cmd_send([doc_id] + (["--confirmed"] if ns.confirmed else []))
+
+
+def discover(ns):
+    import du as dumain
+    dumain.cmd_dedupe([resolve_doc(ns), ns.file])
+
+
+# ---------- grammar ----------
+
+def build_parser():
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--doc", help="doc id or link (default: doc_id in ~/.daily-update/config.json)")
+    common.add_argument("--json", action="store_true", help="print JSON (reads)")
+    common.add_argument("--dry-run", action="store_true", help="show the PLAN and write nothing (writes)")
+    common.add_argument("--for-owner", action="store_true", help="run a doc-owner command for the doc owner, who said so")
+    root = argparse.ArgumentParser(prog="du.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    nouns = root.add_subparsers(dest="noun", metavar="<noun>", required=True)
+
+    def group(name, help_):
+        sub = nouns.add_parser(name, help=help_).add_subparsers(dest="verb", metavar="<verb>", required=True)
+        return sub
+
+    def verb(sub, name, fn, help_, *args, **opts):
+        p = sub.add_parser(name, help=help_, description=help_, parents=[common])
+        for a in args:
+            if isinstance(a, tuple):
+                p.add_argument(a[0], **a[1])
+            else:
+                p.add_argument(a)
+        for flag, kw in opts.items():
+            p.add_argument("--" + flag.replace("_", "-"), **kw)
+        p.set_defaults(fn=fn)
+        return p
+
+    g = group("doc", "the status doc")
+    verb(g, "create", doc_create, "create a doc from STRUCTURE.json; you become the doc owner", "structure")
+    verb(g, "show", doc_show, "owner, you, areas, initiatives by state, readers")
+    verb(g, "check", doc_check, "rule and reader checks on the doc for a day", "date")
+    verb(g, "sync", doc_sync, "back up ~/.daily-update to your Drive, restoring older local files")
+
+    g = group("area", "areas: groups of initiatives, each with an owner")
+    verb(g, "list", area_list, "every area with counts and colour")
+    verb(g, "show", area_show, "one area and its initiatives", "name")
+    verb(g, "add", area_add, "add an area (doc owner)", "name", "owner")
+    verb(g, "rename", area_rename, "rename an area (doc owner)", "name", "new_name")
+    verb(g, "set-owner", area_set_owner, "change an area's owner (doc owner)", "name", "person")
+    verb(g, "set-headline", area_set_headline, "replace the area headline: '<sentences> (Fri Nov 6)'", "name", "text")
+    verb(g, "merge", area_merge, "move every initiative of one area into another, then archive it (doc owner)", "name",
+         ("into", {"metavar": "INTO"}))
+    verb(g, "remove", area_remove, "move an empty area under Archive (doc owner; never deletes)", "name")
+
+    g = group("initiative", "initiatives: the tabs people update")
+    verb(g, "list", initiative_list, "list initiatives; filter by area, owner, updater, state", **{
+        "area": {"help": "area name"}, "owner": {}, "updater": {},
+        "state": {"choices": STATES}, "all": {"action": "store_true", "help": "include archived"}})
+    verb(g, "show", initiative_show, "one initiative: owner, updater, state, newest section, your sources", ("name", {}))
+    verb(g, "add", initiative_add, "add an initiative from INIT.json under an area", "file",
+         area={"required": True}, new={"action": "store_true", "help": "add even if a similar tab exists (after the person confirms)"})
+    verb(g, "rename", initiative_rename, "rename an initiative", "name", "new_name")
+    verb(g, "move", initiative_move, "move an initiative to another area", "name", area={"required": True})
+    verb(g, "set-owner", initiative_set_owner, "change who is accountable for the work", "name", "person")
+    verb(g, "set-updater", initiative_set_updater, "change who writes the daily update (doc owner)", "name", "person")
+    verb(g, "pause", initiative_lifecycle, "open -> paused (⚪)", "name", reason={"required": True})
+    verb(g, "resume", initiative_lifecycle, "paused -> open; you give the colour and next milestone", "name",
+         status={"choices": ["🟢", "🟡", "🔴"]}, milestone={}, green_when={})
+    verb(g, "done", initiative_lifecycle, "open or paused -> done", "name", outcome={"required": True})
+    verb(g, "stop", initiative_lifecycle, "open or paused -> stopped, with a reason", "name", reason={"required": True})
+    verb(g, "reopen", initiative_lifecycle, "done or stopped -> open; you give the colour and next milestone", "name",
+         reason={"required": True}, status={"choices": ["🟢", "🟡", "🔴"]}, milestone={}, green_when={})
+    verb(g, "archive", initiative_lifecycle, "done or stopped -> archived: tab moves under Archive (doc owner)", "name")
+
+    g = group("person", "people named in the doc, with emails")
+    verb(g, "list", person_list, "everyone named as owner, updater or reader")
+    verb(g, "show", person_show, "what one person owns, updates and reads", "name")
+    verb(g, "set-email", person_set_email, "record a person's email (doc owner)", "name", "email")
+
+    g = group("reader", "who gets the daily summary, and how")
+    verb(g, "list", reader_list, "readers")
+    verb(g, "add", reader_add, "add a reader (doc owner)", "name", "email", channel={"default": "email", "choices": list(CHANNELS)})
+    verb(g, "remove", reader_remove, "remove a reader (doc owner)", "name")
+    verb(g, "set-channel", reader_set_channel, "change how a reader gets it (doc owner)", "name", ("channel", {"choices": list(CHANNELS)}))
+
+    g = group("source", "where your agent reads from, per initiative you update (local, private)")
+    verb(g, "list", source_list, "your saved sources", ("name", {"nargs": "?"}))
+    verb(g, "add", source_add, "save a source", "name", ("kind", {"choices": list(SOURCE_KINDS)}), "ref")
+    verb(g, "remove", source_remove, "forget a source", "name", ("kind", {"choices": list(SOURCE_KINDS)}), "ref")
+
+    g = group("section", "one day's section on an initiative tab")
+    verb(g, "write", section_write, "write today's section from SECTION.json (checked first)", "tab", "file")
+    verb(g, "show", section_show, "print a day's section as SECTION.json, to re-summarize", "tab", "date")
+    verb(g, "lint", section_lint, "the pre-publish check, read only", "tab", "file")
+
+    g = group("day", "the 3pm close-out (doc owner)")
+    verb(g, "sweep", day_sweep, "preview, or with --publish write, Unconfirmed sections for tabs nobody updated today", "date",
+         publish={"action": "store_true"}, tag={"action": "store_true", "help": "tag updaters in a doc comment (doc owner said yes)"},
+         decide={"action": "append", "help": "'<initiative>=red|done' for a carried date that has passed"})
+    verb(g, "overview", day_overview, "preview, or with --publish rebuild, the overview below its As of line", "date", "time",
+         publish={"action": "store_true"})
+    verb(g, "decisions", day_decisions, "write the decisions-or-help-needed table", "reader", "rows",
+         ("links", {"nargs": "?"}))
+    verb(g, "send", day_send, "draft the reader summary; --confirmed sends it", confirmed={"action": "store_true"})
+
+    verb(nouns.add_parser("discover", help="find recurring work no tab covers").add_subparsers(dest="verb", metavar="<verb>", required=True),
+         "check", discover, "compare CANDIDATES.json with tabs, saved sources and links (read only)", "file")
+    return root
+
+
+def main(argv=None):
+    args = build_parser().parse_args(argv)
+    if not (args.noun == "doc" and args.verb == "sync"):
+        import backup
+        r = None if os.environ.get("DU_NO_SYNC") else backup.auto()
+        if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):
+            print(backup.report(r), file=sys.stderr)
+    args.fn(args)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,11 +1,11 @@
 ---
 name: "engos-operations-daily-update"
-description: "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder."
+description: "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder."
 ---
 # Engos Operations Daily Update
 
 ## Purpose
-Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.
+Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.
 
 ## Primary Objective
 Fulfill the source contract retained under Imported operating instructions. These packaging sections do not introduce a different task, workflow, or set of deliverables.
@@ -49,7 +49,7 @@ Use the original examples and output templates in the retained instructions and 
 
 ---
 name: engos-operations-daily-update
-description: "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, onboard, update, close), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder."
+description: "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder."
 ---
 
 # Daily update kit
@@ -67,58 +67,70 @@ Everyone contributes to the same doc:
   the owner. The doc owner picks updaters; the default is the area owner. If a tab has no `Updater:` line, its
   owner is its updater.
 - People named as an owner but never as an updater (usually engineers) do not run the kit. If one asks, tell them
-  who their updater is and offer to draft a note. See Onboard step 1.
+  who their updater is and offer to draft a note. See Onboard step 1 (`doc join`).
 
 You are the agent of one person. You read their sources, draft, check, and wait for their OK.
 
 ## Commands
 
-One entry point: `/engos-operations-daily-update <command>`. The command is one word; plain phrases work too ("do my daily update",
-"set up the status doc", "close out the day"). With no command, run `update`. If a command is missing a
-detail, ask for that one detail in one line. Every command that writes shows the change and waits for "publish";
-`send` waits for "send".
+One entry point: `/engos-operations-daily-update <noun> <verb> [args]`. Things you manage have a noun and a verb
+(`initiative done`, `reader add`); things you do each day are a single word (`update`, `close`, `send`,
+`discover`). Plain phrases work too ("do my daily update", "set up the status doc", "close out the day"). With
+no command, run `update`. If a command is missing a detail, ask for that one detail in one line. Every command
+that writes shows the change and waits for "publish" (run it first with `--dry-run`, show the PLAN, then rerun
+without it); `send` waits for "send".
+
+The verbs mean the same on every noun: `list` and `show` read, `add` creates, `set-*` changes one field,
+`remove` takes it away. `du.py <noun> --help` lists the verbs; every read takes `--json`.
 
 | Command | Who | What it does | Section |
 |---|---|---|---|
 | `help` | anyone | List the commands this person may run, one example each | Help |
-| `onboard` (alias `join`) | leader | Connect sources and confirm your tabs, once | Onboard |
 | `update` (default) | leader | Draft and publish today's update for your tabs | Daily |
-| `sources` | leader | Show or change the sources watched per tab; rescan on request | Onboard step 2 |
-| `add` (alias `new`) | leader | Add an initiative under your area | Add, change, finish or stop |
-| `discover` (alias `scan`) | leader | Find recurring work no tab covers; add the ones you pick | Discover |
-| `owner` | leader | Change an initiative's owner | Add, change, finish or stop |
-| `done` | leader | Mark an initiative finished | Add, change, finish or stop |
-| `stop` (alias `drop`) | leader | Mark an initiative stopped, with a reason | Add, change, finish or stop |
-| `setup` | doc owner | Create a new doc; this person becomes its doc owner | Create |
 | `close` | doc owner | Close out the day: own tabs first, Sweep, then Overview | Sweep, Overview |
 | `send` | doc owner | Draft the summary for the readers; send only on "send" | Send |
-| `readers` | doc owner | Show or change who gets the summary and how | Send |
-| `updater` | doc owner | Set who updates a tab | Set updaters |
-| `area` | doc owner | Add, rename, merge or remove an area | Change the structure |
+| `discover` | leader | Find recurring work no tab covers; add the ones you pick | Discover |
+| `doc create` | doc owner | Create a new doc; this person becomes its doc owner | Create |
+| `doc join` | leader | Connect sources and confirm your tabs, once | Onboard |
+| `doc show` | anyone | Owner, your role, areas, initiatives by state, readers | Help |
+| `initiative list`, `initiative show` | anyone | Find initiatives by area, owner, updater or state | Initiatives |
+| `initiative add` | leader | Add an initiative under an area | Initiatives |
+| `initiative rename`, `move`, `set-owner` | the tab's updater, its area owner or the doc owner | Change the name, area or owner | Initiatives |
+| `initiative pause`, `resume`, `done`, `stop`, `reopen` | the tab's updater, its area owner or the doc owner | Move an initiative along its lifecycle | Lifecycle |
+| `initiative set-updater`, `initiative archive` | doc owner | Choose who updates a tab; move a finished tab under Archive | Initiatives |
+| `area list`, `area show` | anyone | Areas with counts and colour | Areas |
+| `area set-headline` | area owner or doc owner | Replace an area's headline | Areas |
+| `area add`, `rename`, `set-owner`, `merge`, `remove` | doc owner | Change the structure | Areas |
+| `person list`, `person show` | anyone | Who owns, updates and reads what; who has no email yet | People |
+| `person set-email` | doc owner | Record an email for tagging and access checks | People |
+| `reader list` | anyone | Who gets the summary and how | Send |
+| `reader add`, `remove`, `set-channel` | doc owner | Change who gets it | Send |
+| `source list`, `source add`, `source remove` | leader | Your sources per tab (yours alone, never on the doc) | Sources |
+| `source scan` | leader | Scan your last 14 days and propose sources (agent only) | Onboard step 2 |
 
 ```mermaid
 flowchart TD
-    A["setup: doc owner creates the doc"] --> B["onboard: each leader, once"]
+    A["doc create: doc owner"] --> B["doc join: each leader, once"]
     B --> C["update: each leader by 3pm ET, publish on OK"]
     C --> D["close: doc owner at 3pm ET; own tabs, Sweep, Overview"]
     D --> E{"send: doc owner replies 'send'?"}
     E -->|yes| F["summary to readers"]
     E -->|no| G["readers open the doc"]
-    H["add, discover, owner, done, stop: any leader, as needed"] --> C
-    I["updater, area, readers: doc owner, as needed"] --> D
+    H["initiative, source, discover: any leader, as needed"] --> C
+    I["area, reader, person, set-updater: doc owner, as needed"] --> D
 ```
 
-**Running doc-owner commands for the doc owner.** Any editor of the doc can run `close`, `send` and
-`readers` when the doc owner has asked them to (for example while the doc owner is out). Ask once: "Are you
-running this for <doc owner>?" On yes, go ahead; everything they need is on the doc (settings) and in the
-installed skill (scripts), not on the doc owner's laptop. Mark what you write: the overview's `As of` line ends
-"(run by <person> for <doc owner>)", and a sent summary ends "Sent by <person> for <doc owner>." `setup`,
-`area` and `updater` stay with the doc owner. Without that yes, draft a request to the doc owner instead
-(never sent).
+**Running doc-owner commands for the doc owner.** Any editor of the doc can run `close`, `send` and the doc-owner
+verbs (`reader`, `area`, `person set-email`, `initiative set-updater`, `initiative archive`) when the doc owner has
+asked them to (for example while the doc owner is out). Ask once: "Are you running this for <doc owner>?" On yes,
+add `--for-owner`; everything they need is on the doc (settings) and in the installed skill (scripts), not on the
+doc owner's laptop. Mark what you write: the overview's `As of` line ends "(run by <person> for <doc owner>)",
+and a sent summary ends "Sent by <person> for <doc owner>." `doc create` stays with the doc owner. Without that
+yes, draft a request to the doc owner instead (never sent).
 
 Before any command, find the doc: use `doc_id` from `~/.daily-update/config.json` if it exists, otherwise a doc
 link the person gave, otherwise ask in one line: "Is there a daily update doc already? Paste its link, or say
-'setup'." No doc → `setup`. Doc found but no config → `onboard` first (a doc owner with no config onboards with
+'doc create'." No doc → `doc create`. Doc found but no config → `doc join` first (a doc owner with no config joins with
 role owner), then the command.
 
 **Help**: print the table rows this person may run (leaders see leader rows; the doc owner sees all), each with
@@ -128,6 +140,45 @@ skill (for example `$engos-operations-daily-update` in Kiro Crew, `/engos-operat
 or tests. Write nothing.
 
 Re-check that the doc still opens on every run. If it does not, say so and ask for the current link.
+
+## Model: what the commands act on
+
+**Who lives where.** The doc holds what everyone shares: areas, initiatives, owners, updaters, the people list and
+the readers. Your laptop (backed up to your own Drive) holds what is yours alone: your sources, your ledger and your
+style notes. A command that changes shared state needs the right role; one that changes yours never touches the doc.
+
+**Fields, not nouns.** Owner and updater are fields on an initiative (and owner on an area). Change them with
+`set-owner` and `set-updater`; see who holds what with `person show`.
+
+**Initiative lifecycle.** The state is read from the newest section, so it cannot drift from the doc.
+
+| From | Verb | To | Notes |
+|---|---|---|---|
+| open | `pause` | paused | Status ⚪; needs a reason |
+| paused | `resume` | open | You give the colour and next milestone |
+| open, paused | `done` | done | Final section; line added to the area's Done list; colour 🟢 (an inference; change it if wrong) |
+| open, paused | `stop` | stopped | Needs a reason; status ⚪; line added to Done |
+| done, stopped | `reopen` | open | Needs a reason, colour and next milestone; removes its Done line |
+| done, stopped | `archive` | archived | Doc owner; tab moves under Archive. Terminal |
+
+Any other move is refused with the state it found. `close` lists every done or stopped tab as a proposal to
+archive, so the doc owner rarely runs `initiative archive` by hand.
+
+**Rules the commands enforce** (a command that would break one is refused, and nothing is written):
+1. Every initiative sits under exactly one area; every initiative and area has an owner.
+2. An updater must be in the people list with an email, so they can be tagged and checked for access.
+3. A tab's title always reads `<Name> (<owner>)`: `rename` and `set-owner` retitle the tab, its header and its row.
+4. An area is never deleted. `area remove` moves an empty area under Archive; `area merge` moves its initiatives first.
+5. A reader needs a name, an email and a channel (email or chat).
+6. Sources are saved only for tabs you update, and chat, email and meeting sources are marked private.
+7. A change by someone other than the tab's updater is marked "Updated by <person> for <updater>."
+8. Changes to owner, name, area or lifecycle are noted in today's section, carrying the status, milestone,
+   Blocked on and Green when from the newest section.
+
+**The day.** `update` (each updater, by 3pm ET) → `close` (doc owner: own tabs, Sweep marks the rest Unconfirmed,
+Overview rebuilds and proposes archives) → `send` (doc owner, on "send"). Structure commands run any time and show
+up at the next `close`.
+
 
 ## Rules that never bend
 
@@ -239,7 +290,7 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
    plan lists every open initiative without a dated next milestone." Process text and the status key always go last.
 7. One grey line: "Drafted by AI agents from each leader's sources. Sections an owner has not confirmed yet say so."
 
-There is no "In 30 seconds" or "Not updated today" section. `du.py overview DOC DATE TIME --publish` rewrites
+There is no "In 30 seconds" or "Not updated today" section. `du.py day overview DATE TIME --publish` rewrites
 everything below the "As of" line in this order. It keeps the decisions rows and their links, keeps headline
 links whose phrase is still there, links initiative names in headlines, and writes each Next 2 weeks row from its
 section's milestone (to change a row's wording, change the milestone). It also moves an older overview to this layout.
@@ -276,7 +327,7 @@ monospace font):
 - **Leaders**: by 3pm ET, run `/engos-operations-daily-update`, review, say "publish".
 - **Tab owners**: your updater updates your tab.
 - **Doc owner**: at 3pm ET, `close` the day, then `send` the summary.
-- **Changes**: `add` or `discover` new initiatives; `done` or `stop` to end one. `help` lists all.
+- **Changes**: `initiative add` or `discover` new initiatives; `initiative done` or `initiative stop` to end one. `help` lists all.
 - **Meetings**: read this doc first; spend meeting time on "decisions or help needed".
 - **Template**: see the Update guide tab (link "Update guide" to that tab).
 
@@ -327,7 +378,7 @@ State lives in `~/.daily-update/` in the person's home folder, so any working fo
   ...}`. Each person's own sources and ledger stay here; settings everyone shares live on the doc (below). `tabs` lists the tabs this person updates or owns.
   **Shared settings live on the doc**, as Drive file properties, so anyone running a doc-owner command reads
   the same values: `du.owner`, the readers (`du.reader.<n>` = "name|channel|email") and the people map
-  (`du.person.<name>` = email). Read and change them with `du.py settings`, never in a local file. The default
+  (`du.person.<name>` = email). Read and change them with `du.py person`, `reader` and `doc show`, never in a local file. The default
   reader is the one named at setup. The people map is for Sweep tags; fill it from the doc's sharing list (read only) and ask
   for any name that does not match.
   Sources per initiative: `{"jira": ["KEY-1"], "gitlab": ["group/project"], "github": ["owner/repo"],
@@ -337,7 +388,7 @@ State lives in `~/.daily-update/` in the person's home folder, so any working fo
 **Drive backup.** The local files stay primary, and a private copy lives in the person's own My Drive under
 `.engos/automation-daily-updates/` (`config.json`, `protected.json`, `ledger/`), with `.engos/README.md`
 asking people not to delete, move or share the folder. Every `du.py` command syncs first on its own, at most
-once every 10 minutes; also run `du.py sync` after every save of `config.json` or a ledger file. Sync creates the folders and README when missing,
+once every 10 minutes; also run `du.py doc sync` after every save of `config.json` or a ledger file. Sync creates the folders and README when missing,
 backs up what changed, and restores any file that is missing or older on this laptop, so a new or rebuilt
 laptop picks up its sources and ledger on the first run. Never share the folder: its files point at the
 person's own email and chats. If Drive cannot be reached, `sync` says the backup was skipped; say so in one
@@ -378,11 +429,10 @@ fails, give the exact error and the one command that fixes it, then continue wit
   returns older items.
 
 **Scripts (use these for every doc write).** The installed skill has `scripts/du.py` (`resources/scripts/du.py`
-in a Core-Prompts install); run it with `python3` from that folder (`du.py help` lists every command). You decide the words; the script writes them in the
+in a Core-Prompts install); run it with `python3` from that folder (`du.py --help` lists every noun; `du.py <noun> --help` lists its verbs). You decide the words; the script writes them in the
 exact layout above, with the revision check and retries, bold labels, date headings, table
-widths and pageless tabs. Use `du.py setup`, `section`, `today`, `add`, `dedupe`, `headline`, `row`, `sweep`, `overview`,
-`decisions`, `archive`, `send`, `settings`, `sync` and `lint` instead of writing Docs API requests yourself, and run
-`du.py check DOC <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
+widths and pageless tabs. Use `du.py doc`, `area`, `initiative`, `person`, `reader`, `source`, `section` and `day` (and `discover check`) instead of writing Docs API requests yourself,
+and run `du.py doc check <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
 
 Docs API notes: read with `includeTabsContent: true`. A doc from before v1.19.10 still has Confidence lines
@@ -416,12 +466,12 @@ widths still add up to the text width, and fix them if not.
 3. Let them correct it in plain words ("move 4 under People", "Kyle owns Composer"). Ask only for what is missing.
 4. Build the doc (title `<Org> Daily Updates`): overview, area tabs, nested initiative tabs, Archive, Update guide, laid out as above.
    Each area headline follows the Area tab headline rule, from its starting sections, dated today (after
-   setup, replace the script's starting headline with `du.py headline`); never process text such as
+   setup, replace the script's starting headline with `du.py area set-headline`); never process text such as
    "starting view" or "drafted by". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest
    first, keeping links (check older sections against rule 5 before copying). Otherwise add one starting section
    dated today from what you found, ending with the line
    "Starting section drafted by <doc owner>'s agent. <Updater> confirms or corrects it on their first update."
-   (`du.py setup` adds that line; do not add it again.) Write starting sections only from sources read in this
+   (`du.py doc create` adds that line; do not add it again.) Write starting sections only from sources read in this
    run, never from memory, earlier sessions or other test docs. Before building, show the starting sections and
    area headlines as a draft and build nothing until the doc owner says "publish".
 5. Save `config.json` (role owner; your own area and initiative tabs too). Give the link.
@@ -446,7 +496,7 @@ widths still add up to the text width, and fix them if not.
    GitLab and GitHub. Scan your last 14 days to suggest sources for each tab?" Name any source whose tools check
    failed, and say any can be skipped. On yes, scan, then propose the sources for each initiative tab and let them
    correct it. On no, ask them to name sources per tab. Private sources (inbox mail, chats, meeting notes,
-   restricted docs) may be saved for drafting, but are never linked (rule 6). `sources` reruns this step later.
+   restricted docs) may be saved for drafting, but are never linked (rule 6). `source scan` reruns this step later; `source list`, `source add` and `source remove` edit the saved sources.
 3. Save `config.json` (role leader). Continue straight to Daily, covering the last 7 days.
 
 ## Daily (each leader)
@@ -455,7 +505,7 @@ widths still add up to the text width, and fix them if not.
    tab, added a tab, or renamed one. Ask for sources for any new tab; for a tab owned by an engineer, suggest the
    engineer's Jira items, merge requests and team chats. Window: from `last_publish` to now (first run: last 7 days).
    If a tab already has a section dated today, that section is the starting point for the tab: read it with
-   `du.py today DOC "<tab title>" <date>` and compare it with this person's ledger for today. Lines someone edited
+   `du.py section show "<tab title>" <date>` and compare it with this person's ledger for today. Lines someone edited
    by hand since the publish count as today's facts and are kept.
 2. Read the Update guide tab and draft to it. For each initiative tab they update (plus any they asked to cover), read only its sources in the window. Note progress, slips, decisions,
    blockers, dates, owner changes. Also note important work that fits no initiative, and ask if it should become one.
@@ -469,9 +519,9 @@ widths still add up to the text width, and fix them if not.
    word from the person doing the work: use them over older sources, and say in the review that you did.
 3. Draft a section for each of their initiative tabs, and the headline and table for each area tab they own.
    Apply the status rules. Re-derive every milestone date from this run's sources; never carry a date only
-   because the last section had it. Run the checks below, then run `du.py lint DOC "<tab title>" SECTION.json`
+   because the last section had it. Run the checks below, then run `du.py section lint "<tab title>" SECTION.json`
    for each section: put every WARN line in the review (a missing date, a missing milestone, or a date carried
-   while Progress says something moved), and fix every BLOCK line before showing it. `du.py section` runs the
+   while Progress says something moved), and fix every BLOCK line before showing it. `du.py section write` runs the
    same check and refuses to write a section with a BLOCK problem.
    Same-day re-run (today's section exists): write one section for the whole day, Progress 3 sentences at most.
    Start from today's section and the new evidence from the window. Add new facts. Replace facts that changed
@@ -516,33 +566,37 @@ widths still add up to the text width, and fix them if not.
    `last_publish`. Re-read and confirm every section landed. When reporting done, quote the re-read text of each
    section you wrote; if you cannot quote it, say it did not land. Give the link.
 
-## Add, change, finish or stop an initiative
+## Initiatives (any leader, within the rules above)
 
-Any leader can ask: "add an initiative", "Chandra now owns Evals", "Composer UX is done".
+Any leader can ask: "add an initiative", "Chandra now owns Evals", "Composer UX is done". Each is one verb:
+`initiative add`, `rename`, `move`, `set-owner`, `pause`, `resume`, `done`, `stop`, `reopen`. Run it with
+`--dry-run`, show the PLAN, wait for "publish", then run it again without. To look first: `initiative list --area
+Composer --state open`, `initiative show <name>`, `person show <name>`.
 
-**Add**
+**Add** (`initiative add INIT.json --area <area>`)
 1. Ask for what is missing: name, owner, area, next milestone and date.
-2. Re-read the doc. If a tab with a similar name exists, show it and ask before adding another.
-3. Add the tab under its area (`du.py add`, which uses `addDocumentTab` with `parentTabId` = the area tab), titled
-   `<Initiative> (<owner>)`, with the initiative header and a first section dated today.
-4. Add a row to the area tab's Initiatives table.
-5. If the owner is someone else, end the section with "Added by <person> for <owner>." That owner's agent picks
+2. Re-read the doc. If a tab with a similar name exists, show it and ask before adding another (`--new` only after
+   they confirm it is different).
+3. The script adds the tab under its area (`addDocumentTab` with `parentTabId` = the area tab), titled
+   `<Initiative> (<owner>)`, with the initiative header and a first section dated today, and its row in the area table.
+4. If the owner is someone else, end the section with "Added by <person> for <owner>." That owner's agent picks
    the tab up on their next run. If the area belongs to someone else, say in the review that the area owner should
    confirm it.
-6. A new **area** is the doc owner's call. If someone else asks for one, draft the request for the doc owner.
+5. A new **area** is the doc owner's call (`area add`). If someone else asks for one, draft the request for the doc owner.
 
-**Change owner or name**: the current owner, the area owner or the doc owner can rename the tab
-(`updateDocumentTabProperties`) and update the area table row. Note the change in today's section, carrying
-the status, next milestone, Blocked on and Green when lines from the newest section (an owner change is not a reason to
-drop a dated milestone).
+**Change** (`rename`, `move`, `set-owner`): the tab's updater, its area owner or the doc owner can run these. Each
+retitles the tab where needed, updates the header line and the area table row (both rows for `move`), and notes the
+change in today's section, carrying the status, next milestone, Blocked on and Green when lines from the newest
+section (an owner change is not a reason to drop a dated milestone). `move` writes "Moved from <old area> to <new
+area> on <date>." `set-updater` is the doc owner's: it replaces the `Updater:` part of the header line and refuses a
+person with no email in the people list.
 
-**Finish** (`done`): add a line to Done on the area tab and a final section ("Done <date>: <outcome>"). The doc
-owner moves the tab under Archive during Overview.
-
-**Stop** (`stop`): for work that is not going ahead. Ask for the reason if it is missing. Add a final section
-whose Progress line is "Stopped <date>: <reason>." with status ⚪ Paused, "Next milestone: None, stopped <Weekday Mon D>" and Green when "Not planned.", and a line
-to Done on the area tab: "<Initiative>: stopped <date>, <reason>." The doc owner moves it to Archive like a
-finished tab; its Archive line reads "<Initiative> (<owner>), stopped <date>."
+**Lifecycle** (`pause`, `resume`, `done`, `stop`, `reopen`, `archive`): see Model. `done` adds a line to Done on
+the area tab and a final section ("Done <date>: <outcome>"). `stop` is for work that is not going ahead: it needs a
+reason and writes a final section whose Progress line is "Stopped <date>: <reason>." with status ⚪ Paused, "Next
+milestone: None, stopped <Weekday Mon D>" and Green when "Not planned.", and a line to Done on the area tab:
+"<Initiative>: stopped <date>, <reason>." The doc owner moves a done or stopped tab to Archive during Overview
+(`initiative archive`); its Archive line reads "<Initiative> (<owner>), done <date>." or "..., stopped <date>."
 
 All of these follow rule 3: show the change in the review and wait for "publish".
 
@@ -553,8 +607,8 @@ Finds recurring work that no initiative tab covers. A leader scans their own are
 1. Window: the last 7 days (14 on the person's first `discover`), or the window they name. Read email, Chat,
    Drive, Gemini meeting notes, Jira and GitLab and GitHub merge requests. Look for recurring work with a goal,
    an owner or a date.
-2. Dedupe with `du.py dedupe DOC CANDIDATES.json` (read only; `[{"name", "links": [urls], "sources": {...}}]`).
-   It compares each candidate with the initiative tabs (the similar-name check `add` uses), every tab's saved
+2. Dedupe with `du.py discover check CANDIDATES.json` (read only; `[{"name", "links": [urls], "sources": {...}}]`).
+   It compares each candidate with the initiative tabs (the similar-name check `initiative add` uses), every tab's saved
    sources in `config.json` and the links already in the doc. A match with a tab becomes "add as a source to
    <tab>", a source that tab already watches is "already covered", and anything in Archive is dropped.
 3. Show the review, one block per candidate that is new or a source to add, then "Add which?":
@@ -571,7 +625,7 @@ Finds recurring work that no initiative tab covers. A leader scans their own are
    ```
    Keep what you saw (where and when) apart from what you inferred. Give a next milestone with a date only when
    a source states one; otherwise "No date set yet". Write nothing until the person picks.
-4. For each pick, run the Add steps with `du.py add DOC "<area title>" INIT.json` (refuses when a similar tab
+4. For each pick, run the Add steps with `du.py initiative add INIT.json --area "<area name>"` (refuses when a similar tab
    exists; rerun with `--new` only after the person confirms it is different), and save the suggested sources
    for that tab in `config.json`. A pick that is a source to add only updates `config.json`. A new area is the
    doc owner's call; for anyone else, draft the request to the doc owner. Save `last_discover` in `config.json`.
@@ -579,29 +633,24 @@ Finds recurring work that no initiative tab covers. A leader scans their own are
 Every rule applies: link only sources anyone can open (private labels otherwise), no people-sensitive items or
 names, never message anyone, and nothing is written before the pick and "publish".
 
-## Change the structure (doc owner only)
+## Areas and people (doc owner only, except `list`, `show` and `set-headline`)
 
-The doc owner can say "add an area", "rename <area>", "merge <area> into <area>" or "remove <area>".
-If someone else asks, draft the request for the doc owner instead.
+The doc owner can say "add an area", "rename <area>", "merge <area> into <area>", "remove <area>", "Kyle owns
+Composer" or "Kyle updates Evals". If someone else asks, draft the request for the doc owner instead.
+`area add`, `rename`, `set-owner`, `merge` and `remove`, `initiative set-updater` and `person set-email` are the verbs.
 
-1. Show the before and after tree and what moves where. Wait for "publish".
-2. Move child tabs with `updateDocumentTabProperties` (`parentTabId`, `index`); rename with `title`.
-   Keep every tab's content and history.
-3. An area left empty moves under Archive. Never delete it.
-4. Update the overview's Area health table rows, the affected area tabs' headers, headlines and Initiatives
-   tables, and each moved initiative's `Area:` header line.
-5. Add one line to each moved initiative's section dated today: "Moved from <old area> to <new area> on <date>."
-   If it has no section dated today, add one that carries the status, next milestone, Blocked on and
-   Green when lines from the newest section, with that line as its Progress line. Never add it to an earlier day's section.
-6. Re-read the doc and confirm the tree matches the after tree. Each leader's agent picks up the change
-   on its next run.
+1. Run the verb with `--dry-run`; show the PLAN (the before and after tree and what moves where). Wait for "publish".
+2. `area merge A B` moves every initiative of A into B (tab, `Area:` header line, both area tables, and a line in
+   today's section: "Moved from <old area> to <new area> on <date>."), then moves the empty area under Archive.
+   `area remove` refuses while the area still has initiatives. An area is never deleted.
+3. `area rename` and `area set-owner` retitle the tab; rename also updates the `Area:` line on every initiative tab.
+4. The overview's Area health table refreshes at the next `close`. Each leader's agent picks up the change on its
+   next run.
+5. `set-updater` shows each affected tab with its old and new updater, then adds or replaces the `Updater:` part of
+   its header line. To set up a doc that has no `Updater:` lines, propose the area owner for every initiative tab
+   and let the doc owner name exceptions. `person list` shows who has no email yet.
 
-**Set updaters** ("make Kyle the updater for Composer", "Sahil updates Self-managed Agents"): show each affected
-tab with its old and new updater, wait for "publish", then add or replace the `Updater:` part of each header line.
-To set up a doc that has no `Updater:` lines, propose the area owner for every initiative tab and let the doc
-owner name exceptions.
-
-## Sweep (doc owner, 3pm ET, first half of `close`)
+## Sweep (doc owner, 3pm ET, first half of `close`; `du.py day sweep`)
 
 0. Publish first. List the initiative tabs the doc owner updates that have no section dated today, then ask:
    "You haven't published <tab>, <tab> today. Do your update first?" On yes, run Daily for those tabs, then
@@ -635,7 +684,7 @@ owner name exceptions.
    and draft a note for the doc owner (never sent) saying who needs access. Comments sit at doc level; the API cannot anchor them to a tab.
 5. Report what was written and tagged. The comments stay open; resolving them is the updater's call.
 
-## Overview (doc owner, second half of `close`)
+## Overview (doc owner, second half of `close`; `du.py day overview`)
 
 1. Read every area and initiative tab. Do not re-read sources; the tabs are the input.
 2. Draft the overview: Area health, Missing a plan, decisions or help needed, Next 2 weeks. List any tab added,
@@ -657,8 +706,8 @@ owner name exceptions.
 
 ## Send (doc owner)
 
-1. Read the readers from the doc's settings (`du.py settings DOC`). If empty, ask who should get it (name, email, email or Chat) and save them;
-   `du.py settings DOC --readers '<full JSON list>'` replaces the list; show the old and new list and change it only on their yes.
+1. Read the readers from the doc (`du.py reader list`). If empty, ask who should get it (name, email, email or Chat) and save them;
+   `du.py reader add NAME EMAIL --channel email|chat`, `reader remove NAME` and `reader set-channel NAME CHANNEL` each show the old and new list with `--dry-run`; change it only on their yes.
 2. Draft one short message: subject or first line "<Org> Daily Updates, <Weekday Mon D>", one line per
    Area health row ("<area colour> <Area>: <Headline>"), any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
    <names>." (or "All initiatives confirmed today."), one line "<N> initiatives are missing a plan: <names>."
@@ -666,7 +715,7 @@ owner name exceptions.
    what the overview already says.
 3. Show the exact recipients, channel and text, then ask: "Send to <names>?" Send only if the doc owner replies
    "send" (or a clear yes naming the send) in this session. Email with `gws gmail users messages send`; Chat with
-   `gws chat spaces messages create` in a direct message. Send only to addresses already in `readers`.
+   `gws chat spaces messages create` in a direct message. Send only to addresses already in `reader list`.
 4. Report what went to whom, quoting the sent text. If any send failed, say which and why. Never send anything
    else, and never send on behalf of a leader.
 
