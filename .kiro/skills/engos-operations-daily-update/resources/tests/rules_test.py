@@ -155,6 +155,9 @@ def main():
     check("split a bare 'No date set yet'", sp("No date set yet") == ("None", "No date set yet"))
     check("split keeps a note after no date", sp("Boost confirmed, No date set yet (waiting on Sanat)") ==
           ("Boost confirmed", "No date set yet (waiting on Sanat)"))
+    check("split a stopped milestone", sp("None, stopped Sat Nov 7") == ("None", "stopped Sat Nov 7"), sp("None, stopped Sat Nov 7"))
+    check("a stopped row reads back as the full milestone",
+          du.Area.row_milestone(["A", "Ann", "⚪", *sp("None, stopped Sat Nov 7")]) == "None, stopped Sat Nov 7")
     check("split a done milestone", sp("Endpoints delivered, done Thu Nov 5") == ("Endpoints delivered", "done Thu Nov 5"))
     check("row_cells makes five cells for the new table",
           du.row_cells(["A", "Ann", "🟢 On track", "Ship, Mon Nov 9"], 5) == ["A", "Ann", "🟢 On track", "Ship", "Mon Nov 9"])
