@@ -7,7 +7,7 @@ Rewrites the "As of" line and everything below it: Area health, the decisions ta
 as they are), Next 2 weeks, How to update, Status key and the grey line. That also moves an older overview to
 this layout (its "In 30 seconds" and "Not updated today" sections go). Area health headline links are kept
 where their phrase is still in the headline; any initiative name in a headline links to its tab. A Next 2 weeks
-row whose date and initiative are unchanged keeps its wording and links; a new row is the milestone without its date.
+row is the milestone without its date, exactly as its section words it (never shortened here).
 """
 import argparse
 import datetime as dt
@@ -103,14 +103,6 @@ def rebuild(doc_id, today, time):
     dec_links = [cell_links(r["tableCells"][0]) for r in rows]
     hl_links = {du.cell_text(r["tableCells"][0]): cell_links(r["tableCells"][3])
                 for r in (old["Area"]["table"]["tableRows"][1:] if "Area" in old else [])}
-    # A Next 2 weeks row whose date and linked tab are unchanged keeps its wording and links.
-    kept = {}
-    for r in (old["Date"]["table"]["tableRows"][1:] if "Date" in old else []):
-        links = cell_links(r["tableCells"][1])
-        tabs = [u.split("?tab=")[1] for _, u in links if "?tab=" in u]
-        if tabs:
-            kept[(du.cell_text(r["tableCells"][0]), tabs[0])] = (du.cell_text(r["tableCells"][1]), links)
-
     # Delete everything from the first heading to the end; update the "As of" line.
     paras = [e for e in body if "paragraph" in e]
     first = next((e for e in paras if e["paragraph"]["paragraphStyle"].get("namedStyleType") == "HEADING_2"), None)
@@ -125,12 +117,8 @@ def rebuild(doc_id, today, time):
     du.batch(doc_id, reqs, doc)
 
     # Write the sections, then the tables into their empty paragraphs.
-    def row(d, c, i):
-        k = kept.get((du.label(d), i.tab_id))
-        if k and len(k[0]) <= 50:  # kept wording, unless it is an old over-long label
-            return k
-        return c, [(c, du.tab_url(doc_id, i.tab_id))]
-    nxt = [(d, *row(d, c, i), st) for d, c, i, st in du.next_two_weeks(inits, today)]
+    # Each row is the milestone as its section words it; reword it there, not here.
+    nxt = [(d, c, [(c, du.tab_url(doc_id, i.tab_id))], st) for d, c, i, st in du.next_two_weeks(inits, today)]
     missing = du.missing_plan(inits, today)
     lines = (["Area health", "", MISSING_HEAD, "" if missing else MISSING_NONE] + ([du.DECISIONS_HEAD, ""] if decisions else []) +
              [du.NEXT_HEAD, "" if nxt else "No dated commitments in the next 2 weeks.", "How to update"] +

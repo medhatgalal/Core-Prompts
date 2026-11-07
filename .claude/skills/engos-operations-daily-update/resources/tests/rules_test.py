@@ -1,4 +1,4 @@
-"""Offline checks for the status rules, the pre-publish check, Missing a plan, short labels and the migration
+"""Offline checks for the status rules, the pre-publish check, Missing a plan, milestone labels and the migration
 mapping. No doc and no network.
 
     python3 rules_test.py
@@ -138,9 +138,14 @@ def main():
     check("over two weeks is marked", cell[3] == "Tue Oct 20 (over 2 weeks)", cell)
 
     # Short labels for Next 2 weeks.
-    lab = du.commitment("First milestone of the Developer Model Context Protocol server (Dev MCP) on the shared "
-                        "platform ships for cloud and self-managed sites, Mon Nov 9")
-    check("a long milestone gets a short label", len(lab) <= 50 and "Dev MCP" in lab, lab)
+    full = ("Composer's shared session store runs on Cache-as-a-Service (CaaS) in production, so restarts lose "
+            "no user work")
+    check("a long milestone is never cut", du.commitment(full + ", Thu Nov 12") == full, du.commitment(full + ", Thu Nov 12"))
+    p = daily.checks(["🟢 On track", f"Next milestone: {full}, Thu Nov 12", "Progress: Merged (chat).", "Blocked on: None."], [])
+    check("a long milestone is a warning to reword it", any("is long" in x for x in p if x.startswith("warn:")), p)
+    p = daily.checks(["🟢 On track", "Next milestone: Restart-safe Composer sessions, Thu Nov 12", "Progress: Merged (chat).",
+                      "Blocked on: None."], [])
+    check("a short milestone does not warn", not any("is long" in x for x in p), p)
     check("a short milestone keeps its words", du.commitment("Pilot live, Fri Nov 13") == "Pilot live")
 
     # Separate Next milestone and Date columns.

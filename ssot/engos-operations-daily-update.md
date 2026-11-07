@@ -183,6 +183,8 @@ Re-check that the doc still opens on every run. If it does not, say so and ask f
 - Lead with what it means: what changed, why it matters, the date, the owner.
 - A next milestone is an outcome the work delivers ("Fill the open role", "Fast becomes the default"), never an
   activity on the way there ("Hold the next interview", "Attend the review"). Activities go in Progress.
+  Say it in a few words, 60 characters or less without the date ("Restart-safe Composer sessions"): the overview
+  shows it exactly as written and never shortens it, so a long one reads long everywhere.
 - Absolute dates with weekday: "Thu Nov 5". Never "this week", "soon", "TBD", "EOW".
 - "Today" and every section date mean the calendar date in US Eastern time (America/New_York), wherever the
   person is. A leader in Pacific time publishing at 10pm PT writes the next day's date. Ledger file names use it too.
@@ -232,7 +234,7 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
 4. **Exec leadership: decisions or help needed** (only if any): table with Decision or help needed, Why now,
    Recommend, By, Owner. By is the date it is needed; if no tab gives one, propose one and mark it as your
    inference in the review. Link each row to the thing being decided (its tab, design doc, merge request, proposal).
-5. **Next 2 weeks**: table with Date, Commitment (the milestone without its date, cut to a short label,
+5. **Next 2 weeks**: table with Date, Commitment (the milestone without its date, exactly as its section words it,
    linked to its initiative's tab), Status (the emoji, "🟢"): one row per initiative, not done or stopped, whose newest Next milestone date
    falls from today through today + 14 days, by date and then worst first. With no rows, one line: "No dated
    commitments in the next 2 weeks."
@@ -242,8 +244,8 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
 
 There is no "In 30 seconds" or "Not updated today" section. `du.py overview DOC DATE TIME --publish` rewrites
 everything below the "As of" line in this order. It keeps the decisions rows and their links, keeps headline
-links whose phrase is still there, links initiative names in headlines, and keeps a Next 2 weeks row's wording
-and link while its date and initiative are unchanged. It also moves an older overview to this layout.
+links whose phrase is still there, links initiative names in headlines, and writes each Next 2 weeks row from its
+section's milestone (to change a row's wording, change the milestone). It also moves an older overview to this layout.
 
 **Area tab**: title, `Owner: <name> · Back to <overview>`, then **Headline**: one line,
 `<sentence> (<Weekday Mon D>)`, for example `Everything is on track except the new Composer experience, which
@@ -678,6 +680,8 @@ owner name exceptions.
 - No vague dates. Every milestone has a date, or reads "No date set yet" (exactly, capital N); an undated
   one is a WARN for the review and is listed under Missing a plan, and does not change the colour. A milestone
   marked "done <date>" by Sweep counts as dated.
+- No long milestones. Over 60 characters without the date is a WARN from `lint`: propose a shorter wording that
+  keeps the meaning, and let the updater choose.
 - No stale dates. When a milestone date is unchanged from the previous section while Progress says something
   moved, or names a later date, ask the updater to confirm the date (a WARN from `lint`).
 - Every weekday matches its date on the calendar ("Fri Nov 6", never "Thu Nov 6").
