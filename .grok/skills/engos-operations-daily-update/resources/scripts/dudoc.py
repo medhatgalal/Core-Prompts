@@ -211,6 +211,12 @@ def title_parts(title):
     return (m.group(1), m.group(2)) if m else (title, None)
 
 
+def parse_backups(header):
+    """The `Backups: A, B` part of an initiative's header line; empty when there is none."""
+    m = re.search(r"Backups: ([^·]+)", header or "")
+    return [b.strip() for b in m.group(1).split(",") if b.strip()] if m else []
+
+
 class Section:
     def __init__(self, date, heading_el):
         self.date, self.heading_el, self.lines = date, heading_el, []
@@ -265,6 +271,7 @@ class Initiative:
             m = re.search(r"Updater: ([^·]+)", self.header)
             if m:
                 self.updater = m.group(1).strip()
+        self.backups = parse_backups(self.header)
 
     def newest(self, attr=None):
         for s in self.sections:

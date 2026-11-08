@@ -11,7 +11,7 @@ Nothing here messages anyone except `day send --confirmed`, run only after the p
 
   doc        create STRUCTURE.json | show | sync
   area       list | show | add | rename | set-owner | set-headline | merge | remove
-  initiative list | show | add | rename | move | set-owner | set-updater
+  initiative list | show | add | rename | move | set-owner | set-updater | add-backup | remove-backup
              pause | resume | done | stop | reopen | archive
   person     list | show | set-email
   reader     list | add | remove | set-channel
