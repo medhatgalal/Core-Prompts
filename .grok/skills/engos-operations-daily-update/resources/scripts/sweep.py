@@ -36,6 +36,7 @@ def draft(init, today, owner, decisions):
         due = du.milestone_date(ms)
         if due and due < today and ", done " not in ms:
             choice = decisions.get(init.name)
+            choice = choice if choice in ("red", "done") else None
             notes.append(f"PASSED: milestone due {du.label(due)}; doc owner chose {choice or 'NOTHING YET'}")
             if choice == "red":
                 status = "🔴"
@@ -114,7 +115,19 @@ def main():
             print(f"  {init.title}: {lines[1]} | {lines[2]}" + (f"   [{'; '.join(notes)}]" if notes else ""))
     passed = [i.title for i, _, n in drafts.values() if any(x.startswith("PASSED") for x in n)]
     print(f"\nMilestones already passed (doc owner decides done or red): {passed or 'none'}")
+    # A passed milestone is never published silently: the doc owner decides done or red first.
+    undecided = [(init, n) for init, _, n in drafts.values()
+                 if any(x.startswith("PASSED") and x.endswith("NOTHING YET") for x in n)]
+    for init, _ in undecided:
+        print(f"NEEDS A DECISION: {init.title}: milestone passed. Pass --decide \"{init.name}=done\" or --decide \"{init.name}=red\".")
+    if a.publish and undecided:
+        raise SystemExit("REFUSED: " + str(len(undecided)) + " passed milestone(s) have no decision: "
+                         + "; ".join(i.title for i, _ in undecided)
+                         + ". Re-run with --decide \"<initiative>=done\" or \"<initiative>=red\" for each. Nothing written.")
     if not a.publish:
+        if undecided:
+            print("\nNot ready to publish: decide the milestones above first.")
+            return
         print("\nPublish? (re-run with --publish)")
         return
 
