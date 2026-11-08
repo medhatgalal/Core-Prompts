@@ -15,7 +15,7 @@
     "bf0e6b0a511562b438d26f71050bd559b583ed915f774a105478f628547f7189",
     "bf6adceac230103b3365e4778c6411a522372db5b95bff53e3195cb6cd658cbb",
     "89ffb9287dfcf6c981f17458ffaca9a6cfbb107affdeb7e4e75e51d512869864",
-    "0f0d0432239d0642372ac4bff90389e6e2e24c3a752631ace08dc0b632a15739",
+    "5e9ac48d6fb5f736811132112b9072c99cd1e6717cd4e0678e5911281623f216",
     "cb9b61752685fe370f2c4bbdae67538a990d1e2b16db920f2ca7b0279940b092",
     "9dce0fc914e9c0b2f80ddb614421b4a3fb0fd3f1899c7de874f358ba5684146b",
     "014c1d8cab204eb39ce0c707b56c5800154786fc416cc3fe99dfb7d3a1440ae5",
@@ -184,9 +184,9 @@
       "text": "| `send` | doc owner | Draft the summary for the readers; send only on \"send\" | Send |"
     },
     {
-      "sha256": "0f0d0432239d0642372ac4bff90389e6e2e24c3a752631ace08dc0b632a15739",
+      "sha256": "5e9ac48d6fb5f736811132112b9072c99cd1e6717cd4e0678e5911281623f216",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |"
+      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |"
     },
     {
       "sha256": "cb9b61752685fe370f2c4bbdae67538a990d1e2b16db920f2ca7b0279940b092",

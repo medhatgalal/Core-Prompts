@@ -19,6 +19,7 @@ import datetime as dt
 import json
 import os
 import re
+import subprocess
 import sys
 
 import dudoc as du
@@ -1026,6 +1027,33 @@ def machine_findings():
     return out
 
 
+LAYOUT_FIX = "section show '<tab>' <date>, correct it, then section write '<tab>' SECTION.json"
+
+
+def parse_layout(out):
+    """verify.py prints 'FAIL <check>  <detail>' and usability.py 'ISSUE <text>'. Each becomes a warning.
+    'has a section for <today>' is dropped: the stale-update check already says it, and kindly on weekends."""
+    out_f = []
+    for line in out.splitlines():
+        m = re.match(r"(FAIL|ISSUE) (.+)", line)
+        if m and ": has a section for " not in m.group(2):
+            out_f.append(finding("warn", "layout" if m.group(1) == "FAIL" else "readability", m.group(2).strip()[:200], LAYOUT_FIX))
+    return out_f
+
+
+def layout_findings(doc_id, day):
+    out = []
+    since = ["--since", day]
+    for script, extra in (("verify.py", ["--started", "1970-01-01T00:00:00Z"]), ("usability.py", [])):
+        p = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), script), doc_id, day, *since, *extra],
+                           capture_output=True, text=True, timeout=600, env={k: v for k, v in os.environ.items() if k != "DU_TEST"})
+        found = parse_layout(p.stdout)
+        if p.returncode and not re.search(r"checks passed|usability issues", p.stdout):
+            out.append(finding("warn", f"{script} ran", f"{script} stopped: {(p.stderr.strip().splitlines() or ['no output'])[-1][:150]}", "doctor --only-doc"))
+        out += found
+    return out
+
+
 def doc_findings(ns):
     try:
         ctx = Ctx(resolve_doc(ns))
@@ -1034,7 +1062,7 @@ def doc_findings(ns):
                         "pass --doc <link>, or doc create STRUCTURE.json")], None
     states = {i.title: ctx.state(i) for i in ctx.inits}
     out = check_people(ctx.settings["people"], ctx.inits, ctx.areas) + check_readers(ctx.settings["readers"]) \
-        + check_freshness(ctx.inits, ctx.areas, states, today())
+        + check_freshness(ctx.inits, ctx.areas, states, today()) + layout_findings(ctx.id, today().isoformat())
     if not any(f["level"] == "fail" for f in out):
         out.insert(0, finding("ok", "doc rules", f"{len(ctx.areas)} area(s), {len(ctx.inits)} initiative(s), people and readers valid."))
     return out, ctx

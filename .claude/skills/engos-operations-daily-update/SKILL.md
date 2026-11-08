@@ -93,7 +93,7 @@ The verbs mean the same on every noun: `list` and `show` read, `add` creates, `s
 | `doc create` | doc owner | Create a new doc; this person becomes its doc owner | Create |
 | `doc join` | leader | Connect sources and confirm your tabs, once | Onboard |
 | `doc show` | anyone | Owner, your role, areas, initiatives by state, readers | Help |
-| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |
+| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |
 | `initiative list`, `initiative show` | anyone | Find initiatives by area, owner, updater or state | Initiatives |
 | `initiative add` | leader | Add an initiative under an area | Initiatives |
 | `initiative rename`, `move`, `set-owner` | the tab's updater, its area owner or the doc owner | Change the name, area or owner | Initiatives |

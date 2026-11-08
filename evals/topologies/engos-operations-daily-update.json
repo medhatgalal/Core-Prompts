@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-operations-daily-update",
-  "ssot_sha256": "5811bf9e47b08d8d4e84e62833d3e9e63853a99562b698e2271ebc86bde5810b",
+  "ssot_sha256": "0236ca6a29f52bb482a97263d8ed0d206d55340ac0e8efc2a4a5ceb4512c8415",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -177,12 +177,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-operations-daily-update:L93:0f0d0432239d",
+      "id": "engos-operations-daily-update:L93:5e9ac48d6fb5",
       "heading": "Commands",
       "source": "ssot/engos-operations-daily-update.md",
       "source_line": 99,
-      "sha256": "0f0d0432239d0642372ac4bff90389e6e2e24c3a752631ace08dc0b632a15739",
-      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |",
+      "sha256": "5e9ac48d6fb5f736811132112b9072c99cd1e6717cd4e0678e5911281623f216",
+      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -1105,7 +1105,7 @@
   "source_references": [
     {
       "path": "ssot/engos-operations-daily-update.md",
-      "sha256": "5811bf9e47b08d8d4e84e62833d3e9e63853a99562b698e2271ebc86bde5810b"
+      "sha256": "0236ca6a29f52bb482a97263d8ed0d206d55340ac0e8efc2a4a5ceb4512c8415"
     }
   ],
   "known_ambiguities": [],

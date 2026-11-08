@@ -162,6 +162,12 @@ check("doctor: backup matches", cli.check_backup("a", "a")["level"] == "ok")
 check("doctor: backup missing warns with doc sync", (cli.check_backup("a", None)["level"], cli.check_backup("a", None)["fix"]) == ("warn", "doc sync"))
 check("doctor: backup differs warns", cli.check_backup("a", "b")["level"] == "warn")
 
+lay = cli.parse_layout("FAIL Evals 11/06: no raw URLs  []\nFAIL Evals: has a section for Sat Nov 7  x\n"
+                       "ISSUE Plan: jargon MR\n\n3 of 9 checks passed\n")
+check("doctor: layout lines become warnings with a fix, today's-section line dropped",
+      [(f["level"], f["check"]) for f in lay] == [("warn", "layout"), ("warn", "readability")] and all(f["fix"] for f in lay), str(lay))
+check("doctor: clean layout output gives nothing", cli.parse_layout("12 of 12 checks passed\n0 usability issues\n") == [])
+
 # ---- source CRUD on a throwaway config ----
 def run(*argv):
     out, err = io.StringIO(), io.StringIO()
