@@ -1,3 +1,10 @@
+## v1.20.4 - 2026-11-08
+
+Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: fix. `day sweep --publish --decide "<initiative>=red"` now opens Progress with the reason (the milestone, its date and that it was marked Red), only when the colour changes, and an overdue milestone stays in the overview's Next 2 weeks as "<date> (overdue)" instead of dropping out. A `done` decision is unchanged by design (`initiative done` is a separate step); the review now prints that command as the next step.
+
 ## v1.20.3 - 2026-11-08
 
 Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
