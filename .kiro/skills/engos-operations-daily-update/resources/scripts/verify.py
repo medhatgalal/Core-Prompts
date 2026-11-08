@@ -303,7 +303,7 @@ def main():
 
     # ---- Next 2 weeks: one row per open initiative with a milestone in the next 14 days ----
     # The initiative is the tab its Commitment links to; Status is the bare emoji.
-    want = [(du.label(d), i.name, st) for d, _, i, st in du.next_two_weeks(inits, today)]
+    want = [(du.next_two_weeks_date(d, today), i.name, st) for d, _, i, st in du.next_two_weeks(inits, today)]
     n2 = next((e for e in body if "table" in e and du.cell_text(e["table"]["tableRows"][0]["tableCells"][0]) == "Date"), None)
     got_rows = n2["table"]["tableRows"][1:] if n2 else []
     got = [(du.cell_text(r["tableCells"][0]), (link_tabs(r["tableCells"][1]) or [None])[0], du.cell_text(r["tableCells"][2]))

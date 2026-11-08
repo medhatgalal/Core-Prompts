@@ -145,7 +145,7 @@ def rebuild(doc_id, today, time):
                         [[du.DECISIONS_COL, "Why now", "Recommend", "By", "Owner"]] + decisions, build.DECISION_SHARES)
     if nxt:
         build.add_table(doc_id, tid, build.anchor_index(doc_id, tid, du.NEXT_HEAD), [["Date", "Commitment", "Status"]] +
-                        [[du.label(d), c, st] for d, c, _, st in nxt], build.NEXT_SHARES)
+                        [[du.next_two_weeks_date(d, today), c, st] for d, c, _, st in nxt], build.NEXT_SHARES)
 
     build.style_how_to(doc_id, tid)
     build.fit_tables(doc_id)
@@ -204,7 +204,7 @@ def main():
     for i, what, since in du.missing_plan(inits, today):
         print(f"  Missing a plan: {' | '.join(missing_cells(i, what, since, today))}")
     for d, c, i, st in du.next_two_weeks(inits, today):
-        print(f"  Next 2 weeks: {du.label(d)} | {c} ({i.name}) | {st}")
+        print(f"  Next 2 weeks: {du.next_two_weeks_date(d, today)} | {c} ({i.name}) | {st}")
     if not a.publish:
         print("\nPublish? (re-run with --publish)")
         return

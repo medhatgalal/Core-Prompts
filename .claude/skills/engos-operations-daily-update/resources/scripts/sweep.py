@@ -22,7 +22,7 @@ def draft(init, today, owner, decisions):
     if prog.startswith(("Progress: Done ", "Progress: Stopped ")):
         return None  # finished or stopped: waiting for Archive
     st_sec, ms_sec = init.newest("status"), init.newest("milestone")
-    notes = []
+    notes, reason = [], None
     if st_sec is None:
         status, ms = "🟡", "No date set yet"
         notes.append("no earlier section: 🟡, No date set yet")
@@ -39,12 +39,15 @@ def draft(init, today, owner, decisions):
             choice = choice if choice in ("red", "done") else None
             notes.append(f"PASSED: milestone due {du.label(due)}; doc owner chose {choice or 'NOTHING YET'}")
             if choice == "red":
+                if status != "🔴":  # a colour change opens Progress with the reason, from facts the sweep has
+                    reason = (f'Progress: The milestone "{du.commitment(ms)}" was due {du.label(due)} and is not done, '
+                              f'so {owner} marked it Red. (from {owner})')
                 status = "🔴"
             elif choice == "done":
                 ms = f"{ms}, done {du.label(today)}."
     ms_line = f"Next milestone: {ms}"
     find = lambda p: next((t for s in init.sections for t, _ in s.lines if t.startswith(p)), None)
-    lines = [du.label(today, year=True), du.STATUSES[status], ms_line,
+    lines = [du.label(today, year=True), du.STATUSES[status], ms_line, *([reason] if reason else []),
              find("Blocked on:") or "Blocked on: None."]
     if status != "🟢":
         lines.append(find("Green when:") or f"Green when: {init.updater} sets this when they confirm.")
@@ -113,6 +116,10 @@ def main():
         print(f"\n{upd}:")
         for init, lines, notes in items:
             print(f"  {init.title}: {lines[1]} | {lines[2]}" + (f"   [{'; '.join(notes)}]" if notes else ""))
+    for init, _, n in drafts.values():
+        if any(x.endswith("chose done") for x in n):
+            print(f"NEXT: {init.title}: milestone marked done; the tab stays open with no next milestone. Finish it with "
+                  f"`initiative done '{init.name}' --outcome '<what shipped>'`, or the updater adds the next milestone.")
     passed = [i.title for i, _, n in drafts.values() if any(x.startswith("PASSED") for x in n)]
     print(f"\nMilestones already passed (doc owner decides done or red): {passed or 'none'}")
     # A passed milestone is never published silently: the doc owner decides done or red first.

@@ -396,5 +396,27 @@ check("a decision that is not done or red does not count", code.startswith("REFU
 code, _ = sweep_run([SweepInit("Planning", "Release, Thu Nov 12")], "--publish")
 check("no passed milestone: --publish is not blocked", code == "past the gate", code)
 
+# ---- day sweep: a red decision says why, a done decision names the next step, overdue stays on the overview ----
+today = dt.date(2026, 11, 9)
+lines_red, notes_red = sweep.draft(SweepInit("Evals", "Nightly run, Fri Nov 6"), today, "Scott", {"Evals": "red"})
+prog = next((x for x in lines_red if x.startswith("Progress:")), "")
+check("red decision: the section opens Progress with the reason, in skill order",
+      lines_red[1].startswith("🔴") and "Nightly run" in prog and "Fri Nov 6" in prog and "Red" in prog
+      and lines_red.index(prog) == 3 and lines_red[4].startswith("Blocked on:"), lines_red)
+check("red decision: no placeholder text is written",
+      not any("<" in x or ">" in x for x in lines_red) and any(x.startswith("Green when: Kyle sets this") for x in lines_red), lines_red)
+lines_done, _ = sweep.draft(SweepInit("Evals", "Nightly run, Fri Nov 6"), today, "Scott", {"Evals": "done"})
+check("done decision: no Progress line (the sweep knows no outcome)", not any(x.startswith("Progress:") for x in lines_done), lines_done)
+code, out = sweep_run(two(), "--decide", "Evals=done")
+check("done decision: the review names the next step", "NEXT: Evals (Kyle)" in out and "initiative done 'Evals' --outcome" in out
+      and "next milestone" in out, out)
+ov = [SweepInit("Late", "Nightly run, Fri Nov 6"), SweepInit("Soon", "Release, Thu Nov 12"), SweepInit("Done", "Old run, Mon Nov 2, done Tue Nov 3.")]
+for i in ov:
+    i.newest = lambda attr=None, i=i: i.sections[0]
+rows = du.next_two_weeks(ov, today)
+check("overview Next 2 weeks keeps an overdue milestone, marks it, and sorts it first",
+      [r[2].name for r in rows] == ["Late", "Soon"] and du.next_two_weeks_date(rows[0][0], today) == "Fri Nov 6 (overdue)"
+      and du.next_two_weeks_date(rows[1][0], today) == "Thu Nov 12", rows)
+
 print("\n" + ("ALL PASS" if not FAILS else f"{len(FAILS)} FAILED: {FAILS}"))
 sys.exit(1 if FAILS else 0)
