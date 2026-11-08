@@ -1,3 +1,10 @@
+## v1.20.3 - 2026-11-08
+
+Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: fix. `day sweep --publish` no longer writes when a passed milestone has no decision. It refuses, names each undecided initiative and the `--decide` forms to use, and the preview lists them as needing a decision. A `--decide` value other than `done` or `red` counts as undecided.
+
 ## v1.20.2 - 2026-11-08
 
 Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
