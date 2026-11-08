@@ -1,3 +1,10 @@
+## v1.20.1 - 2026-11-07
+
+Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: new read-only `doctor` command replaces `doc check`. One report with two sections: this machine (Google sign-in, config, saved sources, Drive backup) and the doc (the enforced rules, stale updates, empty areas, and the layout and readability checks as warnings). Each finding is fail, warn or ok and names the command that fixes it; it exits non-zero on any fail and never writes. `--local` and `--only-doc` limit it to one section.
+
 ## v1.20.0 - 2026-11-07
 
 Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
