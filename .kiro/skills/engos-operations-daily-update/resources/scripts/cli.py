@@ -3,7 +3,7 @@
     du.py <noun> <verb> [args] [--doc ID] [--json] [--dry-run] [--for-owner]
 
 Nouns are the things in the model (doc, area, initiative, person, reader, source, section) plus `day`, the
-daily close-out cycle. Verbs are the same everywhere: list, show, add, set-*, remove, plus the initiative
+daily close-out cycle, and `doctor`, the one read-only health check (no verb). Verbs are the same everywhere: list, show, add, set-*, remove, plus the initiative
 lifecycle (pause, resume, done, stop, reopen, archive).
 
 This module owns four things and nothing else:
@@ -331,11 +331,6 @@ def doc_show(ns):
     card(ns, {"doc": ctx.id, "title": ctx.doc.get("title", ""), "owner": ctx.owner, "me": ctx.me,
               "role": "doc owner" if same_person(ctx.me, ctx.owner) else "leader",
               "areas": len(ctx.areas), "initiatives": counts, "readers": len(ctx.settings["readers"])})
-
-
-def doc_check(ns):
-    import du as dumain
-    dumain.cmd_check([resolve_doc(ns), ns.date])
 
 
 def doc_sync(ns):
@@ -881,6 +876,201 @@ def discover(ns):
     dumain.cmd_dedupe([resolve_doc(ns), ns.file])
 
 
+# ---------- doctor (read only: finds problems, names the command that fixes each, never fixes) ----------
+
+def finding(level, check, detail, fix=""):
+    return {"level": level, "check": check, "detail": detail, "fix": fix}
+
+
+def has_email(people, name):
+    return any(canon(k) == canon(name) and "@" in v for k, v in people.items())
+
+
+def check_people(people, inits, areas):
+    """Rules 1 and 2 of the SSOT: owners exist, the updater is in the people list with an email, titles read
+    `<Name> (<owner>)`, each initiative sits under an area. Emails come first: nothing else can be tagged without them."""
+    out = []
+    for n in sorted({i.updater for i in inits if i.updater}, key=canon):
+        if not has_email(people, n):
+            out.append(finding("fail", "updater has an email", f"{n} updates a tab but has no email in the people list.",
+                               f"person set-email {n} <email>"))
+    for i in inits:
+        if not i.owner:
+            out.append(finding("fail", "initiative has an owner", f"tab {i.title!r} should read '<Name> (<owner>)' but has no owner.",
+                               f"initiative set-owner {i.name!r} <person>"))
+        if not i.updater:
+            out.append(finding("fail", "initiative has an updater", f"{i.title!r} names no updater.",
+                               f"initiative set-updater {i.name!r} <person>"))
+        if i.area_title not in areas:
+            out.append(finding("fail", "initiative sits under an area", f"{i.title!r} is not under an area tab.",
+                               f"initiative move {i.name!r} --area <area>"))
+    for a in areas.values():
+        if not a.owner:
+            out.append(finding("fail", "area has an owner", f"area {a.title!r} has no owner in its title.",
+                               f"area set-owner {a.name!r} <person>"))
+    return out
+
+
+def check_readers(readers):
+    out = []
+    for r in readers:
+        try:
+            check_reader(r)
+        except Refused as e:
+            out.append(finding("fail", "reader is valid", f"reader {r.get('name') or '(no name)'!s}: {str(e).removeprefix('REFUSED: ').removesuffix(' Nothing written.')}",
+                               f"reader remove {r.get('name', '')!r}, then reader add <name> <email> --channel email"))
+    return out
+
+
+def weekdays_between(a, b):
+    """Weekdays after a, up to and including b."""
+    n, d = 0, a
+    while d < b:
+        d += dt.timedelta(days=1)
+        n += d.weekday() < 5
+    return n
+
+
+def check_freshness(inits, areas, states, today, stale_after=2):
+    """Warnings only: a live tab with no update for `stale_after` weekdays, or none ever; an area with no live tab."""
+    out = []
+    for i in inits:
+        if states.get(i.title) != "open":
+            continue
+        if not i.sections:
+            out.append(finding("warn", "tab has an update", f"{i.title!r} has no daily section yet.",
+                               f"section write {i.name!r} SECTION.json"))
+            continue
+        gap = weekdays_between(i.sections[0].date, today)
+        if gap >= stale_after:
+            out.append(finding("warn", "tab is current", f"{i.title!r} last updated {du.label(i.sections[0].date)} ({gap} weekdays ago).",
+                               f"section write {i.name!r} SECTION.json, or initiative pause {i.name!r} --reason <why>"))
+    for a in areas.values():
+        if not any(i.area_title == a.title and states.get(i.title) in ("open", "paused") for i in inits):
+            out.append(finding("warn", "area has work", f"area {a.title!r} has no open or paused initiative.",
+                               f"initiative add INIT.json --area {a.name!r}, or area remove {a.name!r}"))
+    return out
+
+
+def check_sources(cfg, inits=None):
+    """Every saved source sits on a tab you update. With the doc's initiatives, 'update' means you are its updater."""
+    out, me = [], cfg.get("me", "")
+    tabs = [t for t in cfg.get("tabs", []) if t.get("sources")]
+    for t in tabs:
+        refs = [(k, r) for k, rs in t["sources"].items() for r in rs]
+        fix = "; ".join(f"source remove {t.get('name', '')!r} {k} {r}" for k, r in refs[:2]) + (" ..." if len(refs) > 2 else "")
+        if t.get("kind") != "initiative":
+            out.append(finding("fail", "source on a tab you update", f"sources saved on {t.get('name')!r}, which is not an initiative tab.", fix))
+        elif inits is not None:
+            hit = [i for i in inits if canon(i.name) == canon(t.get("name"))]
+            if not hit:
+                out.append(finding("fail", "source on a tab you update", f"sources saved on {t.get('name')!r}, which is not a tab in the doc.", fix))
+            elif not same_person(me, hit[0].updater):
+                out.append(finding("fail", "source on a tab you update",
+                                   f"sources saved on {t.get('name')!r}, whose updater is {hit[0].updater}, not {me or 'you'}.", fix))
+    if tabs and not any(f["check"] == "source on a tab you update" for f in out):
+        out.append(finding("ok", "source on a tab you update", f"{len(tabs)} tab(s) with saved sources" +
+                           ("" if inits is not None else " (updater not checked without the doc)")))
+    return out
+
+
+def check_backup(local_md5, remote):
+    """remote: None (no Drive copy) or the Drive file's md5."""
+    if local_md5 is None:
+        return finding("warn", "Drive backup of config", "no local config to back up.", "doc join")
+    if remote is None:
+        return finding("warn", "Drive backup of config", "no copy of the config on your Drive.", "doc sync")
+    if remote != local_md5:
+        return finding("warn", "Drive backup of config", "the Drive copy differs from the local config.", "doc sync")
+    return finding("ok", "Drive backup of config", "the Drive copy matches.")
+
+
+def machine_findings():
+    out = []
+    try:
+        du.gws("drive", "about", "get", "--params", json.dumps({"fields": "user"}))
+        out.append(finding("ok", "Google sign-in", "gws reaches Drive."))
+        online = True
+    except (RuntimeError, OSError, ValueError) as e:
+        out.append(finding("fail", "Google sign-in", f"gws cannot reach Drive ({str(e).splitlines()[-1][:120] if str(e) else 'no detail'}).", "gws auth login"))
+        online = False
+    path = config_path()
+    cfg = None
+    try:
+        cfg = json.load(open(path))
+        out.append(finding("ok", "config readable", path))
+    except FileNotFoundError:
+        out.append(finding("fail", "config readable", f"no config at {path}.", "doc join"))
+    except (ValueError, OSError) as e:
+        out.append(finding("fail", "config readable", f"{path} cannot be read ({e}).", f"fix the JSON in {path}, or restore it with doc sync"))
+    if cfg is not None:
+        if not cfg.get("me"):
+            out.append(finding("fail", "config names you", "'me' is not set.", "doc join"))
+        out.append(("sources", cfg))
+    remote, local = None, None
+    if os.path.isfile(path):
+        import backup
+        local = backup._md5(path)
+        if online:
+            try:
+                root = backup._list("root", backup.ROOT, folder=True)
+                kit = root and backup._list(root[0]["id"], backup.SUB, folder=True)
+                hit = kit and backup._list(kit[0]["id"], "config.json", folder=False)
+                remote = hit[0].get("md5Checksum") if hit else None
+            except Exception as e:  # Drive unreachable is its own finding above
+                out.append(finding("warn", "Drive backup of config", f"could not look ({str(e)[:100]}).", "doc sync"))
+                return out
+    if online or local is None:
+        out.append(check_backup(local, remote))
+    out.append(finding("skip", "installed version vs latest", "skipped: the kit records no version it can compare offline."))
+    return out
+
+
+def doc_findings(ns):
+    try:
+        ctx = Ctx(resolve_doc(ns))
+    except (SystemExit, RuntimeError) as e:
+        return [finding("fail", "doc opens", str(e).splitlines()[-1][:160] if str(e) else "cannot read the doc",
+                        "pass --doc <link>, or doc create STRUCTURE.json")], None
+    states = {i.title: ctx.state(i) for i in ctx.inits}
+    out = check_people(ctx.settings["people"], ctx.inits, ctx.areas) + check_readers(ctx.settings["readers"]) \
+        + check_freshness(ctx.inits, ctx.areas, states, today())
+    if not any(f["level"] == "fail" for f in out):
+        out.insert(0, finding("ok", "doc rules", f"{len(ctx.areas)} area(s), {len(ctx.inits)} initiative(s), people and readers valid."))
+    return out, ctx
+
+
+def doctor(ns):
+    result = {}
+    if not ns.only_doc:
+        mach = machine_findings()
+        cfg = next((x[1] for x in mach if isinstance(x, tuple)), None)
+        mach = [x for x in mach if not isinstance(x, tuple)]
+        result["machine"] = mach
+    if not ns.local:
+        doc, ctx = doc_findings(ns)
+        result["doc"] = doc
+        if not ns.only_doc and cfg is not None:
+            result["machine"] += check_sources(cfg, ctx.inits if ctx else None)
+    elif not ns.only_doc and cfg is not None:
+        result["machine"] += check_sources(cfg)
+    fails = sum(f["level"] == "fail" for v in result.values() for f in v)
+    warns = sum(f["level"] == "warn" for v in result.values() for f in v)
+    if ns.json:
+        print(json.dumps({**result, "fail": fails, "warn": warns}, ensure_ascii=False, indent=1))
+    else:
+        titles = {"machine": "This machine", "doc": "The doc"}
+        for sec, items in result.items():
+            print(titles[sec])
+            for f in sorted(items, key=lambda f: ("fail", "warn", "ok", "skip").index(f["level"])):
+                print(f"  {f['level'].upper():<4}  {f['check']}: {f['detail']}")
+                if f["fix"]:
+                    print(f"        fix: {f['fix']}")
+            print()
+        print(f"{fails} fail, {warns} warn. Nothing was changed.")
+    sys.exit(1 if fails else 0)
+
+
 # ---------- grammar ----------
 
 def build_parser():
@@ -911,7 +1101,6 @@ def build_parser():
     g = group("doc", "the status doc")
     verb(g, "create", doc_create, "create a doc from STRUCTURE.json; you become the doc owner", "structure")
     verb(g, "show", doc_show, "owner, you, areas, initiatives by state, readers")
-    verb(g, "check", doc_check, "rule and reader checks on the doc for a day", "date")
     verb(g, "sync", doc_sync, "back up ~/.daily-update to your Drive, restoring older local files")
 
     g = group("area", "areas: groups of initiatives, each with an owner")
@@ -976,6 +1165,16 @@ def build_parser():
          ("links", {"nargs": "?"}))
     verb(g, "send", day_send, "draft the reader summary; --confirmed sends it", confirmed={"action": "store_true"})
 
+    d = nouns.add_parser("doctor", help="read-only health check of this machine and the doc; names the fix for each problem",
+                         description="Read-only health check. Prints fail, warn or ok per finding, the exact command that fixes it, "
+                                     "and exits non-zero on any fail. Never fixes anything.")
+    d.add_argument("--doc", help="doc id or link (default: doc_id in ~/.daily-update/config.json)")
+    d.add_argument("--json", action="store_true", help="print JSON")
+    one = d.add_mutually_exclusive_group()
+    one.add_argument("--local", action="store_true", help="only 'This machine'")
+    one.add_argument("--only-doc", action="store_true", help="only 'The doc'")
+    d.set_defaults(fn=doctor)
+
     verb(nouns.add_parser("discover", help="find recurring work no tab covers").add_subparsers(dest="verb", metavar="<verb>", required=True),
          "check", discover, "compare CANDIDATES.json with tabs, saved sources and links (read only)", "file")
     return root
@@ -983,7 +1182,7 @@ def build_parser():
 
 def main(argv=None):
     args = build_parser().parse_args(argv)
-    if not (args.noun == "doc" and args.verb == "sync"):
+    if not (args.noun == "doctor" or (args.noun == "doc" and args.verb == "sync")):
         import backup
         r = None if os.environ.get("DU_NO_SYNC") else backup.auto()
         if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):

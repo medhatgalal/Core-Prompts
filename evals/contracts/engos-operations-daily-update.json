@@ -15,6 +15,7 @@
     "bf0e6b0a511562b438d26f71050bd559b583ed915f774a105478f628547f7189",
     "bf6adceac230103b3365e4778c6411a522372db5b95bff53e3195cb6cd658cbb",
     "89ffb9287dfcf6c981f17458ffaca9a6cfbb107affdeb7e4e75e51d512869864",
+    "0f0d0432239d0642372ac4bff90389e6e2e24c3a752631ace08dc0b632a15739",
     "cb9b61752685fe370f2c4bbdae67538a990d1e2b16db920f2ca7b0279940b092",
     "9dce0fc914e9c0b2f80ddb614421b4a3fb0fd3f1899c7de874f358ba5684146b",
     "014c1d8cab204eb39ce0c707b56c5800154786fc416cc3fe99dfb7d3a1440ae5",
@@ -64,7 +65,7 @@
     "5ab03e50d7d1d015bb7f37c5a281f1b9e15bf697b6de6bd4e0bd52a02b5cd9ce",
     "14b0939c6c5cf127e06469657486ab89e748b12aa5078c5c94307582c0b3f2d1",
     "4f1c5bf08258cc7e764d5d04173a6ef6a1cb9e1a03212b66863aeb885398f48c",
-    "65442c77de951f6d0e8bc3fd994274a7e020debeed64c53ebe1b5668246bd619",
+    "08d39b823fada01bc2c26cf9f130718c37971d18e39cead295c10cf3dcd37112",
     "7d9e5fab3099cb7fd013d0f580fdd06985d48fe9c018ee513bb6f2379788d0a3",
     "633bacbb65cdab11fa955ce87d18985f2769f34d5e51e3e248cdb7696ee9c343",
     "2d0e7c08f4da665054441ed3d00eb7ab53801062d244c5df16cc43b6c3c5b37e",
@@ -181,6 +182,11 @@
       "sha256": "89ffb9287dfcf6c981f17458ffaca9a6cfbb107affdeb7e4e75e51d512869864",
       "source": "ssot/engos-operations-daily-update.md",
       "text": "| `send` | doc owner | Draft the summary for the readers; send only on \"send\" | Send |"
+    },
+    {
+      "sha256": "0f0d0432239d0642372ac4bff90389e6e2e24c3a752631ace08dc0b632a15739",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |"
     },
     {
       "sha256": "cb9b61752685fe370f2c4bbdae67538a990d1e2b16db920f2ca7b0279940b092",
@@ -428,9 +434,9 @@
       "text": "`pageSize` 1000 and `pageToken` until no `nextPageToken`, then keep only spaces whose `lastActiveTime` is in the window."
     },
     {
-      "sha256": "65442c77de951f6d0e8bc3fd994274a7e020debeed64c53ebe1b5668246bd619",
+      "sha256": "08d39b823fada01bc2c26cf9f130718c37971d18e39cead295c10cf3dcd37112",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "and run `du.py doc check <date>` after publishing; fix anything it reports before saying done. Only if a script cannot"
+      "text": "and run `du.py doctor` after publishing; fix anything it reports before saying done. Only if a script cannot"
     },
     {
       "sha256": "7d9e5fab3099cb7fd013d0f580fdd06985d48fe9c018ee513bb6f2379788d0a3",

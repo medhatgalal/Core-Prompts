@@ -105,6 +105,63 @@ check("source ref required", refused(cli.check_source, "jira", " ") is not None)
 check("chat, email, meetings are private", set(cli.PRIVATE_KINDS) == {"chat", "email", "meetings"})
 
 
+# ---- doctor: pure checks ----
+class A:
+    def __init__(self, title):
+        self.title = title
+        self.name, self.owner = du.title_parts(title)
+
+
+def lv(fs, level):
+    return [f for f in fs if f["level"] == level]
+
+
+areas = {"Core (Kyle)": A("Core (Kyle)"), "Empty (Sahil)": A("Empty (Sahil)")}
+ia, ib = Init("Evals (Goldberg)", updater="Kyle"), Init("Plan (Kyle)", updater="Sahil")
+ia.area_title = ib.area_title = "Core (Kyle)"
+fs = cli.check_people({}, [ia, ib], areas)
+check("doctor: updater with no email fails and names the fix",
+      [f["fix"] for f in lv(fs, "fail")] == ["person set-email Kyle <email>", "person set-email Sahil <email>"], str(fs))
+check("doctor: email match ignores case", cli.check_people({"kyle": "k@x.com", "Sahil": "s@x.com"}, [ia, ib], areas) == [])
+check("doctor: an email needs an @", len(cli.check_people({"Kyle": "k", "Sahil": "s@x.com"}, [ia, ib], areas)) == 1)
+orphan = Init("Lost (Kyle)")
+orphan.area_title = "Gone (Kyle)"
+check("doctor: initiative outside every area fails", any(f["check"] == "initiative sits under an area"
+      for f in cli.check_people({"Kyle": "k@x.com"}, [orphan], areas)))
+noowner = Init("Bare")
+noowner.area_title = "Core (Kyle)"
+check("doctor: title without an owner fails", any(f["check"] == "initiative has an owner"
+      for f in cli.check_people({}, [noowner], areas)))
+check("doctor: area without an owner fails", any(f["check"] == "area has an owner"
+      for f in cli.check_people({}, [], {"Bare": A("Bare")})))
+check("doctor: readers valid pass", cli.check_readers([good]) == [])
+bad = cli.check_readers([good, dict(good, name="Bo", email="nope")])
+check("doctor: bad reader fails with a fix", len(bad) == 1 and bad[0]["level"] == "fail" and "reader remove 'Bo'" in bad[0]["fix"], str(bad))
+check("doctor: weekdays skip weekends", cli.weekdays_between(dt.date(2026, 11, 6), dt.date(2026, 11, 9)) == 1)
+st = {ia.title: "open", ib.title: "open"}
+fr = cli.check_freshness([ia, ib], areas, st, dt.date(2026, 11, 9))
+check("doctor: stale tab and empty area warn, nothing fails",
+      {f["check"] for f in fr} == {"area has work"} and not lv(fr, "fail"), str(fr))
+fr = cli.check_freshness([ia], areas, {ia.title: "open"}, dt.date(2026, 11, 11))
+check("doctor: stale tab warns", any(f["check"] == "tab is current" and f["level"] == "warn" for f in fr))
+ia.sections = []
+check("doctor: tab with no section warns", any(f["check"] == "tab has an update"
+      for f in cli.check_freshness([ia], areas, {ia.title: "open"}, dt.date(2026, 11, 9))))
+check("doctor: done tabs are not stale", not [f for f in cli.check_freshness([ia], areas, {ia.title: "done"}, dt.date(2026, 11, 30))
+                                              if f["check"] != "area has work"])
+mine = Init("Evals (Goldberg)", updater="Scott")
+cfg = {"me": "Scott", "tabs": [{"name": "Evals", "kind": "initiative", "sources": {"jira": ["C-1"]}}]}
+check("doctor: source on a tab you update is ok", [f["level"] for f in cli.check_sources(cfg, [mine])] == ["ok"])
+bad = cli.check_sources(dict(cfg, me="Kyle"), [mine])
+check("doctor: source on someone else's tab fails with the remove command",
+      bad[0]["level"] == "fail" and "source remove 'Evals' jira C-1" in bad[0]["fix"], str(bad))
+check("doctor: source on a non-initiative tab fails", cli.check_sources(
+    {"me": "Scott", "tabs": [{"name": "Overview", "kind": "overview", "sources": {"jira": ["C-1"]}}]})[0]["level"] == "fail")
+check("doctor: source on a tab missing from the doc fails", cli.check_sources(cfg, [])[0]["level"] == "fail")
+check("doctor: backup matches", cli.check_backup("a", "a")["level"] == "ok")
+check("doctor: backup missing warns with doc sync", (cli.check_backup("a", None)["level"], cli.check_backup("a", None)["fix"]) == ("warn", "doc sync"))
+check("doctor: backup differs warns", cli.check_backup("a", "b")["level"] == "warn")
+
 # ---- source CRUD on a throwaway config ----
 def run(*argv):
     out, err = io.StringIO(), io.StringIO()
@@ -154,16 +211,22 @@ parser = cli.build_parser()
 verbs = {}
 for a in parser._subparsers._group_actions[0].choices.items():
     noun, p = a
+    if noun == "doctor":  # a command, not a noun: no verbs
+        verbs[noun] = []
+        continue
     sub = next(x for x in p._subparsers._group_actions)
     verbs[noun] = sorted(sub.choices)
-check("nouns", sorted(verbs) == ["area", "day", "discover", "doc", "initiative", "person", "reader", "section", "source"], str(sorted(verbs)))
+check("nouns", sorted(verbs) == ["area", "day", "discover", "doc", "doctor", "initiative", "person", "reader", "section", "source"], str(sorted(verbs)))
 check("initiative verbs", verbs["initiative"] == sorted(
     ["list", "show", "add", "rename", "move", "set-owner", "set-updater", "pause", "resume", "done", "stop", "reopen", "archive"]))
 check("area verbs", verbs["area"] == sorted(["list", "show", "add", "rename", "set-owner", "set-headline", "merge", "remove"]))
 check("reader verbs", verbs["reader"] == sorted(["list", "add", "remove", "set-channel"]))
 check("every noun with a collection has list and show or add/remove",
       all("list" in verbs[n] for n in ("area", "initiative", "person", "reader", "source")))
-check("every verb has help text", all(p.description for n in verbs for p in
+check("doc has no check verb; doctor replaces it", verbs["doc"] == ["create", "show", "sync"])
+check("doctor has help text and both section flags", parser._subparsers._group_actions[0].choices["doctor"].description
+      and run("doctor", "--local", "--only-doc")[0] == 2)
+check("every verb has help text", all(p.description for n in verbs if n != "doctor" for p in
       next(iter(parser._subparsers._group_actions[0].choices[n]._subparsers._group_actions)).choices.values()))
 for old in ("setup", "onboard", "add", "owner", "done", "stop", "updater", "readers", "sources", "settings", "archive", "dedupe",
             "section-write", "today", "row", "headline"):
