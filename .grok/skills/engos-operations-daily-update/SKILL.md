@@ -680,7 +680,9 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
    (a "No change since" section has no milestone line, so look further back). The checks below apply to Sweep
    sections too: a carried milestone with no date gets ", No date set yet" added; the status is carried as it is.
 3. Show the review: tabs by updater, each with its draft. List any carried milestone whose date has already
-   passed; the doc owner decides whether it is done or red. If done, write
+   passed as "needs a decision"; the doc owner decides whether it is done or red (`--decide "<initiative>=done"`
+   or `"<initiative>=red"`). `--publish` refuses, and writes nothing, while any passed milestone has no
+   decision. If done, write
    "Next milestone: <milestone>, done <Weekday Mon D>." and carry the status; the updater sets the next
    milestone when they confirm. Then "Publish?" On "publish", write them like Daily
    step 6 (re-read first, insert at the top, never replace a section the updater wrote today), and update each

@@ -333,5 +333,68 @@ check("stop without a reason is a usage error", code == 2)
 code, _, err = run("initiative", "done", "A")
 check("done without an outcome is a usage error", code == 2)
 
+# ---- day sweep: a passed milestone must be decided (done or red) before --publish writes ----
+import sweep  # noqa: E402
+
+
+class SweepInit:
+    def __init__(self, name, milestone):
+        self.title, self.name, self.owner, self.updater = f"{name} (Kyle)", name, "Kyle", "Kyle"
+        self.area_title, self.tab_id = "Core (Kyle)", "t." + name
+        s = du.Section(dt.date(2026, 11, 6), None)
+        s.lines = [("🟢 On track", None), (f"Next milestone: {milestone}", None), ("Blocked on: None.", None)]
+        self.sections = [s]
+
+    def newest(self, attr=None):
+        return self.sections[0]
+
+
+class StopHere(Exception):
+    pass
+
+
+def sweep_run(inits, *extra):
+    """Run sweep.py's main on fake initiatives; reading the doc a second time means --publish got past the gate."""
+    reads = []
+
+    def read_doc(_):
+        reads.append(1)
+        if len(reads) > 1:
+            raise StopHere
+        return {}
+
+    saved = (du.read_doc, du.model, sys.argv)
+    du.read_doc, du.model = read_doc, lambda _doc: (None, {}, inits)
+    sys.argv = ["sweep.py", "DOC", "2026-11-09", "--owner", "Scott", *extra]
+    out, code = io.StringIO(), "returned"
+    try:
+        with contextlib.redirect_stdout(out):
+            sweep.main()
+    except SystemExit as e:
+        code = str(e)
+    except StopHere:
+        code = "past the gate"
+    finally:
+        du.read_doc, du.model, sys.argv = saved
+    return code, out.getvalue()
+
+
+two = lambda: [SweepInit("Evals", "Nightly run, Fri Nov 6"), SweepInit("Planning", "Release, Thu Nov 12")]
+code, out = sweep_run(two(), "--publish")
+check("sweep --publish refuses while a passed milestone has no decision",
+      code.startswith("REFUSED") and "Evals (Kyle)" in code and "Planning" not in code and "--decide" in code, code)
+check("the refusal names the exact --decide forms", 'Evals=done' in out and 'Evals=red' in out, out)
+code, out = sweep_run(two())
+check("sweep preview lists the undecided milestone as needing a decision",
+      "NEEDS A DECISION: Evals (Kyle)" in out and "Publish?" not in out and code == "returned", out)
+code, _ = sweep_run(two(), "--publish", "--decide", "Evals=done")
+check("a done decision lets --publish through", code == "past the gate", code)
+code, _ = sweep_run(two(), "--publish", "--decide", "Evals=red")
+check("a red decision lets --publish through", code == "past the gate", code)
+code, _ = sweep_run(two(), "--publish", "--decide", "Evals=late")
+check("a decision that is not done or red does not count", code.startswith("REFUSED"), code)
+code, _ = sweep_run([SweepInit("Planning", "Release, Thu Nov 12")], "--publish")
+check("no passed milestone: --publish is not blocked", code == "past the gate", code)
+
 print("\n" + ("ALL PASS" if not FAILS else f"{len(FAILS)} FAILED: {FAILS}"))
 sys.exit(1 if FAILS else 0)
