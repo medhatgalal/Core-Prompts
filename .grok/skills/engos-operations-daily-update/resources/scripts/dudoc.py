@@ -414,7 +414,8 @@ def commitment(ms):
 
 def next_two_weeks(inits, today):
     """Overview 'Next 2 weeks': (date, commitment, initiative, status) for each open initiative whose newest
-    Next milestone falls from today through today + 14 days; by date, then worst first."""
+    Next milestone falls from today through today + 14 days, or whose date has already passed and is not done
+    (overdue items stay visible until they are done); by date, then worst first."""
     rows = []
     for i in inits:
         s = i.newest("milestone")
@@ -422,10 +423,15 @@ def next_two_weeks(inits, today):
         if not s or ", done " in s.milestone or prog.startswith(("Progress: Done ", "Progress: Stopped ")):
             continue
         d = milestone_date(s.milestone)
-        if d and today <= d <= today + dt.timedelta(days=14):
+        if d and d <= today + dt.timedelta(days=14):
             st = i.newest("status")
             rows.append((d, commitment(s.milestone), i, st.status if st else "🟡"))
     return sorted(rows, key=lambda r: (r[0], RANK[r[3]]))
+
+
+def next_two_weeks_date(d, today):
+    """The Date cell of a Next 2 weeks row: an overdue milestone is marked."""
+    return label(d) + (" (overdue)" if d < today else "")
 
 
 def missing_plan(inits, today):

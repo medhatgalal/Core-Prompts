@@ -288,7 +288,7 @@ Update guide (<doc owner>)          the template and writing guidance; doc owner
    inference in the review. Link each row to the thing being decided (its tab, design doc, merge request, proposal).
 5. **Next 2 weeks**: table with Date, Commitment (the milestone without its date, exactly as its section words it,
    linked to its initiative's tab), Status (the emoji, "🟢"): one row per initiative, not done or stopped, whose newest Next milestone date
-   falls from today through today + 14 days, by date and then worst first. With no rows, one line: "No dated
+   falls from today through today + 14 days, or has already passed and is not done (the Date reads "<date> (overdue)"), by date and then worst first. With no rows, one line: "No dated
    commitments in the next 2 weeks."
 6. **How to update** (see below) and the status key, which ends "A missing date is not a colour: Missing a
    plan lists every open initiative without a dated next milestone." Process text and the status key always go last.
@@ -675,7 +675,9 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
 2. For each, draft an Unconfirmed section dated today: the status, next milestone and date carried from the
    newest section (never improve the status), and a Progress line from the doc owner's own sources if they show
    something new, with links. The section's last line is "Unconfirmed: no update from <updater> by 3pm ET."
-   with no Progress line unless the doc owner's sources showed something new. If the tab has no
+   with no Progress line unless the doc owner's sources showed something new, or the doc owner decided a passed
+   milestone is red and the status was not already 🔴: then Progress reads `The milestone "<milestone>" was due
+   <date> and is not done, so <doc owner> marked it Red. (from <doc owner>)`. If the tab has no
    earlier section, use 🟡 At risk and "Next milestone: No date set yet". Carry the newest Blocked on line
    (or "Blocked on: None." if there is none). If the carried status is not 🟢,
    carry the newest "Green when:" line too, or write "Green when: <updater> sets this when they confirm." Write "No date set yet" wherever the
@@ -687,7 +689,8 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
    or `"<initiative>=red"`). `--publish` refuses, and writes nothing, while any passed milestone has no
    decision. If done, write
    "Next milestone: <milestone>, done <Weekday Mon D>." and carry the status; the updater sets the next
-   milestone when they confirm. Then "Publish?" On "publish", write them like Daily
+   milestone when they confirm. The tab stays open: the review names the next step (`initiative done '<name>' --outcome '<what shipped>'`
+   to finish it, or the updater adds the next milestone). Then "Publish?" On "publish", write them like Daily
    step 6 (re-read first, insert at the top, never replace a section the updater wrote today), and update each
    swept initiative's row in its area tab's Initiatives table (that row only) to match the new section. If
    the initiative has no row in that table, add one at the end, in the table's column order.
