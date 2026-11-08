@@ -261,6 +261,29 @@ with tempfile.TemporaryDirectory() as d:
     check("list one initiative", code == 0 and "spaces/AAA" in out and "COM-1" not in out)
 os.environ.pop("DU_CONFIG")
 
+# ---- section write keeps the area table row in step with the tab ----
+import du as dumain  # noqa: E402
+
+calls = []
+_saved = (dumain.cmd_section, cli.resolve_doc, cli.Ctx, cli._update_row)
+try:
+    class FakeCtx:
+        inits = [Init("Evals (Goldberg)"), Init("Work Plan (Kyle)")]
+
+        def __init__(self, doc):
+            pass
+    dumain.cmd_section = lambda a: calls.append(("section", a[1]))
+    cli.resolve_doc = lambda ns: "DOC"
+    cli.Ctx = FakeCtx
+    cli._update_row = lambda ctx, i, **o: calls.append(("row", i.name))
+    with contextlib.redirect_stdout(io.StringIO()):
+        cli.section_write(Ns(tab="Evals (Goldberg)", file="s.json", doc=None))
+        cli.section_write(Ns(tab="Composer (Kyle)", file="s.json", doc=None))
+finally:
+    dumain.cmd_section, cli.resolve_doc, cli.Ctx, cli._update_row = _saved
+check("section write refreshes the initiative's area row", ("row", "Evals") in calls, str(calls))
+check("section write on an area tab touches no row", [c for c in calls if c[0] == "row"] == [("row", "Evals")], str(calls))
+
 # ---- grammar ----
 parser = cli.build_parser()
 verbs = {}

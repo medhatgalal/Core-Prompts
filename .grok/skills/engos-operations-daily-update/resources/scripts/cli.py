@@ -937,8 +937,15 @@ def source_remove(ns):
 # ---------- section (the daily write; the agent supplies the words) ----------
 
 def section_write(ns):
+    """Write the section, then refresh that initiative's row in its area table so the table never lags the tab."""
     import du as dumain
-    dumain.cmd_section([resolve_doc(ns), ns.tab, ns.file])
+    doc = resolve_doc(ns)
+    dumain.cmd_section([doc, ns.tab, ns.file])
+    ctx = Ctx(doc)
+    i = next((x for x in ctx.inits if ns.tab in (x.title, x.name)), None)
+    if i is not None:
+        _update_row(ctx, i)
+        print(f"Area table row refreshed for {i.name}.")
 
 
 def section_show(ns):
