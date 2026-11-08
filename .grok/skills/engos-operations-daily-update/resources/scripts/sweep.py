@@ -131,14 +131,18 @@ def main():
         raise SystemExit("REFUSED: " + str(len(undecided)) + " passed milestone(s) have no decision: "
                          + "; ".join(i.title for i, _ in undecided)
                          + ". Re-run with --decide \"<initiative>=done\" or \"<initiative>=red\" for each. Nothing written.")
-    if not a.publish:
+    if (a.publish or a.tag) and du.dry_run():
+        print("\nDry run: nothing written, nothing tagged.")
+        return
+    if not a.publish and not a.tag:
         if undecided:
             print("\nNot ready to publish: decide the milestones above first.")
             return
         print("\nPublish? (re-run with --publish)")
         return
 
-    # Step 3 publish: sections, re-reading each tab right before its write.
+    # Step 3 publish: sections, re-reading each tab right before its write. --tag alone writes none.
+    drafts = drafts if a.publish else {}
     for title, (init, lines, _) in drafts.items():
         doc = du.read_doc(a.doc_id)
         fresh = next(i for i in du.model(doc)[2] if i.tab_id == init.tab_id)
@@ -187,15 +191,24 @@ def main():
             du.batch(a.doc_id, reqs, doc)
             print(f"added row for {init.name} to {init.area_title}")
 
-    # Step 4: tag updaters, only on --tag (the doc owner's yes), only emails that already have access.
+    # Step 4: tag updaters, only on --tag (the doc owner's yes), only emails that already have access. It tags the
+    # tabs that carry an Unconfirmed section for today, so it works in the same run as --publish or in a later one.
     if a.tag:
+        swept = {}
+        for i in du.model(du.read_doc(a.doc_id))[2]:
+            if i.sections and i.sections[0].date == today and i.sections[0].unconfirmed:
+                swept.setdefault(i.updater, []).append(i)
+        if not swept:
+            print(f"NOTHING TO TAG: no tab has an Unconfirmed section for {du.label(today)}. Run with --publish first.")
         people = json.loads(a.people) if a.people else du.settings_get(a.doc_id)["people"]
         perms = du.gws("drive", "permissions", "list", "--params", json.dumps(
             {"fileId": a.doc_id, "fields": "permissions(emailAddress)", "supportsAllDrives": True}))
         access = {p.get("emailAddress") for p in perms.get("permissions", [])}
-        for upd, items in by_updater.items():
+        posted = {c.get("content") for c in du.gws("drive", "comments", "list", "--params", json.dumps(
+            {"fileId": a.doc_id, "fields": "comments(content)", "pageSize": 100})).get("comments", [])}
+        for upd, items in swept.items():
             email = people.get(upd)
-            tabs = ", ".join(i.name for i, _, _ in items)
+            tabs = ", ".join(i.name for i in items)
             if not email or email not in access:
                 if not email:
                     print(f"NOT TAGGED {upd}: no email in people. Ask {a.owner} for {upd}'s email.")
@@ -203,9 +216,12 @@ def main():
                     print(f"NOT TAGGED {upd}: no access to the doc. Draft note for {a.owner} (not sent): "
                           f"\"{upd} needs access to the daily update doc to confirm: {tabs}.\"")
                 continue
-            if a.doc_id not in du.PROTECTED:  # --tag is the doc owner's yes; access was checked above
+            content = f"+{email} Unconfirmed today: {tabs}. Please confirm or correct by running \"do my daily update\"."
+            if content in posted:
+                print(f"ALREADY TAGGED {upd} <{email}>: {tabs}")
+            elif a.doc_id not in du.PROTECTED:  # --tag is the doc owner's yes; access was checked above
                 du.gws("drive", "comments", "create", "--params", json.dumps({"fileId": a.doc_id, "fields": "id,content"}),
-                       body={"content": f"+{email} Unconfirmed today: {tabs}. Please confirm or correct by running \"do my daily update\"."})
+                       body={"content": content})
                 print(f"TAGGED {upd} <{email}>: {tabs}")
             else:
                 print(f"NOT TAGGED {upd}: this doc is protected. Nothing posted.")

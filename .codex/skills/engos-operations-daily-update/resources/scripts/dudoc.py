@@ -47,7 +47,34 @@ HEADING_RE = re.compile(r"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (\w{3}) (\d{1,2}), (\d{
 
 # ---------- gws ----------
 
+READ_VERBS = ("get", "list", "getProfile")
+
+
+def dry_run():
+    """True under --dry-run (cli.main sets DU_DRY_RUN, and child scripts inherit it)."""
+    return os.environ.get("DU_DRY_RUN") == "1"
+
+
+def guard_write(what):
+    """The one place a dry run is enforced. Every write path (Docs, Drive, Gmail, config file) calls this or goes
+    through gws(). A handler should print its PLAN and return before it gets here; reaching here is a bug."""
+    if dry_run():
+        raise SystemExit(f"REFUSED (dry run): {what} would write. Nothing written.")
+
+
+def is_read(args):
+    """A gws call reads when its method (the words before the first --flag) is get, list or getProfile."""
+    words = []
+    for a in args:
+        if a.startswith("-"):
+            break
+        words.append(a)
+    return bool(words) and words[-1] in READ_VERBS
+
+
 def gws(*args, body=None):
+    if not is_read(args):
+        guard_write("gws " + " ".join(args[:4]))
     cmd = ["gws", *args]
     if body is not None:
         cmd += ["--json", json.dumps(body)]

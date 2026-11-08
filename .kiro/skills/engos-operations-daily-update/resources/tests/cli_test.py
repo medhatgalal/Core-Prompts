@@ -418,5 +418,277 @@ check("overview Next 2 weeks keeps an overdue milestone, marks it, and sorts it 
       [r[2].name for r in rows] == ["Late", "Soon"] and du.next_two_weeks_date(rows[0][0], today) == "Fri Nov 6 (overdue)"
       and du.next_two_weeks_date(rows[1][0], today) == "Thu Nov 12", rows)
 
+
+# ---- a note on a change is never an update section (add-backup, remove-backup, rename and the rest) ----
+class FakeInit:
+    tab_id = "t.1"
+    def __init__(self, date):
+        self.sections = [du.Section(date, None)]
+        self.sections[0].lines = [("🟢 On track", None)]
+        self.title = "Evals (Kyle)"
+        self.name = "Evals"
+        self.backups = ["Sam"]
+        self.header = "Owner: Kyle · Updater: Kyle · Backups: Sam · Area: Core"
+
+    def newest(self, attr=None):
+        return self.sections[0]
+
+
+def note_run(date):
+    """Run cli.note against a tab whose newest section is `date`; return the writes it attempted."""
+    calls = []
+    saved = (cli.du.read_doc, cli.du.model, cli.m.write_section, cli.m.insert_line_before)
+    cli.du.read_doc = lambda doc_id: {}
+    cli.du.model = lambda doc: (None, {}, [FakeInit(date)])
+    cli.m.write_section = lambda *a, **k: calls.append("write_section")
+    cli.m.insert_line_before = lambda *a, **k: calls.append("insert_line_before")
+    try:
+        cli.note(Ctx("Scott"), FakeInit(date), "x")
+    finally:
+        cli.du.read_doc, cli.du.model, cli.m.write_section, cli.m.insert_line_before = saved
+    return calls
+
+
+Ctx.id = "doc"
+check("a change note never creates a section dated today", note_run(cli.today() - dt.timedelta(days=2)) == [])
+check("a change note still goes into a section that already exists for today", note_run(cli.today()) == ["insert_line_before"])
+
+calls = []
+saved = (cli.set_header, cli.note)
+cli.set_header = lambda *a, **k: calls.append("set_header")
+cli.note = lambda *a, **k: calls.append("note")
+try:
+    cli._backup_write(Ctx("Scott"), FakeInit(dt.date(2026, 11, 6)), [])
+finally:
+    cli.set_header, cli.note = saved
+check("add-backup and remove-backup change the header line and write no section", calls == ["set_header"], str(calls))
+
+# ---- section remove: only an automatic backup note, never anything else ----
+def sec(day, lines):
+    x = du.Section(day, None)
+    x.lines = [(t, None) for t in lines]
+    return x
+
+
+def tab(*sections):
+    t = FakeInit(dt.date(2026, 11, 6))
+    t.sections = list(sections)
+    return t
+
+
+NOTE = "Progress: Backup Sam added on Sun Nov 8. (from Scott)"
+real = sec(dt.date(2026, 11, 6), ["🟡 At risk", "Next milestone: Ship, Fri Nov 13", "Progress: Work moved on (chat).", "Blocked on: None.", "Green when: unblocked."])
+note_sec = sec(dt.date(2026, 11, 8), ["🟡 At risk", "Next milestone: Ship, Fri Nov 13", NOTE, "Blocked on: None.", "Green when: unblocked."])
+check("section remove: an automatic backup note carrying the older lines may go", cli.note_only_problem(tab(note_sec, real), note_sec) is None)
+gone_sec = sec(note_sec.date, [note_sec.lines[0][0], note_sec.lines[1][0], NOTE.replace("added", "removed"), "Blocked on: None.", "Green when: unblocked."])
+check("section remove: removed-backup notes may go too", cli.note_only_problem(tab(gone_sec, real), gone_sec) is None)
+check("section remove: refused when it is the tab's only section", "only section" in (cli.note_only_problem(tab(note_sec), note_sec) or ""))
+check("section remove: refused for a real update", "not an automatic" in (cli.note_only_problem(tab(note_sec, real), real) or ""))
+edited = sec(note_sec.date, [*[t for t, _ in note_sec.lines], "Updated by Kyle for Scott."])
+check("section remove: refused when anything else is in the section", "more than the note" in (cli.note_only_problem(tab(edited, real), edited) or ""))
+moved = sec(note_sec.date, ["🟢 On track", "Next milestone: Ship, Fri Nov 13", NOTE, "Blocked on: None."])
+check("section remove: refused when the status or milestone differs from the older section", "more than the note" in (cli.note_only_problem(tab(moved, real), moved) or ""))
+other = sec(note_sec.date, ["🟡 At risk", "Next milestone: Ship, Fri Nov 13", "Progress: Renamed from A to B on Sun Nov 8. (from Scott)", "Blocked on: None.", "Green when: unblocked."])
+check("section remove: refused for any note but a backup note", "not an automatic" in (cli.note_only_problem(tab(other, real), other) or ""))
+with contextlib.redirect_stderr(io.StringIO()):
+    no_force = refused(cli.build_parser().parse_args, ["section", "remove", "--all", "2026-11-08", "--force"])
+check("section remove has no --force", no_force is not None)
+
+# ---- --dry-run writes nothing, on every verb: a fake `gws` records every call, and any write fails the run ----
+import shutil  # noqa: E402
+import subprocess  # noqa: E402
+import textwrap  # noqa: E402
+
+FAKE_GWS = textwrap.dedent("""\
+    #!/usr/bin/env python3
+    import json, os, sys
+    args = sys.argv[1:]
+    words = []
+    for a in args:
+        if a.startswith("-"):
+            break
+        words.append(a)
+    verb = words[-1] if words else ""
+    with open(os.environ["FAKE_GWS_LOG"], "a") as f:
+        f.write(("READ " if verb in ("get", "list", "getProfile") else "WRITE ") + " ".join(words) + "\\n")
+    d = os.path.dirname(os.path.abspath(__file__))
+    if words[:3] == ["docs", "documents", "get"]:
+        print(open(os.path.join(d, "doc.json")).read())
+    elif words[:3] == ["drive", "files", "get"]:
+        print(json.dumps({"name": "E2E TEST fake", "properties": {
+            "du.owner": "Scott", "du.person.Scott": "scott@x.test", "du.person.Kyle": "kyle@x.test", "du.person.Sam": "sam@x.test",
+            "du.reader.1": "Medhat|email|medhat@x.test"}}))
+    elif words[:3] == ["drive", "permissions", "list"]:
+        print(json.dumps({"permissions": [{"emailAddress": "scott@x.test"}]}))
+    elif words[:3] == ["drive", "comments", "list"]:
+        print(json.dumps({"comments": []}))
+    elif words[-1] == "getProfile":
+        print(json.dumps({"emailAddress": "scott@x.test"}))
+    else:
+        print("{}")
+""")
+
+
+class FakeDoc:
+    """Just enough Docs JSON for du.model: an overview, two areas and five initiative tabs in different states."""
+    def __init__(self):
+        self.tabs = []
+
+    @staticmethod
+    def para(text, at, style="NORMAL_TEXT"):
+        n = du.utf16(text) + 1
+        return {"startIndex": at, "endIndex": at + n, "paragraph": {"paragraphStyle": {"namedStyleType": style},
+                                                                   "elements": [{"textRun": {"content": text + "\n"}}]}}, at + n
+
+    def body(self, items):
+        at, out = 1, []
+        for text, style in items:
+            if isinstance(text, list):  # a table: rows of cell texts
+                start, rows = at, []
+                for r in text:
+                    cells = []
+                    for c in r:
+                        e, nxt = self.para(c, at + 1)
+                        cells.append({"startIndex": at, "endIndex": nxt, "content": [e]})
+                        at = nxt
+                    rows.append({"tableCells": cells})
+                out.append({"startIndex": start, "endIndex": at, "table": {"tableRows": rows}})
+                continue
+            e, at = self.para(text, at, style)
+            out.append(e)
+        return out
+
+    def tab(self, tid, title, items, kids=()):
+        return {"tabProperties": {"tabId": tid, "title": title}, "childTabs": list(kids),
+                "documentTab": {"body": {"content": self.body(items)}}}
+
+    def init(self, tid, title, header, sections):
+        items = [(title, "HEADING_1"), (header, "NORMAL_TEXT")]
+        for head, lines in sections:
+            items += [(head, "HEADING_2")] + [(x, "NORMAL_TEXT") for x in lines] + [("", "NORMAL_TEXT")]
+        return self.tab(tid, title, items)
+
+    def build(self):
+        sec = lambda *extra: ("Fri Nov 6, 2026", ["🟢 On track", "Next milestone: Ship, Fri Nov 13", *extra, "Blocked on: None."])
+        hdr = lambda area, upd="Scott", bk="": f"Owner: Scott · Updater: {upd}{bk} · Area: {area} · Back to Overview"
+        tabs = [
+            self.tab("t.0", "Overview (Scott)", [("Overview (Scott)", "TITLE"), ("As of Fri Nov 6, 3:00 PM ET", "NORMAL_TEXT"),
+                                                 ("Area health", "HEADING_2"), ([["Area", "Owner", "Status", "Headline"], ["Alpha", "Scott", "🟢 2", "Fine."]], None)]),
+            self.tab("t.a", "Alpha (Scott)", [("Alpha (Scott)", "HEADING_1"), ("Headline", "HEADING_2"), ("Fine. (Fri Nov 6)", "NORMAL_TEXT"),
+                                              ("Initiatives", "HEADING_2"),
+                                              ([["Initiative", "Owner", "Status", "Next milestone"], ["Open", "Scott", "x", "y"],
+                                                ["Kylestab", "Scott", "x", "y"], ["Paused", "Scott", "x", "y"], ["Finished", "Scott", "x", "y"]], None),
+                                              ("Done", "HEADING_2"), ("No initiatives finished yet.", "NORMAL_TEXT")],
+                     [self.init("t.1", "Open (Scott)", hdr("Alpha"), [sec("Progress: Work moved on (chat).")]),
+                      self.init("t.2", "Kylestab (Scott)", hdr("Alpha", "Kyle", " · Backups: Sam"),
+                                [("Sun Nov 8, 2026", ["🟢 On track", "Next milestone: Ship, Fri Nov 13", "Progress: Backup Sam added on Sun Nov 8. (from Scott)", "Blocked on: None."]),
+                                 sec("Progress: Work moved on (chat).")]),
+                      self.init("t.5", "Swept (Scott)", hdr("Alpha"), [("Mon Nov 9, 2026", ["🟢 On track", "Next milestone: Ship, Fri Nov 13", "Blocked on: None.", "Unconfirmed: no update from Scott by 3pm ET."]), sec("Progress: Work moved on (chat).")]),
+                      self.init("t.3", "Paused (Scott)", hdr("Alpha"), [("Fri Nov 6, 2026", ["⚪ Paused", "Next milestone: None, No date set yet", "Progress: Paused Fri Nov 6: wait. (from Scott)", "Blocked on: None."])]),
+                      self.init("t.4", "Finished (Scott)", hdr("Alpha"), [("Fri Nov 6, 2026", ["🟢 On track", "Next milestone: Ship, done Fri Nov 6", "Progress: Done Fri Nov 6: shipped. (from Scott)", "Blocked on: None."])])]),
+            self.tab("t.b", "Beta (Scott)", [("Beta (Scott)", "HEADING_1"), ("Headline", "HEADING_2"), ("Fine. (Fri Nov 6)", "NORMAL_TEXT"),
+                                             ("Initiatives", "HEADING_2"), ([["Initiative", "Owner", "Status", "Next milestone"]], None),
+                                             ("Done", "HEADING_2"), ("No initiatives finished yet.", "NORMAL_TEXT")]),
+            self.tab("t.z", "Archive (Scott)", [("Archive (Scott)", "HEADING_1")]),
+        ]
+        return {"title": "E2E TEST fake", "revisionId": "r1", "tabs": tabs}
+
+
+work = tempfile.mkdtemp()
+bindir = os.path.join(work, "bin")
+os.makedirs(bindir)
+open(os.path.join(bindir, "gws"), "w").write(FAKE_GWS)
+os.chmod(os.path.join(bindir, "gws"), 0o755)
+json.dump(FakeDoc().build(), open(os.path.join(bindir, "doc.json"), "w"))
+log = os.path.join(work, "gws.log")
+cfg_file = os.path.join(work, "config.json")
+json.dump({"me": "Scott", "doc_id": "FAKEDOC", "tabs": [{"name": "Open", "kind": "initiative", "sources": {"jira": ["COM-1"]}}]}, open(cfg_file, "w"))
+sec_file, init_file, struct_file, rows_file, cand_file = (os.path.join(work, n) for n in
+    ("sec.json", "init.json", "struct.json", "rows.json", "cand.json"))
+json.dump({"date": "2026-11-09", "status": "🟢", "milestone": "Ship, Fri Nov 13", "progress": "More (chat).", "blocked": "None."}, open(sec_file, "w"))
+json.dump({"date": "2026-11-09", "status": "🟢", "milestone": "Ship, Fri Nov 20", "progress": "Start (chat).", "blocked": "None.",
+           "name": "Fresh", "owner": "Scott"}, open(init_file, "w"))
+json.dump({"org": "X", "owner": "Scott", "reader": "Medhat", "date": "2026-11-06",
+           "areas": [{"name": "A", "owner": "Scott", "initiatives": [{"name": "I", "owner": "Scott", "status": "🟢", "milestone": "m, Fri Nov 13"}]}]}, open(struct_file, "w"))
+json.dump([["Approve X", "Why", "Yes", "Fri Nov 13", "Scott"]], open(rows_file, "w"))
+json.dump([{"name": "Thing", "links": [], "sources": {}}], open(cand_file, "w"))
+
+D = "2026-11-09"
+VERB_ARGS = {
+    ("doc", "create"): [struct_file], ("doc", "show"): [], ("doc", "sync"): [],
+    ("area", "list"): [], ("area", "show"): ["Alpha"], ("area", "add"): ["Gamma", "Scott"], ("area", "rename"): ["Alpha", "Alpha2"],
+    ("area", "set-owner"): ["Alpha", "Kyle"], ("area", "set-headline"): ["Alpha", "Steady. (Fri Nov 6)"],
+    ("area", "merge"): ["Beta", "Alpha"], ("area", "remove"): ["Beta"],
+    ("initiative", "list"): [], ("initiative", "show"): ["Open"], ("initiative", "add"): [init_file, "--area", "Alpha"],
+    ("initiative", "rename"): ["Open", "Opened"], ("initiative", "move"): ["Open", "--area", "Beta"],
+    ("initiative", "set-owner"): ["Open", "Kyle"], ("initiative", "set-updater"): ["Open", "Kyle"],
+    ("initiative", "add-backup"): ["Open", "Sam"], ("initiative", "remove-backup"): ["Kylestab", "Sam"],
+    ("initiative", "pause"): ["Open", "--reason", "wait"], ("initiative", "resume"): ["Paused", "--status", "🟢", "--milestone", "Ship, Fri Nov 20"],
+    ("initiative", "done"): ["Open", "--outcome", "shipped"], ("initiative", "stop"): ["Open", "--reason", "dropped"],
+    ("initiative", "reopen"): ["Finished", "--reason", "more", "--status", "🟢", "--milestone", "Ship, Fri Nov 20"],
+    ("initiative", "archive"): ["Finished"],
+    ("person", "list"): [], ("person", "show"): ["Kyle"], ("person", "set-email"): ["Kyle", "k2@x.test"],
+    ("reader", "list"): [], ("reader", "add"): ["Pat", "pat@x.test"], ("reader", "remove"): ["Medhat"],
+    ("reader", "set-channel"): ["Medhat", "chat"],
+    ("source", "list"): [], ("source", "add"): ["Open", "jira", "COM-2"], ("source", "remove"): ["Open", "jira", "COM-1"],
+    ("section", "write"): ["Open (Scott)", sec_file], ("section", "show"): ["Open (Scott)", "2026-11-06"],
+    ("section", "lint"): ["Open (Scott)", sec_file], ("section", "remove"): ["Kylestab (Scott)", "2026-11-08"],
+    ("day", "sweep"): [D, "--publish", "--tag"], ("day", "overview"): [D, "3:00 PM ET", "--publish"],
+    ("day", "decisions"): ["Medhat", rows_file], ("day", "send"): ["--confirmed"],
+    ("discover", "check"): [cand_file],
+}
+parser = cli.build_parser()
+grammar = [(n, v) for n, p in parser._subparsers._group_actions[0].choices.items()
+           if p._subparsers for v in p._subparsers._group_actions[0].choices]
+check("the dry-run test names args for every grammar verb", set(grammar) == set(VERB_ARGS), str(set(grammar) ^ set(VERB_ARGS)))
+
+env_keep = {k: os.environ.get(k) for k in ("PATH", "FAKE_GWS_LOG", "DU_CONFIG", "DU_TEST", "GWS_BIN", "DU_TODAY", "DU_NO_SYNC")}
+os.environ.update(PATH=bindir + os.pathsep + os.environ["PATH"], FAKE_GWS_LOG=log, DU_CONFIG=cfg_file, DU_TEST="1",
+                  GWS_BIN=os.path.join(bindir, "gws"), DU_TODAY=D, DU_NO_SYNC="1")
+cli.du.PROTECTED = {}
+
+
+LAST = []
+
+
+def writes_of(argv):
+    open(log, "w").close()
+    out = io.StringIO()
+    quiet = os.open(os.devnull, os.O_WRONLY)
+    saved_fd = os.dup(1)
+    os.dup2(quiet, 1)  # child scripts (sweep, overview) print to fd 1
+    try:
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(io.StringIO()):
+            try:
+                cli.main(argv)
+            except (SystemExit, Exception) as e:
+                out.write(f"\nEXIT {str(e)[:150]}")
+    finally:
+        os.dup2(saved_fd, 1)
+        os.close(saved_fd)
+        os.close(quiet)
+    LAST.append((argv[:2], out.getvalue()))
+    return [l.strip() for l in open(log) if l.startswith("WRITE")], os.environ.get("DU_DRY_RUN")
+
+
+# the recorder works: the same call without --dry-run does reach the fake
+w, _ = writes_of(["section", "write", "Open (Scott)", sec_file])
+check("the fake gws records a real write (the test can fail)", any("batchUpdate" in x for x in w), str(w))
+for (noun, verb_), args in sorted(VERB_ARGS.items()):
+    w, leak = writes_of([noun, verb_, *args, "--dry-run"])
+    check(f"--dry-run writes nothing: {noun} {verb_}", not w, "; ".join(w[:3]))
+    if os.environ.get("SHOW_OUTCOMES"):
+        print("   ->", LAST[-1][1].strip().replace("\n", " | ")[:230])
+    check(f"--dry-run is switched off again after: {noun} {verb_}", leak is None, str(leak))
+# --tag works on its own, after the publish: the tab swept earlier gets its comment, and only once
+w, _ = writes_of(["day", "sweep", D, "--tag"])
+check("day sweep --tag alone tags the updater of a swept tab", any("comments create" in x for x in w), str(w))
+for k, v in env_keep.items():
+    if v is None:
+        os.environ.pop(k, None)
+    else:
+        os.environ[k] = v
+shutil.rmtree(work, ignore_errors=True)
+
 print("\n" + ("ALL PASS" if not FAILS else f"{len(FAILS)} FAILED: {FAILS}"))
 sys.exit(1 if FAILS else 0)

@@ -74,6 +74,10 @@ def tab_of(doc_id, title):
 def cmd_setup(a):
     import build
     s = load(a[0])
+    if du.dry_run():
+        print(f"PLAN:\n  Create the doc {s.get('title') or s['org'] + ' Daily Updates'!r} with {len(s['areas'])} area(s), "
+              f"{sum(len(x['initiatives']) for x in s['areas'])} initiative(s), then its settings and overview.\nDry run: nothing written.")
+        return
     structure = [(ar["name"], ar["owner"],
                   [(i["name"], i["owner"], i.get("updater", ar["owner"]), i["status"],
                     re.sub(r"(?i)no date set yet", "No date set yet", i["milestone"]), i.get("progress"),
@@ -133,6 +137,11 @@ def cmd_section(a):
         raise SystemExit("REFUSED: " + "; ".join(hard) + ". Nothing written.")
     for p in probs:
         print("WARN " + p[len("warn: "):])
+    if du.dry_run():
+        print("PLAN:\n  Write the " + du.label(day) + " section on " + title + ":")
+        print("\n".join("    " + x for x in lines))
+        print("Dry run: nothing written.")
+        return False
     for attempt in range(3):
         try:
             m.write_section(doc_id, tid, lines, links)
@@ -147,6 +156,7 @@ def cmd_section(a):
     print(("LANDED " if s.date == day else "DID NOT LAND ") + title)
     for t, _ in s.lines:
         print("  " + t)
+    return True
 
 
 def cmd_today(a):
@@ -271,6 +281,9 @@ def cmd_row(a):
 
 def cmd_decisions(a):
     import build
+    if du.dry_run():
+        print(f"PLAN:\n  Write the decisions table with {len(load(a[2]))} row(s) on the overview.\nDry run: nothing written.")
+        return
     build.set_decisions(a[0], a[1], load(a[2]), load(a[3]) if len(a) > 3 else ())
     print("Decisions table written")
 
@@ -292,6 +305,9 @@ def cmd_send(a):
     print("RECIPIENTS: " + ", ".join(f"{r['name']} <{r['email']}> by {r['channel']}" for r in readers))
     print("SUBJECT: " + subject)
     print("BODY:\n" + body)
+    if du.dry_run() and "--confirmed" in a:
+        print("\nDry run: nothing sent.")
+        return
     if "--confirmed" not in a:
         print("\nNot sent. Run again with --confirmed only after the person replies \"send\".")
         return

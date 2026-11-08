@@ -78,13 +78,15 @@ One entry point: `/engos-operations-daily-update <noun> <verb> [args]`. Things y
 `discover`). Plain phrases work too ("do my daily update", "set up the status doc", "close out the day"). With
 no command, run `update`. If a command is missing a detail, ask for that one detail in one line. Every command
 that writes shows the change and waits for "publish" (run it first with `--dry-run`, show the PLAN, then rerun
-without it); `send` waits for "send".
+without it); `send` waits for "send". `--dry-run` is enforced in one place, the write layer: under it no Docs,
+Drive or Gmail write and no config write can run, on any verb, and the command prints its PLAN instead.
 
 The verbs mean the same on every noun: `list` and `show` read, `add` creates, `set-*` changes one field,
 `remove` takes it away. `du.py <noun> --help` lists the verbs; every read takes `--json`.
 
 | Command | Who | What it does | Section |
 |---|---|---|---|
+| `section remove` | the tab's updater, its area owner or the doc owner | Remove a section that is only an automatic backup note, written by the older `add-backup` or `remove-backup` (`section remove <tab> <date>`, or `--all <date>` for every tab); prints the PLAN, honours `--dry-run`. Refuses any section with anything else in it, and the tab's only section; no `--force` | Initiatives |
 | `help` | anyone | List the commands this person may run, one example each | Help |
 | `update` (default) | leader | Draft and publish today's update for your tabs | Daily |
 | `close` | doc owner | Close out the day: own tabs first, Sweep, then Overview | Sweep, Overview |
@@ -587,16 +589,16 @@ Composer --state open`, `initiative show <name>`, `person show <name>`.
 
 **Change** (`rename`, `move`, `set-owner`): the tab's updater, its area owner or the doc owner can run these. Each
 retitles the tab where needed, updates the header line and the area table row (both rows for `move`), and notes the
-change in today's section, carrying the status, next milestone, Blocked on and Green when lines from the newest
-section (an owner change is not a reason to drop a dated milestone). `move` writes "Moved from <old area> to <new
-area> on <date>." `set-updater` is the doc owner's: it replaces the `Updater:` part of the header line and refuses a
+change in today's section only when that section already exists. A change note never creates a section: a section
+dated today counts as a confirmed update (Sweep skips the tab, the overview and `doctor` read it as fresh), and a
+note is not one. `move` writes "Moved from <old area> to <new area> on <date>." into that section. `set-updater` is the doc owner's: it replaces the `Updater:` part of the header line and refuses a
 person with no email in the people list.
 
 **Backups** (`add-backup`, `remove-backup`): an initiative has zero or more backups, people who can cover the updater.
 They are the `Backups: A, B` part of the header line, right after `Updater:`, and are dropped when the list is empty.
 Who may run them is the same as for `rename`. The person must be in the people list with an email, cannot already be
-the updater, and cannot already be a backup; removing someone who is not a backup is refused. Both write a note in
-today's section. `add-backup --all <person>` covers every open or paused initiative (it skips ones where the person
+the updater, and cannot already be a backup; removing someone who is not a backup is refused. Both change the header line only
+and write no section and no note (a backup change is never an update; `section remove` clears the notes the older version wrote). `add-backup --all <person>` covers every open or paused initiative (it skips ones where the person
 is already the updater or a backup), prints the PLAN first, and refuses if nothing would change. `initiative list`
 and `show` display backups. A backup may keep sources on the tab, like the updater and the doc owner. `doctor` warns
 (never fails) about an open initiative with no backup.
@@ -691,7 +693,9 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
    step 6 (re-read first, insert at the top, never replace a section the updater wrote today), and update each
    swept initiative's row in its area tab's Initiatives table (that row only) to match the new section. If
    the initiative has no row in that table, add one at the end, in the table's column order.
-4. Then ask, listing the people by name: "Tag these updaters in a doc comment?" Only on yes, post one comment per
+4. Then ask, listing the people by name: "Tag these updaters in a doc comment?" Only on yes (`day sweep <date> --tag`,
+   in the same run as `--publish` or on its own afterwards; it tags the tabs that carry an Unconfirmed section for that
+   date and skips a comment already posted), post one comment per
    updater with `gws drive comments create` on the doc, content
    `+<email> Unconfirmed today: <tab>, <tab>. Please confirm or correct by running "do my daily update".`
    Tag only emails in the doc's people map that already have access to the doc (check its sharing list, read only). Never
