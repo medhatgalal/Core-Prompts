@@ -1,3 +1,10 @@
+## v1.20.5 - 2026-11-08
+
+Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: fixes. `--dry-run` now writes nothing on any command (one guard in the write layer; `section write`, `day sweep --publish`, `day overview --publish`, `day decisions` and `doc create` used to write). `initiative add-backup` and `remove-backup` no longer create a dated update section, which hid tabs from the sweep and flagged every area headline as out of date. New `section remove <initiative> <date>` (and `--all <date>`) removes a section that holds only an automatic backup note; it refuses a tab's only section and any real update. `day sweep --tag` now works on its own after a publish and skips a comment already posted.
+
 ## v1.20.4 - 2026-11-08
 
 Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
