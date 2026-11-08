@@ -1,3 +1,10 @@
+## v1.20.2 - 2026-11-08
+
+Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: each initiative can have backup updaters. New `initiative add-backup` and `initiative remove-backup` (and `initiative add-backup --all <person>` to cover every open or paused initiative); backups show in `initiative list` and `show`. A saved source is now valid on a tab if you are its updater, a backup, or the doc owner, using one shared check in `source add` and `doctor`. `doctor` warns when an open initiative has no backup. Fix: `section write` refreshes that initiative's row in its area table again (lost in v1.20.0).
+
 ## v1.20.1 - 2026-11-07
 
 Tag authorized by Scott Parrish on 2026-11-07. Publication is recorded by the GitLab
