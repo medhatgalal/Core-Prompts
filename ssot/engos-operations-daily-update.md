@@ -96,6 +96,7 @@ The verbs mean the same on every noun: `list` and `show` read, `add` creates, `s
 | `doc create` | doc owner | Create a new doc; this person becomes its doc owner | Create |
 | `doc join` | leader | Connect sources and confirm your tabs, once | Onboard |
 | `doc show` | anyone | Owner, your role, areas, initiatives by state, readers | Help |
+| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |
 | `initiative list`, `initiative show` | anyone | Find initiatives by area, owner, updater or state | Initiatives |
 | `initiative add` | leader | Add an initiative under an area | Initiatives |
 | `initiative rename`, `move`, `set-owner` | the tab's updater, its area owner or the doc owner | Change the name, area or owner | Initiatives |
@@ -435,7 +436,7 @@ fails, give the exact error and the one command that fixes it, then continue wit
 in a Core-Prompts install); run it with `python3` from that folder (`du.py --help` lists every noun; `du.py <noun> --help` lists its verbs). You decide the words; the script writes them in the
 exact layout above, with the revision check and retries, bold labels, date headings, table
 widths and pageless tabs. Use `du.py doc`, `area`, `initiative`, `person`, `reader`, `source`, `section` and `day` (and `discover check`) instead of writing Docs API requests yourself,
-and run `du.py doc check <date>` after publishing; fix anything it reports before saying done. Only if a script cannot
+and run `du.py doctor` after publishing; fix anything it reports before saying done. Only if a script cannot
 do what the rules need, use the notes below and say so in the review.
 
 Docs API notes: read with `includeTabsContent: true`. A doc from before v1.19.10 still has Confidence lines

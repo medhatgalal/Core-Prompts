@@ -9,7 +9,7 @@ is refused, then retried up to 3 times), restores date headings, and prints the 
 --dry-run: they print the PLAN and write nothing, so the agent can show it and wait for "publish".
 Nothing here messages anyone except `day send --confirmed`, run only after the person said "send".
 
-  doc        create STRUCTURE.json | show | check DATE | sync
+  doc        create STRUCTURE.json | show | sync
   area       list | show | add | rename | set-owner | set-headline | merge | remove
   initiative list | show | add | rename | move | set-owner | set-updater
              pause | resume | done | stop | reopen | archive
@@ -19,6 +19,7 @@ Nothing here messages anyone except `day send --confirmed`, run only after the p
   section    write TAB FILE | show TAB DATE | lint TAB FILE
   day        sweep | overview | decisions | send    (doc owner, 3pm close-out)
   discover   check FILE
+  doctor     [--local | --only-doc]     (read only; names the fix for each problem)
 
 Initiative lifecycle:  open -> paused -> open;  open|paused -> done|stopped;  done|stopped -> open (reopen)
 or -> archived (terminal). Archive is normally proposed by `day overview`; the doc owner approves it.
@@ -324,14 +325,6 @@ def cmd_settings(a):
 def cmd_sync(a):
     import backup
     print(backup.report(backup.sync()))
-
-
-def cmd_check(a):
-    doc_id, day = a[0], a[1]
-    started = (dt.datetime.utcnow() - dt.timedelta(minutes=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    r1 = run("verify.py", doc_id, day, "--since", day, "--started", started)
-    r2 = run("usability.py", doc_id, day, "--since", day)
-    sys.exit(1 if (r1 or r2) else 0)
 
 
 def main():
