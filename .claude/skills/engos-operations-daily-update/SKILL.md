@@ -93,10 +93,10 @@ The verbs mean the same on every noun: `list` and `show` read, `add` creates, `s
 | `doc create` | doc owner | Create a new doc; this person becomes its doc owner | Create |
 | `doc join` | leader | Connect sources and confirm your tabs, once | Onboard |
 | `doc show` | anyone | Owner, your role, areas, initiatives by state, readers | Help |
-| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |
+| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, open initiatives with no backup, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |
 | `initiative list`, `initiative show` | anyone | Find initiatives by area, owner, updater or state | Initiatives |
 | `initiative add` | leader | Add an initiative under an area | Initiatives |
-| `initiative rename`, `move`, `set-owner` | the tab's updater, its area owner or the doc owner | Change the name, area or owner | Initiatives |
+| `initiative rename`, `move`, `set-owner`, `add-backup`, `remove-backup` | the tab's updater, its area owner or the doc owner | Change the name, area or owner; add or remove a backup for the updater (`add-backup --all <person>` does every open or paused initiative) | Initiatives |
 | `initiative pause`, `resume`, `done`, `stop`, `reopen` | the tab's updater, its area owner or the doc owner | Move an initiative along its lifecycle | Lifecycle |
 | `initiative set-updater`, `initiative archive` | doc owner | Choose who updates a tab; move a finished tab under Archive | Initiatives |
 | `area list`, `area show` | anyone | Areas with counts and colour | Areas |
@@ -148,8 +148,8 @@ Re-check that the doc still opens on every run. If it does not, say so and ask f
 the readers. Your laptop (backed up to your own Drive) holds what is yours alone: your sources, your ledger and your
 style notes. A command that changes shared state needs the right role; one that changes yours never touches the doc.
 
-**Fields, not nouns.** Owner and updater are fields on an initiative (and owner on an area). Change them with
-`set-owner` and `set-updater`; see who holds what with `person show`.
+**Fields, not nouns.** Owner, updater and backups are fields on an initiative (and owner on an area). Change them with
+`set-owner`, `set-updater`, `add-backup` and `remove-backup`; see who holds what with `person show`.
 
 **Initiative lifecycle.** The state is read from the newest section, so it cannot drift from the doc.
 
@@ -171,7 +171,7 @@ archive, so the doc owner rarely runs `initiative archive` by hand.
 3. A tab's title always reads `<Name> (<owner>)`: `rename` and `set-owner` retitle the tab, its header and its row.
 4. An area is never deleted. `area remove` moves an empty area under Archive; `area merge` moves its initiatives first.
 5. A reader needs a name, an email and a channel (email or chat).
-6. Sources are saved only for tabs you update, and chat, email and meeting sources are marked private.
+6. Sources are saved only for tabs you update or back up (or any tab, if you are the doc owner), and chat, email and meeting sources are marked private.
 7. A change by someone other than the tab's updater is marked "Updated by <person> for <updater>."
 8. Changes to owner, name, area or lifecycle are noted in today's section, carrying the status, milestone,
    Blocked on and Green when from the newest section.
@@ -304,7 +304,7 @@ overview, so a hand-written colour could only repeat it or contradict it. The se
 risk or result. It is not a list of initiatives and names no process gaps ("3 initiatives need dates"). Then **Initiatives** table (Initiative, Owner, Status, Next milestone, Date; the Date cell holds the
 milestone's date, "No date set yet" or "done <date>", so a missing date shows in its own column), **Done** (one line each).
 
-**Initiative tab**: title `<Initiative> (<owner>)` as HEADING_1 (the same as the tab name), then `Owner: <name> · Updater: <leader> · Area: <area> · Back to <overview>`, then one
+**Initiative tab**: title `<Initiative> (<owner>)` as HEADING_1 (the same as the tab name), then `Owner: <name> · Updater: <leader> · Area: <area> · Back to <overview>` (with `· Backups: <names>` right after the updater when there are backups), then one
 section per day, **newest first**. Each section:
 
 ```
@@ -591,6 +591,15 @@ change in today's section, carrying the status, next milestone, Blocked on and G
 section (an owner change is not a reason to drop a dated milestone). `move` writes "Moved from <old area> to <new
 area> on <date>." `set-updater` is the doc owner's: it replaces the `Updater:` part of the header line and refuses a
 person with no email in the people list.
+
+**Backups** (`add-backup`, `remove-backup`): an initiative has zero or more backups, people who can cover the updater.
+They are the `Backups: A, B` part of the header line, right after `Updater:`, and are dropped when the list is empty.
+Who may run them is the same as for `rename`. The person must be in the people list with an email, cannot already be
+the updater, and cannot already be a backup; removing someone who is not a backup is refused. Both write a note in
+today's section. `add-backup --all <person>` covers every open or paused initiative (it skips ones where the person
+is already the updater or a backup), prints the PLAN first, and refuses if nothing would change. `initiative list`
+and `show` display backups. A backup may keep sources on the tab, like the updater and the doc owner. `doctor` warns
+(never fails) about an open initiative with no backup.
 
 **Lifecycle** (`pause`, `resume`, `done`, `stop`, `reopen`, `archive`): see Model. `done` adds a line to Done on
 the area tab and a final section ("Done <date>: <outcome>"). `stop` is for work that is not going ahead: it needs a

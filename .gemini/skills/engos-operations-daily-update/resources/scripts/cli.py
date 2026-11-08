@@ -99,6 +99,62 @@ def check_reader(r):
         raise Refused("a reader needs an email address.")
 
 
+def source_valid(me, owner, updater, backups):
+    """The one test for a saved source: you may keep sources on a tab if you are its updater, one of its
+    backups, or the doc owner. Used by `source add` and by `doctor`, so they cannot disagree."""
+    return any(same_person(me, p) for p in [updater, owner, *backups])
+
+
+def check_add_backup(i, person, people):
+    """add-backup rules: the person can be tagged (in the people list, with an email), is not already the
+    updater, and is not already a backup. Anything else is a no-op, refused."""
+    if not person.strip():
+        raise Refused("a backup needs a person.")
+    if canon(person) == canon(i.updater):
+        raise Refused(f"{person!r} is already the updater of {i.name!r}; a backup is someone else.")
+    if any(canon(b) == canon(person) for b in i.backups):
+        raise Refused(f"{person!r} is already a backup of {i.name!r}.")
+    have = {canon(k): v for k, v in people.items()}
+    if canon(person) not in have:
+        raise Refused(f"{person!r} is not in the people list, so they cannot be tagged or confirmed to have access. "
+                      f"Run `person set-email {person} <email>` first.")
+    if "@" not in have[canon(person)]:
+        raise Refused(f"{person!r} has no email in the people list, so they cannot be tagged or confirmed to have access. "
+                      f"Run `person set-email {person} <email>` first.")
+
+
+def check_remove_backup(i, person):
+    if not any(canon(b) == canon(person) for b in i.backups):
+        raise Refused(f"{person!r} is not a backup of {i.name!r}. Backups: {', '.join(i.backups) or 'none'}.")
+
+
+def backup_header_edit(header, backups, new):
+    """(old, new) text for one replace in the header line, turning the backups list `backups` into `new`.
+    The part sits right after `Updater:` (after `Owner:` when there is no updater part) and is dropped when empty."""
+    if backups and new:
+        return f"Backups: {', '.join(backups)}", f"Backups: {', '.join(new)}"
+    if backups:
+        return f" · Backups: {', '.join(backups)}", ""
+    m = re.search(r"Updater: ([^·]+)", header) or re.search(r"Owner: ([^·]+)", header)
+    anchor = m.group(0).rstrip()
+    return anchor, f"{anchor} · Backups: {', '.join(new)}"
+
+
+def backup_targets(inits, states, person):
+    """For `add-backup --all`: (initiatives to change, [(initiative, why skipped)]). Open and paused only."""
+    todo, skipped = [], []
+    for i in inits:
+        if states.get(i.title) not in ("open", "paused"):
+            continue
+        if canon(person) == canon(i.updater):
+            skipped.append((i, "is the updater"))
+        elif any(canon(b) == canon(person) for b in i.backups):
+            skipped.append((i, "is already a backup"))
+        else:
+            todo.append(i)
+    return todo, skipped
+
+
 def check_source(kind, ref):
     if kind not in SOURCE_KINDS:
         raise Refused(f"source kind is one of {', '.join(SOURCE_KINDS)}.")
@@ -221,6 +277,7 @@ def table(ns, rows, cols):
     if not rows:
         print("(none)")
         return
+    rows = [{k: ", ".join(v) if isinstance(v, list) else v for k, v in r.items()} for r in rows]
     w = {c: max(len(c), *(len(str(r.get(c, ""))) for r in rows)) for c in cols}
     print("  ".join(c.upper().ljust(w[c]) for c in cols))
     for r in rows:
@@ -494,21 +551,21 @@ def init_rows(ctx, ns):
         s, ms = i.newest("status"), i.newest("milestone")
         what, when = du.split_milestone(ms.milestone) if ms else ("None", "No date set yet")
         rows.append({"name": i.name, "area": i.area_name if i not in ctx.archived else "(archived)", "owner": i.owner,
-                     "updater": i.updater, "state": st, "status": du.STATUSES[s.status] if s else "", "milestone": what,
+                     "updater": i.updater, "backups": list(i.backups), "state": st, "status": du.STATUSES[s.status] if s else "", "milestone": what,
                      "date": when})
     return rows
 
 
 def initiative_list(ns):
-    table(ns, init_rows(Ctx(resolve_doc(ns)), ns), ["name", "area", "owner", "updater", "state", "status", "milestone", "date"])
+    table(ns, init_rows(Ctx(resolve_doc(ns)), ns), ["name", "area", "owner", "updater", "backups", "state", "status", "milestone", "date"])
 
 
 def initiative_show(ns):
     ctx = Ctx(resolve_doc(ns))
     i = ctx.init(ns.name, archived=True)
     s = i.sections[0] if i.sections else None
-    card(ns, {"initiative": i.name, "area": i.area_name, "owner": i.owner, "updater": i.updater, "state": ctx.state(i),
-              "newest": du.label(s.date, True) if s else None, "lines": [t for t, _ in s.lines] if s else [],
+    card(ns, {"initiative": i.name, "area": i.area_name, "owner": i.owner, "updater": i.updater, "backups": list(i.backups),
+              "state": ctx.state(i), "newest": du.label(s.date, True) if s else None, "lines": [t for t, _ in s.lines] if s else [],
               "sources": next((t.get("sources", {}) for t in ctx.cfg.get("tabs", []) if canon(t.get("name")) == canon(i.name)), {})})
 
 
@@ -593,6 +650,57 @@ def initiative_set_updater(ns):
         set_header(ctx, i.tab_id, f"Updater: {i.updater}", f"Updater: {ns.person}")
     apply(ns, [f"{i.name}: updater {i.updater} -> {ns.person}.",
                "Reminder: the new updater needs edit access to the doc (check its sharing list)."], write)
+
+
+def _backup_write(ctx, i, new, verb):
+    old, new_txt = backup_header_edit(i.header, i.backups, new)
+    set_header(ctx, i.tab_id, old, new_txt)
+    if i.sections:
+        note(ctx, i, f"{verb} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+
+
+def initiative_add_backup(ns):
+    if ns.all and len(ns.target) != 1:
+        raise Refused("add-backup --all takes only a person: add-backup --all <person>.")
+    if not ns.all and len(ns.target) != 2:
+        raise Refused("add-backup needs an initiative and a person: add-backup <initiative> <person>, or add-backup --all <person>.")
+    ctx = Ctx(resolve_doc(ns))
+    if ns.all:
+        person = ns.target[0]
+        states = {i.title: ctx.state(i) for i in ctx.inits}
+        todo, skipped = backup_targets(ctx.inits, states, person)
+        if not todo:
+            raise Refused(f"nothing to do: {person!r} is already the updater or a backup of every open or paused initiative.")
+        for i in todo:
+            check_add_backup(i, person, ctx.settings["people"])
+            need_initiative_editor(ctx, ns, i, "adding a backup")
+        plan = [f"Add {person} as a backup on {len(todo)} initiative(s): {', '.join(i.name for i in todo)}."]
+        if skipped:
+            plan.append("Skipped: " + ", ".join(f"{i.name} ({why})" for i, why in skipped) + ".")
+        plan.append("Header line and a note in today's section on each. Each backup needs edit access to the doc.")
+
+        def write_all():
+            for i in todo:
+                _backup_write(ctx, i, i.backups + [person], f"Backup {person} added")
+        apply(ns, plan, write_all)
+        return
+    i, person = ctx.init(ns.target[0]), ns.target[1]
+    need_initiative_editor(ctx, ns, i, "adding a backup")
+    check_add_backup(i, person, ctx.settings["people"])
+    apply(ns, [f"{i.name}: backups {', '.join(i.backups) or '(none)'} -> {', '.join(i.backups + [person])}.",
+               "Header line and a note in today's section.",
+               "Reminder: the backup needs edit access to the doc (check its sharing list)."],
+          lambda: _backup_write(ctx, i, i.backups + [person], f"Backup {person} added"))
+
+
+def initiative_remove_backup(ns):
+    ctx = Ctx(resolve_doc(ns))
+    i, person = ctx.init(ns.initiative), ns.person
+    need_initiative_editor(ctx, ns, i, "removing a backup")
+    check_remove_backup(i, person)
+    keep = [b for b in i.backups if canon(b) != canon(person)]
+    apply(ns, [f"{i.name}: backups {', '.join(i.backups)} -> {', '.join(keep) or '(none)'}.", "Header line and a note in today's section."],
+          lambda: _backup_write(ctx, i, keep, f"Backup {person} removed"))
 
 
 def initiative_move_now(ctx, ns, name, area_name):
@@ -772,12 +880,23 @@ def reader_set_channel(ns):
 
 # ---------- source (local to this person; backed up to their own Drive, never on the doc) ----------
 
-def _my_tab(cfg, name):
+def _my_tab(cfg, name, ctx=None, create=False):
+    """The saved-sources entry for a tab you may keep sources on (updater, backup or doc owner; see source_valid).
+    With the doc (ctx) the rule is checked against it; without a doc, being in your config is the evidence."""
     tabs = cfg.get("tabs", [])
     hit = [t for t in tabs if canon(t.get("name")) == canon(name) and t.get("kind") == "initiative"]
+    if ctx is not None:
+        i = ctx.init(name)
+        if not source_valid(cfg.get("me", ""), ctx.owner, i.updater, i.backups):
+            raise Refused(f"you are not the updater, a backup or the doc owner of {i.name!r} (updater {i.updater}"
+                          f"{', backups ' + ', '.join(i.backups) if i.backups else ''}). Sources are saved only for those tabs.")
+        if not hit and create:
+            hit = [{"tab_id": i.tab_id, "kind": "initiative", "name": i.name, "area": i.area_name, "owner": i.owner, "sources": {}}]
+            tabs.append(hit[0])
+            cfg["tabs"] = tabs
     if not hit:
         mine = ", ".join(t["name"] for t in tabs if t.get("kind") == "initiative") or "none"
-        raise Refused(f"{name!r} is not a tab you update. Yours: {mine}. Sources are saved only for your own tabs.")
+        raise Refused(f"{name!r} is not a tab you update or back up. Yours: {mine}. Sources are saved only for your own tabs.")
     return hit[0]
 
 
@@ -792,7 +911,8 @@ def source_list(ns):
 def source_add(ns):
     cfg = load_config()
     check_source(ns.kind, ns.ref)
-    t = _my_tab(cfg, ns.name)
+    doc_id = ns.doc or cfg.get("doc_id")
+    t = _my_tab(cfg, ns.name, Ctx(resolve_doc(ns)) if doc_id else None, create=True)
     if ns.ref in t.setdefault("sources", {}).get(ns.kind, []):
         print(f"Already saved: {ns.kind} {ns.ref} on {t['name']}.")
         return
@@ -817,8 +937,15 @@ def source_remove(ns):
 # ---------- section (the daily write; the agent supplies the words) ----------
 
 def section_write(ns):
+    """Write the section, then refresh that initiative's row in its area table so the table never lags the tab."""
     import du as dumain
-    dumain.cmd_section([resolve_doc(ns), ns.tab, ns.file])
+    doc = resolve_doc(ns)
+    dumain.cmd_section([doc, ns.tab, ns.file])
+    ctx = Ctx(doc)
+    i = next((x for x in ctx.inits if ns.tab in (x.title, x.name)), None)
+    if i is not None:
+        _update_row(ctx, i)
+        print(f"Area table row refreshed for {i.name}.")
 
 
 def section_show(ns):
@@ -953,8 +1080,8 @@ def check_freshness(inits, areas, states, today, stale_after=2):
     return out
 
 
-def check_sources(cfg, inits=None):
-    """Every saved source sits on a tab you update. With the doc's initiatives, 'update' means you are its updater."""
+def check_sources(cfg, inits=None, owner=""):
+    """Every saved source sits on a tab you update or back up, or any tab if you are the doc owner (source_valid)."""
     out, me = [], cfg.get("me", "")
     tabs = [t for t in cfg.get("tabs", []) if t.get("sources")]
     for t in tabs:
@@ -966,13 +1093,21 @@ def check_sources(cfg, inits=None):
             hit = [i for i in inits if canon(i.name) == canon(t.get("name"))]
             if not hit:
                 out.append(finding("fail", "source on a tab you update", f"sources saved on {t.get('name')!r}, which is not a tab in the doc.", fix))
-            elif not same_person(me, hit[0].updater):
+            elif not source_valid(me, owner, hit[0].updater, hit[0].backups):
                 out.append(finding("fail", "source on a tab you update",
-                                   f"sources saved on {t.get('name')!r}, whose updater is {hit[0].updater}, not {me or 'you'}.", fix))
+                                   f"sources saved on {t.get('name')!r}, whose updater is {hit[0].updater} (backups: "
+                                   f"{', '.join(hit[0].backups) or 'none'}); {me or 'you'} are neither, nor the doc owner.", fix))
     if tabs and not any(f["check"] == "source on a tab you update" for f in out):
         out.append(finding("ok", "source on a tab you update", f"{len(tabs)} tab(s) with saved sources" +
                            ("" if inits is not None else " (updater not checked without the doc)")))
     return out
+
+
+def check_no_backup(inits, states):
+    """Warnings only: an open initiative nobody backs up."""
+    return [finding("warn", "initiative has a backup", f"{i.title!r} has no backup if {i.updater} is out.",
+                    f"initiative add-backup '{i.name}' <person>")
+            for i in inits if states.get(i.title) == "open" and not i.backups]
 
 
 def check_backup(local_md5, remote):
@@ -1062,7 +1197,7 @@ def doc_findings(ns):
                         "pass --doc <link>, or doc create STRUCTURE.json")], None
     states = {i.title: ctx.state(i) for i in ctx.inits}
     out = check_people(ctx.settings["people"], ctx.inits, ctx.areas) + check_readers(ctx.settings["readers"]) \
-        + check_freshness(ctx.inits, ctx.areas, states, today()) + layout_findings(ctx.id, today().isoformat())
+        + check_freshness(ctx.inits, ctx.areas, states, today()) + check_no_backup(ctx.inits, states) + layout_findings(ctx.id, today().isoformat())
     if not any(f["level"] == "fail" for f in out):
         out.insert(0, finding("ok", "doc rules", f"{len(ctx.areas)} area(s), {len(ctx.inits)} initiative(s), people and readers valid."))
     return out, ctx
@@ -1079,7 +1214,7 @@ def doctor(ns):
         doc, ctx = doc_findings(ns)
         result["doc"] = doc
         if not ns.only_doc and cfg is not None:
-            result["machine"] += check_sources(cfg, ctx.inits if ctx else None)
+            result["machine"] += check_sources(cfg, ctx.inits if ctx else None, ctx.owner if ctx else "")
     elif not ns.only_doc and cfg is not None:
         result["machine"] += check_sources(cfg)
     fails = sum(f["level"] == "fail" for v in result.values() for f in v)
@@ -1146,13 +1281,17 @@ def build_parser():
     verb(g, "list", initiative_list, "list initiatives; filter by area, owner, updater, state", **{
         "area": {"help": "area name"}, "owner": {}, "updater": {},
         "state": {"choices": STATES}, "all": {"action": "store_true", "help": "include archived"}})
-    verb(g, "show", initiative_show, "one initiative: owner, updater, state, newest section, your sources", ("name", {}))
+    verb(g, "show", initiative_show, "one initiative: owner, updater, backups, state, newest section, your sources", ("name", {}))
     verb(g, "add", initiative_add, "add an initiative from INIT.json under an area", "file",
          area={"required": True}, new={"action": "store_true", "help": "add even if a similar tab exists (after the person confirms)"})
     verb(g, "rename", initiative_rename, "rename an initiative", "name", "new_name")
     verb(g, "move", initiative_move, "move an initiative to another area", "name", area={"required": True})
     verb(g, "set-owner", initiative_set_owner, "change who is accountable for the work", "name", "person")
     verb(g, "set-updater", initiative_set_updater, "change who writes the daily update (doc owner)", "name", "person")
+    verb(g, "add-backup", initiative_add_backup, "add a backup for the updater; `--all <person>` does every open or paused initiative",
+         ("target", {"nargs": "+", "metavar": "ARG", "help": "<initiative> <person>, or just <person> with --all"}),
+         all={"action": "store_true", "help": "every open or paused initiative (skips ones where the person is already updater or backup)"})
+    verb(g, "remove-backup", initiative_remove_backup, "remove a backup", "initiative", "person")
     verb(g, "pause", initiative_lifecycle, "open -> paused (⚪)", "name", reason={"required": True})
     verb(g, "resume", initiative_lifecycle, "paused -> open; you give the colour and next milestone", "name",
          status={"choices": ["🟢", "🟡", "🔴"]}, milestone={}, green_when={})

@@ -35,10 +35,12 @@ def refused(fn, *a, **k):
 
 class Init:
     """Just enough of dudoc.Initiative for the pure rules."""
-    def __init__(self, title, updater="Kyle", area_owner="Kyle", progress=None, status="🟢"):
+    def __init__(self, title, updater="Kyle", area_owner="Kyle", progress=None, status="🟢", backups=()):
         self.title = title
         self.name, self.owner = du.title_parts(title)
         self.updater, self.area_owner = updater, area_owner
+        self.backups = list(backups)
+        self.area_name = "Core"
         s = du.Section(dt.date(2026, 11, 6), None)
         s.lines = [(du.STATUSES[status], None)] + ([(f"Progress: {progress}", None)] if progress else [])
         self.sections = [s]
@@ -93,6 +95,53 @@ check("--for-owner lets an editor run it", refused(cli.need_initiative_editor, C
 check("doc owner command: owner may", refused(cli.need_owner, Ctx("Scott"), Ns(), "x") is None)
 check("doc owner command: leader may not", "doc owner's (Scott)" in (refused(cli.need_owner, Ctx("Kyle"), Ns(), "x") or ""))
 check("doc owner command: --for-owner allows", refused(cli.need_owner, Ctx("Kyle"), Ns(for_owner=True), "x") is None)
+
+# ---- backups: who may be saved as a source owner, header edits, no-op refusals ----
+check("source valid: the updater", cli.source_valid("Kyle", "Scott", "Kyle", []))
+check("source valid: a backup", cli.source_valid("Sahil", "Scott", "Kyle", ["Sahil"]))
+check("source valid: the doc owner", cli.source_valid("Scott", "Scott", "Kyle", []))
+check("source valid: first names match", cli.source_valid("scott parrish", "Scott", "Kyle", []))
+check("source invalid: someone else", not cli.source_valid("Kui", "Scott", "Kyle", ["Sahil"]))
+check("source invalid: nobody set up", not cli.source_valid("", "Scott", "Kyle", ["Sahil"]) and not cli.source_valid("", "", "", []))
+
+H = "Owner: Goldberg · Updater: Kyle · Area: Core · Back to Overview"
+HB = "Owner: Goldberg · Updater: Kyle · Backups: Sahil, Kui · Area: Core · Back to Overview"
+check("backups parse from the header", du.parse_backups(HB) == ["Sahil", "Kui"] and du.parse_backups(H) == [] and du.parse_backups(None) == [])
+check("first backup goes after the Updater part", cli.backup_header_edit(H, [], ["Sahil"]) == ("Updater: Kyle", "Updater: Kyle · Backups: Sahil"))
+check("no Updater part: goes after Owner", cli.backup_header_edit("Owner: Goldberg · Area: Core", [], ["Sahil"])
+      == ("Owner: Goldberg", "Owner: Goldberg · Backups: Sahil"))
+check("another backup extends the list", cli.backup_header_edit(HB, ["Sahil", "Kui"], ["Sahil", "Kui", "Joo"]) == ("Backups: Sahil, Kui", "Backups: Sahil, Kui, Joo"))
+check("removing one keeps the others", cli.backup_header_edit(HB, ["Sahil", "Kui"], ["Kui"]) == ("Backups: Sahil, Kui", "Backups: Kui"))
+check("removing the last drops the whole part", cli.backup_header_edit(HB.replace("Sahil, Kui", "Kui"), ["Kui"], []) == (" · Backups: Kui", ""))
+bi = Init("Evals (Goldberg)", updater="Kyle", backups=["Sahil"])
+ppl = {"Sahil": "s@x.com", "Kui": "k@x.com", "Kyle": "ky@x.com", "Bo": "", "Joo": "nope"}
+check("add-backup ok", refused(cli.check_add_backup, bi, "Kui", ppl) is None)
+check("add-backup: the current updater is refused", "already the updater" in (refused(cli.check_add_backup, bi, "kyle", ppl) or ""))
+check("add-backup: an existing backup is a no-op refusal", "already a backup" in (refused(cli.check_add_backup, bi, "Sahil", ppl) or ""))
+check("add-backup: not in the people list", "people list" in (refused(cli.check_add_backup, bi, "Zed", ppl) or ""))
+check("add-backup: no email refused and names the fix", "person set-email Bo" in (refused(cli.check_add_backup, bi, "Bo", ppl) or ""))
+check("add-backup: a bad email refused", refused(cli.check_add_backup, bi, "Joo", ppl) is not None)
+check("remove-backup ok", refused(cli.check_remove_backup, bi, "sahil") is None)
+check("remove-backup: a non-backup is a no-op refusal", "not a backup" in (refused(cli.check_remove_backup, bi, "Kui") or ""))
+a1, a2, a3, a4 = (Init("A (x)", updater="Kyle"), Init("B (x)", updater="Sahil"), Init("C (x)", updater="Kyle", backups=["Sahil"]),
+                  Init("D (x)", updater="Kyle"))
+stt = {a1.title: "open", a2.title: "open", a3.title: "paused", a4.title: "done"}
+todo, skipped = cli.backup_targets([a1, a2, a3, a4], stt, "Sahil")
+check("--all: open and paused only, skips updater and existing backup", [i.name for i in todo] == ["A"] and
+      sorted(i.name for i, _ in skipped) == ["B", "C"], f"{[i.name for i in todo]} {[(i.name, w) for i, w in skipped]}")
+check("--all: a person who backs up nothing yet gets every live tab", [i.name for i in cli.backup_targets([a1, a2, a3, a4], stt, "Kui")[0]] == ["A", "B", "C"])
+nb = cli.check_no_backup([a1, a3, a4], stt)
+check("doctor: open tab with no backup warns with the fix, never fails", [(f["level"], f["fix"]) for f in nb] ==
+      [("warn", "initiative add-backup 'A' <person>")], str(nb))
+check("doctor: paused and done tabs are not asked for a backup", cli.check_no_backup([a3, a4], stt) == [])
+mine_b = Init("Evals (Goldberg)", updater="Kyle", backups=["Scott"])
+cfgb = {"me": "Scott", "tabs": [{"name": "Evals", "kind": "initiative", "sources": {"jira": ["C-1"]}}]}
+check("doctor: source on a tab you back up is ok", [f["level"] for f in cli.check_sources(cfgb, [mine_b], "Kui")] == ["ok"])
+check("doctor: source on a tab as the doc owner is ok", [f["level"] for f in cli.check_sources(cfgb, [Init("Evals (Goldberg)", updater="Kyle")], "Scott")] == ["ok"])
+check("doctor: stranger still fails and the wording names backups",
+      "backup" in cli.check_sources(cfgb, [Init("Evals (Goldberg)", updater="Kyle")], "Kui")[0]["detail"])
+brows = cli.init_rows(type("C", (), {"inits": [bi], "archived": [], "state": lambda s, i: "open"})(), Ns(area=None, owner=None, updater=None))
+check("initiative list rows carry backups", brows[0]["backups"] == ["Sahil"], str(brows))
 
 # ---- validation ----
 good = {"name": "Medhat", "channel": "email", "email": "m@x.com"}
@@ -212,6 +261,29 @@ with tempfile.TemporaryDirectory() as d:
     check("list one initiative", code == 0 and "spaces/AAA" in out and "COM-1" not in out)
 os.environ.pop("DU_CONFIG")
 
+# ---- section write keeps the area table row in step with the tab ----
+import du as dumain  # noqa: E402
+
+calls = []
+_saved = (dumain.cmd_section, cli.resolve_doc, cli.Ctx, cli._update_row)
+try:
+    class FakeCtx:
+        inits = [Init("Evals (Goldberg)"), Init("Work Plan (Kyle)")]
+
+        def __init__(self, doc):
+            pass
+    dumain.cmd_section = lambda a: calls.append(("section", a[1]))
+    cli.resolve_doc = lambda ns: "DOC"
+    cli.Ctx = FakeCtx
+    cli._update_row = lambda ctx, i, **o: calls.append(("row", i.name))
+    with contextlib.redirect_stdout(io.StringIO()):
+        cli.section_write(Ns(tab="Evals (Goldberg)", file="s.json", doc=None))
+        cli.section_write(Ns(tab="Composer (Kyle)", file="s.json", doc=None))
+finally:
+    dumain.cmd_section, cli.resolve_doc, cli.Ctx, cli._update_row = _saved
+check("section write refreshes the initiative's area row", ("row", "Evals") in calls, str(calls))
+check("section write on an area tab touches no row", [c for c in calls if c[0] == "row"] == [("row", "Evals")], str(calls))
+
 # ---- grammar ----
 parser = cli.build_parser()
 verbs = {}
@@ -224,9 +296,15 @@ for a in parser._subparsers._group_actions[0].choices.items():
     verbs[noun] = sorted(sub.choices)
 check("nouns", sorted(verbs) == ["area", "day", "discover", "doc", "doctor", "initiative", "person", "reader", "section", "source"], str(sorted(verbs)))
 check("initiative verbs", verbs["initiative"] == sorted(
-    ["list", "show", "add", "rename", "move", "set-owner", "set-updater", "pause", "resume", "done", "stop", "reopen", "archive"]))
+    ["list", "show", "add", "rename", "move", "set-owner", "set-updater", "add-backup", "remove-backup", "pause", "resume", "done", "stop", "reopen", "archive"]))
 check("area verbs", verbs["area"] == sorted(["list", "show", "add", "rename", "set-owner", "set-headline", "merge", "remove"]))
 check("reader verbs", verbs["reader"] == sorted(["list", "add", "remove", "set-channel"]))
+code, _, err = run("initiative", "add-backup", "A")
+check("add-backup needs an initiative and a person", code != 0 and "initiative and a person" in err, err)
+code, _, err = run("initiative", "add-backup", "--all", "A", "B")
+check("add-backup --all takes only a person", code != 0 and "only a person" in err, err)
+code, _, err = run("initiative", "remove-backup", "A")
+check("remove-backup needs an initiative and a person", code == 2)
 check("every noun with a collection has list and show or add/remove",
       all("list" in verbs[n] for n in ("area", "initiative", "person", "reader", "source")))
 check("doc has no check verb; doctor replaces it", verbs["doc"] == ["create", "show", "sync"])

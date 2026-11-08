@@ -15,7 +15,7 @@
     "bf0e6b0a511562b438d26f71050bd559b583ed915f774a105478f628547f7189",
     "bf6adceac230103b3365e4778c6411a522372db5b95bff53e3195cb6cd658cbb",
     "89ffb9287dfcf6c981f17458ffaca9a6cfbb107affdeb7e4e75e51d512869864",
-    "5e9ac48d6fb5f736811132112b9072c99cd1e6717cd4e0678e5911281623f216",
+    "5f4255b69f2572c55f0e1c1c9abebdf63d99dab5a67242b06f76a4f9bb0446ec",
     "cb9b61752685fe370f2c4bbdae67538a990d1e2b16db920f2ca7b0279940b092",
     "9dce0fc914e9c0b2f80ddb614421b4a3fb0fd3f1899c7de874f358ba5684146b",
     "014c1d8cab204eb39ce0c707b56c5800154786fc416cc3fe99dfb7d3a1440ae5",
@@ -23,7 +23,7 @@
     "d4023f9126f342979c1d1ba1b66e1b5f128df7ab7e91f15e542a91cd84f17066",
     "a40873a3ce843c05856e8ce298f5075e6efcc01fb74271f322b891a5dec1223a",
     "7b254bc412c3de3f31cceec9a98d61fc6e75b057b7d8619317f9f5dddc9193d4",
-    "dadccf2c493841d588825dd62eee7a8f5e6eef9882420aefe15e917449a8e850",
+    "0b1fc10229dd615544d3b220bf7d19dffd1e4f3b4deff0d1aa0a84eb43d8edd9",
     "a7277c928b3b543e7160025273c3b96ae52e13da2680c7ceb76151d684729ccd",
     "9b28993c0a7dd449f094a69bf3b4b5354129c1703a42d8c3a9842900accbfe89",
     "a751b4c413585fa12ce29bbdfc47ba86f40343be24bfe0f7f0658fe4424fc3aa",
@@ -81,6 +81,8 @@
     "929a12b48dd766b73faaf6c5bfdffad157cc11194e9482cafc6db5b1f14e0fd4",
     "e073071c0f62bcad23db93bac38f9d6dc43d501c30124f976fcbccd480c8faf4",
     "4859cf9a1b0c1ee3170c01d795143f076033addad210f8f44d57e24bd6691719",
+    "05204611fb78f7357b628fa3f34664831e81b8ad0a4500f465a0ccea545135f6",
+    "1408ebd318c065c68a4a2c868f21ff4748326d3d0932e53205f0f9cf75b31a42",
     "3c5dbe054b5850176d342c74ca19ddbc0c41e8b5465f647cc2965ed1acb0ae36",
     "0f88e7c4063c16e3c16f77d36a152212c6eda4192b895d677ddb0e15d661ef13",
     "7f42902f61a89fbf9911cd0002321a67d4837077e893309a21fc233c16fd5325",
@@ -184,9 +186,9 @@
       "text": "| `send` | doc owner | Draft the summary for the readers; send only on \"send\" | Send |"
     },
     {
-      "sha256": "5e9ac48d6fb5f736811132112b9072c99cd1e6717cd4e0678e5911281623f216",
+      "sha256": "5f4255b69f2572c55f0e1c1c9abebdf63d99dab5a67242b06f76a4f9bb0446ec",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |"
+      "text": "| `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, open initiatives with no backup, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |"
     },
     {
       "sha256": "cb9b61752685fe370f2c4bbdae67538a990d1e2b16db920f2ca7b0279940b092",
@@ -224,9 +226,9 @@
       "text": "4. An area is never deleted. `area remove` moves an empty area under Archive; `area merge` moves its initiatives first."
     },
     {
-      "sha256": "dadccf2c493841d588825dd62eee7a8f5e6eef9882420aefe15e917449a8e850",
+      "sha256": "0b1fc10229dd615544d3b220bf7d19dffd1e4f3b4deff0d1aa0a84eb43d8edd9",
       "source": "ssot/engos-operations-daily-update.md",
-      "text": "6. Sources are saved only for tabs you update, and chat, email and meeting sources are marked private."
+      "text": "6. Sources are saved only for tabs you update or back up (or any tab, if you are the doc owner), and chat, email and meeting sources are marked private."
     },
     {
       "sha256": "a7277c928b3b543e7160025273c3b96ae52e13da2680c7ceb76151d684729ccd",
@@ -512,6 +514,16 @@
       "sha256": "4859cf9a1b0c1ee3170c01d795143f076033addad210f8f44d57e24bd6691719",
       "source": "ssot/engos-operations-daily-update.md",
       "text": "2. Re-read the doc. If a tab with a similar name exists, show it and ask before adding another (`--new` only after"
+    },
+    {
+      "sha256": "05204611fb78f7357b628fa3f34664831e81b8ad0a4500f465a0ccea545135f6",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "Who may run them is the same as for `rename`. The person must be in the people list with an email, cannot already be"
+    },
+    {
+      "sha256": "1408ebd318c065c68a4a2c868f21ff4748326d3d0932e53205f0f9cf75b31a42",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "(never fails) about an open initiative with no backup."
     },
     {
       "sha256": "3c5dbe054b5850176d342c74ca19ddbc0c41e8b5465f647cc2965ed1acb0ae36",
