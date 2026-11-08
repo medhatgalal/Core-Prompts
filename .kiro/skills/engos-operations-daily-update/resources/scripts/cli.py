@@ -177,6 +177,7 @@ def load_config():
 
 
 def save_config(cfg):
+    du.guard_write("saving the config")
     os.makedirs(os.path.dirname(config_path()), exist_ok=True)
     with open(config_path(), "w") as f:
         json.dump(cfg, f, indent=1, ensure_ascii=False)
@@ -325,16 +326,13 @@ def row_for(init, name=None, owner=None):
 
 
 def note(ctx, init, line):
-    """Record a change in today's section: add the line there, or write today's section that carries the
-    status, milestone, Blocked on and Green when from the newest one (an owner change never drops a date)."""
+    """Record a change in a section that already exists for today: add the line there. With no section for today
+    it writes nothing: a section dated today counts as a confirmed update (sweep skips the tab, the overview and
+    doctor read it as fresh), and a change note is not one. The change is already in the title, header or table."""
     day = today()
     fresh = next(i for i in du.model(du.read_doc(ctx.id))[2] if i.tab_id == init.tab_id)
     if fresh.sections and fresh.sections[0].date == day:
         m.insert_line_before(ctx.id, init.tab_id, "Unconfirmed:", line)
-        return
-    st = fresh.newest("status")
-    lines = [du.label(day, True), du.STATUSES[st.status if st else "🟡"], f"Progress: {line}"]
-    m.write_section(ctx.id, init.tab_id, lines, [])
 
 
 def set_header(ctx, tab_id, old, new):
@@ -464,7 +462,7 @@ def area_rename(ns):
             if k.sections:
                 note(ctx, k, f"Area renamed from {a.name} to {ns.new_name} on {du.label(today())}. (from {ctx.me or ctx.owner})")
     apply(ns, [f"Rename area {a.name!r} to {ns.new_name!r}.", f"Update the Area line on {len(kids)} initiative tab(s) "
-               "and note it in today's section on each."], write)
+               "and note it in today's section on each tab that already has one."], write)
 
 
 def area_set_owner(ns):
@@ -606,7 +604,7 @@ def initiative_rename(ns):
         _update_row_named(ctx, i, i.name, ns.new_name)
         if i.sections:
             note(ctx, i, f"Renamed from {i.name} to {ns.new_name} on {du.label(today())}. (from {ctx.me or ctx.owner})")
-    apply(ns, [f"Rename {i.name!r} to {ns.new_name!r}: tab title, area table row, note in today's section."], write)
+    apply(ns, [f"Rename {i.name!r} to {ns.new_name!r}: tab title, area table row, and a note in today's section if it has one."], write)
 
 
 def _update_row_named(ctx, i, old_name, new_name):
@@ -632,7 +630,7 @@ def initiative_set_owner(ns):
         _update_row(ctx, i, owner=ns.person)
         if i.sections:
             note(ctx, i, f"Owner changed from {i.owner} to {ns.person} on {du.label(today())}. (from {ctx.me or ctx.owner})")
-    apply(ns, [f"{i.name}: owner {i.owner} -> {ns.person}.", "Tab title, header, area table row and a note in today's section."] + warn, write)
+    apply(ns, [f"{i.name}: owner {i.owner} -> {ns.person}.", "Tab title, header, area table row, and a note in today's section if it has one."] + warn, write)
 
 
 def initiative_set_updater(ns):
@@ -652,11 +650,9 @@ def initiative_set_updater(ns):
                "Reminder: the new updater needs edit access to the doc (check its sharing list)."], write)
 
 
-def _backup_write(ctx, i, new, verb):
+def _backup_write(ctx, i, new):
     old, new_txt = backup_header_edit(i.header, i.backups, new)
-    set_header(ctx, i.tab_id, old, new_txt)
-    if i.sections:
-        note(ctx, i, f"{verb} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+    set_header(ctx, i.tab_id, old, new_txt)  # the header line is the record; a backup change is never an update section
 
 
 def initiative_add_backup(ns):
@@ -677,20 +673,20 @@ def initiative_add_backup(ns):
         plan = [f"Add {person} as a backup on {len(todo)} initiative(s): {', '.join(i.name for i in todo)}."]
         if skipped:
             plan.append("Skipped: " + ", ".join(f"{i.name} ({why})" for i, why in skipped) + ".")
-        plan.append("Header line and a note in today's section on each. Each backup needs edit access to the doc.")
+        plan.append("Header line on each. Each backup needs edit access to the doc.")
 
         def write_all():
             for i in todo:
-                _backup_write(ctx, i, i.backups + [person], f"Backup {person} added")
+                _backup_write(ctx, i, i.backups + [person])
         apply(ns, plan, write_all)
         return
     i, person = ctx.init(ns.target[0]), ns.target[1]
     need_initiative_editor(ctx, ns, i, "adding a backup")
     check_add_backup(i, person, ctx.settings["people"])
     apply(ns, [f"{i.name}: backups {', '.join(i.backups) or '(none)'} -> {', '.join(i.backups + [person])}.",
-               "Header line and a note in today's section.",
+               "Header line only; no section is written.",
                "Reminder: the backup needs edit access to the doc (check its sharing list)."],
-          lambda: _backup_write(ctx, i, i.backups + [person], f"Backup {person} added"))
+          lambda: _backup_write(ctx, i, i.backups + [person]))
 
 
 def initiative_remove_backup(ns):
@@ -699,8 +695,8 @@ def initiative_remove_backup(ns):
     need_initiative_editor(ctx, ns, i, "removing a backup")
     check_remove_backup(i, person)
     keep = [b for b in i.backups if canon(b) != canon(person)]
-    apply(ns, [f"{i.name}: backups {', '.join(i.backups)} -> {', '.join(keep) or '(none)'}.", "Header line and a note in today's section."],
-          lambda: _backup_write(ctx, i, keep, f"Backup {person} removed"))
+    apply(ns, [f"{i.name}: backups {', '.join(i.backups)} -> {', '.join(keep) or '(none)'}.", "Header line only; no section is written."],
+          lambda: _backup_write(ctx, i, keep))
 
 
 def initiative_move_now(ctx, ns, name, area_name):
@@ -723,7 +719,7 @@ def initiative_move(ns):
     need_initiative_editor(ctx, ns, i, "moving")
     if i.area_title == dst.title:
         raise Refused(f"{i.name!r} is already in {dst.name!r}.")
-    apply(ns, [f"Move {i.name!r} from {i.area_name!r} to {dst.name!r}: tab, Area line, both area tables, note in today's section."],
+    apply(ns, [f"Move {i.name!r} from {i.area_name!r} to {dst.name!r}: tab, Area line, both area tables, and a note in today's section if it has one."],
           lambda: initiative_move_now(ctx, ns, ns.name, ns.area))
 
 
@@ -940,7 +936,8 @@ def section_write(ns):
     """Write the section, then refresh that initiative's row in its area table so the table never lags the tab."""
     import du as dumain
     doc = resolve_doc(ns)
-    dumain.cmd_section([doc, ns.tab, ns.file])
+    if dumain.cmd_section([doc, ns.tab, ns.file]) is False:
+        return  # dry run: the PLAN is printed, nothing written
     ctx = Ctx(doc)
     i = next((x for x in ctx.inits if ns.tab in (x.title, x.name)), None)
     if i is not None:
@@ -956,6 +953,82 @@ def section_show(ns):
 def section_lint(ns):
     import du as dumain
     dumain.cmd_lint([resolve_doc(ns), ns.tab, ns.file])
+
+
+# Only what the old add-backup / remove-backup wrote: a section whose whole content is that one automatic note.
+BACKUP_NOTE = re.compile(r"^Progress: Backup .+ (added|removed) on [A-Z][a-z]{2} [A-Z][a-z]{2} \d{1,2}\. \(from [^()]+\)$")
+CARRIED = ("Next milestone:", "Blocked on:", "Green when:")
+
+
+def note_only_problem(init, sec):
+    """Why `sec` may not be removed, or None when it is nothing but an automatic backup note carrying its older
+    section's status, milestone, Blocked on and Green when."""
+    if len(init.sections) < 2:
+        return "it is the only section on the tab"
+    texts = [t for t, _ in sec.lines]
+    notes = [t for t in texts if t.startswith("Progress:")]
+    if len(notes) != 1 or not BACKUP_NOTE.match(notes[0]):
+        return "its content is not an automatic backup note"
+    k = init.sections.index(sec)
+    older = [t for t, _ in init.sections[k + 1].lines] if k + 1 < len(init.sections) else None
+    for t in texts:
+        if t in notes:
+            continue
+        if not (t in older if older is not None else (t[:1] in du.STATUSES or t.startswith(CARRIED))):
+            return f"it holds more than the note ({t[:40]!r})"
+    return None
+
+
+def section_remove(ns):
+    """Remove a section that is only an automatic change note, never anything else. No --force."""
+    ctx = Ctx(resolve_doc(ns))
+    if ns.all:
+        if len(ns.target) != 1:
+            raise Refused("remove --all takes only a date: section remove --all <date>.")
+        day_s, tabs = ns.target[0], ctx.inits
+    else:
+        if len(ns.target) != 2:
+            raise Refused("section remove needs a tab and a date: section remove <tab> <date>, or --all <date>.")
+        day_s, tabs = ns.target[1], [ctx.init(ns.target[0])]
+    try:
+        day = dt.date.fromisoformat(day_s)
+    except ValueError:
+        raise Refused(f"{day_s!r} is not a date (YYYY-MM-DD).")
+    todo, skipped = [], []
+    for i in tabs:
+        sec = next((x for x in i.sections if x.date == day), None)
+        if sec is None:
+            if not ns.all:
+                raise Refused(f"{i.name!r} has no section for {du.label(day)}.")
+            continue
+        why = note_only_problem(i, sec)
+        if why:
+            if not ns.all:
+                raise Refused(f"will not remove {du.label(day)} on {i.name!r}: {why}.")
+            skipped.append(f"{i.name} ({why})")
+        else:
+            need_initiative_editor(ctx, ns, i, "removing a section")
+            todo.append((i, sec))
+    if not todo:
+        raise Refused(f"no section for {du.label(day)} is only an automatic backup note." + (" Left alone: " + "; ".join(skipped) + "." if skipped else ""))
+
+    def write():
+        for i, sec in todo:
+            fresh = next(x for x in du.model(du.read_doc(ctx.id))[2] if x.tab_id == i.tab_id)
+            s2 = next(x for x in fresh.sections if x.date == day)
+            if note_only_problem(fresh, s2):  # re-check against the doc as it is now
+                print(f"SKIPPED {i.name}: changed since the review.")
+                continue
+            k = fresh.sections.index(s2)
+            end = fresh.sections[k + 1].heading_el["startIndex"] if k + 1 < len(fresh.sections) else fresh.body[-1]["endIndex"] - 1
+            du.batch(ctx.id, [{"deleteContentRange": {"range": {"startIndex": s2.heading_el["startIndex"], "endIndex": end,
+                                                                "tabId": fresh.tab_id}}}])
+            gone = next(x for x in du.model(du.read_doc(ctx.id))[2] if x.tab_id == i.tab_id)
+            print(("REMOVED " if not any(x.date == day for x in gone.sections) else "DID NOT REMOVE ") + i.title)
+    plan = [f"Remove the {du.label(day)} section from {len(todo)} tab(s), each only an automatic backup note: " + ", ".join(i.name for i, _ in todo) + "."]
+    if skipped:
+        plan.append("Left alone: " + "; ".join(skipped) + ".")
+    apply(ns, plan, write)
 
 
 # ---------- day (the close-out cycle, doc owner) ----------
@@ -1321,6 +1394,9 @@ def build_parser():
     verb(g, "write", section_write, "write today's section from SECTION.json (checked first)", "tab", "file")
     verb(g, "show", section_show, "print a day's section as SECTION.json, to re-summarize", "tab", "date")
     verb(g, "lint", section_lint, "the pre-publish check, read only", "tab", "file")
+    verb(g, "remove", section_remove, "remove a section that is only an automatic backup note; `--all <date>` does every tab",
+         ("target", {"nargs": "+", "metavar": "ARG", "help": "<tab> <date>, or just <date> with --all"}),
+         all={"action": "store_true", "help": "every tab with such a section on that date"})
 
     g = group("day", "the 3pm close-out (doc owner)")
     verb(g, "sweep", day_sweep, "preview, or with --publish write, Unconfirmed sections for tabs nobody updated today", "date",
@@ -1349,12 +1425,21 @@ def build_parser():
 
 def main(argv=None):
     args = build_parser().parse_args(argv)
-    if not (args.noun == "doctor" or (args.noun == "doc" and args.verb == "sync")):
-        import backup
-        r = None if os.environ.get("DU_NO_SYNC") else backup.auto()
-        if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):
-            print(backup.report(r), file=sys.stderr)
-    args.fn(args)
+    before = os.environ.get("DU_DRY_RUN")
+    if getattr(args, "dry_run", False):
+        os.environ["DU_DRY_RUN"] = "1"  # the one switch: dudoc.gws, backup and save_config refuse to write while it is set
+    try:
+        if not (args.noun == "doctor" or (args.noun == "doc" and args.verb == "sync")):
+            import backup
+            r = None if os.environ.get("DU_NO_SYNC") else backup.auto()
+            if r and (r["status"] == "skipped" or r["restored"] or r["backed_up"]):
+                print(backup.report(r), file=sys.stderr)
+        args.fn(args)
+    finally:
+        if before is None:
+            os.environ.pop("DU_DRY_RUN", None)
+        else:
+            os.environ["DU_DRY_RUN"] = before
 
 
 if __name__ == "__main__":

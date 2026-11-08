@@ -24,6 +24,8 @@ import shutil
 import subprocess
 import time
 
+import dudoc as du
+
 HOME = os.environ.get("DU_HOME") or os.path.expanduser("~/.daily-update")
 ROOT = os.environ.get("DU_BACKUP_ROOT") or ".engos"
 SUB = "automation-daily-updates"
@@ -51,6 +53,8 @@ class Offline(Exception):
 
 def _gws(*args, body=None, upload=None, out=None, ctype=None):
     # gws only reads or writes files inside its working folder, so run it from the file's own folder.
+    if not du.is_read(args):
+        du.guard_write("gws " + " ".join(args[:4]))
     cmd = [os.environ.get("GWS_BIN", "gws"), *args]
     cwd = None
     if body is not None:
@@ -125,6 +129,7 @@ def _upload(parent, name, path, existing=None):
 
 
 def _download(remote, path):
+    du.guard_write(f"restoring {path}")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     tmp = path + ".restore"
     _gws("drive", "files", "get", "--params", json.dumps({"fileId": remote["id"], "alt": "media"}), out=tmp)
@@ -222,7 +227,7 @@ THROTTLE = 600  # seconds between automatic syncs
 def auto(now=None):
     """Run sync() at most once every THROTTLE seconds. Returns the result, or None when it was not due.
     Every du.py command calls this first, so a new laptop restores its files without the agent remembering."""
-    if os.environ.get("DU_TEST") or os.environ.get("DU_NO_SYNC"):
+    if os.environ.get("DU_TEST") or os.environ.get("DU_NO_SYNC") or du.dry_run():
         return None
     stamp = os.path.join(HOME, ".last-sync")
     now = now or time.time()

@@ -205,6 +205,9 @@ def main():
         print(f"  Missing a plan: {' | '.join(missing_cells(i, what, since, today))}")
     for d, c, i, st in du.next_two_weeks(inits, today):
         print(f"  Next 2 weeks: {du.next_two_weeks_date(d, today)} | {c} ({i.name}) | {st}")
+    if a.publish and du.dry_run():
+        print("\nDry run: nothing written.")
+        return
     if not a.publish:
         print("\nPublish? (re-run with --publish)")
         return
