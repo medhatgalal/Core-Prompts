@@ -1,3 +1,11 @@
+## v1.21.0 - 2026-11-08
+
+Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- New skills: `engos-operations-gtd-planning`, `engos-operations-gtd-things3` and `engos-operations-gtd-sources` (43 skills in all). The planning skill is a GTD method with six modes (capture, triage, daily-plan, daily-close, weekly-review, weekly-plan). Things 3 is an adapter: a bundled bridge that reads and writes Things on macOS, with a default-deny guard on moves and schedule edits, a per-run cap and source-key dedupe. Sources are read-only adapters for Gmail, Chat, Drive comments, Calendar and Gemini notes. The profile lives in `~/.engos/gtd-planning/` with a private Drive backup. `weekly-plan` opens with a landscape (immovable calendar items, hard deadlines, categories with counts), enabled sources are swept without asking, and modes that write end with a read-back of the task system.
+- Tested: validate --strict, smoke-clis --strict, 36 of 37 bridge tests (1 todo), profile tool tests, six blank-session runs and live runs against real Things. Not tested: restoring the profile from Drive on a clean machine, an unattended scheduled capture, Gemini notes beyond a first pass, and the real-doc Monday close and day send of `engos-operations-daily-update`. CI has no `node`, so the bridge tests skip there.
+
 ## v1.20.5 - 2026-11-08
 
 Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
