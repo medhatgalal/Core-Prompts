@@ -1,0 +1,180 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "engos-operations-gtd-things3",
+  "target": "Fulfill the canonical intent of engos-operations-gtd-things3.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "b3e4f90ae669dfc52d19dee4d7f64c6a00f7d34297899e8e2d6ed2510870d948",
+    "e1b55a3329fe972725bd5dc2dfcf7f98adb3f7d06428e2a0e9cb29079dd317e9",
+    "1adf9d8896ef5df899979b12fcd9cac955427b5a22393357d0ab5c3d9394548f",
+    "5adfa7ce15ad7011f6616b9271cdf83dddfac2a1a537706e7f83308fa25772f3",
+    "fc8be39b22091ad5fb6549140c05a77519e2a1337962d4f547ff6db7565417b4",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "d8e77da60ece1c9018a2b0532b525b1cdedc55b2bbe3ffeb2ce5a2434de25468",
+    "08a6ffb904f0dac0ba5a9b34b83098e55dc0b00debcd1f3547ecf54032cdfc95",
+    "741ac0c763ae1ebb287693329e39a38ad7791716693677b12e859ceacd822835",
+    "88dd942ecaea04ac5117f392ac909cb5f0522ccf3f78599887bc37f0e1fb8009",
+    "d461a86ee24a99feef031a0c25b39d965915a898a5f6e4962e444d9ea61c39c6",
+    "d610e09e474050186ccf1b1133ccda5aefb832ec76e10e53b9f56fce1bda2b64",
+    "cfd5402c72296b4115c5851c781bb47daae1d91a80d638ec2b9cb6a17a6c93f6",
+    "eac82ba6b3b1c1a40c4ea434bd766136cdd374108ed3c6c8c07b42fb7670b629",
+    "32f33589c6ad4540fb274bd5abbcc46e23f6677129202095a6af6270afca39c7",
+    "647cd0ccad8d08dc650453f13e440a979e6a1d7be2ee59955af38f2f77451165",
+    "5d195b7715865466ae1bf5079d57a7f0b02d778b8deb7c53a45b3750921ed319",
+    "aed100d9d854cb30ef754f30575a38aa8e14a7f3aa63ce0c66c75c98ce327a48",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+    "8a06d0a6cb8a3ceeaa9f822f92bcc4d31783254b34240aecf8191c7904eb6da9",
+    "302505edcb2224e9e4213805efc968f404441c8b8cadb4bdb4c12de8e1d8588b",
+    "5ac147f07f1c0c627f28e36184e8875cbf3289f82e029dbad51b41a1ac99ae8e",
+    "d081b75a259261fcdf93a360526e8d86ca12ea26133c89611e2016832cf5efb0"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "b3e4f90ae669dfc52d19dee4d7f64c6a00f7d34297899e8e2d6ed2510870d948",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "Maps the method's abstract verbs onto Things 3 and describes the bridge script that enforces the write rules. The method rules live in `engos-operations-gtd-planning`. This file holds only what is specific to Things."
+    },
+    {
+      "sha256": "e1b55a3329fe972725bd5dc2dfcf7f98adb3f7d06428e2a0e9cb29079dd317e9",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "Read and write Things 3 for the GTD method only through the bridge, so every write rule is enforced by code, and report each result as observed."
+    },
+    {
+      "sha256": "1adf9d8896ef5df899979b12fcd9cac955427b5a22393357d0ab5c3d9394548f",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "- macOS only. Things must be running."
+    },
+    {
+      "sha256": "5adfa7ce15ad7011f6616b9271cdf83dddfac2a1a537706e7f83308fa25772f3",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "- Checklists, repeat rules and headings cannot be read by scripts. Never say what a checklist holds. If a change might touch one (rename, split), tell the user you cannot see it."
+    },
+    {
+      "sha256": "fc8be39b22091ad5fb6549140c05a77519e2a1337962d4f547ff6db7565417b4",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "- Touch Things only through the bridge. Never open the database, use the `things:///` URL scheme, or write your own AppleScript."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "d8e77da60ece1c9018a2b0532b525b1cdedc55b2bbe3ffeb2ce5a2434de25468",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "Touch Things only through the bridge. Run it as shown, read before writing, and show a dry run before any real `move`."
+    },
+    {
+      "sha256": "08a6ffb904f0dac0ba5a9b34b83098e55dc0b00debcd1f3547ecf54032cdfc95",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| `THINGS_INTERACTIVE=1` | Allows `move` and `clear-schedule`. Set only by the interactive entry point. Scheduled or unattended runs never set it. Without it, those commands are refused. |"
+    },
+    {
+      "sha256": "741ac0c763ae1ebb287693329e39a38ad7791716693677b12e859ceacd822835",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| `THINGS_TAG_ALLOWLIST` | Comma-separated tags. In an unattended run, `add` accepts only these. Others are dropped. |"
+    },
+    {
+      "sha256": "88dd942ecaea04ac5117f392ac909cb5f0522ccf3f78599887bc37f0e1fb8009",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| `snapshot` | snapshot | Open items in Inbox, Today, Upcoming, Anytime, Someday, plus areas, projects (with ids) and tags. Today items also appear under Anytime; count each id once. Notes are cut at 400 characters. Required columns id, name, notes, tags must have equal length or the call aborts; optional columns (area, project) are exempt. Observed once: a live snapshot on one real database showed equal column lengths. Not tested: what a failed column read does, so keep the assert. |"
+    },
+    {
+      "sha256": "d461a86ee24a99feef031a0c25b39d965915a898a5f6e4962e444d9ea61c39c6",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| `add` | capture | Items `{title, notes, tags, deadline, src}`. Inbox only. Refuses more than 25 at once. Skips a key already present (open items, and completed in the last 30 days). Drops unknown tags. Caps note length. Strips `src:` lines from untrusted text. Reads the key from the last notes line only. |"
+    },
+    {
+      "sha256": "d610e09e474050186ccf1b1133ccda5aefb832ec76e10e53b9f56fce1bda2b64",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| `capabilities`, `--version` | | Command names and contract version. Read-only. |"
+    },
+    {
+      "sha256": "cfd5402c72296b4115c5851c781bb47daae1d91a80d638ec2b9cb6a17a6c93f6",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "Use projects by `projectId`, never by name; names repeat."
+    },
+    {
+      "sha256": "eac82ba6b3b1c1a40c4ea434bd766136cdd374108ed3c6c8c07b42fb7670b629",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "- `move` adds tags, never removes. Appends to notes without trimming, re-reads before writing, and checks the old notes are a prefix of the new. A new title keeps the old one in notes (\"Original title: ...\"). A deadline is replaced only with `replaceDeadline: true`, and the old one goes to notes (\"Deadline was: ...\")."
+    },
+    {
+      "sha256": "32f33589c6ad4540fb274bd5abbcc46e23f6677129202095a6af6270afca39c7",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "- `add` writes to the Inbox only. Never creates areas, projects or tags."
+    },
+    {
+      "sha256": "647cd0ccad8d08dc650453f13e440a979e6a1d7be2ee59955af38f2f77451165",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "Follow the item's own pattern. If its notes have a first line, bullets, an `Action:` line or links, leave them and add below in the same style. Do not move an item out of its project or heading unless asked."
+    },
+    {
+      "sha256": "5d195b7715865466ae1bf5079d57a7f0b02d778b8deb7c53a45b3750921ed319",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| Tickler | Start date (Upcoming) | `clear-schedule` removes it. Verified on real Things 2026-11-08 on two items. One in an area with no project: start date cleared, area and notes kept, item left only in Anytime. One inside a project under a heading, with a tag: start date cleared, project and tag kept, and the user confirmed on screen it stayed under its heading. Headings cannot be read by scripts, so this was a visual check |"
+    },
+    {
+      "sha256": "aed100d9d854cb30ef754f30575a38aa8e14a7f3aa63ce0c66c75c98ce327a48",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "Tags: the waiting tag from the profile plus the person's tag. First notes line: `Waiting since: YYYY-MM-DD`. The adapter parses this line to compute age. A person tag is added only when sure it is the same person."
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "## Required Output"
+    },
+    {
+      "sha256": "8a06d0a6cb8a3ceeaa9f822f92bcc4d31783254b34240aecf8191c7904eb6da9",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "- Use only when the profile lists `things3` under adapters."
+    },
+    {
+      "sha256": "302505edcb2224e9e4213805efc968f404441c8b8cadb4bdb4c12de8e1d8588b",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| Move an item after a yes (interactive only) | `THINGS_INTERACTIVE=1 osascript -l JavaScript resources/things.js move @move.json` |"
+    },
+    {
+      "sha256": "5ac147f07f1c0c627f28e36184e8875cbf3289f82e029dbad51b41a1ac99ae8e",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| Capture | `add` wrote to the Inbox only, at most 25 items, skipped keys already present, dropped unknown tags, capped notes, stripped `src:` lines from untrusted text. |"
+    },
+    {
+      "sha256": "d081b75a259261fcdf93a360526e8d86ca12ea26133c89611e2016832cf5efb0",
+      "source": "ssot/engos-operations-gtd-things3.md",
+      "text": "| Existing items | `move` only added tags and appended notes. Old title and deadline were kept in notes. A dry run was shown first. |"
+    }
+  ],
+  "review_status": "draft"
+}
