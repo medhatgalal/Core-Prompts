@@ -2728,6 +2728,275 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-operations-gtd-planning",
+      "display_name": "GTD Planning (method)",
+      "capability_type": "skill",
+      "summary": "Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \"plan my day\", \"weekly review\", \"triage my inbox\", \"daily close\", \"plan my week\", \"capture my tasks\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "planning",
+        "engos",
+        "operations"
+      ],
+      "required_inputs": [
+        "The mode, or the user's words from which the mode follows. No mode named: see Modes.",
+        "The profile and its hash state (see First action).",
+        "Adapter output: the task system snapshot and any item read with `inspect`.",
+        "Source data from the enabled sources, or text the user pastes (see Paste-in mode).",
+        "For unattended runs: the message or scheduler that says so."
+      ],
+      "expected_outputs": [
+        "Answer first. At most 150 words of prose plus tables.",
+        "Use the report template below for every mode, plans included: Answer, Observed, Concluded, Not checked. Usable-time working goes under Observed with its calendar source.",
+        "Plain words. No em-dashes.",
+        "Titles start with a verb. Never prefix \"Fwd:\" or the source name.",
+        "Notes start \"Action: <one line>\", then the source link.",
+        "Do not claim a fix or a clean result you did not observe.",
+        "Save the full report where the profile says; default to the working folder."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "planning"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-operations-gtd-sources",
+      "display_name": "GTD Sources",
+      "capability_type": "skill",
+      "summary": "Read-only source adapters that feed the GTD planning method: Gmail, Chat, Drive comments, Calendar and Gemini meeting notes, plus the contract for adding more. Use when the GTD method runs capture or needs calendar and meeting context, or when someone is writing a new source adapter. Do not use to send, reply, post, mark read, accept or edit anything, and do not use without the method skill.",
+      "role": "workflow",
+      "domain_tags": [
+        "context",
+        "engos",
+        "operations",
+        "sources"
+      ],
+      "required_inputs": [
+        "The enabled sources and their windows from the profile.",
+        "Personal values for the placeholders below.",
+        "The open task-system titles and notes, for duplicate checks."
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "context",
+          "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "engos-operations-gtd-things3",
+      "display_name": "GTD Things 3 adapter",
+      "capability_type": "skill",
+      "summary": "Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.",
+      "role": "workflow",
+      "domain_tags": [
+        "engos",
+        "operations",
+        "things3"
+      ],
+      "required_inputs": [
+        "A bridge command from the Commands table.",
+        "Its argument: a JSON value or `@<file>`.",
+        "Whether the run is interactive or unattended (`THINGS_INTERACTIVE`).",
+        "For `move` and `clear-schedule`: the user's yes to the exact change, after a dry run."
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "engos",
+          "operations"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-operations-ic-assistant",
       "display_name": "Incident Commander Assistant",
       "capability_type": "skill",

@@ -3,14 +3,16 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.20.4@7c4aff6d806190ca9ac45e46bc79d62f40fb7e5d .meta/manifest.json`
-- New capabilities: `0`
+- Comparison basis: `git:v1.20.5@95851a070cf107cdcf10d83ed4667e6c4a571c08 .meta/manifest.json`
+- New capabilities: `3`
 - Removed capabilities: `0`
 - Changed capability records: `0`
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- none
+- `engos-operations-gtd-planning` — GTD Planning (method)
+- `engos-operations-gtd-sources` — GTD Sources
+- `engos-operations-gtd-things3` — GTD Things 3 adapter
 
 ## Removed Capabilities
 - none

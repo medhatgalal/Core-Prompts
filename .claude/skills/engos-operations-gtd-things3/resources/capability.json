@@ -1,0 +1,361 @@
+{
+  "slug": "engos-operations-gtd-things3",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.",
+      "role": "workflow",
+      "domain_tags": [
+        "engos",
+        "operations",
+        "things3"
+      ],
+      "required_inputs": [
+        "A bridge command from the Commands table.",
+        "Its argument: a JSON value or `@<file>`.",
+        "Whether the run is interactive or unattended (`THINGS_INTERACTIVE`).",
+        "For `move` and `clear-schedule`: the user's yes to the exact change, after a dry run."
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-operations-gtd-things3.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-operations-gtd-things3.md",
+        "policy_rule_id": "ssot.engos-operations-gtd-things3",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "GTD Things 3 adapter"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "workflow_provider",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "engos",
+        "operations"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "GTD Things 3 adapter",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "invocation_hints": [
+    "Use for `snapshot`, `get`, `logbook`, `add`, `move`, `clear-schedule` against Things 3 on macOS.",
+    "Use only when the profile lists `things3` under adapters.",
+    "Run `capabilities` first if the contract version is in doubt."
+  ],
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-operations-gtd-things3",
+  "shared_summary": "Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "engos-operations-gtd-things3",
+    "strategy": "derived_history",
+    "group": "derived",
+    "baseline_path": null,
+    "selected_commit": "237c0929",
+    "richness_score": 11,
+    "line_count": 146,
+    "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "operational_invocation",
+        "kind": "operational_contract",
+        "label": "operational invocation surface",
+        "must_contain": [
+          "## Invocation",
+          "| Command |"
+        ]
+      },
+      {
+        "id": "stepwise_workflow_contract",
+        "kind": "operational_contract",
+        "label": "stepwise workflow contract",
+        "must_contain": [
+          "## Workflow Contract"
+        ]
+      }
+    ],
+    "historical_proof": {},
+    "source": "git_history",
+    "verified_by_git_history": true,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation",
+        "| Command |"
+      ]
+    },
+    {
+      "id": "stepwise_workflow_contract",
+      "kind": "operational_contract",
+      "label": "stepwise workflow contract",
+      "must_contain": [
+        "## Workflow Contract"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Read and write Things 3 for the GTD method only through the bridge, so every write rule is enforced by code, and report each result as observed.",
+    "use_when": "- Use for `snapshot`, `get`, `logbook`, `add`, `move`, `clear-schedule` against Things 3 on macOS.\n- Use only when the profile lists `things3` under adapters.\n- Run `capabilities` first if the contract version is in doubt.",
+    "works_on": "- A bridge command from the Commands table.\n- Its argument: a JSON value or `@<file>`.\n- Whether the run is interactive or unattended (`THINGS_INTERACTIVE`).\n- For `move` and `clear-schedule`: the user's yes to the exact change, after a dry run.",
+    "main_output": "The bridge's JSON result for each command, reported with what was observed and what was not checked. For a dry run, what would change and nothing else. Failures, refusals and skipped keys are reported by name.",
+    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+    "authority": "- macOS only. Things must be running.\n- Each call takes seconds. A full snapshot may take several.\n- Checklists, repeat rules and headings cannot be read by scripts. Never say what a checklist holds. If a change might touch one (rename, split), tell the user you cannot see it.\n- A `move` is not proven to keep an item in its heading. Make no such promise until a test shows it.\n- \"This Evening\" is not supported.\n- Touch Things only through the bridge. Never open the database, use the `things:///` URL scheme, or write your own AppleScript.",
+    "routing_question": "Does this request directly require GTD Things 3 adapter?",
+    "nearest_neighbors": [],
+    "shape": "unclassified_new_skill",
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": []
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "- macOS only. Things must be running.\n- Each call takes seconds. A full snapshot may take several.\n- Checklists, repeat rules and headings cannot be read by scripts. Never say what a checklist holds. If a change might touch one (rename, split), tell the user you cannot see it.\n- A `move` is not proven to keep an item in its heading. Make no such promise until a test shows it.\n- \"This Evening\" is not supported.\n- Touch Things only through the bridge. Never open the database, use the `things:///` URL scheme, or write your own AppleScript.",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-operations-gtd-things3.md",
+              "start_line": 23,
+              "end_line": 28,
+              "sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-operations-gtd-things3",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-operations-gtd-things3.md",
+        "ssot_sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1",
+        "effective_sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Read and write Things 3 for the GTD method only through the bridge, so every write rule is enforced by code, and report each result as observed.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/engos-operations-gtd-things3.md",
+                "start_line": 19,
+                "end_line": 19,
+                "sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "- Use for `snapshot`, `get`, `logbook`, `add`, `move`, `clear-schedule` against Things 3 on macOS.\n- Use only when the profile lists `things3` under adapters.\n- Run `capabilities` first if the contract version is in doubt.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-operations-gtd-things3.md",
+                "start_line": 121,
+                "end_line": 123,
+                "sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "- A bridge command from the Commands table.\n- Its argument: a JSON value or `@<file>`.\n- Whether the run is interactive or unattended (`THINGS_INTERACTIVE`).\n- For `move` and `clear-schedule`: the user's yes to the exact change, after a dry run.",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-operations-gtd-things3.md",
+                "start_line": 32,
+                "end_line": 35,
+                "sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "The bridge's JSON result for each command, reported with what was observed and what was not checked. For a dry run, what would change and nothing else. Failures, refusals and skipped keys are reported by name.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-operations-gtd-things3.md",
+                "start_line": 117,
+                "end_line": 117,
+                "sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1"
+              }
+            }
+          ],
+          "authority": [
+            {
+              "text": "- macOS only. Things must be running.\n- Each call takes seconds. A full snapshot may take several.\n- Checklists, repeat rules and headings cannot be read by scripts. Never say what a checklist holds. If a change might touch one (rename, split), tell the user you cannot see it.\n- A `move` is not proven to keep an item in its heading. Make no such promise until a test shows it.\n- \"This Evening\" is not supported.\n- Touch Things only through the bridge. Never open the database, use the `things:///` URL scheme, or write your own AppleScript.",
+              "heading": "Tool Boundaries",
+              "source": {
+                "path": "ssot/engos-operations-gtd-things3.md",
+                "start_line": 23,
+                "end_line": 28,
+                "sha256": "a829ad97f9845a924f2f6399575ddd3dfdf0f4e4b317bcd281b2ea1fce3e37e1"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "4d1a394ef14d0b4582d0b0fc4437801e33f28961d928dee83f269faf6ee6f358"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.not_for",
+        "implicit_activation_eligibility",
+        "task_phases",
+        "negative_examples"
+      ]
+    }
+  }
+}
