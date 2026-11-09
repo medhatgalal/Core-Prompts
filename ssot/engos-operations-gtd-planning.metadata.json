@@ -1,0 +1,23 @@
+{
+  "name": "engos-operations-gtd-planning",
+  "display_name": "GTD Planning (method)",
+  "version": "1.0.0",
+  "description": "Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \"plan my day\", \"weekly review\", \"triage my inbox\", \"daily close\", \"plan my week\", \"capture my tasks\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.",
+  "kind": "skill",
+  "capability_type": "skill",
+  "agent_tools": [
+    "Read",
+    "Write",
+    "Bash",
+    "Grep",
+    "Glob"
+  ],
+  "triggers": [
+    "plan my day",
+    "weekly review",
+    "triage my inbox",
+    "daily close",
+    "plan my week",
+    "capture my tasks"
+  ]
+}

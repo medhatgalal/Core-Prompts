@@ -1,0 +1,20 @@
+{
+  "name": "engos-operations-gtd-things3",
+  "display_name": "GTD Things 3 adapter",
+  "version": "1.0.0",
+  "description": "Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.",
+  "kind": "skill",
+  "capability_type": "skill",
+  "agent_tools": [
+    "Read",
+    "Write",
+    "Bash",
+    "Grep",
+    "Glob"
+  ],
+  "triggers": [
+    "things3 adapter",
+    "things snapshot",
+    "things capture"
+  ]
+}
