@@ -1,0 +1,18 @@
+{
+  "name": "engos-operations-gtd-sources",
+  "display_name": "GTD Sources",
+  "version": "1.0.0",
+  "description": "Read-only source adapters that feed the GTD planning method: Gmail, Chat, Drive comments, Calendar and Gemini meeting notes, plus the contract for adding more. Use when the GTD method runs capture or needs calendar and meeting context, or when someone is writing a new source adapter. Do not use to send, reply, post, mark read, accept or edit anything, and do not use without the method skill.",
+  "kind": "skill",
+  "capability_type": "skill",
+  "agent_tools": [
+    "Read",
+    "Bash",
+    "Grep",
+    "Glob"
+  ],
+  "triggers": [
+    "gtd sources",
+    "gtd capture sources"
+  ]
+}
