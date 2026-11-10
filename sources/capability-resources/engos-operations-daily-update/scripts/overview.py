@@ -21,6 +21,7 @@ KEY = ["🔴 Red: a committed date passed and it is not done, or it is blocked a
        "🟡 At risk: the updater does not expect the next milestone to land on its date, or it waits on another team.",
        "🟢 On track: the updater expects the next milestone to land on its date.",
        "⚪ Paused: paused or not started.",
+       "⚪ Stopped: not going ahead; waiting to move to Archive.",
        "A missing date is not a colour: Missing a plan lists every open initiative without a dated next milestone."]
 MISSING_HEAD = "Missing a plan"
 MISSING_NONE = "Every open initiative has a dated next milestone."

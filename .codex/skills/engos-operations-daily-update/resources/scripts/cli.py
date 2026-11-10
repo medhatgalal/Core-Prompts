@@ -322,7 +322,9 @@ def today():
 def row_for(init, name=None, owner=None):
     ms = init.newest("milestone")
     st = init.newest("status")
-    return [name or init.name, owner or init.owner, du.STATUSES[st.status if st else "🟡"], (ms.milestone if ms else "") or ""]
+    prog = init.sections[0].line("Progress:") if init.sections else ""
+    return [name or init.name, owner or init.owner, du.status_text(st.status if st else "🟡", ms.milestone if ms else "", prog or ""),
+            (ms.milestone if ms else "") or ""]
 
 
 def note(ctx, init, line):
@@ -460,7 +462,7 @@ def area_rename(ns):
         for k in kids:
             set_header(ctx, k.tab_id, f"Area: {a.name}", f"Area: {ns.new_name}")
             if k.sections:
-                note(ctx, k, f"Area renamed from {a.name} to {ns.new_name} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+                note(ctx, k, f"Area renamed from {a.name} to {ns.new_name} on {du.label(today())}.")
     apply(ns, [f"Rename area {a.name!r} to {ns.new_name!r}.", f"Update the Area line on {len(kids)} initiative tab(s) "
                "and note it in today's section on each tab that already has one."], write)
 
@@ -549,7 +551,7 @@ def init_rows(ctx, ns):
         s, ms = i.newest("status"), i.newest("milestone")
         what, when = du.split_milestone(ms.milestone) if ms else ("None", "No date set yet")
         rows.append({"name": i.name, "area": i.area_name if i not in ctx.archived else "(archived)", "owner": i.owner,
-                     "updater": i.updater, "backups": list(i.backups), "state": st, "status": du.STATUSES[s.status] if s else "", "milestone": what,
+                     "updater": i.updater, "backups": list(i.backups), "state": st, "status": du.status_text(s.status, ms.milestone if ms else "", i.sections[0].line("Progress:") or "") if s else "", "milestone": what,
                      "date": when})
     return rows
 
@@ -603,7 +605,7 @@ def initiative_rename(ns):
         m.retitle(ctx.id, i.tab_id, f"{ns.new_name} ({i.owner})")
         _update_row_named(ctx, i, i.name, ns.new_name)
         if i.sections:
-            note(ctx, i, f"Renamed from {i.name} to {ns.new_name} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+            note(ctx, i, f"Renamed from {i.name} to {ns.new_name} on {du.label(today())}.")
     apply(ns, [f"Rename {i.name!r} to {ns.new_name!r}: tab title, area table row, and a note in today's section if it has one."], write)
 
 
@@ -629,7 +631,7 @@ def initiative_set_owner(ns):
         set_header(ctx, i.tab_id, f"Owner: {i.owner}", f"Owner: {ns.person}")
         _update_row(ctx, i, owner=ns.person)
         if i.sections:
-            note(ctx, i, f"Owner changed from {i.owner} to {ns.person} on {du.label(today())}. (from {ctx.me or ctx.owner})")
+            note(ctx, i, f"Owner changed from {i.owner} to {ns.person} on {du.label(today())}.")
     apply(ns, [f"{i.name}: owner {i.owner} -> {ns.person}.", "Tab title, header, area table row, and a note in today's section if it has one."] + warn, write)
 
 
@@ -733,18 +735,18 @@ def _lifecycle_spec(ctx, i, verb, ns):
     spec = {"date": day.isoformat(), "blocked": "None.", "links": [], "extra": [], "author": me,
             "cover_for": None if same_person(me, i.updater) else i.updater}
     if verb == "pause":
-        spec.update(status="⚪", milestone=ms, progress=f"Paused {lab}: {ns.reason}. (from {me})",
+        spec.update(status="⚪", milestone=ms, progress=f"Paused {lab}: {ns.reason}.",
                     green_when=f"{i.updater} sets this when work resumes.")
     elif verb == "done":
-        spec.update(status="🟢", milestone=f"{du.commitment(ms)}, done {lab}", progress=f"Done {lab}: {ns.outcome}. (from {me})")
+        spec.update(status="🟢", milestone=f"{du.commitment(ms)}, done {lab}", progress=f"Done {lab}: {ns.outcome}.")
     elif verb == "stop":
-        spec.update(status="⚪", milestone=f"None, stopped {lab}", progress=f"Stopped {lab}: {ns.reason}. (from {me})",
+        spec.update(status="⚪", milestone=f"None, stopped {lab}", progress=f"Stopped {lab}: {ns.reason}.",
                     green_when="Not planned.")
     else:  # resume, reopen: the person gives the colour and the next milestone
         if not ns.status or not ns.milestone:
             raise Refused(f"{verb} needs --status (🟢, 🟡 or 🔴) and --milestone (with its date, or 'No date set yet').")
         why = f"Reopened {lab}: {ns.reason}." if verb == "reopen" else f"Resumed {lab}."
-        spec.update(status=ns.status, milestone=ns.milestone, progress=f"{why} (from {me})")
+        spec.update(status=ns.status, milestone=ns.milestone, progress=why)
         if ns.status != "🟢" and ns.green_when:
             spec["green_when"] = ns.green_when
     return spec

@@ -41,7 +41,7 @@ def draft(init, today, owner, decisions):
             if choice == "red":
                 if status != "🔴":  # a colour change opens Progress with the reason, from facts the sweep has
                     reason = (f'Progress: The milestone "{du.commitment(ms)}" was due {du.label(due)} and is not done, '
-                              f'so {owner} marked it Red. (from {owner})')
+                              f'so {owner} marked it Red.')
                 status = "🔴"
             elif choice == "done":
                 ms = f"{ms}, done {du.label(today)}."

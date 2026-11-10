@@ -93,8 +93,30 @@ def main():
     # Hard stops still hold.
     p = daily.checks(base[:2] + ["Progress: See https://example.com (chat)."] + base[3:], [])
     check("a raw URL blocks", any("raw URL" in x for x in daily.blocking(p)), p)
+    p = daily.checks(base[:2] + ["Progress: All known work merged."] + base[3:], [], sources={})
+    check("an unlinked line with no recorded source blocks", any("no link" in x for x in daily.blocking(p)), p)
+    p = daily.checks(base[:2] + ["Progress: All known work merged."] + base[3:], [], sources={"progress": ["Scott, in this session"]})
+    check("an unlinked line with a recorded source needs no label", not any("no link" in x for x in p), p)
+    p = daily.checks(base[:2] + ["Progress: Nine roles are waiting on a screen (per Adam Goetz)."] + base[3:], [], sources={})
+    check("a (per <name>) line needs no link", not any("no link" in x for x in p), p)
+    for life in ("Progress: Done Mon Nov 9: shipped.", "Progress: Stopped Mon Nov 9: folded into X.", "Progress: Resumed Mon Nov 9.",
+                 "Progress: Paused Mon Nov 9: waiting on Product.", "Progress: Reopened Mon Nov 9: back in scope."):
+        p = daily.checks(base[:2] + [life] + base[3:], [], sources={})
+        check(f"a lifecycle line needs no source: {life[10:24]}", not any("no link" in x for x in p), p)
+    p = daily.checks(base[:2] + ["Progress: All known work merged (chat)."] + base[3:], [], sources={})
+    check("an older (chat) label still passes", not any("no link" in x for x in p), p)
     p = daily.checks(base[:2] + ["Progress: All known work merged."] + base[3:], [])
-    check("a line with no link or source label blocks", any("no link" in x for x in daily.blocking(p)), p)
+    check("no SECTION.json sources (older callers) skips the source check", not any("no link" in x for x in p), p)
+
+    # Stopped reads Stopped, paused reads Paused.
+    check("stopped milestone reads Stopped", du.status_text("⚪", "None, stopped Sat Nov 7") == "⚪ Stopped")
+    check("stopped progress reads Stopped", du.status_text("⚪", "", "Stopped Sat Nov 7: folded.") == "⚪ Stopped")
+    check("paused still reads Paused", du.status_text("⚪", "Learning sessions start, No date set yet") == "⚪ Paused")
+    check("a colour is unchanged", du.status_text("🟡", "None, stopped Sat Nov 7") == "🟡 At risk")
+    check("a paused milestone that mentions 'stopped' still reads Paused",
+          du.status_text("⚪", "Restart once the vendor stopped Mon Nov 9 issue is fixed, No date set yet") == "⚪ Paused")
+    p = daily.checks(base[:2] + ["Progress: Scope agreed (per the weekly sync)."] + base[3:], [], sources={})
+    check("a lowercase (per ...) label passes", not any("no link" in x for x in p), p)
     p = daily.checks(base[:2] + ["Progress: Priya Raman accepted our offer (email)."] + base[3:], [], known_names=["Priya"])
     check("a people-sensitive line blocks", any("people-sensitive" in x for x in daily.blocking(p)), p)
     p = daily.checks(base[:2] + ["Progress: It moved to next week (chat)."] + base[3:], [])

@@ -680,6 +680,10 @@ for (noun, verb_), args in sorted(VERB_ARGS.items()):
     if os.environ.get("SHOW_OUTCOMES"):
         print("   ->", LAST[-1][1].strip().replace("\n", " | ")[:230])
     check(f"--dry-run is switched off again after: {noun} {verb_}", leak is None, str(leak))
+# lifecycle sections carry no "(from <me>)" label
+for verb_ in ("pause", "done", "stop"):
+    writes_of(["initiative", verb_, *VERB_ARGS[("initiative", verb_)], "--dry-run"])
+    check(f"initiative {verb_} writes no (from ...) label", "(from " not in LAST[-1][1], LAST[-1][1][-200:])
 # --tag works on its own, after the publish: the tab swept earlier gets its comment, and only once
 w, _ = writes_of(["day", "sweep", D, "--tag"])
 check("day sweep --tag alone tags the updater of a swept tab", any("comments create" in x for x in w), str(w))

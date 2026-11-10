@@ -35,7 +35,7 @@ def _paras(tab_id, at, lines, styles, links=()):
 
 
 def section_lines(day, status, milestone, progress, extra=()):
-    return [du.label(day, True), du.STATUSES[status], f"Next milestone: {milestone}", f"Progress: {progress}", *extra]
+    return [du.label(day, True), du.status_text(status, milestone, progress), f"Next milestone: {milestone}", f"Progress: {progress}", *extra]
 
 
 def relink(old_lines, new_lines, links):
