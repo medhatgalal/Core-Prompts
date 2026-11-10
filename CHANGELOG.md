@@ -1,3 +1,11 @@
+## v1.21.1 - 2026-11-09
+
+Tag authorized by Scott Parrish on 2026-11-09. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: a stopped initiative now shows "⚪ Stopped" (tab, area row, `initiative list`, overview key, Update guide) instead of "⚪ Paused". Update lines link a shareable source when there is one and carry no label otherwise: no more "(email)", "(chat)", "(meeting notes)" or "(from <updater>)". The one label left is "(per <name>)" for a fact someone other than the updater gave. An unlinked line needs `sources` in SECTION.json (saved to the ledger, never the doc), or `section lint` and `section write` refuse it. Lifecycle verbs, change notes and the sweep's red line no longer add "(from <me>)". Older labelled sections stay valid (MR !181).
+- Tested: rules_test and cli_test, validate --strict, eval compile --check, MR !181 CI. Not tested: a live `initiative stop` on a real doc, and `migrate.py` on a doc with a stopped tab.
+
 ## v1.21.0 - 2026-11-08
 
 Tag authorized by Scott Parrish on 2026-11-08. Publication is recorded by the GitLab
