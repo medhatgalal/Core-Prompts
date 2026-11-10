@@ -1,3 +1,11 @@
+## v1.21.2 - 2026-11-09
+
+Tag authorized by Scott Parrish on 2026-11-09. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: `onboard` is accepted as another name for `doc join` (the command was renamed in v1.20.0, but the leader invite and the getting-started doc still said `onboard`). The invite text now says `doc join` and tells leaders to type it in the chat box. The script's "no doc" message names `doc join`.
+- Tested: rules_test, cli_test, validate --strict, eval compile --check. Not tested: a leader running `onboard` in a fresh session.
+
 ## v1.21.1 - 2026-11-09
 
 Tag authorized by Scott Parrish on 2026-11-09. Publication is recorded by the GitLab

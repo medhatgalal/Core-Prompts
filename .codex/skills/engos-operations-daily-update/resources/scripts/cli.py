@@ -237,7 +237,7 @@ class Ctx:
 def resolve_doc(ns):
     doc_id = ns.doc or load_config().get("doc_id")
     if not doc_id:
-        raise SystemExit("No doc. Pass --doc ID, or run `du.py doc create` / `onboard` first.")
+        raise SystemExit("No doc. Pass --doc ID, or run `du.py doc create`, or `/engos-operations-daily-update doc join <link>` in the chat, first.")
     m_ = re.search(r"/document/d/([\w-]+)", doc_id)
     return m_.group(1) if m_ else doc_id
 

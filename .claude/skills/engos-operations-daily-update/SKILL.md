@@ -93,7 +93,7 @@ The verbs mean the same on every noun: `list` and `show` read, `add` creates, `s
 | `send` | doc owner | Draft the summary for the readers; send only on "send" | Send |
 | `discover` | leader | Find recurring work no tab covers; add the ones you pick | Discover |
 | `doc create` | doc owner | Create a new doc; this person becomes its doc owner | Create |
-| `doc join` | leader | Connect sources and confirm your tabs, once | Onboard |
+| `doc join` (also `onboard`) | leader | Connect sources and confirm your tabs, once | Onboard |
 | `doc show` | anyone | Owner, your role, areas, initiatives by state, readers | Help |
 | `doctor` | anyone | Read-only health check of this machine (sign-in, config, sources, Drive backup) and the doc (rules above, stale updates, empty areas, open initiatives with no backup, section layout and readability warnings); each finding names its fix; exits non-zero on a fail. `--local` or `--only-doc` limits it | Help |
 | `initiative list`, `initiative show` | anyone | Find initiatives by area, owner, updater or state | Initiatives |
@@ -494,7 +494,7 @@ widths still add up to the text width, and fix them if not.
 
    > Our daily updates now live in one doc: <link>. You update every tab that lists you as Updater.
    > Install once (needs the VPN): the standard Appian setup (dotfiles, then Core-Prompts "Install Or Repair"),
-   > which includes this skill. Then in your AI tool run `/engos-operations-daily-update onboard <link>`.
+   > which includes this skill. Then in your AI tool's chat box run `/engos-operations-daily-update doc join <link>`.
    > Each day by 3pm ET run `/engos-operations-daily-update`, check the draft and say "publish". About 10 minutes a day.
 
 ## Onboard (each leader, once)
