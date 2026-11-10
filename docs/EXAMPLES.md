@@ -34,6 +34,17 @@ below remain useful when you already know the job; memorizing them is optional.
 Supercharge, continuity, goal packets and Batman are explicit optional requests,
 not required stages added to every example.
 
+## Choose the stopping point
+
+| Ordinary request | Expected result |
+| --- | --- |
+| “Polish this prompt and tell me how to grade it. Leave its instructions unexecuted.” | Supercharge can simplify the text and propose grading criteria. Return the edited prompt and rubric. |
+| “Turn these accepted migration steps into a goal. I will start it later.” | Plan-to-Goal prepares a goal packet with milestone evidence and stopping checks. Leave activation with the user. |
+| “Our tests disagree. Compare replay and synthetic load, then recommend one.” | Auto-Research can test the two alternatives with matched inputs. Converge can reconcile their evidence if a decision still needs work. A tie is a possible result. |
+| “Fix this reproduced bug and leave me a reviewed local diff.” | Implement Slice builds from the accepted inputs. The reviewer checks the exact diff and tests. Any repair returns for review. Stop with the local diff. |
+| “Design an overnight read-only audit of this migration.” | Crew produces a plan and criteria for approval. A foreground worker does not demonstrate unattended persistence. A read-only monitor can return its finding for the designer to record. |
+| “What shipped this week, and which issues are still open?” | Engineering Progress covers Git activity. Weekly Intel can combine that evidence with current issue-tracker records and independently review a substantial report. Ask for missing repo or tracker scope. |
+
 ## Intake adapts to what is already known
 
 These are illustrative decisions, not executed routing tests. The available

@@ -67,6 +67,7 @@
     "21e906c8197ee1fd35263ddecb05c33ddf5c6466e2e3932e25af21827381bb6c",
     "b8ef9f44f9c399a007e5ba65e4c80711e29cfcd981922591cbaa699b45b7d149",
     "5fa7e20712c730e48c200e88c2b9b8773297739ce7075bba7ccaaa0869ac3304",
+    "210cc701c489894f23dd7c26afcc23a2bd78d35e7c21ba4d34df6364cd19aa3e",
     "6d62442c1456ffd46371e8c7b701487c42ede0882256411135a6ab3c47f68743",
     "5387d8636d1041e29a26269794a10c2ffce53baeef3bf14423a92a87149a2277",
     "97f24215368ef909e14a9fdaf682ee61d2a0f179a0b66f0756671955348f34f1",
@@ -83,7 +84,11 @@
     "281fea22c6d6f3514ff290bb3fa0046a89742b614c18ae31dd6a381709c41b0d",
     "5154d2daee8a174cd57c1e83f4bdaf2a178ebb6927500a9ce380cfed303e1066",
     "d5626cadcca88a521f9c5359b0c5dac3b3861dc89fa8a13ff0b8fed34c86a2d9",
+    "6b6b5427d62ddb3cb71a9507ee35e8cea337304f6de2bba1d4bbf5adf9e057ed",
+    "66dcdae01e368b8ba9ecbe13f70210bfbb624cdc7f2e1e24f53fa42ff1375360",
+    "730049877e44d6eb38be225a75ccd2cc5b291a66458ba7f3e14655ca25466d4e",
     "5fdb7eb4b5534546df94fafd2acf0f42645822e1736c1d2125e6f22699dd6226",
+    "30aa6a7a494e00cb0a9d16554f262b9028f7bfc3eec941f44d36055898c64996",
     "77de070fb3d41e0ad220e6d0545fcf540725ae6af32c7be58871fb85cc9124e4",
     "8292ebc4b1d72a0f37cce557040e0b7468fae3f294cf2de56878e7e9e7b1032b",
     "7c142e75e78a31bed1e64a61966191d85a748a10b49b01e7aa2e00647d57ffc1",
@@ -495,6 +500,11 @@
       "text": "Do not turn this table, helper output or guide selections into an acceptance receipt."
     },
     {
+      "sha256": "210cc701c489894f23dd7c26afcc23a2bd78d35e7c21ba4d34df6364cd19aa3e",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Roll up an org's merged and open GitLab and GitHub changes for a time window into a fact-checked, business-impact report: each bullet states its likely impact (inference) and what changed (fact) with links. The roster is the reporting tree in the Appian Home org chart. Use for what-did-my-org-ship-and-why-it-matters updates; do not use for git metrics dashboards, Jira or chat status reports, or code review.\","
+    },
+    {
       "sha256": "6d62442c1456ffd46371e8c7b701487c42ede0882256411135a6ab3c47f68743",
       "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
       "text": "\"summary\": \"Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.\","
@@ -575,9 +585,29 @@
       "text": "\"summary\": \"Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.\","
     },
     {
+      "sha256": "6b6b5427d62ddb3cb71a9507ee35e8cea337304f6de2bba1d4bbf5adf9e057ed",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \\\"plan my day\\\", \\\"weekly review\\\", \\\"triage my inbox\\\", \\\"daily close\\\", \\\"plan my week\\\", \\\"capture my tasks\\\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.\","
+    },
+    {
+      "sha256": "66dcdae01e368b8ba9ecbe13f70210bfbb624cdc7f2e1e24f53fa42ff1375360",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Read-only source adapters that feed the GTD planning method: Gmail, Chat, Drive comments, Calendar and Gemini meeting notes, plus the contract for adding more. Use when the GTD method runs capture or needs calendar and meeting context, or when someone is writing a new source adapter. Do not use to send, reply, post, mark read, accept or edit anything, and do not use without the method skill.\","
+    },
+    {
+      "sha256": "730049877e44d6eb38be225a75ccd2cc5b291a66458ba7f3e14655ca25466d4e",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.\","
+    },
+    {
       "sha256": "5fdb7eb4b5534546df94fafd2acf0f42645822e1736c1d2125e6f22699dd6226",
       "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
       "text": "\"summary\": \"Run bounded, baseline-controlled experiments to improve prompts, skills, workflows, tools, or code and decide whether a candidate is ready for promotion. Use when better behavior must be measured; do not use for unmeasured brainstorming.\","
+    },
+    {
+      "sha256": "30aa6a7a494e00cb0a9d16554f262b9028f7bfc3eec941f44d36055898c64996",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.\","
     },
     {
       "sha256": "77de070fb3d41e0ad220e6d0545fcf540725ae6af32c7be58871fb85cc9124e4",

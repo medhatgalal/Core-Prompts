@@ -2,6 +2,8 @@ from pathlib import Path
 import hashlib
 import importlib.util
 import json
+import subprocess
+import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -113,6 +115,61 @@ def test_explicit_broken_root_is_not_silently_replaced_by_bundled_snapshot(tmp_p
     _, table = fixture(tmp_path)
     with pytest.raises(ValueError):
         m.inspect(tmp_path / "missing", table_path=table)
+
+
+def test_rootless_catalog_covers_current_descriptors_as_advisory_snapshot(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    result = m.inspect()
+    descriptors = {p.stem: p for p in (ROOT / ".meta/capabilities").glob("*.json")}
+    assert set(result["skills"]) == set(descriptors)
+    assert result["native_discovery_verified"] is False
+    assert result["grants_authority"] is False
+    for slug, path in descriptors.items():
+        raw = path.read_bytes()
+        row = result["skills"][slug]
+        assert row["summary"] == json.loads(raw)["layers"]["minimal"]["summary"]
+        assert row["inventory_basis"] == "bundled_snapshot"
+        assert row["availability"] == "catalog_only"
+        assert row["observed_entries"] == []
+        if slug == "engos-route-intent":
+            assert row["self_routing"] == "not_a_downstream_candidate"
+            assert row["descriptor_sha256"] is None
+        else:
+            assert row["descriptor_sha256"] == hashlib.sha256(raw).hexdigest()
+
+
+def test_refresh_rebuilds_catalog_without_updating_reviewed_relationship_bindings(tmp_path):
+    root, template = fixture(tmp_path)
+    descriptor_dir = root / ".meta/capabilities"
+    owner = "engos-route-intent"
+    (descriptor_dir / f"{owner}.json").write_bytes(
+        (ROOT / ".meta/capabilities" / f"{owner}.json").read_bytes()
+    )
+    table = root / "sources/capability-resources" / owner / template.name
+    table.parent.mkdir(parents=True)
+    original = json.loads(template.read_bytes())
+    original["owner"] = owner
+    table.write_text(json.dumps(original))
+
+    # The reviewed relationship binds the old descriptor revision.
+    descriptor = descriptor_dir / "beta-skill.json"
+    changed = json.loads(descriptor.read_bytes())
+    changed["layers"]["minimal"]["summary"] = "Updated job"
+    descriptor.write_text(json.dumps(changed))
+    command = [sys.executable, str(ROOT / "scripts/refresh-routing-catalog.py"), "--root", str(root)]
+    previous = table.read_bytes()
+    assert subprocess.run([*command, "--check"]).returncode == 1
+    assert table.read_bytes() == previous
+    subprocess.run(command, check=True)
+    fresh = table.read_bytes()
+    subprocess.run([*command, "--check"], check=True)
+    subprocess.run(command, check=True)
+    assert table.read_bytes() == fresh
+    assert json.loads(fresh)["relationships"] == original["relationships"]
+
+    result = m.inspect(table_path=table)
+    assert result["skills"]["beta-skill"]["summary"] == "Updated job"
+    assert result["relationships"][0]["binding_status"] == "stale_or_missing"
 
 
 def test_bundled_relationships_cover_each_current_descriptor_without_fixed_count():
