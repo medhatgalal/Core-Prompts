@@ -23,14 +23,14 @@ def content(owner, overview_url, otitle):
         ("Template", H2),
         ("Each initiative tab gets one section per day, newest first, in this order:", N),
         ("<Weekday Mon D, YYYY>  (date heading)", N),
-        ("🟢 On track  |  🟡 At risk  |  🔴 Red  |  ⚪ Paused", N),
+        ("🟢 On track  |  🟡 At risk  |  🔴 Red  |  ⚪ Paused  |  ⚪ Stopped", N),
         ("Next milestone: <one thing>, <Weekday Mon D>", N),
         ("Progress: <up to 3 sentences on what changed and why it matters, each with a link>", N),
         ("Blocked on: <who, what, by when>, or None.", N),
         ("Green when: <the one thing that would make it green>  (only when not 🟢)", N),
         ("What each line means", H2),
         ("Status: your call on one question, will the next milestone land on its date? Yes is 🟢. No, or it waits "
-         "on another team, is 🟡. A passed date, or a blocker nobody owns, is 🔴. Paused or not started is ⚪.", N),
+         "on another team, is 🟡. A passed date, or a blocker nobody owns, is 🔴. Paused or not started is ⚪ Paused; stopped for good is ⚪ Stopped.", N),
         ("Next milestone: one outcome and one date with its weekday. Never \"this week\", \"soon\" or \"TBD\". "
          "With no date yet, write \"No date set yet\": the colour stays your call, and the overview lists it under "
          "Missing a plan until it has a date.", N),
@@ -44,7 +44,7 @@ def content(owner, overview_url, otitle):
         ("Flag blockers early, before they become critical.", N),
         ("Always give the next step, even if it is tentative.", N),
         ("When the colour changes, open Progress with the reason.", N),
-        ("Link every claim to a source anyone in the company can open, on a short word like (Jira COM-994) or (merge request !455), never a raw URL. Never link email, chat or meeting notes; end that line \"(email)\", \"(chat)\" or \"(meeting notes)\" with no link.", N),
+        ("Link every claim to a source anyone in the company can open, on a short word like (Jira COM-994) or (merge request !455), never a raw URL. Never link email, chat or meeting notes. With no link, add no label: your own word needs none; a fact someone else gave ends \"(per <name>)\".", N),
         ("Use absolute dates with the weekday. \"Today\" means US Eastern time.", N),
         ("Use the same template every time so readers can scan across tabs.", N),
         ("Status lives here, not in meetings. Read the doc before a meeting; meeting time goes to decisions.", N),

@@ -38,10 +38,20 @@ def _about_a_date(text, mv, milestone_day):
     return bool(later or DATEISH.search(window))
 
 
-def checks(lines, links, known_names=(), prev=None):
+# A Progress or Blocked on line needs no link or label when it is one of these.
+NO_SOURCE_NEEDED = re.compile(
+    r"No (change since|update from)|Blocked on: None\.|Moved from .+ on |"
+    r"^Progress: (Done|Stopped|Paused|Resumed|Reopened) (Mon|Tue|Wed|Thu|Fri|Sat|Sun) |"
+    r"\(per [^()]+\)\.?$|"
+    r"\((email|chat|meeting notes)\)\.?$|\(from [A-Z][\w .'-]*\)\.?$")  # older labels still pass
+
+
+def checks(lines, links, known_names=(), prev=None, sources=None):
     """The skill's 'Checks before any review' for one drafted section.
     Returns problems. A problem starting "warn:" is shown in the review before "Publish?" and does not block;
-    every other problem blocks the write. `prev` is the tab's previous Section, for the stale-date check."""
+    every other problem blocks the write. `prev` is the tab's previous Section, for the stale-date check.
+    `sources` is SECTION.json's "sources": {"progress": [...], "blocked": [...]}, where each line came from when
+    it has no link. It goes to the ledger, never the doc. None skips that check (callers with no SECTION.json)."""
     probs = []
     status = next((l[:1] for l in lines if l[:1] in du.STATUSES), None)
     ms = next((l for l in lines if l.startswith("Next milestone:")), None)
@@ -98,10 +108,11 @@ def checks(lines, links, known_names=(), prev=None):
     if re.search(r"Note \(agent", body):
         probs.append("agent note in doc")
     for k, l in enumerate(lines):
-        if l.startswith(("Progress:", "Blocked on:")) and not re.search(
-                r"No (change since|update from)|Blocked on: None\.|Moved from .+ on |\((email|chat|meeting notes)\)\.?$|\(from [A-Z][\w .'-]*\)\.?$", l):
-            if not any(i == k for i, _, _ in links):
-                probs.append(f"no link or source label on line: '{l[:40]}'")
+        if sources is not None and l.startswith(("Progress:", "Blocked on:")) and not NO_SOURCE_NEEDED.search(l):
+            key = "progress" if l.startswith("Progress:") else "blocked"
+            if not any(i == k for i, _, _ in links) and not (sources or {}).get(key):
+                probs.append(f"no link and no recorded source on line: '{l[:40]}' "
+                             f"(add \"sources\": {{\"{key}\": [...]}} to SECTION.json; it goes to the ledger, not the doc)")
         if l.startswith("Progress:") and len(re.findall(r"[.!?](\s|$)", l)) > 3:
             probs.append("Progress over 3 sentences")
     return probs

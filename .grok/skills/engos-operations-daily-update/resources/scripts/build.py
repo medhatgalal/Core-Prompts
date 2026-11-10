@@ -184,7 +184,7 @@ def create(title, org, owner, reader, structure, day):
 
 def strip_colour(text):
     import re
-    return re.sub(r"^\s*(?:🔴|🟡|🟢|⚪)\s*(?:Red|At risk|On track|Paused)?\s*[·.,:;-]?\s*", "", text or "")
+    return re.sub(r"^\s*(?:🔴|🟡|🟢|⚪)\s*(?:Red|At risk|On track|Paused|Stopped)?\s*[·.,:;-]?\s*", "", text or "")
 
 
 def set_headline(doc_id, area_title, text):

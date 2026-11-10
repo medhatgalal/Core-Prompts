@@ -163,7 +163,7 @@ style notes. A command that changes shared state needs the right role; one that 
 | open | `pause` | paused | Status ⚪; needs a reason |
 | paused | `resume` | open | You give the colour and next milestone |
 | open, paused | `done` | done | Final section; line added to the area's Done list; colour 🟢 (an inference; change it if wrong) |
-| open, paused | `stop` | stopped | Needs a reason; status ⚪; line added to Done |
+| open, paused | `stop` | stopped | Needs a reason; status ⚪ Stopped; line added to Done |
 | done, stopped | `reopen` | open | Needs a reason, colour and next milestone; removes its Done line |
 | done, stopped | `archive` | archived | Doc owner; tab moves under Archive. Terminal |
 
@@ -211,11 +211,17 @@ up at the next `close`.
    org can see. Never link Gmail messages, Chat messages, DMs or spaces, Gemini meeting notes, or a Drive file
    with restricted sharing. Private sources are still read for drafting; no private names or details from them
    go into the doc.
-   Every Progress and Blocked on line ends with its source: a link, or, when the line comes only from private
-   sources, an unlinked label "(email)", "(chat)" or "(meeting notes)". The ledger keeps the private link
-   locally for audit. Exceptions: "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
-   A line the updater told you directly in this conversation ends "(from <name>)" and needs no link. It covers
-   only facts they typed themselves. Never use it for a fact you found in a source, even if they approve it.
+   Link a Progress or Blocked on line to its source when anyone can open that source. Otherwise the line
+   carries no label: no "(email)", "(chat)", "(meeting notes)" or "(from <updater>)". The updater publishes the
+   section, so an unlinked line is their word. The one label left is "(per <name>)", for a fact someone other
+   than the updater gave (a recruiter's tracker, a manager's message, the owner's note): name the person, never
+   the channel. For a meeting with no one source, write "(per <meeting name>)".
+   Every unlinked line still has its source recorded: SECTION.json `"sources": {"progress": [...], "blocked": [...]}`
+   (a chat, an email, "<updater>, in this session"). `section lint` and `section write` refuse an unlinked line
+   with none. Sources go to the ledger with the private links, never into the doc. Lines that need neither:
+   "No change since <date>.", "Blocked on: None.", "Moved from <old area> to <new area> on <date>." and the
+   lifecycle lines ("Done <date>: ...", "Stopped <date>: ...", "Paused <date>: ...", "Resumed <date>.",
+   "Reopened <date>: ..."). Older sections that still carry "(email)", "(chat)" or "(from <name>)" stay valid.
    Status, Next milestone, Green when and closing lines need none. Overview bullets link
    to their tab. Put each link on a short word, like "(Jira COM-994)" or "(merge request !121)", never a raw URL.
 7. **Say what you saw vs what you concluded.** If a status or date is your inference, say so in the review.
@@ -254,6 +260,7 @@ up at the next `close`.
 | 🟡 At risk | The updater does not expect the next milestone to land on its date, or it waits on another team. |
 | 🟢 On track | The updater expects the next milestone to land on its date. |
 | ⚪ Paused | Paused or not started. |
+| ⚪ Stopped | Not going ahead; the tab waits to move to Archive. Written by `initiative stop`. |
 
 The colour answers one question for a reader outside the team: will the next milestone land on its date?
 An open question or an undecided detail is not a reason for 🟡 on its own; say it in Progress. A missing date
@@ -348,7 +355,7 @@ and the agent's drafting guide. Pageless, with these headings and content:
 - **Best practices**: write for a leader outside your team and spell out acronyms; explain why a result
   matters, not only that it happened; flag blockers early; always give the next step; when the colour
   changes, open Progress with the reason; link every claim on a short word, to a source anyone can open
-  (private sources get an unlinked "(email)", "(chat)" or "(meeting notes)"); absolute dates with the weekday,
+  (a private source gets no label; a fact someone else gave ends "(per <name>)"); absolute dates with the weekday,
   US Eastern time; same template every time; status lives in the doc, not in meetings; leave out
   people-sensitive items.
 - **Bad and good**: the example from Writing rules.
@@ -389,7 +396,9 @@ State lives in `~/.daily-update/` in the person's home folder, so any working fo
   for any name that does not match.
   Sources per initiative: `{"jira": ["KEY-1"], "gitlab": ["group/project"], "github": ["owner/repo"],
   "chat": ["spaces/..."], "email": ["gmail search"], "meetings": ["meeting title"], "docs": ["fileId"]}`.
-- `~/.daily-update/ledger/YYYY-MM-DD.json`: what was published that day: each line's exact published text and its source links.
+- `~/.daily-update/ledger/YYYY-MM-DD.json`: what was published that day: each line's exact published text, its source links,
+  and each section's `sources` (where every unlinked line came from). The agent writes it at Daily step 6; `section write`
+  checks `sources` but does not save them.
 
 **Drive backup.** The local files stay primary, and a private copy lives in the person's own My Drive under
 `.engos/automation-daily-updates/` (`config.json`, `protected.json`, `ledger/`), with `.engos/README.md`
@@ -512,14 +521,15 @@ widths still add up to the text width, and fix them if not.
    engineer's Jira items, merge requests and team chats. Window: from `last_publish` to now (first run: last 7 days).
    If a tab already has a section dated today, that section is the starting point for the tab: read it with
    `du.py section show "<tab title>" <date>` and compare it with this person's ledger for today. Lines someone edited
-   by hand since the publish count as today's facts and are kept.
+   by hand since the publish count as today's facts and are kept. Copy that section's `sources` from today's ledger into
+   the new SECTION.json: `section show` cannot read them back from the doc, and `section write` refuses an unlinked line without them.
 2. Read the Update guide tab and draft to it. For each initiative tab they update (plus any they asked to cover), read only its sources in the window. Note progress, slips, decisions,
    blockers, dates, owner changes. Also note important work that fits no initiative, and ask if it should become one.
    A tab with no sources set up: never ask an open "which source?" question. Search their last 14 days for
    that initiative's name and keywords (Jira, Drive, merge requests, chats, meetings; not inbox mail or
    candidate notes), and offer up to 3 numbered sources, plus "or tell me what happened today". Private sources
    may be offered and saved for drafting, but are never linked (rule 6). Save the ones
-   they pick, then draft from them. If they say what happened, draft from that, ending the line "(from <their name>)".
+   they pick, then draft from them. If they say what happened, draft from that, with no label, and record "<their name>, in this session" in `sources`.
    If they pick nothing and say nothing, write nothing to that tab and say so in the review.
    Look for notes the tab's owner sent this person about the initiative (email or chat). They are the freshest
    word from the person doing the work: use them over older sources, and say in the review that you did.
@@ -533,8 +543,8 @@ widths still add up to the text width, and fix them if not.
    Start from today's section and the new evidence from the window. Add new facts. Replace facts that changed
    ("in review" became "merged", a date moved, a blocker cleared). Delete facts that are obsolete or superseded.
    Re-check the status, Next milestone, Blocked on and Green when against all of today's evidence,
-   not only the new. Every other rule still holds: links only to sources anyone can open, private labels,
-   "(from <name>)", people-sensitive items, and hand edits kept unless the updater drops them.
+   not only the new. Every other rule still holds: links only to sources anyone can open, recorded `sources`
+   for unlinked lines, "(per <name>)", people-sensitive items, and hand edits kept unless the updater drops them.
 4. Show the review in chat, in this shape, and nothing else:
 
    ```
@@ -608,7 +618,7 @@ and `show` display backups. A backup may keep sources on the tab, like the updat
 
 **Lifecycle** (`pause`, `resume`, `done`, `stop`, `reopen`, `archive`): see Model. `done` adds a line to Done on
 the area tab and a final section ("Done <date>: <outcome>"). `stop` is for work that is not going ahead: it needs a
-reason and writes a final section whose Progress line is "Stopped <date>: <reason>." with status ⚪ Paused, "Next
+reason and writes a final section whose Progress line is "Stopped <date>: <reason>." with status ⚪ Stopped, "Next
 milestone: None, stopped <Weekday Mon D>" and Green when "Not planned.", and a line to Done on the area tab:
 "<Initiative>: stopped <date>, <reason>." The doc owner moves a done or stopped tab to Archive during Overview
 (`initiative archive`); its Archive line reads "<Initiative> (<owner>), done <date>." or "..., stopped <date>."
@@ -679,7 +689,7 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
    something new, with links. The section's last line is "Unconfirmed: no update from <updater> by 3pm ET."
    with no Progress line unless the doc owner's sources showed something new, or the doc owner decided a passed
    milestone is red and the status was not already 🔴: then Progress reads `The milestone "<milestone>" was due
-   <date> and is not done, so <doc owner> marked it Red. (from <doc owner>)`. If the tab has no
+   <date> and is not done, so <doc owner> marked it Red.`. If the tab has no
    earlier section, use 🟡 At risk and "Next milestone: No date set yet". Carry the newest Blocked on line
    (or "Blocked on: None." if there is none). If the carried status is not 🟢,
    carry the newest "Green when:" line too, or write "Green when: <updater> sets this when they confirm." Write "No date set yet" wherever the
@@ -753,8 +763,9 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
 - No stale dates. When a milestone date is unchanged from the previous section while Progress says something
   moved, or names a later date, ask the updater to confirm the date (a WARN from `lint`).
 - Every weekday matches its date on the calendar ("Fri Nov 6", never "Thu Nov 6").
-- Every Progress and Blocked on line has at least one link or ends "(email)", "(chat)" or "(meeting notes)",
-  except "No change since <date>.", "Blocked on: None." and "Moved from <old area> to <new area> on <date>."
+- Every Progress and Blocked on line has a link, or ends "(per <name>)" for a fact someone else gave, or has its
+  source recorded in `sources`. No "(email)", "(chat)", "(meeting notes)" or "(from <updater>)" labels. Exceptions
+  as in rule 6.
 - No link points to Gmail, Chat, Gemini notes, or a Drive file not shared to the domain or anyone with the link.
 - No raw URLs in the text; every link sits on a short word.
 - No "Note (agent)" or other agent commentary in the doc; it goes in the review.

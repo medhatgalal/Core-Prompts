@@ -63,7 +63,9 @@ def plan_tab(tab_id, init, overrides=None):
         st_line = next((t for t, _ in s.lines if t[:1] in du.STATUSES), None)
         if new != old and st_line:
             el = els[st_line]
-            reqs.append(("replace", el["startIndex"], el["endIndex"] - 1, du.STATUSES[new]))
+            ms_t = (s.line("Next milestone:") or "")[len("Next milestone:"):].strip()
+            reqs.append(("replace", el["startIndex"], el["endIndex"] - 1,
+                         du.status_text(new, ms_t, s.line("Progress:") or "")))
             changes.append(f"{old} -> {new}")
         if conf_line:
             el = els[conf_line]
@@ -212,7 +214,7 @@ def run(doc_id, publish=False, overrides=None):
             if r and want and r[2][:1] != want:
                 print(f"{ar.title} table: {i.name} {r[2][:1]} -> {want}")
                 if publish:
-                    m.set_row(doc_id, ar.tab_id, i.name, [r[0], r[1], du.STATUSES[want], du.Area.row_milestone(r)])
+                    m.set_row(doc_id, ar.tab_id, i.name, [r[0], r[1], du.status_text(want, du.Area.row_milestone(r)), du.Area.row_milestone(r)])
         hl = ar.headline or ""
         if hl[:1] in du.STATUSES:
             print(f"{ar.title} headline: remove its colour ({hl[:1]}); the area's colour comes from its initiatives")

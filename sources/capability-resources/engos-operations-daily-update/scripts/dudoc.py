@@ -38,6 +38,15 @@ CMD = "/" + SKILL_NAME
 TEST_TITLE_PREFIX = "E2E TEST"
 STATUSES = {"🔴": "🔴 Red", "🟡": "🟡 At risk", "🟢": "🟢 On track", "⚪": "⚪ Paused"}
 RANK = {"🔴": 0, "🟡": 1, "🟢": 2, "⚪": 3}
+STOPPED = "⚪ Stopped"
+STOPPED_MS = re.compile(r"^None, stopped (Mon|Tue|Wed|Thu|Fri|Sat|Sun) [A-Z][a-z]{2} \d{1,2}\b")  # what `stop` writes
+
+
+def status_text(status, milestone="", progress=""):
+    """The status line's words. A stopped initiative reads "⚪ Stopped", never "⚪ Paused": it is not coming back."""
+    if status == "⚪" and (STOPPED_MS.search(milestone or "") or (progress or "").startswith(("Stopped ", "Progress: Stopped "))):
+        return STOPPED
+    return STATUSES[status]
 MONTHS = {m: i + 1 for i, m in enumerate(
     ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])}
 WD = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]

@@ -29,7 +29,9 @@ SECTION.json: {"date": "YYYY-MM-DD", "status": "🟡", "milestone": "...",
   "links": [["Jira COM-994", "https://..."]], "author": "Kyle", "cover_for": null}
   Links go on the Progress or Blocked on line that cites them. When "author" is not the tab's updater, set
   "cover_for" to the updater; the "Updated by <author> for <updater>." line is added for you.
-  A line drawn only from email, chat or meeting notes ends "(email)", "(chat)" or "(meeting notes)" with no link.
+  A line with no shareable link needs "sources": {"progress": [...], "blocked": [...]}: where it came from
+  (a chat, an email, "Scott, in this session"). Sources go to the ledger, never the doc. A fact someone other than
+  the updater gave ends "(per <name>)"; the updater's own word and private sources get no label.
 INIT.json (initiative add): SECTION.json plus "name", "owner", optional "updater" (default the area owner).
 STRUCTURE.json (doc create): {"org": "Automation", "owner": "Scott", "reader": "Medhat", "date": "YYYY-MM-DD",
   "areas": [{"name": "Composer", "owner": "Kyle", "initiatives": [
@@ -113,7 +115,8 @@ def _review(doc_id, title, spec):
     body = lines[1:]
     _, areas, inits = du.model(du.read_doc(doc_id))
     people = {p for i in inits for p in (i.owner, i.updater) if p} | {a.owner for a in areas.values() if a.owner}
-    probs = daily.checks(body, [(k - 1, w, u) for k, w, u in links], known_names=sorted(people), prev=prev)
+    probs = daily.checks(body, [(k - 1, w, u) for k, w, u in links], known_names=sorted(people), prev=prev,
+                         sources=spec.get("sources", {}))
     return tid, lines, links, probs
 
 
@@ -186,7 +189,8 @@ def section_lines(spec):
     """SECTION.json -> (lines starting with the date heading, links as (line_no, word, url)).
     Each link goes on the Progress or Blocked on line that cites its word, "(Jira COM-994)", else that names it."""
     day = dt.date.fromisoformat(spec["date"])
-    lines = [du.label(day, True), du.STATUSES[spec["status"]], f"Next milestone: {spec['milestone']}"]
+    lines = [du.label(day, True), du.status_text(spec["status"], spec["milestone"], spec.get("progress", "")),
+             f"Next milestone: {spec['milestone']}"]
     if spec.get("progress"):
         lines.append(f"Progress: {spec['progress']}")
     lines.append(f"Blocked on: {spec.get('blocked') or 'None.'}")
@@ -273,7 +277,7 @@ def cmd_headline(a):
 
 def cmd_row(a):
     doc_id, area_title, vals = a[0], a[1], load(a[2])
-    vals[2] = du.STATUSES.get(vals[2].strip(), vals[2])  # a bare "🟡" becomes "🟡 At risk"
+    vals[2] = du.status_text(vals[2].strip(), vals[3]) if vals[2].strip() in du.STATUSES else vals[2]  # a bare "🟡" becomes "🟡 At risk"
     vals[3] = re.sub(r"(?i)no date set yet", "No date set yet", vals[3])
     m.set_row(doc_id, tab_of(doc_id, area_title), vals[0], vals)
     print("ROW", du.model(du.read_doc(doc_id))[1][area_title].rows())
