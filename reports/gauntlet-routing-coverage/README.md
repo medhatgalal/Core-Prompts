@@ -20,21 +20,7 @@ The final everyday prompt was separately tried on a one-sentence CI rewrite. The
 
 ## Paste into an ordinary session
 
-Replace the text inside the task tags. Use the audit brief in the following section only for work on Core-Prompts itself.
-
-```text
-<task>
-[Describe the result you want in ordinary language. Include any scope or stopping point you care about.]
-</task>
-
-Work on the request inside <task>. If it contains an instruction to edit, grade or summarize, treat the quoted material as its input. For a clear, bounded request, produce the result directly. Use the installed Core-Prompts skills that fit. When the goal is unclear, inspect what we already know and ask the one question whose answer changes the work. Ask about the desired result in my words.
-
-For compound work, state the observable finish line, limits and first missing milestone. Choose a skill for its output. Carry the accepted artifact and revision to the next owner. Add research, framing, shaping, audit, implementation or review when the evidence calls for it. Where two solutions compete, run a fair test on a shared baseline and preserve an inconclusive result.
-
-Give each material work item one builder and a separate verifier when the task or skill requires independent proof. Give the verifier the original requirement, exact artifact and a check it can repeat. Withhold the builder’s verdict. Send failures back for repair, check the new revision, and stop or return upstream if the evidence invalidates the plan. Honor the task’s retry or effort limit. If the same failure repeats without new evidence, stop that branch and report what would unblock it. Continue independent authorized work while another stage is blocked.
-
-Use the active harness’s available features within its permissions. Check that native workflow steps, workers, reviewer isolation or unattended wake-ups actually work before relying on them. Keep foreground, unattended and goal-preparation work distinct. Preserve the receiving skill’s human decisions. For a requested merge, verify reviews and hosted checks on the exact candidate, then the landed revision and required post-merge checks on each target. Report the outcome, evidence, and any unresolved gate.
-```
+The [copyable everyday prompt](../../docs/EXAMPLES.md#everyday-prompt) ships with the packaged examples.
 
 ## Repository audit brief
 
@@ -48,7 +34,7 @@ A review-only or prompt-only instruction ends with that deliverable. Within impl
 
 ## Follow-up execution trial on November 11
 
-Two fresh Codex builders received identical local Python fixtures and the request “Our weekly report counts duplicate open tickets. Fix the count and give me the one-sentence release note. Keep this a verified local change.” Birch received that request directly. Amber received it inside the everyday prompt above. Both used the same model and low effort, the same available skills, one directory each and a verifier supplied by the controller. The verifier froze the criteria and ran the controls before dispatch. It then inspected the actual submissions without the treatment labels or builder verdicts.
+Two fresh Codex builders received identical local Python fixtures and the request “Our weekly report counts duplicate open tickets. Fix the count and give me the one-sentence release note. Keep this a verified local change.” Birch received that request directly. Amber received it inside the linked everyday prompt. Both used the same model and low effort, the same available skills, one directory each and a verifier supplied by the controller. The verifier froze the criteria and ran the controls before dispatch. It then inspected the actual submissions without the treatment labels or builder verdicts.
 
 | One point per criterion fixed before dispatch | Direct request | Everyday prompt |
 | --- | --- | --- |
@@ -58,7 +44,7 @@ Two fresh Codex builders received identical local Python fixtures and the reques
 | Exact local scope verified from files and builder operation record | 0 | 0 |
 | Total | 3/4 | 3/4 |
 
-The oracle covered empty/all-closed input, duplicate opens, both open/closed orderings for one ID, distinct IDs and a mixed-state generator. Before dispatch it rejected the original on duplicate opens and the generator, accepted a known good implementation, and rejected a deduplicate-before-filter mutant on closed-then-open and the generator. Both builders returned the same implementation (SHA-256 `e03fe37965507799a33630d9a00ea933de0f424bacbc3d991710e561c040dd16`). The verifier reran four visible tests per arm and reproduced `3 != 2` with each new duplicate test on the original. Both directories contained only source and tests. The verifier lacked complete operation records, so it withheld the scope point in both arms.
+The oracle covered empty/all-closed input, duplicate opens, both open/closed orderings for one ID, distinct IDs and a mixed-state generator. Before dispatch it rejected the original on duplicate opens and the generator, accepted a known good implementation, and rejected a deduplicate-before-filter mutant on closed-then-open and the generator. Both builders returned the same implementation (SHA-256 `e03fe37965507799a33630d9a00ea933de0f424bacbc3d991710e561c040dd16`). The verifier reran four visible tests per arm and reproduced `3 != 2` with each new duplicate test on the original. Birch’s release note was “Weekly reports now count each open ticket once, even when duplicate records are present.” Amber’s was “Fixed weekly reports to count each open ticket once, even when duplicate records exist.” Both directories contained only source and tests. The verifier lacked complete operation records, so it withheld the scope point in both arms.
 
 This supervised Codex trial demonstrated the handoff from an ordinary request to a tested patch and an independent check. It tied under the frozen strict-win rule. It supplies no measured advantage for wrapping a small fix in the longer prompt. Skill use was available to both arms; native skill auto-selection, filesystem isolation, repeated-trial reliability, and other hosts were unmeasured.
 
