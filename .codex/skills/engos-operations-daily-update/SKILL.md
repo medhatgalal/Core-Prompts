@@ -87,6 +87,7 @@ The verbs mean the same on every noun: `list` and `show` read, `add` creates, `s
 | Command | Who | What it does | Section |
 |---|---|---|---|
 | `section remove` | the tab's updater, its area owner or the doc owner | Remove a section that is only an automatic backup note, written by the older `add-backup` or `remove-backup` (`section remove <tab> <date>`, or `--all <date>` for every tab); prints the PLAN, honours `--dry-run`. Refuses any section with anything else in it, and the tab's only section; no `--force` | Initiatives |
+| `feedback add`, `feedback list`, `feedback lint` | anyone who updates | Add a dated entry with your name to the Feedback tab (newest first), list entries, or check a line first; `add` normally runs for you at publish | Feedback |
 | `help` | anyone | List the commands this person may run, one example each | Help |
 | `update` (default) | leader | Draft and publish today's update for your tabs | Daily |
 | `close` | doc owner | Close out the day: own tabs first, Sweep, then Overview | Sweep, Overview |
@@ -192,6 +193,8 @@ up at the next `close`.
    for Kyle"), confirm once, then add that section ending with the line "Updated by <person> for <updater>."
    The doc owner also edits the overview and Archive, and writes
    Unconfirmed sections during Sweep.
+   Any person who publishes may also add entries to the Feedback tab, only through `du.py feedback add`
+   (see "Feedback"); nothing else on that tab is ever edited.
    Any leader may add an initiative tab inside an existing area (see "Add, change, finish or stop an initiative").
    Only the doc owner changes the fixed structure (see "Fixed structure"). Never delete a tab. Never change sharing.
 3. **Nothing publishes without the person saying "publish"** (or a clear yes to "Publish?") in this session.
@@ -394,7 +397,8 @@ State lives in `~/.daily-update/` in the person's home folder, so any working fo
   Sources per initiative: `{"jira": ["KEY-1"], "gitlab": ["group/project"], "github": ["owner/repo"],
   "chat": ["spaces/..."], "email": ["gmail search"], "meetings": ["meeting title"], "docs": ["fileId"]}`.
 - `~/.daily-update/ledger/YYYY-MM-DD.json`: what was published that day: each line's exact published text, its source links,
-  and each section's `sources` (where every unlinked line came from). The agent writes it at Daily step 6; `section write`
+  each section's `sources` (where every unlinked line came from), and `"feedback": [...]` (the entry lines written
+  that day, if any). The agent writes it at Daily step 6; `section write`
   checks `sources` but does not save them.
 
 **Drive backup.** The local files stay primary, and a private copy lives in the person's own My Drive under
@@ -476,7 +480,7 @@ widths still add up to the text width, and fix them if not.
    14 days (sent mail, chats, meetings, Jira, merge requests), with owners you are unsure of marked "?".
    Keep it under 8 areas and 30 initiatives.
 3. Let them correct it in plain words ("move 4 under People", "Kyle owns Composer"). Ask only for what is missing.
-4. Build the doc (title `<Org> Daily Updates`): overview, area tabs, nested initiative tabs, Archive, Update guide, laid out as above.
+4. Build the doc (title `<Org> Daily Updates`): overview, area tabs, nested initiative tabs, Archive, Update guide with its Feedback tab nested under it, laid out as above.
    Each area headline follows the Area tab headline rule, from its starting sections, dated today (after
    setup, replace the script's starting headline with `du.py area set-headline`); never process text such as
    "starting view" or "drafted by". Fill each tab's header; every initiative's `Updater:` is its area owner unless the doc owner names someone else. If they gave an existing doc, copy every dated section of each initiative onto its tab, newest
@@ -559,6 +563,10 @@ widths still add up to the text width, and fix them if not.
 
    On a same-day re-run, put under each changed tab what changed against the published section, one short line
    each: "Added: ...", "Replaced: <old> -> <new>", "Removed: ... (why)".
+
+   Feedback (see "Feedback"): before "Publish?", add one line, "Feedback (posts with publish): 1) ... 2) ...
+   Add your own, or say 'no feedback'." Use the reviewer's lines, or when there are none: "Feedback on the process?
+   Reply with a line, or ignore this." Omit the line only when the person said 'no feedback' earlier in this session.
 5. Apply their edits. If they correct a rule or wording habit, add one line to `style_notes` and follow it from then on.
 6. On "publish": date every section with the day you publish (if the day changed since drafting, re-date it and
    re-check sources up to now). Re-read each tab, then insert the section at the top of each initiative tab
@@ -578,6 +586,37 @@ widths still add up to the text width, and fix them if not.
    newest section of every initiative in that area, never append to the old headline. Save the ledger and
    `last_publish`. Re-read and confirm every section landed. When reporting done, quote the re-read text of each
    section you wrote; if you cannot quote it, say it did not land. Give the link.
+   Then post the feedback lines the person did not drop, one `du.py feedback add "<text>"` each, and record them in
+   the ledger's `"feedback"` list. Quote each re-read entry. If a feedback write fails or is refused, say so in
+   one line; it never undoes or blocks the publish.
+
+## Feedback (anyone who runs `update`)
+
+The doc has a Feedback tab under the Update guide tab: dated entries about the daily update itself (the template,
+the drafts, the overview, the summary), newest first, each with the writer's name, like
+"**Wed Nov 11, Scott:** the template is clear." It is never about an initiative's content.
+
+Two sources, both shown in the review and posted only when the person says "publish" (rule 3):
+- **The person's own line**, from the prompt in step 4.
+- **An independent review**, run every `update`: after drafting, write a short run-notes file for this session
+  (a) what the person corrected or rejected and any `style_notes` added, (b) every `lint` WARN or BLOCK and
+  every REFUSED the scripts printed, (c) questions the person asked about how it works, (d) any step that needed a
+  retry or a workaround. Start a fresh sub-agent on the cheapest model, give it only the run notes and the
+  template and this section, and ask for 0 to 3 lines, each tied to one numbered run note. It proposes a line only
+  when a note shows the process, template, tool or wording caused friction. A reader correcting a sent summary, or
+  a milestone date that has passed with nothing to replace it, always counts as friction: include those as run
+  notes, and the reviewer must return a line for each. It never writes about initiative
+  content, people, or anything people-sensitive, and returns nothing when the notes show no friction. Check each
+  line against its note yourself and drop any it cannot cite; an empty result is the normal case, so never invent one.
+
+The writer is the person running `update`, from `config.json` (`me`); the agent never writes under another name.
+Lines follow the doc's rules: one line, under 400 characters, no links or emails, nothing people-sensitive
+(`du.py feedback lint "<text>"` checks it). The person may reword or drop any line, or say 'no feedback'.
+
+`du.py feedback add` re-reads the tab, inserts one paragraph at the top of "Feedback so far" (replacing "None yet."
+on the first entry), changes nothing else, skips an identical line already there, and re-reads to confirm. If the
+doc has no Feedback tab, say so in one line and move on; only the doc owner adds the tab. The 2pm draft run
+(unattended) may run the review and show its lines, but never posts them.
 
 ## Initiatives (any leader, within the rules above)
 

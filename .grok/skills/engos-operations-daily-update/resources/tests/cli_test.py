@@ -294,7 +294,7 @@ for a in parser._subparsers._group_actions[0].choices.items():
         continue
     sub = next(x for x in p._subparsers._group_actions)
     verbs[noun] = sorted(sub.choices)
-check("nouns", sorted(verbs) == ["area", "day", "discover", "doc", "doctor", "initiative", "person", "reader", "section", "source"], str(sorted(verbs)))
+check("nouns", sorted(verbs) == ["area", "day", "discover", "doc", "doctor", "feedback", "initiative", "person", "reader", "section", "source"], str(sorted(verbs)))
 check("initiative verbs", verbs["initiative"] == sorted(
     ["list", "show", "add", "rename", "move", "set-owner", "set-updater", "add-backup", "remove-backup", "pause", "resume", "done", "stop", "reopen", "archive"]))
 check("area verbs", verbs["area"] == sorted(["list", "show", "add", "rename", "set-owner", "set-headline", "merge", "remove"]))
@@ -632,6 +632,7 @@ VERB_ARGS = {
     ("reader", "set-channel"): ["Medhat", "chat"],
     ("source", "list"): [], ("source", "add"): ["Open", "jira", "COM-2"], ("source", "remove"): ["Open", "jira", "COM-1"],
     ("section", "write"): ["Open (Scott)", sec_file], ("section", "show"): ["Open (Scott)", "2026-11-06"],
+    ("feedback", "add"): ["Looks fine."], ("feedback", "list"): [], ("feedback", "lint"): ["Looks fine."],
     ("section", "lint"): ["Open (Scott)", sec_file], ("section", "remove"): ["Kylestab (Scott)", "2026-11-08"],
     ("day", "sweep"): [D, "--publish", "--tag"], ("day", "overview"): [D, "3:00 PM ET", "--publish"],
     ("day", "decisions"): ["Medhat", rows_file], ("day", "send"): ["--confirmed"],

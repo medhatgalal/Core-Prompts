@@ -336,6 +336,12 @@ def main():
         check("Update guide has no Confidence line", "Confidence:" not in gtext)
         ov_txt = "\n".join(du.para_text(e["paragraph"]) for e in ov["documentTab"]["body"]["content"] if "paragraph" in e)
         check("overview How to update points to the Update guide", "Update guide" in ov_txt)
+        fbt = [t for t, p in du.all_tabs(doc) if p is not None and p["tabProperties"]["title"].startswith(du.GUIDE)
+               and t["tabProperties"]["title"].startswith("Feedback")]
+        check("Feedback tab exists under the Update guide", len(fbt) == 1)
+        if fbt:
+            ftext = "\n".join(du.para_text(e["paragraph"]) for e in fbt[0]["documentTab"]["body"]["content"] if "paragraph" in e)
+            check("Feedback tab has its 'Feedback so far' list", "Feedback so far" in ftext)
 
     # ---- tables fit the page ----
     for t, _ in du.all_tabs(doc):

@@ -3,15 +3,14 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.21.2@cfb7f03b88f1126591f92abfd429fac7e52793cb .meta/manifest.json`
-- New capabilities: `2`
+- Comparison basis: `git:v1.22.0@66036267b7cf8d585ebcaab07097ad6e2742c278 .meta/manifest.json`
+- New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capability records: `0`
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- `comms-digest` — Comms Digest
-- `jira-intake-review` — Jira Intake Review
+- none
 
 ## Removed Capabilities
 - none
