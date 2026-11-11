@@ -145,7 +145,7 @@
     },
     "engos-orchestration-crew": {
       "summary": "Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.",
-      "descriptor_sha256": "676b1075ff747f7aabcb2719c88fdc44997e6f37129abc39c1ec0147d4909506"
+      "descriptor_sha256": "b09c509b46baf8a5080656ceb1e5b8a33b7aa94700dd857b35a7c0bd7a280182"
     },
     "engos-quality-code-review": {
       "summary": "Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.",

@@ -164,3 +164,30 @@ installer inventory, pinned legacy catalog and guide checks passed. These are
 local/structural receipts, not complete live acceptance. The v2 code is ready for
 publication as a draft repair; current-main integration and exact repair-head
 hosted checks follow. Scope clarification and complete live coverage remain open.
+
+### Upstream integration checkpoint
+
+The shared remote-tracking refs advanced during the long source trial and review.
+The actual first integration parent was pinned and verified as1fe63876 (v1.22.2),
+not the earlier3a173691 snapshot; its CI passed. Its source-preserving resolution
+was independently reviewed and committed asd583684a. The next immutable parent is
+953130dc (accepted routing/Crew update, green pre-merge pipeline7387999). The
+native refresh-routing-catalog.py is now used for inventory; twelve reviewed hash
+fields across eleven relationships are rebound without changing the24 incoming
+relationship meanings. The46-entry union preserves incoming45 plus freshness.
+Full live coverage and the user’s graph-boundary choice remain open. Both reviews
+remain draft. Do not turn this implementation/integration checkpoint into a
+behavioral promotion or merge authorization.
+
+### Final repair publication checkpoint
+
+The953130dc integration passed independent staged-tree review with zero open
+findings. Four freshness bindings and five incoming capability bodies are unchanged;
+all24 incoming relationships retain their meanings with exactly12 reviewed caller
+hash rebindings. Native inventory drift check and all five46-entry catalogs agree.
+Both test sets and both Unreleased groups are retained. Final combined selection
+passed136 cases, extracted-package update/rollback passed again, and all static,
+strict surface, runtime inventory, legacy catalog and guide checks passed. The
+working tree is ready to publish to the same draft reviews. Hosted checks must be
+read on the new immutable head. The live trial remains incomplete and graph scope
+is still an open human decision; this publication is not merge approval.

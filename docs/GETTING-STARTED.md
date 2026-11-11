@@ -46,6 +46,8 @@ and the skill's repair cycle. If that support is unavailable, the dependent revi
 gate remains incomplete. Neither a named package nor an author's checklist proves
 independent review. [Direct and delegated examples](EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).
 
+Try “Audit the migration overnight using read-only evidence.” Crew first designs the criteria and asks for the plan decision. Its unattended mode requires demonstrated, persistent sessions and 60 consecutive ten-minute wakes before production work. If that qualification exceeds the available window, the user can choose a scoped foreground inspection or a revised plan. [Worked examples](EXAMPLES.md#choose-the-stopping-point)
+
 ## Antigravity headless intake
 
 After verifying/upgrading the existing `engos-route-intent` package, put your

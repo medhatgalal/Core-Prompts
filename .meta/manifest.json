@@ -19249,11 +19249,13 @@
             "strategy": "derived_history",
             "group": "derived",
             "baseline_path": null,
-            "selected_commit": "3cbc8344",
+            "selected_commit": "5ed1eeeb",
             "richness_score": 10,
-            "line_count": 281,
+            "line_count": 293,
             "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-            "equivalent_commits": [],
+            "equivalent_commits": [
+              "3cbc8344"
+            ],
             "expected_companions": [],
             "operator_invariants": [],
             "scenario_matrix": [
@@ -19301,7 +19303,7 @@
                 "candidate_operational_score": 4,
                 "baseline_preserved_in_resource": false
               },
-              "baseline_commit": "3cbc8344",
+              "baseline_commit": "5ed1eeeb",
               "baseline_slug": "engos-orchestration-crew"
             },
             {
@@ -19352,7 +19354,7 @@
             "surface_usability": 10
           },
           "template_name": "skill",
-          "effective_sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2",
+          "effective_sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057",
           "semantic_findings": [],
           "agent_surface_review": {
             "status": "unchanged",
@@ -19422,9 +19424,9 @@
                 "heading": "Workflow",
                 "source": {
                   "path": "ssot/engos-orchestration-crew.md",
-                  "start_line": 19,
-                  "end_line": 19,
-                  "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                  "start_line": 18,
+                  "end_line": 18,
+                  "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                 }
               }
             ]
@@ -19441,9 +19443,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-orchestration-crew.md",
-                  "start_line": 36,
-                  "end_line": 36,
-                  "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                  "start_line": 35,
+                  "end_line": 35,
+                  "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                 }
               }
             ]
@@ -19456,9 +19458,9 @@
                 "heading": "Purpose",
                 "source": {
                   "path": "ssot/engos-orchestration-crew.md",
-                  "start_line": 13,
-                  "end_line": 13,
-                  "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                  "start_line": 12,
+                  "end_line": 12,
+                  "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                 }
               }
             ]
@@ -19471,8 +19473,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-orchestration-crew.md",
-            "ssot_sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2",
-            "effective_sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2",
+            "ssot_sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057",
+            "effective_sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -19483,9 +19485,9 @@
                   "heading": "Primary Objective",
                   "source": {
                     "path": "ssot/engos-orchestration-crew.md",
-                    "start_line": 16,
-                    "end_line": 16,
-                    "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                    "start_line": 15,
+                    "end_line": 15,
+                    "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                   }
                 }
               ],
@@ -19495,9 +19497,9 @@
                   "heading": "Invocation Hints",
                   "source": {
                     "path": "ssot/engos-orchestration-crew.md",
-                    "start_line": 39,
-                    "end_line": 39,
-                    "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                    "start_line": 38,
+                    "end_line": 38,
+                    "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                   }
                 }
               ],
@@ -19507,9 +19509,9 @@
                   "heading": "Required Inputs",
                   "source": {
                     "path": "ssot/engos-orchestration-crew.md",
-                    "start_line": 27,
-                    "end_line": 27,
-                    "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                    "start_line": 26,
+                    "end_line": 26,
+                    "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                   }
                 }
               ],
@@ -19519,9 +19521,9 @@
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-orchestration-crew.md",
-                    "start_line": 30,
-                    "end_line": 30,
-                    "sha256": "0fd827d3f0e874199916f034a00a9631df599f5c1f5d7a0def3ea1489a5074e2"
+                    "start_line": 29,
+                    "end_line": 29,
+                    "sha256": "8aa8a635be5ffff13c93a925d70390119f5b318f75b64dbf927d34d2df810057"
                   }
                 }
               ]
@@ -19536,7 +19538,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "c0b42dd03a5d3165a33020ca887cf08ae260d47cc71e5e42a6f19a0e332cfc78"
+            "mapping_sha256": "2228e9bba151e7697ded9461fc81120934f3cf01dd3804b5e8b38cb86889094d"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -23335,7 +23337,7 @@
           "provenance": {
             "ssot_path": "ssot/engos-route-intent.md",
             "ssot_sha256": "d83b7f1351136b642de51e6494e5ce3373fdba0a26de1a24cbf8aec01398dc24",
-            "effective_sha256": "459afbe87c7d15b9c6236a65a441ae49e9def797970f99293453b22fadfb2a72",
+            "effective_sha256": "ecc14a738d4755fc5ed3844e3048dfbddd5aeea10f120326d6c539009fd4f7ef",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-route-intent/references/intake-method.md",
@@ -23347,7 +23349,7 @@
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/routing-relations.json",
-                "sha256": "4a30c15ec888791822361a173d700dc0b0c33eb22d21d6ba2df9cfc2e76f4d9c"
+                "sha256": "53eb230bffc1e08caf24f805d55ffc084b2d27a979af6ac1c8ee11cb74a0909a"
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/scripts/inspect_catalog.py",
@@ -23432,7 +23434,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "2d76ee2888789f37b94fa03bfac52cf1e286628cf6c68cbeaa5358c8f58de0a0"
+            "mapping_sha256": "328c28de0fae947c94a38fac5427e22f9a7b9c17430598a4086f7a1dbbeaa32f"
           },
           "unresolved_fields": [
             "task_phase_interpretation",

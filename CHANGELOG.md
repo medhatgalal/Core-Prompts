@@ -4,6 +4,9 @@
 - Freshness evidence v2 separates mechanical collection checks from the agent's final technical verdict; adds source-neutral stream inventories, scoped confirmation bindings, first-design input and explicit partial coverage. V1 evidence requires recollection rather than an automatic upgrade.
 - Regression cases now cover raw provider-shaped events/reviews, mixed timelines, independent query receipts, native issue repo scope and inspected interface evidence. Live trial results and semantic confidence remain distinct from fixture/transport checks.
 
+- Refreshed the standalone intent-router catalog from canonical descriptors and added a drift check. It now includes Crew, Change Impact, Daily Update and the three GTD skills.
+- Clarified Crew’s attended and unattended preflight, elapsed qualification time, and how a read-only monitor returns evidence for the designer to record.
+
 ### Added
 - `engos-design-freshness-sweep`: execute full linked-ticket/MR discussion reads and fourteen days of area-owner merges across involved repos; return changed assumptions and today's simpler path, with exact owner confirmation for technical blockers.
 - Required bundled freshness gates in specify-change, plan-implementation and shaping technical Research, plus a portable evidence/quote checker and regression fixtures. Admission does not establish measured agent benefit.

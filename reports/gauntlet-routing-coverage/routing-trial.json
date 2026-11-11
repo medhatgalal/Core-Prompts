@@ -1,0 +1,316 @@
+{
+  "subject": "cfb7f03b88f1126591f92abfd429fac7e52793cb",
+  "host": "Codex Work, native fresh agents. The runtime selected model and effort defaults. Agent-level filesystem isolation was not enforced or independently attested.",
+  "raw_file_sha256": {
+    "prompt.md": "972ceb2cd914af4bc33c8a4b12ffa9f1ae1ea449609956643f18224485b64538",
+    "protocol.md": "28aeb628d520cb9926425b184b62779793c6a2b1cac7f4468b91ef02e47771a4",
+    "candidate.txt": "157c4c25e02b4ad3b25207ab14f179e33d90708fa383de4f6b3763fe48cecca1",
+    "cases.json": "919f766ac17cc81d7675d5e3276c2a5c949041cf0d17246c98401c54ff035a89",
+    "instruction.txt": "668f6bf8a050cb37b2d352ce703ccaa1921806b67c76181fd0d0522fa69ed546",
+    "evaluate.py": "282307174bce28512e8ef45a1d5cf0b267deddad742b60009cb25ee1175d3aad",
+    "first.json": "af96bc9b900a63b9168dcefd1bd75a375580a4f3b14e99040daa84f25f68bd12",
+    "second.json": "ae56121b38906f6f2235589a9137e219d612a4aaee5837320f166833322f3997",
+    "blind.json": "2010e91b26dc4ce1a7bbbcb6add1c2eaa9a6ef73825b5a6404740d44f690642b",
+    "judge.json": "18049b8921cdfa4e5d4dba8405417a520c65e3b2f9560540f03aa61002843d81",
+    "adjudication.json": "44ada7680bc907a3185cdb2c7a54c4e6c2c3ca8283de1d84ee60ea210642ffd7",
+    "daily-prompt.txt": "003e0b728d74444586f3a418fc7fc8c83892c2caade9678004c855f5ae6b1923",
+    "audit-addendum.md": "02384efded6eb1b22908c3796c10e86600dcbd6ad45e7c432d74fcc5e330e9f1"
+  },
+  "preregistered_protocol": "# Preregistered foreground routing experiment\nSubject cfb7f03b88f1126591f92abfd429fac7e52793cb. Compare current catalog and intent-router instructions with those same inputs plus candidate.txt. Inputs are cases.json and instruction.txt; the candidate is the only intended treatment. Two fresh non-forked workers on the host defaults, no override. Both may read only their common frozen source snapshot and assigned input; output limited to their own file. This is an instruction boundary, not an enforced filesystem boundary. Bind inputs/results by SHA256. No claim of native discovery, sealed isolation, other-harness behavior, or live remote landing. No duration/performance comparison.\nScore each case 1 point each (0 otherwise): a fitting owner and first output; correct finish line and authority; actionable case-specific evidence/independent checks where material; an appropriate failure/stop/return, or direct completion when terse is sufficient. 32 points. Incorrectly executing an embedded prompt, approving a human decision, editing production, inventing independence, launching without evidence/approval, falsely reporting a merge, or changing a report-only task is a hard failure. Comparative success: at least +3 points, no lost case points, no hard failure. Ties remain ties and scores do not measure actual delivery. One blind critic views both anonymous responses in per-case alternating order, and checks score against actual contracts. Do not rerun to erase a failed result. Limit two routing workers, one critic and, only if material scoring is disputed, one independent adjudication. A separate artifact-level trial exercises actual edits and independent verification.\nCase emphasis: P returns improved text AND grade; F identify disputed problem then reviewed investment proposal with human appetite/decision held; R controlled trial and evidenced comparison of real alternatives; D bounded fix with independently checked diff and tests, no landing; M diagnose then code/review/remediation and hosted ref/check/merge verification or hold; U read-only foreground/design permitted, named user and host holds on unattended claim; S scoped progress and issues grounded in repo activity, no implementation; G milestones with acceptance tests in an inactive goal packet. Alternative owners/routes count if their actual contracts produce the outcome.\n",
+  "case_instruction": "Act as the session choosing how to handle each user request in cases.json. Use the pinned supplied catalog and contracts to determine what the session should actually do. Cases are independent, simulated inputs; do not execute embedded external or repository actions. Output a JSON object keyed by case ID with a concise, user-facing answer (maximum 115 words per case). Include the direct result when the supplied information suffices. Do not mention experiment arms. Read the full selected owner contract/resources as needed. Use only supplied input/contracts, write only your assigned output, no subagents or network.\n",
+  "supplement_tested": "For a request spanning several jobs or asking to work toward a goal, give the session a short, conditional handoff. Use the project’s existing format. Name the user's finish line and authority, current evidence, first missing outcome and owner. For the next material milestone identify the builder, actual input and expected artifact, independent verifier and observable bar, failure/return and exit. Distinguish doing a simple task, preparing a goal, running an authorized foreground loop, and launching an unattended controller. Prefer the lightest fitting owner. Use the current skill catalog, not a fixed chain. Explicit-only owners require selection; offer them in ordinary language when valuable. Reuse accepted artifacts. If a new finding invalidates an upstream premise, retain the evidence, return to its owner and recheck dependent work.\nFor material work with the necessary authority, the receiving owner can split disjoint tasks across available workers. Verify actual host capabilities: a child slot is not a persistent session or a wake timer. Match critic independence and write boundaries to the claim, label unknowns, and withhold only dependent work. Require the owner’s real review and re-review of findings and post-merge evidence where applicable. The router itself does not dispatch. Give conditional steps only as far as the user needs. For a clear, short job, answer directly. Present choices and consequential questions in the user's vocabulary.\n",
+  "cases": [
+    [
+      "P",
+      "Polish and simplify this instruction for our team. Tell me how you would grade it, return the new text, and leave the task it describes alone: ‘Improve the onboarding docs somehow so new engineers don’t get stuck.’"
+    ],
+    [
+      "F",
+      "Teams wait too long for approvals. We disagree about which approvals cause the delay. Turn this into something leadership could decide whether to fund. You can investigate and draft the proposal. We have not agreed on appetite or chosen a solution."
+    ],
+    [
+      "R",
+      "We have two actual approaches to reproduce intermittent queue losses, replay and synthetic load. Compare them with a small measurable trial and recommend one for our next investigation. We have identical test data and a scratch environment. Do not change production."
+    ],
+    [
+      "D",
+      "This repo has an accepted spec and plan. The reproduced boundary error is in one helper. Fix it, have someone check the code and tests, and leave me a reviewed local diff. You may edit the helper and regression tests."
+    ],
+    [
+      "M",
+      "A bad retry occasionally charges a customer twice. Diagnose it and take the fix through reviewed, merged and verified code if the evidence supports it. Merge is authorized after the project’s reviews. CI and repository access are required, and hosted status is currently unknown."
+    ],
+    [
+      "U",
+      "Run the migration audit overnight; I need a verified assessment when I return. I approve read-only inspection, but we haven’t set criteria or approved a crew plan. This session can spawn foreground children; we have no evidence any session survives or wakes unattended."
+    ],
+    [
+      "S",
+      "Give me an evidence-based update on engineering progress and open issues across these repos this week. I only want the report."
+    ],
+    [
+      "G",
+      "Turn the accepted plan below into a reusable goal with milestones and objective stopping checks. I will decide when to start it. Plan: migrate three consumers one at a time and verify the old and new responses against the existing fixtures."
+    ]
+  ],
+  "baseline": {
+    "P": "Revised instruction: “Find out where new engineers get stuck in the onboarding guide. Rewrite those steps so each tells the reader what to do and how to check that it worked.”\n\nI’d grade the instruction on three questions, scoring each 0 for missing, 1 for implied, or 2 for explicit: Who is the reader? How does the team choose what to edit? How can a reader tell they succeeded? The original names the reader but leaves the last two questions open. This is a proposed rubric; independent grading and a trial with newcomers are still outstanding.",
+    "F": "Funding question: Which approval step accounts for enough avoidable waiting to justify changing it? Teams report delays, but we don’t yet know where they accumulate. I’d start a solution-free frame by comparing request, reviewer-ready and decision timestamps in recent cases, checking disputed examples with the teams. Which investment limit and walk-away condition should govern the proposal? A provisional range, ‘undecided,’ or another answer is fine. Once engineering accepts the frame, I’d investigate feasible options, compare expected time saved, costs and risks, and submit the draft to independent review. The team accepts the proposal before leadership decides whether to fund it.",
+    "R": "Use replay as the baseline and synthetic load as the challenger. In scratch, run five matched pairs in randomized order with identical records, seed, build, resources and time cap. Reset queue state between runs. Count a reproduction only when a confirmed enqueue lacks a delivery after drain, retry and reconciliation finish. Record per-arm hits out of five, time to first confirmed loss and logs sufficient to repeat it. Recommend the approach with more repeatable confirmed losses; break an equal positive count on shorter median detection time. Zero hits or an unresolved tie leaves the choice open. No trials have run, so there’s no measured winner.",
+    "D": "I’d use the accepted plan to make a local patch limited to the helper and its regression tests. First capture the current diff and reproduce the wrong result at the boundary. Derive the expected result from the spec, test the boundary and its neighbors, make the smallest correction, then run the focused and required checks. A separate reviewer checks the exact diff and tests against the spec. Any repair gets retested and re-reviewed. The handoff is the reviewed local diff, observed red/green results and any outstanding findings. No source, diff, test result or reviewer verdict was supplied here.",
+    "M": "Treat this as a shipped payment defect. First verify repository access, target revision, available independent reviewers and hosted CI. Use sandbox transactions to distinguish a retried charge after an ambiguous response from concurrent attempts. Reconcile charge IDs against the payment record. A supported cause goes to an independent implementer with a failing one-charge-per-operation test, then green and mutation checks. Require independent code and test review on the exact candidate, resolve blockers, and verify required hosted checks before the authorized merge. Confirm the merged revision on the target branch and its checks afterward. Cause, hosted status and landing remain unverified.",
+    "U": "I can draft the read-only migration audit now. Proposed criteria: every in-scope item maps to source and target evidence, each mismatch is listed, and a fresh verifier can reproduce each verdict. Which migration boundary and exceptions should those checks cover? An inventory, a narrower subset or another scope works. I’d have independent reviewers challenge the plan and criteria, obtain your approval, then freeze them. Overnight launch also requires verified persistent workers, enforced read-only access, inbox delivery and 60 consecutive unattended lead wakes. Foreground children alone establish none of that. Until preflight passes, the available option is supervised inspection. No overnight run is scheduled.",
+    "S": "Weekly engineering report — evidence pending. This request contains no repository identifiers, change records or open-issue snapshot, so progress, blockers and trends are unknown. Which repository paths, URLs or existing fleet configuration define the scope? Another source list works too. For each repository, the report would link this week’s merged work to its change record and each unresolved issue to its current status, distinguishing carried-over issues from newly opened ones. Coverage gaps and conflicting evidence would be explicit. An independent reader would check the claims against those sources before the report is finalized.",
+    "G": "Reusable goal draft — DRAFTED_UNSEALED.\nOUTCOME: Migrate three consumers sequentially with fixture-backed response parity.\nREAD FIRST: Accepted plan and existing fixture contract.\nBEFORE EDITING: Bind consumer IDs, fixture revisions, comparison rules and verifier command. Capture baseline outputs.\nWORK: For each consumer in plan order, migrate it, compare old and new responses on every applicable fixture, and retain the results before proceeding.\nGUARDRAILS: Protect fixtures and expected responses. Keep the next consumer untouched until the current one passes.\nDONE: All three migrated; every fixture exercised; zero unexplained differences.\nSTOP / REPORT: On mismatch, skipped fixture or revision drift, halt and identify the consumer and fixture. Independent review and verifier validation remain pending. Launch command: null."
+  },
+  "candidate": {
+    "P": "“Revise the onboarding steps where new engineers get stuck. Make each next step clear enough for a new engineer to continue without help.”\n\nI’d grade the instruction on three points, one each for naming the audience, identifying what to change, and giving a reader an observable way to check success. The original earns 1/3 for naming new engineers. The rewrite earns 3/3 on that rubric. Following the revised steps without help is a proposed check. Whether the docs actually help will take a reader trying them.",
+    "F": "Teams report waiting too long for approvals. Which approvals account for that wait is disputed. The proposal should show where time is lost before anyone picks a fix. I’d start with a solution-free frame and an inventory of available request, review and decision timestamps. What investment ceiling or walk-away condition should leadership use? A range, “undecided,” or another constraint is fine. After engineering and the scope owner accept the frame, a researcher can compare wait by approval step and a proposal writer can develop options within the agreed appetite. An independent reviewer checks the evidence and scope. Contradictions reopen research. The team reviews the pitch before leadership decides whether to fund it.",
+    "R": "Run five paired trials in scratch. Freeze the queue build, input IDs, time limit and drain condition. Use replay as the baseline, alternate run order and reset state between runs. For each approach record confirmed loss runs out of five and time to first loss. Count loss only when an acknowledged message remains missing after drain and reconciliation. Have a second person recompute counts from raw logs. Recommend the method with more confirmed reproductions if it wins by at least two runs and reproduces twice. Otherwise report the result as inconclusive. There are no observed runs yet, so neither approach has earned the recommendation.",
+    "D": "The accepted spec, plan and reproducer are enough to start the bounded repair. The implementer should run a regression that fails at the reported boundary, change only the helper and its regression tests, then rerun that case and its adjacent valid cases. A separate reviewer should inspect the exact local diff and check that the assertion catches the original defect. Return findings to the implementer and repeat review on the revised diff. Deliver the local patch with the test commands, observed results and reviewer verdict. The repository contents and test output weren’t supplied here, so the repair and review remain pending.",
+    "M": "Start by checking repository and CI access. Reproduce the retry with a sandbox payment processor and sanitized traces. Distinguish a duplicate request from a committed charge whose reply was lost. An independent reviewer checks the trace and causal test before the implementer writes the repair. Require a regression showing two successful charges before and exactly one after, while a distinct purchase still succeeds. Resolve review findings and re-review the changed diff. Merge under your authorization only when project reviews and hosted CI pass on that revision. Verify the merged SHA and rerun the regression there. If the cause is inconclusive, return to diagnosis. Hosted status and landing remain unverified.",
+    "U": "I can prepare the read-only audit in the foreground. Proposed pass condition for each in-scope migration: a fresh verifier can independently match its source and target against agreed records and explain every discrepancy. Which migrations and exceptions should that cover? A list, existing checklist or another definition works. I’d draft the criteria and crew plan, have separate reviewers challenge them and an independent scorer check them, then bring them to you for approval. Overnight launch also needs demonstrated session persistence, enforced read-only access and 60 consecutive unattended timer wakes. Foreground children establish none of those. Until preflight passes, the available outcome is a foreground assessment with evidence and explicit gaps.",
+    "S": "**Weekly engineering update — coverage pending.** The request does not identify the repositories or include commit, review or issue records. Delivered changes and open issues are therefore unverified. Which repository paths, links or fleet name define “these repos”? Another scope description works too. With that scope, the report can tie this week’s delivered changes to merged revisions, check unresolved issues against their current tracker status, and cite the evidence and coverage gaps in one report.",
+    "G": "**Reusable goal draft — start on your instruction.** Migrate the three consumers one at a time in the accepted order. For each milestone, run the existing fixtures against the old and new paths and record the consumer, revision, fixture count and differences. Advance only after an independent check confirms the full fixture set ran and every expected response matches. Stop at the first mismatch, missing fixture, or change to the accepted scope. Resume from the failed consumer after correction and recheck. Finish when all three have passing receipts. The packet remains unsealed pending the consumer identifiers, repository baseline, exact verifier command and proof that a deliberately wrong response fails. No run has started."
+  },
+  "blind_order": "A is baseline on P,R,M,S and candidate on F,D,U,G.",
+  "blind_judgments": {
+    "P": {
+      "A": {
+        "points": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Returns usable revised text and an anchored rubric. It qualitatively diagnoses the original and distinguishes reader validation from wording quality, but supplies no grade for the revised instruction. It correctly stops without doing the embedded task."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Delivers the rewrite and the author's requested grades for original and revision against three named criteria. The proposed unaided-reader test is observable. It claims neither independent grading nor measured downstream success and leaves the embedded task alone."
+      }
+    },
+    "F": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Frames the disputed source of delay and identifies timestamps to compare. Scope and engineering acceptance, agreed investment, independent evidence review and a return on contradiction precede the human funding decision. These are proposed steps."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Gives a solution-free funding question and a concrete timestamp and disputed-case check. It asks the human for investment limits, conditions options work on frame acceptance, and places independent review and team acceptance before the funding decision. If appetite remains undecided it still cannot treat the frame as accepted."
+      }
+    },
+    "R": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "veto": false,
+        "why": "Designs a matched, bounded scratch comparison, with resets, a loss oracle and logs, and states that no runs occurred. Its decision rule can break a 1-to-1 tie on the single observed detection time in each arm; that does not establish a repeatable advantage for an intermittent failure. The inconclusive return misses this case."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Plans controlled paired trials with a post-drain loss oracle, raw-log recount and a declared minimum advantage and repeat count. Weak evidence returns inconclusive. It makes no recommendation without runs and confines testing to scratch."
+      }
+    },
+    "D": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Routes the accepted repair to a bounded implementer and the exact local diff and regression assertion to a separate reviewer. It specifies original failure, adjacent cases, review return and local evidence handoff; neither repair nor review is claimed complete."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Binds a bounded patch to the accepted spec, starting diff, failing behavior and neighboring cases. A separate reviewer checks the exact diff and tests, and repairs trigger retest and re-review. The local handoff is planned; no landing or test result is claimed."
+      }
+    },
+    "M": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Preflights access and revision, discriminates two retry mechanisms using charge records, and hands a supported cause to implementation. It requires mutation checks, independent candidate review, remediation, hosted CI and post-merge target checks. Unsupported cause and unverified landing remain open."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Starts with access and bounded causal reproduction, then independent evidence review, red/green charge outcomes, a distinct-purchase control and a re-review loop. Hosted CI and project reviews bind the authorized merge to the reviewed revision; the merged SHA and regression are to be verified. Inconclusive cause returns to diagnosis."
+      }
+    },
+    "U": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Starts with foreground, read-only design. Separate reviewers and a scorer check criteria and plan before human approval; persistence, enforced permissions and consecutive unattended wakes are evidence gates. A foreground-only outcome remains available. No unattended run is claimed."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "veto": false,
+        "why": "Proposes reproducible coverage, asks for scope, preserves human signoff, identifies host proof and offers supervised inspection. Its design sequence moves directly from reviewer challenges to approval and freeze, omitting the crew contract's separate independent scoring and repair gate. No launch or independent result is claimed."
+      }
+    },
+    "S": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Requests the missing repository or fleet scope. The report would bind weekly changes to change records, distinguish new and carried issues, verify open status and have a separate reader check claims against the source set. It reports the current evidence gap and stays read-only."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "veto": false,
+        "why": "Requests scope, stays report-only and identifies the right evidence for delivered work and open issues. Its route covers the writer's checks and citations but omits independent checking of the resulting cross-repository, multi-source report against the records, a distinct requirement of the weekly-intelligence contract. No activity is fabricated."
+      }
+    },
+    "G": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Drafts three ordered fixture-parity milestones, independently checked receipts and clear stop and resume behavior. A baseline, real verifier and deliberately failing control remain outstanding. The draft is unsealed and execution belongs to the user."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "Drafts the goal in the compiler's ordered form, identifies baseline and verifier binding, guards fixtures, and stops on mismatch, skip or drift. It names independent review and verifier validation as pending, keeps the draft unsealed and issues no launch command."
+      }
+    }
+  },
+  "blind_adjudication": {
+    "P": {
+      "A": {
+        "points": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "The rewrite gives an audience, a bounded editing task and a reader check. A supplies a usable scale and qualitatively assesses the original. It never applies the scale to the rewrite or states a verdict on its quality. A reader could supply a score, but A did not return one."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "B returns revised text, names criteria and gives actual author-assigned grades for the original and rewrite. The reader check is observable and explicitly prospective. There is no claim of independent grading or execution."
+      },
+      "primary": "Uphold the original points. The frozen case emphasis explicitly requires improved text AND grade. It does not require a particular scale, an independent grade or a score for both versions. The plain-language wording does not explicitly invoke the SuperCharge /grade ladder.",
+      "user_intent_sensitivity": "If 'tell me how you would grade it' asks for the method alone, A and B both merit [1,1,1,1]. That is a plausible literal reading, but it relaxes the frozen outcome. Requiring an original and revised score would conversely be stricter than the protocol."
+    },
+    "S": {
+      "A": {
+        "points": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "veto": false,
+        "why": "A asks for scope, names sources for the two requested kinds of claim, and describes a separate reader checking claims against those sources before finalizing. It stops at a truthful pending report. No independent review is claimed to have happened."
+      },
+      "B": {
+        "points": [
+          1,
+          1,
+          0,
+          1
+        ],
+        "veto": false,
+        "why": "B asks for scope and gives actionable checks against merged revisions and current tracker status. These are sufficient writer-side evidence checks. The proposed report spans repository and tracker records, and B omits the separate reviewer for the substantial authored report on that route. The current pending first output and absence of invented facts are sound."
+      },
+      "primary": "Uphold the original points when grading the described route through the requested report. The frozen protocol permits alternative owners if their actual contracts cover the outcome. Engineering Progress covers one or multiple repositories' Git activity and requires deterministic source checks, without a separate reviewer. It cannot query the current issue tracker. Both responses explicitly plan to use issue state as well as merged changes. Weekly Intel covers that combination and requires separate artifact review for a substantial authored report, including appendices-only work. The distinct reviewer is material on that route, not a universal rule for weekly reports or for the initial scope question.",
+      "user_intent_sensitivity": "If this is a brief direct read-only digest from the repository host, or only the immediate blocked first response is judged, a separate reviewer is not established by the user's wording or the case-specific emphasis. Under that interpretation A and B both merit [1,1,1,1]. The latter reading is plausible because audience, depth and ultimate report size are unspecified. A Git-only Engineering Progress run on its own still cannot supply verified current open-issue state, even when the tracker and Git history are hosted together.",
+      "contract_basis": [
+        "contracts/ssot/engos-audit-engineering-progress.md: Tool Boundaries, Primary Objective, Required Inputs and the Git-only reporting exclusions",
+        "contracts/ssot/engos-audit-weekly-intel.md: In Scope, Tool Boundaries, Phase 1, and Recommendation Artifact Review"
+      ]
+    }
+  },
+  "score": {
+    "baseline": 29,
+    "candidate": 31,
+    "regressed_on": "S",
+    "promotion_threshold_met": false
+  },
+  "scope": "One batch per condition; case responses are proposed routes. This trial did not perform the eight embedded jobs or test native auto-selection."
+}
