@@ -1,3 +1,11 @@
+## v1.22.1 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: adds a Feedback tab (nested under the Update guide tab) for feedback on the daily update itself, and a new `feedback` command (`add`, `list`, `lint`). On `update`, the review shows feedback lines (the person's own, plus up to three from an independent reviewer sub-agent that must cite a run note for each); they post with the person's name and date, newest first, only after "publish". A feedback failure never blocks a publish. `doc create` now builds the Feedback tab. `verify.py` checks for the tab. Docs without a Feedback tab skip the write with one line.
+- Tested: rules_test, cli_test, feedback_test, run_full.sh (1315 of 1315 checks), validate --strict, eval compile --check. Not tested: the reviewer sub-agent over a real publish, or a leader other than the doc owner running `feedback add`.
+
 ## v1.22.0 - 2026-11-11
 
 Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab

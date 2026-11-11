@@ -1309,6 +1309,54 @@ def doctor(ns):
     sys.exit(1 if fails else 0)
 
 
+# ---------- feedback ----------
+
+def feedback_add(ns):
+    """Add one dated, named entry to the Feedback tab (newest first). Never blocks or undoes a publish."""
+    import feedback as fb
+    doc = resolve_doc(ns)
+    ctx = Ctx(doc)
+    if not ctx.me:
+        raise Refused("no name in ~/.daily-update/config.json (me); run `doc join` first.")
+    bad = fb.lint(ns.text)
+    if bad:
+        raise Refused("; ".join(bad))
+    label = du.label(today())
+    line = fb.entry(label, ctx.me, ns.text)
+    try:
+        status, _ = fb.add(doc, label, ctx.me, ns.text, dry=True)
+    except LookupError as e:
+        raise Refused(f"{e} Ask the doc owner to add it; nothing else is affected.")
+    except ValueError as e:
+        raise Refused(str(e))
+    if status == "duplicate":
+        print(f"Already on the Feedback tab, not added again: {line}")
+        return
+    if apply(ns, [f"Add to the top of 'Feedback so far' on the Feedback tab: {line}"],
+             lambda: print("Re-read:", fb.add(doc, label, ctx.me, ns.text)[1])):
+        return
+
+
+def feedback_list(ns):
+    import feedback as fb
+    tab, _ = fb.find_tab(du.read_doc(resolve_doc(ns)))
+    if tab is None:
+        raise Refused("this doc has no Feedback tab under the Update guide tab.")
+    rows = fb.list_entries(tab) or []
+    if ns.json:
+        print(json.dumps(rows, indent=2))
+    else:
+        print("\n".join(rows) if rows else "No feedback yet.")
+
+
+def feedback_lint(ns):
+    import feedback as fb
+    bad = fb.lint(ns.text)
+    print("OK" if not bad else "BLOCK: " + "; ".join(bad))
+    if bad:
+        sys.exit(1)
+
+
 # ---------- grammar ----------
 
 def build_parser():
@@ -1399,6 +1447,11 @@ def build_parser():
     verb(g, "remove", section_remove, "remove a section that is only an automatic backup note; `--all <date>` does every tab",
          ("target", {"nargs": "+", "metavar": "ARG", "help": "<tab> <date>, or just <date> with --all"}),
          all={"action": "store_true", "help": "every tab with such a section on that date"})
+
+    g = group("feedback", "feedback on the daily update itself (template, drafts, overview, summary)")
+    verb(g, "add", feedback_add, "add one dated entry with your name, newest first; shown in the review, written after publish", "text")
+    verb(g, "list", feedback_list, "entries on the Feedback tab, newest first")
+    verb(g, "lint", feedback_lint, "check a line before it is added (read only)", "text")
 
     g = group("day", "the 3pm close-out (doc owner)")
     verb(g, "sweep", day_sweep, "preview, or with --publish write, Unconfirmed sections for tabs nobody updated today", "date",

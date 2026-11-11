@@ -17,6 +17,7 @@ Nothing here messages anyone except `day send --confirmed`, run only after the p
   reader     list | add | remove | set-channel
   source     list | add | remove                    (yours, local, never on the doc)
   section    write TAB FILE | show TAB DATE | lint TAB FILE
+  feedback   add TEXT | list | lint TEXT      (the Feedback tab; add writes one dated entry with your name)
   day        sweep | overview | decisions | send    (doc owner, 3pm close-out)
   discover   check FILE
   doctor     [--local | --only-doc]     (read only; names the fix for each problem)
