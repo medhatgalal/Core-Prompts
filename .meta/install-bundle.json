@@ -1,5 +1,21 @@
 {
   "files": {
+    ".claude/skills/comms-digest/SKILL.md": {
+      "mode": 420,
+      "sha256": "3da9e8d619b69ffcbb290b256919a8613205bfecf1518cb0febf3475114c03af"
+    },
+    ".claude/skills/comms-digest/resources/capability.json": {
+      "mode": 420,
+      "sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
+    },
+    ".claude/skills/comms-digest/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "662b0332ec77930749a25535081b0c26084357afb3c3f9e98e854d3a7bce288f"
+    },
+    ".claude/skills/comms-digest/resources/restore_sidebar.py": {
+      "mode": 493,
+      "sha256": "503a5c0159d03ab5168205d7eb1098fa0bc04a83b1ecf38f1a64a385adaba779"
+    },
     ".claude/skills/engos-audit-change-impact/SKILL.md": {
       "mode": 420,
       "sha256": "ba3e02e8e518cb51fec0c43280e29af860756f4f678e81a229a2d7c25f0b070b"
@@ -766,11 +782,11 @@
     },
     ".claude/skills/engos-operations-daily-update/SKILL.md": {
       "mode": 420,
-      "sha256": "72103e383a989601933301e7c7777626adfabbd36dd4dc93dcfe4e218d53a560"
+      "sha256": "fc6036e7258560d94861fb2a959fbbb56df1e7707a4fb85f9c1197a5f4fbef05"
     },
     ".claude/skills/engos-operations-daily-update/resources/capability.json": {
       "mode": 420,
-      "sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/backup.py": {
       "mode": 420,
@@ -782,7 +798,7 @@
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/cli.py": {
       "mode": 420,
-      "sha256": "7aa702ac8727ddc414306ad9aed56685d499a5afc97e46966e60091fa924e748"
+      "sha256": "b002a2d8daf637fd55dfbc96359eaae7b0621aac0158b37488184f77ef3acacc"
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/daily.py": {
       "mode": 420,
@@ -790,15 +806,19 @@
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/du.py": {
       "mode": 420,
-      "sha256": "97969b736928f2b07d2dc664fb01d55dbea4d97f2662c43d86e257002446ca0e"
+      "sha256": "dfa5913a43c0eb1ade76af1a3609c82fa66da58cec622d0ca5502d441d06032a"
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/dudoc.py": {
       "mode": 420,
       "sha256": "a78fa9016c0254f82291f92dbd025a11ac4c3155bfbb4f945ef813cec08adda3"
     },
+    ".claude/skills/engos-operations-daily-update/resources/scripts/feedback.py": {
+      "mode": 420,
+      "sha256": "ee1be0508329cdf00945f94ea4161748f00681112f456ec08a2ee2cbcfe77b87"
+    },
     ".claude/skills/engos-operations-daily-update/resources/scripts/guide.py": {
       "mode": 420,
-      "sha256": "580d2d7ceddb6547ccf4b25e9c6dc3ed81ef7a35eb57024bc2354836f933365e"
+      "sha256": "1f9063a2d5f328f17265160eb374720acf92cf67b6cdbcdaebf2746a17a7abaf"
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/migrate.py": {
       "mode": 420,
@@ -826,11 +846,11 @@
     },
     ".claude/skills/engos-operations-daily-update/resources/scripts/verify.py": {
       "mode": 420,
-      "sha256": "9aa00365e8b919914aafc6e77ca40127117b5f078af18c21374c29a861b05a49"
+      "sha256": "f28d2d24838d2d8ee4c6971bff4f3638b2ff6b39a25dd0f35d9511c8bd6e4790"
     },
     ".claude/skills/engos-operations-daily-update/resources/tests/README.md": {
       "mode": 420,
-      "sha256": "372438eea8492d2ece9f6adbcba69a359546bdcaed5101302cdc3ccc85e6ada0"
+      "sha256": "4afc80cef49a9f78ab81e266b50f10928c6272fb5a38a4626ede14e3d717ec61"
     },
     ".claude/skills/engos-operations-daily-update/resources/tests/backup_test.py": {
       "mode": 420,
@@ -838,7 +858,7 @@
     },
     ".claude/skills/engos-operations-daily-update/resources/tests/cli_test.py": {
       "mode": 420,
-      "sha256": "0f8b081aa2f7ccdcd8580a0a3cb2b00039a5cb6db4d01a4ca97b4e7ae9ede322"
+      "sha256": "e6ecabb7e7a35a3f6c6084b77611c6a72b41dfd03ffee898b18b45d526d0bdbd"
     },
     ".claude/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py": {
       "mode": 420,
@@ -847,6 +867,10 @@
     ".claude/skills/engos-operations-daily-update/resources/tests/exploratory.py": {
       "mode": 420,
       "sha256": "8356e1611714b9df822302245ba5ee1366e1acbe8bfc61d01d15dc4c57533749"
+    },
+    ".claude/skills/engos-operations-daily-update/resources/tests/feedback_test.py": {
+      "mode": 420,
+      "sha256": "7a0467a52f753b723bffdeaa0d0e600d6834fb76261217d623c4de613c1fc108"
     },
     ".claude/skills/engos-operations-daily-update/resources/tests/rules_test.py": {
       "mode": 420,
@@ -1246,7 +1270,7 @@
     },
     ".claude/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "bf3a45de0fa89050e5b6434024d9c81bd3342fe975623fb045a79677762f3374"
+      "sha256": "dfedfdbfbceeb68c184de664188b34503ff780f12fb0c548f41644f5c03b405c"
     },
     ".claude/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -1270,7 +1294,7 @@
     },
     ".claude/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "4c4a041ba3b72231ea1f305958f9d1c7a6bf8b5e133d3bab49c1c7fe5534e601"
+      "sha256": "af8118cf470b8af536e71b9e63edf7162146890bf187e901660a69c8b92292a7"
     },
     ".claude/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -1295,6 +1319,18 @@
     ".claude/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json": {
       "mode": 420,
       "sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
+    },
+    ".claude/skills/jira-intake-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "30257df0d5af111077feab393101f2fd085934487bebb4c4657a41c6f27facf2"
+    },
+    ".claude/skills/jira-intake-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
+    },
+    ".claude/skills/jira-intake-review/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "39444807587af3971c29e1b04904a056b8c73964ab445bc8ebf75ade0b001118"
     },
     ".claude/skills/loopy/LICENSE": {
       "mode": 420,
@@ -1331,6 +1367,22 @@
     ".claude/skills/loopy/resources/capability.json": {
       "mode": 420,
       "sha256": "55c4c8efbef6e2b47cecb73c4f55d47cfd9c20c09868c01af5c6d2cf6ae6333b"
+    },
+    ".codex/skills/comms-digest/SKILL.md": {
+      "mode": 420,
+      "sha256": "3da9e8d619b69ffcbb290b256919a8613205bfecf1518cb0febf3475114c03af"
+    },
+    ".codex/skills/comms-digest/resources/capability.json": {
+      "mode": 420,
+      "sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
+    },
+    ".codex/skills/comms-digest/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "662b0332ec77930749a25535081b0c26084357afb3c3f9e98e854d3a7bce288f"
+    },
+    ".codex/skills/comms-digest/resources/restore_sidebar.py": {
+      "mode": 493,
+      "sha256": "503a5c0159d03ab5168205d7eb1098fa0bc04a83b1ecf38f1a64a385adaba779"
     },
     ".codex/skills/engos-audit-change-impact/SKILL.md": {
       "mode": 420,
@@ -2098,11 +2150,11 @@
     },
     ".codex/skills/engos-operations-daily-update/SKILL.md": {
       "mode": 420,
-      "sha256": "72103e383a989601933301e7c7777626adfabbd36dd4dc93dcfe4e218d53a560"
+      "sha256": "fc6036e7258560d94861fb2a959fbbb56df1e7707a4fb85f9c1197a5f4fbef05"
     },
     ".codex/skills/engos-operations-daily-update/resources/capability.json": {
       "mode": 420,
-      "sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/backup.py": {
       "mode": 420,
@@ -2114,7 +2166,7 @@
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/cli.py": {
       "mode": 420,
-      "sha256": "7aa702ac8727ddc414306ad9aed56685d499a5afc97e46966e60091fa924e748"
+      "sha256": "b002a2d8daf637fd55dfbc96359eaae7b0621aac0158b37488184f77ef3acacc"
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/daily.py": {
       "mode": 420,
@@ -2122,15 +2174,19 @@
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/du.py": {
       "mode": 420,
-      "sha256": "97969b736928f2b07d2dc664fb01d55dbea4d97f2662c43d86e257002446ca0e"
+      "sha256": "dfa5913a43c0eb1ade76af1a3609c82fa66da58cec622d0ca5502d441d06032a"
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/dudoc.py": {
       "mode": 420,
       "sha256": "a78fa9016c0254f82291f92dbd025a11ac4c3155bfbb4f945ef813cec08adda3"
     },
+    ".codex/skills/engos-operations-daily-update/resources/scripts/feedback.py": {
+      "mode": 420,
+      "sha256": "ee1be0508329cdf00945f94ea4161748f00681112f456ec08a2ee2cbcfe77b87"
+    },
     ".codex/skills/engos-operations-daily-update/resources/scripts/guide.py": {
       "mode": 420,
-      "sha256": "580d2d7ceddb6547ccf4b25e9c6dc3ed81ef7a35eb57024bc2354836f933365e"
+      "sha256": "1f9063a2d5f328f17265160eb374720acf92cf67b6cdbcdaebf2746a17a7abaf"
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/migrate.py": {
       "mode": 420,
@@ -2158,11 +2214,11 @@
     },
     ".codex/skills/engos-operations-daily-update/resources/scripts/verify.py": {
       "mode": 420,
-      "sha256": "9aa00365e8b919914aafc6e77ca40127117b5f078af18c21374c29a861b05a49"
+      "sha256": "f28d2d24838d2d8ee4c6971bff4f3638b2ff6b39a25dd0f35d9511c8bd6e4790"
     },
     ".codex/skills/engos-operations-daily-update/resources/tests/README.md": {
       "mode": 420,
-      "sha256": "372438eea8492d2ece9f6adbcba69a359546bdcaed5101302cdc3ccc85e6ada0"
+      "sha256": "4afc80cef49a9f78ab81e266b50f10928c6272fb5a38a4626ede14e3d717ec61"
     },
     ".codex/skills/engos-operations-daily-update/resources/tests/backup_test.py": {
       "mode": 420,
@@ -2170,7 +2226,7 @@
     },
     ".codex/skills/engos-operations-daily-update/resources/tests/cli_test.py": {
       "mode": 420,
-      "sha256": "0f8b081aa2f7ccdcd8580a0a3cb2b00039a5cb6db4d01a4ca97b4e7ae9ede322"
+      "sha256": "e6ecabb7e7a35a3f6c6084b77611c6a72b41dfd03ffee898b18b45d526d0bdbd"
     },
     ".codex/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py": {
       "mode": 420,
@@ -2179,6 +2235,10 @@
     ".codex/skills/engos-operations-daily-update/resources/tests/exploratory.py": {
       "mode": 420,
       "sha256": "8356e1611714b9df822302245ba5ee1366e1acbe8bfc61d01d15dc4c57533749"
+    },
+    ".codex/skills/engos-operations-daily-update/resources/tests/feedback_test.py": {
+      "mode": 420,
+      "sha256": "7a0467a52f753b723bffdeaa0d0e600d6834fb76261217d623c4de613c1fc108"
     },
     ".codex/skills/engos-operations-daily-update/resources/tests/rules_test.py": {
       "mode": 420,
@@ -2578,7 +2638,7 @@
     },
     ".codex/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "bf3a45de0fa89050e5b6434024d9c81bd3342fe975623fb045a79677762f3374"
+      "sha256": "dfedfdbfbceeb68c184de664188b34503ff780f12fb0c548f41644f5c03b405c"
     },
     ".codex/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -2602,7 +2662,7 @@
     },
     ".codex/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "4c4a041ba3b72231ea1f305958f9d1c7a6bf8b5e133d3bab49c1c7fe5534e601"
+      "sha256": "af8118cf470b8af536e71b9e63edf7162146890bf187e901660a69c8b92292a7"
     },
     ".codex/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -2627,6 +2687,18 @@
     ".codex/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json": {
       "mode": 420,
       "sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
+    },
+    ".codex/skills/jira-intake-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "30257df0d5af111077feab393101f2fd085934487bebb4c4657a41c6f27facf2"
+    },
+    ".codex/skills/jira-intake-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
+    },
+    ".codex/skills/jira-intake-review/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "39444807587af3971c29e1b04904a056b8c73964ab445bc8ebf75ade0b001118"
     },
     ".codex/skills/loopy/LICENSE": {
       "mode": 420,
@@ -2663,6 +2735,22 @@
     ".codex/skills/loopy/resources/capability.json": {
       "mode": 420,
       "sha256": "55c4c8efbef6e2b47cecb73c4f55d47cfd9c20c09868c01af5c6d2cf6ae6333b"
+    },
+    ".gemini/skills/comms-digest/SKILL.md": {
+      "mode": 420,
+      "sha256": "3da9e8d619b69ffcbb290b256919a8613205bfecf1518cb0febf3475114c03af"
+    },
+    ".gemini/skills/comms-digest/resources/capability.json": {
+      "mode": 420,
+      "sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
+    },
+    ".gemini/skills/comms-digest/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "662b0332ec77930749a25535081b0c26084357afb3c3f9e98e854d3a7bce288f"
+    },
+    ".gemini/skills/comms-digest/resources/restore_sidebar.py": {
+      "mode": 493,
+      "sha256": "503a5c0159d03ab5168205d7eb1098fa0bc04a83b1ecf38f1a64a385adaba779"
     },
     ".gemini/skills/engos-audit-change-impact/SKILL.md": {
       "mode": 420,
@@ -3430,11 +3518,11 @@
     },
     ".gemini/skills/engos-operations-daily-update/SKILL.md": {
       "mode": 420,
-      "sha256": "72103e383a989601933301e7c7777626adfabbd36dd4dc93dcfe4e218d53a560"
+      "sha256": "fc6036e7258560d94861fb2a959fbbb56df1e7707a4fb85f9c1197a5f4fbef05"
     },
     ".gemini/skills/engos-operations-daily-update/resources/capability.json": {
       "mode": 420,
-      "sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/backup.py": {
       "mode": 420,
@@ -3446,7 +3534,7 @@
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/cli.py": {
       "mode": 420,
-      "sha256": "7aa702ac8727ddc414306ad9aed56685d499a5afc97e46966e60091fa924e748"
+      "sha256": "b002a2d8daf637fd55dfbc96359eaae7b0621aac0158b37488184f77ef3acacc"
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/daily.py": {
       "mode": 420,
@@ -3454,15 +3542,19 @@
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/du.py": {
       "mode": 420,
-      "sha256": "97969b736928f2b07d2dc664fb01d55dbea4d97f2662c43d86e257002446ca0e"
+      "sha256": "dfa5913a43c0eb1ade76af1a3609c82fa66da58cec622d0ca5502d441d06032a"
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/dudoc.py": {
       "mode": 420,
       "sha256": "a78fa9016c0254f82291f92dbd025a11ac4c3155bfbb4f945ef813cec08adda3"
     },
+    ".gemini/skills/engos-operations-daily-update/resources/scripts/feedback.py": {
+      "mode": 420,
+      "sha256": "ee1be0508329cdf00945f94ea4161748f00681112f456ec08a2ee2cbcfe77b87"
+    },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/guide.py": {
       "mode": 420,
-      "sha256": "580d2d7ceddb6547ccf4b25e9c6dc3ed81ef7a35eb57024bc2354836f933365e"
+      "sha256": "1f9063a2d5f328f17265160eb374720acf92cf67b6cdbcdaebf2746a17a7abaf"
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/migrate.py": {
       "mode": 420,
@@ -3490,11 +3582,11 @@
     },
     ".gemini/skills/engos-operations-daily-update/resources/scripts/verify.py": {
       "mode": 420,
-      "sha256": "9aa00365e8b919914aafc6e77ca40127117b5f078af18c21374c29a861b05a49"
+      "sha256": "f28d2d24838d2d8ee4c6971bff4f3638b2ff6b39a25dd0f35d9511c8bd6e4790"
     },
     ".gemini/skills/engos-operations-daily-update/resources/tests/README.md": {
       "mode": 420,
-      "sha256": "372438eea8492d2ece9f6adbcba69a359546bdcaed5101302cdc3ccc85e6ada0"
+      "sha256": "4afc80cef49a9f78ab81e266b50f10928c6272fb5a38a4626ede14e3d717ec61"
     },
     ".gemini/skills/engos-operations-daily-update/resources/tests/backup_test.py": {
       "mode": 420,
@@ -3502,7 +3594,7 @@
     },
     ".gemini/skills/engos-operations-daily-update/resources/tests/cli_test.py": {
       "mode": 420,
-      "sha256": "0f8b081aa2f7ccdcd8580a0a3cb2b00039a5cb6db4d01a4ca97b4e7ae9ede322"
+      "sha256": "e6ecabb7e7a35a3f6c6084b77611c6a72b41dfd03ffee898b18b45d526d0bdbd"
     },
     ".gemini/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py": {
       "mode": 420,
@@ -3511,6 +3603,10 @@
     ".gemini/skills/engos-operations-daily-update/resources/tests/exploratory.py": {
       "mode": 420,
       "sha256": "8356e1611714b9df822302245ba5ee1366e1acbe8bfc61d01d15dc4c57533749"
+    },
+    ".gemini/skills/engos-operations-daily-update/resources/tests/feedback_test.py": {
+      "mode": 420,
+      "sha256": "7a0467a52f753b723bffdeaa0d0e600d6834fb76261217d623c4de613c1fc108"
     },
     ".gemini/skills/engos-operations-daily-update/resources/tests/rules_test.py": {
       "mode": 420,
@@ -3910,7 +4006,7 @@
     },
     ".gemini/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "bf3a45de0fa89050e5b6434024d9c81bd3342fe975623fb045a79677762f3374"
+      "sha256": "dfedfdbfbceeb68c184de664188b34503ff780f12fb0c548f41644f5c03b405c"
     },
     ".gemini/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -3934,7 +4030,7 @@
     },
     ".gemini/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "4c4a041ba3b72231ea1f305958f9d1c7a6bf8b5e133d3bab49c1c7fe5534e601"
+      "sha256": "af8118cf470b8af536e71b9e63edf7162146890bf187e901660a69c8b92292a7"
     },
     ".gemini/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -3959,6 +4055,18 @@
     ".gemini/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json": {
       "mode": 420,
       "sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
+    },
+    ".gemini/skills/jira-intake-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "30257df0d5af111077feab393101f2fd085934487bebb4c4657a41c6f27facf2"
+    },
+    ".gemini/skills/jira-intake-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
+    },
+    ".gemini/skills/jira-intake-review/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "39444807587af3971c29e1b04904a056b8c73964ab445bc8ebf75ade0b001118"
     },
     ".gemini/skills/loopy/LICENSE": {
       "mode": 420,
@@ -3995,6 +4103,22 @@
     ".gemini/skills/loopy/resources/capability.json": {
       "mode": 420,
       "sha256": "55c4c8efbef6e2b47cecb73c4f55d47cfd9c20c09868c01af5c6d2cf6ae6333b"
+    },
+    ".grok/skills/comms-digest/SKILL.md": {
+      "mode": 420,
+      "sha256": "3da9e8d619b69ffcbb290b256919a8613205bfecf1518cb0febf3475114c03af"
+    },
+    ".grok/skills/comms-digest/resources/capability.json": {
+      "mode": 420,
+      "sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
+    },
+    ".grok/skills/comms-digest/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "662b0332ec77930749a25535081b0c26084357afb3c3f9e98e854d3a7bce288f"
+    },
+    ".grok/skills/comms-digest/resources/restore_sidebar.py": {
+      "mode": 493,
+      "sha256": "503a5c0159d03ab5168205d7eb1098fa0bc04a83b1ecf38f1a64a385adaba779"
     },
     ".grok/skills/engos-audit-change-impact/SKILL.md": {
       "mode": 420,
@@ -4762,11 +4886,11 @@
     },
     ".grok/skills/engos-operations-daily-update/SKILL.md": {
       "mode": 420,
-      "sha256": "72103e383a989601933301e7c7777626adfabbd36dd4dc93dcfe4e218d53a560"
+      "sha256": "fc6036e7258560d94861fb2a959fbbb56df1e7707a4fb85f9c1197a5f4fbef05"
     },
     ".grok/skills/engos-operations-daily-update/resources/capability.json": {
       "mode": 420,
-      "sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/backup.py": {
       "mode": 420,
@@ -4778,7 +4902,7 @@
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/cli.py": {
       "mode": 420,
-      "sha256": "7aa702ac8727ddc414306ad9aed56685d499a5afc97e46966e60091fa924e748"
+      "sha256": "b002a2d8daf637fd55dfbc96359eaae7b0621aac0158b37488184f77ef3acacc"
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/daily.py": {
       "mode": 420,
@@ -4786,15 +4910,19 @@
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/du.py": {
       "mode": 420,
-      "sha256": "97969b736928f2b07d2dc664fb01d55dbea4d97f2662c43d86e257002446ca0e"
+      "sha256": "dfa5913a43c0eb1ade76af1a3609c82fa66da58cec622d0ca5502d441d06032a"
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/dudoc.py": {
       "mode": 420,
       "sha256": "a78fa9016c0254f82291f92dbd025a11ac4c3155bfbb4f945ef813cec08adda3"
     },
+    ".grok/skills/engos-operations-daily-update/resources/scripts/feedback.py": {
+      "mode": 420,
+      "sha256": "ee1be0508329cdf00945f94ea4161748f00681112f456ec08a2ee2cbcfe77b87"
+    },
     ".grok/skills/engos-operations-daily-update/resources/scripts/guide.py": {
       "mode": 420,
-      "sha256": "580d2d7ceddb6547ccf4b25e9c6dc3ed81ef7a35eb57024bc2354836f933365e"
+      "sha256": "1f9063a2d5f328f17265160eb374720acf92cf67b6cdbcdaebf2746a17a7abaf"
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/migrate.py": {
       "mode": 420,
@@ -4822,11 +4950,11 @@
     },
     ".grok/skills/engos-operations-daily-update/resources/scripts/verify.py": {
       "mode": 420,
-      "sha256": "9aa00365e8b919914aafc6e77ca40127117b5f078af18c21374c29a861b05a49"
+      "sha256": "f28d2d24838d2d8ee4c6971bff4f3638b2ff6b39a25dd0f35d9511c8bd6e4790"
     },
     ".grok/skills/engos-operations-daily-update/resources/tests/README.md": {
       "mode": 420,
-      "sha256": "372438eea8492d2ece9f6adbcba69a359546bdcaed5101302cdc3ccc85e6ada0"
+      "sha256": "4afc80cef49a9f78ab81e266b50f10928c6272fb5a38a4626ede14e3d717ec61"
     },
     ".grok/skills/engos-operations-daily-update/resources/tests/backup_test.py": {
       "mode": 420,
@@ -4834,7 +4962,7 @@
     },
     ".grok/skills/engos-operations-daily-update/resources/tests/cli_test.py": {
       "mode": 420,
-      "sha256": "0f8b081aa2f7ccdcd8580a0a3cb2b00039a5cb6db4d01a4ca97b4e7ae9ede322"
+      "sha256": "e6ecabb7e7a35a3f6c6084b77611c6a72b41dfd03ffee898b18b45d526d0bdbd"
     },
     ".grok/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py": {
       "mode": 420,
@@ -4843,6 +4971,10 @@
     ".grok/skills/engos-operations-daily-update/resources/tests/exploratory.py": {
       "mode": 420,
       "sha256": "8356e1611714b9df822302245ba5ee1366e1acbe8bfc61d01d15dc4c57533749"
+    },
+    ".grok/skills/engos-operations-daily-update/resources/tests/feedback_test.py": {
+      "mode": 420,
+      "sha256": "7a0467a52f753b723bffdeaa0d0e600d6834fb76261217d623c4de613c1fc108"
     },
     ".grok/skills/engos-operations-daily-update/resources/tests/rules_test.py": {
       "mode": 420,
@@ -5242,7 +5374,7 @@
     },
     ".grok/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "bf3a45de0fa89050e5b6434024d9c81bd3342fe975623fb045a79677762f3374"
+      "sha256": "dfedfdbfbceeb68c184de664188b34503ff780f12fb0c548f41644f5c03b405c"
     },
     ".grok/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -5266,7 +5398,7 @@
     },
     ".grok/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "4c4a041ba3b72231ea1f305958f9d1c7a6bf8b5e133d3bab49c1c7fe5534e601"
+      "sha256": "af8118cf470b8af536e71b9e63edf7162146890bf187e901660a69c8b92292a7"
     },
     ".grok/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -5291,6 +5423,18 @@
     ".grok/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json": {
       "mode": 420,
       "sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
+    },
+    ".grok/skills/jira-intake-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "30257df0d5af111077feab393101f2fd085934487bebb4c4657a41c6f27facf2"
+    },
+    ".grok/skills/jira-intake-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
+    },
+    ".grok/skills/jira-intake-review/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "39444807587af3971c29e1b04904a056b8c73964ab445bc8ebf75ade0b001118"
     },
     ".grok/skills/loopy/LICENSE": {
       "mode": 420,
@@ -5327,6 +5471,22 @@
     ".grok/skills/loopy/resources/capability.json": {
       "mode": 420,
       "sha256": "55c4c8efbef6e2b47cecb73c4f55d47cfd9c20c09868c01af5c6d2cf6ae6333b"
+    },
+    ".kiro/skills/comms-digest/SKILL.md": {
+      "mode": 420,
+      "sha256": "3da9e8d619b69ffcbb290b256919a8613205bfecf1518cb0febf3475114c03af"
+    },
+    ".kiro/skills/comms-digest/resources/capability.json": {
+      "mode": 420,
+      "sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
+    },
+    ".kiro/skills/comms-digest/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "662b0332ec77930749a25535081b0c26084357afb3c3f9e98e854d3a7bce288f"
+    },
+    ".kiro/skills/comms-digest/resources/restore_sidebar.py": {
+      "mode": 493,
+      "sha256": "503a5c0159d03ab5168205d7eb1098fa0bc04a83b1ecf38f1a64a385adaba779"
     },
     ".kiro/skills/engos-audit-change-impact/SKILL.md": {
       "mode": 420,
@@ -6094,11 +6254,11 @@
     },
     ".kiro/skills/engos-operations-daily-update/SKILL.md": {
       "mode": 420,
-      "sha256": "72103e383a989601933301e7c7777626adfabbd36dd4dc93dcfe4e218d53a560"
+      "sha256": "fc6036e7258560d94861fb2a959fbbb56df1e7707a4fb85f9c1197a5f4fbef05"
     },
     ".kiro/skills/engos-operations-daily-update/resources/capability.json": {
       "mode": 420,
-      "sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/backup.py": {
       "mode": 420,
@@ -6110,7 +6270,7 @@
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/cli.py": {
       "mode": 420,
-      "sha256": "7aa702ac8727ddc414306ad9aed56685d499a5afc97e46966e60091fa924e748"
+      "sha256": "b002a2d8daf637fd55dfbc96359eaae7b0621aac0158b37488184f77ef3acacc"
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/daily.py": {
       "mode": 420,
@@ -6118,15 +6278,19 @@
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/du.py": {
       "mode": 420,
-      "sha256": "97969b736928f2b07d2dc664fb01d55dbea4d97f2662c43d86e257002446ca0e"
+      "sha256": "dfa5913a43c0eb1ade76af1a3609c82fa66da58cec622d0ca5502d441d06032a"
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/dudoc.py": {
       "mode": 420,
       "sha256": "a78fa9016c0254f82291f92dbd025a11ac4c3155bfbb4f945ef813cec08adda3"
     },
+    ".kiro/skills/engos-operations-daily-update/resources/scripts/feedback.py": {
+      "mode": 420,
+      "sha256": "ee1be0508329cdf00945f94ea4161748f00681112f456ec08a2ee2cbcfe77b87"
+    },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/guide.py": {
       "mode": 420,
-      "sha256": "580d2d7ceddb6547ccf4b25e9c6dc3ed81ef7a35eb57024bc2354836f933365e"
+      "sha256": "1f9063a2d5f328f17265160eb374720acf92cf67b6cdbcdaebf2746a17a7abaf"
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/migrate.py": {
       "mode": 420,
@@ -6154,11 +6318,11 @@
     },
     ".kiro/skills/engos-operations-daily-update/resources/scripts/verify.py": {
       "mode": 420,
-      "sha256": "9aa00365e8b919914aafc6e77ca40127117b5f078af18c21374c29a861b05a49"
+      "sha256": "f28d2d24838d2d8ee4c6971bff4f3638b2ff6b39a25dd0f35d9511c8bd6e4790"
     },
     ".kiro/skills/engos-operations-daily-update/resources/tests/README.md": {
       "mode": 420,
-      "sha256": "372438eea8492d2ece9f6adbcba69a359546bdcaed5101302cdc3ccc85e6ada0"
+      "sha256": "4afc80cef49a9f78ab81e266b50f10928c6272fb5a38a4626ede14e3d717ec61"
     },
     ".kiro/skills/engos-operations-daily-update/resources/tests/backup_test.py": {
       "mode": 420,
@@ -6166,7 +6330,7 @@
     },
     ".kiro/skills/engos-operations-daily-update/resources/tests/cli_test.py": {
       "mode": 420,
-      "sha256": "0f8b081aa2f7ccdcd8580a0a3cb2b00039a5cb6db4d01a4ca97b4e7ae9ede322"
+      "sha256": "e6ecabb7e7a35a3f6c6084b77611c6a72b41dfd03ffee898b18b45d526d0bdbd"
     },
     ".kiro/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py": {
       "mode": 420,
@@ -6175,6 +6339,10 @@
     ".kiro/skills/engos-operations-daily-update/resources/tests/exploratory.py": {
       "mode": 420,
       "sha256": "8356e1611714b9df822302245ba5ee1366e1acbe8bfc61d01d15dc4c57533749"
+    },
+    ".kiro/skills/engos-operations-daily-update/resources/tests/feedback_test.py": {
+      "mode": 420,
+      "sha256": "7a0467a52f753b723bffdeaa0d0e600d6834fb76261217d623c4de613c1fc108"
     },
     ".kiro/skills/engos-operations-daily-update/resources/tests/rules_test.py": {
       "mode": 420,
@@ -6574,7 +6742,7 @@
     },
     ".kiro/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "bf3a45de0fa89050e5b6434024d9c81bd3342fe975623fb045a79677762f3374"
+      "sha256": "dfedfdbfbceeb68c184de664188b34503ff780f12fb0c548f41644f5c03b405c"
     },
     ".kiro/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -6598,7 +6766,7 @@
     },
     ".kiro/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "4c4a041ba3b72231ea1f305958f9d1c7a6bf8b5e133d3bab49c1c7fe5534e601"
+      "sha256": "af8118cf470b8af536e71b9e63edf7162146890bf187e901660a69c8b92292a7"
     },
     ".kiro/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -6623,6 +6791,18 @@
     ".kiro/skills/engos-triage-my-inbox-chat-pulse/resources/capability.json": {
       "mode": 420,
       "sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
+    },
+    ".kiro/skills/jira-intake-review/SKILL.md": {
+      "mode": 420,
+      "sha256": "30257df0d5af111077feab393101f2fd085934487bebb4c4657a41c6f27facf2"
+    },
+    ".kiro/skills/jira-intake-review/resources/capability.json": {
+      "mode": 420,
+      "sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
+    },
+    ".kiro/skills/jira-intake-review/resources/profile.example.json": {
+      "mode": 420,
+      "sha256": "39444807587af3971c29e1b04904a056b8c73964ab445bc8ebf75ade0b001118"
     },
     ".kiro/skills/loopy/LICENSE": {
       "mode": 420,
@@ -6683,6 +6863,10 @@
     ".kiro/steering/skill-routing.md": {
       "mode": 420,
       "sha256": "19c35e74ff745938f949622d2427f19712768d95b8cafbea6b197fb01a864e17"
+    },
+    ".meta/capabilities/comms-digest.json": {
+      "mode": 420,
+      "sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
     },
     ".meta/capabilities/engos-audit-change-impact.json": {
       "mode": 420,
@@ -6794,7 +6978,7 @@
     },
     ".meta/capabilities/engos-operations-daily-update.json": {
       "mode": 420,
-      "sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     ".meta/capabilities/engos-operations-gtd-planning.json": {
       "mode": 420,
@@ -6858,7 +7042,7 @@
     },
     ".meta/capabilities/engos-route-intent.json": {
       "mode": 420,
-      "sha256": "bf3a45de0fa89050e5b6434024d9c81bd3342fe975623fb045a79677762f3374"
+      "sha256": "dfedfdbfbceeb68c184de664188b34503ff780f12fb0c548f41644f5c03b405c"
     },
     ".meta/capabilities/engos-triage-my-inbox-chat-pulse.json": {
       "mode": 420,
@@ -6868,13 +7052,17 @@
       "mode": 420,
       "sha256": "002bcc23b9cad0ecaeceeafb421dcdbaa09ffc480035cee8ee2bda31b2fee0d2"
     },
+    ".meta/capabilities/jira-intake-review.json": {
+      "mode": 420,
+      "sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
+    },
     ".meta/capabilities/loopy.json": {
       "mode": 420,
       "sha256": "55c4c8efbef6e2b47cecb73c4f55d47cfd9c20c09868c01af5c6d2cf6ae6333b"
     },
     ".meta/capability-handoff.json": {
       "mode": 420,
-      "sha256": "a934801d52cf5d4d9c7050f91f70fbca012ce6c7d23d608426fc9211c7daa66b"
+      "sha256": "4e5717984b6843e8e94e39410a2da6ba49db253657082e427446d3e79f67b456"
     },
     ".meta/install-profiles/codex-kiro-grok.json": {
       "mode": 420,
@@ -6890,7 +7078,7 @@
     },
     ".meta/manifest.json": {
       "mode": 420,
-      "sha256": "84dbae79f43e142dd6b9fe5371df60eb25c8d21a797867be1dc23f115fcaf464"
+      "sha256": "3308aff719081964768364fb2b5a7850336082a62da439d899360dd8ea7b6172"
     },
     "RELEASE_SOURCE.env": {
       "mode": 420,
@@ -6898,7 +7086,7 @@
     },
     "VERSION": {
       "mode": 420,
-      "sha256": "e834c23916cf0d68645109822c5c15c5bf8bed9c8f43b51561a5e2478e96b307"
+      "sha256": "dd666f5458507ea2fb56d65c1497bcb28aac0108956c10b2faf7c60ec13e3247"
     },
     "scripts/deploy-copy-plan.py": {
       "mode": 420,

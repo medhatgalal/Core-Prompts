@@ -26,6 +26,7 @@ Docs listed in `~/.daily-update/protected.json` are never written.
 | `day_mon_nov9.py` | Day two: add, move, cover, finish, and three refusals |
 | `rules_test.py` | Offline: status rules, pre-publish check (warn vs block), stale-date check, Missing a plan, short labels, migration colour mapping |
 | `cli_test.py` | Offline: the initiative lifecycle table, who may do what, name matching, validation, source CRUD on a throwaway config, and the noun-verb grammar (every old command name is refused) |
+| `feedback_test.py` | Offline: Feedback tab entry lint, format, newest-first insert, first-entry replace, duplicate skip, nothing outside the list touched |
 | `backup_test.py` | Drive backup: first backup, no bounce, restore on a clean machine, newer side wins, Drive outage. Uses a throwaway "E2E TEST .engos" folder and trashes it after |
 
 When a skill rule changes, change the matching script and add a check to `verify.py`. Confirm the new check

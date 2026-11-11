@@ -36,6 +36,8 @@ not required stages added to every example.
 
 ## Choose the stopping point
 
+Start with the [copyable everyday prompt](../reports/gauntlet-routing-coverage/README.md#paste-into-an-ordinary-session) if you want to describe the result in your own words.
+
 | Ordinary request | Expected result |
 | --- | --- |
 | “Polish this prompt and tell me how to grade it. Leave its instructions unexecuted.” | Supercharge can simplify the text and propose grading criteria. Return the edited prompt and rubric. |

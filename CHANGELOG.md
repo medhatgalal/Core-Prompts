@@ -3,6 +3,23 @@
 - Refreshed the standalone intent-router catalog from canonical descriptors and added a drift check. It now includes Crew, Change Impact, Daily Update and the three GTD skills.
 - Clarified Crew’s attended and unattended preflight, elapsed qualification time, and how a read-only monitor returns evidence for the designer to record.
 
+## v1.22.1 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: adds a Feedback tab (nested under the Update guide tab) for feedback on the daily update itself, and a new `feedback` command (`add`, `list`, `lint`). On `update`, the review shows feedback lines (the person's own, plus up to three from an independent reviewer sub-agent that must cite a run note for each); they post with the person's name and date, newest first, only after "publish". A feedback failure never blocks a publish. `doc create` now builds the Feedback tab. `verify.py` checks for the tab. Docs without a Feedback tab skip the write with one line.
+- Tested: rules_test, cli_test, feedback_test, run_full.sh (1315 of 1315 checks), validate --strict, eval compile --check. Not tested: the reviewer sub-agent over a real publish, or a leader other than the doc owner running `feedback add`.
+
+## v1.22.0 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- New skill `comms-digest`: a scheduled Google Chat and Gmail digest that lists only what needs one person, proposes numbered email clean-up, and runs a weekly reversible sidebar tidy (snapshot first, moves only). It never sends, posts, replies, marks read, or permanently deletes; writes happen only on numbers the person types, plus the live Monday tidy. Personal values (VIPs, direct reports, sidebar sections, Chat user id, state folder, live or dry-run mode) live in `~/.engos/comms-digest/profile.json`, with `profile.example.json` bundled. Includes `restore_sidebar.py`, which puts chats back where a snapshot says they were (dry run by default). `engos-triage-my-inbox-chat-pulse` is unchanged and still ships.
+- New skill `jira-intake-review`: a read-only daily review of the new tickets in one Jira filter, with category, link state, owner and next action per ticket. Includes rules for unverifiable feature cards (counted as needing action) and team Inbox epics (waiting for triage). Team values (filter ids, owners, excluded projects) live in `~/.engos/jira-intake-review/profile.json`, with `profile.example.json` bundled.
+- Tested: full suite under Python 3.14, `validate --strict --skip-schema`, build, intent guide check. The live restore script was exercised once on a real sidebar (move one chat, restore it, zero differences). Not tested: the schema cache check (the local cache is 176 days old); unattended scheduled runs of either skill from this release.
+
 ## v1.21.2 - 2026-11-09
 
 Tag authorized by Scott Parrish on 2026-11-09. Publication is recorded by the GitLab

@@ -3,6 +3,10 @@
   "owner": "engos-route-intent",
   "status": "advisory_conditional_suggestions",
   "catalog": {
+    "comms-digest": {
+      "summary": "Scheduled Google Chat and Gmail digest that surfaces only what needs one person, proposes numbered email and Chat clean-up, and runs a weekly reversible sidebar tidy. Use for a twice-daily comms digest, a Monday sidebar tidy, or restoring a sidebar from a snapshot. Never sends, posts, replies, marks read, or permanently deletes. Do not use for interactive triage or sending replies.",
+      "descriptor_sha256": "936f370459653fd472b9173ee2c7ad7a25e83f54a2cc37ae16ef414f1eea78cc"
+    },
     "engos-audit-change-impact": {
       "summary": "Roll up an org's merged and open GitLab and GitHub changes for a time window into a fact-checked, business-impact report: each bullet states its likely impact (inference) and what changed (fact) with links. The roster is the reporting tree in the Appian Home org chart. Use for what-did-my-org-ship-and-why-it-matters updates; do not use for git metrics dashboards, Jira or chat status reports, or code review.",
       "descriptor_sha256": "1b573127cb01a9df617b0e1dae39b4c551179bb586f748c19ec135e387b6d9a3"
@@ -109,7 +113,7 @@
     },
     "engos-operations-daily-update": {
       "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
-      "descriptor_sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+      "descriptor_sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
     "engos-operations-gtd-planning": {
       "summary": "Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \"plan my day\", \"weekly review\", \"triage my inbox\", \"daily close\", \"plan my week\", \"capture my tasks\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.",
@@ -171,6 +175,10 @@
     "engos-triage-my-inbox-chat-pulse": {
       "summary": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
       "descriptor_sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
+    },
+    "jira-intake-review": {
+      "summary": "Daily read-only review of the new tickets in a Jira filter: what came in, what came in sideways (no epic, no initiative, no feature card, wrong home), who owns the fix, and the next action. Use for a weekday morning intake report or an owner-by-owner follow-up draft. Never edits, comments on, assigns, or closes tickets and never sends messages. Do not use for sprint reporting or ticket hygiene sweeps.",
+      "descriptor_sha256": "95a3798c9038c1ea2d252bbe6f63aecc6acd53eaea91737a5f253c06721fa95e"
     },
     "loopy": {
       "summary": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
