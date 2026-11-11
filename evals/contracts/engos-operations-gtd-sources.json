@@ -28,6 +28,8 @@
     "68d63579d771f82bda77c3dbfe2ac514fda06ff034548474a2691cf0e3c56b0b",
     "0f5242277110a363d0085a7f5d537f00c27a11c52bff85b320d1dec61aa5bc17",
     "6d846e0eba1be934863792fe68c19ca273cdcf4f7945fcc1a5a5979ad2a6ce8e",
+    "8bba66f107a7f8bbb02867145f94c01d1300b81c3eb0774300f9a9e1410f9691",
+    "f5b3492fe81aa342d0137b75077ce1312f54dd0fb4ed7772da7dd2ff472602c9",
     "4b17c0e810712c2c05cef5b8b4400c86518f90c554bb5ef5441013f9b9b08b6c",
     "11da8edca79166594206c49ed9cda1426495ba605c6bdd5d5c2924e653ee80ed",
     "3523e4ca75f41936f0d666d2212163d57e14c69d18d80fe52f8a2cbb56748d07",
@@ -176,6 +178,16 @@
       "sha256": "6d846e0eba1be934863792fe68c19ca273cdcf4f7945fcc1a5a5979ad2a6ce8e",
       "source": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
       "text": "Read-only. Never send, reply, label, archive or mark read."
+    },
+    {
+      "sha256": "8bba66f107a7f8bbb02867145f94c01d1300b81c3eb0774300f9a9e1410f9691",
+      "source": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
+      "text": "The query reads back 4 days so a Monday run reaches Friday; drop messages whose header date is outside the window. The command returns at most the number set by `--max`. If it returns exactly that many, the window may be cut off: raise `--max` or page, and say so under \"Not checked\". Never report \"nothing new\" from a capped result."
+    },
+    {
+      "sha256": "f5b3492fe81aa342d0137b75077ce1312f54dd0fb4ed7772da7dd2ff472602c9",
+      "source": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
+      "text": "A person is waiting on the user, or a deadline, payment or form is due. Not newsletters, notifications or FYI. Skip anything the user already answered. A candidate in a class the profile lists under `report_only` (for example a system notice that only asks to approve or decline) is not captured: list it under \"seen, not captured\" with its title and class."
     },
     {
       "sha256": "4b17c0e810712c2c05cef5b8b4400c86518f90c554bb5ef5441013f9b9b08b6c",
