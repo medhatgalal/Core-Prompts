@@ -1,0 +1,180 @@
+{
+  "doc_id": "",
+  "readme_tab": "",
+  "links": {
+    "Jira Goals": "https://example.com/",
+    "Plan: Delivery Excellence": "https://example.com/",
+    "Upcoming Features": "https://example.com/",
+    "Automation SBU dashboard": "https://example.com/",
+    "Delivery Excellence action tracker": "https://example.com/"
+  },
+  "how_to": "Standout wins and off-track items only - business-as-usual does not belong here. Before the meeting (≤15 min): fill in your 🟢/🔴 lines in every section where your name appears, with relevant links where applicable. Due by COB the previous business day.",
+  "sections": [
+    {
+      "heading": "1. Product Goals",
+      "desc": "Portfolio-level product outcomes.",
+      "views": [
+        "Jira Goals"
+      ],
+      "groups": [
+        {
+          "label": "Product Goals",
+          "owners": [
+            "person@example.com"
+          ],
+          "suffix": " / delegate",
+          "lines": [
+            "(Live review from Jira)"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "2. Delivery Goals",
+      "desc": "Milestone execution against plan.",
+      "views": [
+        "Jira Goals",
+        "Plan: Delivery Excellence"
+      ],
+      "groups": [
+        {
+          "label": "Composer",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "Agentic AI",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "Enterprise Automation",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "AI Platform",
+          "owners": [
+            "person@example.com"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "3. What's Next",
+      "desc": "Upcoming features in framing or shaping.",
+      "views": [
+        "Upcoming Features"
+      ],
+      "note": "Filter by Group, then by 26.10, 26.11, 26.12",
+      "groups": [
+        {
+          "label": "Annual Planning",
+          "owners": [
+            "person@example.com"
+          ],
+          "lines": [
+            ""
+          ]
+        },
+        {
+          "label": "Composer",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "Agentic AI",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "Enterprise Automation",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "AI Platform",
+          "owners": [
+            "person@example.com"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "4. Ops and Incidents",
+      "desc": "Incidents and quality issues.",
+      "views": [
+        "Automation SBU dashboard"
+      ],
+      "ops_groups": [
+        {
+          "label": "Composer",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "Agentic AI",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "Enterprise Automation",
+          "owners": [
+            "person@example.com"
+          ]
+        },
+        {
+          "label": "AI Platform",
+          "owners": [
+            "person@example.com"
+          ]
+        }
+      ],
+      "subheading": "Actual Customer Disruption (dashboard)"
+    },
+    {
+      "heading": "5. Decisions and actions",
+      "link_line": "Delivery Excellence action tracker"
+    },
+    {
+      "heading": "6. General Discussion Topics"
+    }
+  ],
+  "group_owners": {
+    "group a": "Owner Name"
+  },
+  "standing_work_categories": [
+    "Ops & Maintenance",
+    "Support"
+  ],
+  "standing_name_pattern": "support (?:triage|work)|triage|incident|bugs|unplanned|ch&m|o&m|maintenance|cooldown|backlog|weekly deployments|dependency management|alert|cluster changes|loose ends|post.ga quality",
+  "leader_name": "Your name",
+  "org_name": "Your org",
+  "checkpoint_title": "Delivery Checkpoint",
+  "jira_site": "https://your-company.atlassian.net",
+  "jira_filter": 0,
+  "goals_container": "",
+  "goals_root": "",
+  "features_sheet": "",
+  "group_field": "customfield_00000",
+  "category_field": "customfield_00000",
+  "current_release": [
+    0,
+    0
+  ],
+  "feature_card_releases": [],
+  "feature_card_groups": [
+    {
+      "name": "Group A",
+      "id": 0
+    }
+  ]
+}

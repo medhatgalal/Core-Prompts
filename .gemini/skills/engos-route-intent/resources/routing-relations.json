@@ -115,6 +115,10 @@
       "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
       "descriptor_sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
+    "engos-operations-delivery-excellence-prep": {
+      "summary": "Weekly prep for a Delivery Checkpoint meeting. The first run walks the leader through onboarding and can create the Delivery Excellence doc; after that it: builds the dated tab in the Delivery Excellence doc, runs the read-only audit of Goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. Posts nothing. Use on the Tuesday before the Thursday checkpoint.",
+      "descriptor_sha256": "c058573452e0bca2ae1a6d97ed6ab4a65728448d6f18e029bab3eef3e486c994"
+    },
     "engos-operations-gtd-planning": {
       "summary": "Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \"plan my day\", \"weekly review\", \"triage my inbox\", \"daily close\", \"plan my week\", \"capture my tasks\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.",
       "descriptor_sha256": "7af5ec3088f8348f6ab1ec1b86855b75bfb6dd0a62aa00e421ce241f6558bec5"

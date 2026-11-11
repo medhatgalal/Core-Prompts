@@ -1,0 +1,359 @@
+{
+  "slug": "engos-operations-delivery-excellence-prep",
+  "manifest_version": "capability-fabric.v0",
+  "layers": {
+    "minimal": {
+      "capability_type": "skill",
+      "summary": "Weekly prep for a Delivery Checkpoint meeting. The first run walks the leader through onboarding and can create the Delivery Excellence doc; after that it: builds the dated tab in the Delivery Excellence doc, runs the read-only audit of Goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. Posts nothing. Use on the Tuesday before the Thursday checkpoint.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "operations",
+        "delivery",
+        "excellence",
+        "prep"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "resources": [
+        "ssot/engos-operations-delivery-excellence-prep.md"
+      ],
+      "packaging_profile": {
+        "capability_type": "skill",
+        "primary_surfaces": {
+          "codex": [
+            "codex_skill"
+          ],
+          "gemini": [
+            "gemini_skill"
+          ],
+          "claude": [
+            "claude_skill"
+          ],
+          "kiro": [
+            "kiro_skill"
+          ],
+          "grok": [
+            "grok_skill"
+          ]
+        },
+        "wrapper_surfaces": {
+          "codex": [],
+          "gemini": [
+            "skill_wrapper"
+          ],
+          "claude": [
+            "skill_wrapper",
+            "plugin_wrapper"
+          ],
+          "kiro": [
+            "skill_wrapper",
+            "power_wrapper"
+          ]
+        },
+        "notes": [
+          "wrapper surfaces are additive deployment forms, not capability types",
+          "orchestrators must not infer execution authority from wrapper presence alone"
+        ]
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "source_provenance": {
+        "source_type": "LOCAL_FILE",
+        "normalized_source": "ssot/engos-operations-delivery-excellence-prep.md",
+        "policy_rule_id": "ssot.engos-operations-delivery-excellence-prep",
+        "content_sha256": "ssot"
+      },
+      "confidence": 1.0,
+      "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+      "review_status": "ready_for_orchestrator_review",
+      "display_name": "EngOS Operations \u2014 Delivery Excellence Prep",
+      "version": "1.0.0",
+      "author": "EngOS"
+    },
+    "expanded": {
+      "relationship_suggestions": [],
+      "capability_dependencies": [
+        "context"
+      ],
+      "overlap_candidates": [],
+      "migration_notes": [
+        "If the capability lands, compare it against existing entries before apply.",
+        "Relationship suggestions are advisory only and do not imply runtime routing."
+      ],
+      "adjustment_recommendations": [
+        "add an explicit primary objective before packaging",
+        "add deterministic in-scope sections to improve routing fitness",
+        "capture quality constraints or non-negotiables"
+      ]
+    },
+    "org_graph": {
+      "org_role": "analyst",
+      "reports_to_suggestions": [],
+      "delegates_to_suggestions": [],
+      "collaborates_with_suggestions": [
+        "review",
+        "engos"
+      ],
+      "authority_tier": "advisory",
+      "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+    }
+  },
+  "display_name": "EngOS Operations \u2014 Delivery Excellence Prep",
+  "declared_capability": "skill",
+  "inferred_capability": "skill",
+  "expected_surface_names": [
+    "codex_skill",
+    "gemini_skill",
+    "claude_skill",
+    "kiro_skill",
+    "grok_skill"
+  ],
+  "rubric_version": "capability-fabric.v0",
+  "descriptor_version": "capability-fabric.descriptor.v0",
+  "family_slug": "engos-operations-delivery-excellence-prep",
+  "shared_summary": "Weekly prep for a Delivery Checkpoint meeting. The first run walks the leader through onboarding and can create the Delivery Excellence doc; after that it: builds the dated tab in the Delivery Excellence doc, runs the read-only audit of Goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. Posts nothing. Use on the Tuesday before the Thursday checkpoint.",
+  "shared_constraints": [],
+  "modes": [],
+  "benchmark_sources": [],
+  "consumption_hints": {},
+  "historical_baseline": {
+    "slug": "engos-operations-delivery-excellence-prep",
+    "strategy": "head_snapshot",
+    "group": "derived_current",
+    "baseline_path": "ssot/engos-operations-delivery-excellence-prep.md",
+    "selected_commit": null,
+    "richness_score": 8,
+    "line_count": 144,
+    "reason": "No git history was available, so the current SSOT body is the strongest available baseline.",
+    "equivalent_commits": [],
+    "expected_companions": [],
+    "operator_invariants": [],
+    "scenario_matrix": [
+      {
+        "id": "operational_invocation",
+        "kind": "operational_contract",
+        "label": "operational invocation surface",
+        "must_contain": [
+          "## Invocation"
+        ]
+      },
+      {
+        "id": "stepwise_workflow_contract",
+        "kind": "operational_contract",
+        "label": "stepwise workflow contract",
+        "must_contain": [
+          "## Workflow Contract"
+        ]
+      }
+    ],
+    "historical_proof": {},
+    "source": "current_ssot",
+    "verified_by_git_history": false,
+    "has_baseline_text": true
+  },
+  "quality_validation_matrix": [
+    {
+      "id": "operational_invocation",
+      "kind": "operational_contract",
+      "label": "operational invocation surface",
+      "must_contain": [
+        "## Invocation"
+      ]
+    },
+    {
+      "id": "stepwise_workflow_contract",
+      "kind": "operational_contract",
+      "label": "stepwise workflow contract",
+      "must_contain": [
+        "## Workflow Contract"
+      ]
+    }
+  ],
+  "job_contract": {
+    "primary_job": "Leave the leader with a checked tab, an evidence-backed findings report, and one draft comment per owner, ready to review before the checkpoint.",
+    "use_when": "Run weekly as a scheduled task, or on request to prepare for the next checkpoint. It stops with a plain message when no checkpoint event falls within the lookahead window.",
+    "works_on": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+    "main_output": "The dated tab on the doc with a PASS or FAIL check line, and `out/<date>/findings.md`, `findings.json`, and `drafts.md`. The chat report is the short table described in STEP 5.",
+    "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+    "authority": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+    "routing_question": "Does this request directly require EngOS Operations \u2014 Delivery Excellence Prep?",
+    "nearest_neighbors": [],
+    "shape": "unclassified_new_skill",
+    "portfolio_action": "draft_new_skill_pending_review",
+    "routing_fitness": {
+      "schema_version": "RoutingFitness.v1",
+      "mapping_status": "source_derived_draft",
+      "task_phases": {
+        "kind": "source_conditions",
+        "clauses": []
+      },
+      "activation": {
+        "mode": "unknown",
+        "evidence": []
+      },
+      "risk_authority_ceiling": {
+        "grants_authority": false,
+        "clauses": [
+          {
+            "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+            "heading": "Tool Boundaries",
+            "source": {
+              "path": "ssot/engos-operations-delivery-excellence-prep.md",
+              "start_line": 126,
+              "end_line": 126,
+              "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+            }
+          }
+        ]
+      },
+      "negative_examples": {
+        "kind": "source_exclusions_not_synthetic_prompts",
+        "clauses": []
+      },
+      "conditional_companions": [],
+      "pack_hints": {
+        "lead": "engos-operations-delivery-excellence-prep",
+        "companions": "only_after_applicable_source_conditions_are_checked",
+        "default_bulk_activation": false
+      },
+      "provenance": {
+        "ssot_path": "ssot/engos-operations-delivery-excellence-prep.md",
+        "ssot_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+        "effective_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+        "resources": [],
+        "extractor_version": "source-clauses.v1",
+        "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+        "field_sources": {
+          "primary_job": [
+            {
+              "text": "Leave the leader with a checked tab, an evidence-backed findings report, and one draft comment per owner, ready to review before the checkpoint.",
+              "heading": "Primary Objective",
+              "source": {
+                "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                "start_line": 16,
+                "end_line": 16,
+                "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+              }
+            }
+          ],
+          "use_when": [
+            {
+              "text": "Run weekly as a scheduled task, or on request to prepare for the next checkpoint. It stops with a plain message when no checkpoint event falls within the lookahead window.",
+              "heading": "Invocation Hints",
+              "source": {
+                "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                "start_line": 129,
+                "end_line": 129,
+                "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+              }
+            }
+          ],
+          "works_on": [
+            {
+              "text": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+              "heading": "Required Inputs",
+              "source": {
+                "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                "start_line": 132,
+                "end_line": 132,
+                "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+              }
+            }
+          ],
+          "main_output": [
+            {
+              "text": "The dated tab on the doc with a PASS or FAIL check line, and `out/<date>/findings.md`, `findings.json`, and `drafts.md`. The chat report is the short table described in STEP 5.",
+              "heading": "Required Output",
+              "source": {
+                "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                "start_line": 135,
+                "end_line": 135,
+                "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+              }
+            }
+          ],
+          "authority": [
+            {
+              "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+              "heading": "Tool Boundaries",
+              "source": {
+                "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                "start_line": 126,
+                "end_line": 126,
+                "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+              }
+            }
+          ]
+        },
+        "unresolved_companion_clauses": [],
+        "curated_fields": [
+          "nearest_neighbors",
+          "not_for",
+          "portfolio_action",
+          "routing_question",
+          "shape"
+        ],
+        "curated_binding": "preserved_not_independently_revalidated",
+        "mapping_sha256": "d997673c3ccda70efbb85911e282d643362313c7135a1a5255ac80ada2d72725"
+      },
+      "unresolved_fields": [
+        "task_phase_interpretation",
+        "risk_authority_interpretation",
+        "job_contract.not_for",
+        "implicit_activation_eligibility",
+        "task_phases",
+        "negative_examples"
+      ]
+    }
+  }
+}
