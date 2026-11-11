@@ -1823,6 +1823,106 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-design-freshness-sweep",
+      "display_name": "Sweep Design Freshness",
+      "capability_type": "skill",
+      "summary": "Execute a read-only freshness sweep before designing, planning or resuming ticket-backed work. Read every linked-ticket comment and MR note and fourteen days of area-owner merges across involved repos; report changed assumptions and today's simpler path, and refuse technical blocked verdicts without the responsible owner's exact confirmation.",
+      "role": "workflow",
+      "domain_tags": [
+        "engos",
+        "design",
+        "freshness",
+        "sweep"
+      ],
+      "required_inputs": [
+        "Actual ticket references, current requirement/proposal revision, existing task",
+        "Area owners and platform identities with attributable ownership sources.",
+        "All involved application/platform repos, derived from dependencies and source",
+        "Existing scope, authority, accepted requirements and decision owners. None of"
+      ],
+      "expected_outputs": [
+        "Baseline mode and actual source revision; prior design/date or explicit no-prior-design statement; collection anchor/window and owner/repository provenance.",
+        "Complete coverage and explicit gaps: recursive tickets, all discussion streams,",
+        "Previous assumption, current evidence, implication, today's simpler path and",
+        "Ready, incomplete or owner-confirmed blocked, with every blocker quoted exactly",
+        "Mechanical checker result/exit, gaps and frontier, separate from the same-run source-backed agent assessment. Preserve partial evidence when comparison history is unknown."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [
+        "engos-design-architecture",
+        "engos-design-shaping"
+      ],
+      "relationship_suggestions": [],
+      "quality_status": "structural_ready",
+      "benchmark_profile": "default",
+      "preferred_use_cases": [
+        "AI-assisted capability selection",
+        "deterministic prompt uplift review"
+      ],
+      "artifact_conventions": [
+        "ssot/<slug>.md",
+        ".meta/capabilities/<slug>.json",
+        "reports/quality-reviews/<slug>/LATEST.md"
+      ],
+      "invocation_style": "assistant_first_but_scriptable",
+      "requires_human_confirmation": true,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "planning",
+          "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-design-plan-implementation",
       "display_name": "Plan Implementation",
       "capability_type": "skill",

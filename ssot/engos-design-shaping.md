@@ -90,6 +90,57 @@ the person authorizes: record the request and stop, without launching it, supply
 repos or writing code. Omit that choice when the person has said there is no code to try.
 Follow the guide's evidence and revision checks when a skeleton result returns.
 
+## Required freshness sweep
+
+For ticket-backed work, execute the bundled `freshness` route before G2 in technical Research after accepted framing, and before later
+technical reuse.
+Read `resources/references/freshness-sweep.md` completely and perform its actual
+source-tool collection, reconciliation and executable check with
+`python3 resources/scripts/freshness_check.py --evidence EVIDENCE.json` from this
+installed skill directory. Read every comment on the ticket and recursively
+linked tickets, every linked/selected MR note and fourteen days of area-owner
+merges across every involved repo, including platform repos; exhaust all pages.
+Do not substitute a ticket status, summary or saved receipt for this step.
+
+Choose first_design when no prior design exists and bind the current ticket or
+requirement revision; do not invent a design date. Use revision_comparison for an
+existing design, keeping unknown history as a named gap with partial evidence.
+
+
+Include **What changed since this was designed / simpler path that exists today**
+in the existing research notes, with revision/window, owner/repo coverage, old assumption,
+current evidence, simpler path and affected IDs. No technical `blocked` verdict
+without each responsible owner's exact current quoted confirmation, source,
+identity, timestamp and scope after considering contrary/later evidence. Missing
+access, ownership, pagination, evidence or confirmation means incomplete; hold
+only dependent handoff and continue independent authorized work. Revalidate on
+resume, material source drift and before dependent handoff. For work with no
+ticket-backed context, record why this sweep is not applicable; do not invent a
+ticket or silently skip a known source. Accepted scope changes keep their existing
+human decision/acceptance process.
+
+The procedure/checker have one owner, `engos-design-freshness-sweep`, and are
+physically bundled here by pinned shared-resource imports. No sibling installation
+is required. The v2 checker validates normalized assertions only and returns mechanical
+complete/incomplete with semantic_review_pending. In this same skill run, inspect
+full context, negation/supersession, scoped ownership, actual interfaces and target
+availability, then produce the final technical ready/incomplete/owner-confirmed
+blocked assessment. A matched quote or complete packet cannot decide it. Source
+truth, complete live collection and actual reading still require inspection.
+No new external-write or execution authority.
+
+Keep Intake/Framed solution-free: register supplied repo/ticket sources there;
+execute technical collection only in the accepted Research work order. Extend
+existing research-coverage and uncertainty records, using the existing source
+sufficiency gate; this step grants no new transition predicate or worker authority.
+
+In human-led or hybrid Research, an authorized human may return complete,
+attributable source-tool pages, terminal pagination receipts and source snapshots.
+Read every supplied full body and apply the identical window, coverage, currency
+and checker requirements; this mode does not require the AI to repeat a remote
+fetch when the evidence is sufficient. A human recap without those records remains
+incomplete. Preserve the existing human-evidence and source-sufficiency review.
+
 ## Workflow
 
 1. Read `resources/resource-map.json` and `resources/routing.md`. Load only the
@@ -114,6 +165,9 @@ Follow the guide's evidence and revision checks when a skeleton result returns.
    finish here; finish after G1 and that decision without shaping or the later
    two decisions.
 4. Use `research` to set evidence requirements and answer assigned uncertainties.
+   For ticket-backed technical work, execute the required freshness sweep in this
+   work order before G2. On resume or source drift, reopen affected Research before
+   reusing technical assumptions; preserve the conductor/worker split.
    Add `code-scan` only for authorized repository inspection; add `human-evidence`
    for supplied evidence or teammate returns. Research plans and opinions are
    not observed results. Resolve repository context at runtime from the current

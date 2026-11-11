@@ -1,0 +1,10 @@
+# Independent staged routing integration readback
+
+**Zero open findings** for the staged resolution between task parent `d583684a` and incoming `953130dc`. The index had no unresolved paths, the staged whitespace check passed, and tracked working files matched the index.
+
+- All four reviewed freshness entries retained their candidate and effective resource hashes. The incoming Crew, router and three operations SSOT bodies matched their parent bytes. The incoming refresh helper was byte-identical and its native `--check` passed.
+- Compared every field of the 24 staged relationships with incoming. Exactly 12 descriptor hash fields changed across 11 relationships, and each matched its staged caller descriptor: five shaping, four specify-change and three plan-implementation. Handoff requirements for framing, specification, architecture, planning, shape review and diagram delivery remained unchanged. The standalone sweep appears in inventory only.
+- The canonical catalog contained precisely the incoming 45 identities plus freshness. All five detached provider tables matched the canonical bytes. The integration retained all test functions from both parents' routing resource tests, including their assertions and decorators. The staged module contains ten functions in the union. The freshness suite and its fixture were unchanged from the task parent.
+- The single Unreleased section contained every bullet from both parents with the same multiplicity. From the v1.22.2 heading onward the changelog matched incoming byte for byte. The prior reviewed freshness reports and fixtures were unchanged, and the incoming routing trial records matched their upstream bytes. The new conflict recommendation contains repository and merge evidence; I found no private work-case material introduced by this resolution.
+
+This local readback covers the staged integration only. It provides no hosted result or complete live freshness verdict. The graph-scope choice remains open and strict traversal still applies.

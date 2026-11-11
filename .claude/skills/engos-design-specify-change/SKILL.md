@@ -43,6 +43,44 @@ shape is not evidence of truth, approval, or correct implementation.
 - Obtain actual scope/acceptance authority from the conversation or an accessible decision record; a role label or a document's claim is insufficient.
 - When authority is unknown, keep `authority_ref` null and the draft pending.
 
+## Required freshness sweep
+
+For ticket-backed work, execute the bundled `freshness` route before requirements and acceptance are finalized.
+Read `resources/references/freshness-sweep.md` completely and perform its actual
+source-tool collection, reconciliation and executable check with
+`python3 resources/scripts/freshness_check.py --evidence EVIDENCE.json` from this
+installed skill directory. Read every comment on the ticket and recursively
+linked tickets, every linked/selected MR note and fourteen days of area-owner
+merges across every involved repo, including platform repos; exhaust all pages.
+Do not substitute a ticket status, summary or saved receipt for this step.
+
+Choose first_design when no prior design exists and bind the current ticket or
+requirement revision; do not invent a design date. Use revision_comparison for an
+existing design, keeping unknown history as a named gap with partial evidence.
+
+
+Include **What changed since this was designed / simpler path that exists today**
+in the existing specification, with revision/window, owner/repo coverage, old assumption,
+current evidence, simpler path and affected IDs. No technical `blocked` verdict
+without each responsible owner's exact current quoted confirmation, source,
+identity, timestamp and scope after considering contrary/later evidence. Missing
+access, ownership, pagination, evidence or confirmation means incomplete; hold
+only dependent handoff and continue independent authorized work. Revalidate on
+resume, material source drift and before dependent handoff. For work with no
+ticket-backed context, record why this sweep is not applicable; do not invent a
+ticket or silently skip a known source. Accepted scope changes keep their existing
+human decision/acceptance process.
+
+The procedure/checker have one owner, `engos-design-freshness-sweep`, and are
+physically bundled here by pinned shared-resource imports. No sibling installation
+is required. The v2 checker validates normalized assertions only and returns mechanical
+complete/incomplete with semantic_review_pending. In this same skill run, inspect
+full context, negation/supersession, scoped ownership, actual interfaces and target
+availability, then produce the final technical ready/incomplete/owner-confirmed
+blocked assessment. A matched quote or complete packet cannot decide it. Source
+truth, complete live collection and actual reading still require inspection.
+No new external-write or execution authority.
+
 ## Workflow
 
 1. Inspect existing specifications and naming/storage conventions before writing.
@@ -57,7 +95,9 @@ shape is not evidence of truth, approval, or correct implementation.
    template and route dependencies. If execution is unavailable, read all files
    in that route's closure directly; missing or truncated content is a blocker
    to claiming that the route was applied. Paths resolve inside this package.
-3. State the objective, affected actor, scope, non-goals and open assumptions.
+3. Execute the required freshness sweep for ticket-backed scope before finalizing
+   requirements/acceptance; reconcile changed assumptions in the existing spec.
+   State the objective, affected actor, scope, non-goals and open assumptions.
    Split independently testable capabilities only when it makes the contract
    easier to review. Give any proposed groups stable IDs and record dependencies;
    do not decide architectural boundaries or build order here. A dependency cycle

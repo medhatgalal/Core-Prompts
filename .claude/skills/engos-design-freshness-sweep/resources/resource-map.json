@@ -1,0 +1,20 @@
+{
+  "schema_version": "CapabilityResourceMap.v1",
+  "shared": [],
+  "routes": {
+    "sweep": [
+      "references/freshness-sweep.md"
+    ],
+    "examples": [
+      "evals/lifted-blocker.json"
+    ],
+    "source_trial": [
+      "evals/lifted-blocker-sources.json"
+    ]
+  },
+  "dependencies": {
+    "references/freshness-sweep.md": [
+      "scripts/freshness_check.py"
+    ]
+  }
+}

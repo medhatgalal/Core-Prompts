@@ -3,6 +3,20 @@
   "consumer": "engos-design-specify-change",
   "imports": [
     {
+      "id": "design-freshness-check-v1",
+      "owner": "engos-design-freshness-sweep",
+      "source": "scripts/freshness_check.py",
+      "sha256": "ee9b14699c7de681aa280c495d64107afc4e301f7d8c2626f4f5d5d3a19496c5",
+      "destination": "scripts/freshness_check.py"
+    },
+    {
+      "id": "design-freshness-procedure-v1",
+      "owner": "engos-design-freshness-sweep",
+      "source": "references/freshness-sweep.md",
+      "sha256": "83f1d265bea0f321880f9b3985d36bacc406fab5d11eacbefdbb11d69b9c2f93",
+      "destination": "references/freshness-sweep.md"
+    },
+    {
       "id": "task-contract-v1",
       "owner": "engos-design-plan-implementation",
       "source": "schemas/task-contract.schema.json",

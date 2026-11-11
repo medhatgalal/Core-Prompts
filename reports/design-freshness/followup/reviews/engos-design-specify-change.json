@@ -1,0 +1,137 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-specify-change",
+  "original_sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2",
+  "candidate_sha256": "2f097a3bc5d9867062e4bdbc71f4805e50f75d138097136f048f2537348be252",
+  "effective_sha256": "4e3ab61daece11c45609f946c33f3c7b0e89a553734d846f008728cabce118b2",
+  "verdict": "approved",
+  "source_line_count": 292,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-specify-change",
+      "rationale": "Compared all source lines for Identity against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 21,
+      "disposition": "preserved",
+      "candidate_excerpt": "Turn a proposed change into a reviewable specification of required behavior.",
+      "rationale": "Compared all source lines for Purpose against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 22,
+      "source_end_line": 28,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce a bounded, source-backed change contract that a person can accept or",
+      "rationale": "Compared all source lines for Primary Objective against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 29,
+      "source_end_line": 39,
+      "disposition": "preserved",
+      "candidate_excerpt": "- \u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.",
+      "rationale": "Compared all source lines for Invocation Hints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 40,
+      "source_end_line": 48,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Read the user's request, supplied sources and existing repository conventions.",
+      "rationale": "Compared all source lines for Required Inputs against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 49,
+      "source_end_line": 77,
+      "disposition": "reformulated",
+      "candidate_excerpt": "complete/incomplete with semantic_review_pending. In this same skill run, inspect",
+      "rationale": "The same pre-handoff execution point, closure, merge horizon, exact owner confirmation, missing evidence and existing human authority are preserved. The caller also handles a first design and performs semantic review after validation."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 78,
+      "source_end_line": 127,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Inspect existing specifications and naming/storage conventions before writing.",
+      "rationale": "Compared all source lines for Workflow against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 128,
+      "source_end_line": 150,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Preserve the repository's specification format and storage. Use the Markdown",
+      "rationale": "Compared all source lines for Rules against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 151,
+      "source_end_line": 169,
+      "disposition": "preserved",
+      "candidate_excerpt": "Return a readable specification in the established repository format, or in chat",
+      "rationale": "Compared all source lines for Required Output against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 170,
+      "source_end_line": 177,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the project's existing spec destination and format. If none exists and files",
+      "rationale": "Compared all source lines for Output Directory against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 178,
+      "source_end_line": 192,
+      "disposition": "preserved",
+      "candidate_excerpt": "Allowed actions are scoped source inspection, specification drafting and updating,",
+      "rationale": "Compared all source lines for Constraints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 193,
+      "source_end_line": 231,
+      "disposition": "preserved",
+      "candidate_excerpt": "> Specify CSV export for filtered results; use our existing issue template.",
+      "rationale": "Compared all source lines for Examples against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 232,
+      "source_end_line": 248,
+      "disposition": "preserved",
+      "candidate_excerpt": "Assess each applicable item as met, pending or not applicable with source evidence.",
+      "rationale": "Compared all source lines for Evaluation Rubric against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R14",
+      "source_start_line": 249,
+      "source_end_line": 292,
+      "disposition": "preserved",
+      "candidate_excerpt": "For actual SpecContract.v1 and TaskPlan.v1 artifacts, load `trace_check` and run",
+      "rationale": "Compared all source lines for Optional mechanical trace check against the corresponding candidate section. The text is retained verbatim."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "historical_ssot"
+}

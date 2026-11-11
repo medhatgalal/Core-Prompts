@@ -1,0 +1,127 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-specify-change",
+  "original_sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
+  "candidate_sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2",
+  "effective_sha256": "230f88f608cd89b517fd56efaa331d27b6d2fb6d5a6df7676447428ce0e23e78",
+  "verdict": "approved",
+  "source_line_count": 261,
+  "reviewer": {
+    "agent_id": "/root/freshness_review",
+    "author_agent_id": "/root",
+    "independent": true
+  },
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "220e2ae8",
+    "matches_current_ssot": true
+  },
+  "evidence_scope": "Requirements, acceptance evidence and stable IDs remain the specification owner’s responsibility. Ticket-backed collection now precedes finalization. I inspected the content diff, the effective package, the consumer and owner route bindings, documentation and CI coverage. Whole-source SHA256 is identical for the canonical source and historical baseline. Actual future source acquisition and agent performance are outside this review.",
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-specify-change",
+      "rationale": "Compared the complete Capability identity section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 21,
+      "disposition": "preserved",
+      "candidate_excerpt": "Turn a proposed change into a reviewable specification of required behavior.",
+      "rationale": "Compared the complete Purpose section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 22,
+      "source_end_line": 28,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce a bounded, source-backed change contract that a person can accept or",
+      "rationale": "Compared the complete Primary Objective section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 29,
+      "source_end_line": 39,
+      "disposition": "preserved",
+      "candidate_excerpt": "- “Specify this feature before we plan it” selects `requirements_first` by default.",
+      "rationale": "Compared the complete Invocation Hints section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 40,
+      "source_end_line": 48,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Read the user's request, supplied sources and existing repository conventions.",
+      "rationale": "Compared the complete Required Inputs section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 49,
+      "source_end_line": 96,
+      "disposition": "reformulated",
+      "candidate_excerpt": "Split independently testable capabilities only when it makes the contract",
+      "rationale": "Compared the entire original Workflow section to the candidate workflow. Requirements, acceptance evidence and stable IDs remain the specification owner’s responsibility. Ticket-backed collection now precedes finalization."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 97,
+      "source_end_line": 119,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Preserve the repository's specification format and storage. Use the Markdown",
+      "rationale": "Compared the complete Rules section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 120,
+      "source_end_line": 138,
+      "disposition": "preserved",
+      "candidate_excerpt": "Return a readable specification in the established repository format, or in chat",
+      "rationale": "Compared the complete Required Output section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 139,
+      "source_end_line": 146,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the project's existing spec destination and format. If none exists and files",
+      "rationale": "Compared the complete Output Directory section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 147,
+      "source_end_line": 161,
+      "disposition": "preserved",
+      "candidate_excerpt": "Allowed actions are scoped source inspection, specification drafting and updating,",
+      "rationale": "Compared the complete Constraints section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 162,
+      "source_end_line": 200,
+      "disposition": "preserved",
+      "candidate_excerpt": "> Specify CSV export for filtered results; use our existing issue template.",
+      "rationale": "Compared the complete Examples section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 201,
+      "source_end_line": 217,
+      "disposition": "preserved",
+      "candidate_excerpt": "Assess each applicable item as met, pending or not applicable with source evidence.",
+      "rationale": "Compared the complete Evaluation Rubric section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 218,
+      "source_end_line": 261,
+      "disposition": "preserved",
+      "candidate_excerpt": "For actual SpecContract.v1 and TaskPlan.v1 artifacts, load `trace_check` and run",
+      "rationale": "Compared the complete Optional mechanical trace check section to the prior canonical and historical text. It remains verbatim."
+    }
+  ]
+}

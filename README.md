@@ -50,6 +50,7 @@ for bugs, features, design, refactoring, CI and larger delivery.
 
 | You already have… / need… | Start here |
 | --- | --- |
+| A design or blocker that may be stale | `engos-design-freshness-sweep`: full linked discussions and two weeks of owners’ merges; [example](docs/EXAMPLES.md#sweep-a-design-before-planning). |
 | A clear one-step change | `engos-delivery-implement-slice` |
 | A failure with an uncertain cause | `engos-debug-diagnose-failure` |
 | An unclear behavior or acceptance condition | `engos-design-specify-change` |
@@ -122,7 +123,7 @@ provide the recovery path.
 
 ## Skills, workers and larger delivery
 
-The current generated surfaces contain `45` skills and no shipped named-agent configurations.
+The current generated surfaces contain `46` skills and no shipped named-agent configurations.
 Use the same skill in your main session or supply it and required resources to a
 real independent worker when requested or required by its contract. A second
 answer from the same author does not establish independent review. [Examples](docs/EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).

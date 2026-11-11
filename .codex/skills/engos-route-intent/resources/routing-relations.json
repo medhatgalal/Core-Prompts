@@ -75,9 +75,13 @@
       "summary": "Normalize rough input and draft a solution-free frame with affected people, outcome, why-now, actual appetite, walk-away and answerable uncertainties. Supports the shaping conductor; does not choose architecture or invent human decisions.",
       "descriptor_sha256": "d86d262455be411dc494dd83a07baf26796dfe44b86c7449a219b243ad2600a1"
     },
+    "engos-design-freshness-sweep": {
+      "summary": "Execute a read-only freshness sweep before designing, planning or resuming ticket-backed work. Read every linked-ticket comment and MR note and fourteen days of area-owner merges across involved repos; report changed assumptions and today's simpler path, and refuse technical blocked verdicts without the responsible owner's exact confirmation.",
+      "descriptor_sha256": "ec2f2afd583812fc4cd447abb81dcdfc69e90ff8cb4ac9f49002d564ac59b889"
+    },
     "engos-design-plan-implementation": {
       "summary": "Plan independently verifiable implementation tasks from accepted requirements and an optional supplied design. Use for multi-step planning or revising unfinished work with explicit dependencies, interfaces, allowed writes and stop conditions; preserve the existing tracker and leave execution, delegation and goal creation to their owners.",
-      "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2"
+      "descriptor_sha256": "817708dbecf83ae838b5027341bceda1c2dd84e965bdcad4804c1d32ad265a34"
     },
     "engos-design-plan-to-goal": {
       "summary": "Compile a reviewed plan or intent into a host-aware goal, durable specification, and task-specific verifier with explicit trust, drift, stop, and rollback conditions. Use when a bounded long-running goal packet is needed; do not use for ordinary one-step implementation.",
@@ -85,11 +89,11 @@
     },
     "engos-design-shaping": {
       "summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.",
-      "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39"
+      "descriptor_sha256": "716ef9d48710432d0f234119d4005d96f591d955c49fa46aa522789814d1442f"
     },
     "engos-design-specify-change": {
       "summary": "Specify a feature, design-led change, or bugfix with source-backed requirements, acceptance conditions, explicit assumptions and unchanged behavior. Use before planning when the change needs a specification; preserve existing formats and leave architecture, task planning and implementation to their owners.",
-      "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016"
+      "descriptor_sha256": "3bcef86adc727c04ae9211fa1efc1080d0e9ae3b6ee53545318900247592a487"
     },
     "engos-memory-context-continuity": {
       "summary": "Maintain durable context, todo, and insight state for a multi-file or multi-source investigation that must survive compaction, session changes, branch changes, or worktree removal. Use when analysis must be resumed; do not use for a one-off report or final decision.",
@@ -202,7 +206,7 @@
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "3bcef86adc727c04ae9211fa1efc1080d0e9ae3b6ee53545318900247592a487",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -226,7 +230,7 @@
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "3bcef86adc727c04ae9211fa1efc1080d0e9ae3b6ee53545318900247592a487",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -250,7 +254,7 @@
         },
         {
           "slug": "engos-design-plan-implementation",
-          "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2",
+          "descriptor_sha256": "817708dbecf83ae838b5027341bceda1c2dd84e965bdcad4804c1d32ad265a34",
           "contract_ref": "ssot/engos-design-plan-implementation.md"
         }
       ],
@@ -274,7 +278,7 @@
         },
         {
           "slug": "engos-design-plan-implementation",
-          "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2",
+          "descriptor_sha256": "817708dbecf83ae838b5027341bceda1c2dd84e965bdcad4804c1d32ad265a34",
           "contract_ref": "ssot/engos-design-plan-implementation.md"
         }
       ],
@@ -317,7 +321,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "716ef9d48710432d0f234119d4005d96f591d955c49fa46aa522789814d1442f",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -336,7 +340,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "716ef9d48710432d0f234119d4005d96f591d955c49fa46aa522789814d1442f",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -355,7 +359,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "716ef9d48710432d0f234119d4005d96f591d955c49fa46aa522789814d1442f",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -374,7 +378,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "716ef9d48710432d0f234119d4005d96f591d955c49fa46aa522789814d1442f",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -485,12 +489,12 @@
       "source_refs": [
         {
           "slug": "engos-design-plan-implementation",
-          "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2",
+          "descriptor_sha256": "817708dbecf83ae838b5027341bceda1c2dd84e965bdcad4804c1d32ad265a34",
           "contract_ref": "ssot/engos-design-plan-implementation.md"
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "3bcef86adc727c04ae9211fa1efc1080d0e9ae3b6ee53545318900247592a487",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -512,7 +516,7 @@
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "3bcef86adc727c04ae9211fa1efc1080d0e9ae3b6ee53545318900247592a487",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -662,7 +666,7 @@
         },
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "716ef9d48710432d0f234119d4005d96f591d955c49fa46aa522789814d1442f",
           "contract_ref": "ssot/engos-design-shaping.md",
           "clause_ref": "Workflow shaping/review and representation requirements"
         }

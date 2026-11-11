@@ -1,0 +1,347 @@
+{
+  "schema_version": "FreshnessEvidence.v2",
+  "collected_at": "2026-11-11T15:00:00Z",
+  "design_at": "2026-10-01T12:00:00Z",
+  "design_ref": "design@r1",
+  "roots": [
+    "T-1"
+  ],
+  "owners": {
+    "platform-owner": "CODEOWNERS@a1",
+    "app-owner": "team-record@r2"
+  },
+  "repos": [
+    "app",
+    "platform"
+  ],
+  "gaps": [],
+  "tickets": {
+    "T-1": {
+      "discussion": {
+        "inventory_ref": "synthetic-provider-schema@1/T-1",
+        "required_streams": [
+          "comments"
+        ],
+        "streams": {
+          "comments": {
+            "query_ref": "ledger/ticket-comments",
+            "pages": [
+              {
+                "cursor": null,
+                "next": "page-2",
+                "total": 2,
+                "items": [
+                  {
+                    "ref": "T-1#c1",
+                    "author": "reporter",
+                    "at": "2026-11-10T13:00:00Z",
+                    "body": "Design assumes API unavailable.",
+                    "ticket_links": [],
+                    "mr_links": [],
+                    "source_ref": "T-1#c1",
+                    "revision": "r1",
+                    "updated_at": "2026-11-10T13:00:00Z",
+                    "full_body": true
+                  }
+                ]
+              },
+              {
+                "cursor": "page-2",
+                "next": null,
+                "total": 2,
+                "items": [
+                  {
+                    "ref": "T-1#c2",
+                    "author": "platform-owner",
+                    "at": "2026-11-10T13:00:00Z",
+                    "body": "Blocker lifted; use P!8 API.",
+                    "ticket_links": [],
+                    "mr_links": [
+                      "platform!8"
+                    ],
+                    "source_ref": "T-1#c2",
+                    "revision": "r1",
+                    "updated_at": "2026-11-10T13:00:00Z",
+                    "full_body": true
+                  }
+                ]
+              }
+            ],
+            "role": "notes"
+          }
+        }
+      },
+      "inspected_ref": "T-1@revision",
+      "system": "jira",
+      "source_kind": "external_ticket",
+      "repo_refs": [
+        "app"
+      ],
+      "revision": "r1",
+      "full_body": true,
+      "body": "Full synthetic source description.",
+      "ticket_links": [
+        "T-2"
+      ],
+      "mr_links": [],
+      "repo_mapping": {
+        "kind": "mapped_repositories",
+        "source_ref": "T-1@revision#repo-mapping"
+      }
+    },
+    "T-2": {
+      "discussion": {
+        "inventory_ref": "synthetic-provider-schema@1/T-2",
+        "required_streams": [
+          "comments"
+        ],
+        "streams": {
+          "comments": {
+            "query_ref": "ledger/linked-comments",
+            "pages": [
+              {
+                "cursor": null,
+                "next": null,
+                "total": 0,
+                "items": []
+              }
+            ],
+            "role": "notes"
+          }
+        }
+      },
+      "inspected_ref": "T-2@revision",
+      "system": "jira",
+      "source_kind": "external_ticket",
+      "repo_refs": [
+        "app"
+      ],
+      "revision": "r1",
+      "full_body": true,
+      "body": "Full synthetic source description.",
+      "ticket_links": [
+        "T-1"
+      ],
+      "mr_links": [
+        "app!9"
+      ],
+      "repo_mapping": {
+        "kind": "mapped_repositories",
+        "source_ref": "T-2@revision#repo-mapping"
+      }
+    }
+  },
+  "mrs": {
+    "platform!8": {
+      "ticket_links": [],
+      "mr_links": [],
+      "inspected_ref": "platform-record@8",
+      "discussion": {
+        "inventory_ref": "synthetic-provider-schema@1/platform!8",
+        "required_streams": [
+          "notes",
+          "discussions"
+        ],
+        "streams": {
+          "notes": {
+            "query_ref": "ledger/platform-notes",
+            "pages": [
+              {
+                "cursor": null,
+                "next": null,
+                "total": 1,
+                "items": [
+                  {
+                    "ref": "platform!8#n1",
+                    "author": "platform-owner",
+                    "at": "2026-11-10T13:00:00Z",
+                    "body": "API supports required tenant scope; available in target.",
+                    "ticket_links": [],
+                    "mr_links": [],
+                    "source_ref": "platform!8#n1",
+                    "revision": "r1",
+                    "updated_at": "2026-11-10T13:00:00Z",
+                    "full_body": true
+                  }
+                ]
+              }
+            ],
+            "role": "notes"
+          },
+          "discussions": {
+            "query_ref": "ledger/platform!8-threads",
+            "pages": [
+              {
+                "cursor": null,
+                "next": null,
+                "total": 0,
+                "items": []
+              }
+            ],
+            "role": "threads"
+          }
+        }
+      },
+      "system": "gitlab",
+      "source_kind": "merge_request",
+      "repo_refs": [
+        "platform"
+      ],
+      "revision": "r1",
+      "full_body": true,
+      "body": "Full synthetic source description.",
+      "repo_mapping": {
+        "kind": "native_repository",
+        "source_ref": "platform-record@8#repo-mapping"
+      }
+    },
+    "app!9": {
+      "ticket_links": [
+        "T-2"
+      ],
+      "mr_links": [],
+      "inspected_ref": "app-diff@9",
+      "discussion": {
+        "inventory_ref": "synthetic-provider-schema@1/app!9",
+        "required_streams": [
+          "notes",
+          "discussions"
+        ],
+        "streams": {
+          "notes": {
+            "query_ref": "ledger/app-notes",
+            "pages": [
+              {
+                "cursor": null,
+                "next": null,
+                "total": 0,
+                "items": []
+              }
+            ],
+            "role": "notes"
+          },
+          "discussions": {
+            "query_ref": "ledger/app!9-threads",
+            "pages": [
+              {
+                "cursor": null,
+                "next": null,
+                "total": 0,
+                "items": []
+              }
+            ],
+            "role": "threads"
+          }
+        }
+      },
+      "system": "gitlab",
+      "source_kind": "merge_request",
+      "repo_refs": [
+        "app"
+      ],
+      "revision": "r1",
+      "full_body": true,
+      "body": "Full synthetic source description.",
+      "repo_mapping": {
+        "kind": "native_repository",
+        "source_ref": "app-diff@9#repo-mapping"
+      }
+    }
+  },
+  "changes": [
+    {
+      "assumption": "A custom workaround is needed because API is blocked.",
+      "evidence_refs": [
+        "T-1#c2",
+        "platform-api@8"
+      ],
+      "implication": "The recorded blocker is lifted and the API covers this scope.",
+      "simpler_path": "Reuse the tenant API and retire the workaround after target validation.",
+      "disposition": "retire",
+      "kind": "interface"
+    }
+  ],
+  "blockers": [],
+  "baseline_mode": "revision_comparison",
+  "source_ref": "design@r1",
+  "proposed_assessment": "Reuse the supported tenant API, subject to target validation.",
+  "confirmation_records": [],
+  "responsibilities": {
+    "tenant-export": {
+      "owners": [
+        "platform-owner"
+      ],
+      "source_ref": "CODEOWNERS@a1"
+    }
+  },
+  "merge_queries": [
+    {
+      "query_ref": "ledger/app-merges",
+      "pages": [
+        {
+          "cursor": null,
+          "next": null,
+          "total": 0,
+          "items": []
+        }
+      ],
+      "since": "2026-10-28T15:00:00Z",
+      "until": "2026-11-11T15:00:00Z",
+      "repo_ref": "app",
+      "mode": "repo_wide",
+      "owner": null,
+      "role": null,
+      "scope_ref": "synthetic-full-repo-filter@1/app"
+    },
+    {
+      "query_ref": "ledger/platform-merges",
+      "pages": [
+        {
+          "cursor": null,
+          "next": null,
+          "total": 1,
+          "items": [
+            {
+              "ref": "platform!8",
+              "merged_at": "2026-11-09T10:00:00Z",
+              "participation": {
+                "author": [
+                  "platform-owner"
+                ],
+                "coauthor": [],
+                "merger": []
+              }
+            }
+          ]
+        }
+      ],
+      "since": "2026-10-28T15:00:00Z",
+      "until": "2026-11-11T15:00:00Z",
+      "repo_ref": "platform",
+      "mode": "repo_wide",
+      "owner": null,
+      "role": null,
+      "scope_ref": "synthetic-full-repo-filter@1/platform"
+    }
+  ],
+  "interface_inspections": [
+    {
+      "ref": "platform-api@8",
+      "subject_ref": "platform!8",
+      "revision": "commit8",
+      "source_ref": "platform!8/diff@commit8",
+      "kind": "interface",
+      "full_body": true,
+      "body": "export(tenant_id): ExportResult; target availability verified in synthetic source."
+    },
+    {
+      "ref": "app-content@9",
+      "subject_ref": "app!9",
+      "revision": "commit9",
+      "source_ref": "app!9/diff@commit9",
+      "kind": "diff",
+      "full_body": true,
+      "body": "Documentation updates for the app integration."
+    }
+  ]
+}

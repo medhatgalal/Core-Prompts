@@ -43,6 +43,44 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
 - Describe task dependencies, interfaces, verification, mutation bounds and unresolved holds.
 - Prepare optional task/plan interchange and a manual dependency-map projection.
 
+## Required freshness sweep
+
+For ticket-backed work, execute the bundled `freshness` route before task decomposition and plan handoff.
+Read `resources/references/freshness-sweep.md` completely and perform its actual
+source-tool collection, reconciliation and executable check with
+`python3 resources/scripts/freshness_check.py --evidence EVIDENCE.json` from this
+installed skill directory. Read every comment on the ticket and recursively
+linked tickets, every linked/selected MR note and fourteen days of area-owner
+merges across every involved repo, including platform repos; exhaust all pages.
+Do not substitute a ticket status, summary or saved receipt for this step.
+
+Choose first_design when no prior design exists and bind the current ticket or
+requirement revision; do not invent a design date. Use revision_comparison for an
+existing design, keeping unknown history as a named gap with partial evidence.
+
+
+Include **What changed since this was designed / simpler path that exists today**
+in the existing plan, with revision/window, owner/repo coverage, old assumption,
+current evidence, simpler path and affected IDs. No technical `blocked` verdict
+without each responsible owner's exact current quoted confirmation, source,
+identity, timestamp and scope after considering contrary/later evidence. Missing
+access, ownership, pagination, evidence or confirmation means incomplete; hold
+only dependent handoff and continue independent authorized work. Revalidate on
+resume, material source drift and before dependent handoff. For work with no
+ticket-backed context, record why this sweep is not applicable; do not invent a
+ticket or silently skip a known source. Accepted scope changes keep their existing
+human decision/acceptance process.
+
+The procedure/checker have one owner, `engos-design-freshness-sweep`, and are
+physically bundled here by pinned shared-resource imports. No sibling installation
+is required. The v2 checker validates normalized assertions only and returns mechanical
+complete/incomplete with semantic_review_pending. In this same skill run, inspect
+full context, negation/supersession, scoped ownership, actual interfaces and target
+availability, then produce the final technical ready/incomplete/owner-confirmed
+blocked assessment. A matched quote or complete packet cannot decide it. Source
+truth, complete live collection and actual reading still require inspection.
+No new external-write or execution authority.
+
 ## Workflow
 
 1. Identify the authoritative requirements and their current revision, actual
@@ -51,7 +89,10 @@ with `engos-orchestration-batman`. Neither is an automatic next step.
    If inputs conflict or acceptance is unverified, hold the dependent tasks while
    drafting useful independent scope. Do not require another approval turn when
    the existing conversation or decision record already authorizes that scope.
-2. Inspect the relevant implementation boundaries. Carry forward requirements,
+2. Execute the required freshness sweep for ticket-backed scope before decomposition.
+   Reconcile lifted blockers and simpler current interfaces with accepted scope;
+   return material requirement/design changes to their actual decision owner.
+   Inspect the relevant implementation boundaries. Carry forward requirements,
    unchanged behavior, constraints and supplied design IDs. For plain prose, map
    stable local requirement IDs to exact source passages without rewriting the
    source. With `SpecContract.v1`, retain its requirement/design IDs, source and

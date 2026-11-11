@@ -3,14 +3,14 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.22.1@3a1736914023812f62132d7d5cfd042a9d7d2e99 .meta/manifest.json`
-- New capabilities: `0`
+- Comparison basis: `git:v1.22.2@1fe638768285779380a9b10903253e3218eb9e00 .meta/manifest.json`
+- New capabilities: `1`
 - Removed capabilities: `0`
 - Changed capability records: `0`
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- none
+- `engos-design-freshness-sweep` — Sweep Design Freshness
 
 ## Removed Capabilities
 - none
