@@ -1,0 +1,20 @@
+{
+  "schema_version": "SharedResourceImportReceipt.v1",
+  "consumer": "engos-design-shaping",
+  "imports": [
+    {
+      "id": "design-freshness-check-v1",
+      "owner": "engos-design-freshness-sweep",
+      "source": "scripts/freshness_check.py",
+      "sha256": "8bf85207dfdb5e750ae66ab59201f8a25a11ca191275290539f909c3e4e5512c",
+      "destination": "scripts/freshness_check.py"
+    },
+    {
+      "id": "design-freshness-procedure-v1",
+      "owner": "engos-design-freshness-sweep",
+      "source": "references/freshness-sweep.md",
+      "sha256": "9611fefa8e3dd396a8950b27229dfb3f171d7139ede0c961b085bef3cfed7ead",
+      "destination": "references/freshness-sweep.md"
+    }
+  ]
+}

@@ -189,11 +189,13 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "a91199fd",
+        "selected_commit": "220e2ae8",
         "richness_score": 5,
-        "line_count": 216,
+        "line_count": 261,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
-        "equivalent_commits": [],
+        "equivalent_commits": [
+          "a91199fd"
+        ],
         "expected_companions": [],
         "operator_invariants": [],
         "scenario_matrix": [
@@ -217,7 +219,7 @@
           "title": "Source Fidelity and Uplift",
           "score": 10,
           "blockers": [],
-          "classification": "preserved",
+          "classification": "reviewed_modernization",
           "scenario_results": [
             {
               "id": "operational_invocation",
@@ -229,7 +231,7 @@
           ],
           "reviewed_deltas": [],
           "requirement_review": {
-            "status": "not_supplied_or_invalid",
+            "status": "bound_attestation",
             "identity_authenticated": false,
             "behavioral_status": "behavioral_pending"
           },
@@ -240,7 +242,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "a91199fd",
+          "baseline_commit": "220e2ae8",
           "baseline_slug": "engos-design-specify-change"
         },
         {
@@ -291,7 +293,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "347000a127b18a8c3c9c8172d79f7cdd94289dc324430bb9b4941c6a77b5454f",
+      "effective_sha256": "230f88f608cd89b517fd56efaa331d27b6d2fb6d5a6df7676447428ce0e23e78",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -390,19 +392,19 @@
           "path": "ssot/engos-design-specify-change.md",
           "start_line": 31,
           "end_line": 37,
-          "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+          "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
         },
         {
           "path": "ssot/engos-design-specify-change.md",
-          "start_line": 80,
-          "end_line": 94,
-          "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+          "start_line": 111,
+          "end_line": 125,
+          "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
         },
         {
           "path": "ssot/engos-design-plan-implementation.md",
           "start_line": 24,
           "end_line": 31,
-          "sha256": "418f61721066c1411fde8f7a8a29110743c9d7d6fdd322b1ea5c7a087a58161f"
+          "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
         }
       ]
     },
@@ -419,7 +421,7 @@
               "path": "ssot/engos-design-specify-change.md",
               "start_line": 12,
               "end_line": 16,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           },
           {
@@ -429,7 +431,7 @@
               "path": "ssot/engos-design-specify-change.md",
               "start_line": 18,
               "end_line": 20,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           },
           {
@@ -439,17 +441,17 @@
               "path": "ssot/engos-design-specify-change.md",
               "start_line": 31,
               "end_line": 38,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           },
           {
-            "text": "1. Inspect existing specifications and naming/storage conventions before writing.\n   Record the source references, selected entry order, artifact location and\n   actual authorization. Reuse relevant existing acceptance conditions without\n   silently broadening their scope. If sources disagree, preserve the conflict\n   and identify the decision needed instead of selecting the convenient version.\n2. Read `resources/resource-map.json` and the complete selected route. From the\n   installed skill directory, run `python3 resources/scripts/load_module.py\n   --route requirements_first --format text`, substituting `design_first` or\n   `bugfix` as needed. The existing loader includes the shared requirements\n   template and route dependencies. If execution is unavailable, read all files\n   in that route's closure directly; missing or truncated content is a blocker\n   to claiming that the route was applied. Paths resolve inside this package.\n3. State the objective, affected actor, scope, non-goals and open assumptions.\n   Split independently testable capabilities only when it makes the contract\n   easier to review. Give any proposed groups stable IDs and record dependencies;\n   do not decide architectural boundaries or build order here. A dependency cycle\n   calls for investigation, not an automatic declaration that two modules are one.\n4. Give each requirement a stable ID, trigger/condition, observable behavior,\n   acceptance conditions, unchanged behavior and explicit priority. Use the\n   repository's existing ID scheme when present. Distinguish the required result\n   from a suggested implementation. Acceptance names a concrete observable and\n   expected result; an unknown threshold stays an open decision, not an invented\n   service-level target. Include meaningful failure, boundary and compatibility\n   cases when supported by the requested change.\n5. Apply the selected route. Requirements-first clarifies behavior before design.\n   Design-first extracts assumptions from the supplied design, compares them\n   against source intent and reconciles requirements and acceptance before task\n   approval. Bugfix records current, expected and unchanged behavior separately;\n   an unobserved report remains reported and an unexplained cause stays unknown.\n6. Reconcile assumptions and conflicts with the actual authority. Mark each\n   assumption open, confirmed, rejected or deferred with a decision reference\n   where available. A material unresolved assumption holds the dependent scope\n   from task approval. A deferred item may be excluded only through an attributable\n   scope decision showing that included requirements no longer depend on it.\n   Continue independent authorized drafting while awaiting missing decisions.\n7. Review meaning and source coverage, then return the exact draft and its status.\n   Check that IDs are unique within each namespace; manually compare ID values,\n   since JSON Schema cannot enforce property-level uniqueness across these arrays.\n   Check references against accessible sources and note inaccessible ones. Preserve\n   existing authorizations without inventing another mandatory approval turn.\n8. Hand the accepted contract and its current revision to the separately authorized\n   next owner. Material design stays with architecture; executable tasks stay with\n   planning; implementation and test execution need their own scope and evidence.\n   A changed accepted requirement or design reopens affected acceptance and links;\n   keep the previous decision reference and identify the revision needing review.",
+            "text": "1. Inspect existing specifications and naming/storage conventions before writing.\n   Record the source references, selected entry order, artifact location and\n   actual authorization. Reuse relevant existing acceptance conditions without\n   silently broadening their scope. If sources disagree, preserve the conflict\n   and identify the decision needed instead of selecting the convenient version.\n2. Read `resources/resource-map.json` and the complete selected route. From the\n   installed skill directory, run `python3 resources/scripts/load_module.py\n   --route requirements_first --format text`, substituting `design_first` or\n   `bugfix` as needed. The existing loader includes the shared requirements\n   template and route dependencies. If execution is unavailable, read all files\n   in that route's closure directly; missing or truncated content is a blocker\n   to claiming that the route was applied. Paths resolve inside this package.\n3. Execute the required freshness sweep for ticket-backed scope before finalizing\n   requirements/acceptance; reconcile changed assumptions in the existing spec.\n   State the objective, affected actor, scope, non-goals and open assumptions.\n   Split independently testable capabilities only when it makes the contract\n   easier to review. Give any proposed groups stable IDs and record dependencies;\n   do not decide architectural boundaries or build order here. A dependency cycle\n   calls for investigation, not an automatic declaration that two modules are one.\n4. Give each requirement a stable ID, trigger/condition, observable behavior,\n   acceptance conditions, unchanged behavior and explicit priority. Use the\n   repository's existing ID scheme when present. Distinguish the required result\n   from a suggested implementation. Acceptance names a concrete observable and\n   expected result; an unknown threshold stays an open decision, not an invented\n   service-level target. Include meaningful failure, boundary and compatibility\n   cases when supported by the requested change.\n5. Apply the selected route. Requirements-first clarifies behavior before design.\n   Design-first extracts assumptions from the supplied design, compares them\n   against source intent and reconciles requirements and acceptance before task\n   approval. Bugfix records current, expected and unchanged behavior separately;\n   an unobserved report remains reported and an unexplained cause stays unknown.\n6. Reconcile assumptions and conflicts with the actual authority. Mark each\n   assumption open, confirmed, rejected or deferred with a decision reference\n   where available. A material unresolved assumption holds the dependent scope\n   from task approval. A deferred item may be excluded only through an attributable\n   scope decision showing that included requirements no longer depend on it.\n   Continue independent authorized drafting while awaiting missing decisions.\n7. Review meaning and source coverage, then return the exact draft and its status.\n   Check that IDs are unique within each namespace; manually compare ID values,\n   since JSON Schema cannot enforce property-level uniqueness across these arrays.\n   Check references against accessible sources and note inaccessible ones. Preserve\n   existing authorizations without inventing another mandatory approval turn.\n8. Hand the accepted contract and its current revision to the separately authorized\n   next owner. Material design stays with architecture; executable tasks stay with\n   planning; implementation and test execution need their own scope and evidence.\n   A changed accepted requirement or design reopens affected acceptance and links;\n   keep the previous decision reference and identify the revision needing review.",
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-design-specify-change.md",
-              "start_line": 51,
-              "end_line": 95,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "start_line": 80,
+              "end_line": 126,
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           }
         ]
@@ -466,9 +468,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-specify-change.md",
-              "start_line": 149,
-              "end_line": 153,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "start_line": 180,
+              "end_line": 184,
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           },
           {
@@ -476,9 +478,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-specify-change.md",
-              "start_line": 155,
-              "end_line": 160,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "start_line": 186,
+              "end_line": 191,
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           }
         ]
@@ -493,7 +495,7 @@
               "path": "ssot/engos-design-specify-change.md",
               "start_line": 31,
               "end_line": 38,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           },
           {
@@ -501,9 +503,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-specify-change.md",
-              "start_line": 149,
-              "end_line": 153,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "start_line": 180,
+              "end_line": 184,
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           },
           {
@@ -511,9 +513,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-specify-change.md",
-              "start_line": 155,
-              "end_line": 160,
-              "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+              "start_line": 186,
+              "end_line": 191,
+              "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
             }
           }
         ]
@@ -526,8 +528,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-specify-change.md",
-        "ssot_sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660",
-        "effective_sha256": "2be14dd9f0bcfa2fbd7005ed6a432f433b8b74ee243b927104eeea017c355315",
+        "ssot_sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2",
+        "effective_sha256": "230f88f608cd89b517fd56efaa331d27b6d2fb6d5a6df7676447428ce0e23e78",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-specify-change/templates/requirements.md",
@@ -576,6 +578,14 @@
           {
             "path": "sources/capability-resources/engos-design-specify-change/evals/positive-and-near-miss.json",
             "sha256": "96a724af85f32f378fc007a8443c5330bebda2ec06653796a165c3c12c6354c7"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-freshness-sweep/scripts/freshness_check.py",
+            "sha256": "8bf85207dfdb5e750ae66ab59201f8a25a11ca191275290539f909c3e4e5512c"
+          },
+          {
+            "path": "sources/capability-resources/engos-design-freshness-sweep/references/freshness-sweep.md",
+            "sha256": "9611fefa8e3dd396a8950b27229dfb3f171d7139ede0c961b085bef3cfed7ead"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -589,7 +599,7 @@
                 "path": "ssot/engos-design-specify-change.md",
                 "start_line": 24,
                 "end_line": 27,
-                "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+                "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
               }
             }
           ],
@@ -601,7 +611,7 @@
                 "path": "ssot/engos-design-specify-change.md",
                 "start_line": 31,
                 "end_line": 38,
-                "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+                "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
               }
             }
           ],
@@ -613,7 +623,7 @@
                 "path": "ssot/engos-design-specify-change.md",
                 "start_line": 42,
                 "end_line": 47,
-                "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+                "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
               }
             }
           ],
@@ -623,9 +633,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-specify-change.md",
-                "start_line": 122,
-                "end_line": 123,
-                "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+                "start_line": 153,
+                "end_line": 154,
+                "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
               }
             },
             {
@@ -633,9 +643,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-specify-change.md",
-                "start_line": 125,
-                "end_line": 131,
-                "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+                "start_line": 156,
+                "end_line": 162,
+                "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
               }
             },
             {
@@ -643,9 +653,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-specify-change.md",
-                "start_line": 133,
-                "end_line": 137,
-                "sha256": "5e8cfa54cffa8f559e865305ad159e8607644f8a6b5fe8403f5960933216b660"
+                "start_line": 164,
+                "end_line": 168,
+                "sha256": "fb96a9874f3a03b5d9e6bf137af3fcd3a501036ccd5421f8dc97f58c9f6c2cc2"
               }
             }
           ]
@@ -660,7 +670,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "4ca8e0559ecf02231b6550b5fec7d9ffac8781dc8e5ca170c5b17a8d13be11c3"
+        "mapping_sha256": "dd3e9465b5bff580186648ac9a6dde166c921c859e4e6ce8c6a6872ab8594eac"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

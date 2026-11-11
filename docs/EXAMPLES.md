@@ -171,6 +171,38 @@ skip architecture when no material choice remains. Then authorize
 `engos-delivery-implement-slice` for the next bounded task. The
 [progressive feature](#progressive-feature-example) shows the fuller route.
 
+### Sweep a design before planning
+
+> Run `engos-design-freshness-sweep` on this ticket and its existing design. Include
+> linked tickets and the platform repos owned by this area. Check whether the
+> workaround is still needed; stop at the evidence and simpler-path recommendation.
+
+**Expect:** every ticket comment and linked-ticket discussion, every linked or
+selected MR/PR note (including resolved threads and replies), and a paginated
+fourteen-day merged-at search for every area owner across all involved repos.
+In the bundled synthetic fixture, the section **What changed since this was
+designed / simpler path that exists today** cites a page-two note lifting the
+blocker and a platform merge
+adding a usable API, then recommends retiring the workaround subject to actual
+compatibility/availability checks. Ticket status alone cannot keep it blocked.
+
+The assistant collects through available authorized source tools and runs the
+bundled standard-library checker from the selected skill directory:
+
+```bash
+python3 resources/scripts/freshness_check.py --evidence EVIDENCE.json --format markdown
+```
+
+The helper checks normalized evidence, not live systems or the meaning of an API.
+Its input format is in the package's `freshness` route (standalone: `sweep`).
+A missing page or owner/repo mapping yields incomplete and a precise evidence
+request. “Blocked” requires the responsible owner's exact current confirmation,
+source, timestamp and scope after contrary evidence is reconciled. No message is
+sent automatically. The three design/planning callers bundle this procedure and
+checker themselves, so the step works without installing the standalone sibling.
+Shaping runs it in technical Research after accepted framing, keeping the frame
+solution-free. Accepted design changes still need their existing decision process.
+
 ### Design decision
 
 **Before:** “Write a spec, plan and code for async exports.”

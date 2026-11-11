@@ -72,6 +72,46 @@
           "destination": "references/test-oracles.md"
         }
       ]
+    },
+    {
+      "id": "design-freshness-procedure-v1",
+      "owner": "engos-design-freshness-sweep",
+      "source": "references/freshness-sweep.md",
+      "sha256": "9611fefa8e3dd396a8950b27229dfb3f171d7139ede0c961b085bef3cfed7ead",
+      "consumers": [
+        {
+          "slug": "engos-design-specify-change",
+          "destination": "references/freshness-sweep.md"
+        },
+        {
+          "slug": "engos-design-plan-implementation",
+          "destination": "references/freshness-sweep.md"
+        },
+        {
+          "slug": "engos-design-shaping",
+          "destination": "references/freshness-sweep.md"
+        }
+      ]
+    },
+    {
+      "id": "design-freshness-check-v1",
+      "owner": "engos-design-freshness-sweep",
+      "source": "scripts/freshness_check.py",
+      "sha256": "8bf85207dfdb5e750ae66ab59201f8a25a11ca191275290539f909c3e4e5512c",
+      "consumers": [
+        {
+          "slug": "engos-design-specify-change",
+          "destination": "scripts/freshness_check.py"
+        },
+        {
+          "slug": "engos-design-plan-implementation",
+          "destination": "scripts/freshness_check.py"
+        },
+        {
+          "slug": "engos-design-shaping",
+          "destination": "scripts/freshness_check.py"
+        }
+      ]
     }
   ]
 }

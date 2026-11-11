@@ -1,0 +1,223 @@
+{
+  "schema_version": "FreshnessEvidence.v1",
+  "collected_at": "2026-11-11T15:00:00Z",
+  "design_at": "2026-10-01T12:00:00Z",
+  "design_ref": "design@r1",
+  "roots": [
+    "T-1"
+  ],
+  "owners": {
+    "platform-owner": "CODEOWNERS@a1",
+    "app-owner": "team-record@r2"
+  },
+  "repos": [
+    "app",
+    "platform"
+  ],
+  "gaps": [],
+  "tickets": {
+    "T-1": {
+      "links": [
+        "T-2"
+      ],
+      "mrs": [],
+      "discussion": {
+        "comments": {
+          "query_ref": "ledger/ticket-comments",
+          "pages": [
+            {
+              "cursor": null,
+              "next": "page-2",
+              "total": 2,
+              "items": [
+                {
+                  "ref": "T-1#c1",
+                  "author": "reporter",
+                  "at": "2026-11-10T13:00:00Z",
+                  "body": "Design assumes API unavailable.",
+                  "ticket_links": [],
+                  "mr_links": []
+                }
+              ]
+            },
+            {
+              "cursor": "page-2",
+              "next": null,
+              "total": 2,
+              "items": [
+                {
+                  "ref": "T-1#c2",
+                  "author": "platform-owner",
+                  "at": "2026-11-10T13:00:00Z",
+                  "body": "Blocker lifted; use P!8 API.",
+                  "ticket_links": [],
+                  "mr_links": [
+                    "platform!8"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "platform": "jira",
+      "inspected_ref": "T-1@revision"
+    },
+    "T-2": {
+      "links": [
+        "T-1"
+      ],
+      "mrs": [
+        "app!9"
+      ],
+      "discussion": {
+        "comments": {
+          "query_ref": "ledger/linked-comments",
+          "pages": [
+            {
+              "cursor": null,
+              "next": null,
+              "total": 0,
+              "items": []
+            }
+          ]
+        }
+      },
+      "platform": "jira",
+      "inspected_ref": "T-2@revision"
+    }
+  },
+  "mrs": {
+    "platform!8": {
+      "repo": "platform",
+      "ticket_links": [],
+      "mr_links": [],
+      "inspected_ref": "platform-api@8",
+      "discussion": {
+        "notes": {
+          "query_ref": "ledger/platform-notes",
+          "pages": [
+            {
+              "cursor": null,
+              "next": null,
+              "total": 1,
+              "items": [
+                {
+                  "ref": "platform!8#n1",
+                  "author": "platform-owner",
+                  "at": "2026-11-10T13:00:00Z",
+                  "body": "API supports required tenant scope; available in target.",
+                  "ticket_links": [],
+                  "mr_links": []
+                }
+              ]
+            }
+          ]
+        },
+        "discussions": {
+          "query_ref": "ledger/platform!8-threads",
+          "pages": [
+            {
+              "cursor": null,
+              "next": null,
+              "total": 0,
+              "items": []
+            }
+          ]
+        }
+      },
+      "platform": "gitlab"
+    },
+    "app!9": {
+      "repo": "app",
+      "ticket_links": [
+        "T-2"
+      ],
+      "mr_links": [],
+      "inspected_ref": "app-diff@9",
+      "discussion": {
+        "notes": {
+          "query_ref": "ledger/app-notes",
+          "pages": [
+            {
+              "cursor": null,
+              "next": null,
+              "total": 0,
+              "items": []
+            }
+          ]
+        },
+        "discussions": {
+          "query_ref": "ledger/app!9-threads",
+          "pages": [
+            {
+              "cursor": null,
+              "next": null,
+              "total": 0,
+              "items": []
+            }
+          ]
+        }
+      },
+      "platform": "gitlab"
+    }
+  },
+  "merges": {
+    "app": {
+      "query_ref": "ledger/app-merges",
+      "pages": [
+        {
+          "cursor": null,
+          "next": null,
+          "total": 0,
+          "items": []
+        }
+      ],
+      "since": "2026-10-28T15:00:00Z",
+      "until": "2026-11-11T15:00:00Z",
+      "owners": [
+        "platform-owner",
+        "app-owner"
+      ]
+    },
+    "platform": {
+      "query_ref": "ledger/platform-merges",
+      "pages": [
+        {
+          "cursor": null,
+          "next": null,
+          "total": 1,
+          "items": [
+            {
+              "ref": "platform!8",
+              "participants": [
+                "platform-owner"
+              ],
+              "merged_at": "2026-11-09T10:00:00Z"
+            }
+          ]
+        }
+      ],
+      "since": "2026-10-28T15:00:00Z",
+      "until": "2026-11-11T15:00:00Z",
+      "owners": [
+        "platform-owner",
+        "app-owner"
+      ]
+    }
+  },
+  "changes": [
+    {
+      "assumption": "A custom workaround is needed because API is blocked.",
+      "evidence_refs": [
+        "T-1#c2",
+        "platform-api@8"
+      ],
+      "implication": "The recorded blocker is lifted and the API covers this scope.",
+      "simpler_path": "Reuse the tenant API and retire the workaround after target validation.",
+      "disposition": "retire"
+    }
+  ],
+  "verdict": "ready",
+  "blockers": []
+}

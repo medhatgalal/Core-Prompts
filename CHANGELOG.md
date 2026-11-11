@@ -1,3 +1,9 @@
+## Unreleased
+
+### Added
+- `engos-design-freshness-sweep`: execute full linked-ticket/MR discussion reads and fourteen days of area-owner merges across involved repos; return changed assumptions and today's simpler path, with exact owner confirmation for technical blockers.
+- Required bundled freshness gates in specify-change, plan-implementation and shaping technical Research, plus a portable evidence/quote checker and regression fixtures. Admission does not establish measured agent benefit.
+
 ## v1.21.2 - 2026-11-09
 
 Tag authorized by Scott Parrish on 2026-11-09. Publication is recorded by the GitLab

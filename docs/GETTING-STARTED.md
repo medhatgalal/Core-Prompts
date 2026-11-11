@@ -84,6 +84,18 @@ explain output, interruption, scope and known evidence limits.
 [Upgrade and rollback](INSTALL-PROFILES.md#upgrade-the-antigravity-intake-resource)
 remain separate from invoking the command.
 
+## Check a design before relying on it
+
+Ask “Run `engos-design-freshness-sweep` on this ticket and design before planning.”
+Supply the ticket/design links, involved application/platform repos and known area
+owners. The assistant resolves ownership evidence, reads all linked discussions
+and fourteen days of owner merges, then returns “What changed since this was
+designed / simpler path that exists today.” Specify-change, plan-implementation
+and shaping's accepted technical Research include the same required step for
+ticket-backed work. Missing access yields incomplete coverage; a technical blocked
+verdict requires the responsible owner's current exact quote. No owner messages
+are sent. See the [worked example](EXAMPLES.md#sweep-a-design-before-planning).
+
 ## Returning from the 32-skill catalog
 
 Four new jobs make everyday selection more precise:

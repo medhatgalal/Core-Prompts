@@ -1,0 +1,143 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-plan-implementation",
+  "original_sha256": "418f61721066c1411fde8f7a8a29110743c9d7d6fdd322b1ea5c7a087a58161f",
+  "candidate_sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948",
+  "effective_sha256": "085484bbdef81e9bf915ccaa2ab2f51b130e5dc092262d6d22f1613c0b20de00",
+  "verdict": "approved",
+  "source_line_count": 302,
+  "reviewer": {
+    "agent_id": "/root/freshness_review",
+    "author_agent_id": "/root",
+    "independent": true
+  },
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "f30a7007",
+    "matches_current_ssot": true
+  },
+  "evidence_scope": "Accepted requirements and tracker evidence remain authoritative. The new check precedes decomposition, with material changes returned to their actual owner. I inspected the content diff, the effective package, the consumer and owner route bindings, documentation and CI coverage. Whole-source SHA256 is identical for the canonical source and historical baseline. Actual future source acquisition and agent performance are outside this review.",
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-plan-implementation",
+      "rationale": "Compared the complete Capability identity section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 11,
+      "source_end_line": 17,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce a usable implementation plan from accepted requirements, preserving their",
+      "rationale": "Compared the complete Purpose section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 18,
+      "source_end_line": 23,
+      "disposition": "preserved",
+      "candidate_excerpt": "Give an implementer enough source context and explicit interfaces to deliver one",
+      "rationale": "Compared the complete Primary Objective section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 24,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "“Plan this accepted feature,” “break this design into implementation outcomes,” and",
+      "rationale": "Compared the complete Invocation Hints section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 42,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.",
+      "rationale": "Compared the complete Required Inputs section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 43,
+      "source_end_line": 49,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Create implementation outcome contracts from accepted requirements and supplied design decisions.",
+      "rationale": "Compared the complete In Scope section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 50,
+      "source_end_line": 118,
+      "disposition": "reformulated",
+      "candidate_excerpt": "unchanged behavior, constraints and supplied design IDs. For plain prose, map",
+      "rationale": "Compared the entire original Workflow section to the candidate workflow. Accepted requirements and tracker evidence remain authoritative. The new check precedes decomposition, with material changes returned to their actual owner."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 119,
+      "source_end_line": 139,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Reuse the project tracker and plan format. An index or optional interchange",
+      "rationale": "Compared the complete Rules section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 140,
+      "source_end_line": 188,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.",
+      "rationale": "Compared the complete Required Output section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 189,
+      "source_end_line": 195,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the existing plan/tracker location. When none exists, return the plan in chat",
+      "rationale": "Compared the complete Output Directory section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 196,
+      "source_end_line": 206,
+      "disposition": "preserved",
+      "candidate_excerpt": "This capability owns planning artifacts only. Do not implement product code,",
+      "rationale": "Compared the complete Constraints section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 207,
+      "source_end_line": 238,
+      "disposition": "preserved",
+      "candidate_excerpt": "> Plan the accepted filtered CSV export requirement in our existing tracker.",
+      "rationale": "Compared the complete Examples section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 239,
+      "source_end_line": 256,
+      "disposition": "preserved",
+      "candidate_excerpt": "Assess each item as met, pending or not applicable with evidence. Material pending",
+      "rationale": "Compared the complete Evaluation Rubric section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R14",
+      "source_start_line": 257,
+      "source_end_line": 267,
+      "disposition": "preserved",
+      "candidate_excerpt": "Independently expressed synthesis draws on Addy Osmani's",
+      "rationale": "Compared the complete Pattern Provenance section to the prior canonical and historical text. It remains verbatim."
+    },
+    {
+      "id": "R15",
+      "source_start_line": 268,
+      "source_end_line": 302,
+      "disposition": "preserved",
+      "candidate_excerpt": "For a supplied TaskPlan.v1, load the `graph_check` resource route and run",
+      "rationale": "Compared the complete Optional mechanical graph check section to the prior canonical and historical text. It remains verbatim."
+    }
+  ]
+}

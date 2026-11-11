@@ -3,6 +3,10 @@
   "owner": "engos-route-intent",
   "status": "advisory_conditional_suggestions",
   "catalog": {
+    "engos-audit-change-impact": {
+      "summary": "Roll up an org's merged and open GitLab and GitHub changes for a time window into a fact-checked, business-impact report: each bullet states its likely impact (inference) and what changed (fact) with links. The roster is the reporting tree in the Appian Home org chart. Use for what-did-my-org-ship-and-why-it-matters updates; do not use for git metrics dashboards, Jira or chat status reports, or code review.",
+      "descriptor_sha256": "1b573127cb01a9df617b0e1dae39b4c551179bb586f748c19ec135e387b6d9a3"
+    },
     "engos-audit-code-health": {
       "summary": "Perform a read-only structural audit of a brownfield codebase, measuring hotspots, coupling, god objects, dead-code candidates, prior findings, and drift. Use for repository health; do not use for feature completeness or diff review.",
       "descriptor_sha256": "73d6f2ad0f780bfa7722f0544f202c6f42e0ae48fc1e4cc308fd9493e0164e1a"
@@ -67,9 +71,13 @@
       "summary": "Normalize rough input and draft a solution-free frame with affected people, outcome, why-now, actual appetite, walk-away and answerable uncertainties. Supports the shaping conductor; does not choose architecture or invent human decisions.",
       "descriptor_sha256": "d86d262455be411dc494dd83a07baf26796dfe44b86c7449a219b243ad2600a1"
     },
+    "engos-design-freshness-sweep": {
+      "summary": "Execute a read-only freshness sweep before designing, planning or resuming ticket-backed work. Read every linked-ticket comment and MR note and fourteen days of area-owner merges across involved repos; report changed assumptions and today's simpler path, and refuse technical blocked verdicts without the responsible owner's exact confirmation.",
+      "descriptor_sha256": "5599635595f07061eab4c4e06106a08bdc687effdf726ab646b18119ae16311d"
+    },
     "engos-design-plan-implementation": {
       "summary": "Plan independently verifiable implementation tasks from accepted requirements and an optional supplied design. Use for multi-step planning or revising unfinished work with explicit dependencies, interfaces, allowed writes and stop conditions; preserve the existing tracker and leave execution, delegation and goal creation to their owners.",
-      "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2"
+      "descriptor_sha256": "030032332ceacd27adda7ebf1bcf2c91382f30b1053b6ac7c9bc18ccd0469877"
     },
     "engos-design-plan-to-goal": {
       "summary": "Compile a reviewed plan or intent into a host-aware goal, durable specification, and task-specific verifier with explicit trust, drift, stop, and rollback conditions. Use when a bounded long-running goal packet is needed; do not use for ordinary one-step implementation.",
@@ -77,11 +85,11 @@
     },
     "engos-design-shaping": {
       "summary": "Guide product and engineering from rough notes through solution-free framing, evidence collection, shaping, independent review and verified delivery. Use for a shaping workshop, run progress or resume; use pitch review alone for a finished pitch assessment.",
-      "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39"
+      "descriptor_sha256": "a15a109548210dfc4a0ce5dcaa499e883c4783bd28d7878fd9dd496c9bd3d40e"
     },
     "engos-design-specify-change": {
       "summary": "Specify a feature, design-led change, or bugfix with source-backed requirements, acceptance conditions, explicit assumptions and unchanged behavior. Use before planning when the change needs a specification; preserve existing formats and leave architecture, task planning and implementation to their owners.",
-      "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016"
+      "descriptor_sha256": "cccf6bfae8e9ae341edf8e6cfa93afe4fa6d28fce8b827f3a5b8f34222419ec8"
     },
     "engos-memory-context-continuity": {
       "summary": "Maintain durable context, todo, and insight state for a multi-file or multi-source investigation that must survive compaction, session changes, branch changes, or worktree removal. Use when analysis must be resumed; do not use for a one-off report or final decision.",
@@ -103,6 +111,22 @@
       "summary": "Improve skills and agents through Core-Prompts plan, judge, and apply while preserving their surface scope. New agent surfaces require explicit user approval. Use for capability intake and improvement; do not use for ordinary prose editing or deployment.",
       "descriptor_sha256": "3fb7ef4a7e9443c14114c0d4f64d10b6fb7fc38c439161368792fa45565a415c"
     },
+    "engos-operations-daily-update": {
+      "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
+      "descriptor_sha256": "382a88c104b9045f6029c48dfa872e3c0684e8ae30af7366c9998fda771659d4"
+    },
+    "engos-operations-gtd-planning": {
+      "summary": "Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \"plan my day\", \"weekly review\", \"triage my inbox\", \"daily close\", \"plan my week\", \"capture my tasks\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.",
+      "descriptor_sha256": "9b03cf40727e5e083d1114cff3e2f3adf07944827d123cc1b266704ac86823d6"
+    },
+    "engos-operations-gtd-sources": {
+      "summary": "Read-only source adapters that feed the GTD planning method: Gmail, Chat, Drive comments, Calendar and Gemini meeting notes, plus the contract for adding more. Use when the GTD method runs capture or needs calendar and meeting context, or when someone is writing a new source adapter. Do not use to send, reply, post, mark read, accept or edit anything, and do not use without the method skill.",
+      "descriptor_sha256": "1fc724bdf7221a38b520963bbe5659db9e6ad34d78c27d9981c379272c121f54"
+    },
+    "engos-operations-gtd-things3": {
+      "summary": "Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.",
+      "descriptor_sha256": "80eb71008c672d462990a7be83150b439c2ee5a202646dc0b397e0545d2dad73"
+    },
     "engos-operations-ic-assistant": {
       "summary": "Guide an Incident Commander through phase tracking, status cadence, artifact checks, escalation prompts, handoff, resolution, and postmortem work without making incident decisions. Use during an active incident or postmortem.",
       "descriptor_sha256": "fd47afc5d83be2f87bf376239e759d9bf1e98cf43277d506510dd7468238d83b"
@@ -114,6 +138,10 @@
     "engos-orchestration-batman": {
       "summary": "Run the explicitly requested, evidence-gated delivery protocol through independent subagents, TDD, blocking reviews, verification, documentation, Git health, and authorized landing. Use for implementation work that requires controller-owned sequencing and evidence.",
       "descriptor_sha256": "a4295cd675af810c65d9e097e00dd4e40dee854dd8fdcf288e9cd9ed57188749"
+    },
+    "engos-orchestration-crew": {
+      "summary": "Design, launch and oversee a multi-agent crew in any agent harness (Claude Code, Kiro, Codex, Gemini CLI, or any harness that can start sub-agents and read and write files) that runs a long job to a defined goal against acceptance criteria fixed up front: a lead, workers, fresh verifiers, a safety watch and an independent drift auditor, with change control. Use when the user types /engos-orchestration-crew (with or without a command such as help, design, launch, status, end) or wants a long, checkable, multi-agent job (an A/B evaluation, QA of a built system, an audit or a migration) run unattended with no drift. Do not use for short or single-agent tasks.",
+      "descriptor_sha256": "676b1075ff747f7aabcb2719c88fdc44997e6f37129abc39c1ec0147d4909506"
     },
     "engos-quality-code-review": {
       "summary": "Review a staged change, diff, commit, or branch for correctness, scope, simplicity, lifecycle risk, and merge readiness before commit, push, merge, or release. Use for judgment; do not use to apply reviewer feedback.",
@@ -139,6 +167,11 @@
       "summary": "Compare multiple sources, drafts, or proposals, surface conflicts and gaps, and produce one defensible recommendation with explicit trade-offs. Use when competing inputs must converge; do not hide incompatible ideas in a blended summary.",
       "descriptor_sha256": "8defc29d84872bdd9394510d38c24b6dd4ee2e739179a22363432bb295bdc047"
     },
+    "engos-route-intent": {
+      "summary": "Choose a starting skill when the desired outcome, next step or needed depth is unclear. Route across the current Core-Prompts catalog, ask material questions with Other/free text, and explain conditional handoffs. Skip intake for clear direct tasks or a named skill.",
+      "descriptor_sha256": null,
+      "self_routing": "not_a_downstream_candidate"
+    },
     "engos-triage-my-inbox-chat-pulse": {
       "summary": "Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.",
       "descriptor_sha256": "6ac3591c6a3e9828fe1dd6e56e1a76fdd22e68365b601979a930fc18d9077840"
@@ -146,11 +179,6 @@
     "loopy": {
       "summary": "Discover, find, compare, audit, repair, adapt, craft, run, debrief, and prepare repeatable AI-agent loops for publication. Use when a user asks to analyze code or coding threads for recurring work, find a published loop, interview them to turn a goal into a bounded loop, review a loop for weak checks or unsafe authority, execute a loop with an evidence receipt, learn from completed runs, or validate and submit a loop to Loop Library.",
       "descriptor_sha256": "55c4c8efbef6e2b47cecb73c4f55d47cfd9c20c09868c01af5c6d2cf6ae6333b"
-    },
-    "engos-route-intent": {
-      "summary": "Choose a starting skill when the desired outcome, next step or needed depth is unclear. Route across the current Core-Prompts catalog, ask material questions with Other/free text, and explain conditional handoffs. Skip intake for clear direct tasks or a named skill.",
-      "descriptor_sha256": null,
-      "self_routing": "not_a_downstream_candidate"
     }
   },
   "relationships": [
@@ -170,7 +198,7 @@
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "cccf6bfae8e9ae341edf8e6cfa93afe4fa6d28fce8b827f3a5b8f34222419ec8",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -194,7 +222,7 @@
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "cccf6bfae8e9ae341edf8e6cfa93afe4fa6d28fce8b827f3a5b8f34222419ec8",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -218,7 +246,7 @@
         },
         {
           "slug": "engos-design-plan-implementation",
-          "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2",
+          "descriptor_sha256": "030032332ceacd27adda7ebf1bcf2c91382f30b1053b6ac7c9bc18ccd0469877",
           "contract_ref": "ssot/engos-design-plan-implementation.md"
         }
       ],
@@ -242,7 +270,7 @@
         },
         {
           "slug": "engos-design-plan-implementation",
-          "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2",
+          "descriptor_sha256": "030032332ceacd27adda7ebf1bcf2c91382f30b1053b6ac7c9bc18ccd0469877",
           "contract_ref": "ssot/engos-design-plan-implementation.md"
         }
       ],
@@ -285,7 +313,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "a15a109548210dfc4a0ce5dcaa499e883c4783bd28d7878fd9dd496c9bd3d40e",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -304,7 +332,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "a15a109548210dfc4a0ce5dcaa499e883c4783bd28d7878fd9dd496c9bd3d40e",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -323,7 +351,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "a15a109548210dfc4a0ce5dcaa499e883c4783bd28d7878fd9dd496c9bd3d40e",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -342,7 +370,7 @@
       "source_refs": [
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "a15a109548210dfc4a0ce5dcaa499e883c4783bd28d7878fd9dd496c9bd3d40e",
           "contract_ref": "ssot/engos-design-shaping.md"
         }
       ],
@@ -453,12 +481,12 @@
       "source_refs": [
         {
           "slug": "engos-design-plan-implementation",
-          "descriptor_sha256": "dc74039a01efb1da43c53a30fde7e245c098bf799a36f73c9e6e6cbb06a644a2",
+          "descriptor_sha256": "030032332ceacd27adda7ebf1bcf2c91382f30b1053b6ac7c9bc18ccd0469877",
           "contract_ref": "ssot/engos-design-plan-implementation.md"
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "cccf6bfae8e9ae341edf8e6cfa93afe4fa6d28fce8b827f3a5b8f34222419ec8",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -480,7 +508,7 @@
         },
         {
           "slug": "engos-design-specify-change",
-          "descriptor_sha256": "c9ed31b211f18d6a988c5fd4e2ed8ee61bbf3ef42c4346466df3ad4e9d956016",
+          "descriptor_sha256": "cccf6bfae8e9ae341edf8e6cfa93afe4fa6d28fce8b827f3a5b8f34222419ec8",
           "contract_ref": "ssot/engos-design-specify-change.md"
         }
       ],
@@ -630,7 +658,7 @@
         },
         {
           "slug": "engos-design-shaping",
-          "descriptor_sha256": "1adb0ffba2deadafa82e5c256f44ce1edf233f4a597044a11f53b4ac093a5a39",
+          "descriptor_sha256": "a15a109548210dfc4a0ce5dcaa499e883c4783bd28d7878fd9dd496c9bd3d40e",
           "contract_ref": "ssot/engos-design-shaping.md",
           "clause_ref": "Workflow shaping/review and representation requirements"
         }
