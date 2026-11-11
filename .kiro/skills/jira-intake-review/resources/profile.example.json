@@ -1,0 +1,18 @@
+{
+  "user_name": "Your Name",
+  "role_line": "Leads the Example SBU; the group TDM's daily Inbox triage is the model",
+  "timezone": "America/New_York",
+  "cutoff_time": "06:00",
+  "filter_id": "00000",
+  "email_filter_id": "00001",
+  "exclude_projects": ["DOC"],
+  "owners": {
+    "Team A": "Lead One",
+    "Team B": "Lead Two"
+  },
+  "fallback_owner_note": "If a ticket cannot be placed, ask the person.",
+  "standing_initiatives_may_skip_feature_card": ["Research", "Support", "Ops & Maintenance"],
+  "feature_card_cache": "~/.engos/jira-intake-review/cards.json",
+  "inbox_epic_pattern": "Inbox",
+  "style": "Plain English, answer first, no em-dashes, no filler. Always \"feature card\", never bare \"card\". Oxford comma."
+}
