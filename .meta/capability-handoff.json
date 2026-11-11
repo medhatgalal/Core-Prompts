@@ -7,6 +7,95 @@
   ],
   "capabilities": [
     {
+      "slug": "comms-digest",
+      "display_name": "Comms Digest",
+      "capability_type": "skill",
+      "summary": "Scheduled Google Chat and Gmail digest that surfaces only what needs one person, proposes numbered email and Chat clean-up, and runs a weekly reversible sidebar tidy. Use for a twice-daily comms digest, a Monday sidebar tidy, or restoring a sidebar from a snapshot. Never sends, posts, replies, marks read, or permanently deletes. Do not use for interactive triage or sending replies.",
+      "role": "workflow",
+      "domain_tags": [
+        "comms",
+        "digest"
+      ],
+      "required_inputs": [
+        "`~/.engos/comms-digest/profile.json` (see Profile).",
+        "A logged-in `gws` with Chat and Gmail read access.",
+        "For clean-up and tidy approvals: numbers typed by the person in this chat."
+      ],
+      "expected_outputs": [
+        "Line 1: the Chat window, how many Chat conversations had activity, how many emails are in the inbox, and how many items need the person.",
+        "\"Needs you\" table: # | Source | From | Where | What they need (one plain line) | Age | Link. Source is Chat, Email, or Chat + Email. Where is the space or the email subject. Chat link: `https://chat.google.com/room/<SPACE_ID>/<THREAD_ID>` for spaces and group chats, or the space's `spaceUri` for DMs. Email link: `https://mail.google.com/mail/u/0/#inbox/<THREAD_ID>`. Oldest-waiting first. Mark an item \"(seen)\" after What they need if it was in the previous run's table (`<state_dir>/last-needs-you.json`; overwrite it at the end of each run).",
+        "\"Worth knowing\": up to 5 one-line bullets with links, from Chat and email.",
+        "\"Clean up\": the numbered email proposals. Skip the section if there are none.",
+        "One line: how many other Chat messages and emails were skipped.",
+        "What you could not check (failed calls, unresolved names).",
+        "Monday only: the tidy report (what moved or would move, counts before and after, the numbered proposals, and the snapshot path)."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "workflow_provider",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "comms",
+          "digest"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-audit-change-impact",
       "display_name": "Change Impact Rollup",
       "capability_type": "skill",
@@ -4231,6 +4320,94 @@
         ],
         "authority_tier": "advisory",
         "work_graph_impact": "Adds or updates a skill capability with route profile None."
+      },
+      "advisory_only": true
+    },
+    {
+      "slug": "jira-intake-review",
+      "display_name": "Jira Intake Review",
+      "capability_type": "skill",
+      "summary": "Daily read-only review of the new tickets in a Jira filter: what came in, what came in sideways (no epic, no initiative, no feature card, wrong home), who owns the fix, and the next action. Use for a weekday morning intake report or an owner-by-owner follow-up draft. Never edits, comments on, assigns, or closes tickets and never sends messages. Do not use for sprint reporting or ticket hygiene sweeps.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "jira",
+        "intake"
+      ],
+      "required_inputs": [
+        "`~/.engos/jira-intake-review/profile.json` (see Profile).",
+        "A logged-in `acli`, and `gws` if the morning email is compared."
+      ],
+      "expected_outputs": [
+        "Line 1: number of new tickets and how many need action today.",
+        "Urgent: unstarted Blocker, Critical or High tickets, and any customer incident.",
+        "A table grouped by owner: Ticket (linked) | Category | Gap | Next action. Only tickets that need action.",
+        "Patterns worth raising at the delivery review: one or two lines, only when the data supports them (for example a new initiative with no feature card, a security event spawning several tickets, a team filing repeat weekly tickets).",
+        "What you could not check.",
+        "If asked, a short draft message per owner in the person's voice: \"Hi <name>, ...\" with ticket links. No emojis for manager-only messages."
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "repo_local",
+        "confidence": 0.88,
+        "confirmation_required_for_apply": true,
+        "rationale": "Source lives inside the current repository, so repo-local installation is the safer default.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "jira"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
       },
       "advisory_only": true
     },

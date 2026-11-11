@@ -1,0 +1,21 @@
+{
+  "name": "comms-digest",
+  "display_name": "Comms Digest",
+  "version": "1.0.0",
+  "description": "Scheduled Google Chat and Gmail digest that surfaces only what needs one person, proposes numbered email and Chat clean-up, and runs a weekly reversible sidebar tidy. Use for a twice-daily comms digest, a Monday sidebar tidy, or restoring a sidebar from a snapshot. Never sends, posts, replies, marks read, or permanently deletes. Do not use for interactive triage or sending replies.",
+  "kind": "skill",
+  "capability_type": "skill",
+  "agent_tools": [
+    "Read",
+    "Write",
+    "Bash",
+    "Grep",
+    "Glob"
+  ],
+  "triggers": [
+    "comms digest",
+    "chat and email digest",
+    "tidy my chat sidebar",
+    "restore chat sidebar"
+  ]
+}
