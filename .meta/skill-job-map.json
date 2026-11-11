@@ -4937,6 +4937,143 @@
         ]
       }
     },
+    "engos-operations-delivery-excellence-prep": {
+      "primary_job": "Leave the leader with a checked tab, an evidence-backed findings report, and one draft comment per owner, ready to review before the checkpoint.",
+      "use_when": "Run weekly as a scheduled task, or on request to prepare for the next checkpoint. It stops with a plain message when no checkpoint event falls within the lookahead window.",
+      "works_on": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+      "main_output": "The dated tab on the doc with a PASS or FAIL check line, and `out/<date>/findings.md`, `findings.json`, and `drafts.md`. The chat report is the short table described in STEP 5.",
+      "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+      "authority": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+      "routing_question": "Does this request directly require EngOS Operations \u2014 Delivery Excellence Prep?",
+      "nearest_neighbors": [],
+      "shape": "unclassified_new_skill",
+      "portfolio_action": "draft_new_skill_pending_review",
+      "routing_fitness": {
+        "schema_version": "RoutingFitness.v1",
+        "mapping_status": "source_derived_draft",
+        "task_phases": {
+          "kind": "source_conditions",
+          "clauses": []
+        },
+        "activation": {
+          "mode": "unknown",
+          "evidence": []
+        },
+        "risk_authority_ceiling": {
+          "grants_authority": false,
+          "clauses": [
+            {
+              "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+              "heading": "Tool Boundaries",
+              "source": {
+                "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                "start_line": 126,
+                "end_line": 126,
+                "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+              }
+            }
+          ]
+        },
+        "negative_examples": {
+          "kind": "source_exclusions_not_synthetic_prompts",
+          "clauses": []
+        },
+        "conditional_companions": [],
+        "pack_hints": {
+          "lead": "engos-operations-delivery-excellence-prep",
+          "companions": "only_after_applicable_source_conditions_are_checked",
+          "default_bulk_activation": false
+        },
+        "provenance": {
+          "ssot_path": "ssot/engos-operations-delivery-excellence-prep.md",
+          "ssot_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+          "effective_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+          "resources": [],
+          "extractor_version": "source-clauses.v1",
+          "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+          "field_sources": {
+            "primary_job": [
+              {
+                "text": "Leave the leader with a checked tab, an evidence-backed findings report, and one draft comment per owner, ready to review before the checkpoint.",
+                "heading": "Primary Objective",
+                "source": {
+                  "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                  "start_line": 16,
+                  "end_line": 16,
+                  "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                }
+              }
+            ],
+            "use_when": [
+              {
+                "text": "Run weekly as a scheduled task, or on request to prepare for the next checkpoint. It stops with a plain message when no checkpoint event falls within the lookahead window.",
+                "heading": "Invocation Hints",
+                "source": {
+                  "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                  "start_line": 129,
+                  "end_line": 129,
+                  "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                }
+              }
+            ],
+            "works_on": [
+              {
+                "text": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+                "heading": "Required Inputs",
+                "source": {
+                  "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                  "start_line": 132,
+                  "end_line": 132,
+                  "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                }
+              }
+            ],
+            "main_output": [
+              {
+                "text": "The dated tab on the doc with a PASS or FAIL check line, and `out/<date>/findings.md`, `findings.json`, and `drafts.md`. The chat report is the short table described in STEP 5.",
+                "heading": "Required Output",
+                "source": {
+                  "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                  "start_line": 135,
+                  "end_line": 135,
+                  "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                }
+              }
+            ],
+            "authority": [
+              {
+                "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+                "heading": "Tool Boundaries",
+                "source": {
+                  "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                  "start_line": 126,
+                  "end_line": 126,
+                  "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                }
+              }
+            ]
+          },
+          "unresolved_companion_clauses": [],
+          "curated_fields": [
+            "nearest_neighbors",
+            "not_for",
+            "portfolio_action",
+            "routing_question",
+            "shape"
+          ],
+          "curated_binding": "preserved_not_independently_revalidated",
+          "mapping_sha256": "d997673c3ccda70efbb85911e282d643362313c7135a1a5255ac80ada2d72725"
+        },
+        "unresolved_fields": [
+          "task_phase_interpretation",
+          "risk_authority_interpretation",
+          "job_contract.not_for",
+          "implicit_activation_eligibility",
+          "task_phases",
+          "negative_examples"
+        ]
+      }
+    },
     "engos-operations-gtd-planning": {
       "primary_job": "Every run ends with the user holding one trusted list: new items in the Inbox, each with a proposed disposition, nothing in the task system changed without a yes, and a report that separates what was observed from what was concluded and names what was not checked.",
       "use_when": "- \"plan my day\" runs `daily-plan`. \"weekly review\" runs `weekly-review`. \"triage my inbox\" runs `triage`. \"daily close\" runs `daily-close`. \"plan my week\" runs `weekly-plan`. \"capture my tasks\" runs `capture`.\n- A scheduler start is unattended: `capture` only.\n- No task adapter or source reachable: paste-in mode.",
@@ -7496,7 +7633,7 @@
         "provenance": {
           "ssot_path": "ssot/engos-route-intent.md",
           "ssot_sha256": "d83b7f1351136b642de51e6494e5ce3373fdba0a26de1a24cbf8aec01398dc24",
-          "effective_sha256": "e24d05382b669551c3feb1b2aa773b120ad464c7f4aee799a8b8bef34454bdca",
+          "effective_sha256": "5b7fd8acc29e548ba55fbcc564092b7d6a60fb665d02b99ec5d8e7da3752c2ca",
           "resources": [
             {
               "path": "sources/capability-resources/engos-route-intent/references/intake-method.md",
@@ -7508,7 +7645,7 @@
             },
             {
               "path": "sources/capability-resources/engos-route-intent/routing-relations.json",
-              "sha256": "5c01956b1d83480fe54bcd639e19430ffe320af00dadb93f0c9912eaa6dc3d60"
+              "sha256": "339b67a5b5b02e05dad2fef22d79b95d147863002e399a9bb6dd77b48081bbe9"
             },
             {
               "path": "sources/capability-resources/engos-route-intent/scripts/inspect_catalog.py",
@@ -7593,7 +7730,7 @@
             "shape"
           ],
           "curated_binding": "preserved_not_independently_revalidated",
-          "mapping_sha256": "9f4b4491d8e2635e87aa53729360b3c46f7840b540c7536557b1cfe87c482cc2"
+          "mapping_sha256": "e124d4dfd1ea2707f83ab5a3ed4e74d6d84c1eef706cf0af980ca14ef93bb5c1"
         },
         "unresolved_fields": [
           "task_phase_interpretation",
@@ -9003,6 +9140,41 @@
         "evidence": "per_run_report_required"
       }
     },
+    "engos-operations-delivery-excellence-prep": {
+      "source_at_revision": {
+        "status": "present",
+        "path": "ssot/engos-operations-delivery-excellence-prep.md",
+        "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+        "revision_binding": "content_hash; commit_or_candidate_binding_requires_run_report"
+      },
+      "generated_package_at_revision": {
+        "status": "not_inspected",
+        "manifest": ".meta/manifest.json",
+        "distribution_paths": {
+          "codex": ".codex/skills/engos-operations-delivery-excellence-prep/",
+          "gemini": ".gemini/skills/engos-operations-delivery-excellence-prep/",
+          "claude": ".claude/skills/engos-operations-delivery-excellence-prep/",
+          "kiro": ".kiro/skills/engos-operations-delivery-excellence-prep/",
+          "grok": ".grok/skills/engos-operations-delivery-excellence-prep/"
+        }
+      },
+      "released_in_this_initiative": {
+        "status": "unknown",
+        "evidence": "per_initiative_report_required"
+      },
+      "installed_bytes_observation": {
+        "status": "not_inspected",
+        "evidence": "per_run_report_required"
+      },
+      "native_discovery_observation": {
+        "status": "not_established",
+        "evidence": "per_run_report_required"
+      },
+      "scoped_runtime_evidence": {
+        "status": "no_applicable_case_evidence",
+        "evidence": "per_run_report_required"
+      }
+    },
     "engos-operations-gtd-planning": {
       "source_at_revision": {
         "status": "present",
@@ -9601,7 +9773,7 @@
   },
   "receipt": {
     "schema_version": "SkillJobMapReceipt.v1",
-    "skills_sha256": "e4571a5c5dd529addd78a16a8cc52a1c394ae263d99b8f948570fbfe49b37f85",
+    "skills_sha256": "ebf2913c24704b64ad2706f5e526aaa2f28f3d1eba67984695ea62c9a89a8b2d",
     "advisory_only": true,
     "behavioral_verified": false,
     "source_bindings": {
@@ -9745,6 +9917,11 @@
         "effective_sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c",
         "mapping_sha256": "dc3ded4eeb6131d1c5ec95e0c95becb8a5d1124fec7bc5a4ce928abbe1294f98"
       },
+      "engos-operations-delivery-excellence-prep": {
+        "ssot_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+        "effective_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+        "mapping_sha256": "d997673c3ccda70efbb85911e282d643362313c7135a1a5255ac80ada2d72725"
+      },
       "engos-operations-gtd-planning": {
         "ssot_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
         "effective_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
@@ -9812,8 +9989,8 @@
       },
       "engos-route-intent": {
         "ssot_sha256": "d83b7f1351136b642de51e6494e5ce3373fdba0a26de1a24cbf8aec01398dc24",
-        "effective_sha256": "e24d05382b669551c3feb1b2aa773b120ad464c7f4aee799a8b8bef34454bdca",
-        "mapping_sha256": "9f4b4491d8e2635e87aa53729360b3c46f7840b540c7536557b1cfe87c482cc2"
+        "effective_sha256": "5b7fd8acc29e548ba55fbcc564092b7d6a60fb665d02b99ec5d8e7da3752c2ca",
+        "mapping_sha256": "e124d4dfd1ea2707f83ab5a3ed4e74d6d84c1eef706cf0af980ca14ef93bb5c1"
       },
       "engos-triage-my-inbox-chat-pulse": {
         "ssot_sha256": "0906d36f4878b6713871ab6ffb5524eaf71443d8556acc213f542051388eebd3",

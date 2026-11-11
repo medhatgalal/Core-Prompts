@@ -1,0 +1,295 @@
+{
+  "schema_version": "CapabilityTopology.v1",
+  "slug": "engos-operations-delivery-excellence-prep",
+  "ssot_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+  "explicit_invocations": [],
+  "semantic_triggers": [],
+  "aliases_shortcuts": [],
+  "auto_routes": [],
+  "nodes": {
+    "commands": [],
+    "modes_modules": [],
+    "controls": [],
+    "modifiers": []
+  },
+  "composition": {
+    "legal_pairs": [],
+    "forbidden_pairs": [],
+    "canonical_order": [],
+    "requirements": [],
+    "supersession": []
+  },
+  "state_machine": {
+    "states": [],
+    "transitions": [],
+    "forbidden_transitions": []
+  },
+  "outputs": [],
+  "authority_boundaries": [
+    "engos-operations-delivery-excellence-prep:L24:6033cf30cc3e",
+    "engos-operations-delivery-excellence-prep:L31:841739db1cfd",
+    "engos-operations-delivery-excellence-prep:L49:9bc95ab7339d",
+    "engos-operations-delivery-excellence-prep:L50:250ca0872a64",
+    "engos-operations-delivery-excellence-prep:L67:be48858d508b",
+    "engos-operations-delivery-excellence-prep:L85:905a01756add",
+    "engos-operations-delivery-excellence-prep:L98:bd947ef53481",
+    "engos-operations-delivery-excellence-prep:L99:47f7caa14197",
+    "engos-operations-delivery-excellence-prep:L101:943d91408b49",
+    "engos-operations-delivery-excellence-prep:L108:1d8edfe0cd9e",
+    "engos-operations-delivery-excellence-prep:L110:30e1c04bef7a",
+    "engos-operations-delivery-excellence-prep:L114:23871a83024d",
+    "engos-operations-delivery-excellence-prep:L117:adb51e1b2352",
+    "engos-operations-delivery-excellence-prep:L123:f03e29652174"
+  ],
+  "resources": [],
+  "handoffs": [],
+  "protected_invariants": [
+    {
+      "id": "engos-operations-delivery-excellence-prep:L4:685d90af612d",
+      "heading": "Purpose",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 13,
+      "sha256": "685d90af612d37235809b3bf9410f32053b896f2716ebae06c80fc03612b8aad",
+      "text": "Gets the weekly Delivery Checkpoint (the meeting title and org come from settings) ready each week. It builds that date's tab in the Delivery Excellence doc, runs a read-only audit, checks the feature cards for the configured groups, and leaves draft comments for the leader to review. It posts nothing.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L24:6033cf30cc3e",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 33,
+      "sha256": "6033cf30cc3e86fc2b1b228254fb03ae4e15db66fb76f18de3c04b39ecf14544",
+      "text": "out/<date>/ in that folder. Do not commit anything to git.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L28:48d2027c9df0",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 37,
+      "sha256": "48d2027c9df0aa7360c2e67a4da3afd132d14b1ec6862c18a681a1719e285dfe",
+      "text": "- Jira: `acli` (logged in), read-only. `--fields key` returns nulls; ask for `key,summary,status`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L30:906d14fe9fb5",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 39,
+      "sha256": "906d14fe9fb50dda08e461dcf43d9a007b2ebba5c25368e986a3a90aabf644c3",
+      "text": "search_tech_employees). Read-only.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L31:841739db1cfd",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 40,
+      "sha256": "841739db1cfd81f98cda494b65af8bb8eedebe306ae9cdde894727020e0e171c",
+      "text": "- Atlassian token for audit.py: `~/.secrets.env` (JIRA_EMAIL, JIRA_TOKEN). Never print it.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L49:9bc95ab7339d",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 58,
+      "sha256": "9bc95ab7339d4ed97f1e51855972e7ddd42365079a54f0cf96255a872b9cc194",
+      "text": "and wait for it to finish; do not start a second copy. Then read the last 20 lines of out/<date>/audit.log.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L50:250ca0872a64",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 59,
+      "sha256": "250ca0872a64e8a456d95363d88cebef4474679317c9a4bea498dc8f17ad3b26",
+      "text": "- \"HTTP Error 401\" in the log: the Atlassian token in ~/.secrets.env has expired. Stop and say so. Do not try to",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L55:b030340feef6",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 64,
+      "sha256": "b030340feef6ad0fc80a5e4ec5f8fe1e821d020e2c6fd1af39393144cf5435d7",
+      "text": "must run after it.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L63:4cb0809c1549",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 72,
+      "sha256": "4cb0809c1549f0ec97431a23303623d637547384469a4f68409080c38acad2cd",
+      "text": "hasMorePages is false. Keep only feature cards whose tribe.id is one of the four groups. Save what you keep to",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L67:be48858d508b",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 76,
+      "sha256": "be48858d508bb14e11eaafb947f3055720508b9ee1ae0682fe3b0ffb76f30c3c",
+      "text": "After fetching, do not flag or write by hand. Save two files and run the script, which applies the rules below and",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L85:905a01756add",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 94,
+      "sha256": "905a01756add401df2981ab55045e8779389122d01be1699a603b8904c0079ad",
+      "text": "drafts.md, within the 5-bullet cap per owner. Always write \"feature card\", never bare \"card\".",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L97:e669d6bcabae",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 106,
+      "sha256": "e669d6bcabae0ccfd7473ca3f9294e1677d0b7a585fd4c58bcda52522d4f3bd6",
+      "text": "- Read-only everywhere except: the new tab on $DOC (step 2) and files under out/<date>/. Nothing else.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L98:bd947ef53481",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 107,
+      "sha256": "bd947ef53481ef0b2555565046a02459ca623a185a02c213793e625e17d971a4",
+      "text": "- Never post, resolve, or edit comments on any doc. Never send messages or email.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L99:47f7caa14197",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 108,
+      "sha256": "47f7caa141975a87554fe1b37f4e3c6eb71e1e3dc739fe7fe8e0d81e8db54d25",
+      "text": "- Never write to Jira: no create, edit, transition, assign, comment, or link. Only `acli jira workitem view` and",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L101:943d91408b49",
+      "heading": "Workflow Contract",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 110,
+      "sha256": "943d91408b49476474f82ae215b75daa873c4ce0e21599a03a4052a29562fce6",
+      "text": "- Never edit Appian Home feature cards.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L108:1d8edfe0cd9e",
+      "heading": "Onboarding and Settings",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 117,
+      "sha256": "1d8edfe0cd9e4ea8eed9acc22772d88e5aaa123cb4645099405c96bd86e7899a",
+      "text": "When `settings.json` is missing or incomplete, every script stops and says so. Do not guess values. Instead:",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L110:30e1c04bef7a",
+      "heading": "Onboarding and Settings",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 119,
+      "sha256": "30e1c04bef7ab4f64ca535d0c1c4c13813c8b28f893a9ddca6467f78723505c7",
+      "text": "2. If there is no copy, onboard: ask for the leader's name, org name, checkpoint meeting title, Jira site and filter id, goals root, features sheet, the groups with their owners, and the feature card group ids and releases. Offer to find what can be found (calendar for the meeting title, the doc if one is already shared). Ask only for what cannot be found; never ask the leader to recall a document name or id.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L114:23871a83024d",
+      "heading": "Onboarding and Settings",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 123,
+      "sha256": "23871a83024d4b483cd2a75f40a98cd79518b3c93dac034c02d9cea320885253",
+      "text": "Jira access uses `JIRA_EMAIL` and `JIRA_TOKEN` in `~/.secrets.env`. If a token is needed, tell the person exactly what to create and where, and have them put it in the file themselves. Never ask them to paste it in chat.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L117:adb51e1b2352",
+      "heading": "Tool Boundaries",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 126,
+      "sha256": "adb51e1b2352f137e7c370b61817a3175a00935ed0be8a490106edd671e8da3e",
+      "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L122:77357dbdaba3",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 131,
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "text": "## Required Inputs",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L123:f03e29652174",
+      "heading": "Required Inputs",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 132,
+      "sha256": "f03e296521745967281e71f4909cc11d7a9039a61ad6da17ff57c91a036a3690",
+      "text": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-delivery-excellence-prep:L125:3d4b9f171064",
+      "heading": "Required Output",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "source_line": 134,
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "text": "## Required Output",
+      "kind": "invariant",
+      "mapped_to": []
+    }
+  ],
+  "risk_tiers": {
+    "critical": [],
+    "high": [],
+    "standard": []
+  },
+  "source_references": [
+    {
+      "path": "ssot/engos-operations-delivery-excellence-prep.md",
+      "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+    }
+  ],
+  "known_ambiguities": [],
+  "coverage_policy": {
+    "normative_clauses": "100_percent_mapped_or_waived",
+    "nodes": "positive_and_boundary",
+    "transitions": "all_legal_and_forbidden",
+    "module_pairs": "all_legal_pairs",
+    "high_risk_tuples": "assigned_strength",
+    "critical_mutants": "100_percent_killed"
+  },
+  "normative_clause_coverage": {
+    "total": 22,
+    "mapped": 0,
+    "waived": 0
+  },
+  "review_status": "draft",
+  "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs."
+}

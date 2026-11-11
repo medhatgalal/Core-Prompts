@@ -2817,6 +2817,95 @@
       "advisory_only": true
     },
     {
+      "slug": "engos-operations-delivery-excellence-prep",
+      "display_name": "EngOS Operations \u2014 Delivery Excellence Prep",
+      "capability_type": "skill",
+      "summary": "Weekly prep for a Delivery Checkpoint meeting. The first run walks the leader through onboarding and can create the Delivery Excellence doc; after that it: builds the dated tab in the Delivery Excellence doc, runs the read-only audit of Goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. Posts nothing. Use on the Tuesday before the Thursday checkpoint.",
+      "role": "analyst",
+      "domain_tags": [
+        "review",
+        "engos",
+        "operations",
+        "delivery",
+        "excellence",
+        "prep"
+      ],
+      "required_inputs": [
+        "source text",
+        "user intent/context"
+      ],
+      "expected_outputs": [
+        "deterministic summary",
+        "uplift payload",
+        "capability recommendation",
+        "deployment guidance"
+      ],
+      "tool_policy": {
+        "scope": "uac_intake_only",
+        "allowed": [
+          "deterministic classification",
+          "metadata publication",
+          "surface generation"
+        ],
+        "forbidden": [
+          "orchestration",
+          "delegation decisions",
+          "runtime execution control"
+        ],
+        "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+      },
+      "install_target": {
+        "recommended": "global",
+        "confidence": 1.0,
+        "confirmation_required_for_apply": true,
+        "rationale": "SSOT frontmatter explicitly declares global installation.",
+        "supported": [
+          "global",
+          "repo_local",
+          "both"
+        ]
+      },
+      "emitted_surfaces": {
+        "codex": [
+          "codex_skill"
+        ],
+        "gemini": [
+          "gemini_skill"
+        ],
+        "claude": [
+          "claude_skill"
+        ],
+        "kiro": [
+          "kiro_skill"
+        ],
+        "grok": [
+          "grok_skill"
+        ]
+      },
+      "confidence": 1.0,
+      "review_status": "ready_for_orchestrator_review",
+      "overlap_candidates": [],
+      "relationship_suggestions": [],
+      "quality_status": null,
+      "benchmark_profile": null,
+      "preferred_use_cases": [],
+      "artifact_conventions": [],
+      "invocation_style": null,
+      "requires_human_confirmation": null,
+      "org_graph": {
+        "org_role": "analyst",
+        "reports_to_suggestions": [],
+        "delegates_to_suggestions": [],
+        "collaborates_with_suggestions": [
+          "review",
+          "engos"
+        ],
+        "authority_tier": "advisory",
+        "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+      },
+      "advisory_only": true
+    },
+    {
       "slug": "engos-operations-gtd-planning",
       "display_name": "GTD Planning (method)",
       "capability_type": "skill",

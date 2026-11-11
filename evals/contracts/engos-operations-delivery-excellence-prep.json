@@ -1,0 +1,174 @@
+{
+  "schema_version": "GoalContract.v1",
+  "slug": "engos-operations-delivery-excellence-prep",
+  "target": "Fulfill the canonical intent of engos-operations-delivery-excellence-prep.",
+  "intended_outcome": "Preserve the canonical SSOT objective and required output.",
+  "change_class": "unknown",
+  "non_goals": [],
+  "protected_behaviors": [
+    "685d90af612d37235809b3bf9410f32053b896f2716ebae06c80fc03612b8aad",
+    "6033cf30cc3e86fc2b1b228254fb03ae4e15db66fb76f18de3c04b39ecf14544",
+    "48d2027c9df0aa7360c2e67a4da3afd132d14b1ec6862c18a681a1719e285dfe",
+    "906d14fe9fb50dda08e461dcf43d9a007b2ebba5c25368e986a3a90aabf644c3",
+    "841739db1cfd81f98cda494b65af8bb8eedebe306ae9cdde894727020e0e171c",
+    "9bc95ab7339d4ed97f1e51855972e7ddd42365079a54f0cf96255a872b9cc194",
+    "250ca0872a64e8a456d95363d88cebef4474679317c9a4bea498dc8f17ad3b26",
+    "b030340feef6ad0fc80a5e4ec5f8fe1e821d020e2c6fd1af39393144cf5435d7",
+    "4cb0809c1549f0ec97431a23303623d637547384469a4f68409080c38acad2cd",
+    "be48858d508bb14e11eaafb947f3055720508b9ee1ae0682fe3b0ffb76f30c3c",
+    "905a01756add401df2981ab55045e8779389122d01be1699a603b8904c0079ad",
+    "e669d6bcabae0ccfd7473ca3f9294e1677d0b7a585fd4c58bcda52522d4f3bd6",
+    "bd947ef53481ef0b2555565046a02459ca623a185a02c213793e625e17d971a4",
+    "47f7caa141975a87554fe1b37f4e3c6eb71e1e3dc739fe7fe8e0d81e8db54d25",
+    "943d91408b49476474f82ae215b75daa873c4ce0e21599a03a4052a29562fce6",
+    "1d8edfe0cd9e4ea8eed9acc22772d88e5aaa123cb4645099405c96bd86e7899a",
+    "30e1c04bef7ab4f64ca535d0c1c4c13813c8b28f893a9ddca6467f78723505c7",
+    "23871a83024d4b483cd2a75f40a98cd79518b3c93dac034c02d9cea320885253",
+    "adb51e1b2352f137e7c370b61817a3175a00935ed0be8a490106edd671e8da3e",
+    "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+    "f03e296521745967281e71f4909cc11d7a9039a61ad6da17ff57c91a036a3690",
+    "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec"
+  ],
+  "editable_behavior": [],
+  "primary_outcome": {
+    "metric": "skill_specific_task_success",
+    "definition": "Canonical task success with protected behavior preserved.",
+    "threshold": "human_review_required"
+  },
+  "secondary_outcomes": [],
+  "regression_limits": {
+    "protected_binary_margin": 0.02,
+    "critical_deterministic": "exact_pass"
+  },
+  "cost_latency_limits": {
+    "profile_caps": {
+      "static": 0,
+      "native": 0,
+      "routing-canary": 300000,
+      "canary": 1250000,
+      "promotion": 5000000,
+      "cross-host": 12000000,
+      "sweep": 30000000
+    }
+  },
+  "runtime_envelope": {
+    "required_cells": [],
+    "cross_host_required_for_pilot": false,
+    "status": "unresolved"
+  },
+  "promotion_rule": "Change-class-specific proof plus all hard gates; no aggregate compensation.",
+  "rollback_trigger": "Any protected regression or stale bound evidence.",
+  "source_clause_hashes": [
+    {
+      "sha256": "685d90af612d37235809b3bf9410f32053b896f2716ebae06c80fc03612b8aad",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "Gets the weekly Delivery Checkpoint (the meeting title and org come from settings) ready each week. It builds that date's tab in the Delivery Excellence doc, runs a read-only audit, checks the feature cards for the configured groups, and leaves draft comments for the leader to review. It posts nothing."
+    },
+    {
+      "sha256": "6033cf30cc3e86fc2b1b228254fb03ae4e15db66fb76f18de3c04b39ecf14544",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "out/<date>/ in that folder. Do not commit anything to git."
+    },
+    {
+      "sha256": "48d2027c9df0aa7360c2e67a4da3afd132d14b1ec6862c18a681a1719e285dfe",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- Jira: `acli` (logged in), read-only. `--fields key` returns nulls; ask for `key,summary,status`."
+    },
+    {
+      "sha256": "906d14fe9fb50dda08e461dcf43d9a007b2ebba5c25368e986a3a90aabf644c3",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "search_tech_employees). Read-only."
+    },
+    {
+      "sha256": "841739db1cfd81f98cda494b65af8bb8eedebe306ae9cdde894727020e0e171c",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- Atlassian token for audit.py: `~/.secrets.env` (JIRA_EMAIL, JIRA_TOKEN). Never print it."
+    },
+    {
+      "sha256": "9bc95ab7339d4ed97f1e51855972e7ddd42365079a54f0cf96255a872b9cc194",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "and wait for it to finish; do not start a second copy. Then read the last 20 lines of out/<date>/audit.log."
+    },
+    {
+      "sha256": "250ca0872a64e8a456d95363d88cebef4474679317c9a4bea498dc8f17ad3b26",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- \"HTTP Error 401\" in the log: the Atlassian token in ~/.secrets.env has expired. Stop and say so. Do not try to"
+    },
+    {
+      "sha256": "b030340feef6ad0fc80a5e4ec5f8fe1e821d020e2c6fd1af39393144cf5435d7",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "must run after it."
+    },
+    {
+      "sha256": "4cb0809c1549f0ec97431a23303623d637547384469a4f68409080c38acad2cd",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "hasMorePages is false. Keep only feature cards whose tribe.id is one of the four groups. Save what you keep to"
+    },
+    {
+      "sha256": "be48858d508bb14e11eaafb947f3055720508b9ee1ae0682fe3b0ffb76f30c3c",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "After fetching, do not flag or write by hand. Save two files and run the script, which applies the rules below and"
+    },
+    {
+      "sha256": "905a01756add401df2981ab55045e8779389122d01be1699a603b8904c0079ad",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "drafts.md, within the 5-bullet cap per owner. Always write \"feature card\", never bare \"card\"."
+    },
+    {
+      "sha256": "e669d6bcabae0ccfd7473ca3f9294e1677d0b7a585fd4c58bcda52522d4f3bd6",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- Read-only everywhere except: the new tab on $DOC (step 2) and files under out/<date>/. Nothing else."
+    },
+    {
+      "sha256": "bd947ef53481ef0b2555565046a02459ca623a185a02c213793e625e17d971a4",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- Never post, resolve, or edit comments on any doc. Never send messages or email."
+    },
+    {
+      "sha256": "47f7caa141975a87554fe1b37f4e3c6eb71e1e3dc739fe7fe8e0d81e8db54d25",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- Never write to Jira: no create, edit, transition, assign, comment, or link. Only `acli jira workitem view` and"
+    },
+    {
+      "sha256": "943d91408b49476474f82ae215b75daa873c4ce0e21599a03a4052a29562fce6",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "- Never edit Appian Home feature cards."
+    },
+    {
+      "sha256": "1d8edfe0cd9e4ea8eed9acc22772d88e5aaa123cb4645099405c96bd86e7899a",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "When `settings.json` is missing or incomplete, every script stops and says so. Do not guess values. Instead:"
+    },
+    {
+      "sha256": "30e1c04bef7ab4f64ca535d0c1c4c13813c8b28f893a9ddca6467f78723505c7",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "2. If there is no copy, onboard: ask for the leader's name, org name, checkpoint meeting title, Jira site and filter id, goals root, features sheet, the groups with their owners, and the feature card group ids and releases. Offer to find what can be found (calendar for the meeting title, the doc if one is already shared). Ask only for what cannot be found; never ask the leader to recall a document name or id."
+    },
+    {
+      "sha256": "23871a83024d4b483cd2a75f40a98cd79518b3c93dac034c02d9cea320885253",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "Jira access uses `JIRA_EMAIL` and `JIRA_TOKEN` in `~/.secrets.env`. If a token is needed, tell the person exactly what to create and where, and have them put it in the file themselves. Never ask them to paste it in chat."
+    },
+    {
+      "sha256": "adb51e1b2352f137e7c370b61817a3175a00935ed0be8a490106edd671e8da3e",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above."
+    },
+    {
+      "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "## Required Inputs"
+    },
+    {
+      "sha256": "f03e296521745967281e71f4909cc11d7a9039a61ad6da17ff57c91a036a3690",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`."
+    },
+    {
+      "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
+      "source": "ssot/engos-operations-delivery-excellence-prep.md",
+      "text": "## Required Output"
+    }
+  ],
+  "review_status": "draft"
+}

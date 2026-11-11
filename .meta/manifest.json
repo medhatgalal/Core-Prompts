@@ -15176,6 +15176,312 @@
       "rubric_version": "capability-fabric.v0"
     },
     {
+      "slug": "engos-operations-delivery-excellence-prep",
+      "manifest_version": "capability-fabric.v0",
+      "layers": {
+        "minimal": {
+          "capability_type": "skill",
+          "summary": "Weekly prep for a Delivery Checkpoint meeting. The first run walks the leader through onboarding and can create the Delivery Excellence doc; after that it: builds the dated tab in the Delivery Excellence doc, runs the read-only audit of Goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. Posts nothing. Use on the Tuesday before the Thursday checkpoint.",
+          "role": "analyst",
+          "domain_tags": [
+            "review",
+            "engos",
+            "operations",
+            "delivery",
+            "excellence",
+            "prep"
+          ],
+          "required_inputs": [
+            "source text",
+            "user intent/context"
+          ],
+          "expected_outputs": [
+            "deterministic summary",
+            "uplift payload",
+            "capability recommendation",
+            "deployment guidance"
+          ],
+          "tool_policy": {
+            "scope": "uac_intake_only",
+            "allowed": [
+              "deterministic classification",
+              "metadata publication",
+              "surface generation"
+            ],
+            "forbidden": [
+              "orchestration",
+              "delegation decisions",
+              "runtime execution control"
+            ],
+            "runtime_authority": "The source operating contract and host permissions govern runtime actions; this intake policy grants no runtime authority."
+          },
+          "resources": [
+            "ssot/engos-operations-delivery-excellence-prep.md"
+          ],
+          "packaging_profile": {
+            "capability_type": "skill",
+            "primary_surfaces": {
+              "codex": [
+                "codex_skill"
+              ],
+              "gemini": [
+                "gemini_skill"
+              ],
+              "claude": [
+                "claude_skill"
+              ],
+              "kiro": [
+                "kiro_skill"
+              ],
+              "grok": [
+                "grok_skill"
+              ]
+            },
+            "wrapper_surfaces": {
+              "codex": [],
+              "gemini": [
+                "skill_wrapper"
+              ],
+              "claude": [
+                "skill_wrapper",
+                "plugin_wrapper"
+              ],
+              "kiro": [
+                "skill_wrapper",
+                "power_wrapper"
+              ]
+            },
+            "notes": [
+              "wrapper surfaces are additive deployment forms, not capability types",
+              "orchestrators must not infer execution authority from wrapper presence alone"
+            ]
+          },
+          "install_target": {
+            "recommended": "global",
+            "confidence": 1.0,
+            "confirmation_required_for_apply": true,
+            "rationale": "SSOT frontmatter explicitly declares global installation.",
+            "supported": [
+              "global",
+              "repo_local",
+              "both"
+            ]
+          },
+          "emitted_surfaces": {
+            "codex": [
+              "codex_skill"
+            ],
+            "gemini": [
+              "gemini_skill"
+            ],
+            "claude": [
+              "claude_skill"
+            ],
+            "kiro": [
+              "kiro_skill"
+            ],
+            "grok": [
+              "grok_skill"
+            ]
+          },
+          "source_provenance": {
+            "source_type": "LOCAL_FILE",
+            "normalized_source": "ssot/engos-operations-delivery-excellence-prep.md",
+            "policy_rule_id": "ssot.engos-operations-delivery-excellence-prep",
+            "content_sha256": "ssot"
+          },
+          "confidence": 1.0,
+          "rationale": "Preserve the explicit capability declaration. It specifies packaging, not proven agent benefit; new or expanded agent emission requires reviewed execution evidence.",
+          "review_status": "ready_for_orchestrator_review",
+          "display_name": "EngOS Operations \u2014 Delivery Excellence Prep",
+          "version": "1.0.0",
+          "author": "EngOS"
+        },
+        "expanded": {
+          "relationship_suggestions": [],
+          "capability_dependencies": [
+            "context"
+          ],
+          "overlap_candidates": [],
+          "migration_notes": [
+            "If the capability lands, compare it against existing entries before apply.",
+            "Relationship suggestions are advisory only and do not imply runtime routing."
+          ],
+          "adjustment_recommendations": [
+            "add an explicit primary objective before packaging",
+            "add deterministic in-scope sections to improve routing fitness",
+            "capture quality constraints or non-negotiables"
+          ]
+        },
+        "org_graph": {
+          "org_role": "analyst",
+          "reports_to_suggestions": [],
+          "delegates_to_suggestions": [],
+          "collaborates_with_suggestions": [
+            "review",
+            "engos"
+          ],
+          "authority_tier": "advisory",
+          "work_graph_impact": "Adds or updates a skill capability with route profile SSOT_AUDIT."
+        }
+      },
+      "display_name": "EngOS Operations \u2014 Delivery Excellence Prep",
+      "descriptor_version": "capability-fabric.descriptor.v0",
+      "family_slug": "engos-operations-delivery-excellence-prep",
+      "shared_summary": "Weekly prep for a Delivery Checkpoint meeting. The first run walks the leader through onboarding and can create the Delivery Excellence doc; after that it: builds the dated tab in the Delivery Excellence doc, runs the read-only audit of Goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. Posts nothing. Use on the Tuesday before the Thursday checkpoint.",
+      "shared_constraints": [],
+      "modes": [],
+      "benchmark_sources": [],
+      "consumption_hints": {},
+      "job_contract": {
+        "primary_job": "Leave the leader with a checked tab, an evidence-backed findings report, and one draft comment per owner, ready to review before the checkpoint.",
+        "use_when": "Run weekly as a scheduled task, or on request to prepare for the next checkpoint. It stops with a plain message when no checkpoint event falls within the lookahead window.",
+        "works_on": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+        "main_output": "The dated tab on the doc with a PASS or FAIL check line, and `out/<date>/findings.md`, `findings.json`, and `drafts.md`. The chat report is the short table described in STEP 5.",
+        "not_for": "Requests outside the canonical purpose; neighboring skills are not yet reviewed.",
+        "authority": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+        "routing_question": "Does this request directly require EngOS Operations \u2014 Delivery Excellence Prep?",
+        "nearest_neighbors": [],
+        "shape": "unclassified_new_skill",
+        "portfolio_action": "draft_new_skill_pending_review",
+        "routing_fitness": {
+          "schema_version": "RoutingFitness.v1",
+          "mapping_status": "source_derived_draft",
+          "task_phases": {
+            "kind": "source_conditions",
+            "clauses": []
+          },
+          "activation": {
+            "mode": "unknown",
+            "evidence": []
+          },
+          "risk_authority_ceiling": {
+            "grants_authority": false,
+            "clauses": [
+              {
+                "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+                "heading": "Tool Boundaries",
+                "source": {
+                  "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                  "start_line": 126,
+                  "end_line": 126,
+                  "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                }
+              }
+            ]
+          },
+          "negative_examples": {
+            "kind": "source_exclusions_not_synthetic_prompts",
+            "clauses": []
+          },
+          "conditional_companions": [],
+          "pack_hints": {
+            "lead": "engos-operations-delivery-excellence-prep",
+            "companions": "only_after_applicable_source_conditions_are_checked",
+            "default_bulk_activation": false
+          },
+          "provenance": {
+            "ssot_path": "ssot/engos-operations-delivery-excellence-prep.md",
+            "ssot_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+            "effective_sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee",
+            "resources": [],
+            "extractor_version": "source-clauses.v1",
+            "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
+            "field_sources": {
+              "primary_job": [
+                {
+                  "text": "Leave the leader with a checked tab, an evidence-backed findings report, and one draft comment per owner, ready to review before the checkpoint.",
+                  "heading": "Primary Objective",
+                  "source": {
+                    "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                    "start_line": 16,
+                    "end_line": 16,
+                    "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                  }
+                }
+              ],
+              "use_when": [
+                {
+                  "text": "Run weekly as a scheduled task, or on request to prepare for the next checkpoint. It stops with a plain message when no checkpoint event falls within the lookahead window.",
+                  "heading": "Invocation Hints",
+                  "source": {
+                    "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                    "start_line": 129,
+                    "end_line": 129,
+                    "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                  }
+                }
+              ],
+              "works_on": [
+                {
+                  "text": "A logged-in `gws` and `acli`, the Appian Home tools, an Atlassian token in `~/.secrets.env` (never printed), and the settings in `~/.engos/delivery-excellence/settings.json`.",
+                  "heading": "Required Inputs",
+                  "source": {
+                    "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                    "start_line": 132,
+                    "end_line": 132,
+                    "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                  }
+                }
+              ],
+              "main_output": [
+                {
+                  "text": "The dated tab on the doc with a PASS or FAIL check line, and `out/<date>/findings.md`, `findings.json`, and `drafts.md`. The chat report is the short table described in STEP 5.",
+                  "heading": "Required Output",
+                  "source": {
+                    "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                    "start_line": 135,
+                    "end_line": 135,
+                    "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                  }
+                }
+              ],
+              "authority": [
+                {
+                  "text": "Read-only everywhere except the new tab on the Delivery Excellence doc and files under `out/<date>/` in the skill's resources folder. It never posts, resolves, or edits comments, never sends messages or email, never writes to Jira, and never edits Appian Home feature cards. These are the RULES stated in the contract above.",
+                  "heading": "Tool Boundaries",
+                  "source": {
+                    "path": "ssot/engos-operations-delivery-excellence-prep.md",
+                    "start_line": 126,
+                    "end_line": 126,
+                    "sha256": "41b652d10d02f9f631f388aa27d31cc83936a01cf859ab02b534f216a30a02ee"
+                  }
+                }
+              ]
+            },
+            "unresolved_companion_clauses": [],
+            "curated_fields": [
+              "nearest_neighbors",
+              "not_for",
+              "portfolio_action",
+              "routing_question",
+              "shape"
+            ],
+            "curated_binding": "preserved_not_independently_revalidated",
+            "mapping_sha256": "d997673c3ccda70efbb85911e282d643362313c7135a1a5255ac80ada2d72725"
+          },
+          "unresolved_fields": [
+            "task_phase_interpretation",
+            "risk_authority_interpretation",
+            "job_contract.not_for",
+            "implicit_activation_eligibility",
+            "task_phases",
+            "negative_examples"
+          ]
+        }
+      },
+      "declared_capability": "skill",
+      "inferred_capability": "skill",
+      "expected_surface_names": [
+        "codex_skill",
+        "gemini_skill",
+        "claude_skill",
+        "kiro_skill",
+        "grok_skill"
+      ],
+      "rubric_version": "capability-fabric.v0"
+    },
+    {
       "slug": "engos-operations-gtd-planning",
       "manifest_version": "capability-fabric.v0",
       "layers": {
@@ -22766,7 +23072,7 @@
           "provenance": {
             "ssot_path": "ssot/engos-route-intent.md",
             "ssot_sha256": "d83b7f1351136b642de51e6494e5ce3373fdba0a26de1a24cbf8aec01398dc24",
-            "effective_sha256": "e24d05382b669551c3feb1b2aa773b120ad464c7f4aee799a8b8bef34454bdca",
+            "effective_sha256": "5b7fd8acc29e548ba55fbcc564092b7d6a60fb665d02b99ec5d8e7da3752c2ca",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-route-intent/references/intake-method.md",
@@ -22778,7 +23084,7 @@
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/routing-relations.json",
-                "sha256": "5c01956b1d83480fe54bcd639e19430ffe320af00dadb93f0c9912eaa6dc3d60"
+                "sha256": "339b67a5b5b02e05dad2fef22d79b95d147863002e399a9bb6dd77b48081bbe9"
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/scripts/inspect_catalog.py",
@@ -22863,7 +23169,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "9f4b4491d8e2635e87aa53729360b3c46f7840b540c7536557b1cfe87c482cc2"
+            "mapping_sha256": "e124d4dfd1ea2707f83ab5a3ed4e74d6d84c1eef706cf0af980ca14ef93bb5c1"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -24597,6 +24903,7 @@
       ".grok/skills/engos-meta-supercharge/SKILL.md",
       ".grok/skills/engos-meta-uac-import/SKILL.md",
       ".grok/skills/engos-operations-daily-update/SKILL.md",
+      ".grok/skills/engos-operations-delivery-excellence-prep/SKILL.md",
       ".grok/skills/engos-operations-gtd-planning/SKILL.md",
       ".grok/skills/engos-operations-gtd-sources/SKILL.md",
       ".grok/skills/engos-operations-gtd-things3/SKILL.md",
@@ -24644,6 +24951,7 @@
       ".gemini/skills/engos-meta-supercharge/SKILL.md",
       ".gemini/skills/engos-meta-uac-import/SKILL.md",
       ".gemini/skills/engos-operations-daily-update/SKILL.md",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/SKILL.md",
       ".gemini/skills/engos-operations-gtd-planning/SKILL.md",
       ".gemini/skills/engos-operations-gtd-sources/SKILL.md",
       ".gemini/skills/engos-operations-gtd-things3/SKILL.md",
@@ -24692,6 +25000,7 @@
       ".claude/skills/engos-meta-supercharge/SKILL.md",
       ".claude/skills/engos-meta-uac-import/SKILL.md",
       ".claude/skills/engos-operations-daily-update/SKILL.md",
+      ".claude/skills/engos-operations-delivery-excellence-prep/SKILL.md",
       ".claude/skills/engos-operations-gtd-planning/SKILL.md",
       ".claude/skills/engos-operations-gtd-sources/SKILL.md",
       ".claude/skills/engos-operations-gtd-things3/SKILL.md",
@@ -24741,6 +25050,7 @@
       ".kiro/skills/engos-meta-supercharge/SKILL.md",
       ".kiro/skills/engos-meta-uac-import/SKILL.md",
       ".kiro/skills/engos-operations-daily-update/SKILL.md",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/SKILL.md",
       ".kiro/skills/engos-operations-gtd-planning/SKILL.md",
       ".kiro/skills/engos-operations-gtd-sources/SKILL.md",
       ".kiro/skills/engos-operations-gtd-things3/SKILL.md",
@@ -24788,6 +25098,7 @@
       ".codex/skills/engos-meta-supercharge/SKILL.md",
       ".codex/skills/engos-meta-uac-import/SKILL.md",
       ".codex/skills/engos-operations-daily-update/SKILL.md",
+      ".codex/skills/engos-operations-delivery-excellence-prep/SKILL.md",
       ".codex/skills/engos-operations-gtd-planning/SKILL.md",
       ".codex/skills/engos-operations-gtd-sources/SKILL.md",
       ".codex/skills/engos-operations-gtd-things3/SKILL.md",
@@ -25002,6 +25313,14 @@
       ".grok/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/run_full.sh",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/capability.json",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/README.md",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/audit.py",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/backup.py",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/de_prep.py",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/features.py",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/settings.example.json",
+      ".grok/skills/engos-operations-delivery-excellence-prep/resources/settings.py",
       ".grok/skills/engos-operations-gtd-planning/resources/capability.json",
       ".grok/skills/engos-operations-gtd-planning/resources/profile_backup.py",
       ".grok/skills/engos-operations-gtd-planning/resources/profile_check.py",
@@ -25301,6 +25620,14 @@
       ".codex/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/run_full.sh",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/capability.json",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/README.md",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/audit.py",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/backup.py",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/de_prep.py",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/features.py",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/settings.example.json",
+      ".codex/skills/engos-operations-delivery-excellence-prep/resources/settings.py",
       ".codex/skills/engos-operations-gtd-planning/resources/capability.json",
       ".codex/skills/engos-operations-gtd-planning/resources/profile_backup.py",
       ".codex/skills/engos-operations-gtd-planning/resources/profile_check.py",
@@ -25601,6 +25928,14 @@
       ".gemini/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/run_full.sh",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/capability.json",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/README.md",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/audit.py",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/backup.py",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/de_prep.py",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/features.py",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/settings.example.json",
+      ".gemini/skills/engos-operations-delivery-excellence-prep/resources/settings.py",
       ".gemini/skills/engos-operations-gtd-planning/resources/capability.json",
       ".gemini/skills/engos-operations-gtd-planning/resources/profile_backup.py",
       ".gemini/skills/engos-operations-gtd-planning/resources/profile_check.py",
@@ -25901,6 +26236,14 @@
       ".claude/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/run_full.sh",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/capability.json",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/README.md",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/audit.py",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/backup.py",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/de_prep.py",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/features.py",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/settings.example.json",
+      ".claude/skills/engos-operations-delivery-excellence-prep/resources/settings.py",
       ".claude/skills/engos-operations-gtd-planning/resources/capability.json",
       ".claude/skills/engos-operations-gtd-planning/resources/profile_backup.py",
       ".claude/skills/engos-operations-gtd-planning/resources/profile_check.py",
@@ -26201,6 +26544,14 @@
       ".kiro/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/run_full.sh",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/capability.json",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/README.md",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/audit.py",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/backup.py",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/de_prep.py",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/features.py",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/settings.example.json",
+      ".kiro/skills/engos-operations-delivery-excellence-prep/resources/settings.py",
       ".kiro/skills/engos-operations-gtd-planning/resources/capability.json",
       ".kiro/skills/engos-operations-gtd-planning/resources/profile_backup.py",
       ".kiro/skills/engos-operations-gtd-planning/resources/profile_check.py",
