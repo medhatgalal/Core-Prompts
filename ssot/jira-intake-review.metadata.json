@@ -1,0 +1,19 @@
+{
+  "name": "jira-intake-review",
+  "display_name": "Jira Intake Review",
+  "version": "1.0.0",
+  "description": "Daily read-only review of the new tickets in a Jira filter: what came in, what came in sideways (no epic, no initiative, no feature card, wrong home), who owns the fix, and the next action. Use for a weekday morning intake report or an owner-by-owner follow-up draft. Never edits, comments on, assigns, or closes tickets and never sends messages. Do not use for sprint reporting or ticket hygiene sweeps.",
+  "kind": "skill",
+  "capability_type": "skill",
+  "agent_tools": [
+    "Read",
+    "Bash",
+    "Grep",
+    "Glob"
+  ],
+  "triggers": [
+    "jira intake review",
+    "daily jira intake",
+    "what came in sideways"
+  ]
+}

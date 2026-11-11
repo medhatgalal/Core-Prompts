@@ -1,5 +1,9 @@
 # Design freshness sweep
 
+Status: historical pre-publication evidence checkpoint. Final delivery state lives
+in the MR/PR for `AI/design-freshness-sweep`; this record preserves the work and
+verification sequence rather than claiming hosted completion.
+
 Scope: add a skill plus required execution inside specify-change, plan-implementation,
 and shaping's technical Research after frame acceptance. Stop at open PR/MR;
 no merge, installation, release, or external message delivery.
@@ -87,3 +91,18 @@ Pre-integration verification complete:
   historical catalog checks, intent guide: passed. Missing Gemini binary is the
   existing non-fatal startup observation; no native discovery claim.
 - Independent final review approved both test fixes; explicit frame exclusion passed.
+
+Integration verification complete:
+- Resolved eight conflicts under independently reviewed conflict analysis; source
+  and both release-history sections preserved, generated outputs rebuilt serially.
+- Four candidate/effective UAC bindings unchanged. Incoming two sources, metadata,
+  assets and evals match 66036267 byte-for-byte. Catalog46, all24 existing routing
+  relationships unchanged; five detached router snapshots match canonical.
+- A direct source-snapshot regression failed on the two omitted upstream entries
+  before refresh, then passed. 138 integration checks passed; extracted-package
+  update/rollback passed again on the combined46-skill tree.
+- Final compile, static calibration, smoke, strict validation, installer inventory,
+  pinned historical catalog and intent-guide checks passed.
+- Independent recommendation and final staged-integration reviews: zero findings.
+Remaining delivery: commit task-branch integration, push same commit to both hosts,
+open MR/PR and check exact-candidate hosted results. No main merge/install/release.

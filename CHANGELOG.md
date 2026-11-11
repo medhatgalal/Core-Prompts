@@ -4,6 +4,15 @@
 - `engos-design-freshness-sweep`: execute full linked-ticket/MR discussion reads and fourteen days of area-owner merges across involved repos; return changed assumptions and today's simpler path, with exact owner confirmation for technical blockers.
 - Required bundled freshness gates in specify-change, plan-implementation and shaping technical Research, plus a portable evidence/quote checker and regression fixtures. Admission does not establish measured agent benefit.
 
+## v1.22.0 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- New skill `comms-digest`: a scheduled Google Chat and Gmail digest that lists only what needs one person, proposes numbered email clean-up, and runs a weekly reversible sidebar tidy (snapshot first, moves only). It never sends, posts, replies, marks read, or permanently deletes; writes happen only on numbers the person types, plus the live Monday tidy. Personal values (VIPs, direct reports, sidebar sections, Chat user id, state folder, live or dry-run mode) live in `~/.engos/comms-digest/profile.json`, with `profile.example.json` bundled. Includes `restore_sidebar.py`, which puts chats back where a snapshot says they were (dry run by default). `engos-triage-my-inbox-chat-pulse` is unchanged and still ships.
+- New skill `jira-intake-review`: a read-only daily review of the new tickets in one Jira filter, with category, link state, owner and next action per ticket. Includes rules for unverifiable feature cards (counted as needing action) and team Inbox epics (waiting for triage). Team values (filter ids, owners, excluded projects) live in `~/.engos/jira-intake-review/profile.json`, with `profile.example.json` bundled.
+- Tested: full suite under Python 3.14, `validate --strict --skip-schema`, build, intent guide check. The live restore script was exercised once on a real sidebar (move one chat, restore it, zero differences). Not tested: the schema cache check (the local cache is 176 days old); unattended scheduled runs of either skill from this release.
+
 ## v1.21.2 - 2026-11-09
 
 Tag authorized by Scott Parrish on 2026-11-09. Publication is recorded by the GitLab

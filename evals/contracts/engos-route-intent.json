@@ -67,6 +67,7 @@
     "21e906c8197ee1fd35263ddecb05c33ddf5c6466e2e3932e25af21827381bb6c",
     "b8ef9f44f9c399a007e5ba65e4c80711e29cfcd981922591cbaa699b45b7d149",
     "5fa7e20712c730e48c200e88c2b9b8773297739ce7075bba7ccaaa0869ac3304",
+    "924dc52fa007f9216002a28180f2b91b2b5c4165b4e1652b53e8c87da2ef921f",
     "210cc701c489894f23dd7c26afcc23a2bd78d35e7c21ba4d34df6364cd19aa3e",
     "6d62442c1456ffd46371e8c7b701487c42ede0882256411135a6ab3c47f68743",
     "5387d8636d1041e29a26269794a10c2ffce53baeef3bf14423a92a87149a2277",
@@ -95,6 +96,7 @@
     "7c142e75e78a31bed1e64a61966191d85a748a10b49b01e7aa2e00647d57ffc1",
     "cfe2490f7d0e958c63cbd1ae6e4b7a994de1f456742e8fc9e5515a0d2d57c583",
     "c719f2dc85166936a58d0765f7662e556d624b952a7c2346e464905c47d99941",
+    "ce229a794112bbc7a2fb3f4306f0d7ab91e3966ec60aea4c0a94efed0cb13852",
     "3b23bc435c486601b66c65a9a161cf18769ef25f56af234ae44b2d1ada9cd264",
     "69a7f97994e122286714fdf8f4df190ce52f2037da0bdad1d5adadb7c27b7398",
     "b505c60f60f93fd24666101ebba08c60170641b63f1986273925a704df58325f",
@@ -501,6 +503,11 @@
       "text": "Do not turn this table, helper output or guide selections into an acceptance receipt."
     },
     {
+      "sha256": "924dc52fa007f9216002a28180f2b91b2b5c4165b4e1652b53e8c87da2ef921f",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Scheduled Google Chat and Gmail digest that surfaces only what needs one person, proposes numbered email and Chat clean-up, and runs a weekly reversible sidebar tidy. Use for a twice-daily comms digest, a Monday sidebar tidy, or restoring a sidebar from a snapshot. Never sends, posts, replies, marks read, or permanently deletes. Do not use for interactive triage or sending replies.\","
+    },
+    {
       "sha256": "210cc701c489894f23dd7c26afcc23a2bd78d35e7c21ba4d34df6364cd19aa3e",
       "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
       "text": "\"summary\": \"Roll up an org's merged and open GitLab and GitHub changes for a time window into a fact-checked, business-impact report: each bullet states its likely impact (inference) and what changed (fact) with links. The roster is the reporting tree in the Appian Home org chart. Use for what-did-my-org-ship-and-why-it-matters updates; do not use for git metrics dashboards, Jira or chat status reports, or code review.\","
@@ -639,6 +646,11 @@
       "sha256": "c719f2dc85166936a58d0765f7662e556d624b952a7c2346e464905c47d99941",
       "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
       "text": "\"summary\": \"Triage Gmail and Google Chat into a deterministic attention queue with priority, links, and approved follow-up actions. Use when deciding what communications need attention; triage is read-only and actions require explicit approval.\","
+    },
+    {
+      "sha256": "ce229a794112bbc7a2fb3f4306f0d7ab91e3966ec60aea4c0a94efed0cb13852",
+      "source": "sources/capability-resources/engos-route-intent/routing-relations.json",
+      "text": "\"summary\": \"Daily read-only review of the new tickets in a Jira filter: what came in, what came in sideways (no epic, no initiative, no feature card, wrong home), who owns the fix, and the next action. Use for a weekday morning intake report or an owner-by-owner follow-up draft. Never edits, comments on, assigns, or closes tickets and never sends messages. Do not use for sprint reporting or ticket hygiene sweeps.\","
     },
     {
       "sha256": "3b23bc435c486601b66c65a9a161cf18769ef25f56af234ae44b2d1ada9cd264",
