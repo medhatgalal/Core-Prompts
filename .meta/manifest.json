@@ -15620,7 +15620,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 17,
                   "end_line": 17,
-                  "sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d"
+                  "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
                 }
               }
             ]
@@ -15639,7 +15639,7 @@
                   "path": "ssot/engos-operations-daily-update.md",
                   "start_line": 34,
                   "end_line": 34,
-                  "sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d"
+                  "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
                 }
               }
             ]
@@ -15656,8 +15656,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-operations-daily-update.md",
-            "ssot_sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d",
-            "effective_sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d",
+            "ssot_sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c",
+            "effective_sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -15670,7 +15670,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 14,
                     "end_line": 14,
-                    "sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d"
+                    "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
                   }
                 }
               ],
@@ -15682,7 +15682,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 37,
                     "end_line": 37,
-                    "sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d"
+                    "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
                   }
                 }
               ],
@@ -15694,7 +15694,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 25,
                     "end_line": 25,
-                    "sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d"
+                    "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
                   }
                 }
               ],
@@ -15706,7 +15706,7 @@
                     "path": "ssot/engos-operations-daily-update.md",
                     "start_line": 28,
                     "end_line": 28,
-                    "sha256": "fe40e142c267cc35a0bcf5ade519e68e9863af308b159fa2787280128b3e032d"
+                    "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
                   }
                 }
               ]
@@ -15721,7 +15721,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "de541f1ae63c9a0ef30fb2e942cd1de984a7aa7ea19643495f89902f81388e2f"
+            "mapping_sha256": "dc3ded4eeb6131d1c5ec95e0c95becb8a5d1124fec7bc5a4ce928abbe1294f98"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -15910,6 +15910,171 @@
       ],
       "modes": [],
       "benchmark_sources": [],
+      "quality_profile": "default",
+      "quality_status": "structural_ready",
+      "judge_reports": [
+        {
+          "pass_number": 1,
+          "status": "structural_ready",
+          "historical_baseline": {
+            "slug": "engos-operations-gtd-planning",
+            "strategy": "derived_history",
+            "group": "derived",
+            "baseline_path": null,
+            "selected_commit": "a8a97ef1",
+            "richness_score": 8,
+            "line_count": 225,
+            "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+            "equivalent_commits": [
+              "237c0929"
+            ],
+            "expected_companions": [],
+            "operator_invariants": [],
+            "scenario_matrix": [
+              {
+                "id": "operational_invocation",
+                "kind": "operational_contract",
+                "label": "operational invocation surface",
+                "must_contain": [
+                  "## Invocation"
+                ]
+              },
+              {
+                "id": "stepwise_workflow_contract",
+                "kind": "operational_contract",
+                "label": "stepwise workflow contract",
+                "must_contain": [
+                  "## Workflow Contract"
+                ]
+              }
+            ],
+            "historical_proof": {},
+            "source": "git_history",
+            "verified_by_git_history": true,
+            "has_baseline_text": true
+          },
+          "judge_reports": [
+            {
+              "judge": "source_fidelity",
+              "title": "Source Fidelity and Uplift",
+              "score": 10,
+              "blockers": [],
+              "classification": "preserved",
+              "scenario_results": [
+                {
+                  "id": "operational_invocation",
+                  "kind": "operational_contract",
+                  "label": "operational invocation surface",
+                  "passed": true,
+                  "missing_markers": []
+                },
+                {
+                  "id": "stepwise_workflow_contract",
+                  "kind": "operational_contract",
+                  "label": "stepwise workflow contract",
+                  "passed": true,
+                  "missing_markers": []
+                }
+              ],
+              "reviewed_deltas": [],
+              "requirement_review": {
+                "status": "not_supplied_or_invalid",
+                "identity_authenticated": false,
+                "behavioral_status": "behavioral_pending"
+              },
+              "scorecard": {
+                "baseline_richness": 8,
+                "candidate_richness": 8,
+                "baseline_operational_score": 4,
+                "candidate_operational_score": 4,
+                "baseline_preserved_in_resource": false
+              },
+              "baseline_commit": "a8a97ef1",
+              "baseline_slug": "engos-operations-gtd-planning"
+            },
+            {
+              "judge": "operational_richness",
+              "title": "Operational Richness",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "metadata_integrity",
+              "title": "Metadata and Handoff Integrity",
+              "score": 10,
+              "blockers": []
+            },
+            {
+              "judge": "benchmark_readiness",
+              "title": "Benchmark Readiness and Template Fit",
+              "score": 9,
+              "blockers": [],
+              "scorecard": {
+                "title_clarity": 10,
+                "description_richness": 10,
+                "intent_coverage": 10,
+                "boundary_clarity": 8,
+                "output_specificity": 10,
+                "metadata_completeness": 8,
+                "surface_usability": 10
+              }
+            }
+          ],
+          "blockers": [],
+          "scorecard": {
+            "source_fidelity": 10,
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false,
+            "operational_richness": 10,
+            "metadata_integrity": 10,
+            "benchmark_readiness": 9,
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          },
+          "template_name": "skill",
+          "effective_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
+          "semantic_findings": [],
+          "agent_surface_review": {
+            "status": "unchanged",
+            "added_providers": [],
+            "blockers": [],
+            "source_fidelity": "not_required",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "repair_requests": [],
+          "dimension_inventory": [
+            {
+              "dimension": "source_fidelity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "operational_richness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "metadata_integrity",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "benchmark_readiness",
+              "status": "mechanical_checks_passed"
+            },
+            {
+              "dimension": "semantic_consistency",
+              "status": "no_detected_conflict_not_semantic_proof"
+            }
+          ]
+        }
+      ],
       "consumption_hints": {},
       "job_contract": {
         "primary_job": "Every run ends with the user holding one trusted list: new items in the Inbox, each with a proposed disposition, nothing in the task system changed without a yes, and a report that separates what was observed from what was concluded and names what was not checked.",
@@ -15943,7 +16108,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 100,
                   "end_line": 100,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -15953,7 +16118,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 102,
                   "end_line": 102,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -15963,7 +16128,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 104,
                   "end_line": 104,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -15973,7 +16138,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 105,
                   "end_line": 105,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -15983,7 +16148,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 106,
                   "end_line": 106,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -15993,7 +16158,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 107,
                   "end_line": 107,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -16003,7 +16168,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 108,
                   "end_line": 108,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -16013,7 +16178,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 109,
                   "end_line": 109,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -16023,7 +16188,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 110,
                   "end_line": 110,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -16033,7 +16198,7 @@
                   "path": "ssot/engos-operations-gtd-planning.md",
                   "start_line": 111,
                   "end_line": 111,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               },
               {
@@ -16041,9 +16206,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-operations-gtd-planning.md",
-                  "start_line": 193,
-                  "end_line": 196,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "start_line": 195,
+                  "end_line": 198,
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               }
             ]
@@ -16056,9 +16221,9 @@
                 "heading": "Constraints",
                 "source": {
                   "path": "ssot/engos-operations-gtd-planning.md",
-                  "start_line": 193,
-                  "end_line": 196,
-                  "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                  "start_line": 195,
+                  "end_line": 198,
+                  "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                 }
               }
             ]
@@ -16071,8 +16236,8 @@
           },
           "provenance": {
             "ssot_path": "ssot/engos-operations-gtd-planning.md",
-            "ssot_sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d",
-            "effective_sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d",
+            "ssot_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
+            "effective_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
             "resources": [],
             "extractor_version": "source-clauses.v1",
             "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -16085,7 +16250,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 17,
                     "end_line": 17,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 }
               ],
@@ -16095,9 +16260,9 @@
                   "heading": "Invocation Hints",
                   "source": {
                     "path": "ssot/engos-operations-gtd-planning.md",
-                    "start_line": 200,
-                    "end_line": 202,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "start_line": 202,
+                    "end_line": 204,
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 }
               ],
@@ -16107,9 +16272,9 @@
                   "heading": "Required Inputs",
                   "source": {
                     "path": "ssot/engos-operations-gtd-planning.md",
-                    "start_line": 154,
-                    "end_line": 158,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "start_line": 156,
+                    "end_line": 160,
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 }
               ],
@@ -16119,9 +16284,9 @@
                   "heading": "Required Output",
                   "source": {
                     "path": "ssot/engos-operations-gtd-planning.md",
-                    "start_line": 162,
-                    "end_line": 168,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "start_line": 164,
+                    "end_line": 170,
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 }
               ],
@@ -16133,7 +16298,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 100,
                     "end_line": 100,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16143,7 +16308,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 102,
                     "end_line": 102,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16153,7 +16318,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 104,
                     "end_line": 104,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16163,7 +16328,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 105,
                     "end_line": 105,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16173,7 +16338,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 106,
                     "end_line": 106,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16183,7 +16348,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 107,
                     "end_line": 107,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16193,7 +16358,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 108,
                     "end_line": 108,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16203,7 +16368,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 109,
                     "end_line": 109,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16213,7 +16378,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 110,
                     "end_line": 110,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 },
                 {
@@ -16223,7 +16388,7 @@
                     "path": "ssot/engos-operations-gtd-planning.md",
                     "start_line": 111,
                     "end_line": 111,
-                    "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                    "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
                   }
                 }
               ]
@@ -16237,7 +16402,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "745971b438fa7ab705f5f3c34d69c3e15bfadb1071c2e4bca49a8fc8bbc7171b"
+            "mapping_sha256": "e4472dde2ac761b8e95eedff051740e52d6bd716393cd45fcf62cc94c6da54bf"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -16248,6 +16413,8 @@
           ]
         }
       },
+      "quality_pass_count": 1,
+      "quality_stop_reason": "thresholds_met",
       "declared_capability": "skill",
       "inferred_capability": "skill",
       "expected_surface_names": [
@@ -16430,7 +16597,7 @@
         "portfolio_action": "draft_new_skill_pending_review",
         "routing_fitness": {
           "schema_version": "RoutingFitness.v1",
-          "mapping_status": "source_derived_draft",
+          "mapping_status": "stale",
           "task_phases": {
             "kind": "source_conditions",
             "clauses": []
@@ -16478,11 +16645,11 @@
           "provenance": {
             "ssot_path": "ssot/engos-operations-gtd-sources.md",
             "ssot_sha256": "3c284fbb0e7b8c0f018c9d7f9ade0b101bf5ced45af064e79acb0357e3de860e",
-            "effective_sha256": "b0ef5f602989a6db778600409fbf7afc2f89851af8aa5ac296b86f4740bdea2a",
+            "effective_sha256": "088f90d20935751b4a32ba4d55b89c63ee49de03ff9442460aa593a9d19fc380",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
-                "sha256": "429d9bf479069c0ae059c3e05b4a2e637049c079d664f4c9be72daf5ab6020ac"
+                "sha256": "bf3dc87a65d5d709d15b76bb18f78fc6de61f48a4905051dd0c4570f7dc1b61e"
               },
               {
                 "path": "sources/capability-resources/engos-operations-gtd-sources/adapters/chat.md",
@@ -16574,7 +16741,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "0e94eaeb8e0722c7b28bfd7d4d65c8a9208860a264d26b7462dc1c2b9c81432a"
+            "mapping_sha256": "9250463d2619b2451c825b618aec886507615ecc6b20a10a8c4bb04e9469f6a3"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -23168,7 +23335,7 @@
           "provenance": {
             "ssot_path": "ssot/engos-route-intent.md",
             "ssot_sha256": "d83b7f1351136b642de51e6494e5ce3373fdba0a26de1a24cbf8aec01398dc24",
-            "effective_sha256": "39407c5b9ea8f698ebe5e79aaa0b7f91e41325f20d7c8111b5f9eb254594ded1",
+            "effective_sha256": "459afbe87c7d15b9c6236a65a441ae49e9def797970f99293453b22fadfb2a72",
             "resources": [
               {
                 "path": "sources/capability-resources/engos-route-intent/references/intake-method.md",
@@ -23180,7 +23347,7 @@
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/routing-relations.json",
-                "sha256": "f18f8304e224edf1ed346013ae4729cc19448d191ba915767311d77721c99041"
+                "sha256": "4a30c15ec888791822361a173d700dc0b0c33eb22d21d6ba2df9cfc2e76f4d9c"
               },
               {
                 "path": "sources/capability-resources/engos-route-intent/scripts/inspect_catalog.py",
@@ -23265,7 +23432,7 @@
               "shape"
             ],
             "curated_binding": "preserved_not_independently_revalidated",
-            "mapping_sha256": "c19417ccdc2cb30b640784bf5e159994a7ce2a70b6eb43388c9ca4a7d4f877b4"
+            "mapping_sha256": "2d76ee2888789f37b94fa03bfac52cf1e286628cf6c68cbeaa5358c8f58de0a0"
           },
           "unresolved_fields": [
             "task_phase_interpretation",
@@ -25407,6 +25574,7 @@
       ".grok/skills/engos-operations-daily-update/resources/scripts/daily.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
+      ".grok/skills/engos-operations-daily-update/resources/scripts/feedback.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/guide.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".grok/skills/engos-operations-daily-update/resources/scripts/modes.py",
@@ -25420,6 +25588,7 @@
       ".grok/skills/engos-operations-daily-update/resources/tests/cli_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".grok/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".grok/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".grok/skills/engos-operations-gtd-planning/resources/capability.json",
@@ -25719,6 +25888,7 @@
       ".codex/skills/engos-operations-daily-update/resources/scripts/daily.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
+      ".codex/skills/engos-operations-daily-update/resources/scripts/feedback.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/guide.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".codex/skills/engos-operations-daily-update/resources/scripts/modes.py",
@@ -25732,6 +25902,7 @@
       ".codex/skills/engos-operations-daily-update/resources/tests/cli_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".codex/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".codex/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".codex/skills/engos-operations-gtd-planning/resources/capability.json",
@@ -26032,6 +26203,7 @@
       ".gemini/skills/engos-operations-daily-update/resources/scripts/daily.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
+      ".gemini/skills/engos-operations-daily-update/resources/scripts/feedback.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/guide.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".gemini/skills/engos-operations-daily-update/resources/scripts/modes.py",
@@ -26045,6 +26217,7 @@
       ".gemini/skills/engos-operations-daily-update/resources/tests/cli_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".gemini/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".gemini/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".gemini/skills/engos-operations-gtd-planning/resources/capability.json",
@@ -26345,6 +26518,7 @@
       ".claude/skills/engos-operations-daily-update/resources/scripts/daily.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
+      ".claude/skills/engos-operations-daily-update/resources/scripts/feedback.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/guide.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".claude/skills/engos-operations-daily-update/resources/scripts/modes.py",
@@ -26358,6 +26532,7 @@
       ".claude/skills/engos-operations-daily-update/resources/tests/cli_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".claude/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".claude/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".claude/skills/engos-operations-gtd-planning/resources/capability.json",
@@ -26658,6 +26833,7 @@
       ".kiro/skills/engos-operations-daily-update/resources/scripts/daily.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/du.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/dudoc.py",
+      ".kiro/skills/engos-operations-daily-update/resources/scripts/feedback.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/guide.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/migrate.py",
       ".kiro/skills/engos-operations-daily-update/resources/scripts/modes.py",
@@ -26671,6 +26847,7 @@
       ".kiro/skills/engos-operations-daily-update/resources/tests/cli_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/day_mon_nov9.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/exploratory.py",
+      ".kiro/skills/engos-operations-daily-update/resources/tests/feedback_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/rules_test.py",
       ".kiro/skills/engos-operations-daily-update/resources/tests/run_full.sh",
       ".kiro/skills/engos-operations-gtd-planning/resources/capability.json",

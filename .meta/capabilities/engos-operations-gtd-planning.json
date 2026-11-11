@@ -177,7 +177,174 @@
   ],
   "modes": [],
   "benchmark_sources": [],
+  "quality_profile": "default",
+  "quality_status": "structural_ready",
+  "judge_reports": [
+    {
+      "pass_number": 1,
+      "status": "structural_ready",
+      "historical_baseline": {
+        "slug": "engos-operations-gtd-planning",
+        "strategy": "derived_history",
+        "group": "derived",
+        "baseline_path": null,
+        "selected_commit": "a8a97ef1",
+        "richness_score": 8,
+        "line_count": 225,
+        "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
+        "equivalent_commits": [
+          "237c0929"
+        ],
+        "expected_companions": [],
+        "operator_invariants": [],
+        "scenario_matrix": [
+          {
+            "id": "operational_invocation",
+            "kind": "operational_contract",
+            "label": "operational invocation surface",
+            "must_contain": [
+              "## Invocation"
+            ]
+          },
+          {
+            "id": "stepwise_workflow_contract",
+            "kind": "operational_contract",
+            "label": "stepwise workflow contract",
+            "must_contain": [
+              "## Workflow Contract"
+            ]
+          }
+        ],
+        "historical_proof": {},
+        "source": "git_history",
+        "verified_by_git_history": true,
+        "has_baseline_text": true
+      },
+      "judge_reports": [
+        {
+          "judge": "source_fidelity",
+          "title": "Source Fidelity and Uplift",
+          "score": 10,
+          "blockers": [],
+          "classification": "preserved",
+          "scenario_results": [
+            {
+              "id": "operational_invocation",
+              "kind": "operational_contract",
+              "label": "operational invocation surface",
+              "passed": true,
+              "missing_markers": []
+            },
+            {
+              "id": "stepwise_workflow_contract",
+              "kind": "operational_contract",
+              "label": "stepwise workflow contract",
+              "passed": true,
+              "missing_markers": []
+            }
+          ],
+          "reviewed_deltas": [],
+          "requirement_review": {
+            "status": "not_supplied_or_invalid",
+            "identity_authenticated": false,
+            "behavioral_status": "behavioral_pending"
+          },
+          "scorecard": {
+            "baseline_richness": 8,
+            "candidate_richness": 8,
+            "baseline_operational_score": 4,
+            "candidate_operational_score": 4,
+            "baseline_preserved_in_resource": false
+          },
+          "baseline_commit": "a8a97ef1",
+          "baseline_slug": "engos-operations-gtd-planning"
+        },
+        {
+          "judge": "operational_richness",
+          "title": "Operational Richness",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "metadata_integrity",
+          "title": "Metadata and Handoff Integrity",
+          "score": 10,
+          "blockers": []
+        },
+        {
+          "judge": "benchmark_readiness",
+          "title": "Benchmark Readiness and Template Fit",
+          "score": 9,
+          "blockers": [],
+          "scorecard": {
+            "title_clarity": 10,
+            "description_richness": 10,
+            "intent_coverage": 10,
+            "boundary_clarity": 8,
+            "output_specificity": 10,
+            "metadata_completeness": 8,
+            "surface_usability": 10
+          }
+        }
+      ],
+      "blockers": [],
+      "scorecard": {
+        "source_fidelity": 10,
+        "baseline_richness": 8,
+        "candidate_richness": 8,
+        "baseline_operational_score": 4,
+        "candidate_operational_score": 4,
+        "baseline_preserved_in_resource": false,
+        "operational_richness": 10,
+        "metadata_integrity": 10,
+        "benchmark_readiness": 9,
+        "title_clarity": 10,
+        "description_richness": 10,
+        "intent_coverage": 10,
+        "boundary_clarity": 8,
+        "output_specificity": 10,
+        "metadata_completeness": 8,
+        "surface_usability": 10
+      },
+      "template_name": "skill",
+      "effective_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
+      "semantic_findings": [],
+      "agent_surface_review": {
+        "status": "unchanged",
+        "added_providers": [],
+        "blockers": [],
+        "source_fidelity": "not_required",
+        "identity_authenticated": false,
+        "behavioral_status": "behavioral_pending"
+      },
+      "repair_requests": [],
+      "dimension_inventory": [
+        {
+          "dimension": "source_fidelity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "operational_richness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "metadata_integrity",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "benchmark_readiness",
+          "status": "mechanical_checks_passed"
+        },
+        {
+          "dimension": "semantic_consistency",
+          "status": "no_detected_conflict_not_semantic_proof"
+        }
+      ]
+    }
+  ],
   "consumption_hints": {},
+  "quality_pass_count": 1,
+  "quality_stop_reason": "thresholds_met",
   "historical_baseline": {
     "slug": "engos-operations-gtd-planning",
     "strategy": "derived_history",
@@ -263,7 +430,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 100,
               "end_line": 100,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -273,7 +440,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 102,
               "end_line": 102,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -283,7 +450,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 104,
               "end_line": 104,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -293,7 +460,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 105,
               "end_line": 105,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -303,7 +470,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 106,
               "end_line": 106,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -313,7 +480,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 107,
               "end_line": 107,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -323,7 +490,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 108,
               "end_line": 108,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -333,7 +500,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 109,
               "end_line": 109,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -343,7 +510,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 110,
               "end_line": 110,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -353,7 +520,7 @@
               "path": "ssot/engos-operations-gtd-planning.md",
               "start_line": 111,
               "end_line": 111,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           },
           {
@@ -361,9 +528,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-operations-gtd-planning.md",
-              "start_line": 193,
-              "end_line": 196,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "start_line": 195,
+              "end_line": 198,
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           }
         ]
@@ -376,9 +543,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-operations-gtd-planning.md",
-              "start_line": 193,
-              "end_line": 196,
-              "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+              "start_line": 195,
+              "end_line": 198,
+              "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
             }
           }
         ]
@@ -391,8 +558,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-operations-gtd-planning.md",
-        "ssot_sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d",
-        "effective_sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d",
+        "ssot_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
+        "effective_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
         "resources": [],
         "extractor_version": "source-clauses.v1",
         "binding_scope": "SSOT and CapabilityResourceMap.v1 closure; other external references are not resolved",
@@ -405,7 +572,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 17,
                 "end_line": 17,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             }
           ],
@@ -415,9 +582,9 @@
               "heading": "Invocation Hints",
               "source": {
                 "path": "ssot/engos-operations-gtd-planning.md",
-                "start_line": 200,
-                "end_line": 202,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "start_line": 202,
+                "end_line": 204,
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             }
           ],
@@ -427,9 +594,9 @@
               "heading": "Required Inputs",
               "source": {
                 "path": "ssot/engos-operations-gtd-planning.md",
-                "start_line": 154,
-                "end_line": 158,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "start_line": 156,
+                "end_line": 160,
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             }
           ],
@@ -439,9 +606,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-operations-gtd-planning.md",
-                "start_line": 162,
-                "end_line": 168,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "start_line": 164,
+                "end_line": 170,
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             }
           ],
@@ -453,7 +620,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 100,
                 "end_line": 100,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -463,7 +630,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 102,
                 "end_line": 102,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -473,7 +640,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 104,
                 "end_line": 104,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -483,7 +650,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 105,
                 "end_line": 105,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -493,7 +660,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 106,
                 "end_line": 106,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -503,7 +670,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 107,
                 "end_line": 107,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -513,7 +680,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 108,
                 "end_line": 108,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -523,7 +690,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 109,
                 "end_line": 109,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -533,7 +700,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 110,
                 "end_line": 110,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             },
             {
@@ -543,7 +710,7 @@
                 "path": "ssot/engos-operations-gtd-planning.md",
                 "start_line": 111,
                 "end_line": 111,
-                "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+                "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
               }
             }
           ]
@@ -557,7 +724,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "745971b438fa7ab705f5f3c34d69c3e15bfadb1071c2e4bca49a8fc8bbc7171b"
+        "mapping_sha256": "e4472dde2ac761b8e95eedff051740e52d6bd716393cd45fcf62cc94c6da54bf"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

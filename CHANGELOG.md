@@ -8,6 +8,23 @@
 - `engos-design-freshness-sweep`: execute full linked-ticket/MR discussion reads and fourteen days of area-owner merges across involved repos; return changed assumptions and today's simpler path, with exact owner confirmation for technical blockers.
 - Required bundled freshness gates in specify-change, plan-implementation and shaping technical Research, plus a portable evidence/quote checker and regression fixtures. Admission does not establish measured agent benefit.
 
+## v1.22.2 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-gtd-planning`: adds a signal test to Capture (an item is captured only when the user must decide, deliver or reply and it has a date, a project home, or a named person waiting) and a `report_only` profile field. Candidates in a report-only class are listed under "seen, not captured" with title and class, never added to the Inbox. The first-run interview gains two menu questions: which sources to read (only those picked are enabled) and which classes are report only (none pre-selected). The Report rubric row checks both.
+- `engos-operations-gtd-sources`: the Gmail adapter's task rule points at `report_only`. The Gmail query now reads 4 days back with a 300-message cap and says the window may be cut off when the cap is hit; the old 50-message cap stopped at Tuesday on a Monday run.
+- Tested: validate --strict, eval compile --check, uac judge (structural_ready), 1,300+ repo tests across the CI sequence, and a read-only `capture --dry-run` on a live account (6 would-add, 16 report-only candidates kept out). Not tested: a scheduled `capture` run on an installed v1.22.2. Known: 11 `tests/test_installation.py` cache-retirement tests fail locally on Python 3.15, and fail identically on unmodified main 3a173691.
+
+## v1.22.1 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: adds a Feedback tab (nested under the Update guide tab) for feedback on the daily update itself, and a new `feedback` command (`add`, `list`, `lint`). On `update`, the review shows feedback lines (the person's own, plus up to three from an independent reviewer sub-agent that must cite a run note for each); they post with the person's name and date, newest first, only after "publish". A feedback failure never blocks a publish. `doc create` now builds the Feedback tab. `verify.py` checks for the tab. Docs without a Feedback tab skip the write with one line.
+- Tested: rules_test, cli_test, feedback_test, run_full.sh (1315 of 1315 checks), validate --strict, eval compile --check. Not tested: the reviewer sub-agent over a real publish, or a leader other than the doc owner running `feedback add`.
+
 ## v1.22.0 - 2026-11-11
 
 Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab

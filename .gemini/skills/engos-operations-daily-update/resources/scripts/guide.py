@@ -65,6 +65,36 @@ def content(owner, overview_url, otitle):
     return [r[0] for r in rows], [r[1] for r in rows], links
 
 
+FEEDBACK_LINES = [
+    ("Feedback on the daily update", "HEADING_1"),
+    ("Tell us what works and what does not in the daily update itself: the template, the drafts, the overview, and the summary email.", "NORMAL_TEXT"),
+    ("How to add feedback", "HEADING_2"),
+    ("When you publish your update, the process asks for feedback and may add a few lines it noticed, and posts them here "
+     "with your name and the date, newest first. You can also add a line yourself or comment on any line in the doc.", "NORMAL_TEXT"),
+    ("What we want to hear", "HEADING_2"),
+    ("Is the template clear, and is anything you write each day never used?", "NORMAL_TEXT"),
+    ("Did a draft miss something or get something wrong?", "NORMAL_TEXT"),
+    ("Does the overview or summary show what you need?", "NORMAL_TEXT"),
+    ("What would take less of your time?", "NORMAL_TEXT"),
+    ("Feedback so far", "HEADING_2"),
+    ("None yet.", "NORMAL_TEXT"),
+]
+
+
+def add_feedback(doc_id, owner="Scott"):
+    """The Feedback tab, nested under the Update guide tab (a top-level tab would read as an area). Skips if present."""
+    doc = du.read_doc(doc_id)
+    g = next((t for t, p in du.all_tabs(doc) if p is None and t["tabProperties"]["title"].startswith(du.GUIDE)), None)
+    if g is None or any(t["tabProperties"]["title"].startswith("Feedback") for t, p in du.all_tabs(doc) if p is not None):
+        return None
+    r = du.batch(doc_id, [{"addDocumentTab": {"tabProperties": {"title": f"Feedback ({owner})",
+                                                                "parentTabId": g["tabProperties"]["tabId"], "index": 0}}}], doc)
+    tid = r["replies"][0]["addDocumentTab"]["tabProperties"]["tabId"]
+    du.pageless(doc_id, [tid])
+    du.batch(doc_id, m._paras(tid, 1, [a for a, _ in FEEDBACK_LINES], [b for _, b in FEEDBACK_LINES]))
+    return tid
+
+
 def add_guide(doc_id, owner="Scott"):
     doc = du.read_doc(doc_id)
     if any(t["tabProperties"]["title"].startswith(du.GUIDE) for t, p in du.all_tabs(doc) if p is None):
@@ -80,6 +110,7 @@ def add_guide(doc_id, owner="Scott"):
     reqs.append({"updateTextStyle": {"range": {"startIndex": at, "endIndex": at + 7, "tabId": tid},
                                      "textStyle": {"bold": True}, "fields": "bold"}})
     du.batch(doc_id, reqs)
+    add_feedback(doc_id, owner)
     return tid
 
 

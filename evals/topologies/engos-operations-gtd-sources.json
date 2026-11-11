@@ -33,6 +33,7 @@
     "engos-operations-gtd-sources:L66:d791e331474b",
     "engos-operations-gtd-sources:L102:0f5242277110",
     "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md:L3:6d846e0eba1b",
+    "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md:L29:8bba66f107a7",
     "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/chat.md:L3:11da8edca791",
     "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/drive-comments.md:L3:3523e4ca75f4",
     "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/calendar.md:L3:0f6d7a71e516",
@@ -273,10 +274,30 @@
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md:L41:4b17c0e81071",
+      "id": "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md:L29:8bba66f107a7",
+      "heading": "Window",
+      "source": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
+      "source_line": 29,
+      "sha256": "8bba66f107a7f8bbb02867145f94c01d1300b81c3eb0774300f9a9e1410f9691",
+      "text": "The query reads back 4 days so a Monday run reaches Friday; drop messages whose header date is outside the window. The command returns at most the number set by `--max`. If it returns exactly that many, the window may be cut off: raise `--max` or page, and say so under \"Not checked\". Never report \"nothing new\" from a capped result.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md:L33:f5b3492fe81a",
+      "heading": "Becomes a task when",
+      "source": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
+      "source_line": 33,
+      "sha256": "f5b3492fe81aa342d0137b75077ce1312f54dd0fb4ed7772da7dd2ff472602c9",
+      "text": "A person is waiting on the user, or a deadline, payment or form is due. Not newsletters, notifications or FYI. Skip anything the user already answered. A candidate in a class the profile lists under `report_only` (for example a system notice that only asks to approve or decline) is not captured: list it under \"seen, not captured\" with its title and class.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-gtd-sources:sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md:L43:4b17c0e81071",
       "heading": "Tags",
       "source": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
-      "source_line": 41,
+      "source_line": 43,
       "sha256": "4b17c0e810712c2c05cef5b8b4400c86518f90c554bb5ef5441013f9b9b08b6c",
       "text": "The tag for what the next action needs in hand (for example a computer tag if it needs a web form, an email tag only if the action is sending a reply). Add the person tag when sure. Not the source name: an email that needs a form filled is a computer item, not an email item.",
       "kind": "guarded_invariant",
@@ -365,7 +386,7 @@
     },
     {
       "path": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
-      "sha256": "429d9bf479069c0ae059c3e05b4a2e637049c079d664f4c9be72daf5ab6020ac"
+      "sha256": "bf3dc87a65d5d709d15b76bb18f78fc6de61f48a4905051dd0c4570f7dc1b61e"
     },
     {
       "path": "sources/capability-resources/engos-operations-gtd-sources/adapters/chat.md",
@@ -398,11 +419,11 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 30,
+    "total": 32,
     "mapped": 0,
     "waived": 0
   },
   "review_status": "draft",
   "compiler_note": "Draft extraction is not human approval. mapped remains zero until cases or waivers reference stable clause IDs.",
-  "resource_bundle_sha256": "75e1a48e0e24ad532c0e1cc40c59adaa4625a541e0eda56251c4751ad9353c30"
+  "resource_bundle_sha256": "551e5362f9c71cd51765f49e812c393d2dadbdc621f8d8edda70d5d447f54571"
 }
