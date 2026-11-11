@@ -48,7 +48,7 @@ The oracle covered empty/all-closed input, duplicate opens, both open/closed ord
 
 This supervised Codex trial demonstrated the handoff from an ordinary request to a tested patch and an independent check. It tied under the frozen strict-win rule. It supplies no measured advantage for wrapping a small fix in the longer prompt. Skill use was available to both arms; native skill auto-selection, filesystem isolation, repeated-trial reliability, and other hosts were unmeasured.
 
-After integrating `3a173691`, the freshness check rejected the 43-entry catalog. Regeneration added the two new upstream skills, `comms-digest` and `jira-intake-review`, and refreshed the Daily Update descriptor hash. The earlier 37-to-43 comparison above remains bound to its original baseline.
+After integrating `3a173691`, the freshness check rejected the 43-entry catalog. Regeneration added the two new upstream skills, `comms-digest` and `jira-intake-review`, and refreshed the Daily Update descriptor hash. A later integration with `2142fc19` refreshed two GTD descriptor hashes. The earlier 37-to-43 comparison remains bound to its original baseline.
 
 ## What Scott added and when to use it
 

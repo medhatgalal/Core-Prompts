@@ -117,11 +117,11 @@
     },
     "engos-operations-gtd-planning": {
       "summary": "Run the GTD loop (capture, clarify, organize, reflect, engage) for one person using whatever task system and sources they have. Use when the user says \"plan my day\", \"weekly review\", \"triage my inbox\", \"daily close\", \"plan my week\", \"capture my tasks\", or asks to turn email, chat, comments, calendar or meeting notes into a clean task list. Do not use to manage a team, assign work to others, or edit another person's task system.",
-      "descriptor_sha256": "9b03cf40727e5e083d1114cff3e2f3adf07944827d123cc1b266704ac86823d6"
+      "descriptor_sha256": "7af5ec3088f8348f6ab1ec1b86855b75bfb6dd0a62aa00e421ce241f6558bec5"
     },
     "engos-operations-gtd-sources": {
       "summary": "Read-only source adapters that feed the GTD planning method: Gmail, Chat, Drive comments, Calendar and Gemini meeting notes, plus the contract for adding more. Use when the GTD method runs capture or needs calendar and meeting context, or when someone is writing a new source adapter. Do not use to send, reply, post, mark read, accept or edit anything, and do not use without the method skill.",
-      "descriptor_sha256": "1fc724bdf7221a38b520963bbe5659db9e6ad34d78c27d9981c379272c121f54"
+      "descriptor_sha256": "2362104a22792c867a28870d7f6fd73d238f9699573b527bbde5f56733baecd8"
     },
     "engos-operations-gtd-things3": {
       "summary": "Task-system adapter that lets the GTD planning method read and write Things 3 on macOS through a bundled script. Use when the profile lists `things3` under adapters, or when the GTD method needs snapshot, inspect, history, capture, relocate, schedule, annotate or retag against Things 3. Do not use on other platforms, for Things Cloud or iOS, or to run the planning method itself.",

@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-operations-gtd-planning",
-  "ssot_sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d",
+  "ssot_sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -38,6 +38,7 @@
     "engos-operations-gtd-planning:L40:d5791bdbe438",
     "engos-operations-gtd-planning:L42:daa666df8ad5",
     "engos-operations-gtd-planning:L56:7a25e32a454c",
+    "engos-operations-gtd-planning:L62:3e87693ad633",
     "engos-operations-gtd-planning:L66:d42d14bec45f",
     "engos-operations-gtd-planning:L84:38ca85bc865d",
     "engos-operations-gtd-planning:L88:046b66654dbc",
@@ -46,13 +47,14 @@
     "engos-operations-gtd-planning:L101:dd812abc338c",
     "engos-operations-gtd-planning:L107:b979168c508e",
     "engos-operations-gtd-planning:L125:618795f2edec",
-    "engos-operations-gtd-planning:L127:20b43922bc90",
+    "engos-operations-gtd-planning:L127:8f54f0d8bdf8",
     "engos-operations-gtd-planning:L131:73e3a0d5fb52",
     "engos-operations-gtd-planning:L134:3a27310626b7",
-    "engos-operations-gtd-planning:L136:8c6873755fae",
-    "engos-operations-gtd-planning:L157:b07a6652bced",
-    "engos-operations-gtd-planning:L159:414355a23df0",
-    "engos-operations-gtd-planning:L185:17c60dee51b3"
+    "engos-operations-gtd-planning:L135:89c37253506c",
+    "engos-operations-gtd-planning:L138:8c6873755fae",
+    "engos-operations-gtd-planning:L159:b07a6652bced",
+    "engos-operations-gtd-planning:L161:414355a23df0",
+    "engos-operations-gtd-planning:L187:17c60dee51b3"
   ],
   "resources": [
     "- Reference material lives outside the task system; the profile says where.",
@@ -122,12 +124,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L62:f12ca353c3be",
+      "id": "engos-operations-gtd-planning:L62:3e87693ad633",
       "heading": "The five steps",
       "source": "ssot/engos-operations-gtd-planning.md",
       "source_line": 70,
-      "sha256": "f12ca353c3be26b5ded0d8e30612fd2354498d3f12b206da79278262d64eba83",
-      "text": "| Capture | Everything goes to one Inbox. Sources are read-only. One thread is one item. Each item has a stable source key. \"Becomes a task when\" filters are lossy triage: every run reports \"seen, not captured\" with titles. | `capture` |",
+      "sha256": "3e87693ad6337129f805bccb2b6bc29353a583c841e37a283e169c5175860818",
+      "text": "| Capture | Everything goes to one Inbox. Sources are read-only. One thread is one item. Each item has a stable source key. \"Becomes a task when\" filters are lossy triage: every run reports \"seen, not captured\" with titles. Signal test: an item is captured only when the user must decide, deliver or reply, and it has a date, a project home, or a named person waiting. A candidate in a class the profile lists under `report_only` is never captured. It appears under \"seen, not captured\" with its title and the class. | `capture` |",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
@@ -332,12 +334,12 @@
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L127:20b43922bc90",
+      "id": "engos-operations-gtd-planning:L127:8f54f0d8bdf8",
       "heading": "Profile",
       "source": "ssot/engos-operations-gtd-planning.md",
       "source_line": 135,
-      "sha256": "20b43922bc90c592f7a22f3110d4bdfb003290ceb90f7a50928794c9bc059c8f",
-      "text": "Fields: `profile_version`, `adapter_contract_version`, `adapters:`, timezone, areas (only the areas the user picked), `ignored_areas` (a count only, never names), `planning_scope` (which areas plans cover: all areas, or the areas the user picked), context tags and meanings, waiting and critical tags, time and energy tags, protected projects or note patterns, enabled sources with a settings block each, source windows, working hours and held-back share, per-run caps, role. An unknown source name is reported and skipped.",
+      "sha256": "8f54f0d8bdf8e838411dd35c91de9279313447ec3e096fcf802d2a93e87c9ac7",
+      "text": "Fields: `profile_version`, `adapter_contract_version`, `adapters:`, timezone, areas (only the areas the user picked), `ignored_areas` (a count only, never names), `planning_scope` (which areas plans cover: all areas, or the areas the user picked), context tags and meanings, waiting and critical tags, time and energy tags, protected projects or note patterns, enabled sources with a settings block each, source windows, `report_only` (classes of candidate the user chose not to track as tasks, such as a system notice that only asks to approve or decline, or a \"check whether\" item with no person waiting; the user picks them, and none is assumed), working hours and held-back share, per-run caps, role. An unknown source name is reported and skipped.",
       "kind": "invariant",
       "mapped_to": []
     },
@@ -362,130 +364,150 @@
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L136:8c6873755fae",
+      "id": "engos-operations-gtd-planning:L135:89c37253506c",
+      "heading": "Interview",
+      "source": "ssot/engos-operations-gtd-planning.md",
+      "source_line": 143,
+      "sha256": "89c37253506c23a7cd8ea253d39ef1d09973cf377c4c754e55988ddee4da076c",
+      "text": "4. Sources to read: one checkbox per source in the sources skill's index. Only the sources picked are enabled; a source that is not picked is never read. If the question tool allows only a few options per question, split them as in step 3.",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-gtd-planning:L136:175f54088f06",
       "heading": "Interview",
       "source": "ssot/engos-operations-gtd-planning.md",
       "source_line": 144,
+      "sha256": "175f54088f06101c0a9872d5407e3f80046eed4f1a28d6adad542a09bdd7afb6",
+      "text": "5. Report only: a short menu of candidate classes (system notices that only ask to approve or decline; \"check whether\" items with no person waiting; other classes the user names). Each class picked goes to `report_only`; none is pre-selected.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-gtd-planning:L138:8c6873755fae",
+      "heading": "Interview",
+      "source": "ssot/engos-operations-gtd-planning.md",
+      "source_line": 146,
       "sha256": "8c6873755faeea710dbc0b31926990bb6ee74e5408269d7413ab1e5bf261ccf3",
       "text": "The planning scope is the areas picked in step 3; do not ask it separately. Never guess a scope from names, an email domain or earlier conversation. Everything else is asked the first time a mode needs it, as a choice when the answers are finite. Look up identifiers; do not ask the user to type them. Write the file, show it, wait for a yes. No answers: paste-in mode.",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L138:65d8bb24063a",
+      "id": "engos-operations-gtd-planning:L140:65d8bb24063a",
       "heading": "Interview",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 146,
+      "source_line": 148,
       "sha256": "65d8bb24063ac856b0c3fddf56ca23182caeea7b9e8269bcaab3babfd2fa78e3",
       "text": "Examples of what a profile holds (examples only): areas such as Work, Home, Church; tags such as Computer, Phone, Errands, Waiting; a chat space list; a query for another tracker.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L144:77357dbdaba3",
+      "id": "engos-operations-gtd-planning:L146:77357dbdaba3",
       "heading": "Required Inputs",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 152,
+      "source_line": 154,
       "sha256": "77357dbdaba34183181a2940a8cdce735aae457d5f4694b620c0fe81799c73b6",
       "text": "## Required Inputs",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L152:3d4b9f171064",
+      "id": "engos-operations-gtd-planning:L154:3d4b9f171064",
       "heading": "Required Output",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 160,
+      "source_line": 162,
       "sha256": "3d4b9f171064970a2e9947e6e3f0fb13501d9ced9a9ac9ebe2cde123882829ec",
       "text": "## Required Output",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L157:b07a6652bced",
+      "id": "engos-operations-gtd-planning:L159:b07a6652bced",
       "heading": "Required Output",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 165,
+      "source_line": 167,
       "sha256": "b07a6652bcedb9c1e866652a389f6d3eed809a019ed1914d5ac1394b13880044",
       "text": "- Titles start with a verb. Never prefix \"Fwd:\" or the source name.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L159:414355a23df0",
+      "id": "engos-operations-gtd-planning:L161:414355a23df0",
       "heading": "Required Output",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 167,
+      "source_line": 169,
       "sha256": "414355a23df0aef45daf8e1045b180fe5c73461ce1a139ea0e471dc516e9fcf5",
       "text": "- Do not claim a fix or a clean result you did not observe.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L185:17c60dee51b3",
+      "id": "engos-operations-gtd-planning:L187:17c60dee51b3",
       "heading": "Constraints",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 193,
+      "source_line": 195,
       "sha256": "17c60dee51b3a42510dfae6a7be2b3b12f20ca009d9fc09fb30af3a4cd7df151",
       "text": "- Use only areas, projects and tags that exist. Never create one.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L186:11a2b6667dea",
+      "id": "engos-operations-gtd-planning:L188:11a2b6667dea",
       "heading": "Constraints",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 194,
+      "source_line": 196,
       "sha256": "11a2b6667deaf7416c80c7abce5f70d5f7225ca307e6b9cf14161dafc2d5c896",
       "text": "- Plan, propose and report only inside the profile's planning scope. Areas outside it are left out of plans and weekly outcomes. Capture still lands items in the Inbox.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L193:1e40fd79dbd8",
+      "id": "engos-operations-gtd-planning:L195:1e40fd79dbd8",
       "heading": "Invocation Hints",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 201,
+      "source_line": 203,
       "sha256": "1e40fd79dbd8c8de3cd130225d8a85b8cefa1c8ace9e37de704c745cf254e307",
       "text": "- A scheduler start is unattended: `capture` only.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L201:f42b109fcff5",
+      "id": "engos-operations-gtd-planning:L203:f42b109fcff5",
       "heading": "Examples",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 209,
+      "source_line": 211,
       "sha256": "f42b109fcff52d1ac86b90f9821aa683c8a2b435fa4af6e6b0065af764934c39",
       "text": "| \"plan my day\" | `daily-plan` | Today's calendar, usable minutes with the working shown, one main outcome, at most two supporting. Applied only after a yes. |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L202:0c388b71401c",
+      "id": "engos-operations-gtd-planning:L204:0c388b71401c",
       "heading": "Examples",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 210,
+      "source_line": 212,
       "sha256": "0c388b71401cb1cf22aeac557f7c72b1a915249072ea582f25457731d7462e08",
       "text": "| Scheduled run with no user present | `capture` | New items added to the Inbox only, with a report. Any `move` or schedule edit is refused. |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L213:46f9f8e0056d",
+      "id": "engos-operations-gtd-planning:L215:46f9f8e0056d",
       "heading": "Evaluation Rubric",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 221,
+      "source_line": 223,
       "sha256": "46f9f8e0056d4c09e651a3adfccc6518d20b8fbef871f640997447fdc8c03ebd",
       "text": "| Writes | The task system diff equals the approved rows exactly, and is empty for modes that change nothing. Capture wrote only to the Inbox. |",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-gtd-planning:L214:f8796986a9f6",
+      "id": "engos-operations-gtd-planning:L216:f8796986a9f6",
       "heading": "Evaluation Rubric",
       "source": "ssot/engos-operations-gtd-planning.md",
-      "source_line": 222,
+      "source_line": 224,
       "sha256": "f8796986a9f6a85023448b0bac7802fa017a953c89e02acba6a2c41f98d5d33e",
       "text": "| Unattended safety | Unattended runs captured only. A `move` or schedule edit was refused. A changed profile stopped the run. |",
       "kind": "invariant",
@@ -500,7 +522,7 @@
   "source_references": [
     {
       "path": "ssot/engos-operations-gtd-planning.md",
-      "sha256": "6deb5645491b24f54994ac27f72c308e4390db53202cfa110e8ae354bc41612d"
+      "sha256": "4b5fa8664d9b4093687f75ead52a87d937c847db3cc825c0e7fe2526a3087960"
     }
   ],
   "known_ambiguities": [],
@@ -513,7 +535,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 43,
+    "total": 45,
     "mapped": 0,
     "waived": 0
   },

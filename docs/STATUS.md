@@ -4,9 +4,9 @@ Generated from the latest build, validation, and smoke reports. This is the user
 
 - Overall health: `warn`
 - Capability count: `45`
-- Latest build: `2026-11-11T20:01:45.304427+00:00`
-- Latest validation: `2026-11-11T19:59:49.751000+00:00`
-- Latest smoke: `2026-11-11T20:00:28.085750+00:00`
+- Latest build: `2026-11-11T20:26:45.627922+00:00`
+- Latest validation: `2026-11-11T20:25:55.954104+00:00`
+- Latest smoke: `2026-11-11T20:25:56.154205+00:00`
 
 ## Validation
 - Errors: `0`
