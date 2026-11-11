@@ -1,3 +1,8 @@
+## Unreleased
+
+- Refreshed the standalone intent-router catalog from canonical descriptors and added a drift check. It now includes Crew, Change Impact, Daily Update and the three GTD skills.
+- Clarified Crew’s attended and unattended preflight, elapsed qualification time, and how a read-only monitor returns evidence for the designer to record.
+
 ## v1.22.2 - 2026-11-11
 
 Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab

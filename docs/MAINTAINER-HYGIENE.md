@@ -13,6 +13,10 @@ When you need the actual governing rules, read these first:
 
 This page explains how to use those rules in practice. It is not the canonical policy source.
 
+## Portable router inventory
+
+Run `python3 scripts/refresh-routing-catalog.py` after updating capability descriptors and before regenerating provider bundles. `python3 scripts/refresh-routing-catalog.py --check` detects stale snapshot entries without writing. The refresh updates catalog descriptions and descriptor hashes. Each reviewed relationship retains its original endpoint bindings until reviewed separately.
+
 ## Maintainer Focus
 
 When you are reviewing or updating this repo, keep these priorities in mind:

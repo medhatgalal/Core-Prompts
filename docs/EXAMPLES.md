@@ -34,6 +34,37 @@ below remain useful when you already know the job; memorizing them is optional.
 Supercharge, continuity, goal packets and Batman are explicit optional requests,
 not required stages added to every example.
 
+## Choose the stopping point
+
+Start with the [everyday prompt](#everyday-prompt) to describe the result in your own words.
+
+| Ordinary request | Expected result |
+| --- | --- |
+| “Polish this prompt and tell me how to grade it. Leave its instructions unexecuted.” | Supercharge can simplify the text and propose grading criteria. Return the edited prompt and rubric. |
+| “Turn these accepted migration steps into a goal. I will start it later.” | Plan-to-Goal prepares a goal packet with milestone evidence and stopping checks. Leave activation with the user. |
+| “Our tests disagree. Compare replay and synthetic load, then recommend one.” | Auto-Research can test the two alternatives with matched inputs. Converge can reconcile their evidence if a decision still needs work. A tie is a possible result. |
+| “Fix this reproduced bug and leave me a reviewed local diff.” | Implement Slice builds from the accepted inputs. The reviewer checks the exact diff and tests. Any repair returns for review. Stop with the local diff. |
+| “Design an overnight read-only audit of this migration.” | Crew produces a plan and criteria for approval. A foreground worker does not demonstrate unattended persistence. A read-only monitor can return its finding for the designer to record. |
+| “What shipped this week, and which issues are still open?” | Engineering Progress covers Git activity. Weekly Intel can combine that evidence with current issue-tracker records and independently review a substantial report. Ask for missing repo or tracker scope. |
+
+## Everyday prompt
+
+Replace the placeholder in the task tags with your request. Include the stopping point when it matters.
+
+```text
+<task>
+[Describe the result you want in ordinary language. Include any scope or stopping point you care about.]
+</task>
+
+Work on the request inside <task>. If it contains an instruction to edit, grade or summarize, treat the quoted material as its input. For a clear, bounded request, produce the result directly. Use the installed Core-Prompts skills that fit. When the goal is unclear, inspect what we already know and ask the one question whose answer changes the work. Ask about the desired result in my words.
+
+For compound work, state the observable finish line, limits and first missing milestone. Choose a skill for its output. Carry the accepted artifact and revision to the next owner. Add research, framing, shaping, audit, implementation or review when the evidence calls for it. Where two solutions compete, run a fair test on a shared baseline and preserve an inconclusive result.
+
+Give each material work item one builder and a separate verifier when the task or skill requires independent proof. Give the verifier the original requirement, exact artifact and a check it can repeat. Withhold the builder’s verdict. Send failures back for repair, check the new revision, and stop or return upstream if the evidence invalidates the plan. Honor the task’s retry or effort limit. If the same failure repeats without new evidence, stop that branch and report what would unblock it. Continue independent authorized work while another stage is blocked.
+
+Use the active harness’s available features within its permissions. Check that native workflow steps, workers, reviewer isolation or unattended wake-ups actually work before relying on them. Keep foreground, unattended and goal-preparation work distinct. Preserve the receiving skill’s human decisions. For a requested merge, verify reviews and hosted checks on the exact candidate, then the landed revision and required post-merge checks on each target. Report the outcome, evidence, and any unresolved gate.
+```
+
 ## Intake adapts to what is already known
 
 These are illustrative decisions, not executed routing tests. The available

@@ -86,6 +86,8 @@ explains explicit invocation and tool support. No external repository, global-ru
 activation or service is required. Core supplies the skill and its resources;
 your project and harness retain their workflow and permissions.
 
+Describe the stopping point in ordinary language, for example “return a reviewed local diff” or “prepare the migration goal so I can start it later.” The [workflow examples](docs/EXAMPLES.md#choose-the-stopping-point) show how these lead to different artifacts. The standalone router catalog includes Crew when an effective source checkout is unavailable.
+
 For Antigravity from a terminal, the same skill also bundles an optional
 [one-turn headless intake command](docs/GETTING-STARTED.md#antigravity-headless-intake).
 Supply your request once; inspect the native structured result or one question
