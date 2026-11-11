@@ -54,6 +54,11 @@ linked tickets, every linked/selected MR note and fourteen days of area-owner
 merges across every involved repo, including platform repos; exhaust all pages.
 Do not substitute a ticket status, summary or saved receipt for this step.
 
+Choose first_design when no prior design exists and bind the current ticket or
+requirement revision; do not invent a design date. Use revision_comparison for an
+existing design, keeping unknown history as a named gap with partial evidence.
+
+
 Include **What changed since this was designed / simpler path that exists today**
 in the existing specification, with revision/window, owner/repo coverage, old assumption,
 current evidence, simpler path and affected IDs. No technical `blocked` verdict
@@ -68,9 +73,13 @@ human decision/acceptance process.
 
 The procedure/checker have one owner, `engos-design-freshness-sweep`, and are
 physically bundled here by pinned shared-resource imports. No sibling installation
-is required. The checker validates normalized assertions only; source truth,
-complete live collection, actual reading, owner authenticity and semantic
-feasibility still require inspection. No new external-write or execution authority.
+is required. The v2 checker validates normalized assertions only and returns mechanical
+complete/incomplete with semantic_review_pending. In this same skill run, inspect
+full context, negation/supersession, scoped ownership, actual interfaces and target
+availability, then produce the final technical ready/incomplete/owner-confirmed
+blocked assessment. A matched quote or complete packet cannot decide it. Source
+truth, complete live collection and actual reading still require inspection.
+No new external-write or execution authority.
 
 ## Workflow
 

@@ -176,11 +176,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "f30a7007",
+        "selected_commit": "2b3bbf28",
         "richness_score": 5,
-        "line_count": 302,
+        "line_count": 334,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "f30a7007",
           "be25e480",
           "acb39db1",
           "aa8537d0",
@@ -233,7 +234,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "f30a7007",
+          "baseline_commit": "2b3bbf28",
           "baseline_slug": "engos-design-plan-implementation"
         },
         {
@@ -284,7 +285,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "085484bbdef81e9bf915ccaa2ab2f51b130e5dc092262d6d22f1613c0b20de00",
+      "effective_sha256": "622264d17b92dc325ca7e44f7953c96f387b44a4263be80d5d682723f2d7758c",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -386,19 +387,19 @@
           "path": "ssot/engos-design-plan-implementation.md",
           "start_line": 24,
           "end_line": 31,
-          "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+          "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
         },
         {
           "path": "ssot/engos-design-plan-implementation.md",
-          "start_line": 79,
-          "end_line": 91,
-          "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+          "start_line": 88,
+          "end_line": 100,
+          "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
         },
         {
           "path": "ssot/engos-design-plan-implementation.md",
-          "start_line": 143,
-          "end_line": 149,
-          "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+          "start_line": 152,
+          "end_line": 158,
+          "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
         }
       ]
     },
@@ -413,9 +414,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-design-plan-implementation.md",
-              "start_line": 81,
-              "end_line": 149,
-              "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+              "start_line": 90,
+              "end_line": 158,
+              "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
             }
           }
         ]
@@ -432,9 +433,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-plan-implementation.md",
-              "start_line": 230,
-              "end_line": 237,
-              "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+              "start_line": 239,
+              "end_line": 246,
+              "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
             }
           }
         ]
@@ -447,9 +448,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-plan-implementation.md",
-              "start_line": 230,
-              "end_line": 237,
-              "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+              "start_line": 239,
+              "end_line": 246,
+              "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
             }
           }
         ]
@@ -462,8 +463,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-plan-implementation.md",
-        "ssot_sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948",
-        "effective_sha256": "085484bbdef81e9bf915ccaa2ab2f51b130e5dc092262d6d22f1613c0b20de00",
+        "ssot_sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3",
+        "effective_sha256": "622264d17b92dc325ca7e44f7953c96f387b44a4263be80d5d682723f2d7758c",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-plan-implementation/schemas/task-contract.schema.json",
@@ -487,11 +488,11 @@
           },
           {
             "path": "sources/capability-resources/engos-design-freshness-sweep/scripts/freshness_check.py",
-            "sha256": "8bf85207dfdb5e750ae66ab59201f8a25a11ca191275290539f909c3e4e5512c"
+            "sha256": "ee9b14699c7de681aa280c495d64107afc4e301f7d8c2626f4f5d5d3a19496c5"
           },
           {
             "path": "sources/capability-resources/engos-design-freshness-sweep/references/freshness-sweep.md",
-            "sha256": "9611fefa8e3dd396a8950b27229dfb3f171d7139ede0c961b085bef3cfed7ead"
+            "sha256": "83f1d265bea0f321880f9b3985d36bacc406fab5d11eacbefdbb11d69b9c2f93"
           }
         ],
         "extractor_version": "source-clauses.v1",
@@ -505,7 +506,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 20,
                 "end_line": 22,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             }
           ],
@@ -517,7 +518,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 26,
                 "end_line": 33,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             }
           ],
@@ -529,7 +530,7 @@
                 "path": "ssot/engos-design-plan-implementation.md",
                 "start_line": 37,
                 "end_line": 41,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             }
           ],
@@ -539,9 +540,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 174,
-                "end_line": 179,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "start_line": 183,
+                "end_line": 188,
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             },
             {
@@ -549,9 +550,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 181,
-                "end_line": 190,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "start_line": 190,
+                "end_line": 199,
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             },
             {
@@ -559,9 +560,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 192,
-                "end_line": 201,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "start_line": 201,
+                "end_line": 210,
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             },
             {
@@ -569,9 +570,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 203,
-                "end_line": 206,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "start_line": 212,
+                "end_line": 215,
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             },
             {
@@ -579,9 +580,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 208,
-                "end_line": 215,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "start_line": 217,
+                "end_line": 224,
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             },
             {
@@ -589,9 +590,9 @@
               "heading": "Required Output",
               "source": {
                 "path": "ssot/engos-design-plan-implementation.md",
-                "start_line": 217,
-                "end_line": 219,
-                "sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948"
+                "start_line": 226,
+                "end_line": 228,
+                "sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3"
               }
             }
           ]
@@ -606,7 +607,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "6a7d1ce830d6cc38ff1a78e08107c6057a34f6fd5602badc7baeb5dacda92928"
+        "mapping_sha256": "b925a8874431a428f23c56d3132c5d1f7fdb05b9373a735797f0f2968636ff1d"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

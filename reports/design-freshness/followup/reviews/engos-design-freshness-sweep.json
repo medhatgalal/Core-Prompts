@@ -1,0 +1,121 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-freshness-sweep",
+  "original_sha256": "1e499260ab8223a4dfa16436d1439e8339cee7e3be1debe22684c43ebb4579e0",
+  "candidate_sha256": "d6038fec49d35bb7f1c7c80c147551360eda725aed51db0dca97d0b1365c5321",
+  "effective_sha256": "325ae5c06cb8355f8f7404f6e6bff61c6377faff967c0ab09e7fbeb3d64f275a",
+  "verdict": "approved",
+  "source_line_count": 146,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-freshness-sweep",
+      "rationale": "Compared all source lines for Identity against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 18,
+      "disposition": "preserved",
+      "candidate_excerpt": "Execute a bounded source investigation before relying on a design, specification,",
+      "rationale": "Compared all source lines for Purpose against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 19,
+      "source_end_line": 26,
+      "disposition": "preserved",
+      "candidate_excerpt": "Expose changed facts and a simpler supported path before dependent design/planning",
+      "rationale": "Compared all source lines for Primary Objective against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 27,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "- \u201cCheck whether this design is still needed\u201d or \u201crefresh this ticket before planning.\u201d",
+      "rationale": "Compared all source lines for Invocation Hints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 44,
+      "disposition": "reformulated",
+      "candidate_excerpt": "artifact and authorized read access. Use first_design when no prior design exists;",
+      "rationale": "The actual inputs and read authority remain, with separate first-design and historical-comparison baselines."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 45,
+      "source_end_line": 74,
+      "disposition": "reformulated",
+      "candidate_excerpt": "6. In this same skill run, review full source context, conflicts, negation and",
+      "rationale": "All source reads, quote handling, affected handoff and revalidation persist. The v2 entry additionally separates mechanical completeness and same-run semantic judgment."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 75,
+      "source_end_line": 90,
+      "disposition": "preserved",
+      "candidate_excerpt": "- The procedure is owned here and may be hash-pinned and physically bundled through",
+      "rationale": "Compared all source lines for Rules against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 91,
+      "source_end_line": 104,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Mechanical checker result/exit, gaps and frontier, separate from the same-run source-backed agent assessment. Preserve partial evidence when comparison history is unknown.",
+      "rationale": "The output still requires current sources, simpler-path analysis and confirmed blockers. The baseline and mechanical evidence are now labeled explicitly."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 105,
+      "source_end_line": 111,
+      "disposition": "preserved",
+      "candidate_excerpt": "Extend the existing specification, plan or research notes and its private evidence",
+      "rationale": "Compared all source lines for Output Directory against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 112,
+      "source_end_line": 120,
+      "disposition": "preserved",
+      "candidate_excerpt": "Read only remote systems. No ticket updates, messages, owner pings, status changes,",
+      "rationale": "Compared all source lines for Constraints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 121,
+      "source_end_line": 135,
+      "disposition": "reformulated",
+      "candidate_excerpt": "is claimed. The optional `source_trial` route supplies synthetic source-only",
+      "rationale": "Existing lifted-blocker, confirmed blocker and nonapplicable examples remain. Added invocation boundaries separate the teaching case and live evidence."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 136,
+      "source_end_line": 146,
+      "disposition": "preserved",
+      "candidate_excerpt": "| Check | Passing evidence |",
+      "rationale": "Compared all source lines for Evaluation Rubric against the corresponding candidate section. The text is retained verbatim."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "historical_ssot"
+}

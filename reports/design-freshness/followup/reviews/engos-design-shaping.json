@@ -1,0 +1,145 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-shaping",
+  "original_sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598",
+  "candidate_sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812",
+  "effective_sha256": "07e0064ab40aae2daef34f86de11351f27283bb1388fe2f7468aa5ce2203ec38",
+  "verdict": "approved",
+  "source_line_count": 345,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-shaping",
+      "rationale": "Compared all source lines for Identity against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 17,
+      "disposition": "preserved",
+      "candidate_excerpt": "Give the user one entry for a bounded Shape Up workshop. Coordinate framing,",
+      "rationale": "Compared all source lines for Purpose against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 18,
+      "source_end_line": 24,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce an evidence-backed pitch with current acceptance receipts and faithful",
+      "rationale": "Compared all source lines for Primary Objective against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 25,
+      "source_end_line": 33,
+      "disposition": "preserved",
+      "candidate_excerpt": "\u201cHelp us frame and shape this; here are our notes\u201d starts the workshop. \u201cFrame",
+      "rationale": "Compared all source lines for Invocation Hints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 34,
+      "source_end_line": 41,
+      "disposition": "preserved",
+      "candidate_excerpt": "Start with one sentence or available documents; no repository or complete form is",
+      "rationale": "Compared all source lines for Required Inputs against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 42,
+      "source_end_line": 64,
+      "disposition": "preserved",
+      "candidate_excerpt": "Return friendly links and a short status in plain words: the last checked version,",
+      "rationale": "Compared all source lines for Required Output against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 65,
+      "source_end_line": 92,
+      "disposition": "preserved",
+      "candidate_excerpt": "Read `resources/ways-of-working.md` through the selected route. Identify the actual",
+      "rationale": "Compared all source lines for Human roles and pauses against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 93,
+      "source_end_line": 134,
+      "disposition": "reformulated",
+      "candidate_excerpt": "complete/incomplete with semantic_review_pending. In this same skill run, inspect",
+      "rationale": "The same pre-handoff execution point, closure, merge horizon, exact owner confirmation, missing evidence and existing human authority are preserved. The caller also handles a first design and performs semantic review after validation."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 135,
+      "source_end_line": 224,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Read `resources/resource-map.json` and `resources/routing.md`. Load only the",
+      "rationale": "Compared all source lines for Workflow against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 225,
+      "source_end_line": 274,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Gate predicates, score anchors, thresholds, calibration and review receipts have",
+      "rationale": "Compared all source lines for Rules against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 275,
+      "source_end_line": 281,
+      "disposition": "preserved",
+      "candidate_excerpt": "Remain within the user's shaping and target-publication scope. Do not infer human",
+      "rationale": "Compared all source lines for Constraints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 282,
+      "source_end_line": 294,
+      "disposition": "preserved",
+      "candidate_excerpt": "\u201cReports go stale\u201d yields a problem summary and a few consequence-led questions.",
+      "rationale": "Compared all source lines for Examples against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 295,
+      "source_end_line": 303,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the gate owner's versioned twelve-score rubric for assessment;",
+      "rationale": "Compared all source lines for Evaluation Rubric against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R14",
+      "source_start_line": 304,
+      "source_end_line": 324,
+      "disposition": "preserved",
+      "candidate_excerpt": "On status questions and material handoffs, load resources/progress.md through the",
+      "rationale": "Compared all source lines for Readable Artifacts and Flow Progress against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R15",
+      "source_start_line": 325,
+      "source_end_line": 345,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use resources/architecture-fit.md during technical Research/Shaped and review.",
+      "rationale": "Compared all source lines for Repository Fit and Specialist Advice against the corresponding candidate section. The text is retained verbatim."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "historical_ssot"
+}

@@ -175,11 +175,12 @@
         "strategy": "derived_history",
         "group": "derived",
         "baseline_path": null,
-        "selected_commit": "220e2ae8",
+        "selected_commit": "2b3bbf28",
         "richness_score": 5,
-        "line_count": 300,
+        "line_count": 345,
         "reason": "Selected from git history using the strongest richness score, then the latest commit within the highest-scoring equivalence class.",
         "equivalent_commits": [
+          "220e2ae8",
           "fcdb73a4",
           "afa02db7",
           "73b1a925",
@@ -237,7 +238,7 @@
             "candidate_operational_score": 2,
             "baseline_preserved_in_resource": false
           },
-          "baseline_commit": "220e2ae8",
+          "baseline_commit": "2b3bbf28",
           "baseline_slug": "engos-design-shaping"
         },
         {
@@ -288,7 +289,7 @@
         "surface_usability": 10
       },
       "template_name": "skill",
-      "effective_sha256": "48c418e203d1c0b0f5c9e965340f22f11935afa7366c461784f222921ba2d781",
+      "effective_sha256": "07e0064ab40aae2daef34f86de11351f27283bb1388fe2f7468aa5ce2203ec38",
       "semantic_findings": [],
       "agent_surface_review": {
         "status": "unchanged",
@@ -388,9 +389,9 @@
             "heading": "Workflow",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 137,
-              "end_line": 223,
-              "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+              "start_line": 146,
+              "end_line": 232,
+              "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
             }
           }
         ]
@@ -407,9 +408,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 277,
-              "end_line": 280,
-              "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+              "start_line": 286,
+              "end_line": 289,
+              "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
             }
           }
         ]
@@ -422,9 +423,9 @@
             "heading": "Constraints",
             "source": {
               "path": "ssot/engos-design-shaping.md",
-              "start_line": 277,
-              "end_line": 280,
-              "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+              "start_line": 286,
+              "end_line": 289,
+              "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
             }
           }
         ]
@@ -437,8 +438,8 @@
       },
       "provenance": {
         "ssot_path": "ssot/engos-design-shaping.md",
-        "ssot_sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598",
-        "effective_sha256": "48c418e203d1c0b0f5c9e965340f22f11935afa7366c461784f222921ba2d781",
+        "ssot_sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812",
+        "effective_sha256": "07e0064ab40aae2daef34f86de11351f27283bb1388fe2f7468aa5ce2203ec38",
         "resources": [
           {
             "path": "sources/capability-resources/engos-design-shaping/routing.md",
@@ -478,11 +479,11 @@
           },
           {
             "path": "sources/capability-resources/engos-design-freshness-sweep/scripts/freshness_check.py",
-            "sha256": "8bf85207dfdb5e750ae66ab59201f8a25a11ca191275290539f909c3e4e5512c"
+            "sha256": "ee9b14699c7de681aa280c495d64107afc4e301f7d8c2626f4f5d5d3a19496c5"
           },
           {
             "path": "sources/capability-resources/engos-design-freshness-sweep/references/freshness-sweep.md",
-            "sha256": "9611fefa8e3dd396a8950b27229dfb3f171d7139ede0c961b085bef3cfed7ead"
+            "sha256": "83f1d265bea0f321880f9b3985d36bacc406fab5d11eacbefdbb11d69b9c2f93"
           },
           {
             "path": "sources/capability-resources/engos-design-shaping/stages/research.md",
@@ -552,7 +553,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 20,
                 "end_line": 23,
-                "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+                "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
               }
             }
           ],
@@ -564,7 +565,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 27,
                 "end_line": 30,
-                "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+                "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
               }
             },
             {
@@ -574,7 +575,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 32,
                 "end_line": 32,
-                "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+                "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
               }
             }
           ],
@@ -586,7 +587,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 36,
                 "end_line": 40,
-                "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+                "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
               }
             }
           ],
@@ -598,7 +599,7 @@
                 "path": "ssot/engos-design-shaping.md",
                 "start_line": 44,
                 "end_line": 63,
-                "sha256": "468173f49a8a7fa78de91291d5e239dcc55887824014923ba3335eb6d1dfa598"
+                "sha256": "68c9d42cd85043edf770bcad8cb5a7e006f87aeab9f6e049bc19b1854c2b9812"
               }
             }
           ]
@@ -613,7 +614,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "5aa6727be163ee6d866c58a73bd41dbb02f3871b96a8236fa7458eb84416fe3f"
+        "mapping_sha256": "af054b1e61641ab468070e78956f63adfbfca520edff3ad706b12c0e441c370b"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

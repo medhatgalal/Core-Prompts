@@ -106,3 +106,61 @@ Integration verification complete:
 - Independent recommendation and final staged-integration reviews: zero findings.
 Remaining delivery: commit task-branch integration, push same commit to both hosts,
 open MR/PR and check exact-candidate hosted results. No main merge/install/release.
+
+## Follow-up: hostile review and live-source trial (active, no merge)
+
+User requested a real-source trial, portability/intent hostile reviews, and a clear
+change/diff/risk explanation. Published candidate731a559d is on hold. Two fresh
+independent reviews and a separate repair decider reproduced false technical
+verdict rendering, missing repo/query coverage and provider restrictions. Source
+neutral v2 repair is a working candidate; use same-slug UAC admission, not a
+generated/installed patch. Automatic caller list remains the same three.
+
+Private source collection/oracle/reader evidence is outside this repository in a
+task-private trial directory; do not commit it or copy work quotes/URLs to the
+personal GitHub mirror. Published evidence will be synthetic regressions and
+sanitary acceptance summary only. Actual original case was identified from a
+contemporaneous work-project retrospective, then independently confirmed against
+live tracker/platform/release sources. A source-reading agent received only root,
+frozen731a skill and tools; expected outcome is held separately. Trial has a fixed
+20min wall cap and must preserve incomplete frontier/coverage rather than claim
+complete. A live source correctness finding includes version/availability nuance.
+
+At follow-up start, these items were pending: v2 review/UAC/generation, private
+trial verification, final review, current-main integration, tests and hosted checks.
+See the latest checkpoint below for completed work rather than this initial list.
+The MR currently conflicts with newer upstream changes. No main merge, deployment,
+install, new automatic caller, external owner ask or source-account change allowed.
+
+### Latest follow-up checkpoint
+
+- Original bounded source-reader run ended incomplete; independent private source
+  verification completed. Targeted technical result is supported; raw request
+  counts were reconciled to distinct canonical objects. Broad coverage, media and
+  participant-history frontiers remain. No prospective/model-win claim.
+- Four v2 entry candidates completed UAC plan/judge/apply on a prior reviewed
+  resource hash; all three caller resource copies were generated.
+- 343 focused tests including15 detached packages and25 docs/inventory cases
+  passed, as did compile/calibration/smoke/strict/runtime/legacy/guide checks.
+- Final independent checkpoint caught a blanket empty-comment exception. It is
+  repaired with item-kind provenance and a mixed-channel regression (69 source
+  tests pass); source pins are refreshed. Renew final hash-bound review/UAC and
+  generation/checks before committing this last repair.
+- Both hosted reviews are draft. Existing published head remains731a559d until
+  repair publication. Current main integration, exact repair-head hosted results
+  and complete live acceptance are still pending.
+- User graph-scope clarification remains open; strict traversal has not been
+  silently weakened or relabelled complete. No main merge/install/release.
+
+### Repair publication checkpoint
+
+The final empty-comment exception is closed and independently reproduced. Both
+current and historical UAC mappings were renewed on exact resource bytes. All four
+capabilities completed plan/judge/apply again (structural_ready, behavioral_pending),
+and all provider bundles were regenerated. The final focused selection passed344
+cases, including the15 detached caller/provider tests; earlier25 doc/inventory
+cases also passed. Compile/check, static calibration, smoke, strict validation,
+installer inventory, pinned legacy catalog and guide checks passed. These are
+local/structural receipts, not complete live acceptance. The v2 code is ready for
+publication as a draft repair; current-main integration and exact repair-head
+hosted checks follow. Scope clarification and complete live coverage remain open.

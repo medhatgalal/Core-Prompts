@@ -31,8 +31,10 @@ missing evidence. Collection and mechanical validation do not prove feasibility.
 
 ## Required Inputs
 
-- Actual ticket references, supplied design/proposal revision and date, existing
-  task artifact and authorized read access; partial inputs remain explicit gaps.
+- Actual ticket references, current requirement/proposal revision, existing task
+  artifact and authorized read access. Use first_design when no prior design exists;
+  revision_comparison uses the actual prior design reference/date. Unknown comparison
+  history remains a gap, not an invented first design or a malformed lost report.
 - Area owners and platform identities with attributable ownership sources.
 - All involved application/platform repos, derived from dependencies and source
   links rather than assumed from the current checkout alone.
@@ -43,7 +45,9 @@ missing evidence. Collection and mechanical validation do not prove feasibility.
 
 1. Read `resources/resource-map.json` and the complete `sweep` route, including
    `resources/references/freshness-sweep.md` and its checker. Follow that procedure
-   to bind the revision, owner/repo scope and exact UTC fourteen-day merge window.
+   to bind the baseline mode/source, scoped owners, source-neutral discussion
+   inventory and exact UTC fourteen-day merge window. Do not restrict the core
+   contract to a named ticket or code-host product; verify actual source capabilities.
 2. Execute authorized source reads: root and recursively linked tickets, full
    descriptions and every comment; linked MRs/PRs and every note/reply, including
    resolved/outdated/system discussions; every owner's merges in every involved
@@ -55,12 +59,16 @@ missing evidence. Collection and mechanical validation do not prove feasibility.
 4. Reconcile each load-bearing assumption with current evidence. Identify lifted
    blockers, changed interfaces and existing features/APIs that can eliminate work.
    Distinguish inspected facts from inferred simplification and deployed behavior.
-5. Normalize FreshnessEvidence.v1 as specified by the procedure and run
+5. Normalize FreshnessEvidence.v2 as specified by the procedure and run
    `python3 resources/scripts/freshness_check.py --evidence EVIDENCE.json` from
    this installed skill directory. Optional `--format markdown` renders the
-   required section. Missing execution or invalid evidence leaves the check pending.
-6. Review source truth, conflicts, semantic feasibility and actual owner identity
-   separately from the checker. Refuse technical blocked without each responsible
+   evidence section. The helper returns only validation_status complete/incomplete
+   with semantic_review_pending; it cannot decide ready/blocked or confirm a blocker.
+   Missing execution or invalid evidence leaves the check pending.
+6. In this same skill run, review full source context, conflicts, negation and
+   supersession, semantic feasibility and actual scoped ownership separately from
+   mechanical validation. Produce the final technical assessment yourself; a
+   matched source excerpt cannot confirm the technical verdict. Refuse technical blocked without each responsible
    owner's exact current quote, scope, source and timestamp; a superseded quote
    cannot stand against later evidence. No confirmation or missing access means
    incomplete. Draft an evidence request; do not send one without authorization.
@@ -89,7 +97,7 @@ missing evidence. Collection and mechanical validation do not prove feasibility.
 
 Include **What changed since this was designed / simpler path that exists today**:
 
-- Design revision/date, collection anchor/window and owner/repository provenance.
+- Baseline mode and actual source revision; prior design/date or explicit no-prior-design statement; collection anchor/window and owner/repository provenance.
 - Complete coverage and explicit gaps: recursive tickets, all discussion streams,
   pages/totals, every repo/owner merge query and source evidence references.
 - Previous assumption, current evidence, implication, today's simpler path and
@@ -97,7 +105,7 @@ Include **What changed since this was designed / simpler path that exists today*
 - Ready, incomplete or owner-confirmed blocked, with every blocker quoted exactly
   and linked to its responsible owner, scope and timestamp. Explain contrary or
   superseding evidence, remaining validation and the next permitted action.
-- Checker result/exit and its limits, separate from the agent's semantic assessment.
+- Mechanical checker result/exit, gaps and frontier, separate from the same-run source-backed agent assessment. Preserve partial evidence when comparison history is unknown.
 
 ## Output Directory
 
@@ -129,6 +137,14 @@ or inaccessible comments yields incomplete with a precise evidence request.
 
 “Fix a heading” does not invoke this external sweep. A frame-only workshop keeps
 technical repository investigation for its separately accepted Research stage.
+
+Automatic caller gates are limited to specify-change, plan-implementation and
+technical shaping Research. For a direct architecture or other ticket-backed
+design entry, invoke this standalone sweep first; no fourth automatic integration
+is claimed. The optional `source_trial` route supplies synthetic source-only
+examples for an independently assessed discovery trial. Do not provide its
+expected outcome to the source-reading agent. Package/transport tests do not
+establish live reading or semantic discovery.
 
 ## Evaluation Rubric
 

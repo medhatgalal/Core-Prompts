@@ -1,0 +1,153 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-plan-implementation",
+  "original_sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3",
+  "candidate_sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3",
+  "effective_sha256": "622264d17b92dc325ca7e44f7953c96f387b44a4263be80d5d682723f2d7758c",
+  "verdict": "approved",
+  "source_line_count": 343,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-plan-implementation",
+      "rationale": "The complete applied current Identity source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 11,
+      "source_end_line": 17,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce a usable implementation plan from accepted requirements, preserving their",
+      "rationale": "The complete applied current Purpose source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 18,
+      "source_end_line": 23,
+      "disposition": "preserved",
+      "candidate_excerpt": "Give an implementer enough source context and explicit interfaces to deliver one",
+      "rationale": "The complete applied current Primary Objective source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 24,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and",
+      "rationale": "The complete applied current Invocation Hints source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 42,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.",
+      "rationale": "The complete applied current Required Inputs source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 43,
+      "source_end_line": 49,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Create implementation outcome contracts from accepted requirements and supplied design decisions.",
+      "rationale": "The complete applied current In Scope source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 50,
+      "source_end_line": 87,
+      "disposition": "preserved",
+      "candidate_excerpt": "For ticket-backed work, execute the bundled `freshness` route before task decomposition and plan handoff.",
+      "rationale": "The complete applied current Required freshness sweep source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 88,
+      "source_end_line": 159,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Identify the authoritative requirements and their current revision, actual",
+      "rationale": "The complete applied current Workflow source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 160,
+      "source_end_line": 180,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Reuse the project tracker and plan format. An index or optional interchange",
+      "rationale": "The complete applied current Rules source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 181,
+      "source_end_line": 229,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.",
+      "rationale": "The complete applied current Required Output source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 230,
+      "source_end_line": 236,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the existing plan/tracker location. When none exists, return the plan in chat",
+      "rationale": "The complete applied current Output Directory source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 237,
+      "source_end_line": 247,
+      "disposition": "preserved",
+      "candidate_excerpt": "This capability owns planning artifacts only. Do not implement product code,",
+      "rationale": "The complete applied current Constraints source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 248,
+      "source_end_line": 279,
+      "disposition": "preserved",
+      "candidate_excerpt": "> Plan the accepted filtered CSV export requirement in our existing tracker.",
+      "rationale": "The complete applied current Examples source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R14",
+      "source_start_line": 280,
+      "source_end_line": 297,
+      "disposition": "preserved",
+      "candidate_excerpt": "Assess each item as met, pending or not applicable with evidence. Material pending",
+      "rationale": "The complete applied current Evaluation Rubric source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R15",
+      "source_start_line": 298,
+      "source_end_line": 308,
+      "disposition": "preserved",
+      "candidate_excerpt": "Independently expressed synthesis draws on Addy Osmani's",
+      "rationale": "The complete applied current Pattern Provenance source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R16",
+      "source_start_line": 309,
+      "source_end_line": 343,
+      "disposition": "preserved",
+      "candidate_excerpt": "For a supplied TaskPlan.v1, load the `graph_check` resource route and run",
+      "rationale": "The complete applied current Optional mechanical graph check source section and candidate are byte-identical, including the original instructions and examples."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "applied_current_ssot"
+}

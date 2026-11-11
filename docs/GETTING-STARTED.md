@@ -94,7 +94,9 @@ designed / simpler path that exists today.” Specify-change, plan-implementatio
 and shaping's accepted technical Research include the same required step for
 ticket-backed work. Missing access yields incomplete coverage; a technical blocked
 verdict requires the responsible owner's current exact quote. No owner messages
-are sent. See the [worked example](EXAMPLES.md#sweep-a-design-before-planning).
+are sent. First-design input needs a real requirement revision, not invented
+historical design dates. The evidence checker emits mechanical completeness only;
+the agent finishes the source-backed technical decision in the same run. See the [worked example](EXAMPLES.md#sweep-a-design-before-planning).
 
 ## Returning from the 32-skill catalog
 

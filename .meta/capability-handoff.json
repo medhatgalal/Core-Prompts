@@ -1835,17 +1835,17 @@
         "sweep"
       ],
       "required_inputs": [
-        "Actual ticket references, supplied design/proposal revision and date, existing",
+        "Actual ticket references, current requirement/proposal revision, existing task",
         "Area owners and platform identities with attributable ownership sources.",
         "All involved application/platform repos, derived from dependencies and source",
         "Existing scope, authority, accepted requirements and decision owners. None of"
       ],
       "expected_outputs": [
-        "Design revision/date, collection anchor/window and owner/repository provenance.",
+        "Baseline mode and actual source revision; prior design/date or explicit no-prior-design statement; collection anchor/window and owner/repository provenance.",
         "Complete coverage and explicit gaps: recursive tickets, all discussion streams,",
         "Previous assumption, current evidence, implication, today's simpler path and",
         "Ready, incomplete or owner-confirmed blocked, with every blocker quoted exactly",
-        "Checker result/exit and its limits, separate from the agent's semantic assessment."
+        "Mechanical checker result/exit, gaps and frontier, separate from the same-run source-backed agent assessment. Preserve partial evidence when comparison history is unknown."
       ],
       "tool_policy": {
         "scope": "uac_intake_only",
