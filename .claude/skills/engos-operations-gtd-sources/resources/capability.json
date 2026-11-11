@@ -232,7 +232,7 @@
     "portfolio_action": "draft_new_skill_pending_review",
     "routing_fitness": {
       "schema_version": "RoutingFitness.v1",
-      "mapping_status": "source_derived_draft",
+      "mapping_status": "stale",
       "task_phases": {
         "kind": "source_conditions",
         "clauses": []
@@ -280,11 +280,11 @@
       "provenance": {
         "ssot_path": "ssot/engos-operations-gtd-sources.md",
         "ssot_sha256": "3c284fbb0e7b8c0f018c9d7f9ade0b101bf5ced45af064e79acb0357e3de860e",
-        "effective_sha256": "b0ef5f602989a6db778600409fbf7afc2f89851af8aa5ac296b86f4740bdea2a",
+        "effective_sha256": "088f90d20935751b4a32ba4d55b89c63ee49de03ff9442460aa593a9d19fc380",
         "resources": [
           {
             "path": "sources/capability-resources/engos-operations-gtd-sources/adapters/gmail.md",
-            "sha256": "429d9bf479069c0ae059c3e05b4a2e637049c079d664f4c9be72daf5ab6020ac"
+            "sha256": "bf3dc87a65d5d709d15b76bb18f78fc6de61f48a4905051dd0c4570f7dc1b61e"
           },
           {
             "path": "sources/capability-resources/engos-operations-gtd-sources/adapters/chat.md",
@@ -376,7 +376,7 @@
           "shape"
         ],
         "curated_binding": "preserved_not_independently_revalidated",
-        "mapping_sha256": "0e94eaeb8e0722c7b28bfd7d4d65c8a9208860a264d26b7462dc1c2b9c81432a"
+        "mapping_sha256": "9250463d2619b2451c825b618aec886507615ecc6b20a10a8c4bb04e9469f6a3"
       },
       "unresolved_fields": [
         "task_phase_interpretation",

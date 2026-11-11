@@ -1,3 +1,12 @@
+## v1.22.2 - 2026-11-11
+
+Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-gtd-planning`: adds a signal test to Capture (an item is captured only when the user must decide, deliver or reply and it has a date, a project home, or a named person waiting) and a `report_only` profile field. Candidates in a report-only class are listed under "seen, not captured" with title and class, never added to the Inbox. The first-run interview gains two menu questions: which sources to read (only those picked are enabled) and which classes are report only (none pre-selected). The Report rubric row checks both.
+- `engos-operations-gtd-sources`: the Gmail adapter's task rule points at `report_only`. The Gmail query now reads 4 days back with a 300-message cap and says the window may be cut off when the cap is hit; the old 50-message cap stopped at Tuesday on a Monday run.
+- Tested: validate --strict, eval compile --check, uac judge (structural_ready), 1,300+ repo tests across the CI sequence, and a read-only `capture --dry-run` on a live account (6 would-add, 16 report-only candidates kept out). Not tested: a scheduled `capture` run on an installed v1.22.2. Known: 11 `tests/test_installation.py` cache-retirement tests fail locally on Python 3.15, and fail identically on unmodified main 3a173691.
+
 ## v1.22.1 - 2026-11-11
 
 Tag authorized by Scott Parrish on 2026-11-11. Publication is recorded by the GitLab
