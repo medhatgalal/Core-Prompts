@@ -3,14 +3,14 @@
 These counts compare selected capability metadata in `.meta/manifest.json`. They do not cover bundled helper/resource changes or measure experimental benefit. See [CHANGELOG](../CHANGELOG.md) for release changes.
 
 - Baseline status: `available`
-- Comparison basis: `git:v1.22.2@1fe638768285779380a9b10903253e3218eb9e00 .meta/manifest.json`
-- New capabilities: `1`
+- Comparison basis: `git:v1.22.3@ea735fd4dc700135089c58bf9eba48370a6dbd7e .meta/manifest.json`
+- New capabilities: `0`
 - Removed capabilities: `0`
 - Changed capability records: `0`
 - Records with contract-facing metadata changes: `0`
 
 ## New Capabilities
-- `engos-operations-delivery-excellence-prep` — EngOS Operations — Delivery Excellence Prep
+- none
 
 ## Removed Capabilities
 - none
