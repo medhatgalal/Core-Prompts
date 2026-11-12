@@ -88,8 +88,9 @@ The rules the script applies. One feature card can have more than one flag.
 2. Status disagrees with Jira, by status category. Backlog = To Do, In Progress = In Progress, Merged or Released = Done.
    No status counts as Backlog. A linked item that neither the Jira API nor `acli` can find is flagged "not found".
    Action: "make the feature card status and <KEY> agree".
-3. Stale: updatedOn is 14 or more days before today. Skipped for Released and Backlog feature cards. Action: "update
-   the feature card".
+3. Stale: updatedOn is 14 or more days before today. Skipped for Released and Backlog feature cards, and for an In
+   Progress feature card whose linked Jira item is In Progress and was updated in the last 14 days (the work is moving).
+   Action: "update the feature card".
 The script adds a "## Feature cards" section to findings.md and each flagged feature card to its owner's draft in
 drafts.md, within the 5-bullet cap per owner. Always write "feature card", never bare "card".
 

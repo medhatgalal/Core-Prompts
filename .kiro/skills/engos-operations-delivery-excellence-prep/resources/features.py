@@ -29,21 +29,22 @@ def jira_status(keys):
         chunk = keys[i:i + 40]
         try:
             for x in audit.jql(f'key in ({",".join(chunk)})'):
-                out[x["key"]] = x["fields"]["status"]["statusCategory"]["name"] if "statusCategory" in x["fields"]["status"] else x["fields"]["status"]["name"]
+                out[x["key"]] = (x["fields"]["status"]["statusCategory"]["name"], x["fields"].get("updated"))
         except Exception:
             for k in chunk:  # one missing key fails the whole query; ask one at a time
                 try:
                     for x in audit.jql(f"key = {k}"):
-                        out[x["key"]] = x["fields"]["status"]["statusCategory"]["name"]
+                        out[x["key"]] = (x["fields"]["status"]["statusCategory"]["name"], x["fields"].get("updated"))
                 except Exception:
                     pass
     for k in keys:  # the API search cannot see some projects; acli can. Only after both fail is an item "not found".
         if k in out:
             continue
-        p = subprocess.run(["acli", "jira", "workitem", "view", k, "--json", "--fields", "key,summary,status"],
+        p = subprocess.run(["acli", "jira", "workitem", "view", k, "--json", "--fields", "key,summary,status,updated"],
                            capture_output=True, text=True)
         try:
-            out[k] = json.loads(p.stdout)["fields"]["status"]["statusCategory"]["name"]
+            f = json.loads(p.stdout)["fields"]
+            out[k] = (f["status"]["statusCategory"]["name"], f.get("updated"))
         except Exception:
             pass
     return out
@@ -62,11 +63,16 @@ def flag(cards, owners):
             issues.append("no Jira link"); actions.append("link the feature card to its Jira initiative")
         elif k not in jira:
             issues.append(f"linked Jira item {k} not found"); actions.append(f"make the feature card status and {k} agree")
-        elif MAP.get(st) != jira[k]:
-            issues.append(f"feature card says {st}, {k} is {jira[k]}"); actions.append(f"make the feature card status and {k} agree")
+        elif MAP.get(st) != jira[k][0]:
+            issues.append(f"feature card says {st}, {k} is {jira[k][0]}"); actions.append(f"make the feature card status and {k} agree")
         age = (today - dt.datetime.fromisoformat(c["updatedOn"].replace("Z", "+00:00"))).days if c.get("updatedOn") else None
-        # Stale checks do not apply to Released or Backlog feature cards (nothing to update yet or any more)
-        if age is not None and age >= STALE_DAYS and st not in ("Released", "Backlog"):
+        # Stale checks do not apply to Released or Backlog feature cards (nothing to update yet or any more), nor to an
+        # In Progress feature card whose linked Jira item is In Progress and was updated within the window: the work is
+        # moving, and the feature card's own edit date says little.
+        moving = False
+        if k in jira and jira[k][0] == "In Progress" and jira[k][1]:
+            moving = (today - dt.datetime.fromisoformat(jira[k][1].replace("Z", "+00:00"))).days < STALE_DAYS
+        if age is not None and age >= STALE_DAYS and st not in ("Released", "Backlog") and not moving:
             issues.append(f"no update in {age} days"); actions.append("update the feature card")
         if not issues:
             continue

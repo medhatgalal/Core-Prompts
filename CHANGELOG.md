@@ -1,5 +1,13 @@
 ## Unreleased
 
+## v1.22.4 - 2026-11-12
+
+Tag authorized by Scott Parrish on 2026-11-12. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-delivery-excellence-prep`: the feature card stale check no longer flags an In Progress feature card whose linked Jira item is In Progress and was updated in the last 14 days. A leader reviewing the first run pointed out that those feature cards were flagged only because the feature card itself had not been edited. Feature cards whose linked Jira item has also gone quiet are still flagged.
+- Tested: the feature card step against live Appian Home and Jira data (stale flags fell from 19 to 15 on the 2026-11-12 data, with no new flags), validate --strict (the same 7 schema-cache errors as main, none new), eval compile --check, and the release-sensitive tests.
+
 ## v1.22.3 - 2026-11-12
 
 Tag authorized by Scott Parrish on 2026-11-12. Publication is recorded by the GitLab
