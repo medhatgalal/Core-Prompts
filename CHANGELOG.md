@@ -1,7 +1,14 @@
 ## Unreleased
 
-- Refreshed the standalone intent-router catalog from canonical descriptors and added a drift check. It now includes Crew, Change Impact, Daily Update and the three GTD skills.
+## v1.22.3 - 2026-11-12
+
+Tag authorized by Scott Parrish on 2026-11-12. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-delivery-excellence-prep`: new skill. Weekly prep for a Delivery Checkpoint meeting: builds the dated tab in the Delivery Excellence doc (and creates the doc on first run), runs a read-only audit of goals, Jira epics, doc comments and feature cards, and writes draft comments for the leader to review. It posts nothing. Everything personal or org-specific lives in one local settings file, backed up to the person's own Drive; the repo ships only a placeholder example. Standing epics are recognized from the Jira Work Category field, flagged epics are re-checked before drafts are written, and feature cards are checked by a script, not by hand.
+- Refreshed the standalone intent-router catalog from canonical descriptors and added a drift check. It now includes Crew, Change Impact, Daily Update, the three GTD skills and Delivery Excellence Prep.
 - Clarified Crew’s attended and unattended preflight, elapsed qualification time, and how a read-only monitor returns evidence for the designer to record.
+- Tested: validate --strict (the same 7 schema-cache errors as main, none new), eval compile --check, and the CI test sequence; 11 installation cache tests fail in a local sandbox and also fail on untouched main. A full unattended scheduled run has not yet been observed.
 
 ## v1.22.2 - 2026-11-11
 
