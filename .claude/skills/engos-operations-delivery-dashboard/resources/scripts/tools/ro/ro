@@ -1,0 +1,149 @@
+#!/usr/bin/env python3
+"""GET-only wrapper for `glab api` and `gh api` (AC39).
+
+Usage:  tools/ro/ro glab api [OPTIONS] <path>
+        tools/ro/ro gh   api [OPTIONS] <path>
+
+Allowed options (allowlist; anything else is refused, exit 3):
+  -i/--include   print status line and headers
+  -q/--jq EXPR   filter
+  --paginate     follow pages (status and rate headers then not logged)
+  --silent       no body
+  -X/--method GET   only the value GET is accepted
+  --hostname H   glab: only the host in data/config.json (gitlab.host); gh: only github.com
+Refused: -f/-F/--field/--raw-field/--input/-H/--header/--cache/--verbose and every method but GET;
+'..' is allowed only in the query string of gh /search/ paths (date ranges)
+(they imply or allow a write), `graphql` paths, absolute URLs, `..` in the path.
+GitHub search (GET /search/...) is allowed. Every call is logged to data/ro-calls.log
+(UTC time, tool, method, path, outcome). Exit codes: 3 refused, otherwise the tool's own.
+"""
+import json, os, subprocess, sys, datetime, re
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import maskq
+
+ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), "..", ".."))
+LOG = os.path.join(ROOT, "data", "ro-calls.log")
+CONFIG = os.path.join(ROOT, "data", "config.json")
+
+
+def gitlab_host():
+    """GitLab host comes from data/config.json (gitlab.host); no host is hard-coded here (AC56)."""
+    try:
+        return json.load(open(CONFIG))["gitlab"]["host"]
+    except (OSError, ValueError, KeyError):
+        print("ro: data/config.json has no gitlab.host", file=sys.stderr)
+        sys.exit(2)
+
+FLAG_NOARG = {"-i", "--include", "--paginate", "--silent"}
+FLAG_ARG = {"-q", "--jq", "-X", "--method", "--hostname"}
+
+
+def now():
+    return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def log(tool, method, path, outcome):
+    """Log method, path, status; secret-looking query values are masked (AC38). No header is ever logged."""
+    os.makedirs(os.path.dirname(LOG), exist_ok=True)
+    with open(LOG, "a") as f:
+        f.write(f"{now()}\t{tool}\t{method}\t{maskq.mask_path(str(path))}\t{maskq.mask_path(str(outcome))}\n")
+
+
+def refuse(tool, method, path, why):
+    log(tool, method, path, f"REFUSED: {why}")
+    print(f"ro: refused ({why}). Only GET is allowed.", file=sys.stderr)
+    sys.exit(3)
+
+
+def main(argv):
+    if len(argv) < 2 or argv[0] not in ("glab", "gh") or argv[1] != "api":
+        refuse(argv[0] if argv else "?", "?", " ".join(argv[1:])[:200], "usage: ro glab|gh api ...")
+    tool, rest = argv[0], argv[2:]
+    method, path, opts, hostname = "GET", None, [], None
+    bad = []
+    paginate = include = False
+    i = 0
+    while i < len(rest):
+        a = rest[i]
+        key = a.split("=", 1)[0] if a.startswith("--") else a
+        if a.startswith("-"):
+            if key in FLAG_NOARG and "=" not in a:
+                paginate |= key == "--paginate"
+                include |= key in ("-i", "--include")
+                if key != "-i" and key != "--include":
+                    opts.append(a)
+            elif key in FLAG_ARG:
+                if "=" in a and a.startswith("--"):
+                    val = a.split("=", 1)[1]
+                else:
+                    i += 1
+                    if i >= len(rest):
+                        bad.append(f"missing value for {a}")
+                        break
+                    val = rest[i]
+                if key in ("-X", "--method"):
+                    method = val.upper()
+                    if method != "GET":
+                        bad.append(f"method {method}")
+                elif key == "--hostname":
+                    hostname = val
+                    if val != (gitlab_host() if tool == "glab" else "github.com"):
+                        bad.append(f"hostname {val}")
+                elif key in ("-q", "--jq") and tool == "glab":
+                    bad.append("glab has no --jq")
+                else:
+                    opts += [key, val]
+            else:
+                bad.append(f"flag {a}")
+        else:
+            if path is not None:
+                bad.append("more than one path")
+            path = a
+        i += 1
+    if bad:
+        refuse(tool, method, str(path), "; ".join(bad))
+    if not path:
+        refuse(tool, method, "", "no path")
+    p = path.split("?", 1)[0].strip("/").lower()
+    pathpart, _, query = path.partition("?")
+    if "://" in path or ".." in pathpart or "%2e" in pathpart.lower():
+        refuse(tool, method, path, "absolute URL or '..' in path")
+    if ".." in query and not (tool == "gh" and p.startswith("search/")):
+        refuse(tool, method, path, "'..' in query allowed only for gh /search/")
+    if p == "graphql" or p.startswith("graphql/") or "graphql" in p.split("/")[0]:
+        refuse(tool, method, path, "graphql")
+    if tool == "glab" and not hostname:
+        hostname = gitlab_host()
+    cmd = [tool, "api"] + opts + (["--hostname", hostname] if hostname else [])
+    capture = not paginate
+    if capture:
+        cmd.append("-i")
+    cmd.append(path)
+    env = dict(os.environ)
+    r = subprocess.run(cmd, capture_output=True, env=env)
+    out, err = r.stdout, r.stderr
+    status, rate = "-", "-"
+    if capture:
+        sep = out.find(b"\r\n\r\n")
+        sepl = 4
+        if sep < 0:
+            sep, sepl = out.find(b"\n\n"), 2
+        head = out[:sep].decode("latin1") if sep >= 0 else ""
+        m = re.match(r"HTTP/\S+\s+(\d+)", head)
+        if m:
+            status = m.group(1)
+        m = re.search(r"(?im)^ratelimit-remaining:\s*(\d+)|^x-ratelimit-remaining:\s*(\d+)", head)
+        if m:
+            rate = m.group(1) or m.group(2)
+        if not include and sep >= 0:
+            out = out[sep + sepl:]
+    log(tool, "GET", path, f"status={status} rate_remaining={rate} exit={r.returncode}")
+    sys.stdout.buffer.write(out)
+    sys.stderr.buffer.write(b"\n".join(l for l in err.split(b"\n")
+                                       if b"config file" not in l.lower() and b"Using:" not in l
+                                       and b"Ignoring:" not in l and b"consolidating" not in l))
+    sys.exit(r.returncode)
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

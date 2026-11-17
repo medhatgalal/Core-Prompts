@@ -1,0 +1,40 @@
+{
+  "_note": "Sample only. Fictional names and placeholder ids. Copy to data/config.json and fill in your own values; never commit real ids.",
+  "sheet_id": "YOUR_SHEET_ID",
+  "scratch_sheet_id": "YOUR_SCRATCH_SHEET_ID",
+  "drive_account": "owner@example.com",
+  "groups": ["ALPHA GROUP", "BETA GROUP"],
+  "labels": {"other": "Other", "unknown": "Unknown", "ownerless": "Ownerless", "unmapped": "Unmapped", "no_team": "No team"},
+  "jira": {
+    "code_types": ["Story", "Task", "Bug"],
+    "container_types": ["Epic", "Initiative"],
+    "series_resolutions": {"wont_do": "Won't Do", "duplicate": "Duplicate"},
+    "in_progress_category": "indeterminate",
+    "done_category": "done",
+    "group_field_column": "group_field",
+    "fields": {"group": "customfield_GROUP", "mr_link": "customfield_MRLINK", "team": "customfield_TEAM", "sbu": "customfield_SBU", "work_category": "customfield_WORKCAT"},
+    "group_aliases": {"OLD GROUP NAME": "CURRENT GROUP NAME"},
+    "sbu_label": "YOUR SBU NAME",
+    "sbu_only_groups": [],
+    "known_rulings": [],
+    "ui_filter_name": "YOUR FILTER NAME",
+    "scope_group_values": ["ALPHA GROUP", "BETA GROUP"],
+    "team_aliases": {"Jira Team Name": "Roster Team Name"},
+    "auth": {"email_env": "JIRA_EMAIL", "token_env": "JIRA_TOKEN"},
+    "host": "YOUR_JIRA_HOST",
+    "filters": {"open": 0, "dashboard": 0}
+  },
+  "gitlab": {"host": "YOUR_GITLAB_HOST"},
+  "sheet_url": "https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/edit",
+  "selftest_ids": {"real_sheet_id": "YOUR_SHEET_ID", "copy8_sheet_id": "YOUR_COPY_SHEET_ID", "stuck_view_real": 0, "stuck_view_v141": 0},
+  "cdp_port": 9222,
+  "org_events_user": [["group", "OLD GROUP NAME", "CURRENT GROUP NAME", "2026-01-01", "restate", "user decision note"]],
+  "window_days": 365,
+  "sheet_name": "Engineering Dashboard",
+  "name_prefix": "x_",
+  "paths": {
+    "roster": "data/roster.csv", "roster_history": "data/roster_history.csv", "identity": "data/identity.csv",
+    "jira_dir": "data/extracts/jira", "gitlab_dir": "data/extracts/gitlab", "github_dir": "data/extracts/github",
+    "thresholds": "data/thresholds.csv", "derived": "data/derived"
+  }
+}

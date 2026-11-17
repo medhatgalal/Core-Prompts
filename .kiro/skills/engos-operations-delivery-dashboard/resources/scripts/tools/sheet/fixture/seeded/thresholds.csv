@@ -1,0 +1,11 @@
+name,value,unit,description
+t_jira_stale_days,90,days,Jira open item with no update for this many days is stale
+t_ip_stale_days,14,days,In-progress item with no update (or no linked code activity) for this many days is stale
+t_throughput_drop,0.6,fraction,Alert when the last complete week is below this fraction of the average of the 4 weeks before it
+t_wip_per_person,3,items,In-progress items per person above this count is over the limit
+t_first_review_days,2,days,First review should arrive within this many days
+t_mr_size_lines,800,lines,Changed lines (excluding lockfiles and generated files) above this are too large
+t_open_stale_days,14,days,Open change with no activity for this many days is stale; a draft older than this is stale
+t_freshness_days,7,days,As-of timestamp older than this is flagged stale
+t_min_n,10,count,A rate for a person is shown only when its denominator is at least this
+t_c7_include_drafts,1,0/1,1 counts draft changes in C7 (the criteria default: C7 if open: not stale); 0 leaves drafts to C8 only

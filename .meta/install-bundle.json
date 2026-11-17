@@ -880,6 +880,578 @@
       "mode": 493,
       "sha256": "37601c6a36c326b27b0c6506b9176be6df2803472603fd0ce430b3a31e58a47b"
     },
+    ".claude/skills/engos-operations-delivery-dashboard/SKILL.md": {
+      "mode": 420,
+      "sha256": "1d9f4f1fcf2fabe1c8be6998569228cfcce0db441c6da8e3347f50a5cd612608"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/capability.json": {
+      "mode": 420,
+      "sha256": "7b79b267300774fbb3fd6fb08ea19cfd04725611badad09503b486e6d82b3ee1"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/data/config.example.json": {
+      "mode": 420,
+      "sha256": "73e72874cb741c3f1f7af3c2ab3ba6c3227eaf71625fd37a5267e639587b1187"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/keystate.py": {
+      "mode": 420,
+      "sha256": "694725d8645bc8de3fbcddeeb135d38e995a786fc3737b4d13ba996cc9017aa4"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/projection.py": {
+      "mode": 420,
+      "sha256": "78a6fb3503fc6aebc0645ba0db2c15971e440c056da77bd0ae823b24c89f0a03"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/pull.py": {
+      "mode": 420,
+      "sha256": "503eb3d5f2666bb861f6110dd25d858e4f2f248fea12b9adb7a706037332e6d8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/refresh.sh": {
+      "mode": 493,
+      "sha256": "bcc25c5a9a35d7864c5c71df34f96af2e1c1c3f05d6be451b958b257933b796f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/build.py": {
+      "mode": 420,
+      "sha256": "43a495dfb0f68e8b3970b37c186133f5df39304ce371338c4df045905ddf065e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/commitpass.py": {
+      "mode": 420,
+      "sha256": "5776f61838882d9c05cc2d355100105805bd5fc6d5bb8c32c0b765d74488bbe6"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/glapi.py": {
+      "mode": 420,
+      "sha256": "7b60ef13a2fb53eed980782197e069554374b57d4737639b11e33ebce43835f3"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/incremental.py": {
+      "mode": 420,
+      "sha256": "a704d737fdee6c708b213729b377e7295decd2eed2909d6b89bb08c0155c2184"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/pull.py": {
+      "mode": 420,
+      "sha256": "5305cfaa53b02f9e351dc011bab74e2acc1650097f50fa600fc84fd7899ced51"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/recount.py": {
+      "mode": 420,
+      "sha256": "74462f5971bbd867866b2668be3112959804a2559d713e7bcc5b080a658a3f5d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/refresh.sh": {
+      "mode": 493,
+      "sha256": "7437758a08a85bbdb4fb0e84cc07a609f1256d355d23e89771dd3fd5e0f61bfb"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/insights/insights.py": {
+      "mode": 420,
+      "sha256": "32e73fc50bd2a8d5ff6b02d7c8907a220311d872c485aee9110f651d54e94baf"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/cfg.py": {
+      "mode": 420,
+      "sha256": "f07c5a9733be72b5dc0ef467dc12f600f9d6fab36637d8ad4bdd8ef6afd74dd3"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/extract.py": {
+      "mode": 420,
+      "sha256": "52b00f1ed0c654a9c8c25889c194bd573350d50441a26f32a0de0abf9caaaf3b"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incidents.py": {
+      "mode": 420,
+      "sha256": "1f3d4a2ef99987446e716cd52b2daaa8743c81c7107b242a9bebe5402af34ab8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incremental.py": {
+      "mode": 420,
+      "sha256": "7593983ab9d67797ffcbab5dde44a4441259883922262fbc0432ce520cf59cd0"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/jget.py": {
+      "mode": 420,
+      "sha256": "2a4eac495cc18f320af31a3706cf317843c258e6655b52d6254026e8c54984e8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/refresh.sh": {
+      "mode": 420,
+      "sha256": "3995efdd61d5e2bb9fda4bba4572122aa703409a5f5b190b594e9de55dbb6b1c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/work_category.py": {
+      "mode": 420,
+      "sha256": "cc0c80809a36626852fcfeeffcf21c1cbf1d7167e2dd4afecbea80e8e4c03fc9"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/maskq.py": {
+      "mode": 420,
+      "sha256": "3943c73acf15a8ac2ef4f47cefbd9ecbe63305c3a4f2dfb816673ef849240bd8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/ro": {
+      "mode": 493,
+      "sha256": "8a4f0961a8ba3c825b39b94b711ff4df87a93bf6b5d5d4d9558df5bff3b0c0d8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/common.py": {
+      "mode": 420,
+      "sha256": "aaf0ff2d7c456bc9c2d6d0d507829a541ae1b0232f763852f0dfd5c99a7fd1a8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_dump.py": {
+      "mode": 420,
+      "sha256": "95065fd3f7f036cc619b1cb9fbfdfeda95fde22ce4131d04724b8a4d00e1d85b"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_parse.py": {
+      "mode": 420,
+      "sha256": "014f122682c6cc78c512c8b50329c10f2231bc370241e66aa7fb123adb4378f1"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/derive.py": {
+      "mode": 420,
+      "sha256": "49dd9358c2c2bdd1c2472199ff474cf1a3361ae3d54b4dfd1a93efaf31e8bb6c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/identity.py": {
+      "mode": 420,
+      "sha256": "eb2adf34af8089f348db151520f030ad782a0f48cdcf124df45e71d406cd7e5e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/roster": {
+      "mode": 493,
+      "sha256": "854bea84b21e36997f9107a09b2ee5482b8c381c1e78ce1cf8732b0a755f406b"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/build.py": {
+      "mode": 420,
+      "sha256": "6afcb5ccaa9bada4d68c0c250bcb9d3c1b86ace92674468ac0e854c8462c9dbf"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/charts.py": {
+      "mode": 420,
+      "sha256": "3fe3bdeafadf68914fa186efb509d0c4e462a686b6c13d8d12f486768c22bd27"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/daily_ranges.py": {
+      "mode": 420,
+      "sha256": "98c02abefbda00392f1c997050d9c36ae08c370f6a05f56f8071668059d9e98b"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/dash_text.py": {
+      "mode": 420,
+      "sha256": "71f0be0f9ffc887f15e1596f1c782667bd33a87d2057f8f655c9edfc586f860c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/derive.py": {
+      "mode": 420,
+      "sha256": "92189e02372360e50b04c4c30380f77ecfb23daf522660c67b751e68760b6704"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/config.json": {
+      "mode": 420,
+      "sha256": "fac84c853a5234f74dafa9fbb1a15972c600fee8b099eeac02f2cc7da9e04e07"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "7c8ea4c42173725c9ab2e76526faf153a60e1e46817f9403454e0b27cc53a469"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "81b1db2e16d0a5205920555deb255475c9c2665f3c1e1ea4bc843db6f857dcc8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "49f5763156a94df266e8ea067aabcf300c60238892679bd4ef42fb7645af3c0d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "bbc2220faa7593d99e94c1c03fa2cfac30e7baac51e0c6212d9d41bec8bd7442"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/config.json": {
+      "mode": 420,
+      "sha256": "6795ca9343d83c6653c7ce1083a90ba8f20600b9b0da0f22fe41c9c4e1178063"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "13e2e286988349ad518d3623c7966d2865e3e9bdeedebe8d7591991ce234da4b"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "02207ba0027b413c153b6af955adbf9292a1ce3d8350781e7b716413f28197bc"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "6e43ce3ac076e51166bbf675908a65a9e02f11b35b4c7b90ee12e9600f674abc"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "faa329f91761e9d46474e7dc6d6ac085399321496fab1c4c5eae85e9097fa83c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "23be9973b17993934af63b1375bcc31018808e2cf5343a250f92f50c439b8122"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/config.json": {
+      "mode": 420,
+      "sha256": "f3241de78f725033c91c69c3035b6a9c32b026b251c9d880224a305f9003b75f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "da15ffd0a512c483aac3025713912176e8cf226ef136ef2f7ad9859d8c42cbb4"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "1bde43fa9c2a08e784f9464a42d522010f334a40c4d037524d21a8eade860064"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "734a39d7087c4abcb740ed0f28b1ac37da3b9305c0bc1c64300745e62565a181"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "7b2839fa522d0d213ef691c1b96734963d1ea4de3aaacfed92466c94a98940d6"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "2b6bc02f330d573920d32e41176756c88f7ee9b1026fd1088708295936c30821"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/config.json": {
+      "mode": 420,
+      "sha256": "f9615f0f4cb61e16cc082fa98d58df0a1762db9e7af1fd9ae81283555a26cc74"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "e59c511ad50886da08ff563225a6233fab1b52c087633fd430864a8adacfbed9"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "73da27afc59d406f5afd2b71ce9111cae603ac708cccb76b2ad2039bbee34b1c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "28fc295dbcaccc603644aeeca997e55c3c01df8e631c99f12dde08a18575e8f5"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "80560b1fabf993d6bbce773012cebe04cb89c684056a7d625198e46cca886319"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "040d936a4b6ef8b1773d500a29140e0a525d79648bda90291f7317d3391da443"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixtures.py": {
+      "mode": 420,
+      "sha256": "0541ae11b8c2c3b8453c53f37e2a0f7e67cbdf1e5f83cdeda931d792de1a7c34"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/hashes.py": {
+      "mode": 493,
+      "sha256": "9b1bf22cc57bbaf4f5ecaef449e760c08373568b246f6bed9a3f3f70a2be38d1"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/identity_tab.py": {
+      "mode": 420,
+      "sha256": "2c05da6d53582743a5ff93d6a3686875a1d086592157e4fd5c0de4e68b63225f"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/itemfilters.py": {
+      "mode": 420,
+      "sha256": "06338e9fe150c8e19d4c35f48d7cb28e63c9c9afa0f264d03073d70a9b117a40"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/items_build.py": {
+      "mode": 420,
+      "sha256": "d35b3e74e68d1f634c6b336a2ecf822ff8452791c5acd41c7a4bcb0270ee1d77"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/jira_guard.py": {
+      "mode": 420,
+      "sha256": "9ad67b41b7959f798381bb98a5b75d4114fd3266b34448e3ded948be653bbfb4"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/ladder.py": {
+      "mode": 420,
+      "sha256": "bec4961662f6bb4d3a7fe07c2a72e8242290801d31a017035f0287c65742c47d"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/links.py": {
+      "mode": 420,
+      "sha256": "d107bb79ce0d86478082f50bdeae2e9ee16b8608cacd6ea36d0a6609d7476228"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/metrics.py": {
+      "mode": 420,
+      "sha256": "937df07eee446e5ceda93dbd70dcc5df6718dcdf0835798158a471e109f03189"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/panels.py": {
+      "mode": 420,
+      "sha256": "61a1761334f5ece8e05bcdec71bc03514e55c969effe7f0c767407141325688c"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/refresh.py": {
+      "mode": 493,
+      "sha256": "516d4dada17ab3bc5ca73494c5fb2a36a7d5a2d765cde69c37e2f1386ee8cc6a"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/selfcheck.py": {
+      "mode": 420,
+      "sha256": "6c3f37fbcff38f7532e1b343507dd54c206b22a6d85fe56b0df10a25a6b89030"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/sheetlib.py": {
+      "mode": 420,
+      "sha256": "289f230427929800d10c127386dbe39f55520a55e73152a582b94144916cdc9e"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/subtasks.py": {
+      "mode": 420,
+      "sha256": "422d19b13ea071e31ac40873a8dd83e2ee91cff5b9adcf55cf5c8a1c0eed1291"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tab_order.py": {
+      "mode": 420,
+      "sha256": "1b9cf3089f06853e64f7d8d787feca964fb03b9f6fb4607f9966bba5c6130544"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabs.py": {
+      "mode": 420,
+      "sha256": "f7e791f77324a89ab7f2547b81862264776731373d2fd9213aca4277c0d5142a"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabsize.py": {
+      "mode": 420,
+      "sha256": "39d24bf97f80f3a43716ab03833e462151380dfd54e8ad7684ea4d0e246281c2"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/workcat.py": {
+      "mode": 420,
+      "sha256": "bfd978941a38369561fcc6973ef0092dcf64610952642ea4d8789ed3bdac2efb"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard": {
+      "mode": 493,
+      "sha256": "249a5080d5997b09e1349c07a79c6848b555d612b8d88089ab9a031e353ee579"
+    },
+    ".claude/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard.py": {
+      "mode": 493,
+      "sha256": "87c183ae8f404066e4ae28ac679fc403456085d10c598b6fbbf496a07f00ca7e"
+    },
     ".claude/skills/engos-operations-delivery-excellence-prep/SKILL.md": {
       "mode": 420,
       "sha256": "4b66a398bf90e16d797762da065369cf79da99eb449e66497676667f56f4fec7"
@@ -1306,7 +1878,7 @@
     },
     ".claude/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "010d7689f6dd2d17f10d166c13365aeabd381e7f6b834863df014a91ee3caf4c"
+      "sha256": "475fb1204da917c278d6c12eac6f1f700681ebdda9555f2bfd38c265b3e8d205"
     },
     ".claude/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -1330,7 +1902,7 @@
     },
     ".claude/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "1f8bfc136e7e0ec6564b3903f29f0e32378ac055917398e25b64eaf5e4cf8daf"
+      "sha256": "b43c7ab7b763780d234706d955b67a05999dcdc507a4899abd5d221bd12705ea"
     },
     ".claude/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -2284,6 +2856,578 @@
       "mode": 493,
       "sha256": "37601c6a36c326b27b0c6506b9176be6df2803472603fd0ce430b3a31e58a47b"
     },
+    ".codex/skills/engos-operations-delivery-dashboard/SKILL.md": {
+      "mode": 420,
+      "sha256": "1d9f4f1fcf2fabe1c8be6998569228cfcce0db441c6da8e3347f50a5cd612608"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/capability.json": {
+      "mode": 420,
+      "sha256": "7b79b267300774fbb3fd6fb08ea19cfd04725611badad09503b486e6d82b3ee1"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/data/config.example.json": {
+      "mode": 420,
+      "sha256": "73e72874cb741c3f1f7af3c2ab3ba6c3227eaf71625fd37a5267e639587b1187"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/keystate.py": {
+      "mode": 420,
+      "sha256": "694725d8645bc8de3fbcddeeb135d38e995a786fc3737b4d13ba996cc9017aa4"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/projection.py": {
+      "mode": 420,
+      "sha256": "78a6fb3503fc6aebc0645ba0db2c15971e440c056da77bd0ae823b24c89f0a03"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/pull.py": {
+      "mode": 420,
+      "sha256": "503eb3d5f2666bb861f6110dd25d858e4f2f248fea12b9adb7a706037332e6d8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/refresh.sh": {
+      "mode": 493,
+      "sha256": "bcc25c5a9a35d7864c5c71df34f96af2e1c1c3f05d6be451b958b257933b796f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/build.py": {
+      "mode": 420,
+      "sha256": "43a495dfb0f68e8b3970b37c186133f5df39304ce371338c4df045905ddf065e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/commitpass.py": {
+      "mode": 420,
+      "sha256": "5776f61838882d9c05cc2d355100105805bd5fc6d5bb8c32c0b765d74488bbe6"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/glapi.py": {
+      "mode": 420,
+      "sha256": "7b60ef13a2fb53eed980782197e069554374b57d4737639b11e33ebce43835f3"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/incremental.py": {
+      "mode": 420,
+      "sha256": "a704d737fdee6c708b213729b377e7295decd2eed2909d6b89bb08c0155c2184"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/pull.py": {
+      "mode": 420,
+      "sha256": "5305cfaa53b02f9e351dc011bab74e2acc1650097f50fa600fc84fd7899ced51"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/recount.py": {
+      "mode": 420,
+      "sha256": "74462f5971bbd867866b2668be3112959804a2559d713e7bcc5b080a658a3f5d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/refresh.sh": {
+      "mode": 493,
+      "sha256": "7437758a08a85bbdb4fb0e84cc07a609f1256d355d23e89771dd3fd5e0f61bfb"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/insights/insights.py": {
+      "mode": 420,
+      "sha256": "32e73fc50bd2a8d5ff6b02d7c8907a220311d872c485aee9110f651d54e94baf"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/cfg.py": {
+      "mode": 420,
+      "sha256": "f07c5a9733be72b5dc0ef467dc12f600f9d6fab36637d8ad4bdd8ef6afd74dd3"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/extract.py": {
+      "mode": 420,
+      "sha256": "52b00f1ed0c654a9c8c25889c194bd573350d50441a26f32a0de0abf9caaaf3b"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incidents.py": {
+      "mode": 420,
+      "sha256": "1f3d4a2ef99987446e716cd52b2daaa8743c81c7107b242a9bebe5402af34ab8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incremental.py": {
+      "mode": 420,
+      "sha256": "7593983ab9d67797ffcbab5dde44a4441259883922262fbc0432ce520cf59cd0"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/jget.py": {
+      "mode": 420,
+      "sha256": "2a4eac495cc18f320af31a3706cf317843c258e6655b52d6254026e8c54984e8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/refresh.sh": {
+      "mode": 420,
+      "sha256": "3995efdd61d5e2bb9fda4bba4572122aa703409a5f5b190b594e9de55dbb6b1c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/work_category.py": {
+      "mode": 420,
+      "sha256": "cc0c80809a36626852fcfeeffcf21c1cbf1d7167e2dd4afecbea80e8e4c03fc9"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/maskq.py": {
+      "mode": 420,
+      "sha256": "3943c73acf15a8ac2ef4f47cefbd9ecbe63305c3a4f2dfb816673ef849240bd8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/ro": {
+      "mode": 493,
+      "sha256": "8a4f0961a8ba3c825b39b94b711ff4df87a93bf6b5d5d4d9558df5bff3b0c0d8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/common.py": {
+      "mode": 420,
+      "sha256": "aaf0ff2d7c456bc9c2d6d0d507829a541ae1b0232f763852f0dfd5c99a7fd1a8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_dump.py": {
+      "mode": 420,
+      "sha256": "95065fd3f7f036cc619b1cb9fbfdfeda95fde22ce4131d04724b8a4d00e1d85b"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_parse.py": {
+      "mode": 420,
+      "sha256": "014f122682c6cc78c512c8b50329c10f2231bc370241e66aa7fb123adb4378f1"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/derive.py": {
+      "mode": 420,
+      "sha256": "49dd9358c2c2bdd1c2472199ff474cf1a3361ae3d54b4dfd1a93efaf31e8bb6c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/identity.py": {
+      "mode": 420,
+      "sha256": "eb2adf34af8089f348db151520f030ad782a0f48cdcf124df45e71d406cd7e5e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/roster": {
+      "mode": 493,
+      "sha256": "854bea84b21e36997f9107a09b2ee5482b8c381c1e78ce1cf8732b0a755f406b"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/build.py": {
+      "mode": 420,
+      "sha256": "6afcb5ccaa9bada4d68c0c250bcb9d3c1b86ace92674468ac0e854c8462c9dbf"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/charts.py": {
+      "mode": 420,
+      "sha256": "3fe3bdeafadf68914fa186efb509d0c4e462a686b6c13d8d12f486768c22bd27"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/daily_ranges.py": {
+      "mode": 420,
+      "sha256": "98c02abefbda00392f1c997050d9c36ae08c370f6a05f56f8071668059d9e98b"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/dash_text.py": {
+      "mode": 420,
+      "sha256": "71f0be0f9ffc887f15e1596f1c782667bd33a87d2057f8f655c9edfc586f860c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/derive.py": {
+      "mode": 420,
+      "sha256": "92189e02372360e50b04c4c30380f77ecfb23daf522660c67b751e68760b6704"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/config.json": {
+      "mode": 420,
+      "sha256": "fac84c853a5234f74dafa9fbb1a15972c600fee8b099eeac02f2cc7da9e04e07"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "7c8ea4c42173725c9ab2e76526faf153a60e1e46817f9403454e0b27cc53a469"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "81b1db2e16d0a5205920555deb255475c9c2665f3c1e1ea4bc843db6f857dcc8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "49f5763156a94df266e8ea067aabcf300c60238892679bd4ef42fb7645af3c0d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "bbc2220faa7593d99e94c1c03fa2cfac30e7baac51e0c6212d9d41bec8bd7442"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/config.json": {
+      "mode": 420,
+      "sha256": "6795ca9343d83c6653c7ce1083a90ba8f20600b9b0da0f22fe41c9c4e1178063"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "13e2e286988349ad518d3623c7966d2865e3e9bdeedebe8d7591991ce234da4b"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "02207ba0027b413c153b6af955adbf9292a1ce3d8350781e7b716413f28197bc"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "6e43ce3ac076e51166bbf675908a65a9e02f11b35b4c7b90ee12e9600f674abc"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "faa329f91761e9d46474e7dc6d6ac085399321496fab1c4c5eae85e9097fa83c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "23be9973b17993934af63b1375bcc31018808e2cf5343a250f92f50c439b8122"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/config.json": {
+      "mode": 420,
+      "sha256": "f3241de78f725033c91c69c3035b6a9c32b026b251c9d880224a305f9003b75f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "da15ffd0a512c483aac3025713912176e8cf226ef136ef2f7ad9859d8c42cbb4"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "1bde43fa9c2a08e784f9464a42d522010f334a40c4d037524d21a8eade860064"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "734a39d7087c4abcb740ed0f28b1ac37da3b9305c0bc1c64300745e62565a181"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "7b2839fa522d0d213ef691c1b96734963d1ea4de3aaacfed92466c94a98940d6"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "2b6bc02f330d573920d32e41176756c88f7ee9b1026fd1088708295936c30821"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/config.json": {
+      "mode": 420,
+      "sha256": "f9615f0f4cb61e16cc082fa98d58df0a1762db9e7af1fd9ae81283555a26cc74"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "e59c511ad50886da08ff563225a6233fab1b52c087633fd430864a8adacfbed9"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "73da27afc59d406f5afd2b71ce9111cae603ac708cccb76b2ad2039bbee34b1c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "28fc295dbcaccc603644aeeca997e55c3c01df8e631c99f12dde08a18575e8f5"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "80560b1fabf993d6bbce773012cebe04cb89c684056a7d625198e46cca886319"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "040d936a4b6ef8b1773d500a29140e0a525d79648bda90291f7317d3391da443"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixtures.py": {
+      "mode": 420,
+      "sha256": "0541ae11b8c2c3b8453c53f37e2a0f7e67cbdf1e5f83cdeda931d792de1a7c34"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/hashes.py": {
+      "mode": 493,
+      "sha256": "9b1bf22cc57bbaf4f5ecaef449e760c08373568b246f6bed9a3f3f70a2be38d1"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/identity_tab.py": {
+      "mode": 420,
+      "sha256": "2c05da6d53582743a5ff93d6a3686875a1d086592157e4fd5c0de4e68b63225f"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/itemfilters.py": {
+      "mode": 420,
+      "sha256": "06338e9fe150c8e19d4c35f48d7cb28e63c9c9afa0f264d03073d70a9b117a40"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/items_build.py": {
+      "mode": 420,
+      "sha256": "d35b3e74e68d1f634c6b336a2ecf822ff8452791c5acd41c7a4bcb0270ee1d77"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/jira_guard.py": {
+      "mode": 420,
+      "sha256": "9ad67b41b7959f798381bb98a5b75d4114fd3266b34448e3ded948be653bbfb4"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/ladder.py": {
+      "mode": 420,
+      "sha256": "bec4961662f6bb4d3a7fe07c2a72e8242290801d31a017035f0287c65742c47d"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/links.py": {
+      "mode": 420,
+      "sha256": "d107bb79ce0d86478082f50bdeae2e9ee16b8608cacd6ea36d0a6609d7476228"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/metrics.py": {
+      "mode": 420,
+      "sha256": "937df07eee446e5ceda93dbd70dcc5df6718dcdf0835798158a471e109f03189"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/panels.py": {
+      "mode": 420,
+      "sha256": "61a1761334f5ece8e05bcdec71bc03514e55c969effe7f0c767407141325688c"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/refresh.py": {
+      "mode": 493,
+      "sha256": "516d4dada17ab3bc5ca73494c5fb2a36a7d5a2d765cde69c37e2f1386ee8cc6a"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/selfcheck.py": {
+      "mode": 420,
+      "sha256": "6c3f37fbcff38f7532e1b343507dd54c206b22a6d85fe56b0df10a25a6b89030"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/sheetlib.py": {
+      "mode": 420,
+      "sha256": "289f230427929800d10c127386dbe39f55520a55e73152a582b94144916cdc9e"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/subtasks.py": {
+      "mode": 420,
+      "sha256": "422d19b13ea071e31ac40873a8dd83e2ee91cff5b9adcf55cf5c8a1c0eed1291"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tab_order.py": {
+      "mode": 420,
+      "sha256": "1b9cf3089f06853e64f7d8d787feca964fb03b9f6fb4607f9966bba5c6130544"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabs.py": {
+      "mode": 420,
+      "sha256": "f7e791f77324a89ab7f2547b81862264776731373d2fd9213aca4277c0d5142a"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabsize.py": {
+      "mode": 420,
+      "sha256": "39d24bf97f80f3a43716ab03833e462151380dfd54e8ad7684ea4d0e246281c2"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/workcat.py": {
+      "mode": 420,
+      "sha256": "bfd978941a38369561fcc6973ef0092dcf64610952642ea4d8789ed3bdac2efb"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard": {
+      "mode": 493,
+      "sha256": "249a5080d5997b09e1349c07a79c6848b555d612b8d88089ab9a031e353ee579"
+    },
+    ".codex/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard.py": {
+      "mode": 493,
+      "sha256": "87c183ae8f404066e4ae28ac679fc403456085d10c598b6fbbf496a07f00ca7e"
+    },
     ".codex/skills/engos-operations-delivery-excellence-prep/SKILL.md": {
       "mode": 420,
       "sha256": "4b66a398bf90e16d797762da065369cf79da99eb449e66497676667f56f4fec7"
@@ -2710,7 +3854,7 @@
     },
     ".codex/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "010d7689f6dd2d17f10d166c13365aeabd381e7f6b834863df014a91ee3caf4c"
+      "sha256": "475fb1204da917c278d6c12eac6f1f700681ebdda9555f2bfd38c265b3e8d205"
     },
     ".codex/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -2734,7 +3878,7 @@
     },
     ".codex/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "1f8bfc136e7e0ec6564b3903f29f0e32378ac055917398e25b64eaf5e4cf8daf"
+      "sha256": "b43c7ab7b763780d234706d955b67a05999dcdc507a4899abd5d221bd12705ea"
     },
     ".codex/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -3688,6 +4832,578 @@
       "mode": 493,
       "sha256": "37601c6a36c326b27b0c6506b9176be6df2803472603fd0ce430b3a31e58a47b"
     },
+    ".gemini/skills/engos-operations-delivery-dashboard/SKILL.md": {
+      "mode": 420,
+      "sha256": "1d9f4f1fcf2fabe1c8be6998569228cfcce0db441c6da8e3347f50a5cd612608"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/capability.json": {
+      "mode": 420,
+      "sha256": "7b79b267300774fbb3fd6fb08ea19cfd04725611badad09503b486e6d82b3ee1"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/data/config.example.json": {
+      "mode": 420,
+      "sha256": "73e72874cb741c3f1f7af3c2ab3ba6c3227eaf71625fd37a5267e639587b1187"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/keystate.py": {
+      "mode": 420,
+      "sha256": "694725d8645bc8de3fbcddeeb135d38e995a786fc3737b4d13ba996cc9017aa4"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/projection.py": {
+      "mode": 420,
+      "sha256": "78a6fb3503fc6aebc0645ba0db2c15971e440c056da77bd0ae823b24c89f0a03"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/pull.py": {
+      "mode": 420,
+      "sha256": "503eb3d5f2666bb861f6110dd25d858e4f2f248fea12b9adb7a706037332e6d8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/refresh.sh": {
+      "mode": 493,
+      "sha256": "bcc25c5a9a35d7864c5c71df34f96af2e1c1c3f05d6be451b958b257933b796f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/build.py": {
+      "mode": 420,
+      "sha256": "43a495dfb0f68e8b3970b37c186133f5df39304ce371338c4df045905ddf065e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/commitpass.py": {
+      "mode": 420,
+      "sha256": "5776f61838882d9c05cc2d355100105805bd5fc6d5bb8c32c0b765d74488bbe6"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/glapi.py": {
+      "mode": 420,
+      "sha256": "7b60ef13a2fb53eed980782197e069554374b57d4737639b11e33ebce43835f3"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/incremental.py": {
+      "mode": 420,
+      "sha256": "a704d737fdee6c708b213729b377e7295decd2eed2909d6b89bb08c0155c2184"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/pull.py": {
+      "mode": 420,
+      "sha256": "5305cfaa53b02f9e351dc011bab74e2acc1650097f50fa600fc84fd7899ced51"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/recount.py": {
+      "mode": 420,
+      "sha256": "74462f5971bbd867866b2668be3112959804a2559d713e7bcc5b080a658a3f5d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/refresh.sh": {
+      "mode": 493,
+      "sha256": "7437758a08a85bbdb4fb0e84cc07a609f1256d355d23e89771dd3fd5e0f61bfb"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/insights/insights.py": {
+      "mode": 420,
+      "sha256": "32e73fc50bd2a8d5ff6b02d7c8907a220311d872c485aee9110f651d54e94baf"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/cfg.py": {
+      "mode": 420,
+      "sha256": "f07c5a9733be72b5dc0ef467dc12f600f9d6fab36637d8ad4bdd8ef6afd74dd3"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/extract.py": {
+      "mode": 420,
+      "sha256": "52b00f1ed0c654a9c8c25889c194bd573350d50441a26f32a0de0abf9caaaf3b"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incidents.py": {
+      "mode": 420,
+      "sha256": "1f3d4a2ef99987446e716cd52b2daaa8743c81c7107b242a9bebe5402af34ab8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incremental.py": {
+      "mode": 420,
+      "sha256": "7593983ab9d67797ffcbab5dde44a4441259883922262fbc0432ce520cf59cd0"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/jget.py": {
+      "mode": 420,
+      "sha256": "2a4eac495cc18f320af31a3706cf317843c258e6655b52d6254026e8c54984e8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/refresh.sh": {
+      "mode": 420,
+      "sha256": "3995efdd61d5e2bb9fda4bba4572122aa703409a5f5b190b594e9de55dbb6b1c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/work_category.py": {
+      "mode": 420,
+      "sha256": "cc0c80809a36626852fcfeeffcf21c1cbf1d7167e2dd4afecbea80e8e4c03fc9"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/maskq.py": {
+      "mode": 420,
+      "sha256": "3943c73acf15a8ac2ef4f47cefbd9ecbe63305c3a4f2dfb816673ef849240bd8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/ro": {
+      "mode": 493,
+      "sha256": "8a4f0961a8ba3c825b39b94b711ff4df87a93bf6b5d5d4d9558df5bff3b0c0d8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/common.py": {
+      "mode": 420,
+      "sha256": "aaf0ff2d7c456bc9c2d6d0d507829a541ae1b0232f763852f0dfd5c99a7fd1a8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_dump.py": {
+      "mode": 420,
+      "sha256": "95065fd3f7f036cc619b1cb9fbfdfeda95fde22ce4131d04724b8a4d00e1d85b"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_parse.py": {
+      "mode": 420,
+      "sha256": "014f122682c6cc78c512c8b50329c10f2231bc370241e66aa7fb123adb4378f1"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/derive.py": {
+      "mode": 420,
+      "sha256": "49dd9358c2c2bdd1c2472199ff474cf1a3361ae3d54b4dfd1a93efaf31e8bb6c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/identity.py": {
+      "mode": 420,
+      "sha256": "eb2adf34af8089f348db151520f030ad782a0f48cdcf124df45e71d406cd7e5e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/roster": {
+      "mode": 493,
+      "sha256": "854bea84b21e36997f9107a09b2ee5482b8c381c1e78ce1cf8732b0a755f406b"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/build.py": {
+      "mode": 420,
+      "sha256": "6afcb5ccaa9bada4d68c0c250bcb9d3c1b86ace92674468ac0e854c8462c9dbf"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/charts.py": {
+      "mode": 420,
+      "sha256": "3fe3bdeafadf68914fa186efb509d0c4e462a686b6c13d8d12f486768c22bd27"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/daily_ranges.py": {
+      "mode": 420,
+      "sha256": "98c02abefbda00392f1c997050d9c36ae08c370f6a05f56f8071668059d9e98b"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/dash_text.py": {
+      "mode": 420,
+      "sha256": "71f0be0f9ffc887f15e1596f1c782667bd33a87d2057f8f655c9edfc586f860c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/derive.py": {
+      "mode": 420,
+      "sha256": "92189e02372360e50b04c4c30380f77ecfb23daf522660c67b751e68760b6704"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/config.json": {
+      "mode": 420,
+      "sha256": "fac84c853a5234f74dafa9fbb1a15972c600fee8b099eeac02f2cc7da9e04e07"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "7c8ea4c42173725c9ab2e76526faf153a60e1e46817f9403454e0b27cc53a469"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "81b1db2e16d0a5205920555deb255475c9c2665f3c1e1ea4bc843db6f857dcc8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "49f5763156a94df266e8ea067aabcf300c60238892679bd4ef42fb7645af3c0d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "bbc2220faa7593d99e94c1c03fa2cfac30e7baac51e0c6212d9d41bec8bd7442"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/config.json": {
+      "mode": 420,
+      "sha256": "6795ca9343d83c6653c7ce1083a90ba8f20600b9b0da0f22fe41c9c4e1178063"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "13e2e286988349ad518d3623c7966d2865e3e9bdeedebe8d7591991ce234da4b"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "02207ba0027b413c153b6af955adbf9292a1ce3d8350781e7b716413f28197bc"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "6e43ce3ac076e51166bbf675908a65a9e02f11b35b4c7b90ee12e9600f674abc"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "faa329f91761e9d46474e7dc6d6ac085399321496fab1c4c5eae85e9097fa83c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "23be9973b17993934af63b1375bcc31018808e2cf5343a250f92f50c439b8122"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/config.json": {
+      "mode": 420,
+      "sha256": "f3241de78f725033c91c69c3035b6a9c32b026b251c9d880224a305f9003b75f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "da15ffd0a512c483aac3025713912176e8cf226ef136ef2f7ad9859d8c42cbb4"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "1bde43fa9c2a08e784f9464a42d522010f334a40c4d037524d21a8eade860064"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "734a39d7087c4abcb740ed0f28b1ac37da3b9305c0bc1c64300745e62565a181"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "7b2839fa522d0d213ef691c1b96734963d1ea4de3aaacfed92466c94a98940d6"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "2b6bc02f330d573920d32e41176756c88f7ee9b1026fd1088708295936c30821"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/config.json": {
+      "mode": 420,
+      "sha256": "f9615f0f4cb61e16cc082fa98d58df0a1762db9e7af1fd9ae81283555a26cc74"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "e59c511ad50886da08ff563225a6233fab1b52c087633fd430864a8adacfbed9"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "73da27afc59d406f5afd2b71ce9111cae603ac708cccb76b2ad2039bbee34b1c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "28fc295dbcaccc603644aeeca997e55c3c01df8e631c99f12dde08a18575e8f5"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "80560b1fabf993d6bbce773012cebe04cb89c684056a7d625198e46cca886319"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "040d936a4b6ef8b1773d500a29140e0a525d79648bda90291f7317d3391da443"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixtures.py": {
+      "mode": 420,
+      "sha256": "0541ae11b8c2c3b8453c53f37e2a0f7e67cbdf1e5f83cdeda931d792de1a7c34"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/hashes.py": {
+      "mode": 493,
+      "sha256": "9b1bf22cc57bbaf4f5ecaef449e760c08373568b246f6bed9a3f3f70a2be38d1"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/identity_tab.py": {
+      "mode": 420,
+      "sha256": "2c05da6d53582743a5ff93d6a3686875a1d086592157e4fd5c0de4e68b63225f"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/itemfilters.py": {
+      "mode": 420,
+      "sha256": "06338e9fe150c8e19d4c35f48d7cb28e63c9c9afa0f264d03073d70a9b117a40"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/items_build.py": {
+      "mode": 420,
+      "sha256": "d35b3e74e68d1f634c6b336a2ecf822ff8452791c5acd41c7a4bcb0270ee1d77"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/jira_guard.py": {
+      "mode": 420,
+      "sha256": "9ad67b41b7959f798381bb98a5b75d4114fd3266b34448e3ded948be653bbfb4"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/ladder.py": {
+      "mode": 420,
+      "sha256": "bec4961662f6bb4d3a7fe07c2a72e8242290801d31a017035f0287c65742c47d"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/links.py": {
+      "mode": 420,
+      "sha256": "d107bb79ce0d86478082f50bdeae2e9ee16b8608cacd6ea36d0a6609d7476228"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/metrics.py": {
+      "mode": 420,
+      "sha256": "937df07eee446e5ceda93dbd70dcc5df6718dcdf0835798158a471e109f03189"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/panels.py": {
+      "mode": 420,
+      "sha256": "61a1761334f5ece8e05bcdec71bc03514e55c969effe7f0c767407141325688c"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/refresh.py": {
+      "mode": 493,
+      "sha256": "516d4dada17ab3bc5ca73494c5fb2a36a7d5a2d765cde69c37e2f1386ee8cc6a"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/selfcheck.py": {
+      "mode": 420,
+      "sha256": "6c3f37fbcff38f7532e1b343507dd54c206b22a6d85fe56b0df10a25a6b89030"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/sheetlib.py": {
+      "mode": 420,
+      "sha256": "289f230427929800d10c127386dbe39f55520a55e73152a582b94144916cdc9e"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/subtasks.py": {
+      "mode": 420,
+      "sha256": "422d19b13ea071e31ac40873a8dd83e2ee91cff5b9adcf55cf5c8a1c0eed1291"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tab_order.py": {
+      "mode": 420,
+      "sha256": "1b9cf3089f06853e64f7d8d787feca964fb03b9f6fb4607f9966bba5c6130544"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabs.py": {
+      "mode": 420,
+      "sha256": "f7e791f77324a89ab7f2547b81862264776731373d2fd9213aca4277c0d5142a"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabsize.py": {
+      "mode": 420,
+      "sha256": "39d24bf97f80f3a43716ab03833e462151380dfd54e8ad7684ea4d0e246281c2"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/workcat.py": {
+      "mode": 420,
+      "sha256": "bfd978941a38369561fcc6973ef0092dcf64610952642ea4d8789ed3bdac2efb"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard": {
+      "mode": 493,
+      "sha256": "249a5080d5997b09e1349c07a79c6848b555d612b8d88089ab9a031e353ee579"
+    },
+    ".gemini/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard.py": {
+      "mode": 493,
+      "sha256": "87c183ae8f404066e4ae28ac679fc403456085d10c598b6fbbf496a07f00ca7e"
+    },
     ".gemini/skills/engos-operations-delivery-excellence-prep/SKILL.md": {
       "mode": 420,
       "sha256": "4b66a398bf90e16d797762da065369cf79da99eb449e66497676667f56f4fec7"
@@ -4114,7 +5830,7 @@
     },
     ".gemini/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "010d7689f6dd2d17f10d166c13365aeabd381e7f6b834863df014a91ee3caf4c"
+      "sha256": "475fb1204da917c278d6c12eac6f1f700681ebdda9555f2bfd38c265b3e8d205"
     },
     ".gemini/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -4138,7 +5854,7 @@
     },
     ".gemini/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "1f8bfc136e7e0ec6564b3903f29f0e32378ac055917398e25b64eaf5e4cf8daf"
+      "sha256": "b43c7ab7b763780d234706d955b67a05999dcdc507a4899abd5d221bd12705ea"
     },
     ".gemini/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -5092,6 +6808,578 @@
       "mode": 493,
       "sha256": "37601c6a36c326b27b0c6506b9176be6df2803472603fd0ce430b3a31e58a47b"
     },
+    ".grok/skills/engos-operations-delivery-dashboard/SKILL.md": {
+      "mode": 420,
+      "sha256": "1d9f4f1fcf2fabe1c8be6998569228cfcce0db441c6da8e3347f50a5cd612608"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/capability.json": {
+      "mode": 420,
+      "sha256": "7b79b267300774fbb3fd6fb08ea19cfd04725611badad09503b486e6d82b3ee1"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/data/config.example.json": {
+      "mode": 420,
+      "sha256": "73e72874cb741c3f1f7af3c2ab3ba6c3227eaf71625fd37a5267e639587b1187"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/keystate.py": {
+      "mode": 420,
+      "sha256": "694725d8645bc8de3fbcddeeb135d38e995a786fc3737b4d13ba996cc9017aa4"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/projection.py": {
+      "mode": 420,
+      "sha256": "78a6fb3503fc6aebc0645ba0db2c15971e440c056da77bd0ae823b24c89f0a03"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/pull.py": {
+      "mode": 420,
+      "sha256": "503eb3d5f2666bb861f6110dd25d858e4f2f248fea12b9adb7a706037332e6d8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/refresh.sh": {
+      "mode": 493,
+      "sha256": "bcc25c5a9a35d7864c5c71df34f96af2e1c1c3f05d6be451b958b257933b796f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/build.py": {
+      "mode": 420,
+      "sha256": "43a495dfb0f68e8b3970b37c186133f5df39304ce371338c4df045905ddf065e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/commitpass.py": {
+      "mode": 420,
+      "sha256": "5776f61838882d9c05cc2d355100105805bd5fc6d5bb8c32c0b765d74488bbe6"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/glapi.py": {
+      "mode": 420,
+      "sha256": "7b60ef13a2fb53eed980782197e069554374b57d4737639b11e33ebce43835f3"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/incremental.py": {
+      "mode": 420,
+      "sha256": "a704d737fdee6c708b213729b377e7295decd2eed2909d6b89bb08c0155c2184"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/pull.py": {
+      "mode": 420,
+      "sha256": "5305cfaa53b02f9e351dc011bab74e2acc1650097f50fa600fc84fd7899ced51"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/recount.py": {
+      "mode": 420,
+      "sha256": "74462f5971bbd867866b2668be3112959804a2559d713e7bcc5b080a658a3f5d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/refresh.sh": {
+      "mode": 493,
+      "sha256": "7437758a08a85bbdb4fb0e84cc07a609f1256d355d23e89771dd3fd5e0f61bfb"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/insights/insights.py": {
+      "mode": 420,
+      "sha256": "32e73fc50bd2a8d5ff6b02d7c8907a220311d872c485aee9110f651d54e94baf"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/cfg.py": {
+      "mode": 420,
+      "sha256": "f07c5a9733be72b5dc0ef467dc12f600f9d6fab36637d8ad4bdd8ef6afd74dd3"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/extract.py": {
+      "mode": 420,
+      "sha256": "52b00f1ed0c654a9c8c25889c194bd573350d50441a26f32a0de0abf9caaaf3b"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incidents.py": {
+      "mode": 420,
+      "sha256": "1f3d4a2ef99987446e716cd52b2daaa8743c81c7107b242a9bebe5402af34ab8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incremental.py": {
+      "mode": 420,
+      "sha256": "7593983ab9d67797ffcbab5dde44a4441259883922262fbc0432ce520cf59cd0"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/jget.py": {
+      "mode": 420,
+      "sha256": "2a4eac495cc18f320af31a3706cf317843c258e6655b52d6254026e8c54984e8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/refresh.sh": {
+      "mode": 420,
+      "sha256": "3995efdd61d5e2bb9fda4bba4572122aa703409a5f5b190b594e9de55dbb6b1c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/work_category.py": {
+      "mode": 420,
+      "sha256": "cc0c80809a36626852fcfeeffcf21c1cbf1d7167e2dd4afecbea80e8e4c03fc9"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/maskq.py": {
+      "mode": 420,
+      "sha256": "3943c73acf15a8ac2ef4f47cefbd9ecbe63305c3a4f2dfb816673ef849240bd8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/ro": {
+      "mode": 493,
+      "sha256": "8a4f0961a8ba3c825b39b94b711ff4df87a93bf6b5d5d4d9558df5bff3b0c0d8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/common.py": {
+      "mode": 420,
+      "sha256": "aaf0ff2d7c456bc9c2d6d0d507829a541ae1b0232f763852f0dfd5c99a7fd1a8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_dump.py": {
+      "mode": 420,
+      "sha256": "95065fd3f7f036cc619b1cb9fbfdfeda95fde22ce4131d04724b8a4d00e1d85b"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_parse.py": {
+      "mode": 420,
+      "sha256": "014f122682c6cc78c512c8b50329c10f2231bc370241e66aa7fb123adb4378f1"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/derive.py": {
+      "mode": 420,
+      "sha256": "49dd9358c2c2bdd1c2472199ff474cf1a3361ae3d54b4dfd1a93efaf31e8bb6c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/identity.py": {
+      "mode": 420,
+      "sha256": "eb2adf34af8089f348db151520f030ad782a0f48cdcf124df45e71d406cd7e5e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/roster": {
+      "mode": 493,
+      "sha256": "854bea84b21e36997f9107a09b2ee5482b8c381c1e78ce1cf8732b0a755f406b"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/build.py": {
+      "mode": 420,
+      "sha256": "6afcb5ccaa9bada4d68c0c250bcb9d3c1b86ace92674468ac0e854c8462c9dbf"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/charts.py": {
+      "mode": 420,
+      "sha256": "3fe3bdeafadf68914fa186efb509d0c4e462a686b6c13d8d12f486768c22bd27"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/daily_ranges.py": {
+      "mode": 420,
+      "sha256": "98c02abefbda00392f1c997050d9c36ae08c370f6a05f56f8071668059d9e98b"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/dash_text.py": {
+      "mode": 420,
+      "sha256": "71f0be0f9ffc887f15e1596f1c782667bd33a87d2057f8f655c9edfc586f860c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/derive.py": {
+      "mode": 420,
+      "sha256": "92189e02372360e50b04c4c30380f77ecfb23daf522660c67b751e68760b6704"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/config.json": {
+      "mode": 420,
+      "sha256": "fac84c853a5234f74dafa9fbb1a15972c600fee8b099eeac02f2cc7da9e04e07"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "7c8ea4c42173725c9ab2e76526faf153a60e1e46817f9403454e0b27cc53a469"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "81b1db2e16d0a5205920555deb255475c9c2665f3c1e1ea4bc843db6f857dcc8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "49f5763156a94df266e8ea067aabcf300c60238892679bd4ef42fb7645af3c0d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "bbc2220faa7593d99e94c1c03fa2cfac30e7baac51e0c6212d9d41bec8bd7442"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/config.json": {
+      "mode": 420,
+      "sha256": "6795ca9343d83c6653c7ce1083a90ba8f20600b9b0da0f22fe41c9c4e1178063"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "13e2e286988349ad518d3623c7966d2865e3e9bdeedebe8d7591991ce234da4b"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "02207ba0027b413c153b6af955adbf9292a1ce3d8350781e7b716413f28197bc"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "6e43ce3ac076e51166bbf675908a65a9e02f11b35b4c7b90ee12e9600f674abc"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "faa329f91761e9d46474e7dc6d6ac085399321496fab1c4c5eae85e9097fa83c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "23be9973b17993934af63b1375bcc31018808e2cf5343a250f92f50c439b8122"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/config.json": {
+      "mode": 420,
+      "sha256": "f3241de78f725033c91c69c3035b6a9c32b026b251c9d880224a305f9003b75f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "da15ffd0a512c483aac3025713912176e8cf226ef136ef2f7ad9859d8c42cbb4"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "1bde43fa9c2a08e784f9464a42d522010f334a40c4d037524d21a8eade860064"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "734a39d7087c4abcb740ed0f28b1ac37da3b9305c0bc1c64300745e62565a181"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "7b2839fa522d0d213ef691c1b96734963d1ea4de3aaacfed92466c94a98940d6"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "2b6bc02f330d573920d32e41176756c88f7ee9b1026fd1088708295936c30821"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/config.json": {
+      "mode": 420,
+      "sha256": "f9615f0f4cb61e16cc082fa98d58df0a1762db9e7af1fd9ae81283555a26cc74"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "e59c511ad50886da08ff563225a6233fab1b52c087633fd430864a8adacfbed9"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "73da27afc59d406f5afd2b71ce9111cae603ac708cccb76b2ad2039bbee34b1c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "28fc295dbcaccc603644aeeca997e55c3c01df8e631c99f12dde08a18575e8f5"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "80560b1fabf993d6bbce773012cebe04cb89c684056a7d625198e46cca886319"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "040d936a4b6ef8b1773d500a29140e0a525d79648bda90291f7317d3391da443"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixtures.py": {
+      "mode": 420,
+      "sha256": "0541ae11b8c2c3b8453c53f37e2a0f7e67cbdf1e5f83cdeda931d792de1a7c34"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/hashes.py": {
+      "mode": 493,
+      "sha256": "9b1bf22cc57bbaf4f5ecaef449e760c08373568b246f6bed9a3f3f70a2be38d1"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/identity_tab.py": {
+      "mode": 420,
+      "sha256": "2c05da6d53582743a5ff93d6a3686875a1d086592157e4fd5c0de4e68b63225f"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/itemfilters.py": {
+      "mode": 420,
+      "sha256": "06338e9fe150c8e19d4c35f48d7cb28e63c9c9afa0f264d03073d70a9b117a40"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/items_build.py": {
+      "mode": 420,
+      "sha256": "d35b3e74e68d1f634c6b336a2ecf822ff8452791c5acd41c7a4bcb0270ee1d77"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/jira_guard.py": {
+      "mode": 420,
+      "sha256": "9ad67b41b7959f798381bb98a5b75d4114fd3266b34448e3ded948be653bbfb4"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/ladder.py": {
+      "mode": 420,
+      "sha256": "bec4961662f6bb4d3a7fe07c2a72e8242290801d31a017035f0287c65742c47d"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/links.py": {
+      "mode": 420,
+      "sha256": "d107bb79ce0d86478082f50bdeae2e9ee16b8608cacd6ea36d0a6609d7476228"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/metrics.py": {
+      "mode": 420,
+      "sha256": "937df07eee446e5ceda93dbd70dcc5df6718dcdf0835798158a471e109f03189"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/panels.py": {
+      "mode": 420,
+      "sha256": "61a1761334f5ece8e05bcdec71bc03514e55c969effe7f0c767407141325688c"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/refresh.py": {
+      "mode": 493,
+      "sha256": "516d4dada17ab3bc5ca73494c5fb2a36a7d5a2d765cde69c37e2f1386ee8cc6a"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/selfcheck.py": {
+      "mode": 420,
+      "sha256": "6c3f37fbcff38f7532e1b343507dd54c206b22a6d85fe56b0df10a25a6b89030"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/sheetlib.py": {
+      "mode": 420,
+      "sha256": "289f230427929800d10c127386dbe39f55520a55e73152a582b94144916cdc9e"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/subtasks.py": {
+      "mode": 420,
+      "sha256": "422d19b13ea071e31ac40873a8dd83e2ee91cff5b9adcf55cf5c8a1c0eed1291"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tab_order.py": {
+      "mode": 420,
+      "sha256": "1b9cf3089f06853e64f7d8d787feca964fb03b9f6fb4607f9966bba5c6130544"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabs.py": {
+      "mode": 420,
+      "sha256": "f7e791f77324a89ab7f2547b81862264776731373d2fd9213aca4277c0d5142a"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabsize.py": {
+      "mode": 420,
+      "sha256": "39d24bf97f80f3a43716ab03833e462151380dfd54e8ad7684ea4d0e246281c2"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/workcat.py": {
+      "mode": 420,
+      "sha256": "bfd978941a38369561fcc6973ef0092dcf64610952642ea4d8789ed3bdac2efb"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard": {
+      "mode": 493,
+      "sha256": "249a5080d5997b09e1349c07a79c6848b555d612b8d88089ab9a031e353ee579"
+    },
+    ".grok/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard.py": {
+      "mode": 493,
+      "sha256": "87c183ae8f404066e4ae28ac679fc403456085d10c598b6fbbf496a07f00ca7e"
+    },
     ".grok/skills/engos-operations-delivery-excellence-prep/SKILL.md": {
       "mode": 420,
       "sha256": "4b66a398bf90e16d797762da065369cf79da99eb449e66497676667f56f4fec7"
@@ -5518,7 +7806,7 @@
     },
     ".grok/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "010d7689f6dd2d17f10d166c13365aeabd381e7f6b834863df014a91ee3caf4c"
+      "sha256": "475fb1204da917c278d6c12eac6f1f700681ebdda9555f2bfd38c265b3e8d205"
     },
     ".grok/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -5542,7 +7830,7 @@
     },
     ".grok/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "1f8bfc136e7e0ec6564b3903f29f0e32378ac055917398e25b64eaf5e4cf8daf"
+      "sha256": "b43c7ab7b763780d234706d955b67a05999dcdc507a4899abd5d221bd12705ea"
     },
     ".grok/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -6496,6 +8784,578 @@
       "mode": 493,
       "sha256": "37601c6a36c326b27b0c6506b9176be6df2803472603fd0ce430b3a31e58a47b"
     },
+    ".kiro/skills/engos-operations-delivery-dashboard/SKILL.md": {
+      "mode": 420,
+      "sha256": "1d9f4f1fcf2fabe1c8be6998569228cfcce0db441c6da8e3347f50a5cd612608"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/capability.json": {
+      "mode": 420,
+      "sha256": "7b79b267300774fbb3fd6fb08ea19cfd04725611badad09503b486e6d82b3ee1"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/data/config.example.json": {
+      "mode": 420,
+      "sha256": "73e72874cb741c3f1f7af3c2ab3ba6c3227eaf71625fd37a5267e639587b1187"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/keystate.py": {
+      "mode": 420,
+      "sha256": "694725d8645bc8de3fbcddeeb135d38e995a786fc3737b4d13ba996cc9017aa4"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/projection.py": {
+      "mode": 420,
+      "sha256": "78a6fb3503fc6aebc0645ba0db2c15971e440c056da77bd0ae823b24c89f0a03"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/pull.py": {
+      "mode": 420,
+      "sha256": "503eb3d5f2666bb861f6110dd25d858e4f2f248fea12b9adb7a706037332e6d8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/github/refresh.sh": {
+      "mode": 493,
+      "sha256": "bcc25c5a9a35d7864c5c71df34f96af2e1c1c3f05d6be451b958b257933b796f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/build.py": {
+      "mode": 420,
+      "sha256": "43a495dfb0f68e8b3970b37c186133f5df39304ce371338c4df045905ddf065e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/commitpass.py": {
+      "mode": 420,
+      "sha256": "5776f61838882d9c05cc2d355100105805bd5fc6d5bb8c32c0b765d74488bbe6"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/glapi.py": {
+      "mode": 420,
+      "sha256": "7b60ef13a2fb53eed980782197e069554374b57d4737639b11e33ebce43835f3"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/incremental.py": {
+      "mode": 420,
+      "sha256": "a704d737fdee6c708b213729b377e7295decd2eed2909d6b89bb08c0155c2184"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/pull.py": {
+      "mode": 420,
+      "sha256": "5305cfaa53b02f9e351dc011bab74e2acc1650097f50fa600fc84fd7899ced51"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/recount.py": {
+      "mode": 420,
+      "sha256": "74462f5971bbd867866b2668be3112959804a2559d713e7bcc5b080a658a3f5d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/gitlab/refresh.sh": {
+      "mode": 493,
+      "sha256": "7437758a08a85bbdb4fb0e84cc07a609f1256d355d23e89771dd3fd5e0f61bfb"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/insights/insights.py": {
+      "mode": 420,
+      "sha256": "32e73fc50bd2a8d5ff6b02d7c8907a220311d872c485aee9110f651d54e94baf"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/cfg.py": {
+      "mode": 420,
+      "sha256": "f07c5a9733be72b5dc0ef467dc12f600f9d6fab36637d8ad4bdd8ef6afd74dd3"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/extract.py": {
+      "mode": 420,
+      "sha256": "52b00f1ed0c654a9c8c25889c194bd573350d50441a26f32a0de0abf9caaaf3b"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incidents.py": {
+      "mode": 420,
+      "sha256": "1f3d4a2ef99987446e716cd52b2daaa8743c81c7107b242a9bebe5402af34ab8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/incremental.py": {
+      "mode": 420,
+      "sha256": "7593983ab9d67797ffcbab5dde44a4441259883922262fbc0432ce520cf59cd0"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/jget.py": {
+      "mode": 420,
+      "sha256": "2a4eac495cc18f320af31a3706cf317843c258e6655b52d6254026e8c54984e8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/refresh.sh": {
+      "mode": 420,
+      "sha256": "3995efdd61d5e2bb9fda4bba4572122aa703409a5f5b190b594e9de55dbb6b1c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/jira/work_category.py": {
+      "mode": 420,
+      "sha256": "cc0c80809a36626852fcfeeffcf21c1cbf1d7167e2dd4afecbea80e8e4c03fc9"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/maskq.py": {
+      "mode": 420,
+      "sha256": "3943c73acf15a8ac2ef4f47cefbd9ecbe63305c3a4f2dfb816673ef849240bd8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/ro/ro": {
+      "mode": 493,
+      "sha256": "8a4f0961a8ba3c825b39b94b711ff4df87a93bf6b5d5d4d9558df5bff3b0c0d8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/common.py": {
+      "mode": 420,
+      "sha256": "aaf0ff2d7c456bc9c2d6d0d507829a541ae1b0232f763852f0dfd5c99a7fd1a8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_dump.py": {
+      "mode": 420,
+      "sha256": "95065fd3f7f036cc619b1cb9fbfdfeda95fde22ce4131d04724b8a4d00e1d85b"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/dept_parse.py": {
+      "mode": 420,
+      "sha256": "014f122682c6cc78c512c8b50329c10f2231bc370241e66aa7fb123adb4378f1"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/derive.py": {
+      "mode": 420,
+      "sha256": "49dd9358c2c2bdd1c2472199ff474cf1a3361ae3d54b4dfd1a93efaf31e8bb6c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/identity.py": {
+      "mode": 420,
+      "sha256": "eb2adf34af8089f348db151520f030ad782a0f48cdcf124df45e71d406cd7e5e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/roster/roster": {
+      "mode": 493,
+      "sha256": "854bea84b21e36997f9107a09b2ee5482b8c381c1e78ce1cf8732b0a755f406b"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/build.py": {
+      "mode": 420,
+      "sha256": "6afcb5ccaa9bada4d68c0c250bcb9d3c1b86ace92674468ac0e854c8462c9dbf"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/charts.py": {
+      "mode": 420,
+      "sha256": "3fe3bdeafadf68914fa186efb509d0c4e462a686b6c13d8d12f486768c22bd27"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/daily_ranges.py": {
+      "mode": 420,
+      "sha256": "98c02abefbda00392f1c997050d9c36ae08c370f6a05f56f8071668059d9e98b"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/dash_text.py": {
+      "mode": 420,
+      "sha256": "71f0be0f9ffc887f15e1596f1c782667bd33a87d2057f8f655c9edfc586f860c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/derive.py": {
+      "mode": 420,
+      "sha256": "92189e02372360e50b04c4c30380f77ecfb23daf522660c67b751e68760b6704"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/config.json": {
+      "mode": 420,
+      "sha256": "fac84c853a5234f74dafa9fbb1a15972c600fee8b099eeac02f2cc7da9e04e07"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "7c8ea4c42173725c9ab2e76526faf153a60e1e46817f9403454e0b27cc53a469"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "81b1db2e16d0a5205920555deb255475c9c2665f3c1e1ea4bc843db6f857dcc8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "49f5763156a94df266e8ea067aabcf300c60238892679bd4ef42fb7645af3c0d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "bbc2220faa7593d99e94c1c03fa2cfac30e7baac51e0c6212d9d41bec8bd7442"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/alerts/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/config.json": {
+      "mode": 420,
+      "sha256": "6795ca9343d83c6653c7ce1083a90ba8f20600b9b0da0f22fe41c9c4e1178063"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "13e2e286988349ad518d3623c7966d2865e3e9bdeedebe8d7591991ce234da4b"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "02207ba0027b413c153b6af955adbf9292a1ce3d8350781e7b716413f28197bc"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "6e43ce3ac076e51166bbf675908a65a9e02f11b35b4c7b90ee12e9600f674abc"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "faa329f91761e9d46474e7dc6d6ac085399321496fab1c4c5eae85e9097fa83c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "23be9973b17993934af63b1375bcc31018808e2cf5343a250f92f50c439b8122"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/clean/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/config.json": {
+      "mode": 420,
+      "sha256": "f3241de78f725033c91c69c3035b6a9c32b026b251c9d880224a305f9003b75f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "da15ffd0a512c483aac3025713912176e8cf226ef136ef2f7ad9859d8c42cbb4"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "1bde43fa9c2a08e784f9464a42d522010f334a40c4d037524d21a8eade860064"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "734a39d7087c4abcb740ed0f28b1ac37da3b9305c0bc1c64300745e62565a181"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "e415beb80f0903f80e49f7360b5a68427c3d50efa03f2cdff021b78e50ae4bf7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "7b2839fa522d0d213ef691c1b96734963d1ea4de3aaacfed92466c94a98940d6"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "2b6bc02f330d573920d32e41176756c88f7ee9b1026fd1088708295936c30821"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/seeded/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/config.json": {
+      "mode": 420,
+      "sha256": "f9615f0f4cb61e16cc082fa98d58df0a1762db9e7af1fd9ae81283555a26cc74"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_jira_keys.csv": {
+      "mode": 420,
+      "sha256": "e8f43846d4eca8b1c0f029e2ec8c3b132f4d6732a4fae6ca8d8a5352b300b763"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_key_state.csv": {
+      "mode": 420,
+      "sha256": "cf231e4992a3552e5be2ed3a511fcdde45e2c59a8a777c966aa2ab1bbb050a70"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_link_state.csv": {
+      "mode": 420,
+      "sha256": "0f00b8871c4572cf26e7ee74b4596b307df861ff19bb19fac27d26d593b53dcd"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_pr_reviews.csv": {
+      "mode": 420,
+      "sha256": "4d529bae277c6de1ceb562094f8b3d1b638825e0162f140a60db0d8309c0e4bc"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_prs.csv": {
+      "mode": 420,
+      "sha256": "6678b57d0aab61dffb76ce128d016c72628a4c779f6da2353b4dd0819b162e6e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/github/github_reviewed_by.csv": {
+      "mode": 420,
+      "sha256": "3f06d694f921ef5e8cb6cc79d9439fd69eee5692f57cbf12058a536ba30f6c12"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_changes.csv": {
+      "mode": 420,
+      "sha256": "e59c511ad50886da08ff563225a6233fab1b52c087633fd430864a8adacfbed9"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_jira_links.csv": {
+      "mode": 420,
+      "sha256": "c7b4fea69c153e3f9497eaf66dc1c0b1763488eb9c0c18aaeafbd7eae2fbe79e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/code_reviews.csv": {
+      "mode": 420,
+      "sha256": "73da27afc59d406f5afd2b71ce9111cae603ac708cccb76b2ad2039bbee34b1c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/gitlab/reviewed_others.csv": {
+      "mode": 420,
+      "sha256": "602fde365092c01668f05d7334a2751d36a89dba202a6babbb6a7b17f3c144b8"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/as_of.txt": {
+      "mode": 420,
+      "sha256": "28fc295dbcaccc603644aeeca997e55c3c01df8e631c99f12dde08a18575e8f5"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/calls.json": {
+      "mode": 420,
+      "sha256": "c9e0aba78cbf441c554c6f3d057970b30a8844f9da77d5db4ae2ff4a78783790"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_assignee_changes.csv": {
+      "mode": 420,
+      "sha256": "0930bcec61da89784857a274396400e8d0e7a942f3874076cb6d0eec0107dc7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_issues.csv": {
+      "mode": 420,
+      "sha256": "80560b1fabf993d6bbce773012cebe04cb89c684056a7d625198e46cca886319"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/extracts/jira/jira_transitions.csv": {
+      "mode": 420,
+      "sha256": "040d936a4b6ef8b1773d500a29140e0a525d79648bda90291f7317d3391da443"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/identity.csv": {
+      "mode": 420,
+      "sha256": "dcf23fd54baaf887f782ab7b26ea505fb24ae73345a1366e132885d498e392f7"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster.csv": {
+      "mode": 420,
+      "sha256": "aad833a82107b31f539f70d3277858a0a49a03151c51eddd8367be3298e2fb1c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/roster_history.csv": {
+      "mode": 420,
+      "sha256": "cc823fb2de4fe4c28c076730e04011e83e34cc88dc7c4314da0cc261fe673d7d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixture/stale/thresholds.csv": {
+      "mode": 420,
+      "sha256": "6dac569aa1a76d2bc44902973016d2c43e25f3c3d66e6f6d83464b10cf18e73f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/fixtures.py": {
+      "mode": 420,
+      "sha256": "0541ae11b8c2c3b8453c53f37e2a0f7e67cbdf1e5f83cdeda931d792de1a7c34"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/hashes.py": {
+      "mode": 493,
+      "sha256": "9b1bf22cc57bbaf4f5ecaef449e760c08373568b246f6bed9a3f3f70a2be38d1"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/identity_tab.py": {
+      "mode": 420,
+      "sha256": "2c05da6d53582743a5ff93d6a3686875a1d086592157e4fd5c0de4e68b63225f"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/itemfilters.py": {
+      "mode": 420,
+      "sha256": "06338e9fe150c8e19d4c35f48d7cb28e63c9c9afa0f264d03073d70a9b117a40"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/items_build.py": {
+      "mode": 420,
+      "sha256": "d35b3e74e68d1f634c6b336a2ecf822ff8452791c5acd41c7a4bcb0270ee1d77"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/jira_guard.py": {
+      "mode": 420,
+      "sha256": "9ad67b41b7959f798381bb98a5b75d4114fd3266b34448e3ded948be653bbfb4"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/ladder.py": {
+      "mode": 420,
+      "sha256": "bec4961662f6bb4d3a7fe07c2a72e8242290801d31a017035f0287c65742c47d"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/links.py": {
+      "mode": 420,
+      "sha256": "d107bb79ce0d86478082f50bdeae2e9ee16b8608cacd6ea36d0a6609d7476228"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/metrics.py": {
+      "mode": 420,
+      "sha256": "937df07eee446e5ceda93dbd70dcc5df6718dcdf0835798158a471e109f03189"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/panels.py": {
+      "mode": 420,
+      "sha256": "61a1761334f5ece8e05bcdec71bc03514e55c969effe7f0c767407141325688c"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/refresh.py": {
+      "mode": 493,
+      "sha256": "516d4dada17ab3bc5ca73494c5fb2a36a7d5a2d765cde69c37e2f1386ee8cc6a"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/selfcheck.py": {
+      "mode": 420,
+      "sha256": "6c3f37fbcff38f7532e1b343507dd54c206b22a6d85fe56b0df10a25a6b89030"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/sheetlib.py": {
+      "mode": 420,
+      "sha256": "289f230427929800d10c127386dbe39f55520a55e73152a582b94144916cdc9e"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/subtasks.py": {
+      "mode": 420,
+      "sha256": "422d19b13ea071e31ac40873a8dd83e2ee91cff5b9adcf55cf5c8a1c0eed1291"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tab_order.py": {
+      "mode": 420,
+      "sha256": "1b9cf3089f06853e64f7d8d787feca964fb03b9f6fb4607f9966bba5c6130544"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabs.py": {
+      "mode": 420,
+      "sha256": "f7e791f77324a89ab7f2547b81862264776731373d2fd9213aca4277c0d5142a"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/tabsize.py": {
+      "mode": 420,
+      "sha256": "39d24bf97f80f3a43716ab03833e462151380dfd54e8ad7684ea4d0e246281c2"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/sheet/workcat.py": {
+      "mode": 420,
+      "sha256": "bfd978941a38369561fcc6973ef0092dcf64610952642ea4d8789ed3bdac2efb"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard": {
+      "mode": 493,
+      "sha256": "249a5080d5997b09e1349c07a79c6848b555d612b8d88089ab9a031e353ee579"
+    },
+    ".kiro/skills/engos-operations-delivery-dashboard/resources/scripts/tools/skill/dashboard.py": {
+      "mode": 493,
+      "sha256": "87c183ae8f404066e4ae28ac679fc403456085d10c598b6fbbf496a07f00ca7e"
+    },
     ".kiro/skills/engos-operations-delivery-excellence-prep/SKILL.md": {
       "mode": 420,
       "sha256": "4b66a398bf90e16d797762da065369cf79da99eb449e66497676667f56f4fec7"
@@ -6922,7 +9782,7 @@
     },
     ".kiro/skills/engos-route-intent/resources/capability.json": {
       "mode": 420,
-      "sha256": "010d7689f6dd2d17f10d166c13365aeabd381e7f6b834863df014a91ee3caf4c"
+      "sha256": "475fb1204da917c278d6c12eac6f1f700681ebdda9555f2bfd38c265b3e8d205"
     },
     ".kiro/skills/engos-route-intent/resources/references/agy-intake.md": {
       "mode": 420,
@@ -6946,7 +9806,7 @@
     },
     ".kiro/skills/engos-route-intent/resources/routing-relations.json": {
       "mode": 420,
-      "sha256": "1f8bfc136e7e0ec6564b3903f29f0e32378ac055917398e25b64eaf5e4cf8daf"
+      "sha256": "b43c7ab7b763780d234706d955b67a05999dcdc507a4899abd5d221bd12705ea"
     },
     ".kiro/skills/engos-route-intent/resources/schemas/agy-intake.schema.json": {
       "mode": 420,
@@ -7160,6 +10020,10 @@
       "mode": 420,
       "sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
     },
+    ".meta/capabilities/engos-operations-delivery-dashboard.json": {
+      "mode": 420,
+      "sha256": "7b79b267300774fbb3fd6fb08ea19cfd04725611badad09503b486e6d82b3ee1"
+    },
     ".meta/capabilities/engos-operations-delivery-excellence-prep.json": {
       "mode": 420,
       "sha256": "84a82c9c066ba2faf4bb7876de6262df7a4824e0187b15f97d1668213851424f"
@@ -7226,7 +10090,7 @@
     },
     ".meta/capabilities/engos-route-intent.json": {
       "mode": 420,
-      "sha256": "010d7689f6dd2d17f10d166c13365aeabd381e7f6b834863df014a91ee3caf4c"
+      "sha256": "475fb1204da917c278d6c12eac6f1f700681ebdda9555f2bfd38c265b3e8d205"
     },
     ".meta/capabilities/engos-triage-my-inbox-chat-pulse.json": {
       "mode": 420,
@@ -7246,7 +10110,7 @@
     },
     ".meta/capability-handoff.json": {
       "mode": 420,
-      "sha256": "80128c240610f2dc142be4f362c842cc1ac6623e334eedda8296410103b6e5d6"
+      "sha256": "d94d842b34a9ba1e5bc297b6d6bc173bd86db2f9eb22738d595fbd827f734f6d"
     },
     ".meta/install-profiles/codex-kiro-grok.json": {
       "mode": 420,
@@ -7262,7 +10126,7 @@
     },
     ".meta/manifest.json": {
       "mode": 420,
-      "sha256": "eb267378f0999658d538ce1a15849683b8f91ba95b38b2abd346f161a950e4d6"
+      "sha256": "b9a9f88d164c8a00ea5b49eccd0354b2e4fdb1f697c36955e2c9c487aef65994"
     },
     "RELEASE_SOURCE.env": {
       "mode": 420,
@@ -7270,7 +10134,7 @@
     },
     "VERSION": {
       "mode": 420,
-      "sha256": "4696dec2ddfc368af4e8f229694cdffff4d7ad5078168998f2d0f7d9b407a7d3"
+      "sha256": "e7755e67da5dbabdee396d23674c603ab59ed4d0e89abfc95a06c12ed0a183f8"
     },
     "scripts/deploy-copy-plan.py": {
       "mode": 420,
