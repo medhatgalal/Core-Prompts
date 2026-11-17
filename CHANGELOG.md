@@ -1,5 +1,14 @@
 ## Unreleased
 
+## v1.23.0 - 2026-11-17
+
+Tag authorized by Scott Parrish on 2026-11-16. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- New skill `engos-operations-delivery-dashboard`: runs and maintains an engineering delivery dashboard in Google Sheets (Jira intent, code delivery from GitLab and GitHub, and how well they agree) at organization, Group, Team and Individual level. One command surface (`status`, `doctor`, `refresh`, `roster`, `team`, `threshold`, `viewer`, `metric`, `alert`, `chart`, `ask`, `insights rebuild`). Ships the command skill and the kit scripts under `resources/scripts/` (roster and identity handling, Jira, GitLab and GitHub pulls through a GET-only wrapper, the Sheet build, fictional fixtures) and a placeholder `config.example.json`. No code in it makes a model call except `ask` and `insights rebuild`. It never ranks people.
+- Not shipped: the build's gate checks, the optional canvas helpers, and every data file (roster, ledger, extracts, hashes, views, real config). The kit expects you to supply your own config; the sample holds placeholders only.
+- Tested: build, `validate --strict --skip-schema`, and a scrub scan of the whole package for names, work emails, Sheet, Jira and view ids, hosts and Group or Team names (zero hits). Fixture runs with no network: the four fictional fixtures derive cleanly, and `build.py --dry-run` passes on the clean and seeded fixtures once `data/config.json` is copied from `config.example.json`. Not tested: behavioural evals (UAC status stays `behavioral_pending`), a build against a live Sheet from this package, and a fresh install into a project other than the one the kit was built in. The full `validate --strict` schema-cache check could not be used as a gate (it fails the same way on the unchanged base).
+
 ## v1.22.4 - 2026-11-12
 
 Tag authorized by Scott Parrish on 2026-11-12. Publication is recorded by the GitLab

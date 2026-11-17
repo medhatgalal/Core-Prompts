@@ -1,0 +1,59 @@
+{
+  "groups": [
+    "CLEAN GROUP",
+    "SEEDED GROUP"
+  ],
+  "labels": {
+    "other": "Other",
+    "unknown": "Unknown",
+    "ownerless": "Ownerless",
+    "unmapped": "Unmapped",
+    "no_team": "No team"
+  },
+  "jira": {
+    "code_types": [
+      "Story",
+      "Task",
+      "Bug"
+    ],
+    "container_types": [
+      "Epic",
+      "Initiative"
+    ],
+    "series_resolutions": {
+      "wont_do": "Won't Do",
+      "duplicate": "Duplicate"
+    },
+    "in_progress_category": "indeterminate",
+    "done_category": "done",
+    "group_field_column": "group_field",
+    "group_aliases": {
+      "FORMER GROUP": "CLEAN GROUP"
+    },
+    "sbu_label": "Example SBU",
+    "sbu_only_groups": [],
+    "fields": {
+      "team": "customfield_00000"
+    }
+  },
+  "window_days": 365,
+  "sheet_name": "Fixture Dashboard",
+  "paths": {
+    "roster": "tools/sheet/fixture/clean/roster.csv",
+    "roster_history": "tools/sheet/fixture/clean/roster_history.csv",
+    "identity": "tools/sheet/fixture/clean/identity.csv",
+    "jira_dir": "tools/sheet/fixture/clean/extracts/jira",
+    "gitlab_dir": "tools/sheet/fixture/clean/extracts/gitlab",
+    "github_dir": "tools/sheet/fixture/clean/extracts/github",
+    "thresholds": "tools/sheet/fixture/clean/thresholds.csv",
+    "derived": "tools/sheet/fixture/clean/derived"
+  },
+  "texts": {
+    "jira_source": "Jira: fictional fixture.",
+    "code_source": "Code: fictional fixture.",
+    "version": "fixture"
+  },
+  "scratch_sheet_id": "FIXTURE_SCRATCH_SHEET_ID",
+  "sheet_id": "FIXTURE_SHEET_ID",
+  "name_prefix": "x_"
+}
