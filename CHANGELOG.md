@@ -1,5 +1,14 @@
 ## Unreleased
 
+## v1.23.1 - 2026-11-18
+
+Tag authorized by Scott Parrish on 2026-11-18. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: the summary email for email readers is now an exec-ready HTML page in the Weekly Quality Report format: four numbers, an overall colour (RED, AMBER or GREEN) with two bold lines, Changed since last send, decision cards (WHY, DOING, NEEDED), area health with a status pill, a better or worse mark and a bar of each area's initiatives, Coming up, No dated plan, and an honest footer. Chip colour follows the new status, never direction. The subject leads with the colour and the number of asks. Chat readers still get plain text.
+- `send.py` builds the page from the overview and the initiative tabs, and writes an author-only checklist next to it; it never sends. `send.py snapshot` prints the `last_sent` record (new key in `config.json`, saved only after a successful send). New offline test `send_test.py` (14 checks).
+- Tested: send_test (14 of 14), rules_test and cli_test (all pass), the page rendered from the live doc and sent as a draft to the author only and checked in Gmail. Not tested: decision cards on a live doc with a decisions table, and sending the HTML through `gws` to readers. `validate --strict` fails on the schema cache as on main.
+
 ## v1.23.0 - 2026-11-17
 
 Tag authorized by Scott Parrish on 2026-11-16. Publication is recorded by the GitLab
