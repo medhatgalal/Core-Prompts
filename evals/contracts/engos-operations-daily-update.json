@@ -120,6 +120,16 @@
     "0fce8a2facd62f8e1ee79e84e10402567b864cdccf203044f9f39c0063147100",
     "5764f66eab9fd1e815fe8bb87492c49536494352b766ca68434e0babc8196b34",
     "9128c539eaee5ebf9de0f3633e78581609467d3e865398312b8ceaedd92f0bb7",
+    "5627620ee59d93d42cd9a0f1f98a6991a50fa5e246ce3ad2adfdbd081a82b30a",
+    "37dbfe7e81226c6f06d06b1164a82f4447478bb9810567b05346623ff2025987",
+    "9da1efb8835e65da1f19693f1e3ef222bc1d329f7b2ee13df8d271e6e50b6289",
+    "1c61733c72041e89f2abcf07c915a377e5347ba286b24a55b516207cdd92a8d2",
+    "2a6de527e48c8dd67c87e0e082bf6f04d1aab7cc1f382048f0a87b346e52da61",
+    "cdf385e8d460982afbfe38444182a3bf57d45818a94beb24a59f8aba70fd5f94",
+    "1e305ec8e7c241f22008e315e8f5c5c228e1a3c375fa13885d7be11bfd389ba3",
+    "45f6bd1e493968df2335974af0f96b36bc2a1fa81d4995295878eb655a394b1b",
+    "93c1a7cc3e262fbf5a85ab761c199b7fe0b6179c77f5f2ba261ba4d92c2d4e72",
+    "c4e95dcba28682d9474c0a7b001f512144817dc5a14f1d65297f4dc894a0ee43",
     "6fb6ebf7de4d6bf43ca6715ac7ce966d76f322bc602d0d4f6d88e35f12f2e8ac",
     "9ce2cb457f80ed2eb34a2548fdb02f91c7ef9228b7d9cdd68b885a70dfbef6ff",
     "11b1949ae987c53c1b3fd35aae399c2db84625de94a43d95fee17f3b32b0e39c",
@@ -725,6 +735,56 @@
       "sha256": "9128c539eaee5ebf9de0f3633e78581609467d3e865398312b8ceaedd92f0bb7",
       "source": "ssot/engos-operations-daily-update.md",
       "text": "`du.py reader add NAME EMAIL --channel email|chat`, `reader remove NAME` and `reader set-channel NAME CHANNEL` each show the old and new list with `--dry-run`; change it only on their yes."
+    },
+    {
+      "sha256": "5627620ee59d93d42cd9a0f1f98a6991a50fa5e246ce3ad2adfdbd081a82b30a",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "Build it with `python3 resources/scripts/send.py DOC_ID READERS_JSON --html OUT.html [--last-sent FILE]`, which reads only the overview and the initiative tabs and writes the page and an author checklist (`OUT.checklist.md`). `resources/templates/summary-email.html` is the layout reference. Send the HTML as the email body, with the plain text as the fallback part."
+    },
+    {
+      "sha256": "37dbfe7e81226c6f06d06b1164a82f4447478bb9810567b05346623ff2025987",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "recorded in the doc.\" in red. Never infer activity the doc does not state."
+    },
+    {
+      "sha256": "9da1efb8835e65da1f19693f1e3ef222bc1d329f7b2ee13df8d271e6e50b6289",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "the Area colours saved at the last send). Show only the Areas that moved, as \"<Area>: <old> to <new>\" with a"
+    },
+    {
+      "sha256": "1c61733c72041e89f2abcf07c915a377e5347ba286b24a55b516207cdd92a8d2",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "\u25b2 better or \u25bc worse arrow. **Colour the chip by the new status, never by direction.** If there is no"
+    },
+    {
+      "sha256": "2a6de527e48c8dd67c87e0e082bf6f04d1aab7cc1f382048f0a87b346e52da61",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "`last_sent`, leave the section out. Save `last_sent` only after a send succeeds: run `send.py snapshot DOC_ID` and store its JSON."
+    },
+    {
+      "sha256": "cdf385e8d460982afbfe38444182a3bf57d45818a94beb24a59f8aba70fd5f94",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "the headline. Colour is never the only carrier of meaning: every pill and bar also says the status in words."
+    },
+    {
+      "sha256": "1e305ec8e7c241f22008e315e8f5c5c228e1a3c375fa13885d7be11bfd389ba3",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "Do not say \"on track\" for an Area whose headline is older than its initiative tabs (see the review rule)."
+    },
+    {
+      "sha256": "45f6bd1e493968df2335974af0f96b36bc2a1fa81d4995295878eb655a394b1b",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "none. Inline styles and table layout only, 680px maximum width, one small mobile rule, a hidden preheader line,"
+    },
+    {
+      "sha256": "93c1a7cc3e262fbf5a85ab761c199b7fe0b6179c77f5f2ba261ba4d92c2d4e72",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "no em dashes, no images the reader must load."
+    },
+    {
+      "sha256": "c4e95dcba28682d9474c0a7b001f512144817dc5a14f1d65297f4dc894a0ee43",
+      "source": "ssot/engos-operations-daily-update.md",
+      "text": "- **Author checklist:** keep it separate from the email (a file next to the draft, never in the message). It lists"
     },
     {
       "sha256": "6fb6ebf7de4d6bf43ca6715ac7ce966d76f322bc602d0d4f6d88e35f12f2e8ac",

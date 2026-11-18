@@ -1,7 +1,7 @@
 {
   "schema_version": "CapabilityTopology.v1",
   "slug": "engos-operations-daily-update",
-  "ssot_sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c",
+  "ssot_sha256": "f0458cc58cdf8ccc1c2eb0df429a4b422a29b8e75dd92f0f82ce3a773df0a988",
   "explicit_invocations": [],
   "semantic_triggers": [],
   "aliases_shortcuts": [],
@@ -89,9 +89,14 @@
     "engos-operations-daily-update:L761:81a6f9ebbc79",
     "engos-operations-daily-update:L763:afa5dc86842b",
     "engos-operations-daily-update:L768:0fce8a2facd6",
-    "engos-operations-daily-update:L784:11b1949ae987",
-    "engos-operations-daily-update:L785:00a1463681c0",
-    "engos-operations-daily-update:L798:f2866243df3a"
+    "engos-operations-daily-update:L788:37dbfe7e8122",
+    "engos-operations-daily-update:L791:1c61733c7204",
+    "engos-operations-daily-update:L795:cdf385e8d460",
+    "engos-operations-daily-update:L799:1e305ec8e7c2",
+    "engos-operations-daily-update:L803:c4e95dcba286",
+    "engos-operations-daily-update:L808:11b1949ae987",
+    "engos-operations-daily-update:L809:00a1463681c0",
+    "engos-operations-daily-update:L822:f2866243df3a"
   ],
   "resources": [],
   "handoffs": [],
@@ -1237,50 +1242,150 @@
       "mapped_to": []
     },
     {
-      "id": "engos-operations-daily-update:L781:6fb6ebf7de4d",
+      "id": "engos-operations-daily-update:L779:5627620ee59d",
       "heading": "Send (doc owner)",
       "source": "ssot/engos-operations-daily-update.md",
-      "source_line": 787,
+      "source_line": 785,
+      "sha256": "5627620ee59d93d42cd9a0f1f98a6991a50fa5e246ce3ad2adfdbd081a82b30a",
+      "text": "Build it with `python3 resources/scripts/send.py DOC_ID READERS_JSON --html OUT.html [--last-sent FILE]`, which reads only the overview and the initiative tabs and writes the page and an author checklist (`OUT.checklist.md`). `resources/templates/summary-email.html` is the layout reference. Send the HTML as the email body, with the plain text as the fallback part.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L788:37dbfe7e8122",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 794,
+      "sha256": "37dbfe7e81226c6f06d06b1164a82f4447478bb9810567b05346623ff2025987",
+      "text": "recorded in the doc.\" in red. Never infer activity the doc does not state.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L790:9da1efb8835e",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 796,
+      "sha256": "9da1efb8835e65da1f19693f1e3ef222bc1d329f7b2ee13df8d271e6e50b6289",
+      "text": "the Area colours saved at the last send). Show only the Areas that moved, as \"<Area>: <old> to <new>\" with a",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L791:1c61733c7204",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 797,
+      "sha256": "1c61733c72041e89f2abcf07c915a377e5347ba286b24a55b516207cdd92a8d2",
+      "text": "\u25b2 better or \u25bc worse arrow. **Colour the chip by the new status, never by direction.** If there is no",
+      "kind": "guarded_invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L792:2a6de527e48c",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 798,
+      "sha256": "2a6de527e48c8dd67c87e0e082bf6f04d1aab7cc1f382048f0a87b346e52da61",
+      "text": "`last_sent`, leave the section out. Save `last_sent` only after a send succeeds: run `send.py snapshot DOC_ID` and store its JSON.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L795:cdf385e8d460",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 801,
+      "sha256": "cdf385e8d460982afbfe38444182a3bf57d45818a94beb24a59f8aba70fd5f94",
+      "text": "the headline. Colour is never the only carrier of meaning: every pill and bar also says the status in words.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L799:1e305ec8e7c2",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 805,
+      "sha256": "1e305ec8e7c241f22008e315e8f5c5c228e1a3c375fa13885d7be11bfd389ba3",
+      "text": "Do not say \"on track\" for an Area whose headline is older than its initiative tabs (see the review rule).",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L801:45f6bd1e4939",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 807,
+      "sha256": "45f6bd1e493968df2335974af0f96b36bc2a1fa81d4995295878eb655a394b1b",
+      "text": "none. Inline styles and table layout only, 680px maximum width, one small mobile rule, a hidden preheader line,",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L802:93c1a7cc3e26",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 808,
+      "sha256": "93c1a7cc3e262fbf5a85ab761c199b7fe0b6179c77f5f2ba261ba4d92c2d4e72",
+      "text": "no em dashes, no images the reader must load.",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L803:c4e95dcba286",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 809,
+      "sha256": "c4e95dcba28682d9474c0a7b001f512144817dc5a14f1d65297f4dc894a0ee43",
+      "text": "- **Author checklist:** keep it separate from the email (a file next to the draft, never in the message). It lists",
+      "kind": "invariant",
+      "mapped_to": []
+    },
+    {
+      "id": "engos-operations-daily-update:L805:6fb6ebf7de4d",
+      "heading": "Send (doc owner)",
+      "source": "ssot/engos-operations-daily-update.md",
+      "source_line": 811,
       "sha256": "6fb6ebf7de4d6bf43ca6715ac7ce966d76f322bc602d0d4f6d88e35f12f2e8ac",
       "text": "3. Show the exact recipients, channel and text, then ask: \"Send to <names>?\" Send only if the doc owner replies",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-daily-update:L783:9ce2cb457f80",
+      "id": "engos-operations-daily-update:L807:9ce2cb457f80",
       "heading": "Send (doc owner)",
       "source": "ssot/engos-operations-daily-update.md",
-      "source_line": 789,
+      "source_line": 813,
       "sha256": "9ce2cb457f80ed2eb34a2548fdb02f91c7ef9228b7d9cdd68b885a70dfbef6ff",
       "text": "`gws chat spaces messages create` in a direct message. Send only to addresses already in `reader list`.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-daily-update:L784:11b1949ae987",
+      "id": "engos-operations-daily-update:L808:11b1949ae987",
       "heading": "Send (doc owner)",
       "source": "ssot/engos-operations-daily-update.md",
-      "source_line": 790,
+      "source_line": 814,
       "sha256": "11b1949ae987c53c1b3fd35aae399c2db84625de94a43d95fee17f3b32b0e39c",
       "text": "4. Report what went to whom, quoting the sent text. If any send failed, say which and why. Never send anything",
       "kind": "guarded_invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-daily-update:L785:00a1463681c0",
+      "id": "engos-operations-daily-update:L809:00a1463681c0",
       "heading": "Send (doc owner)",
       "source": "ssot/engos-operations-daily-update.md",
-      "source_line": 791,
+      "source_line": 815,
       "sha256": "00a1463681c0fc4f66b9100bc9249275892df6811a9c9a99b9b95c8ceecd5306",
       "text": "else, and never send on behalf of a leader.",
       "kind": "invariant",
       "mapped_to": []
     },
     {
-      "id": "engos-operations-daily-update:L798:f2866243df3a",
+      "id": "engos-operations-daily-update:L822:f2866243df3a",
       "heading": "Checks before any review",
       "source": "ssot/engos-operations-daily-update.md",
-      "source_line": 804,
+      "source_line": 828,
       "sha256": "f2866243df3a3b656e6c178655d32c28d3775ed9ddd6aeeb5a460ee906272256",
       "text": "- Every weekday matches its date on the calendar (\"Fri Nov 6\", never \"Thu Nov 6\").",
       "kind": "invariant",
@@ -1295,7 +1400,7 @@
   "source_references": [
     {
       "path": "ssot/engos-operations-daily-update.md",
-      "sha256": "69446c288a159159929320fa46d80e6510f39451423929011366d99b04607c1c"
+      "sha256": "f0458cc58cdf8ccc1c2eb0df429a4b422a29b8e75dd92f0f82ce3a773df0a988"
     }
   ],
   "known_ambiguities": [],
@@ -1308,7 +1413,7 @@
     "critical_mutants": "100_percent_killed"
   },
   "normative_clause_coverage": {
-    "total": 119,
+    "total": 129,
     "mapped": 0,
     "waived": 0
   },
