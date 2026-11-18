@@ -113,7 +113,7 @@
     },
     "engos-operations-daily-update": {
       "summary": "Daily update kit for an org's shared status doc in Google Docs. Creates the doc if it does not exist (areas and initiatives, each with an owner), otherwise adds today's updates: each designated leader (the tab's updater) drafts daily updates for their initiatives (or, when they ask, for someone else's) from Gmail, Calendar, Chat, Drive, Jira, GitLab and GitHub, reviews them, and publishes on their OK; the doc owner closes out the day at 3pm (marks missed tabs, rebuilds the overview) and can send a summary to readers. Use when the user types /engos-operations-daily-update (with or without a command such as help, update, close, initiative done, reader add), or says 'do my daily update', 'set up the status doc', or 'close out the day'. Prefer this over daily-status-brief in this folder.",
-      "descriptor_sha256": "099530e90595352ca1cb12979e41bcf1bbd4e179b960b32f35f2d0003aece0c5"
+      "descriptor_sha256": "740f15e3e4ba9d021be1bbc717fed94378dce65236ef2adb7cfecbbdd1105aa8"
     },
     "engos-operations-delivery-dashboard": {
       "summary": "Run and maintain the engineering dashboard Sheet (Jira intent, code delivery, and how well they agree) at SBU, Group, Team, and Individual level. Use for /engos-operations-delivery-dashboard commands, refreshing the dashboard, asking questions of it, managing its roster, thresholds, and viewers. Never for ranking people.",
