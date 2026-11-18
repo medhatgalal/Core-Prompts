@@ -389,7 +389,7 @@ tabs, tell the person what you found, and (if they are not the doc owner) draft 
 
 State lives in `~/.daily-update/` in the person's home folder, so any working folder finds it:
 
-- `config.json`: `{"me", "role": "owner"|"leader", "doc_id", "reader", "last_publish", "last_discover", "style_notes": [],
+- `config.json`: `{"me", "role": "owner"|"leader", "doc_id", "reader", "last_publish", "last_discover", "last_sent", "style_notes": [],
   "tabs": [{"tab_id", "kind": "overview"|"area"|"initiative"|"archive", "name", "area", "owner", "sources": {...}}],
   ...}`. Each person's own sources and ledger stay here; settings everyone shares live on the doc (below). `tabs` lists the tabs this person updates or owns.
   **Shared settings live on the doc**, as Drive file properties, so anyone running a doc-owner command reads
@@ -779,11 +779,35 @@ Composer" or "Kyle updates Evals". If someone else asks, draft the request for t
 
 1. Read the readers from the doc (`du.py reader list`). If empty, ask who should get it (name, email, email or Chat) and save them;
    `du.py reader add NAME EMAIL --channel email|chat`, `reader remove NAME` and `reader set-channel NAME CHANNEL` each show the old and new list with `--dry-run`; change it only on their yes.
-2. Draft one short message: subject or first line "<Org> Daily Updates, <Weekday Mon D>", one line per
-   Area health row ("<area colour> <Area>: <Headline>"), any decisions or help needed rows with their By dates, one line "<N> of <M> initiatives not confirmed today:
-   <names>." (or "All initiatives confirmed today."), one line "<N> initiatives are missing a plan: <names>."
-   (or "Every open initiative has a dated next milestone."), and the doc link. No other content; nothing beyond
-   what the overview already says.
+2. Draft the message from the overview and nothing else. For a Chat reader keep it plain: the first line
+   "<Org> Daily Updates, <Weekday Mon D>", one line per Area health row ("<area colour> <Area>: <Headline>"), the
+   decisions, the unconfirmed line, the missing-plan line, and the doc link. For an email reader build the page below.
+   Build it with `python3 resources/scripts/send.py DOC_ID READERS_JSON --html OUT.html [--last-sent FILE]`, which reads only the overview and the initiative tabs and writes the page and an author checklist (`OUT.checklist.md`). `resources/templates/summary-email.html` is the layout reference. Send the HTML as the email body, with the plain text as the fallback part.
+   - **Subject:** "<Org> Daily Updates, <Weekday Mon D>: <AMBER|RED|GREEN>, <N> red, <N> asks". The asks count is the decisions rows.
+   - **Page order, always the same:** header (org, date, "as of <time> ET", doc link); four numbers (red, at risk, due
+     this week, no dated plan, each with its own caption); the overall colour with two bold lines: what is
+     happening, then the one or two things that need a push; Changed since last send; Decisions or help needed;
+     Area health; Coming up; No dated plan; source line.
+   - **Overall colour:** RED when two or more initiatives, or a quarter of all work, are red; AMBER when anything is red or at risk; otherwise GREEN. `send.py` applies this rule.
+   - **Decision cards:** one per decisions row, each with WHY (what breaks if nobody acts), DOING (what is recorded
+     as underway) and NEEDED (who decides, and by when). If the doc records no action, DOING reads "No action is
+     recorded in the doc." in red. Never infer activity the doc does not state.
+   - **Changed since last send:** compare each Area's colour with the one in `last_sent` in `config.json` (the date and
+     the Area colours saved at the last send). Show only the Areas that moved, as "<Area>: <old> to <new>" with a
+     ▲ better or ▼ worse arrow. **Colour the chip by the new status, never by direction.** If there is no
+     `last_sent`, leave the section out. Save `last_sent` only after a send succeeds: run `send.py snapshot DOC_ID` and store its JSON.
+   - **Area health:** one row per Area: the name linked to its tab, a status pill, better/worse/no change since last
+     send, a bar of its initiatives by colour with the count in words beside it, and one "so what" line taken from
+     the headline. Colour is never the only carrier of meaning: every pill and bar also says the status in words.
+   - **Dates:** compute every "N days late" and "due in N days" from one clock, the "as of" date. A date with no
+     year is read in the doc's year.
+   - **Honest close:** the footer says how many initiatives are unconfirmed today and how many were on the last send.
+     Do not say "on track" for an Area whose headline is older than its initiative tabs (see the review rule).
+   - **Colours:** red #b91c1c on #fdecea, amber #92400e on #fef3c7, green #166534 on #e6f4ea, grey for paused or
+     none. Inline styles and table layout only, 680px maximum width, one small mobile rule, a hidden preheader line,
+     no em dashes, no images the reader must load.
+   - **Author checklist:** keep it separate from the email (a file next to the draft, never in the message). It lists
+     every inference, every doc headline you did not trust, and any count that does not tie out.
 3. Show the exact recipients, channel and text, then ask: "Send to <names>?" Send only if the doc owner replies
    "send" (or a clear yes naming the send) in this session. Email with `gws gmail users messages send`; Chat with
    `gws chat spaces messages create` in a direct message. Send only to addresses already in `reader list`.
