@@ -46,8 +46,11 @@ def facts(doc_id):
         a = by_name.get(r[0])
         areas.append({"name": r[0], "tab": a.tab_id if a else None, "counts": counts,
                       "status": live[0] if live else "Paused", "headline": r[3], "updated": r[4]})
-    open_ = [i.name for i in inits if not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed
-             or any(t.startswith("Starting section drafted by") for t, _ in i.sections[0].lines)]
+    def finished(i):  # done or stopped: waiting for Archive, so never "unconfirmed" (the sweep skips these too)
+        return bool(i.sections) and (i.sections[0].line("Progress:") or "").startswith(("Progress: Done ", "Progress: Stopped "))
+    open_ = [i.name for i in inits if not finished(i) and (not i.sections or i.sections[0].date < today
+             or i.sections[0].unconfirmed
+             or any(t.startswith("Starting section drafted by") for t, _ in i.sections[0].lines))]
     # Coming up and past due come from the overview's own Next 2 weeks table, so the email says what the doc says.
     owner = {c: i for d, c, i, st in du.next_two_weeks(inits, today)}
     nxt = []
@@ -120,6 +123,30 @@ def _card(color, area, chip, chipbg, chipfg, head, why, doing, doing_red, need):
             f'<tr><td style="height:8px"></td></tr>')
 
 
+def _why(f, area, new):
+    """(initiative, reason) pairs: why an area changed colour, taken only from what the initiative tabs say today."""
+    out = []
+    for i in f["inits"]:
+        if i.area_name != area or not i.sections:
+            continue
+        cur, prev = i.sections[0], (i.sections[1] if len(i.sections) > 1 else None)
+        st = {"\U0001F534": "Red", "\U0001F7E1": "At risk", "\U0001F7E2": "On track", "\u26AA": "Paused"}.get(cur.status)
+        moved = prev is not None and prev.status != cur.status
+        if st != new and not moved:
+            continue
+        prog = (cur.line("Progress:") or "").replace("Progress:", "", 1).strip()
+        blk = (cur.line("Blocked on:") or "").replace("Blocked on:", "", 1).strip()
+        text = prog.split(". ")[0].rstrip(".") + "."
+        if len(text) > 260:
+            text = text[:257].rsplit(" ", 1)[0] + "..."
+        if blk and blk.lower().rstrip(".") != "none":
+            text += " Blocked on: " + (blk if len(blk) < 200 else blk[:197].rsplit(" ", 1)[0] + "...")
+        out.append((i.name, text if prog else "No reason is recorded in the doc.", bool(moved)))
+    if any(x[2] for x in out):  # something moved: say why it moved, not what stayed put
+        out = [x for x in out if x[2]]
+    return out[:3]
+
+
 def render(f, last=None):
     """(subject, html, checklist) for an email reader. `last` is the saved `last_sent`, or None."""
     doc, today = f"https://docs.google.com/document/d/{f['doc_id']}/edit", f["today"]
@@ -161,7 +188,10 @@ def render(f, last=None):
         moved = [(a["name"], last["areas"][a["name"]], a["status"]) for a in areas
                  if a["name"] in last["areas"] and last["areas"][a["name"]] != a["status"]]
         inner = ('<tr><td style="padding:6px 20px 8px"><table width="100%" cellpadding="0" cellspacing="6" style="border-collapse:separate"><tr>'
-                 + "".join(_chip(*m) for m in moved) + "</tr></table></td></tr>") if moved else \
+                 + "".join(_chip(*m) for m in moved) + "</tr></table></td></tr>"
+                 + "".join(f'<tr><td style="padding:2px 20px 6px;font-size:12px;line-height:1.5"><b>{e(m[0])}, why:</b> '
+                           + " ".join(f'{e(n)}: {e(t)}' for n, t, _ in _why(f, m[0], m[2]))
+                           + "</td></tr>" for m in moved)) if moved else \
             f'<tr><td style="padding:6px 20px 8px;font-size:13px">No area changed colour since {e(du.label(prev_day))}.</td></tr>'
         changed = f'<tr><td style="{HEAD}">CHANGED SINCE {e(prev_wd.upper())}</td></tr>' + inner
 
@@ -189,9 +219,9 @@ def render(f, last=None):
         p = prev_by.get(a["name"])
         if not p:
             mark, was = "&nbsp;", ""
-        elif RANK[a["status"]] < RANK[p]:
-            mark, was = f'<span style="color:{G};font-weight:bold">&#9650; Better</span>', f"(was {p.lower()})"
         elif RANK[a["status"]] > RANK[p]:
+            mark, was = f'<span style="color:{G};font-weight:bold">&#9650; Better</span>', f"(was {p.lower()})"
+        elif RANK[a["status"]] < RANK[p]:
             mark, was = f'<span style="color:{R};font-weight:bold">&#9660; Worse</span>', f"(was {p.lower()})"
         else:
             mark, was = '<span style="color:#555">No change</span>', ""
