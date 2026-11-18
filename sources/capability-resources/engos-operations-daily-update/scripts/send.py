@@ -123,28 +123,28 @@ def _card(color, area, chip, chipbg, chipfg, head, why, doing, doing_red, need):
             f'<tr><td style="height:8px"></td></tr>')
 
 
+def _short(text, limit=95):
+    """One short clause: the first sentence up to a colon, semicolon or bracket, cut at a word."""
+    t = re.split(r"[:;]| \(", text.split(". ")[0].rstrip("."))[0].strip()
+    if len(t) > limit:
+        head = t[:limit + 12]
+        cut = max(head.rfind(", "), head.rfind(" and "))  # end on a clause, not mid-phrase
+        t = head[:cut] if cut > 30 else t[:limit].rsplit(" ", 1)[0].rstrip(",")
+    return t
+
+
 def _why(f, area, new):
-    """(initiative, reason) pairs: why an area changed colour, taken only from what the initiative tabs say today."""
+    """(initiative, short reason) for what moved in an area today, from the initiative tabs only."""
     out = []
     for i in f["inits"]:
         if i.area_name != area or not i.sections:
             continue
         cur, prev = i.sections[0], (i.sections[1] if len(i.sections) > 1 else None)
-        st = {"\U0001F534": "Red", "\U0001F7E1": "At risk", "\U0001F7E2": "On track", "\u26AA": "Paused"}.get(cur.status)
-        moved = prev is not None and prev.status != cur.status
-        if st != new and not moved:
+        if prev is None or prev.status == cur.status:
             continue
         prog = (cur.line("Progress:") or "").replace("Progress:", "", 1).strip()
-        blk = (cur.line("Blocked on:") or "").replace("Blocked on:", "", 1).strip()
-        text = prog.split(". ")[0].rstrip(".") + "."
-        if len(text) > 260:
-            text = text[:257].rsplit(" ", 1)[0] + "..."
-        if blk and blk.lower().rstrip(".") != "none":
-            text += " Blocked on: " + (blk if len(blk) < 200 else blk[:197].rsplit(" ", 1)[0] + "...")
-        out.append((i.name, text if prog else "No reason is recorded in the doc.", bool(moved)))
-    if any(x[2] for x in out):  # something moved: say why it moved, not what stayed put
-        out = [x for x in out if x[2]]
-    return out[:3]
+        out.append((i.name, _short(prog) if prog else "No reason is recorded in the doc"))
+    return out[:2]
 
 
 def render(f, last=None):
@@ -188,10 +188,7 @@ def render(f, last=None):
         moved = [(a["name"], last["areas"][a["name"]], a["status"]) for a in areas
                  if a["name"] in last["areas"] and last["areas"][a["name"]] != a["status"]]
         inner = ('<tr><td style="padding:6px 20px 8px"><table width="100%" cellpadding="0" cellspacing="6" style="border-collapse:separate"><tr>'
-                 + "".join(_chip(*m) for m in moved) + "</tr></table></td></tr>"
-                 + "".join(f'<tr><td style="padding:2px 20px 6px;font-size:12px;line-height:1.5"><b>{e(m[0])}, why:</b> '
-                           + " ".join(f'{e(n)}: {e(t)}' for n, t, _ in _why(f, m[0], m[2]))
-                           + "</td></tr>" for m in moved)) if moved else \
+                 + "".join(_chip(*m) for m in moved) + "</tr></table></td></tr>") if moved else \
             f'<tr><td style="padding:6px 20px 8px;font-size:13px">No area changed colour since {e(du.label(prev_day))}.</td></tr>'
         changed = f'<tr><td style="{HEAD}">CHANGED SINCE {e(prev_wd.upper())}</td></tr>' + inner
 
@@ -225,6 +222,8 @@ def render(f, last=None):
             mark, was = f'<span style="color:{R};font-weight:bold">&#9660; Worse</span>', f"(was {p.lower()})"
         else:
             mark, was = '<span style="color:#555">No change</span>', ""
+        moved_why = _why(f, a["name"], a["status"]) if p and p != a["status"] else []
+        why_html = (f'<div style="padding:0 0 4px"><b>Why:</b> ' + "; ".join(f"{e(n)}: {e(t)}" for n, t in moved_why) + "</div>") if moved_why else ""
         tot = sum(a["counts"].values()) or 1
         bar = "".join(f'<td width="{round(a["counts"][k] * 100 / tot)}%" style="background:{c};height:10px;font-size:1px;line-height:10px">&nbsp;</td>'
                       for k, c in BAR if a["counts"].get(k))
@@ -236,7 +235,7 @@ def render(f, last=None):
                  f'padding:2px 8px;border-radius:10px">{e(a["status"])}</span><br><span style="font-size:11px">{mark} {e(was)}</span></td>'
                  f'<td style="padding:10px 10px;border-top:1px solid #e5e7eb;vertical-align:top;font-size:13px;line-height:1.45">'
                  f'<table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse"><tr>{bar}</tr></table>'
-                 f'<div style="font-size:11px;color:#555;padding:3px 0 5px">{e(words)}</div>{e(a["headline"])}</td></tr>')
+                 f'<div style="font-size:11px;color:#555;padding:3px 0 5px">{e(words)}</div>{why_html}{e(a["headline"])}</td></tr>')
         if "headline from" in a["headline"]:
             checklist.append(f"{a['name']}: the headline is flagged old or out of date with its tabs. The email repeats it as written.")
 
