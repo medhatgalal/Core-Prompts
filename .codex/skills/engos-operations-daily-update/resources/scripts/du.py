@@ -305,7 +305,7 @@ def cmd_send(a):
     readers = st["readers"]
     if not readers:
         raise SystemExit("No readers set. Run: du.py reader add NAME EMAIL --channel email")
-    text = send.draft(doc_id, readers)
+    text = send.draft(doc_id)  # plain-text lines for Chat readers; email readers use send.py --html
     subject, body = text[0], "\n".join(text[2:])
     print("RECIPIENTS: " + ", ".join(f"{r['name']} <{r['email']}> by {r['channel']}" for r in readers))
     print("SUBJECT: " + subject)

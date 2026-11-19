@@ -1,5 +1,13 @@
 ## Unreleased
 
+## v1.23.2 - 2026-11-18
+
+Tag authorized by Scott Parrish on 2026-11-18. Publication is recorded by the GitLab
+release notes; this entry does not claim installed parity or native acceptance.
+
+- `engos-operations-daily-update`: fixes found on the first live send of the v1.23.1 summary email. Area health showed Better and Worse the wrong way round (red to at risk read as Worse); it now reads Better when the status rose and Worse when it fell. Each area whose status moved since the last send now carries a short Why line taken from the initiatives that moved, cut at a clause boundary. Initiatives whose newest Progress starts "Progress: Done" or "Progress: Stopped" are no longer counted as not confirmed. `du.py day send` no longer crashes when it builds the draft.
+- Tested: `send_test.py` (3 new checks: Worse when status fell, Better when status rose, short reason cuts at the first clause; red before the fix, green after). Not tested: a second live send with the new Why lines.
+
 ## v1.23.1 - 2026-11-18
 
 Tag authorized by Scott Parrish on 2026-11-18. Publication is recorded by the GitLab

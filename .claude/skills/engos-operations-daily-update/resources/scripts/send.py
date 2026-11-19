@@ -46,8 +46,11 @@ def facts(doc_id):
         a = by_name.get(r[0])
         areas.append({"name": r[0], "tab": a.tab_id if a else None, "counts": counts,
                       "status": live[0] if live else "Paused", "headline": r[3], "updated": r[4]})
-    open_ = [i.name for i in inits if not i.sections or i.sections[0].date < today or i.sections[0].unconfirmed
-             or any(t.startswith("Starting section drafted by") for t, _ in i.sections[0].lines)]
+    def finished(i):  # done or stopped: waiting for Archive, so never "unconfirmed" (the sweep skips these too)
+        return bool(i.sections) and (i.sections[0].line("Progress:") or "").startswith(("Progress: Done ", "Progress: Stopped "))
+    open_ = [i.name for i in inits if not finished(i) and (not i.sections or i.sections[0].date < today
+             or i.sections[0].unconfirmed
+             or any(t.startswith("Starting section drafted by") for t, _ in i.sections[0].lines))]
     # Coming up and past due come from the overview's own Next 2 weeks table, so the email says what the doc says.
     owner = {c: i for d, c, i, st in du.next_two_weeks(inits, today)}
     nxt = []
@@ -120,6 +123,30 @@ def _card(color, area, chip, chipbg, chipfg, head, why, doing, doing_red, need):
             f'<tr><td style="height:8px"></td></tr>')
 
 
+def _short(text, limit=95):
+    """One short clause: the first sentence up to a colon, semicolon or bracket, cut at a word."""
+    t = re.split(r"[:;]| \(", text.split(". ")[0].rstrip("."))[0].strip()
+    if len(t) > limit:
+        head = t[:limit + 12]
+        cut = max(head.rfind(", "), head.rfind(" and "))  # end on a clause, not mid-phrase
+        t = head[:cut] if cut > 30 else t[:limit].rsplit(" ", 1)[0].rstrip(",")
+    return t
+
+
+def _why(f, area, new):
+    """(initiative, short reason) for what moved in an area today, from the initiative tabs only."""
+    out = []
+    for i in f["inits"]:
+        if i.area_name != area or not i.sections:
+            continue
+        cur, prev = i.sections[0], (i.sections[1] if len(i.sections) > 1 else None)
+        if prev is None or prev.status == cur.status:
+            continue
+        prog = (cur.line("Progress:") or "").replace("Progress:", "", 1).strip()
+        out.append((i.name, _short(prog) if prog else "No reason is recorded in the doc"))
+    return out[:2]
+
+
 def render(f, last=None):
     """(subject, html, checklist) for an email reader. `last` is the saved `last_sent`, or None."""
     doc, today = f"https://docs.google.com/document/d/{f['doc_id']}/edit", f["today"]
@@ -189,12 +216,14 @@ def render(f, last=None):
         p = prev_by.get(a["name"])
         if not p:
             mark, was = "&nbsp;", ""
-        elif RANK[a["status"]] < RANK[p]:
-            mark, was = f'<span style="color:{G};font-weight:bold">&#9650; Better</span>', f"(was {p.lower()})"
         elif RANK[a["status"]] > RANK[p]:
+            mark, was = f'<span style="color:{G};font-weight:bold">&#9650; Better</span>', f"(was {p.lower()})"
+        elif RANK[a["status"]] < RANK[p]:
             mark, was = f'<span style="color:{R};font-weight:bold">&#9660; Worse</span>', f"(was {p.lower()})"
         else:
             mark, was = '<span style="color:#555">No change</span>', ""
+        moved_why = _why(f, a["name"], a["status"]) if p and p != a["status"] else []
+        why_html = (f'<div style="padding:0 0 4px"><b>Why:</b> ' + "; ".join(f"{e(n)}: {e(t)}" for n, t in moved_why) + "</div>") if moved_why else ""
         tot = sum(a["counts"].values()) or 1
         bar = "".join(f'<td width="{round(a["counts"][k] * 100 / tot)}%" style="background:{c};height:10px;font-size:1px;line-height:10px">&nbsp;</td>'
                       for k, c in BAR if a["counts"].get(k))
@@ -206,7 +235,7 @@ def render(f, last=None):
                  f'padding:2px 8px;border-radius:10px">{e(a["status"])}</span><br><span style="font-size:11px">{mark} {e(was)}</span></td>'
                  f'<td style="padding:10px 10px;border-top:1px solid #e5e7eb;vertical-align:top;font-size:13px;line-height:1.45">'
                  f'<table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse"><tr>{bar}</tr></table>'
-                 f'<div style="font-size:11px;color:#555;padding:3px 0 5px">{e(words)}</div>{e(a["headline"])}</td></tr>')
+                 f'<div style="font-size:11px;color:#555;padding:3px 0 5px">{e(words)}</div>{why_html}{e(a["headline"])}</td></tr>')
         if "headline from" in a["headline"]:
             checklist.append(f"{a['name']}: the headline is flagged old or out of date with its tabs. The email repeats it as written.")
 
