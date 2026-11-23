@@ -49,9 +49,19 @@ a route. [Try it in a project chat](GETTING-STARTED.md#fast-path-use-what-is-alr
 | A one-time CI audit | “Inspect the latest push and merge-request pipelines for the same commit. Which jobs ran twice, how many runner minutes did that cost, and which checks would we lose by removing one? Return findings only.” | Job names, run evidence and a recommendation. If timing or logs are unavailable, the report identifies the gap. |
 | A comparison | “Compare replaying production traces with generating synthetic load for our latency test. Use the same workload and budget. Recommend one only if the measurements distinguish them.” | Measurements on matched inputs if execution is available. Otherwise, a description of what remains untested. |
 | A reviewed local fix | “Our weekly report counts a reopened issue twice. Reproduce it with a fixture, fix the count, and have an independent reviewer check the diff and test. Recheck any repair. Stop with a local diff.” | A regression test, patch and review of the final revision. The diff stays local. |
-| An overnight plan | “Design a read-only overnight audit of our migration. Give me the evidence sources, success criteria and stop conditions. Stop at the plan and leave it unscheduled.” | A Crew plan for decision. If you already have accepted steps and want a goal packet, ask “Turn these steps into a goal I can start later.” |
+| An overnight plan | “Design a read-only overnight audit of our migration. Give me the evidence sources, success criteria and stop conditions. Stop at the plan and leave it unscheduled.” | A proposed audit plan for your decision. If you already have accepted steps and want a goal packet, ask “Turn these steps into a goal I can start later.” |
 | A weekly summary | “Using this repo and its issue tracker, what shipped this week and which issues are still open? Link the evidence. Return a draft here.” | A draft grounded in commits and tracker records. Weekly Intel requires independent review for a substantial authored report. |
 | A change through merge | “Use Batman’s evidence-gated delivery workflow for the approved pagination fix. Implement it and open each PR or MR the project requires. Merge once independent review and required hosted checks pass on the final revision. Verify the landed revision and required post-merge checks on each mainline, then clean up this task’s branch and worktree.” | A reviewed, tested merge and cleanup when the host and project allow them. An unmet gate is reported with its evidence. |
+
+**To select Crew explicitly in Codex**, paste this into the project chat:
+
+```text
+$engos-orchestration-crew design a read-only overnight audit of this migration. Give me the plan, acceptance criteria, and checks required before launch. Stop and wait for my explicit approval of the plan before freezing it, scheduling the audit, or starting audit work.
+```
+
+Crew can use independent reviewers while preparing the design. It presents the
+plan for your approval. Production audit work requires your go-ahead and passing
+the applicable preflight checks.
 
 **To check a fix independently**, open a new session in the same project.
 Give it the original task, exact diff or revision, and the fixture. Leave out
