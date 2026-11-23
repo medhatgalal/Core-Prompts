@@ -39,6 +39,10 @@ not required stages added to every example.
 Open a chat in the target project with Core-Prompts available. Paste whichever
 request fits, replacing the example inputs with your own. Name the result you want and where the work should end.
 
+To ask Core-Prompts to choose the starting skill in Codex, prefix your request
+with `$engos-route-intent`. Add “stop at the recommendation” if you only want
+a route. [Try it in a project chat](GETTING-STARTED.md#fast-path-use-what-is-already-available).
+
 | When you want | Paste this | What to expect |
 | --- | --- | --- |
 | A quick edit | “Make this prompt one sentence and keep the approval step: ‘Inspect the failing job. Explain the smallest fix. Wait for my approval before editing.’ Return only the rewritten prompt.” | One sentence. The quoted job stays unexecuted. For a rubric too, ask “How would I grade the result?” |

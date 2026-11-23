@@ -16,6 +16,18 @@ Core-Prompts skills are available. Type your request in the chat. A sentence is
 enough when it names the result and where to stop. For example, “Read the failing
 pagination test and explain why the last row appears twice. Stop at diagnosis.”
 
+**To have Core-Prompts choose the starting skill in Codex**, enter
+`$engos-route-intent` followed by your request in the project chat.
+
+> $engos-route-intent We have two proposals for speeding up CI and one baseline
+> run. What evidence do we need to choose between them? Recommend a first step
+> and explain why. Stop at the recommendation.
+
+Codex must have the router available in this session. If it is missing from the
+skill list, check the [Codex install profile](INSTALL-PROFILES.md) and reopen
+the project after installation. The [intent guide](INTENT-ROUTING.md#use-the-contained-skill-package)
+lists explicit invocations for other hosts.
+
 1. **Describe the outcome, context and scope.** If you also want the repair, ask
    “Fix the duplicate last row, preserve sorting and permissions, and run the
    pagination tests. Leave the change local.”
