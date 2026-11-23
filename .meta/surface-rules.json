@@ -3,6 +3,20 @@
   "generated_at": "",
   "schema_cache_dir": ".meta/schema-cache",
   "schema_cache_ttl_days": 14,
+  "review_fragment_consumers": [
+    "engos-audit-code-health",
+    "engos-audit-feature-status",
+    "engos-audit-opex-incident-review",
+    "engos-audit-weekly-intel",
+    "engos-browser-demo-recorder",
+    "engos-content-dynamic-html-presentations",
+    "engos-delivery-resolve-conflict",
+    "engos-design-plan-to-goal",
+    "engos-quality-docs-review",
+    "engos-quality-testing-review",
+    "engos-reconciliation-converge",
+    "loopy"
+  ],
   "deployment_policy": {
     "copy_only": true,
     "forbid_symlink_targets": true,

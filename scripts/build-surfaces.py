@@ -30,6 +30,7 @@ from intent_pipeline.skill_jobs import (
 )
 from intent_pipeline.uac_baselines import resolve_historical_baseline
 from intent_pipeline.uac_agent_review import preflight_agent_emission
+from intent_pipeline.review_fragment import check_materializations
 from intent_pipeline.uac_descriptors import (
     build_descriptor,
     load_descriptor,
@@ -718,6 +719,10 @@ def main():
     admission_errors = preflight_agent_emission(ROOT)
     if admission_errors:
         raise SystemExit("Agent emission preflight failed:\n" + "\n".join(admission_errors))
+    try:
+        check_materializations(ROOT)
+    except (OSError, ValueError) as error:
+        raise SystemExit(f"Shared review preflight failed: {error}") from error
     entries = load_ssot_entries(SSOT_DIR)
     if not entries:
         raise SystemExit('No SSOT files found in ssot/')
