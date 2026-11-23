@@ -63,6 +63,7 @@ from intent_pipeline.uac_sources import (
     enumerate_github_tree,
     enumerate_local_directory,
 )
+from intent_pipeline.review_fragment import check_candidate
 from intent_pipeline.uac_ssot import (
     build_ssot_manifest_entry,
     build_ssot_handoff_contract,
@@ -2452,7 +2453,8 @@ def _apply_payload(payload: dict[str, Any], args: argparse.Namespace, sources: l
         descriptor['quality_validation_matrix'] = list((quality_plan or {}).get('validation_matrix') or ())
     try:
         ssot_text, apply_guard = _safe_apply_ssot_text(slug, result, quality_result=quality_result)
-    except ValueError as exc:
+        check_candidate(ROOT, slug, ssot_text)
+    except (OSError, ValueError) as exc:
         result['mode'] = 'apply'
         result['status'] = 'manual_review'
         result['detail'] = str(exc)

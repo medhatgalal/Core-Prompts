@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Maintainers can update the shared writer and reviewer instructions for twelve skills in one fragment. Build, validation, and UAC check the expanded copies.
+
 ## v1.23.2 - 2026-11-18
 
 Tag authorized by Scott Parrish on 2026-11-18. Publication is recorded by the GitLab
