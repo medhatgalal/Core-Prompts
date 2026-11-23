@@ -36,6 +36,10 @@ The [delivery workflow](../.kiro/steering/repo-workflow.md#delivery-workflow) ap
 
 For existing capabilities, prepare the candidate from current SSOT and use the [same-slug UAC update flow](UAC-USAGE.md#update-an-existing-capability). Helpers live under `sources/capability-resources/<slug>/`; generated and installed bundles are outputs. User docs travel with the change. Installation and versioned release checks are separate from merge evidence.
 
+The twelve skills named in `review_fragment_consumers` in [.meta/surface-rules.json](../.meta/surface-rules.json) share their “Three Roles” and “Finding and Repair Cycle” text. Edit the [shared fragment](../ssot/fragments/recommendation-artifact-review.md) for those two subsections. Each skill owns its review trigger, exceptions, and adjacent instructions in its expanded `ssot/<slug>.md`.
+
+Run `python3 scripts/sync-review-fragment.py --sync` before committing a fragment edit. It updates copies matching the previous fragment in Git HEAD and stops for local differences. Review the scoped diff, then run the usual same-slug UAC, build and validation steps. Use `python3 scripts/sync-review-fragment.py --check` to verify the copies. The expanded files retain their paths for source hashes, citations and provider generation.
+
 ## Practical Review Checklist
 
 ### When onboarding or examples changed
