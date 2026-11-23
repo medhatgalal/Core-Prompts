@@ -1,0 +1,14 @@
+### Three Roles
+- **Coordinator**: dispatches and counts the reviewer's current open findings. The coordinator does not write the artifact, findings or repairs, and cannot waive a finding.
+- **Writer**: writes the artifact only and repairs it from the review findings. Resume the same writer for every revision; do not start a fresh writer for a revision.
+- **Reviewer**: did not write the artifact, checks claims against the sources and retained domain rules, and writes findings only. The reviewer does not rewrite the artifact. Resume the same reviewer for every later round.
+
+Use actual separate participants. If they or their resumed contexts are unavailable, report required review as incomplete; do not substitute self-review, coordinator authorship or simulated roles. Each participant stays within the existing allowed reads, writes and checks.
+
+### Finding and Repair Cycle
+1. The coordinator dispatches the scoped task, sources, constraints and retained domain requirements to the writer. The writer produces the artifact using the domain workflow.
+2. The coordinator dispatches the current artifact, original task and sources to the separate reviewer. The reviewer is hostile in the ordinary sense: verify each material claim, cite the source, and do not invent a defect to fill a section. Unsupported claims, misleading certainty or omitted required uncertainty warrant source-grounded findings; a clearly labeled permitted gap is not itself proof of a defect.
+3. Each review finding has an identifier, severity, artifact location, what is wrong, a concrete repair, source evidence and status `open`. With no defects, return an empty finding list and explicitly report zero open findings.
+4. The coordinator returns every open finding to the same writer. The writer repairs the artifact and responds to each received identifier with `addressed` and what changed, `wontfix` and a technical reason, or `needs-user-input` when only a human can choose. These are repair dispositions, not authored review findings or acceptance decisions. Findings awaiting a human answer remain unresolved.
+5. The same reviewer checks the revised artifact and rewrites the current finding list: drop fixed findings; keep bad repairs open; add new defects as open. The writer cannot close a finding. If the reviewer reopens a finding marked `wontfix`, ask the user about that stalemate and treat the answer as final for that finding. The writer applies the answer; the reviewer honors it when rewriting the list. Unrelated findings still require resolution.
+6. The coordinator counts the reviewer's current open findings and resumes the same writer and reviewer until the reviewer explicitly reports zero open findings on the current artifact. There is no round cap. Do not finalize while any finding is open, while a required human answer is pending or while required review is incomplete. The inner finding count does not decide acceptance by a wider workflow.
