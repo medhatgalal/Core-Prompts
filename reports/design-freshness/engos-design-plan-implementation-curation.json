@@ -1,0 +1,125 @@
+{
+  "schema_version": "PreservationDisplacement.v1",
+  "record_status": "completed_author_record_not_independent_approval",
+  "candidate_id": "engos-design-plan-implementation",
+  "receiving_owner": "engos-design-plan-implementation",
+  "choice": "harvest",
+  "outcome": "Execute complete source freshness reads and reconcile today’s simpler path before dependent handoff.",
+  "positive_trigger": "Ticket-backed design/specification/planning, accepted technical shaping Research, resume or explicit freshness request.",
+  "negative_trigger": "Prose corrections, status-only updates, frame-only technical investigation, unrequested monitoring.",
+  "original_sha256": "418f61721066c1411fde8f7a8a29110743c9d7d6fdd322b1ea5c7a087a58161f",
+  "candidate_sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948",
+  "source_refs": [
+    {
+      "id": "request",
+      "origin": "user-request:2026-11-11-freshness-sweep",
+      "revision": "conversation request",
+      "body_sha256": "e34a7be1157b72fb5538d3c4a32cf0725a50520d89467e796fd364cbb0ad5640",
+      "selected_resources": [],
+      "passage_ref": "Full current user request",
+      "license_scope": "User-authorized independently written repository change; no external donor text/assets.",
+      "notice_requirements": "Existing repository license remains applicable.",
+      "reuse_mode": "independently_expressed_pattern",
+      "reuse_decision": "same_owner_gate_with_pinned_shared_resources",
+      "dependency_closure": [
+        "references/freshness-sweep.md",
+        "scripts/freshness_check.py"
+      ],
+      "host_compatibility": "Authorized host source tools plus Python 3.11+ stdlib; no network in checker.",
+      "notes": "No donor body, template, agent surface, runtime configuration or external-write permission imported."
+    }
+  ],
+  "clauses": [
+    {
+      "id": "C1",
+      "source_ref": "ssot/engos-design-plan-implementation.md:1-49",
+      "disposition": "preserved",
+      "destination": "ssot/engos-design-plan-implementation.md:1-49",
+      "displaced_clause": null,
+      "rationale": "Retain existing source contract.",
+      "authority_ref": "user-request:2026-11-11-freshness-sweep",
+      "evidence_class": "source-and-diff; independent requirement review separate",
+      "review_status": "independently_reviewed"
+    },
+    {
+      "id": "C2",
+      "source_ref": "ssot/engos-design-plan-implementation.md:50-50",
+      "disposition": "reformulated",
+      "destination": "ssot/engos-design-plan-implementation.md:50-78",
+      "displaced_clause": null,
+      "rationale": "Add required freshness execution at this owner’s boundary; preserve existing authority and acceptance.",
+      "authority_ref": "user-request:2026-11-11-freshness-sweep",
+      "evidence_class": "source-and-diff; independent requirement review separate",
+      "review_status": "independently_reviewed"
+    },
+    {
+      "id": "C3",
+      "source_ref": "ssot/engos-design-plan-implementation.md:50-57",
+      "disposition": "preserved",
+      "destination": "ssot/engos-design-plan-implementation.md:79-86",
+      "displaced_clause": null,
+      "rationale": "Retain existing source contract.",
+      "authority_ref": "user-request:2026-11-11-freshness-sweep",
+      "evidence_class": "source-and-diff; independent requirement review separate",
+      "review_status": "independently_reviewed"
+    },
+    {
+      "id": "C4",
+      "source_ref": "ssot/engos-design-plan-implementation.md:58-58",
+      "disposition": "reformulated",
+      "destination": "ssot/engos-design-plan-implementation.md:87-90",
+      "displaced_clause": "2. Inspect the relevant implementation boundaries. Carry forward requirements,",
+      "rationale": "Add required freshness execution at this owner’s boundary; preserve existing authority and acceptance.",
+      "authority_ref": "user-request:2026-11-11-freshness-sweep",
+      "evidence_class": "source-and-diff; independent requirement review separate",
+      "review_status": "independently_reviewed"
+    },
+    {
+      "id": "C5",
+      "source_ref": "ssot/engos-design-plan-implementation.md:59-302",
+      "disposition": "preserved",
+      "destination": "ssot/engos-design-plan-implementation.md:91-334",
+      "displaced_clause": null,
+      "rationale": "Retain existing source contract.",
+      "authority_ref": "user-request:2026-11-11-freshness-sweep",
+      "evidence_class": "source-and-diff; independent requirement review separate",
+      "review_status": "independently_reviewed"
+    }
+  ],
+  "consumer_inventory": [
+    {
+      "path": "ssot/engos-design-freshness-sweep.md",
+      "status": "scoped",
+      "owner": "engos-design-freshness-sweep"
+    },
+    {
+      "path": "ssot/engos-design-specify-change.md",
+      "status": "scoped",
+      "owner": "engos-design-specify-change"
+    },
+    {
+      "path": "ssot/engos-design-plan-implementation.md",
+      "status": "scoped",
+      "owner": "engos-design-plan-implementation"
+    },
+    {
+      "path": "ssot/engos-design-shaping.md",
+      "status": "scoped",
+      "owner": "engos-design-shaping"
+    },
+    {
+      "path": "unknown external consumers",
+      "status": "unknown",
+      "owner": "external"
+    }
+  ],
+  "validation": [
+    "Independent hash-bound UAC review approved; plan/judge structural_ready; apply passed strict validation.",
+    "Focused synthetic checker tests passed; final package/integration suite follows."
+  ],
+  "unresolved": [],
+  "limits": [
+    "Author curation, not UACRequirementReview or PromotionVerdict.",
+    "No measured agent benefit; behavioral_pending."
+  ]
+}

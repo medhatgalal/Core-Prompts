@@ -1,0 +1,122 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-freshness-sweep",
+  "original_sha256": "1e499260ab8223a4dfa16436d1439e8339cee7e3be1debe22684c43ebb4579e0",
+  "candidate_sha256": "1e499260ab8223a4dfa16436d1439e8339cee7e3be1debe22684c43ebb4579e0",
+  "effective_sha256": "fe7fc15fd6cdb11c5633c71b047b29c68de8fd8bbd7e209882385206961048dd",
+  "verdict": "approved",
+  "source_line_count": 146,
+  "reviewer": {
+    "agent_id": "/root/freshness_review",
+    "author_agent_id": "/root",
+    "independent": true
+  },
+  "agent_execution_needs": [],
+  "evidence_scope": "Standalone candidate and full routed canonical package reviewed; 31 synthetic focused tests passed. Real source collection and measured agent behavior remain unverified. No historical baseline exists for this new skill.",
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "description: Execute a read-only freshness sweep before designing, planning or resuming ticket-backed work. Read every linked-ticket comment and MR note and fourteen days of area-owner merges across involved repos; report changed assumptions and today's simpler path, and refuse technical blocked verdicts without the responsible owner's exact confirmation.",
+      "rationale": "The name, standalone workflow surface, trigger and headline contract identify the requested skill without creating a named agent."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 18,
+      "disposition": "preserved",
+      "candidate_excerpt": "plan or technical dependency verdict. Use for ticket-backed work, stale designs,",
+      "rationale": "The read-only evidence investigation includes stale designs and resumes, with no side-effecting redesign or acceptance authority."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 19,
+      "source_end_line": 26,
+      "disposition": "preserved",
+      "candidate_excerpt": "assumptions to actual source evidence, and refuse unsupported technical blockers.",
+      "rationale": "Collection leads to evidence-grounded simplification or explicit gaps. Claims require separate ground truth."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 27,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "- \u201cIs this still blocked?\u201d selects current evidence and owner-confirmation checks.",
+      "rationale": "Positive examples distinguish investigation and blocker verification from status reporting and unrelated writing."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 44,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Area owners and platform identities with attributable ownership sources.",
+      "rationale": "The inputs bind the design, tickets, source owners, involved repositories and existing authority."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 45,
+      "source_end_line": 54,
+      "disposition": "preserved",
+      "candidate_excerpt": "2. Execute authorized source reads: root and recursively linked tickets, full",
+      "rationale": "The required resource procedure covers root and recursively linked tickets, each discussion endpoint and nested reply stream, and all owner/repository pairs over the rolling merge window."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 55,
+      "source_end_line": 64,
+      "disposition": "preserved",
+      "candidate_excerpt": "4. Reconcile each load-bearing assumption with current evidence. Identify lifted",
+      "rationale": "Private tool provenance, mandatory execution and source-to-assumption analysis remain differentiated from a checker pass."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 65,
+      "source_end_line": 74,
+      "disposition": "preserved",
+      "candidate_excerpt": "separately from the checker. Refuse technical blocked without each responsible",
+      "rationale": "Source review, responsible owner quote and current scope assessment, bounded holds and revalidation govern the dependent handoff."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 75,
+      "source_end_line": 90,
+      "disposition": "preserved",
+      "candidate_excerpt": "Research only after accepted framing, before G2 and later technical reuse. Keep",
+      "rationale": "Defined consumer boundaries and partial evidence handling preserve existing decision ownership. The helper checks supplied normalized data."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 91,
+      "source_end_line": 104,
+      "disposition": "preserved",
+      "candidate_excerpt": "Include **What changed since this was designed / simpler path that exists today**:",
+      "rationale": "The output carries the exact requested heading, provenance, coverage, dispositions, current owner quote, evidence limitations and next permitted action."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 105,
+      "source_end_line": 120,
+      "disposition": "preserved",
+      "candidate_excerpt": "ledger. Default to chat when saving was not requested. Keep raw private discussions",
+      "rationale": "Existing artifact and disclosure boundaries, read-only authority and dependency-free local checker remain explicit."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 121,
+      "source_end_line": 135,
+      "disposition": "preserved",
+      "candidate_excerpt": "was lifted; a platform owner's merge adds the needed API. Read both complete",
+      "rationale": "The examples illustrate a lifted blocker, a genuinely confirmed dependency and a non-trigger without claiming a live result."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 136,
+      "source_end_line": 146,
+      "disposition": "preserved",
+      "candidate_excerpt": "| Blocker discipline | Each technical blocker has a current exact responsible-owner confirmation and no unresolved contrary evidence |",
+      "rationale": "The rubric tests both coverage and the evidence and authority conditions on a technical blocker; it claims no measured behavioral improvement."
+    }
+  ]
+}

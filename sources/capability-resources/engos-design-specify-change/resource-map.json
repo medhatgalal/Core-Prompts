@@ -27,6 +27,9 @@
     ],
     "trace_examples": [
       "evals/positive-and-near-miss.json"
+    ],
+    "freshness": [
+      "references/freshness-sweep.md"
     ]
   },
   "dependencies": {
@@ -37,11 +40,16 @@
     ],
     "schemas/task-plan.schema.json": [
       "schemas/task-contract.schema.json"
+    ],
+    "references/freshness-sweep.md": [
+      "scripts/freshness_check.py"
     ]
   },
   "shared_imports": [
     "task-plan-v1",
     "task-contract-v1",
-    "test-design-v1"
+    "test-design-v1",
+    "design-freshness-procedure-v1",
+    "design-freshness-check-v1"
   ]
 }

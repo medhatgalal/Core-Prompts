@@ -28,6 +28,25 @@ provenance and evidence requirements:
   No direct repo access is required if sufficient attributable evidence is supplied.
 - Hybrid: assign each uncertainty once across modes; reconcile returns centrally.
 
+## Ticket-backed technical freshness
+
+After accepted framing, execute the bundled freshness procedure within this
+Research work order before proposing G2. Read references/freshness-sweep.md and
+run its source collection and checker; include its required changed-assumptions /
+simpler-path section in these same research notes and existing coverage IDs.
+An incomplete sweep holds dependent source sufficiency; it cannot yield a technical
+blocked verdict without the responsible owner's current quoted confirmation.
+Keep actual source bytes and tool observations available under existing disclosure
+and review boundaries. On resume or material source drift, revalidate before
+technical reuse; return changed assumptions to Research and their decision owner.
+For human-led/hybrid Research, complete attributable source-tool pages, terminal
+pagination receipts and source snapshots returned by an authorized human can
+supply the same collection. Read every full body and apply identical window,
+coverage, currency and checker requirements; no duplicate AI remote fetch is
+required when the evidence is sufficient. An unsupported human recap remains
+incomplete. Preserve the existing human-evidence review and source sufficiency.
+This adds no new gate predicate and cannot advance stage state.
+
 ## Research note fields
 
 Question/uncertainty ID; decision affected; sufficiency requirement; sources opened

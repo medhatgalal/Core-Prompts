@@ -1,0 +1,121 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-freshness-sweep",
+  "original_sha256": "d6038fec49d35bb7f1c7c80c147551360eda725aed51db0dca97d0b1365c5321",
+  "candidate_sha256": "d6038fec49d35bb7f1c7c80c147551360eda725aed51db0dca97d0b1365c5321",
+  "effective_sha256": "325ae5c06cb8355f8f7404f6e6bff61c6377faff967c0ab09e7fbeb3d64f275a",
+  "verdict": "approved",
+  "source_line_count": 162,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-freshness-sweep",
+      "rationale": "The complete applied current Identity source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 18,
+      "disposition": "preserved",
+      "candidate_excerpt": "Execute a bounded source investigation before relying on a design, specification,",
+      "rationale": "The complete applied current Purpose source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 19,
+      "source_end_line": 26,
+      "disposition": "preserved",
+      "candidate_excerpt": "Expose changed facts and a simpler supported path before dependent design/planning",
+      "rationale": "The complete applied current Primary Objective source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 27,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "- \u201cCheck whether this design is still needed\u201d or \u201crefresh this ticket before planning.\u201d",
+      "rationale": "The complete applied current Invocation Hints source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 46,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Actual ticket references, current requirement/proposal revision, existing task",
+      "rationale": "The complete applied current Required Inputs source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 47,
+      "source_end_line": 82,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Read `resources/resource-map.json` and the complete `sweep` route, including",
+      "rationale": "The complete applied current Workflow source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 83,
+      "source_end_line": 98,
+      "disposition": "preserved",
+      "candidate_excerpt": "- The procedure is owned here and may be hash-pinned and physically bundled through",
+      "rationale": "The complete applied current Rules source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 99,
+      "source_end_line": 112,
+      "disposition": "preserved",
+      "candidate_excerpt": "Include **What changed since this was designed / simpler path that exists today**:",
+      "rationale": "The complete applied current Required Output source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 113,
+      "source_end_line": 119,
+      "disposition": "preserved",
+      "candidate_excerpt": "Extend the existing specification, plan or research notes and its private evidence",
+      "rationale": "The complete applied current Output Directory source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 120,
+      "source_end_line": 128,
+      "disposition": "preserved",
+      "candidate_excerpt": "Read only remote systems. No ticket updates, messages, owner pings, status changes,",
+      "rationale": "The complete applied current Constraints source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 129,
+      "source_end_line": 151,
+      "disposition": "preserved",
+      "candidate_excerpt": "A stale ticket says blocked. The last comment on page two says the dependency",
+      "rationale": "The complete applied current Examples source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 152,
+      "source_end_line": 162,
+      "disposition": "preserved",
+      "candidate_excerpt": "| Check | Passing evidence |",
+      "rationale": "The complete applied current Evaluation Rubric source section and candidate are byte-identical, including the original instructions and examples."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "applied_current_ssot"
+}
