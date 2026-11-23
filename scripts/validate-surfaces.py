@@ -25,6 +25,8 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from intent_pipeline.uac_agent_review import preflight_agent_emission
+from intent_pipeline.review_fragment import check_materializations
+
 SSOT_DIR = ROOT / 'ssot'
 META = ROOT / '.meta' / 'manifest.json'
 RULES_PATH = ROOT / '.meta' / 'surface-rules.json'
@@ -738,6 +740,10 @@ def main():
 
     errors: list[str] = preflight_agent_emission(ROOT) + validate_shared_resource_delivery()
     warnings: list[str] = []
+    try:
+        check_materializations(ROOT)
+    except (OSError, ValueError) as error:
+        errors.append(f"Shared review preflight failed: {error}")
 
     for rule in rules:
         eligible_slugs = eligible_slugs_for_rule(rule, manifest_entries)

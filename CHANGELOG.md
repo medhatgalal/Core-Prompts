@@ -1,5 +1,6 @@
 ## Unreleased
 
+- Maintainers can update the shared writer and reviewer instructions for twelve skills in one fragment. Build, validation, and UAC check the expanded copies.
 - Refreshed the standalone intent-router catalog from canonical descriptors and added a drift check. It now includes Crew, Change Impact, Daily Update and the three GTD skills.
 - Clarified Crew’s attended and unattended preflight, elapsed qualification time, and how a read-only monitor returns evidence for the designer to record.
 
