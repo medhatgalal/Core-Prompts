@@ -11,8 +11,26 @@ the route, always offering Other/free text. Use the [intent guide](INTENT-ROUTIN
 
 ## Fast path: use what is already available
 
-1. **Describe the outcome, context and scope.** For example: “Fix this demonstrated
-   off-by-one error in the pagination helper; preserve sorting and permissions.”
+Open a session in the project that contains your work, using a host where the
+Core-Prompts skills are available. Type your request in the chat. A sentence is
+enough when it names the result and where to stop. For example, “Read the failing
+pagination test and explain why the last row appears twice. Stop at diagnosis.”
+
+**To have Core-Prompts choose the starting skill in Codex**, enter
+`$engos-route-intent` followed by your request in the project chat.
+
+> $engos-route-intent We have two proposals for speeding up CI and one baseline
+> run. What evidence do we need to choose between them? Recommend a first step
+> and explain why. Stop at the recommendation.
+
+Codex must have the router available in this session. If it is missing from the
+skill list, check the [Codex install profile](INSTALL-PROFILES.md) and reopen
+the project after installation. The [intent guide](INTENT-ROUTING.md#use-the-contained-skill-package)
+lists explicit invocations for other hosts.
+
+1. **Describe the outcome, context and scope.** If you also want the repair, ask
+   “Fix the duplicate last row, preserve sorting and permissions, and run the
+   pagination tests. Leave the change local.”
    The assistant can choose `engos-delivery-implement-slice` and proceed with the
    authorized change. A clear one-step task needs no fresh specification or
    elaborate plan. A vague problem, unclear acceptance and competing proposals
@@ -46,7 +64,15 @@ and the skill's repair cycle. If that support is unavailable, the dependent revi
 gate remains incomplete. Neither a named package nor an author's checklist proves
 independent review. [Direct and delegated examples](EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).
 
-Try “Audit the migration overnight using read-only evidence.” Crew first designs the criteria and asks for the plan decision. Its unattended mode requires demonstrated, persistent sessions and 60 consecutive ten-minute wakes before production work. If that qualification exceeds the available window, the user can choose a scoped foreground inspection or a revised plan. [Worked examples](EXAMPLES.md#choose-the-stopping-point)
+For a one-time check, open a fresh session in the same project and give it the
+original request, exact revision or diff, and a check it can repeat. Keep the
+first session’s answer out of the second. [Copyable prompts for different stopping points](EXAMPLES.md#choose-the-stopping-point)
+
+For an overnight migration audit, Crew first designs the criteria and asks for the
+plan decision. Its unattended mode requires demonstrated, persistent sessions and
+60 consecutive ten-minute wakes before production work. If that qualification
+exceeds the available window, the user can choose a scoped foreground inspection
+or a revised plan.
 
 ## Antigravity headless intake
 

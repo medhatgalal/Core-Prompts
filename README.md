@@ -12,6 +12,11 @@ would materially change the route, with an Other/free-text answer path.
 `engos-route-intent` provides intake across the current catalog,
 including nonengineering jobs. A clear direct task needs no new interview.
 
+Open your usual assistant in the project you want it to work on. Try “Review my
+current diff for regressions. Return findings with file and line references.
+Leave the files as they are.” For a different finish line, choose one of the
+[example prompts](docs/EXAMPLES.md#choose-the-stopping-point).
+
 The intake skill ships in v1.18.0 and its cleanup patch in v1.18.1; v1.19.0 adds
 `engos-operations-daily-update` and v1.19.1, v1.19.2 and v1.19.5 update it; v1.19.3 and v1.19.4 fix
 installer bugs that left renamed skills unmigrated or blocked later updates; v1.19.6

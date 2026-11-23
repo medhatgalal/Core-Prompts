@@ -21,6 +21,12 @@ skill's questions, preserve Other/free text, using the actual compatible questio
 tool or an inline fallback. A native Other field counts. Preserve actual approval
 mechanisms; a displayed default, silence or timeout is not consent.
 
+Use the requested deliverable and stopping point to bound the route. A diagnosis,
+a plan, a reviewed local diff and a change through merge have different finish
+lines. Treat an ordinary sentence as sufficient when the scope is clear. A
+request to plan an unattended run leaves activation and scheduling for a
+separate decision.
+
 The routing skill owns the adaptive method and conditional relationship guidance.
 The receiving skill owns its actual artifacts, required inputs, reviews and human
 decisions. A stale or absent relationship does not exclude an updated skill.
