@@ -36,20 +36,36 @@ not required stages added to every example.
 
 ## Choose the stopping point
 
-Start with the [everyday prompt](#everyday-prompt) to describe the result in your own words.
+Open a chat in the target project with Core-Prompts available. Paste whichever
+request fits, replacing the example inputs with your own. Name the result you want and where the work should end.
 
-| Ordinary request | Expected result |
-| --- | --- |
-| “Polish this prompt and tell me how to grade it. Leave its instructions unexecuted.” | Supercharge can simplify the text and propose grading criteria. Return the edited prompt and rubric. |
-| “Turn these accepted migration steps into a goal. I will start it later.” | Plan-to-Goal prepares a goal packet with milestone evidence and stopping checks. Leave activation with the user. |
-| “Our tests disagree. Compare replay and synthetic load, then recommend one.” | Auto-Research can test the two alternatives with matched inputs. Converge can reconcile their evidence if a decision still needs work. A tie is a possible result. |
-| “Fix this reproduced bug and leave me a reviewed local diff.” | Implement Slice builds from the accepted inputs. The reviewer checks the exact diff and tests. Any repair returns for review. Stop with the local diff. |
-| “Design an overnight read-only audit of this migration.” | Crew produces a plan and criteria for approval. A foreground worker does not demonstrate unattended persistence. A read-only monitor can return its finding for the designer to record. |
-| “What shipped this week, and which issues are still open?” | Engineering Progress covers Git activity. Weekly Intel can combine that evidence with current issue-tracker records and independently review a substantial report. Ask for missing repo or tracker scope. |
+| When you want | Paste this | What to expect |
+| --- | --- | --- |
+| A quick edit | “Make this prompt one sentence and keep the approval step: ‘Inspect the failing job. Explain the smallest fix. Wait for my approval before editing.’ Return only the rewritten prompt.” | One sentence. The quoted job stays unexecuted. For a rubric too, ask “How would I grade the result?” |
+| A one-time CI audit | “Inspect the latest push and merge-request pipelines for the same commit. Which jobs ran twice, how many runner minutes did that cost, and which checks would we lose by removing one? Return findings only.” | Job names, run evidence and a recommendation. If timing or logs are unavailable, the report identifies the gap. |
+| A comparison | “Compare replaying production traces with generating synthetic load for our latency test. Use the same workload and budget. Recommend one only if the measurements distinguish them.” | Measurements on matched inputs if execution is available. Otherwise, a description of what remains untested. |
+| A reviewed local fix | “Our weekly report counts a reopened issue twice. Reproduce it with a fixture, fix the count, and have an independent reviewer check the diff and test. Recheck any repair. Stop with a local diff.” | A regression test, patch and review of the final revision. The diff stays local. |
+| An overnight plan | “Design a read-only overnight audit of our migration. Give me the evidence sources, success criteria and stop conditions. Stop at the plan and leave it unscheduled.” | A Crew plan for decision. If you already have accepted steps and want a goal packet, ask “Turn these steps into a goal I can start later.” |
+| A weekly summary | “Using this repo and its issue tracker, what shipped this week and which issues are still open? Link the evidence. Return a draft here.” | A draft grounded in commits and tracker records. Weekly Intel requires independent review for a substantial authored report. |
+| A change through merge | “Use Batman’s evidence-gated delivery workflow for the approved pagination fix. Implement it and open each PR or MR the project requires. Merge once independent review and required hosted checks pass on the final revision. Verify the landed revision and required post-merge checks on each mainline, then clean up this task’s branch and worktree.” | A reviewed, tested merge and cleanup when the host and project allow them. An unmet gate is reported with its evidence. |
+
+**To check a fix independently**, open a new session in the same project.
+Give it the original task, exact diff or revision, and the fixture. Leave out
+the builder’s verdict. For the weekly-report example, ask “Review the attached
+diff against the requirement that each issue counts once per week. Run the
+reopened-issue fixture. Report findings and test output. Leave the files as
+they are.”
+
+**To compare how two sessions handle a request**, open two new sessions at the
+same starting revision. Give each the same original prompt and inputs. Keep
+the expected route and the other session’s work out of both. Use separate
+worktrees if either session can edit. Compare the first action, the result
+and where each stopped. If either session could read shared history, record
+that limit on independence. Both checks can be run once on demand.
 
 ## Everyday prompt
 
-Replace the placeholder in the task tags with your request. Include the stopping point when it matters.
+This optional template is for compound work. Replace the placeholder in the task tags with your request and stopping point.
 
 ```text
 <task>
