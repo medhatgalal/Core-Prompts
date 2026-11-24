@@ -13,6 +13,9 @@
     ],
     "graph_check": [
       "scripts/graph_check.py"
+    ],
+    "freshness": [
+      "references/freshness-sweep.md"
     ]
   },
   "dependencies": {
@@ -22,6 +25,13 @@
     "scripts/graph_check.py": [
       "schemas/task-plan.schema.json",
       "schemas/graph-result.schema.json"
+    ],
+    "references/freshness-sweep.md": [
+      "scripts/freshness_check.py"
     ]
-  }
+  },
+  "shared_imports": [
+    "design-freshness-procedure-v1",
+    "design-freshness-check-v1"
+  ]
 }

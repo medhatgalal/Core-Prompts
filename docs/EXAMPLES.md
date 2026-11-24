@@ -202,6 +202,57 @@ skip architecture when no material choice remains. Then authorize
 `engos-delivery-implement-slice` for the next bounded task. The
 [progressive feature](#progressive-feature-example) shows the fuller route.
 
+### Sweep a design before planning
+
+> Run `engos-design-freshness-sweep` on this ticket and its existing design. Include
+> linked tickets and the platform repos owned by this area. Check whether the
+> workaround is still needed; stop at the evidence and simpler-path recommendation.
+
+**Expect:** every comment on the root, directly linked work and dependencies
+that can change the decision. Read every in-scope or selected MR/PR note,
+including resolved threads and replies, and search fourteen days of merges by
+each area owner across involved repos. Cite peripheral links and why they were
+excluded. Keep uncertain or unread dependencies in the evidence gaps.
+In the bundled synthetic fixture, the section **What changed since this was
+designed / simpler path that exists today** cites a page-two note lifting the
+blocker and a platform merge
+adding a usable API, then recommends retiring the workaround subject to actual
+compatibility/availability checks. Ticket status alone cannot keep it blocked.
+
+The assistant collects through available authorized source tools and runs the
+bundled standard-library checker from the selected skill directory:
+
+```bash
+python3 resources/scripts/freshness_check.py --evidence EVIDENCE.json --format markdown
+```
+
+The helper checks normalized evidence and returns only mechanical collection
+complete/incomplete with semantic review pending. It does not return a final
+technical ready/blocked verdict, fetch live systems or judge the meaning of an API.
+Its `FreshnessEvidence.v2` input format is in the package's `freshness` route
+(standalone: `sweep`). V1 packets require recollection of missing coverage fields;
+they are not silently promoted to v2 completeness.
+A missing page or owner/repo mapping yields incomplete and a precise evidence
+request. “Blocked” requires the responsible owner's exact current confirmation,
+source, timestamp and scope after contrary evidence is reconciled. No message is
+sent automatically. The three design/planning callers bundle this procedure and
+checker themselves, so the step works without installing the standalone sibling.
+Shaping runs it in technical Research after accepted framing, keeping the frame
+solution-free. Accepted design changes still need their existing decision process.
+
+For a first design, cite the actual ticket/requirement revision and record that
+no prior design exists. A revision comparison with unknown design history keeps
+its partial evidence and a named gap. The core accepts sourced stream inventories
+from the actual tracker/code host; product-specific recipes are guidance, not a
+closed provider list. A scoped owner excerpt may come from an already authorized
+first-party decision record as well as ticket/MR discussion.
+
+The same source-reading agent must finish the technical assessment in this run,
+checking negation, later corrections, responsible ownership and real target-site
+availability. A matched quote saying a blocker was lifted cannot justify blocked.
+Only the three named callers execute the step automatically; use the standalone
+sweep before direct architecture or other ticket-backed design entry points.
+
 ### Design decision
 
 **Before:** “Write a spec, plan and code for async exports.”

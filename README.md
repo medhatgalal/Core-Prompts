@@ -120,9 +120,13 @@ exact preview; do not clean by name glob. Missing selected Grok packages have
 recovery is separate from native discovery. [Transaction listing and rollback](docs/INSTALL-PROFILES.md#recover-an-installation)
 provide the recovery path.
 
+For a stale design or blocker, use `engos-design-freshness-sweep` to read linked
+work, check recent owner merges, and revisit the assumptions. See the
+[worked example](docs/EXAMPLES.md#sweep-a-design-before-planning).
+
 ## Skills, workers and larger delivery
 
-The current generated surfaces contain `47` skills and no shipped named-agent configurations.
+The current generated surfaces contain `48` skills and no shipped named-agent configurations.
 Use the same skill in your main session or supply it and required resources to a
 real independent worker when requested or required by its contract. A second
 answer from the same author does not establish independent review. [Examples](docs/EXAMPLES.md#one-skill-in-the-main-session-or-an-independent-worker).

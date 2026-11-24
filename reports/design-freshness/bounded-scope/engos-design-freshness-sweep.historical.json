@@ -1,0 +1,112 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-freshness-sweep",
+  "original_sha256": "d6038fec49d35bb7f1c7c80c147551360eda725aed51db0dca97d0b1365c5321",
+  "candidate_sha256": "fd92ba834c94e5872d0940b40bc691ecbd34573a61a9b14b82f5f0a9ee1ec3d6",
+  "effective_sha256": "067957af89460414423777f80795a6447f970ce0665a36748da2aad1a6208f9e",
+  "verdict": "approved",
+  "source_line_count": 162,
+  "reviewer": {
+    "agent_id": "/root/bounded_scope_review",
+    "author_agent_id": "/root",
+    "independent": true
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "reformulated",
+      "candidate_excerpt": "description: Execute a read-only freshness sweep before designing, planning or resuming ticket-backed work. Read every in-scope ticket comment and MR note and fourteen days of area-owner merges across involved repos; report changed assumptions and today's simpler path, and refuse technical blocked verdicts without the responsible owner's exact confirmation.",
+      "rationale": "The description now applies the discussion requirement to the declared work/dependency scope."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 18,
+      "disposition": "preserved",
+      "candidate_excerpt": "Execute a bounded source investigation before relying on a design, specification,",
+      "rationale": "Purpose retained verbatim throughout this source block."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 19,
+      "source_end_line": 26,
+      "disposition": "preserved",
+      "candidate_excerpt": "Expose changed facts and a simpler supported path before dependent design/planning",
+      "rationale": "Primary Objective retained verbatim throughout this source block."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 27,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "- “Check whether this design is still needed” or “refresh this ticket before planning.”",
+      "rationale": "Invocation Hints retained verbatim throughout this source block."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 46,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Actual ticket references, current requirement/proposal revision, existing task",
+      "rationale": "Required Inputs retained verbatim throughout this source block."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 47,
+      "source_end_line": 82,
+      "disposition": "reformulated",
+      "candidate_excerpt": "2. Start with the root ticket, parent and directly linked work. Follow further",
+      "rationale": "The source collection now follows root, parent, direct work and material transitive links with explicit exclusions. Full readings, window and decision authority remain required."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 83,
+      "source_end_line": 98,
+      "disposition": "preserved",
+      "candidate_excerpt": "- The procedure is owned here and may be hash-pinned and physically bundled through",
+      "rationale": "Rules retained verbatim throughout this source block."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 99,
+      "source_end_line": 112,
+      "disposition": "reformulated",
+      "candidate_excerpt": "- Complete coverage and explicit gaps: scope and exclusions, all discussion streams,",
+      "rationale": "Evidence now includes the work scope and exclusions alongside full discussions and known gaps."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 113,
+      "source_end_line": 119,
+      "disposition": "preserved",
+      "candidate_excerpt": "Extend the existing specification, plan or research notes and its private evidence",
+      "rationale": "Output Directory retained verbatim throughout this source block."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 120,
+      "source_end_line": 128,
+      "disposition": "preserved",
+      "candidate_excerpt": "Read only remote systems. No ticket updates, messages, owner pings, status changes,",
+      "rationale": "Constraints retained verbatim throughout this source block."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 129,
+      "source_end_line": 151,
+      "disposition": "preserved",
+      "candidate_excerpt": "A stale ticket says blocked. The last comment on page two says the dependency",
+      "rationale": "Examples retained verbatim throughout this source block."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 152,
+      "source_end_line": 162,
+      "disposition": "reformulated",
+      "candidate_excerpt": "| Source coverage | Root, directly linked work and material dependencies inspected, with full discussions, terminal pages and sourced exclusions |",
+      "rationale": "Coverage applies to root, direct work and material dependencies with terminal pagination and recorded exclusions."
+    }
+  ]
+}

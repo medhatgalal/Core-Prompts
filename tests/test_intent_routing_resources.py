@@ -199,3 +199,18 @@ def test_resource_routes_are_complete_and_do_not_load_unrelated_methods(route, e
     assert {r["path"] for r in bundle["resources"]} == expected
     for resource in bundle["resources"]:
         assert resource["content"].encode() == (RESOURCES / resource["path"]).read_bytes()
+
+
+def test_bundled_catalog_snapshot_matches_all_current_descriptors():
+    # A live-root lookup unions current descriptors and can hide stale bundled
+    # entries. Detached installations depend on the actual packaged snapshot.
+    table = json.loads((RESOURCES / 'routing-relations.json').read_text())
+    descriptors = {p.stem: p for p in (ROOT / '.meta/capabilities').glob('*.json')}
+    assert set(table['catalog']) == set(descriptors)
+    for slug, path in descriptors.items():
+        descriptor = json.loads(path.read_text())
+        assert table['catalog'][slug]['summary'] == descriptor['layers']['minimal']['summary']
+        # The router owns this snapshot; hashing its own resource-bearing
+        # descriptor here would create a recursive binding.
+        if slug != table['owner']:
+            assert table['catalog'][slug]['descriptor_sha256'] == hashlib.sha256(path.read_bytes()).hexdigest()

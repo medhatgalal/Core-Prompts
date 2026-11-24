@@ -1,0 +1,11 @@
+# Independent review of the bounded work graph
+
+The accepted scope includes the root ticket, its parent, directly linked work and transitive dependencies that could change a requirement, blocker, implementation or target availability. This decision explicitly displaces the unbounded recursive traversal in draft e1eecb77. It also applies to links found in discussions and owner merges. The full-body, pagination, all-note, verified-owner, merged-time window, owner-quote and same-run interpretation requirements continue to apply.
+
+Two counterexamples exposed defects in the initial revision. A parent reference on the root record could be excluded with a one-word reason and the checker returned complete. A prior v2 packet with no exclusions field produced an input error. I repeated both cases after repair. The checker now reports incomplete, retains the unread parent and explains the invalid exclusion. A complete prior v2 packet conservatively traverses its full link set and reports an empty exclusions list. Current-source revalidation is still necessary on reuse. The 78 source cases passed in this review, with detached package cases reserved for generation and integration.
+
+The checker treats an exclusion as a single directed edge. Other paths and owner-selected merges still enter the queue. The agent must inspect the source to decide whether a link from a comment is a genuine work dependency and whether a responsible owner's quote still applies. The procedure explicitly requires investigation of ambiguous material references and permits only read access. The tool reports only mechanical status.
+
+The four entries retain their distinct jobs. Technical shaping starts following the accepted frame. Specification and planning execute the shared procedure at their existing decision points. A routine prose fix remains outside the automatic sweep. Examples name provider-specific discussion streams, while the core accepts sourced tracker and review stream inventories across providers. Private trial sources belong outside the release package.
+
+Each entry has an exact UAC input/candidate/effective-resource attestation and a separate mapping from the earlier published draft. These are structural and semantic admission findings. Live results and hosted checks require independent evidence from their own runs.

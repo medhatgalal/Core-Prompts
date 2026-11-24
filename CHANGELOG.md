@@ -1,6 +1,11 @@
 ## Unreleased
 
 - Maintainers can update the shared writer and reviewer instructions for twelve skills in one fragment. Build, validation, and UAC check the expanded copies.
+- Added `engos-design-freshness-sweep` and required it in ticket-backed specification,
+  planning, and technical shaping. Read all comments and review notes for the root,
+  directly linked work and material dependencies, plus fourteen days of area-owner
+  merges in involved repositories. Report changes, simpler options, exclusions and
+  evidence gaps. A technical blocker needs the responsible owner's current quote.
 
 ## v1.23.2 - 2026-11-18
 

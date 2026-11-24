@@ -1,0 +1,137 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-specify-change",
+  "original_sha256": "2f097a3bc5d9867062e4bdbc71f4805e50f75d138097136f048f2537348be252",
+  "candidate_sha256": "2f097a3bc5d9867062e4bdbc71f4805e50f75d138097136f048f2537348be252",
+  "effective_sha256": "4e3ab61daece11c45609f946c33f3c7b0e89a553734d846f008728cabce118b2",
+  "verdict": "approved",
+  "source_line_count": 301,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 9,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-specify-change",
+      "rationale": "The complete applied current Identity source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 10,
+      "source_end_line": 21,
+      "disposition": "preserved",
+      "candidate_excerpt": "Turn a proposed change into a reviewable specification of required behavior.",
+      "rationale": "The complete applied current Purpose source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 22,
+      "source_end_line": 28,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce a bounded, source-backed change contract that a person can accept or",
+      "rationale": "The complete applied current Primary Objective source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 29,
+      "source_end_line": 39,
+      "disposition": "preserved",
+      "candidate_excerpt": "- \u201cSpecify this feature before we plan it\u201d selects `requirements_first` by default.",
+      "rationale": "The complete applied current Invocation Hints source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 40,
+      "source_end_line": 48,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Read the user's request, supplied sources and existing repository conventions.",
+      "rationale": "The complete applied current Required Inputs source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 49,
+      "source_end_line": 86,
+      "disposition": "preserved",
+      "candidate_excerpt": "For ticket-backed work, execute the bundled `freshness` route before requirements and acceptance are finalized.",
+      "rationale": "The complete applied current Required freshness sweep source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 87,
+      "source_end_line": 136,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Inspect existing specifications and naming/storage conventions before writing.",
+      "rationale": "The complete applied current Workflow source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 137,
+      "source_end_line": 159,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Preserve the repository's specification format and storage. Use the Markdown",
+      "rationale": "The complete applied current Rules source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 160,
+      "source_end_line": 178,
+      "disposition": "preserved",
+      "candidate_excerpt": "Return a readable specification in the established repository format, or in chat",
+      "rationale": "The complete applied current Required Output source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 179,
+      "source_end_line": 186,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the project's existing spec destination and format. If none exists and files",
+      "rationale": "The complete applied current Output Directory source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 187,
+      "source_end_line": 201,
+      "disposition": "preserved",
+      "candidate_excerpt": "Allowed actions are scoped source inspection, specification drafting and updating,",
+      "rationale": "The complete applied current Constraints source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 202,
+      "source_end_line": 240,
+      "disposition": "preserved",
+      "candidate_excerpt": "> Specify CSV export for filtered results; use our existing issue template.",
+      "rationale": "The complete applied current Examples source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 241,
+      "source_end_line": 257,
+      "disposition": "preserved",
+      "candidate_excerpt": "Assess each applicable item as met, pending or not applicable with source evidence.",
+      "rationale": "The complete applied current Evaluation Rubric source section and candidate are byte-identical, including the original instructions and examples."
+    },
+    {
+      "id": "R14",
+      "source_start_line": 258,
+      "source_end_line": 301,
+      "disposition": "preserved",
+      "candidate_excerpt": "For actual SpecContract.v1 and TaskPlan.v1 artifacts, load `trace_check` and run",
+      "rationale": "The complete applied current Optional mechanical trace check source section and candidate are byte-identical, including the original instructions and examples."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "applied_current_ssot"
+}

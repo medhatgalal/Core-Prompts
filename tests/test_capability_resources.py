@@ -886,14 +886,20 @@ def planner_fixture() -> dict:
 
 def test_planner_resource_routes_include_local_schema_closure():
     root = planner_resource_root()
-    assert paths(load_resource_bundle(root, 'task_plan')) == [
+    # Canonical consumers now import freshness resources. Resolve the registry;
+    # load_resource_bundle is for physically assembled/detached packages.
+    def bundle(route='all'):
+        return load_capability_bundle(root.parents[2], 'engos-design-plan-implementation', '', route)
+    assert paths(bundle('task_plan')) == [
         'schemas/task-contract.schema.json', 'schemas/task-plan.schema.json',
     ]
-    assert paths(load_resource_bundle(root, 'task_contract')) == ['schemas/task-contract.schema.json']
-    assert paths(load_resource_bundle(root, 'dependency_map')) == ['templates/dependency-map.json']
-    assert set(paths(load_resource_bundle(root))) == {
+    assert paths(bundle('task_contract')) == ['schemas/task-contract.schema.json']
+    assert paths(bundle('dependency_map')) == ['templates/dependency-map.json']
+    assert paths(bundle('freshness')) == ['scripts/freshness_check.py', 'references/freshness-sweep.md']
+    assert set(paths(bundle())) == {
         'schemas/task-contract.schema.json', 'schemas/task-plan.schema.json', 'templates/dependency-map.json',
         'schemas/graph-result.schema.json', 'scripts/graph_check.py',
+        'scripts/freshness_check.py', 'references/freshness-sweep.md',
     }
 
 

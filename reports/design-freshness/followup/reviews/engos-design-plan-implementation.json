@@ -1,0 +1,153 @@
+{
+  "schema_version": "UACRequirementReview.v1",
+  "slug": "engos-design-plan-implementation",
+  "original_sha256": "14e8738da1062c637bfbd65338630803cd048bc1e5b31f01a3871a29a9e0e948",
+  "candidate_sha256": "ec0d7bb9eafe577b76c436cf80b18b764ec3ec790a2ec6e4ca45f99726000dd3",
+  "effective_sha256": "622264d17b92dc325ca7e44f7953c96f387b44a4263be80d5d682723f2d7758c",
+  "verdict": "approved",
+  "source_line_count": 334,
+  "reviewer": {
+    "agent_id": "/root/hostile_execution",
+    "author_agent_id": "/root",
+    "independent": true,
+    "resource_author": "/root/evidence_repair"
+  },
+  "requirements": [
+    {
+      "id": "R01",
+      "source_start_line": 1,
+      "source_end_line": 10,
+      "disposition": "preserved",
+      "candidate_excerpt": "name: engos-design-plan-implementation",
+      "rationale": "Compared all source lines for Identity against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R02",
+      "source_start_line": 11,
+      "source_end_line": 17,
+      "disposition": "preserved",
+      "candidate_excerpt": "Produce a usable implementation plan from accepted requirements, preserving their",
+      "rationale": "Compared all source lines for Purpose against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R03",
+      "source_start_line": 18,
+      "source_end_line": 23,
+      "disposition": "preserved",
+      "candidate_excerpt": "Give an implementer enough source context and explicit interfaces to deliver one",
+      "rationale": "Compared all source lines for Primary Objective against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R04",
+      "source_start_line": 24,
+      "source_end_line": 34,
+      "disposition": "preserved",
+      "candidate_excerpt": "\u201cPlan this accepted feature,\u201d \u201cbreak this design into implementation outcomes,\u201d and",
+      "rationale": "Compared all source lines for Invocation Hints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R05",
+      "source_start_line": 35,
+      "source_end_line": 42,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Read the requested outcome, actual acceptance/authority evidence and current requirement revision.",
+      "rationale": "Compared all source lines for Required Inputs against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R06",
+      "source_start_line": 43,
+      "source_end_line": 49,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Create implementation outcome contracts from accepted requirements and supplied design decisions.",
+      "rationale": "Compared all source lines for In Scope against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R07",
+      "source_start_line": 50,
+      "source_end_line": 78,
+      "disposition": "reformulated",
+      "candidate_excerpt": "complete/incomplete with semantic_review_pending. In this same skill run, inspect",
+      "rationale": "The same pre-handoff execution point, closure, merge horizon, exact owner confirmation, missing evidence and existing human authority are preserved. The caller also handles a first design and performs semantic review after validation."
+    },
+    {
+      "id": "R08",
+      "source_start_line": 79,
+      "source_end_line": 150,
+      "disposition": "preserved",
+      "candidate_excerpt": "1. Identify the authoritative requirements and their current revision, actual",
+      "rationale": "Compared all source lines for Workflow against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R09",
+      "source_start_line": 151,
+      "source_end_line": 171,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Reuse the project tracker and plan format. An index or optional interchange",
+      "rationale": "Compared all source lines for Rules against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R10",
+      "source_start_line": 172,
+      "source_end_line": 220,
+      "disposition": "preserved",
+      "candidate_excerpt": "- Return one readable plan in the established format with source revisions, accepted scope/status and the actual tracker reference.",
+      "rationale": "Compared all source lines for Required Output against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R11",
+      "source_start_line": 221,
+      "source_end_line": 227,
+      "disposition": "preserved",
+      "candidate_excerpt": "Use the existing plan/tracker location. When none exists, return the plan in chat",
+      "rationale": "Compared all source lines for Output Directory against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R12",
+      "source_start_line": 228,
+      "source_end_line": 238,
+      "disposition": "preserved",
+      "candidate_excerpt": "This capability owns planning artifacts only. Do not implement product code,",
+      "rationale": "Compared all source lines for Constraints against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R13",
+      "source_start_line": 239,
+      "source_end_line": 270,
+      "disposition": "preserved",
+      "candidate_excerpt": "> Plan the accepted filtered CSV export requirement in our existing tracker.",
+      "rationale": "Compared all source lines for Examples against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R14",
+      "source_start_line": 271,
+      "source_end_line": 288,
+      "disposition": "preserved",
+      "candidate_excerpt": "Assess each item as met, pending or not applicable with evidence. Material pending",
+      "rationale": "Compared all source lines for Evaluation Rubric against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R15",
+      "source_start_line": 289,
+      "source_end_line": 299,
+      "disposition": "preserved",
+      "candidate_excerpt": "Independently expressed synthesis draws on Addy Osmani's",
+      "rationale": "Compared all source lines for Pattern Provenance against the corresponding candidate section. The text is retained verbatim."
+    },
+    {
+      "id": "R16",
+      "source_start_line": 300,
+      "source_end_line": 334,
+      "disposition": "preserved",
+      "candidate_excerpt": "For a supplied TaskPlan.v1, load the `graph_check` resource route and run",
+      "rationale": "Compared all source lines for Optional mechanical graph check against the corresponding candidate section. The text is retained verbatim."
+    }
+  ],
+  "agent_execution_needs": [],
+  "historical_baseline": {
+    "source": "git_history",
+    "selected_commit": "2b3bbf28",
+    "matches_current_ssot": false
+  },
+  "evidence_scope": "Independent review of the strict current recursive graph contract and final normalized mechanics, including per-item sourced permission for empty review/event bodies, mixed-timeline deduplication, acquisition time versus source edit time, and retained source receipts. Unknown or large graphs can remain incomplete. This review does not establish complete live-source coverage, authorize graph pruning or grant merge, deployment or release authority.",
+  "source_binding": "historical_ssot"
+}

@@ -35,20 +35,20 @@ APPIAN_READER_EXAMPLE_MARKERS = (
 
 
 def test_direct_specialist_route_delivers_question_budget_and_decision_guidance():
-    from intent_pipeline.capability_resources import load_resource_bundle
-    root = RESOURCE.parent / 'engos-design-shaping'
-    files = {item['path'] for item in load_resource_bundle(root, 'architecture-fit')['resources']}
+    from intent_pipeline.capability_resources import load_capability_bundle
+    files = {item['path'] for item in load_capability_bundle(ROOT, 'engos-design-shaping', '', 'architecture-fit')['resources']}
     assert {'architecture-fit.md', 'questions.md', 'decisions.md'} <= files
-    frame_files = {item['path'] for item in load_resource_bundle(root, 'frame')['resources']}
+    frame_files = {item['path'] for item in load_capability_bundle(ROOT, 'engos-design-shaping', '', 'frame')['resources']}
     assert 'architecture-fit.md' not in frame_files
     assert 'code-scan.md' not in frame_files
     assert 'repository-discovery.md' not in frame_files
+    assert 'references/freshness-sweep.md' not in frame_files
+    assert 'scripts/freshness_check.py' not in frame_files
 
 
 def test_code_scan_route_loads_runtime_repository_discovery():
-    from intent_pipeline.capability_resources import load_resource_bundle
-    root = RESOURCE.parent / "engos-design-shaping"
-    files = {item["path"] for item in load_resource_bundle(root, "code-scan")["resources"]}
+    from intent_pipeline.capability_resources import load_capability_bundle
+    files = {item["path"] for item in load_capability_bundle(ROOT, 'engos-design-shaping', '', 'code-scan')["resources"]}
     assert {"code-scan.md", "repository-discovery.md", "sources.md"} <= files
 
 
